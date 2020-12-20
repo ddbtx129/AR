@@ -1,0 +1,21 @@
+﻿.js-slider {
+    position: relative;
+    width: 150px;
+    height: 20px;
+}
+
+    .js-slider div {
+        background: #ddd;
+        height: 5px;
+        border: 1px inset #aaa;
+        position: relative;
+        top: 8px;
+        font-size: 0px;
+    }
+
+    .js-slider input {
+        position: absolute;
+        width: 12px;
+        height: 14px;
+        display: block;
+    }
