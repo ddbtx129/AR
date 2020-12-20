@@ -1,0 +1,104 @@
+﻿<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="/special/webar/asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>アオシマ ＡＲ｜株式会社 青島文化教材社</title>
+
+        <link rel="stylesheet" href="/special/webar/css/ar-video.css">
+
+        <script type="text/javascript" src="/special/webar/js/ar.main.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe.min.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe-ar.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe-animation-component.min.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar.event.js"></script>
+
+    </head>
+
+    <body style='margin : 0px; overflow: hidden;'>
+
+        <div id="info1" class="info1">
+            <a id="swPlay" class="InfoItem">
+                <p id="p1">画面をタップすると、再生が開始されます。<br><br>音声が流れますのでご注意下さい。</p>
+            </a>
+        </div>
+
+        <img class="playbutton" id="player" src="/special/webar/asset/play.png" style="display: none" />
+
+        <a-assets id="arAssets">
+            <video id="ar-video" autoplay loop="true" preload="none" src='' controls></video>
+            <audio src="videopath" autoplay></audio>
+        </a-assets>
+
+        <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
+        <a-scene id="arScene" embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">
+
+            <!--<a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>-->
+            
+            <!-- 『.patt』ファイルを読み込む -->
+            <a-marker id="ar-marker" type='pattern' url='' videohandler>
+                <a-video id="arVideo" src="#ar-video" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
+            </a-marker>
+
+            <!--<a-entity id="arShadow" position="" rotation="">
+                <a-entity position="" rotation="" geometry="" material=""></a-entity>
+                <a-entity position="" rotation="" material="" geometry=""></a-entity>
+            </a-entity>-->
+
+            <a-entity camera></a-entity>
+
+        </a-scene>
+    
+        <script type="text/javascript">
+
+            param = GetQueryString();
+
+            document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
+            document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-" + param["m"] + ".patt");
+
+        </script>
+
+        <!--<script>
+            param = GetQueryString();
+
+            var isShadow = (param["xs"] && (parseInt(param["xs"], 16).toString(2))) && !!Number(param["xs"] && (parseInt(param["xs"], 16).toString(2)));
+
+            if (isShadow) {
+                var shadow = getElementById("arShadow");
+
+                var w = Number(document.getElementById('arVideo').getAttribute('width'));
+                var h = Number(document.getElementById('arVideo').getAttribute('height'));
+
+                //shadow.setAttribute('position', '0 0 ' + String(- h / 2 - 2));
+                //shadow.setAttribute('rotation', '-90 0 0');
+
+                document.getElementById("arShadow").setAttribute("position", 'position', '0 0 ' + String(- h / 2 - 2));
+                document.getElementById("arShadow").setAttribute("rotation", '-90 0 0');
+
+                AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                    primitive: 'plane', height: h, width: w
+                });
+
+                AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                    shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+                    color: 'black', opacity: 0.3, depthTest: false
+                });
+
+                //var scene = document.get.getElementById("arScene");
+                //scene.appendChild(shadow);
+            }
+        </script>-->
+
+    </body>
+
+</html>

@@ -1,0 +1,119 @@
+﻿<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>アオシマ ＡＲ</title>
+        
+        <!--<script type="text/javascript">
+            if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
+                && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+                if ((navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0) && navigator.userAgent.indexOf('Safari') == -1) {
+                    window.confirm('【Safari】をご使用下さい。')
+                } else if(navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+                    window.confirm('【Chrome】をご使用下さい。')
+                }
+            } else {
+                location.href = "http://www.aoshima-bk.co.jp/special/webar/warning.php"
+            }
+        </script>-->
+        <link rel="stylesheet" href="css/view2d.css">
+        <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+        <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.min.js"></script>
+        <script src="https://unpkg.com/aframe-animation-component@^5.0.0/dist/aframe-animation-component.min.js"></script>
+    
+    </head>
+
+    <body>
+
+        <div class="switch">
+            <a id="swMarker" class="swItem"><img src="asset/marker.png" width="30"></a>
+            <a id="swPreview" class="swItem"><img src="asset/preview.png" width="30"></a>
+            <a id="swInfo" class="swItem"><img src="asset/info.png" width="30"></a>
+        </div>
+
+        <div id="infoContent" style="opacity: 0">
+            <p><img src="asset/marker.png" width="20"> マーカーをカメラで映すことでARを表示する</p>
+            <p><img src="asset/preview.png" width="20"> 固定位置でARを表示する（上下スワイプでズーム）</p>
+            <h4>推奨環境（端末・アプリ）</h4>
+            <ul>
+                <li>
+                    iOS 11 以上の iPhone/iPadではSafari<br>
+                </li>
+                <li>
+                    Android Chromeブラウザ
+                </li>
+            </ul>
+        </div>
+
+        <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
+
+        <script>
+
+            var image = document.querySelector('#scrshot');
+
+            //スナップショットボタン
+            image.addEventListener("click", function (e) {
+                e.preventDefault();
+                var video = document.querySelector('video');
+                var snap = takeSnapshot(video);
+
+                var win = window.open();
+                win.document.write("<img src='" + snap + "'/>");
+            });
+
+            //スナップショットを撮る
+            function takeSnapshot(video) {
+
+                var resizedCanvas = document.createElement("canvas");
+                var resizedContext = resizedCanvas.getContext("2d");
+                var width = video.videoWidth;
+                var height = video.videoHeight;
+                var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+
+                if (width && height) {
+                    //videoのサイズをキャンバスにセット
+                    resizedCanvas.width = width;
+                    resizedCanvas.height = height;
+                    //キャンバスにvideoをコピー
+                    resizedContext.drawImage(video, 0, 0, width, height);
+
+                    //カメラの画角でar側の縮小処理を変える
+                    if (width > height) {
+                        // 横長（PC)
+                        resizedContext.drawImage(aScene, 0, 0, width, height);
+                    } else {
+                        // 縦長（スマホ）
+                        var scale = height / width;
+                        var scaledWidth = height * scale;
+                        var marginLeft = (width - scaledWidth) / 2;
+                        resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+                    }
+
+                    return resizedCanvas.toDataURL('image/png');
+                }
+            }
+
+        </script>
+
+        <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam;" vr-mode-ui="enabled: false">
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+            <a-camera-static />
+        </a-scene>
+
+        <script src="js/gifshader.js"></script>
+        <script src="js/chromakey.js"></script>
+        <script src="js/view2d.js"></script>
+    </body>
+
+</html>

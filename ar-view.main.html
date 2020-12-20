@@ -1,0 +1,117 @@
+﻿<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>アオシマ ＡＲ</title>
+
+        <link rel="stylesheet" href="css/ar-view.css">
+
+        <script type="text/javascript" src="/special/webar/js/ar.main.js"></script>
+        <script type="text/javascript" src="/special/webar/js/camera.swich.js"></script>
+
+        <script type="text/javascript" src="/special/webar/js/ar/aframe.min.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe-ar.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe-animation-component.min.js"></script>
+        
+    </head>
+
+    <body>
+
+        <div class="switch">
+            <a id="swMarker" class="swItem"><img src="asset/marker.png" width="30"></a>
+            <a id="swPreview" class="swItem"><img src="asset/preview.png" width="30"></a>
+        </div>
+
+        <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
+
+        <img class="ar-up" id="swUp" src="asset/up-w.png"  style="display: none" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png"  style="display: none" />
+
+        <!-- スナップショットスクリプト -->
+        <script>
+
+            var image = document.querySelector('#scrshot');
+
+            //スナップショットボタン
+            image.addEventListener("click", function (e) {
+
+                var res = window.confirm("スナップショットを行います。");
+
+                if (res == true) {
+
+                    e.preventDefault();
+
+                    var video = document.querySelector('video');
+                    var snap = takeSnapshot(video);
+
+                    location.reload();
+
+                    var win = window.open();
+                    win.document.write("<img src='" + snap + "'/>");
+                }
+            });
+
+            //スナップショットを撮る
+            function takeSnapshot(video) {
+
+                var resizedCanvas = document.createElement("canvas");
+                var resizedContext = resizedCanvas.getContext("2d");
+                var width = video.videoWidth;
+                var height = video.videoHeight;
+                var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+
+                if (width && height) {
+
+                    //videoのサイズをキャンバスにセット
+                    resizedCanvas.width = width;
+                    resizedCanvas.height = height;
+
+                    //キャンバスにvideoをコピー
+                    resizedContext.drawImage(video, 0, 0, width, height);
+
+                    //カメラの画角でar側の縮小処理を変える
+                    if (width > height) {
+                        // 横長（PC)
+                        resizedContext.drawImage(aScene, 0, 0, width, height);
+                    } else {
+                        // 縦長（スマホ）
+                        var scale = height / width;
+                        var scaledWidth = height * scale;
+                        var marginLeft = (width - scaledWidth) / 2;
+
+                        resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+                    }
+
+                    return resizedCanvas.toDataURL('image/png');
+                }
+            }
+
+        </script>
+
+        <!--<img class="toggleCamera" id="toggleCamera" src="asset/camera-w.png" style="display: none"/>-->
+        <img class="swichcamera" id="swCamera" src="asset/camera-w.png" />
+        <!--<img class="loading" id="loader" src="/special/webar/asset/loading-66.gif" style="display: none" />-->
+
+        <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam;" vr-mode-ui="enabled: false">
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+            <a-camera-static />
+        </a-scene>
+
+        <script src="js/gifshader.js"></script>
+        <script src="js/chromakey.js"></script>
+        <script src="js/ar-view-move.js"></script>
+
+    </body>
+
+</html>
