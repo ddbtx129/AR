@@ -366,10 +366,13 @@ var webArViewer = webArViewer || {};
                 mWrap.setAttribute('id', 'arMarker');
 
                 if (!!self.arg.m) {
-                    mWrap.setAttribute('url', 'asset/pattern-' + self.arg.m + '.patt');
+                    mWrap.setAttribute('url', 'pattern/pattern-' + self.arg.m + '.patt');
                 } else {
-                    mWrap.setAttribute('url', 'asset/pattern-0.patt');
+                    mWrap.setAttribute('url', 'pattern/pattern-0.patt');
                 }
+
+                window.alert(location.pathname);
+                window.alert(mWrap.getAttribute(url));
 
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
