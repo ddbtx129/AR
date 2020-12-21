@@ -54,18 +54,8 @@
 
             param = GetQueryString();
 
-            if (param["o"] != ''){
-                document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
-            }else {
-                window.alert('対象動画が見つかりません。');
-                location.href = "warning.html";
-            }
-
-            if (param["m"] != '') {
-                document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-" + param["m"] + ".patt");
-            } else {
-                document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-0.patt");
-            }
+            document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
+            document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-" + param["m"] + ".patt");
 
         </script>
 
