@@ -8,18 +8,18 @@
         <meta name="twitter:card" content="summary" />
         <meta property="og:title" content="WebAR" />
         <meta property="og:description" content="標準ブラウザからARが見られます。" />
-        <meta property="og:image" content="asset/share.png" />
+        <meta property="og:image" content="/special/webar/asset/share.png" />
         <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <title>ＡＲ</title>
+        <title>アオシマ ＡＲ｜株式会社 青島文化教材社</title>
 
-        <link rel="stylesheet" href="css/ar-video.css">
+        <link rel="stylesheet" href="/special/webar/css/ar-video.css">
 
-        <script type="text/javascript" src="js/ar.main.js"></script>
-        <script type="text/javascript" src="js/ar/aframe.min.js"></script>
-        <script type="text/javascript" src="js/ar/aframe-ar.js"></script>
-        <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
-        <script type="text/javascript" src="js/ar.event.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar.main.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe.min.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe-ar.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar/aframe-animation-component.min.js"></script>
+        <script type="text/javascript" src="/special/webar/js/ar.event.js"></script>
 
     </head>
 
@@ -31,7 +31,7 @@
             </a>
         </div>
 
-        <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
+        <img class="playbutton" id="player" src="/special/webar/asset/play.png" style="display: none" />
 
         <a-assets>
             <video id="ar-video" autoplay loop="true" preload="none" src='' controls></video>
@@ -54,8 +54,18 @@
 
             param = GetQueryString();
 
-            document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
-            document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-" + param["m"] + ".patt");
+            if (param["o"] != null && param["o"] != ''){
+                document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
+            }else {
+                window.alert('対象動画が見つかりません。');
+                location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php";
+            }
+
+            if (param["m"] != null && param["m"] != '') {
+                document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-" + param["m"] + ".patt");
+            } else {
+                document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-0.patt");
+            }
 
         </script>
 
