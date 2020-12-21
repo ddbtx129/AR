@@ -372,7 +372,7 @@ var webArViewer = webArViewer || {};
                 }
 
                 window.alert(location.pathname);
-                window.alert(mWrap.getAttribute(url));
+                window.alert(mWrap.getAttribute('url'));
 
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
