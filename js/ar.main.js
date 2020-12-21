@@ -11,19 +11,19 @@
                 // TODO: iOS 11.0以上の場合
                 if (navigator.userAgent.indexOf('Safari') == -1) {
                     window.alert('【Safari】をご使用下さい。')
-                    location.href = "/warning.html"
+                    location.href = "../warning.html"
                 }
 
             } else {
 
                 window.alert('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。')
-                location.href = "/warning.html"
+                location.href = "../warning.html"
             }
 
         } else if (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
 
             window.alert('【Chrome】をご使用下さい。')
-            location.href = "/warning.html"
+            location.href = "../warning.html"
         }
 
         var param = GetQueryString();
@@ -39,13 +39,13 @@
 
             if (parseInt(param['ed'].toString(), 16).toString(10) < (year + month + day).toString()) {
                 window.alert('表示期限が終了しているため、表示することができません。')
-                location.href = "/warning.html"
+                location.href = "../warning.html"
             }
         }
 
     } else {
         window.alert('パソコンで表示することはできません。')
-        location.href = "/warning.html"
+        location.href = "../warning.html"
     }
 
     function iosVersion() {
@@ -59,6 +59,7 @@
 
         return versions;
     }
+    
 }());
 
 function GetQueryString() {
