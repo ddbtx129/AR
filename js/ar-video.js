@@ -1,4 +1,4 @@
-var urlpath = "https://ddbtx129.gethub.io/AR/";
+var urlpath = "https://ddbtx129.github.io/AR/";
 
 function getArVideo() {
 
@@ -25,8 +25,6 @@ function getNftVideo() {
     
     var vObj = !(arg["o"]) ? urlpath + 'article/notfound_video.mp4' : urlpath + 'article/' + arg["o"] + '.mp4';
 
-    window.alert(vObj);
-    
     video.setAttribute("src", vObj);
     audio.setAttribute("src", vObj);
 };
@@ -38,7 +36,5 @@ function getNftImage() {
     var nft = document.getElementById("ar-nft");
     var nObj = !(arg["m"]) ? '' : urlpath + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
 
-    window.alert(nObj);
-    
     nft.setAttribute("url", nObj);
 };
