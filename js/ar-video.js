@@ -6,7 +6,7 @@ function getArVideo() {
 
     var video = document.getElementById("ar-video");
     var vObj = !(arg["o"]) ? 'article/notfound_video.mp4' : 'article/' + arg["o"] + '.mp4';
-    window.alert("0");
+    window.alert(vObj);
     video.setAttribute("src", vObj);
     window.alert("1");
     var marker = document.getElementById("ar-marker");
