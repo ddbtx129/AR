@@ -48,10 +48,10 @@ function GetPageUrl() {
     var arg = GetQueryString();
     var params = url.searchParams;
 
-    for (var i = 0; arg.length; i++) {
-        params.delete(arg[i]);
-    }
-    window.alert(url);
-    window.alert(url.pathname);
+    //for (var i = 0; arg.length; i++) {
+    //    params.delete(arg[i]);
+    //}
+    window.alert(url.replace('?' + params. ''));
+
     return url;
 };
