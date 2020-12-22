@@ -67,11 +67,12 @@
         </a-assets>
 
         <script type="text/javascript">
-
-            param = GetQueryString();
-
-            document.getElementById("ar-video").setAttribute("src", "https://ddbtx129.github.io/AR/article/" + param["o"] + ".mp4");
-            document.getElementById("ar-audio").setAttribute("src", "https://ddbtx129.github.io/AR/article/" + param["o"] + ".mp4");
+            var urlpath = "https://ddbtx129.gethub.io/AR/";
+            var arg = GetQueryString();
+            document.getElementById("ar-video").setAttribute("src", urlpath + 'article/' + arg["o"] + '.mp4');
+            document.getElementById("ar-audio").setAttribute("src", urlpath + 'article/' + arg["o"] + '.mp4');
+            //document.getElementById("ar-video").setAttribute("src", "https://ddbtx129.github.io/AR/article/" + param["o"] + ".mp4");
+            //document.getElementById("ar-audio").setAttribute("src", "https://ddbtx129.github.io/AR/article/" + param["o"] + ".mp4");
 
         </script>
 
@@ -92,10 +93,10 @@
         </a-scene>
 
         <script type="text/javascript">
-
-            param = GetQueryString();
-
-            document.getElementById("ar-nft").setAttribute("url", "https://ddbtx129.github.io/AR/ImageDescriptors/" + param["m"] + "/" + param["m"]);
+            var urlpath = "https://ddbtx129.gethub.io/AR/";
+            var arg = GetQueryString();
+            document.getElementById("ar-nft").setAttribute("url", urlpath + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"])
+            //document.getElementById("ar-nft").setAttribute("url", "https://ddbtx129.github.io/AR/ImageDescriptors/" + param["m"] + "/" + param["m"]);
 
         </script>
 
