@@ -11,9 +11,9 @@ window.alert('1');
     } else {
         Err_Exit('対象動画が見つかりません。');
     }
-
+    window.alert('marker0');
     var marker = (param["m"] != '') ? "pattern/pattern-" + param["m"] + ".patt" : "pattern/pattern-0.patt";
-
+    window.alert('marker1');
     if (IsFile(marker)) {
         window.alert(marker);
         document.getElementById("ar-marker").setAttribute("url", marker);
