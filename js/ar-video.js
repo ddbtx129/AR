@@ -1,4 +1,5 @@
-﻿
+var url = "https://ddbtx129.gethub.io/AR/";
+
 function getArVideo() {
 
     var arg = GetQueryString();
@@ -16,16 +17,13 @@ function getArVideo() {
 };
 
 function getNftVideo() {
-    
-    window.alert(window.location.search);
-    window.ALERT(window.location.href.match(".+/(.+?)([\?#;].*)?$")[1]);
-    
+
     var arg = GetQueryString();
 
     var video = document.getElementById("ar-video");
     var audio = document.getElementById("ar-audio");
     
-    var vObj = !(arg["o"]) ? 'article/notfound_video.mp4' : 'article/' + arg["o"] + '.mp4';
+    var vObj = !(arg["o"]) ? url + 'article/notfound_video.mp4' : url + 'article/' + arg["o"] + '.mp4';
 
     video.setAttribute("src", vObj);
     audio.setAttribute("src", vObj);
@@ -36,22 +34,7 @@ function getNftImage() {
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-nft");
-    var nObj = !(arg["m"]) ? '' : 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+    var nObj = !(arg["m"]) ? '' : url + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
 
     nft.setAttribute("url", nObj);
-};
-
-function GetPageUrl() {
-
-    var url = new URL(window.location.href);
-
-    var arg = GetQueryString();
-    var params = url.searchParams;
-
-    //for (var i = 0; arg.length; i++) {
-    //    params.delete(arg[i]);
-    //}
-    window.alert(url.replace('?' + params. ''));
-
-    return url;
 };
