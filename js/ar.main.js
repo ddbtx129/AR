@@ -10,20 +10,21 @@
 
                 // TODO: iOS 11.0以上の場合
                 if (navigator.userAgent.indexOf('Safari') == -1) {
-                    window.alert('【Safari】をご使用下さい。')
-                    location.href = "warning.html"
+                    //window.alert('【Safari】をご使用下さい。')
+                    //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
+                    Err_Exit('【Safari】をご使用下さい。');
                 }
 
             } else {
-
-                window.alert('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。')
-                location.href = "warning.html"
+                //window.alert('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。')
+                //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
+                Err_Exit('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。');
             }
 
         } else if (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-
-            window.alert('【Chrome】をご使用下さい。')
-            location.href = "warning.html"
+            //window.alert('【Chrome】をご使用下さい。')
+            //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
+            Err_Exit('【Chrome】をご使用下さい。');
         }
 
         var param = GetQueryString();
@@ -38,14 +39,16 @@
         if (param['ed'] != null) {
 
             if (parseInt(param['ed'].toString(), 16).toString(10) < (year + month + day).toString()) {
-                window.alert('表示期限が終了しているため、表示することができません。')
-                location.href = "warning.html"
+                //window.alert('表示期限が終了しているため、表示することができません。')
+                //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
+                Err_Exit('表示期限が終了しているため、表示することができません。');
             }
         }
 
     } else {
-        window.alert('パソコンで表示することはできません。')
-        location.href = "warning.html"
+        //window.alert('パソコンで表示することはできません。')
+        //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
+            Err_Exit('パソコンで表示することはできません。');
     }
 
     function iosVersion() {
@@ -59,7 +62,6 @@
 
         return versions;
     }
-    
 }());
 
 function GetQueryString() {
@@ -88,4 +90,34 @@ function GetQueryString() {
     }
 
     return null;
+};
+
+window.addEventListener('DOMContentLoaded', function () {
+
+    document.addEventListener("touchmove",
+       function (e) {
+           e.preventDefault();
+       }, { passive: false });
+});
+
+function Err_Exit(msg) {
+    window.alert(msg);
+    location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php";
+};
+
+/**
+ * ファイル存在チェック
+ * @param fp ファイルパス
+ * @param callback チェック後に呼び出されるコールバック
+ */
+function IsFile(fp, callback) {
+    $.ajax({
+        url: fp,
+        cache: false
+    }).done(function (data) {
+        callback(true);
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        callback(false);
+    });
 };
