@@ -111,6 +111,7 @@ function Err_Exit(msg) {
  * @param callback チェック後に呼び出されるコールバック
  */
 function IsFile(fp, callback) {
+    window.alert('IsFile呼び出し');
     $.ajax({
         url: fp,
         cache: false
