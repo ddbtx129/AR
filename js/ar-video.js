@@ -15,7 +15,7 @@ function getArVideo() {
 
 };
 
-funcrion getNftVideo() {
+function getNftVideo() {
     
     var arg = GetQueryString();
 
@@ -26,9 +26,9 @@ funcrion getNftVideo() {
 
     video.setAttribute("src", vObj);
     audio.setAttribute("src", vObj);
-}
+};
 
-funcrion getNftImage() {
+function getNftImage() {
     
     var arg = GetQueryString();
 
@@ -36,4 +36,4 @@ funcrion getNftImage() {
     var nObj = !(arg["m"]) ? '' : 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
 
     nft.setAttribute("url", nObj);
-}
+};
