@@ -7,8 +7,10 @@ function getObject() {
     var vObj = param["o"] != '' ? "article/" + param["o"] + ".mp4" : 'article/notfound_video.mp4';
 
     if (IsFile(vObj)) {
+        widnow.alert("ファイル有り");
         video.setAttribute("src", vObj);
     } else {
+        widnow.alert("ファイル無し");
         Err_Exit('対象動画が見つかりません。');
     }
 
