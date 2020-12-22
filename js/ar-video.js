@@ -5,9 +5,8 @@ function getObject() {
 
     var video = document.getElementById("ar-video");
     var vObj = param["o"] != '' ? "article/" + param["o"] + ".mp4" : 'article/notfound_video.mp4';
-    
-    var file;
 
+    test1(vObj);
     IsFile(vObj, function (res) {
         if (res) {
             video.setAttribute("src", vObj);
