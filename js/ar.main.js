@@ -105,29 +105,21 @@ function Err_Exit(msg) {
     location.href = "warning.html";
 };
 
-	function test1(fp){
-		is_file(fp,function(res){
-			if(res==true){
-				window.alert('ファイルは存在します');
-			}else{
-				window.alert('ファイルは存在しません');
-			}
-		});
-	}
+function IsFile(fp) {
 
-/**
- * ファイル存在チェック
- * @param fp ファイルパス
- * @param callback チェック後に呼び出されるコールバック
- */
-function IsFile(fp, callback) {
+    var flg = null;
+
     $.ajax({
         url: fp,
-        cache: false
+        cache: false,
+        async: false
     }).done(function (data) {
-        callback(true);
+        flg = true;
     })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-        callback(false);
-    });
+	.fail(function (jqXHR, textStatus, errorThrown) {
+	    flg = false;
+	});
+
+    return flg;
+
 };
