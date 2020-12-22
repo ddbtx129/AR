@@ -1,49 +1,49 @@
 ﻿<html>
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <meta name="robots" content="noindex,nofollow,noarchive">
-        <meta name="twitter:card" content="summary" />
-        <meta property="og:title" content="WebAR" />
-        <meta property="og:description" content="標準ブラウザからARが見られます。" />
-        <meta property="og:image" content="asset/share.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="WebAR" />
+    <meta property="og:description" content="標準ブラウザからARが見られます。" />
+    <meta property="og:image" content="asset/share.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <title>アオシマ ＡＲ｜株式会社 青島文化教材社</title>
+    <title>アオシマ ＡＲ｜株式会社 青島文化教材社</title>
 
-        <link rel="stylesheet" href="css/ar-video.css">
+    <link rel="stylesheet" href="css/ar-video.css">
 
-        <script type="text/javascript" src="js/ar.main.js"></script>
-        <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
-        <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
-        <script type="text/javascript" src="js/ar.event.js"></script>
-        <script type="text/javascript" src="js/ar-video.js"></script>
+    <script type="text/javascript" src="js/ar.main.js"></script>
+    <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+    <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+    <script type="text/javascript" src="js/ar.event.js"></script>
+    <script type="text/javascript" src="js/ar-video.js"></script>
 
-        <style>
-            .arjs-loader {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                background-color: rgba(0, 0, 0, 0.8);
-                z-index: 9999;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+    <style>
+        .arjs-loader {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .arjs-loader div {
+                text-align: center;
+                font-size: 1.25em;
+                color: white;
             }
+    </style>
 
-                .arjs-loader div {
-                    text-align: center;
-                    font-size: 1.25em;
-                    color: white;
-                }
-        </style>
+</head>
 
-    </head>
-     
     <body style='margin : 0px; overflow: hidden;'>
 
         <div class="arjs-loader">
@@ -74,19 +74,20 @@
                  embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
             <a-nft videohandler
-                   type="nft" id="ar-nft" url= ""
+                   type="nft" id="ar-nft" url=""
                    smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 <!-- position  x z y 軸-->
                 <a-video src="#ar-video"
                          position="60 -75 -160" rotation="-45 0 0" width='213' height='120' play="true"></a-video>
             </a-nft>
 
-            <a-entity camera></a-entity>
+            <!--<a-entity camera></a-entity>-->
+            <a-camera-static />
 
         </a-scene>
 
         <script type="text/javascript">getNftImage();</script>
 
     </body>
-     
+
 </html>
