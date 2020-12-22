@@ -5,8 +5,9 @@ function getObject() {
 
     var video = document.getElementById("ar-video");
     var vObj = param["o"] != '' ? "article/" + param["o"] + ".mp4" : 'article/notfound_video.mp4';
-    
+    window.alert(vObj);
     if (IsFile(vObj)) {
+        window.alert(vObj);
         video.setAttribute("src", vObj);
     } else {
         Err_Exit('対象動画が見つかりません。');
