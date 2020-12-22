@@ -44,6 +44,11 @@
                 Err_Exit('表示期限が終了しているため、表示することができません。');
             }
         }
+        
+        document.addEventListener("touchmove", function(e) {
+              e.preventDefault();
+            }, { passive: false }
+        );
 
     } else {
         //window.alert('パソコンで表示することはできません。')
