@@ -28,4 +28,12 @@ funcrion getNftVideo() {
     audio.setAttribute("src", vObj);
 }
 
+funcrion getNftImage() {
+    
+    var arg = GetQueryString();
 
+    var nft = document.getElementById("ar-nft");
+    var nObj = !(arg["m"]) ? '' : 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+
+    nft.setAttribute("url", nObj);
+}
