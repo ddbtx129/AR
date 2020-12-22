@@ -17,7 +17,7 @@ function getArVideo() {
 
 function getNftVideo() {
     
-    window.alert(location.href);
+    window.alert(GetPageUrl());
     window.ALERT(window.location.href.match(".+/(.+?)([\?#;].*)?$")[1]);
     
     var arg = GetQueryString();
@@ -39,4 +39,18 @@ function getNftImage() {
     var nObj = !(arg["m"]) ? '' : 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
 
     nft.setAttribute("url", nObj);
+};
+
+function GetPageUrl() {
+
+    var url = new URL(window.location.href);
+
+    var arg = GetQueryString();
+    var params = url.searchParams;
+
+    for (var i = 0; arg.length; i++) {
+        params.delete(arg[i]);
+    }
+    window.alert(params);
+    return params;
 };
