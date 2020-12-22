@@ -17,6 +17,8 @@ function getArVideo() {
 
 function getNftVideo() {
     
+    windows.alert(location.href);
+    
     var arg = GetQueryString();
 
     var video = document.getElementById("ar-video");
