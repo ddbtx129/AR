@@ -17,7 +17,8 @@ function getArVideo() {
 
 function getNftVideo() {
     
-    windows.alert(location.href);
+    window.alert(location.href);
+    window.ALERT(window.location.href.match(".+/(.+?)([\?#;].*)?$")[1]);
     
     var arg = GetQueryString();
 
