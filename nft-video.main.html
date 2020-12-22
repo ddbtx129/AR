@@ -11,7 +11,7 @@
     <meta property="og:image" content="asset/share.png" />
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>ＡＲ</title>
+    <title>アオシマ ＡＲ｜株式会社 青島文化教材社</title>
 
     <link rel="stylesheet" href="css/ar-video.css">
 
@@ -19,6 +19,7 @@
     <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
     <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
     <script type="text/javascript" src="js/ar.event.js"></script>
+    <script type="text/javascript" src="js/ar-video.js"></script>
 
     <style>
         .arjs-loader {
@@ -58,29 +59,22 @@
         <img class="playbutton" id="player" src="asset/play.png" style="display: none"/>
 
         <a-assets>
-            <video src=''
+            <video src='notfound_video.mp4'
                    preload="auto" id="ar-video" response-type="arraybuffer" loop
                    crossorigin webkit-playsinline autoplay playsinline controls></video>
-            <audio src=''
+            <audio src='notfound_video.mp4'
                    preload="auto" id="ar-audio" response-type="arraybuffer" loop
                    crossorigin webkit-playsinline autoplay playsinline controls></audio>
         </a-assets>
 
-        <script type="text/javascript">
-
-            param = GetQueryString();
-
-            document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
-            document.getElementById("ar-audio").setAttribute("src", "article/" + param["o"] + ".mp4");
-
-        </script>
+        <script type="text/javascript">getNftVideo();</script>
 
         <a-scene vr-mode-ui="enabled: false;"
                  renderer='antialias: true; alpha: true; precision: mediump;'
                  embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
             <a-nft videohandler
-                   type="nft" id="ar-nft" url=''
+                   type="nft" id="ar-nft" url= ""
                    smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 <!-- position  x z y 軸-->
                 <a-video src="#ar-video"
@@ -91,13 +85,7 @@
 
         </a-scene>
 
-        <script type="text/javascript">
-
-            param = GetQueryString();
-
-            document.getElementById("ar-nft").setAttribute("url", "ImageDescriptors/" + param["m"] + "/" + param["m"]);
-
-        </script>
+        <script type="text/javascript">getNftImage();</script>
 
     </body>
 
