@@ -1,4 +1,5 @@
-﻿
+﻿var path = "https://ddbtx129.github.io/AR/";
+
 function getArVideo() {
 
     var arg = GetQueryString();
@@ -21,7 +22,7 @@ function getNftVideo() {
     var video = document.getElementById("ar-video");
     var audio = document.getElementById("ar-audio");
     
-    var vObj = !(arg["o"]) ? 'article/notfound_video.mp4' : 'article/' + arg["o"] + '.mp4';
+    var vObj = !(arg["o"]) ? path + 'article/notfound_video.mp4' : path + 'article/' + arg["o"] + '.mp4';
 
     video.setAttribute("src", vObj);
     audio.setAttribute("src", vObj);
@@ -32,7 +33,7 @@ function getNftImage() {
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-nft");
-    var nObj = !(arg["m"]) ? '' : 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+    var nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
 
     nft.setAttribute("url", nObj);
 };
