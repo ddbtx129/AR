@@ -5,9 +5,11 @@ body {
 }
 
 a {
-  text-decoration: none;
-  color: #666;
-  font-weight: bold
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .switch {
@@ -18,12 +20,16 @@ a {
     padding: 5px 8px;
     border-radius: 10px 10px 0 0;
     z-index: 2;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .swItem {
     opacity: 0.3;
     padding: 0 2px;
     cursor: pointer;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .swItem.current {
