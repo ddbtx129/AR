@@ -106,19 +106,19 @@ function Err_Exit(msg) {
 };
 
 function IsFile(fp) {
-widnow.alert("0");
+window.alert("0");
     var flg = null;
-widnow.alert("1");
+window.alert("1");
     $.ajax({
         url: fp,
         cache: false,
         async: false
     }).done(function (data) {
-	    widnow.alert("2");
+	    window.alert("2");
         flg = true;
     })
 	.fail(function (jqXHR, textStatus, errorThrown) {
-	    widnow.alert("3");
+	    window.alert("3");
 	    flg = false;
 	});
 
