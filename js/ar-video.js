@@ -1,8 +1,8 @@
 ﻿
 function getObject() {
-
+window.alert('0');
     param = GetQueryString();
-
+window.alert('1');
     var video = param["o"] != '' ? "article/" + param["o"] + ".mp4" : 'article/notfound_video.mp4';
     window.alert(video);
     if (IsFile(video)) {
