@@ -21,7 +21,7 @@ a {
   z-index: 3
 }
 
-/*.switch {
+.switch {
     position: fixed;
     top: 0;
     right: 10px;
@@ -43,9 +43,9 @@ a {
 
 .swItem:hover {
   opacity: 0.9
-}*/
+}
 
-#swMarker {
+/*#swMarker {
     position: absolute;
     top: 2%;
     right: 70px;
@@ -58,7 +58,7 @@ a {
     right: 32px;
     width: 30px;
     height: 30px;
-}
+}*/
 
 /*#infoContent {
   z-index: 1;
