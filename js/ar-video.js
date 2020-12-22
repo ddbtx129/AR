@@ -3,7 +3,7 @@ function getVideo() {
     param = GetQueryString();
 
 
-    var video = article / notfound_video.mp4;
+    var video = 'article/notfound_video.mp4';
 
     if (param["o"] != '' && IsFile("article/" + param["o"] + ".mp4")) {
         //document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
