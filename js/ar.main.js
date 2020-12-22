@@ -104,24 +104,3 @@ function Err_Exit(msg) {
     window.alert(msg);
     location.href = "warning.html";
 };
-
-function IsFile(fp) {
-window.alert("0");
-    var flg = null;
-window.alert("1");
-    $.ajax({
-        url: fp,
-        cache: false,
-        async: false
-    }).done(function (data) {
-	    window.alert("2");
-        flg = true;
-    })
-	.fail(function (jqXHR, textStatus, errorThrown) {
-	    window.alert("3");
-	    flg = false;
-	});
-
-    return flg;
-
-};
