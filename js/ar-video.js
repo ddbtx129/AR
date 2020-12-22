@@ -1,11 +1,13 @@
 ﻿
 function getObject() {
-    window.alert('-1');
-    param = GetQueryString();
+    window.alert('-11');
+    var arg = {};
+    arg = GetQueryString();
 
     var video = document.getElementById("ar-video");
-    var vObj = param["o"] != '' ? "article/" + param["o"] + ".mp4" : 'article/notfound_video.mp4';
-    window.alert('0');
+    var vObj = !(!param.o) ? "article/" + param.o + ".mp4" : 'article/notfound_video.mp4';
+
+    window.alert('10');
     video.setAttribute("src", vObj);
     window.alert(vObj);
     //if (IsFile(vObj)) {
@@ -17,7 +19,7 @@ function getObject() {
 
     var marker = document.getElementById("ar-marker");
     var mObj = (param["m"] != '') ? "pattern/pattern-" + param["m"] + ".patt" : "pattern/pattern-0.patt";
-    window.alert('1');
+    window.alert('11');
     marker.setAttribute("url", mObj);
     window.alert(mObj);
 
