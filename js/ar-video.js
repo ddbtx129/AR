@@ -51,7 +51,7 @@ function GetPageUrl() {
     for (var i = 0; arg.length; i++) {
         params.delete(arg[i]);
     }
-    window.alert(url
+    window.alert(url);
     window.alert(params);
-    return params;
+    return url;
 };
