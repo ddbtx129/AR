@@ -105,6 +105,16 @@ function Err_Exit(msg) {
     location.href = "warning.html";
 };
 
+	function test1(fp){
+		is_file(fp,function(res){
+			if(res==true){
+				alert('ファイルは存在します');
+			}else{
+				alert('ファイルは存在しません');
+			}
+		});
+	}
+
 /**
  * ファイル存在チェック
  * @param fp ファイルパス
