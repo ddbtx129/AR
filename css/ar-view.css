@@ -54,14 +54,14 @@ a {
 #swMarker {
     position: absolute;
     top: 2%;
-    right: 8%;
+    right: 70px;
     width: 30px;
     height: 30px;
 }
 #swPreview {
     position: absolute;
     top: 2%;
-    right: 3%;
+    right: 32px;
     width: 28px;
     height: 28px;
 }
