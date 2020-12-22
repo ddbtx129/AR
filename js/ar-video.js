@@ -53,6 +53,6 @@ function GetPageUrl() {
     }
     window.alert(url);
     window.alert(params);
-    window.alert(url.replace(params, ''));
+    window.alert(url.replace('?' + params, ''));
     return url.replace(params, '');
 };
