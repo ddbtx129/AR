@@ -36,9 +36,8 @@ var webArViewer = webArViewer || {};
                 //this.setTapEvents();
 
             }
-            window.alert("0")
+
             this.setSwitcher();
-            window.alert("イベント")
         },
 
         setArg : function() {
@@ -151,20 +150,17 @@ var webArViewer = webArViewer || {};
         setSwitcher: function () {
 
             var self = this;
-
-            window.alert("1")
+            
             var swMarker = document.getElementById('swMarker');
             var swPreview = document.getElementById('swPreview');
 
-            window.alert("2")
-            if (self.arg.preview) {
+           if (self.arg.preview) {
                 swPreview.classList.add('current');
             } else {
                 swMarker.classList.add('current');
             }
 
-            window.alert("3")
-            swMarker.addEventListener('click', function() {
+           swMarker.addEventListener('click', function() {
                 if(!this.classList.contains('current')) {
                     location.replace(location.search.replace('&preview=1', ''));
                 }
