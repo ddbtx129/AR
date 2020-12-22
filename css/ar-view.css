@@ -8,6 +8,10 @@ a {
   font-weight: bold
 }
 
+img {
+  pointer-events: none;
+}
+
 .toGen {
   display: block;
   position: fixed;
@@ -169,7 +173,7 @@ a {
   opacity: 0
 }*/
 
-/* ƒCƒ“ƒJƒ‚Å¶‰E”½“] */
+/* Æ’CÆ’â€œÆ’JÆ’Ââ€šÃ…ÂÂ¶â€°Eâ€Â½â€œ] */
 /*video.active, canvas.active {*/
 /*    transform: rotateY(180deg);
 */    /*-webkit-transform: rotateY(180deg);
