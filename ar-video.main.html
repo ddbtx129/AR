@@ -38,7 +38,7 @@
             <video id="ar-video" autoplay loop="true" preload="none" src='getVideo()' controls></video>
             <audio src="videopath" autoplay></audio>
         </a-assets>
-
+       
         <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
         <a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">
 
@@ -50,7 +50,13 @@
             <a-entity camera></a-entity>
 
         </a-scene>
-
+        <script type="text/javascript">
+            var videofile = document.getElementById("ar-video").getAttribute("url");
+            window.alert(videofile);
+            
+            var markerfile = = document.getElementById("ar-marker").getAttribute("url");
+            window.alert(markerfile);
+        </script>
 <!--        <script type="text/javascript" src="js/ar-video.js"></script>-->
 
 <!--        <script type="text/javascript">
