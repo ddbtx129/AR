@@ -8,6 +8,7 @@ window.alert(param["o"]);
     if (IsFile(video)) {
         window.alert(video);
         document.getElementById("ar-video").setAttribute("src", video);
+        window.alert(video);
     } else {
         Err_Exit('対象動画が見つかりません。');
     }
