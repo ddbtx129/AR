@@ -20,7 +20,7 @@
         <script type="text/javascript" src="js/ar/aframe-ar.js"></script>
         <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
         <script type="text/javascript" src="js/ar.event.js"></script>
-        <script type="text/javascript" src="js/ar-video.js"></script>
+        <!--<script type="text/javascript" src="js/ar-video.js"></script>-->
 
     </head>
 
@@ -33,54 +33,47 @@
         </div>
 
         <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
-        <script>
-            window.alert('読み込み開始');
-        </script>
-        
+
         <a-assets>
-            <video id="ar-video" autoplay loop="true" preload="none" src='getVideo()' controls></video>
+            <video id="ar-video" autoplay loop="true" preload="none" src='article/notfound_video.mp4' controls></video>
             <audio src="videopath" autoplay></audio>
         </a-assets>
-       
+
         <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
         <a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">
 
             <!-- 『.patt』ファイルを読み込む -->
-            <a-marker id="ar-marker" type='pattern' url='getMarker()' videohandler>
+            <a-marker id="ar-marker" type='pattern' url='pattern/pattern-0.patt' videohandler>
                 <a-video src="#ar-video" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
             </a-marker>
 
             <a-entity camera></a-entity>
 
         </a-scene>
+
         <script type="text/javascript">
-            window.alert(0);
-            var videofile = document.getElementById("ar-video").getAttribute("url");
-            window.alert(videofile);
-            window.alert(1);
-            var markerfile = = document.getElementById("ar-marker").getAttribute("url");
-            window.alert(markerfile);
-            window.alert(2);
+
+            getObject();
+
+            //param = GetQueryString();
+
+            //var video = 'article/notfound_video.mp4';
+
+            //if (param["o"] != '' && IsFile("article/" + param["o"] + ".mp4")) {
+            //    document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
+            //} else {
+            //    Err_Exit('対象動画が見つかりません。');
+            //}
+
+            //var marker = (param["m"] != '') ? "pattern/pattern-" + param["m"] + ".patt" : "pattern/pattern-0.patt";
+
+            //if (IsFile(marker)) {
+            //    document.getElementById("ar-marker").setAttribute("url", marker);
+            //} else {
+            //    Err_Exit('対象追跡データが見つかりません。');
+            //}
+
         </script>
-<!--        <script type="text/javascript" src="js/ar-video.js"></script>-->
-
-<!--        <script type="text/javascript">
-
-            param = GetQueryString();
-
-            if (param["o"] != '' && IsFile("article/" + param["o"] + ".mp4")){
-                document.getElementById("ar-video").setAttribute("src", "article/" + param["o"] + ".mp4");
-            } else {
-                Err_Exit('対象動画が見つかりません。');
-            }
-
-            if (param["m"] != '') {
-                document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-" + param["m"] + ".patt");
-            } else {
-                document.getElementById("ar-marker").setAttribute("url", "pattern/pattern-0.patt");
-            }
-
-        </script>-->
 
     </body>
 
