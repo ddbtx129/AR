@@ -116,9 +116,11 @@ function IsFile(fp, callback) {
         url: fp,
         cache: false
     }).done(function (data) {
+        window.alert('IsFile true');
         callback(true);
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
+        window.alert('IsFile false');
         callback(false);
     });
 };
