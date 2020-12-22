@@ -102,7 +102,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function Err_Exit(msg) {
     window.alert(msg);
-    location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php";
+    location.href = "warning.html";
 };
 
 /**
