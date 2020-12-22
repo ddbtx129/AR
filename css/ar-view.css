@@ -1,17 +1,11 @@
 body {
   font-family: sans-serif
-  user-select: none;
-  touch-callout: none;
 }
 
 a {
   text-decoration: none;
   color: #666;
   font-weight: bold
-}
-
-img {
-  pointer-events: none;
 }
 
 .toGen {
@@ -32,13 +26,17 @@ img {
   background-color: rgba(235, 235, 235, 0.8);
   padding: 5px 8px;
   border-radius: 0 0 10px 10px;
-  z-index: 2
+  z-index: 2;
+  user-select: none;
+  touch-callout: none;
 }
 
 .swItem {
   opacity: 0.3;
   padding: 0 2px;
-  cursor: pointer
+  cursor: pointer;
+  user-select: none;
+  touch-callout: none;
 }
 
 .swItem.current {
@@ -80,6 +78,8 @@ img {
     width: 48px;
     height: 48px;
     z-index: 5;
+  user-select: none;
+  touch-callout: none;
 }
 
 .swichcamera {
@@ -89,6 +89,8 @@ img {
     width: 40px;
     height: 40px;
     z-index: 5;
+  user-select: none;
+  touch-callout: none;
 }
 
 .ar-up {
@@ -98,6 +100,8 @@ img {
     width: 30px;
     height: 30px;
     z-index: 6;
+    user-select: none;
+  touch-callout: none;
 }
 
 .ar-down {
@@ -107,6 +111,8 @@ img {
     width: 30px;
     height: 30px;
     z-index: 7;
+    user-select: none;
+  touch-callout: none;
 }
 
 .loading {
@@ -175,7 +181,7 @@ img {
   opacity: 0
 }*/
 
-/* ∆íC∆í‚Äú∆íJ∆í¬Å‚Äö√Ö¬ç¬∂‚Ä∞E‚Äù¬Ω‚Äú] */
+/* ÉCÉìÉJÉÅÇ≈ç∂âEîΩì] */
 /*video.active, canvas.active {*/
 /*    transform: rotateY(180deg);
 */    /*-webkit-transform: rotateY(180deg);
