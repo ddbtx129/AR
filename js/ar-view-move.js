@@ -38,6 +38,7 @@ var webArViewer = webArViewer || {};
             }
 
             this.setSwitcher();
+            window.alert("イベント")
         },
 
         setArg : function() {
