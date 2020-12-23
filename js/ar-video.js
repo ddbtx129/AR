@@ -28,6 +28,19 @@ function getNftVideo() {
     audio.setAttribute("src", vObj);
 };
 
+function getNftObject() {
+
+    var arg = GetQueryString();
+
+    var nft = document.getElementById("ar-gltf");
+    var nObj = !(arg["o"]) ? '' : path + 'ImageDescriptors/' + arg["o"] + + ".gltf";
+
+    nft.setAttribute("gltf-model", nObj);
+    nft.setAttribute("scale", "10 10 10");
+    nft.setAttribute("position", "0 0 0");
+    nft.setAttribute("rotation", "-45 0 0");
+};
+
 function getNftImage() {
     
     var arg = GetQueryString();
