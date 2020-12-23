@@ -413,7 +413,7 @@ var path = "https://ddbtx129.github.io/AR/";
                 //mWrap.setAttribute('preset', 'custom');
                 //mWrap.setAttribute('type', 'pattern');
                 //mWrap.setAttribute('id', 'arMarker');
-
+                window.alert("0");
                 var mWrap = document.createElement('a-nft');
                 mWrap.setAttribute('type', 'nft');
                 mWrap.setAttribute('id', 'nftmarker');
@@ -430,7 +430,7 @@ var path = "https://ddbtx129.github.io/AR/";
 
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
-
+                window.alert("1");
                 // ↓ rotation 切替
                 var anglebtn = document.getElementById('swAngle');
                 var parallelbtn = document.getElementById('swParallel');
