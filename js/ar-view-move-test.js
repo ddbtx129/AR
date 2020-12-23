@@ -357,26 +357,32 @@ var webArViewer = webArViewer || {};
                 // ↑ 上下移動ボタン押下
 
                 // ↓ UPボタン長押し
-                // var bUP = document.getElementById('swUp');
+                var bUP = document.getElementById('swUp');
                 var bDOWN = document.getElementById('swDown');
                 var eventStart = 'touchstart';
                 var eventEnd = 'touchend';
                 var eventLeave = 'touchmove';
 
-                // bUP.addEventListener(eventStart, e => {
-                //     e.preventDefault();
-                //     bUP.classList.add('active');
-                //     timer = setInterval(() => {
-                //         wrapPos.y += 0.05;
-                //         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                //     }, 10);
-                // })
+                bUP.addEventListener(eventStart, e => {
+                    e.preventDefault();
+                    bUP.classList.add('active');
+                    timer = setInterval(() => {
+                        wrapPos.y += 0.01;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    }, 10);
+                })
 
-                // bUP.addEventListener(eventEnd, e => {
-                //     e.preventDefault();
-                //     bUP.classList.remove('active');
+                bUP.addEventListener(eventEnd, e => {
+                    e.preventDefault();
+                    bUP.classList.remove('active');
+                    clearInterval(timer);
+                });
 
-                // });
+                bUP.addEventListener(eventLeave, e => {
+                    e.preventDefault();
+                    bUP.classList.remove('active');
+                    clearInterval(timer);
+                });
                 // ↑ UPボタン長押し
 
                 // ↓ DOWNボタン長押し
@@ -384,16 +390,21 @@ var webArViewer = webArViewer || {};
                     e.preventDefault();
                     bDOWN.classList.add('active');
                     timer = setInterval(() => {
-                        wrapPos.y -= 0.05;
+                        wrapPos.y -= 0.01;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }, 10);
-
                 })
 
                 bDOWN.addEventListener(eventEnd, e => {
                     e.preventDefault();
                     bDOWN.classList.remove('active');
+                    clearInterval(timer);
+                });
 
+                bUP.addEventListener(eventLeave, e => {
+                    e.preventDefault();
+                    bUP.classList.remove('active');
+                    clearInterval(timer);
                 });
                 // ↑ DOWNボタン長押し
 
