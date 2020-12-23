@@ -46,20 +46,26 @@
         <img id="swParallel" class="ar-parallel" src="asset/parallel-w.png" style="display: inline" />
 
         <img class="swichcamera" id="swCamera" src="asset/camera-w.png" />
-
+        <a-assets>
+        <img id="siba" src="article/pic/ren_nagase_9.png">
+        </a-assets>
         <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
 <!--            <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>-->
-
+            <a-nft videohandler
+                   type="nft" id="ar-nft" url="https://ddbtx129.github.io/AR/4905083056899/4905083056899"
+                   smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+                <a-image id="siba" src="#siba" position="0 0 0" rotation="-90 0 0"></a-image>
+            </a-nft>
             <a-camera-static />
 
         </a-scene>
 
-<!--        <script src="js/gifshader.js"></script>
+<!--<!--        <script src="js/gifshader.js"></script>
         <script src="js/chromakey.js"></script>-->
-        <script src="js/ar-view-move.js"></script>
+<!--        <script src="js/ar-view-move.js"></script>-->-->
 
     </body>
 
