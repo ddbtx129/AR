@@ -125,8 +125,8 @@ a {
 
 .ar-angle {
     position: absolute;
-    bottom: 0%;
-    left: 18%;
+    bottom: 2%;
+    left: 128px;
     width: 30px;
     height: 30px;
     z-index: 6;
@@ -134,8 +134,8 @@ a {
 
 .ar-parallel {
     position: absolute;
-    bottom: 0%;
-    left: 24%;
+    bottom: 2%;
+    left: 168px;
     width: 30px;
     height: 30px;
     z-index: 7;
