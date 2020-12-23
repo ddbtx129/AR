@@ -88,8 +88,7 @@ a {
 
 .ar-angle {
     position: absolute;
-    opacity: 0.3;
-    filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
+    opacity: 1;
     bottom: 38%;
     right: 2%;
     width: 30px;
@@ -101,7 +100,7 @@ a {
 
 .ar-parallel {
     position: absolute;
-    opacity: 0.3;
+    opacity: 1;
     bottom: 30%;
     right: 2%;
     width: 30px;
@@ -116,7 +115,7 @@ a {
 }
 
 .ar-angle:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .ar-parallel.current {
@@ -124,7 +123,7 @@ a {
 }
 
 .ar-parallel:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .loading {
