@@ -37,7 +37,6 @@ var webArViewer = webArViewer || {};
             }
 
             this.setSwitcher();
-            SetSwRoation();
         },
 
         setArg : function() {
@@ -433,53 +432,47 @@ var webArViewer = webArViewer || {};
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
+                // rotation 切替
+                var anglebtn = document.getElementById('swAngle');
+                var parallelbtn = document.getElementById('swParallel');
+                var arRotation = '10 0 0';
+
+                if (self.arg.preview) {
+                    parallelbtn.classList.add('current');
+                } else {
+                    anglebtn.classList.add('current');
+                }
+
+                anglebtn.addEventListener('click', function () {
+                    if (!anglebtn.classList.contains('current')) {
+                        arRotation = '0 0 0';
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                        //wrapPos.y = wrapPos.y - 1;
+                        //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                        anglebtn.classList.add('current');
+                        parallelbtn.classList.remove('current');
+                    }
+                });
+
+                parallelbtn.addEventListener('click', function () {
+                    if (!parallelbtn.classList.contains('current')) {
+                        arRotation = '-90 0 0';
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                        //wrapPos.y = wrapPos.y - 1;
+                        //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                        parallelbtn.classList.add('current');
+                        anglebtn.classList.remove('current');
+                    }
+                });
+
                 return;
             }
 
             webArViewer.scene.appendChild(self.wrap);
-        },
-
-        SetSwRoation: function () {
-
-            var self = this;
-
-            var anglebtn = document.getElementById('swAngle');
-            var parallelbtn = document.getElementById('swParallel');
-            var arRotation = '10 0 0';
-
-            if (self.arg.preview) {
-                parallelbtn.classList.add('current');
-            } else {
-                anglebtn.classList.add('current');
-            }
-
-            anglebtn.addEventListener('click', function () {
-                if (!anglebtn.classList.contains('current')) {
-                    arRotation = '0 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
-                    //wrapPos.y = wrapPos.y - 1;
-                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                    anglebtn.classList.add('current');
-                    parallelbtn.classList.remove('current');
-                }
-            });
-
-            parallelbtn.addEventListener('click', function () {
-                if (!parallelbtn.classList.contains('current')) {
-                    arRotation = '-90 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
-                    //wrapPos.y = wrapPos.y - 1;
-                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                    parallelbtn.classList.add('current');
-                    anglebtn.classList.remove('current');
-                }
-            });
-
-            return;
         },
 
         positionVec3: function (type) {
