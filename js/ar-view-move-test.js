@@ -237,7 +237,7 @@ var webArViewer = webArViewer || {};
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', '0 0 0');
+                main.setAttribute('rotation', '-5 0 0');
             } else {
                 main.setAttribute('rotation', (!val.isWarp && !self.arg.preview ? '-30' : (self.arg.preview ? '-5' : '-30')) + ' 0 0');
             }
@@ -311,7 +311,7 @@ var webArViewer = webArViewer || {};
                 wrapPos.y -= 0.5;
                 wrapPos.z -= 8;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', '-90 0 0');
+                self.wrap.setAttribute('rotation', '0 0 0');
 
                 var prevPageY;
                 var prevPageX;
@@ -435,7 +435,7 @@ var webArViewer = webArViewer || {};
                 // rotation 切替
                 var anglebtn = document.getElementById('swAngle');
                 var parallelbtn = document.getElementById('swParallel');
-                var arRotation = '10 0 0';
+                var arRotation = '-5 0 0';
 
                 if (self.arg.preview) {
                     parallelbtn.classList.add('current');
@@ -445,7 +445,7 @@ var webArViewer = webArViewer || {};
 
                 anglebtn.addEventListener('click', function () {
                     if (!anglebtn.classList.contains('current')) {
-                        arRotation = '10 0 0';
+                        arRotation = '-5 0 0';
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
                         //wrapPos.y = wrapPos.y - 1;
