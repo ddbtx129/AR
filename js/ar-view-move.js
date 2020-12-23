@@ -20,33 +20,30 @@ var webArViewer = webArViewer || {};
                 this.createModel();
 
                 var deviceEvents = {
-                    Touch     : typeof document.ontouchstart !== 'undefined',
-                    Pointer   : window.navigator.pointerEnabled,
-                    MSPointer : window.navigator.msPointerEnabled
+                    Touch: typeof document.ontouchstart !== 'undefined',
+                    Pointer: window.navigator.pointerEnabled,
+                    MSPointer: window.navigator.msPointerEnabled
                 };
 
                 this.eventNames = {
-                    start     : deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
-                    move      : deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove'  : 'mousemove',
-                    end       : deviceEvents.Pointer ? 'pointerup'   : deviceEvents.MSPointer ? 'MSPointerUp'   : deviceEvents.Touch ? 'touchend'   : 'mouseup'
+                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
+                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
+                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
 
                 this.setScene();
-
-                //this.setTapEvents();
-
             }
 
             this.setSwitcher();
         },
 
-        setArg : function() {
+        setArg: function () {
             var self = this;
 
             var arg = {};
             var pair = location.search.substring(1).split('&');
 
-            for(var i=0; pair[i]; i++) {
+            for (var i = 0; pair[i]; i++) {
                 var kv = pair[i].split('=');
                 arg[kv[0]] = decodeURIComponent(kv[1]);
             }
@@ -85,8 +82,6 @@ var webArViewer = webArViewer || {};
             // データの準備
             var dataObj = { path: self.arg['p'] };
 
-            //dataObj.map = null;
-            //dataObj.tap = null;
             dataObj.isWarp = self.arg.warpList && !!Number(self.arg.warpList);
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isQuart = self.arg.QuartList && !!Number(self.arg.QuartList);
@@ -99,12 +94,8 @@ var webArViewer = webArViewer || {};
             dataObj.isDeca = self.arg.decaList && !!Number(self.arg.decaList);
 
             dataObj.size = self.arg.sizeList ? {
-                //w: Number(self.arg.sizeList[0]),
-                //h: Number(self.arg.sizeList[1])
                 w: parseInt(Number(self.arg.sizeList / 10), 10),
                 h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
-                //w: 4,
-                //h: 4
             } : {
                 w: 2,
                 h: 2
@@ -131,8 +122,7 @@ var webArViewer = webArViewer || {};
 
             arData = dataObj;
 
-            if (!arData.path)
-            {
+            if (!arData.path) {
                 // 画像なかった
                 if (window.confirm('画像情報が取得できませんでした。')) {
                     location.href = "http://www.aoshima-bk.co.jp/";
@@ -140,7 +130,7 @@ var webArViewer = webArViewer || {};
 
                 return false;
             }
-            
+
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
 
@@ -150,30 +140,30 @@ var webArViewer = webArViewer || {};
         setSwitcher: function () {
 
             var self = this;
-            
+
             var swMarker = document.getElementById('swMarker');
             var swPreview = document.getElementById('swPreview');
 
-           if (self.arg.preview) {
+            if (self.arg.preview) {
                 swPreview.classList.add('current');
             } else {
                 swMarker.classList.add('current');
             }
 
-           swMarker.addEventListener('click', function() {
-                if(!this.classList.contains('current')) {
+            swMarker.addEventListener('click', function () {
+                if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&preview=1', ''));
                 }
             });
 
-            swPreview.addEventListener('click', function() {
-                if(!this.classList.contains('current')) {
+            swPreview.addEventListener('click', function () {
+                if (!this.classList.contains('current')) {
                     location.replace(location.search + '&preview=1');
                 }
             });
         },
 
-        setWrap : function() {
+        setWrap: function () {
             var self = this;
             var offsetPos = self.arg.offsetPos ? decodeURI(self.arg.offsetPos) : '0 0 0';
             self.wrap = document.createElement('a-entity');
@@ -181,13 +171,14 @@ var webArViewer = webArViewer || {};
         },
 
         createModel: function () {
+
             var self = this;
             var val = self.arData;
 
             if (!val.path) {
                 return;
             }
-            
+
             if (val.isShadow) {
                 var shadow = document.createElement('a-entity');
 
@@ -234,11 +225,11 @@ var webArViewer = webArViewer || {};
 
             var main = document.createElement('a-entity');
             var posVec3 = self.positionVec3('main');
-            
+
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', '0 0 0');
+                main.setAttribute('rotation', '-5 0 0');
             } else {
                 main.setAttribute('rotation', (!val.isWarp && !self.arg.preview ? '-30' : (self.arg.preview ? '-5' : '-30')) + ' 0 0');
             }
@@ -266,7 +257,7 @@ var webArViewer = webArViewer || {};
             // アニメーション
             if (val.isQuart) {
                 AFRAME.utils.entity.setComponentProperty(main, 'animation__pos', {
-                    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: posVec3.x + ' ' + (posVec3.y+val.size.h/3) + ' ' + posVec3.z
+                    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: posVec3.x + ' ' + (posVec3.y + val.size.h / 3) + ' ' + posVec3.z
                 });
 
                 AFRAME.utils.entity.setComponentProperty(main, 'animation__scale', {
@@ -300,33 +291,34 @@ var webArViewer = webArViewer || {};
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
             if (self.arg.preview) {
-
+                // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'inline';
                 document.getElementById("swDown").style.display = 'inline';
+
+                document.getElementById("swAngle").style.display = 'none';
+                document.getElementById("swParallel").style.display = 'none';
 
                 var wrapPos = self.wrap.getAttribute('position');
                 wrapPos.x += 0;
                 wrapPos.y -= 0.5;
                 wrapPos.z -= 8;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', '10 0 0');
+                self.wrap.setAttribute('rotation', '0 0 0');
 
                 var prevPageY;
                 var prevPageX;
                 var zoomRate = 1;
 
-                webArViewer.scene.addEventListener(self.eventNames.start, function(e) {
+                webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                     var event = e.changedTouches ? e.changedTouches[0] : e;
                     prevPageY = event.pageY;    // 縦軸
                     prevPageX = event.pageX;    // 横軸
                 });
-                
-                webArViewer.scene.addEventListener(self.eventNames.move, function(e) {
+
+                webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                     var event = e.changedTouches ? e.changedTouches[0] : e;
 
-                    if(prevPageY) {
-                        //zoomRate += (event.pageY - prevPageY) / webArViewer.scene.clientHeight / 5;
-
+                    if (prevPageY) {
                         if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                             zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                             AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
@@ -336,7 +328,7 @@ var webArViewer = webArViewer || {};
                     }
                 });
 
-                webArViewer.scene.addEventListener(self.eventNames.end, function(e) {
+                webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                     prevPageY = null;
                 });
 
@@ -351,12 +343,10 @@ var webArViewer = webArViewer || {};
                 var downbtn = document.getElementById('swDown');
 
                 downbtn.addEventListener('click', function () {
-
                     wrapPos.y -= 0.2;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
                 });
-                // ↑ 上下移動ボタン押下
+                // ↑ 
 
                 // ↓ UPボタン長押し
                 var bUP = document.getElementById('swUp');
@@ -385,7 +375,7 @@ var webArViewer = webArViewer || {};
                     bUP.classList.remove('active');
                     clearInterval(timer);
                 });
-                // ↑ UPボタン長押し
+                // ↑ 
 
                 // ↓ DOWNボタン長押し
                 bDOWN.addEventListener(eventStart, e => {
@@ -408,11 +398,15 @@ var webArViewer = webArViewer || {};
                     bUP.classList.remove('active');
                     clearInterval(timer);
                 });
-                // ↑ DOWNボタン長押し
+                // ↑ 
 
             } else {
+                // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'none';
                 document.getElementById("swDown").style.display = 'none';
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
 
                 var mWrap = document.createElement('a-marker');
                 mWrap.setAttribute('preset', 'custom');
@@ -428,6 +422,38 @@ var webArViewer = webArViewer || {};
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
+                // ↓ rotation 切替
+                var anglebtn = document.getElementById('swAngle');
+                var parallelbtn = document.getElementById('swParallel');
+                var arRotation = '-5 0 0';
+
+                if (self.arg.preview) {
+                    parallelbtn.classList.add('current');
+                } else {
+                    anglebtn.classList.add('current');
+                }
+
+                anglebtn.addEventListener('click', function () {
+                    if (!anglebtn.classList.contains('current')) {
+                        arRotation = '-5 0 0';
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                        anglebtn.classList.add('current');
+                        parallelbtn.classList.remove('current');
+                    }
+                });
+
+                parallelbtn.addEventListener('click', function () {
+                    if (!parallelbtn.classList.contains('current')) {
+                        arRotation = '-90 0 0';
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                        parallelbtn.classList.add('current');
+                        anglebtn.classList.remove('current');
+                    }
+                });
+                // ↑
+
                 return;
             }
 
@@ -441,9 +467,9 @@ var webArViewer = webArViewer || {};
             var isWarp = self.arData.isWarp;
 
             if (type === 'shadow') {
-                    return { x: 0, y: 0, z: - h1_2 + (isWarp ? 0.2 : -2) };
+                return { x: 0, y: 0, z: -h1_2 + (isWarp ? 0.2 : -2) };
             } else {
-                    return { x: 0, y: h1_2, z: - (isWarp ? width - 0.2 : 2) };
+                return { x: 0, y: h1_2, z: -(isWarp ? width - 0.2 : 2) };
             }
         }
     };
