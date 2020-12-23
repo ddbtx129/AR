@@ -1,5 +1,5 @@
 var webArViewer = webArViewer || {};
-
+window.alert("-11");
 (function (global) {
     window.alert("-1");
     webArViewer.scene = document.querySelector('a-scene');
