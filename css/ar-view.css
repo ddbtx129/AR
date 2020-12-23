@@ -110,18 +110,22 @@ a {
 
 .ar-angle.current {
     opacity: 1;
+    filter: grayscale(0%);
 }
 
 .ar-angle:hover {
-    opacity: 0.2;
+    opacity: 05;
+    filter: grayscale(80%);
 }
 
 .ar-parallel.current {
     opacity: 1;
+    filter: grayscale(0%);
 }
 
 .ar-parallel:hover {
-    opacity: 0.2;
+    opacity: 0.5;
+    filter: grayscale(80%);
 }
 
 .loading {
