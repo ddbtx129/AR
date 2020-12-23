@@ -11,31 +11,43 @@ var path = "https://ddbtx129.github.io/AR/";
         },
 
         init: function () {
+            window.alert("1");
 
             this.setArg();
+            window.alert("2");
 
             if (this.setArData()) {
+                window.alert("3");
 
                 this.setWrap();
+                window.alert("4");
 
                 this.createModel();
+                window.alert("5");
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
+                window.alert("6");
 
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
+                window.alert("7");
 
                 this.setScene();
+                window.alert("8");
+
             }
+            window.alert("9");
 
             this.setSwitcher();
+            window.alert("10");
+
         },
 
         setArg: function () {
@@ -413,7 +425,7 @@ var path = "https://ddbtx129.github.io/AR/";
                 //mWrap.setAttribute('preset', 'custom');
                 //mWrap.setAttribute('type', 'pattern');
                 //mWrap.setAttribute('id', 'arMarker');
-                window.alert("0");
+
                 var mWrap = document.createElement('a-nft');
                 mWrap.setAttribute('type', 'nft');
                 mWrap.setAttribute('id', 'nftmarker');
@@ -430,7 +442,7 @@ var path = "https://ddbtx129.github.io/AR/";
 
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
-                window.alert("1");
+
                 // ↓ rotation 切替
                 var anglebtn = document.getElementById('swAngle');
                 var parallelbtn = document.getElementById('swParallel');
