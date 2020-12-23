@@ -432,6 +432,21 @@ var webArViewer = webArViewer || {};
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
+                var anglebtn = document.getElementById('swAngle');
+                var arRotation = '-5 0 0';
+
+                anglebtn.addEventListener('click', function () {
+                    arRotation = '-30 0 0';
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                });
+
+                var parallelbtn = document.getElementById('swParallel');
+                
+                parallelbtn.addEventListener('click', function () {
+                    arRotation = '-5 0 0';
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                });
+
                 return;
             }
 
