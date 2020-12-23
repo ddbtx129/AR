@@ -23,19 +23,19 @@ function getNftVideo() {
     var audio = document.getElementById("ar-audio");
     
     var vObj = !(arg["o"]) ? path + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
-
+    window.alert(String(vObj));
     video.setAttribute("src", vObj);
     audio.setAttribute("src", vObj);
 };
 
 function getNftObject() {
-    window.alert("21")
+    window.alert("21");
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-gltf");
     var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + + ".gltf";
-    window.alert(nObj)
-    window.alert("22")
+    window.alert(nObj);
+    window.alert("22");
     nft.setAttribute("gltf-model", nObj);
     nft.setAttribute("scale", "10 10 10");
     nft.setAttribute("position", "0 0 0");
@@ -44,12 +44,12 @@ function getNftObject() {
 };
 
 function getNftImage() {
-    window.alert("11")
+    window.alert("11");
     var arg = GetQueryString();
     var nft = document.getElementById("ar-nft");
 
     var nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
-    window.alert("nObj")
-    window.alert("12")
+    window.alert(nObj);
+    window.alert("12");
     nft.setAttribute("url", nObj);
 };
