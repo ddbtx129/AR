@@ -29,24 +29,25 @@ function getNftVideo() {
 };
 
 function getNftObject() {
-window.alert("2")
+    window.alert("21")
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-gltf");
     var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + + ".gltf";
-
+    window.alert("22")
     nft.setAttribute("gltf-model", nObj);
     nft.setAttribute("scale", "10 10 10");
     nft.setAttribute("position", "0 0 0");
-    nft.setAttribute("rotation", "-45 0 0");
+    //nft.setAttribute("rotation", "-45 0 0");
+    window.alert("23")
 };
 
 function getNftImage() {
-    window.alert("1")
+    window.alert("11")
     var arg = GetQueryString();
     var nft = document.getElementById("ar-nft");
 
     var nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
-
+    window.alert("12")
     nft.setAttribute("url", nObj);
 };
