@@ -7,11 +7,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var parallelbtn = document.getElementById('swParallel');
     var arRotation = '-45 0 0';
 
-    if (self.arg.preview) {
-        parallelbtn.classList.add('current');
-    } else {
-        anglebtn.classList.add('current');
-    }
+    anglebtn.classList.add('current');
 
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
