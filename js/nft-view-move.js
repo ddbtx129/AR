@@ -2,9 +2,9 @@ var webArViewer = webArViewer || {};
 var path = "https://ddbtx129.github.io/AR/";
 
 (function (global) {
-
+    window.alert("-1");
     webArViewer.scene = document.querySelector('a-scene');
-
+    window.alert("0");
     var ar = {
         C: {
             arNum: 1
