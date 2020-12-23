@@ -44,9 +44,15 @@ function getNftObject() {
 function getNftImage() {
     
     var arg = GetQueryString();
-
     var nft = document.getElementById("ar-nft");
-    var nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+
+    var nObj = null;
+
+    if ((arg["m1"]) && (arg["m2"])) {
+        nObj = path + 'ImageDescriptors/' + arg["m1"] + '/' + arg["m2"];
+    } else {
+        nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+    }
 
     nft.setAttribute("url", nObj);
 };
