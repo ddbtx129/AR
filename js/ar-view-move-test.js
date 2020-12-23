@@ -357,55 +357,44 @@ var webArViewer = webArViewer || {};
                 // ↑ 上下移動ボタン押下
 
                 // ↓ UPボタン長押し
-                var b = document.getElementById('swUp');
+                var bUP = document.getElementById('swUp');
+                var bDOWN = document.getElementById('swDown');
                 var eventStart = 'touchstart';
                 var eventEnd = 'touchend';
                 var eventLeave = 'touchmove';
 
-                b.addEventListener(eventStart, e => {
+                bUP.addEventListener(eventStart, e => {
                     e.preventDefault();
-                    b.classList.add('active');
+                    bUP.classList.add('active');
                     timer = setInterval(() => {
-                        wrapPos.y += 0.2;
+                        wrapPos.y += 0.05;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }, 10);
                 })
 
-                b.addEventListener(eventEnd, e => {
+                bUP.addEventListener(eventEnd, e => {
                     e.preventDefault();
-                    b.classList.remove('active');
+                    bUP.classList.remove('active');
 
                 });
-
                 // ↑ UPボタン長押し
 
                 // ↓ DOWNボタン長押し
-                //const ua = navigator.userAgent.toLowerCase();
-                //const isSP = /iphone|ipod|ipad|android/.test(ua);
-                //const b = document.getElementById('swUp');
-                //const eventStart = isSP ? 'touchstart' : 'mousedown';
-                //const eventEnd = isSP ? 'touchend' : 'mouseup';
-                //const eventLeave = isSP ? 'touchmove' : 'mouseleave';
+                bDOWN.addEventListener(eventStart, e => {
+                    e.preventDefault();
+                    bDOWN.classList.add('active');
+                    timer = setInterval(() => {
+                        wrapPos.y -= 0.05;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    }, 10);
 
-                //b.addEventListener(eventStart, e => {
-                //    e.preventDefault();
-                //    b.classList.add('active');
-                //})
+                })
 
-                //b.addEventListener(eventEnd, e => {
-                //    e.preventDefault();
-                //    b.classList.remove('active');
+                bDOWN.addEventListener(eventEnd, e => {
+                    e.preventDefault();
+                    bDOWN.classList.remove('active');
 
-                //});
-
-                //b.addEventListener(eventLeave, e => {
-                //    e.preventDefault();
-                //    let el;
-                //    el = isSP ? document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY) : b;
-                //    if (!isSP || el !== b) {
-                //        b.classList.remove('active');
-                //    }
-                //});
+                });
                 // ↑ DOWNボタン長押し
 
             } else {
