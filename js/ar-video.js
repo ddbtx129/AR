@@ -47,9 +47,7 @@ function getNftImage() {
     var arg = GetQueryString();
     var nft = document.getElementById("ar-nft");
 
-    var nObj = '';
-
-    nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+    var nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
     
     windnow.alert(nObj);
     nft.setAttribute("url", nObj);
