@@ -32,9 +32,6 @@ var webArViewer = webArViewer || {};
                 };
 
                 this.setScene();
-
-                //this.setTapEvents();
-
             }
 
             this.setSwitcher();
