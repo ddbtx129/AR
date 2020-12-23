@@ -38,7 +38,6 @@ var webArViewer = webArViewer || {};
             }
 
             this.setSwitcher();
-            this.setRoationSw();
         },
 
         setArg : function() {
@@ -474,6 +473,8 @@ var webArViewer = webArViewer || {};
 
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
+
+                this.setRoationSw();
 
                 return;
             }
