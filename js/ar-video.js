@@ -51,8 +51,10 @@ function getNftImage() {
     var nObj;
 
     if ((arg["m1"]) && (arg["m2"])) {
+            window.alert("1");
         nObj = path + 'ImageDescriptors/' + arg["m1"] + '/' + arg["m2"];
     } else {
+                    window.alert("1");
         nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
     }
     
