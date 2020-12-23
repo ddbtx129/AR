@@ -39,6 +39,8 @@ function getNftObject() {
     nft.setAttribute("scale", "10 10 10");
     nft.setAttribute("position", "0 0 0");
     nft.setAttribute("rotation", "-45 0 0");
+    
+    window.alert(nObj);
 };
 
 function getNftImage() {
@@ -46,13 +48,15 @@ function getNftImage() {
     var arg = GetQueryString();
     var nft = document.getElementById("ar-nft");
 
-    var nObj = null;
+    var nObj;
 
     if ((arg["m1"]) && (arg["m2"])) {
         nObj = path + 'ImageDescriptors/' + arg["m1"] + '/' + arg["m2"];
     } else {
         nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
     }
-
+    
+    window.alert(nObj);
+    
     nft.setAttribute("url", nObj);
 };
