@@ -47,7 +47,7 @@ function getNftImage() {
     var arg = GetQueryString();
     var nft = document.getElementById("ar-nft");
 
-    var nObj = null;
+    var nObj;
 
     if ((arg["m1"]) && (arg["m2"])) {
         nObj = path + 'ImageDescriptors/' + arg["m1"] + '/' + arg["m2"];
