@@ -367,7 +367,7 @@ var webArViewer = webArViewer || {};
                     e.preventDefault();
                     bUP.classList.add('active');
                     timer = setInterval(() => {
-                        wrapPos.y += 0.01;
+                        wrapPos.y += 0.02;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }, 10);
                 })
@@ -390,7 +390,7 @@ var webArViewer = webArViewer || {};
                     e.preventDefault();
                     bDOWN.classList.add('active');
                     timer = setInterval(() => {
-                        wrapPos.y -= 0.01;
+                        wrapPos.y -= 0.02;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }, 10);
                 })
