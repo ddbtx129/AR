@@ -115,7 +115,7 @@ a {
 }
 
 .ar-angle:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .ar-parallel.current {
@@ -123,7 +123,7 @@ a {
 }
 
 .ar-parallel:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .loading {
