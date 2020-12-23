@@ -34,7 +34,6 @@ var webArViewer = webArViewer || {};
                 this.setScene();
 
                 //this.setTapEvents();
-
             }
 
             this.setSwitcher();
@@ -169,47 +168,6 @@ var webArViewer = webArViewer || {};
             swPreview.addEventListener('click', function() {
                 if(!this.classList.contains('current')) {
                     location.replace(location.search + '&preview=1');
-                }
-            });
-        },
-
-        setRoationSw: function (){
-
-            var self = this;
-
-            var anglebtn = document.getElementById('swAngle');
-            var parallelbtn = document.getElementById('swParallel');
-            var arRotation = '10 0 0';
-
-            if (self.arg.preview) {
-                parallelbtn.classList.add('current');
-            } else {
-                anglebtn.classList.add('current');
-            }
-
-            anglebtn.addEventListener('click', function () {
-                if (!anglebtn.classList.contains('current')) {
-                    arRotation = '0 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
-                    //wrapPos.y = wrapPos.y - 1;
-                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                    anglebtn.classList.add('current');
-                    parallelbtn.classList.re('current');
-                }
-            });
-
-            parallelbtn.addEventListener('click', function () {
-                if (!parallelbtn.classList.contains('current')) {
-                    arRotation = '-90 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
-                    //wrapPos.y = wrapPos.y - 1;
-                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                    parallelbtn.classList.add('current');
-                    anglebtn.classList.re('current');
                 }
             });
         },
@@ -474,12 +432,51 @@ var webArViewer = webArViewer || {};
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
-                this.setRoationSw();
+                this.SwRoation();
 
                 return;
             }
 
             webArViewer.scene.appendChild(self.wrap);
+        },
+
+        SwRoation: function () {
+
+            var self = this;
+
+            var anglebtn = document.getElementById('swAngle');
+            var parallelbtn = document.getElementById('swParallel');
+            var arRotation = '10 0 0';
+
+            anglebtn.classList.add('current');
+
+            anglebtn.addEventListener('click', function () {
+                if (!anglebtn.classList.contains('current')) {
+                    arRotation = '0 0 0';
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                    //wrapPos.y = wrapPos.y - 1;
+                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                    anglebtn.classList.add('current');
+                    parallelbtn.classList.re('current');
+                }
+            });
+
+            parallelbtn.addEventListener('click', function () {
+                if (!parallelbtn.classList.contains('current')) {
+                    arRotation = '-90 0 0';
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                    //wrapPos.y = wrapPos.y - 1;
+                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                    parallelbtn.classList.add('current');
+                    anglebtn.classList.re('current');
+                }
+            });
+
+            return;
         },
 
         positionVec3: function (type) {
