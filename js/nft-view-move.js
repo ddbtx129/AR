@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // ↓ rotation 切替
     var nft = document.getElementById("ar-gltf");
-    var anglebtn = document.getElementById('swAngle');
-    var parallelbtn = document.getElementById('swParallel');
+    var anglebtn = document.querySelector('#swAngle');
+    var parallelbtn = document.querySelector('#swParallel');
     var arRotation = '-45 0 0';
 
     anglebtn.classList.add('current');
