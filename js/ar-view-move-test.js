@@ -351,30 +351,31 @@ var webArViewer = webArViewer || {};
                 var downbtn = document.getElementById('swDown');
 
                 downbtn.addEventListener('click', function () {
-
                     wrapPos.y -= 0.2;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
                 });
                 // ↑ 上下移動ボタン押下
 
                 // ↓ UPボタン長押し
-                //var b = document.getElementById('swUp');
-                //var eventStart = 'touchstart';
-                //var eventEnd = 'touchend';
-                //var eventLeave = 'touchmove';
+                var b = document.getElementById('swUp');
+                var eventStart = 'touchstart';
+                var eventEnd = 'touchend';
+                var eventLeave = 'touchmove';
 
-                //b.addEventListener(eventStart, e => {
-                //    e.preventDefault();
-                //    b.classList.add('active');
+                b.addEventListener(eventStart, e => {
+                    e.preventDefault();
+                    b.classList.add('active');
+                    timer = setInterval(() => {
+                        wrapPos.y += 0.2;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    }, 10);
+                })
 
-                //})
+                b.addEventListener(eventEnd, e => {
+                    e.preventDefault();
+                    b.classList.remove('active');
 
-                //b.addEventListener(eventEnd, e => {
-                //    e.preventDefault();
-                //    b.classList.remove('active');
-
-                //});
+                });
 
                 // ↑ UPボタン長押し
 
@@ -417,9 +418,9 @@ var webArViewer = webArViewer || {};
                 mWrap.setAttribute('id', 'arMarker');
 
                 if (!!self.arg.m) {
-                    mWrap.setAttribute('url', 'asset/pattern-' + self.arg.m + '.patt');
+                    mWrap.setAttribute('url', 'pattern/pattern-' + self.arg.m + '.patt');
                 } else {
-                    mWrap.setAttribute('url', 'asset/pattern-0.patt');
+                    mWrap.setAttribute('url', 'pattern/pattern-0.patt');
                 }
 
                 mWrap.appendChild(self.wrap);
