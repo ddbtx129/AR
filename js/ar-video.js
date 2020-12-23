@@ -5,7 +5,7 @@ function getArVideo() {
     var arg = GetQueryString();
 
     var video = document.getElementById("ar-video");
-    var vObj = !(arg["o"]) ? 'article/mp4/notfound_video.mp4' : 'article/mp4/' + arg["o"] + '.mp4';
+    var vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
 
     video.setAttribute("src", vObj);
     
@@ -22,7 +22,7 @@ function getNftVideo() {
     var video = document.getElementById("ar-video");
     var audio = document.getElementById("ar-audio");
     
-    var vObj = !(arg["o"]) ? path + 'article/mp4/notfound_video.mp4' : path + 'article/mp4/' + arg["o"] + '.mp4';
+    var vObj = !(arg["o"]) ? path + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
 
     video.setAttribute("src", vObj);
     audio.setAttribute("src", vObj);
@@ -33,7 +33,7 @@ function getNftObject() {
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-gltf");
-    var nObj = !(arg["o"]) ? '' : path + 'article/gltf/' + arg["o"] + + ".gltf";
+    var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + + ".gltf";
 
     nft.setAttribute("gltf-model", nObj);
     nft.setAttribute("scale", "10 10 10");
