@@ -311,7 +311,7 @@ var webArViewer = webArViewer || {};
                 wrapPos.y -= 0.5;
                 wrapPos.z -= 8;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', '10 0 0');
+                self.wrap.setAttribute('rotation', '-90 0 0');
 
                 var prevPageY;
                 var prevPageX;
@@ -445,7 +445,7 @@ var webArViewer = webArViewer || {};
 
                 anglebtn.addEventListener('click', function () {
                     if (!anglebtn.classList.contains('current')) {
-                        arRotation = '0 0 0';
+                        arRotation = '10 0 0';
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
                         //wrapPos.y = wrapPos.y - 1;
