@@ -46,19 +46,20 @@
         <img id="swParallel" class="ar-parallel" src="asset/parallel-w.png" style="display: inline" />
 
         <img class="swichcamera" id="swCamera" src="asset/camera-w.png" />
+        <script>window.alert("8")</script>
 
         <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-
+            <script>window.alert("9")</script>
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
-
+            <script>window.alert("10")</script>
             <a-camera-static />
 
         </a-scene>
 
-        <script src="js/gifshader.js"></script>
-        <script src="js/chromakey.js"></script>
+<!--        <script src="js/gifshader.js"></script>
+        <script src="js/chromakey.js"></script>-->
         <script src="js/nft-view-move.js"></script>
 
     </body>
