@@ -114,16 +114,8 @@ a {
     opacity: 1;
 }
 
-.ar-angle:hover {
-    opacity: 0.5;
-}
-
 .ar-parallel.current {
     opacity: 1;
-}
-
-.ar-parallel:hover {
-    opacity: 0.5;
 }
 
 .loading {
