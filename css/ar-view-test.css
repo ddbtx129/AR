@@ -16,7 +16,7 @@ a {
     -webkit-user-select: none; 
 }
 
-.switch {
+.switch1 {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -29,7 +29,7 @@ a {
     -webkit-touch-callout: none;
 }
 
-.swItem {
+.swItem1 {
     opacity: 0.3;
     padding: 0 2px;
     cursor: pointer;
@@ -44,24 +44,6 @@ a {
 
 .swItem:hover {
   opacity: 0.9
-}
-
-.swItem1 {
-    position: absolute;
-    top: 30%;
-    left: 2%;
-    width: 30px;
-    height: 30px;
-    z-index: 6;
-}
-
-.swItem2 {
-    position: absolute;
-    top: 37%;
-    left: 2%;
-    width: 30px;
-    height: 30px;
-    z-index: 7;
 }
 
 /*#infoContent {
@@ -146,15 +128,15 @@ a {
 }
 
 .ar-angle:hover {
-  opacity: 0.9
+  filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
 }
 
 .ar-parallel.current {
-  opacity: 0.7
+  opacity: 1
 }
 
 .ar-parallel:hover {
-  opacity: 0.9
+  filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
 }
 
 .loading {
