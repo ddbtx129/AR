@@ -40,14 +40,17 @@
         </a-assets>
 
         <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
-        <a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">
+        <!--<a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">-->
+        <a-scene vr-mode-ui="enabled: false;"
+                    renderer='antialias: true; alpha: true; precision: mediump;'
+                    embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
-            <!-- 『.patt』ファイルを読み込む -->
-            <a-marker id="ar-marker" type='pattern' url='pattern/pattern-0.patt' videohandler>
-                <a-video src="#ar-video" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
-            </a-marker>
+                <!-- 『.patt』ファイルを読み込む -->
+                <a-marker id="ar-marker" type='pattern' url='pattern/pattern-0.patt' videohandler>
+                    <a-video src="#ar-video" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
+                </a-marker>
 
-            <a-entity camera></a-entity>
+                <a-entity camera></a-entity>
 
         </a-scene>
 
