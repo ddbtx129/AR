@@ -109,19 +109,19 @@ a {
 }
 
 .ar-angle.current {
-    opacity: 0.78;
+    opacity: 1;
 }
 
 .ar-angle:hover {
-    opacity: 1;
-}
-
-.ar-parallel.current {
     opacity: 0.78;
 }
 
-.ar-parallel:hover {
+.ar-parallel.current {
     opacity: 1;
+}
+
+.ar-parallel:hover {
+    opacity: 0.78;
 }
 
 .loading {
