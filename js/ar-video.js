@@ -33,7 +33,7 @@ function getNftObject() {
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-gltf");
-    var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + + ".gltf";
+    var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + ".gltf";
     window.alert(nObj);
     window.alert("22");
     nft.setAttribute("gltf-model", nObj);
