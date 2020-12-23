@@ -1,3 +1,4 @@
+window.alert("-10");
 var webArViewer = webArViewer || {};
 window.alert("-11");
 (function (global) {
