@@ -39,7 +39,7 @@ function getNftObject() {
     nft.setAttribute("scale", "10 10 10");
     nft.setAttribute("position", "0 0 0");
     nft.setAttribute("rotation", "-45 0 0");
-    widnow.alert(nObj);
+    windnow.alert(nObj);
 };
 
 function getNftImage() {
@@ -51,6 +51,6 @@ function getNftImage() {
 
     nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
     
-    widnow.alert(nObj);
+    windnow.alert(nObj);
     nft.setAttribute("url", nObj);
 };
