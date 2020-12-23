@@ -33,11 +33,18 @@ function getNftObject() {
     var arg = GetQueryString();
 
     var nft = document.getElementById("ar-gltf");
+
     var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + ".gltf";
 
+    var nSclale = !(arg["wh"]) ? "20 20 20" : arg["wh"] + " " + arg["wh"] + " " + arg["wh"];
+
+    var nX = !(arg["x"]) ? 0 : arg["x"];
+    var nY = !(arg["y"]) ? 0 : arg["y"];
+    var nZ = !(arg["z"]) ? 0 : arg["z"];
+
     nft.setAttribute("gltf-model", nObj);
-    nft.setAttribute("scale", "20 20 20");
-    nft.setAttribute("position", "0 0 0");
+    nft.setAttribute("scale", nSclale);
+    nft.setAttribute("position", nX + ' ' + nY + ' ' + nZ );
     nft.setAttribute("rotation", "-45 0 0");
 };
 
