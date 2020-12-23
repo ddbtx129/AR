@@ -49,11 +49,8 @@ function getNftImage() {
 
     var nObj = '';
 
-    if ((arg["m1"]) && (arg["m2"])) {
-        nObj = path + 'ImageDescriptors/' + arg["m1"] + '/' + arg["m2"];
-    } else {
-        nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
-    }
+    nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
+    
     widnow.alert(nObj);
     nft.setAttribute("url", nObj);
 };
