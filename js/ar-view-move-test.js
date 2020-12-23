@@ -432,26 +432,39 @@ var webArViewer = webArViewer || {};
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
+
+                window.alert(self.wrap.getAttribute("rotation"));
+
                 var anglebtn = document.getElementById('swAngle');
+                var parallelbtn = document.getElementById('swParallel');
                 var arRotation = '10 0 0';
 
+                anglebtn.classList.add('current');
+
                 anglebtn.addEventListener('click', function () {
-                    arRotation = '-30 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    if (!anglebtn.classList.contains('current')) {
+                        arRotation = '-30 0 0';
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
-                    wrapPos.y = wrapPos.y + 1;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        wrapPos.y = wrapPos.y + 1;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
+                        anglebtn.classList.add('current');
+                        parallelbtn.classList.re('current');
+                    }
                 });
-
-                var parallelbtn = document.getElementById('swParallel');
                 
                 parallelbtn.addEventListener('click', function () {
-                    arRotation = '-90 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    if (!parallelbtn.classList.contains('current')) {
+                        arRotation = '-90 0 0';
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
-                    wrapPos.y = wrapPos.y - 1;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        wrapPos.y = wrapPos.y - 1;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                        parallelbtn.classList.add('current');
+                        anglebtn.classList.re('current');
+                    }
                 });
 
                 return;
