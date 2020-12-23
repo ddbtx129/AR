@@ -304,6 +304,9 @@ var webArViewer = webArViewer || {};
                 document.getElementById("swUp").style.display = 'inline';
                 document.getElementById("swDown").style.display = 'inline';
 
+                document.getElementById("swAngle").style.display = 'none';
+                document.getElementById("swParallel").style.display = 'none';
+
                 var wrapPos = self.wrap.getAttribute('position');
                 wrapPos.x += 0;
                 wrapPos.y -= 0.5;
@@ -411,6 +414,9 @@ var webArViewer = webArViewer || {};
             } else {
                 document.getElementById("swUp").style.display = 'none';
                 document.getElementById("swDown").style.display = 'none';
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
 
                 var mWrap = document.createElement('a-marker');
                 mWrap.setAttribute('preset', 'custom');
