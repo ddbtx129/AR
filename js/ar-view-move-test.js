@@ -438,13 +438,20 @@ var webArViewer = webArViewer || {};
                 anglebtn.addEventListener('click', function () {
                     arRotation = '-30 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                    wrapPos.y = wrapPos.y + 1;
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
                 });
 
                 var parallelbtn = document.getElementById('swParallel');
                 
                 parallelbtn.addEventListener('click', function () {
-                    arRotation = '10 0 0';
+                    arRotation = '-90 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
+                    wrapPos.y = wrapPos.y - 1;
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 });
 
                 return;
