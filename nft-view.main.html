@@ -49,13 +49,17 @@
 
             <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 <script>
+                    widnow.alert("11");
                     getNftImage();
+                    widnow.alert("12");
                     var nft = document.getElementById("ar-nft");
                     widnow.alert(nft.getAttribute("url"));
                 </script>
                 <a-entity id="ar-gltf" gltf-model="" scale="0 0 0" position="0 0 0" rotation="-5 0 0" />
                 <script>
+                    widnow.alert("21");
                     getNftObject();
+                    widnow.alert("22");
                     var nft = document.getElementById("ar-gltf");
                     widnow.alert(nft.getAttribute("gltf-model"));
                 </script>
