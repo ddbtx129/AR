@@ -13,7 +13,7 @@
 
         <title>ＡＲ</title>
 
-        <link rel="stylesheet" href="css/ar-view.css">
+        <link rel="stylesheet" href="css/ar-view-test.css">
 
         <script type="text/javascript" src="js/ar.main.js"></script>
 
@@ -31,17 +31,15 @@
             <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
         </div>
 
-        <!--<img id="swMarker" class="swItem1" src="asset/marker-t.png" width="30" />-->
-        <!--<img id="swPreview" class="swItem2" src="asset/preview-t.png" width="30" />-->
-
         <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
 
-        <img class="ar-up" id="swUp" src="asset/up-w.png"  style="display: none" />
-        <img class="ar-down" id="swDown" src="asset/down-w.png"  style="display: none" />
+        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: none" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: none" />
 
-        <!--<img class="toggleCamera" id="toggleCamera" src="asset/camera-w.png" style="display: none"/>-->
+        <img id="swAngle" class="ar-angle" src="asset/angle-w.png" style="display: inline" />
+        <img id="swParallel" class="ar-parallel" src="asset/parallel-w.png" style="display: inline" />
+
         <img class="swichcamera" id="swCamera" src="asset/camera-w.png" />
-        <!--<img class="loading" id="loader" src="asset/loading-66.gif" style="display: none" />-->
 
         <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam;" vr-mode-ui="enabled: false">
             <a-entity light="type: ambient; color: #BBB"></a-entity>
@@ -52,7 +50,8 @@
 
         <script src="js/gifshader.js"></script>
         <script src="js/chromakey.js"></script>
-        <script src="js/ar-view-move.js"></script>
+        <script src="js/ar-view-move-test.js"></script>
+
     </body>
 
 </html>
