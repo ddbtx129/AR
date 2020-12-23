@@ -124,18 +124,22 @@ a {
 }
 
 .ar-angle.current {
-  opacity: 0.7
+  opacity: 0.78;
+  filter: invert(88%) sepia(61%) saturate(0%) hue-rotate(229deg) brightness(107%) contrast(101%);
 }
 
 .ar-angle:hover {
+  opacity: 0.3;
   filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
 }
 
 .ar-parallel.current {
-  opacity: 1
+  opacity: 0.78;
+  filter: invert(88%) sepia(61%) saturate(0%) hue-rotate(229deg) brightness(107%) contrast(101%);
 }
 
 .ar-parallel:hover {
+  opacity: 0.3;
   filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
 }
 
