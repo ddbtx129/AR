@@ -44,8 +44,8 @@ function getNftObject() {
 
     nft.setAttribute("gltf-model", nObj);
     nft.setAttribute("scale", nSclale);
-    nft.setAttribute("position", nX + ' ' + nY + ' ' + nZ );
-    nft.setAttribute("rotation", "-45 0 0");
+    nft.setAttribute("position", { x: nX, y: nY, z: nX }); //nX + ' ' + nY + ' ' + nZ );
+    nft.setAttribute("rotation", "-30 0 0");
 };
 
 function getNftImage() {
