@@ -1,5 +1,4 @@
 var webArViewer = webArViewer || {};
-var path = "https://ddbtx129.github.io/AR/";
 
 (function (global) {
     window.alert("-1");
@@ -421,11 +420,8 @@ var path = "https://ddbtx129.github.io/AR/";
                 document.getElementById("swAngle").style.display = 'inline';
                 document.getElementById("swParallel").style.display = 'inline';
 
-                //var mWrap = document.createElement('a-marker');
-                //mWrap.setAttribute('preset', 'custom');
-                //mWrap.setAttribute('type', 'pattern');
-                //mWrap.setAttribute('id', 'arMarker');
-
+                var path = "https://ddbtx129.github.io/AR/";
+                
                 var mWrap = document.createElement('a-nft');
                 mWrap.setAttribute('type', 'nft');
                 mWrap.setAttribute('id', 'nftmarker');
