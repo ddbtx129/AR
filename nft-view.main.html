@@ -38,10 +38,10 @@
         <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
 
 <!--        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: none" />
-        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: none" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: none" />-->
 
         <img id="swAngle" class="ar-angle" src="asset/angle-w.png" style="display: inline" />
-        <img id="swParallel" class="ar-parallel" src="asset/parallel-w.png" style="display: inline" />-->
+        <img id="swParallel" class="ar-parallel" src="asset/parallel-w.png" style="display: inline" />
 
         <img class="swichcamera" id="swCamera" src="asset/camera-w.png" />
 
@@ -49,7 +49,7 @@
 
             <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 
-                <a-entity id="ar-gltf" gltf-model="" scale="0 0 0" position="0 0 0" rotation="-5 0 0"></a-entity>
+                <a-entity id="ar-gltf" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-45 0 0"></a-entity>
                 
             </a-nft>
 
@@ -61,6 +61,8 @@
             getNftImage();
             getNftObject();
         </script>
+
+        <script type="text/javascript" src="nft-view-move.js"></script>
 
     </body>
 
