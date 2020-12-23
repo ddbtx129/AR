@@ -340,6 +340,7 @@ var webArViewer = webArViewer || {};
                     prevPageY = null;
                 });
 
+                // ↓ 上下移動ボタン押下
                 var upbtn = document.getElementById('swUp');
 
                 upbtn.addEventListener('click', function () {
@@ -355,6 +356,59 @@ var webArViewer = webArViewer || {};
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 });
+                // ↑ 上下移動ボタン押下
+
+                // ↓ UPボタン長押し
+                var bUP = document.getElementById('swUp');
+                var bDOWN = document.getElementById('swDown');
+                var eventStart = 'touchstart';
+                var eventEnd = 'touchend';
+                var eventLeave = 'touchmove';
+
+                bUP.addEventListener(eventStart, e => {
+                    e.preventDefault();
+                    bUP.classList.add('active');
+                    timer = setInterval(() => {
+                        wrapPos.y += 0.02;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    }, 10);
+                })
+
+                bUP.addEventListener(eventEnd, e => {
+                    e.preventDefault();
+                    bUP.classList.remove('active');
+                    clearInterval(timer);
+                });
+
+                bUP.addEventListener(eventLeave, e => {
+                    e.preventDefault();
+                    bUP.classList.remove('active');
+                    clearInterval(timer);
+                });
+                // ↑ UPボタン長押し
+
+                // ↓ DOWNボタン長押し
+                bDOWN.addEventListener(eventStart, e => {
+                    e.preventDefault();
+                    bDOWN.classList.add('active');
+                    timer = setInterval(() => {
+                        wrapPos.y -= 0.02;
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    }, 10);
+                })
+
+                bDOWN.addEventListener(eventEnd, e => {
+                    e.preventDefault();
+                    bDOWN.classList.remove('active');
+                    clearInterval(timer);
+                });
+
+                bUP.addEventListener(eventLeave, e => {
+                    e.preventDefault();
+                    bUP.classList.remove('active');
+                    clearInterval(timer);
+                });
+                // ↑ DOWNボタン長押し
 
             } else {
                 document.getElementById("swUp").style.display = 'none';
