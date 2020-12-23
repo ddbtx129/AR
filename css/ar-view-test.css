@@ -141,6 +141,22 @@ a {
     z-index: 7;
 }
 
+.ar-angle.current {
+  opacity: 0.7
+}
+
+.ar-angle:hover {
+  opacity: 0.9
+}
+
+.ar-parallel.current {
+  opacity: 0.7
+}
+
+.ar-parallel:hover {
+  opacity: 0.9
+}
+
 .loading {
     position: absolute;
     top: 45%;
