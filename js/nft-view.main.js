@@ -1,3 +1,4 @@
+var scene = document.getElementById('ar-scene');
 var nft = document.getElementById("ar-gltf");
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -45,34 +46,35 @@ window.addEventListener('DOMContentLoaded', function () {
     //wrapPos.z -= 8;
     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     //self.wrap.setAttribute('rotation', '0 0 0');
-    window.alert(_start);
+    window.alert("_start");
     var prevPageY;
     var prevPageX;
     var zoomRate = 1;
-    window.alert("1");
-    document.scene.addEventListener(_start, function (e) {
+    window.alert("11");
+    scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
     })
-    window.alert("2");
-    document.scene.addEventListener(_move, function (e) {
+    window.alert("12");
+    scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
 
         if (prevPageY) {
-            if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                AFRAME.utils.entity.setComponentProperty(wrap, 'animation__scale', {
+            if ((zoomRate + (prevPageY - event.pageY) / scene.clientHeight / 5) > 0.1) {
+
+                zoomRate += (prevPageY - event.pageY) / scene.clientHeight / 5;
+                AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
                 });
             }
         }
     });
-    window.alert("3");
-    document.scene.addEventListener(_end, function (e) {
+    window.alert("13");
+    scene.addEventListener(_end, function (e) {
         prevPageY = null;
     })
-    window.alert("4");
+    window.alert("14");
 });
 
 var _ua = (function () {
