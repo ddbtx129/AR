@@ -41,40 +41,33 @@ window.addEventListener('DOMContentLoaded', function () {
     var _end = _ua.Pointer ? 'pointerup' : _ua.MSPointer ? 'MSPointerUp' : _ua.Touch ? 'touchend' : 'mouseup';
 
     var wrapPos = nft.getAttribute('position');
-    //wrapPos.x += 0;
-    //wrapPos.y -= 0.5;
-    //wrapPos.z -= 8;
-    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-    //self.wrap.setAttribute('rotation', '0 0 0');
-    window.alert("_start");
     var prevPageY;
     var prevPageX;
     var zoomRate = 1;
-    window.alert("11");
+
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
     })
-    window.alert("12");
+
     scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
-
         if (prevPageY) {
-            if ((zoomRate + (prevPageY - event.pageY) / scene.clientHeight / 5) > 0.1) {
+            if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
 
-                zoomRate += (prevPageY - event.pageY) / scene.clientHeight / 5;
+                zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
                 AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
                 });
             }
         }
     });
-    window.alert("13");
+
     scene.addEventListener(_end, function (e) {
         prevPageY = null;
     })
-    window.alert("14");
+
 });
 
 var _ua = (function () {
