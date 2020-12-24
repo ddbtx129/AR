@@ -45,11 +45,11 @@ window.addEventListener('DOMContentLoaded', function () {
     //wrapPos.z -= 8;
     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     //self.wrap.setAttribute('rotation', '0 0 0');
-    window.alert("10");
+    window.alert("0");
     var prevPageY;
     var prevPageX;
     var zoomRate = 1;
-    window.alert("11");
+    window.alert("1");
     document.scene.addEventListener(_start, function (e) {
         window.alert(!!e.changedTouches);
         window.alert(e.changedTouches[0]);
@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', function () {
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
     })
-    window.alert("12");
+    window.alert("2");
     document.scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
 
@@ -70,11 +70,11 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-    window.alert("13");
+    window.alert("3");
     document.scene.addEventListener(_end, function (e) {
         prevPageY = null;
     })
-    window.alert("14");
+    window.alert("4");
 });
 
 var _ua = (function () {
