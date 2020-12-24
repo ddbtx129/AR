@@ -45,6 +45,10 @@ window.addEventListener('DOMContentLoaded', function () {
     var prevPageX;
     var zoomRate = 1;
 
+    var scale = nft.getAttribute("scale");
+    var zoom = scale.split(' ');
+    var zoomR = zoom[0];
+
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
@@ -54,15 +58,20 @@ window.addEventListener('DOMContentLoaded', function () {
     scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         if (prevPageY) {
-            window.alert(((prevPageY - event.pageY) / scene.clientHeight / 5) * 10);
-            window.alert(zoomRate);
+            //window.alert(((prevPageY - event.pageY) / scene.clientHeight / 5) * 10);
+            window.alert(zoomR);
+            AFRAME.utils.entity.getAttribut
+            //if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
+            if ((zoomR + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
 
-            if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
+                //zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
+                zoomR += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
 
-                zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
-                window.alert(zoomRate);
+                //AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+                //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+                //});
                 AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomR + ' ' + zoomR + ' ' + zoomR
                 });
             }
         }
