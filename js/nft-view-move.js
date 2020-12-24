@@ -32,7 +32,7 @@
 //});
 
 var webArViewer = webArViewer || {};
-var path = "https://ddbtx129.github.io/AR/";
+var objPath = "https://ddbtx129.github.io/AR/";
 
 (function (global) {
 
@@ -126,7 +126,7 @@ var path = "https://ddbtx129.github.io/AR/";
             var arData = null;
 
             // データの準備
-            var dataObj = { path: self.arg['o'] };
+            var dataObj = { path: objPath + self.arg['o'] };
 
             //dataObj.isWarp = self.arg.warpList && !!Number(self.arg.warpList);
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
@@ -468,9 +468,9 @@ var path = "https://ddbtx129.github.io/AR/";
                 mWrap.setAttribute('smoothThreshold', '5');
                 
                 if (!!self.arg.m) {
-                    mWrap.setAttribute('url', path + 'ImageDescriptors/' + self.arg.m + '/' + self.arg.m);
+                    mWrap.setAttribute('url', objPath + 'ImageDescriptors/' + self.arg.m + '/' + self.arg.m);
                 } else {
-                    mWrap.setAttribute('url', path);
+                    mWrap.setAttribute('url', objPath);
                 }
 
                 mWrap.appendChild(self.wrap);
