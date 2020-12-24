@@ -48,7 +48,6 @@ window.addEventListener('DOMContentLoaded', function () {
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
-        window.alert(event.pageY);
         prevPageX = event.pageX;    // 横軸
     })
 
