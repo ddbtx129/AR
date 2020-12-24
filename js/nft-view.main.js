@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //wrapPos.z -= 8;
     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     //self.wrap.setAttribute('rotation', '0 0 0');
-    window.alert("0");
+    window.alert(_start);
     var prevPageY;
     var prevPageX;
     var zoomRate = 1;
