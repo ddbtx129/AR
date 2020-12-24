@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //wrapPos.z -= 8;
     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     //self.wrap.setAttribute('rotation', '0 0 0');
-
+        window.alert("0");
     var prevPageY;
     var prevPageX;
     var zoomRate = 1;
@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', function () {
         prevPageX = event.pageX;    // 横軸
         window.alert("touchstart");
     })
-
+       window.alert("1");
     webArViewer.scene.addEventListener('touchmove', function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
 
@@ -66,10 +66,10 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-
+       window.alert("2");
     webArViewer.scene.addEventListener('touchend', function (e) {
         prevPageY = null;
                 window.alert("touchstart");
     })
-
+       window.alert("3");
 });
