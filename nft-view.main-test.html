@@ -17,7 +17,7 @@
 <!--        <link rel="stylesheet" href="css/ar-view.css">-->
         <link rel="stylesheet" href="css/nft-view.css">
 
-        <!--<script type="text/javascript" src="js/ar.main.js"></script>-->
+        <script type="text/javascript" src="js/ar.main.js"></script>
         <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
         <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
         <script type="text/javascript" src="js/camera.swich.js"></script>
@@ -32,9 +32,9 @@
         </div>
 
         <!--        <div class="switch">
-                <a id="swMarker" class="swItem"><img src="asset/marker-t.png" width="30"></a>
-                <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
-            </div>-->
+            <a id="swMarker" class="swItem"><img src="asset/marker-t.png" width="30"></a>
+            <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
+        </div>-->
 
         <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
 
@@ -44,11 +44,17 @@
         <img id="swAngle" class="ar-angle" src="asset/angle-w.png" style="display: inline" />
         <img id="swParallel" class="ar-parallel" src="asset/parallel-w.png" style="display: inline" />
 
+        <a-assets>
+            <!-- 画像をプリロード -->
+            <img id="kinga_sinnen" src="https://ddbtx129.github.io/AR/article/pic/ren_nagase_3.png">
+        </a-assets>
+
         <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-            <!--<a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">-->
-            <!--<a-entity id="ar-gltf" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-45 0 0"></a-entity>-->
-            <!--</a-nft>-->
+            <a-nft videohandler type="nft" id="ar-nft" url="https://ddbtx129.github.io/AR/ImageDescriptors/ren_nagase/01" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+                <!--<a-entity id="ar-gltf" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-45 0 0"></a-entity>-->
+                <a-image src="#kinga_sinnen" width="2" height="2" rotation="-90 0 0"></a-image>
+            </a-nft>
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
@@ -63,81 +69,81 @@
     </script>-->
         <!--        <script>
 
-                var nft = document.getElementById("ar-gltf");
-                var anglebtn = document.querySelector('#swAngle');
-                var parallelbtn = document.querySelector('#swParallel');
+            var nft = document.getElementById("ar-gltf");
+            var anglebtn = document.querySelector('#swAngle');
+            var parallelbtn = document.querySelector('#swParallel');
 
-                var xyz = nft.getBoundingClientRect();
-                var y = xyz.top;
+            var xyz = nft.getBoundingClientRect();
+            var y = xyz.top;
 
-                // ↓ 上下移動ボタン押下
-                var upbtn = document.getElementById('swUp');
+            // ↓ 上下移動ボタン押下
+            var upbtn = document.getElementById('swUp');
 
-                upbtn.addEventListener('click', function () {
-                    y += 0.2;
+            upbtn.addEventListener('click', function () {
+                y += 0.2;
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            });
+
+            var downbtn = document.getElementById('swDown');
+
+            downbtn.addEventListener('click', function () {
+                wrapPos.y -= 0.2;
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            });
+            // ↑
+
+            // ↓ UPボタン長押し
+            var bUP = document.querySelector('#swUp');
+            var bDOWN = document.querySelector('#swDown');
+            var eventStart = 'touchstart';
+            var eventEnd = 'touchend';
+            var eventLeave = 'touchmove';
+
+            bUP.addEventListener(eventStart, e => {
+                e.preventDefault();
+                bUP.classList.add('active');
+                timer = setInterval(() => {
+                    wrapPos.y += 0.02;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                });
+                }, 10);
+            })
 
-                var downbtn = document.getElementById('swDown');
+            bUP.addEventListener(eventEnd, e => {
+                e.preventDefault();
+                bUP.classList.remove('active');
+                clearInterval(timer);
+            });
 
-                downbtn.addEventListener('click', function () {
-                    wrapPos.y -= 0.2;
+            bUP.addEventListener(eventLeave, e => {
+                e.preventDefault();
+                bUP.classList.remove('active');
+                clearInterval(timer);
+            });
+            // ↑
+
+            // ↓ DOWNボタン長押し
+            bDOWN.addEventListener(eventStart, e => {
+                e.preventDefault();
+                bDOWN.classList.add('active');
+                timer = setInterval(() => {
+                    wrapPos.y -= 0.02;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                });
-                // ↑
+                }, 10);
+            })
 
-                // ↓ UPボタン長押し
-                var bUP = document.querySelector('#swUp');
-                var bDOWN = document.querySelector('#swDown');
-                var eventStart = 'touchstart';
-                var eventEnd = 'touchend';
-                var eventLeave = 'touchmove';
+            bDOWN.addEventListener(eventEnd, e => {
+                e.preventDefault();
+                bDOWN.classList.remove('active');
+                clearInterval(timer);
+            });
 
-                bUP.addEventListener(eventStart, e => {
-                    e.preventDefault();
-                    bUP.classList.add('active');
-                    timer = setInterval(() => {
-                        wrapPos.y += 0.02;
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    }, 10);
-                })
-
-                bUP.addEventListener(eventEnd, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-
-                bUP.addEventListener(eventLeave, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-                // ↑
-
-                // ↓ DOWNボタン長押し
-                bDOWN.addEventListener(eventStart, e => {
-                    e.preventDefault();
-                    bDOWN.classList.add('active');
-                    timer = setInterval(() => {
-                        wrapPos.y -= 0.02;
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    }, 10);
-                })
-
-                bDOWN.addEventListener(eventEnd, e => {
-                    e.preventDefault();
-                    bDOWN.classList.remove('active');
-                    clearInterval(timer);
-                });
-
-                bUP.addEventListener(eventLeave, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-                // ↑
-            </script>-->
+            bUP.addEventListener(eventLeave, e => {
+                e.preventDefault();
+                bUP.classList.remove('active');
+                clearInterval(timer);
+            });
+            // ↑
+        </script>-->
         <!--<script>
         var nft = document.getElementById("ar-gltf");
         var anglebtn = document.querySelector('#swAngle');
@@ -167,10 +173,9 @@
         });
 
     </script>-->
-
-        <script src="js/gifshader.js"></script>
-        <script src="js/chromakey.js"></script>
-        <script src="js/nft-view-move.js"></script>
+        <!--<script src="js/gifshader.js"></script>
+    <script src="js/chromakey.js"></script>
+    <script src="js/nft-view-move.js"></script>-->
 
     </body>
 
