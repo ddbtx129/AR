@@ -51,6 +51,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
+        window.alert("touchstart");
     })
 
     webArViewer.scene.addEventListener('touchmove', function (e) {
@@ -68,6 +69,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     webArViewer.scene.addEventListener('touchend', function (e) {
         prevPageY = null;
+                window.alert("touchstart");
     })
 
 });
