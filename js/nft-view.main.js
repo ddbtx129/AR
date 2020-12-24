@@ -3,7 +3,6 @@ var nft = document.getElementById("ar-gltf");
 window.addEventListener('DOMContentLoaded', function () {
 
     // ↓ rotation 切替
-    window.alert("0");
     var anglebtn = document.querySelector('#swAngle');
     var parallelbtn = document.querySelector('#swParallel');
 
@@ -23,14 +22,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
     parallelbtn.addEventListener('click', function () {
         if (!parallelbtn.classList.contains('current')) {
-            arRotation = '-90 0 0';
+            arRotation = '-135 0 0';
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
             parallelbtn.classList.add('current');
             anglebtn.classList.remove('current');
         }
     })
-    window.alert("1");
     // ↑
 });
 
