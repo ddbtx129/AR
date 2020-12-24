@@ -33,8 +33,11 @@ window.addEventListener('DOMContentLoaded', function () {
     // ↑
 });
 
-
 window.addEventListener('DOMContentLoaded', function () {
+
+    var _start = _ua.Pointer ? 'pointerdown' : _ua.MSPointer ? 'MSPointerDown' : _ua.Touch ? 'touchstart' : 'mousedown';
+    var _move = _ua.Pointer ? 'pointermove' : _ua.MSPointer ? 'MSPointerMove' : _ua.Touch ? 'touchmove' : 'mousemove';
+    var _end = _ua.Pointer ? 'pointerup' : _ua.MSPointer ? 'MSPointerUp' : _ua.Touch ? 'touchend' : 'mouseup';
 
     var wrapPos = nft.getAttribute('position');
     //wrapPos.x += 0;
@@ -42,19 +45,18 @@ window.addEventListener('DOMContentLoaded', function () {
     //wrapPos.z -= 8;
     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     //self.wrap.setAttribute('rotation', '0 0 0');
-        window.alert("0");
+    window.alert("10");
     var prevPageY;
     var prevPageX;
     var zoomRate = 1;
-
-    webArViewer.scene.addEventListener('touchstart', function (e) {
+    window.alert("11");
+    webArViewer.scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
-        window.alert("touchstart");
     })
-       window.alert("1");
-    webArViewer.scene.addEventListener('touchmove', function (e) {
+    window.alert("12");
+    webArViewer.scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
 
         if (prevPageY) {
@@ -66,10 +68,17 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-       window.alert("2");
-    webArViewer.scene.addEventListener('touchend', function (e) {
+    window.alert("13");
+    webArViewer.scene.addEventListener(_end, function (e) {
         prevPageY = null;
-                window.alert("touchstart");
     })
-       window.alert("3");
+    window.alert("14");
 });
+
+var _ua = (function () {
+    return {
+        Touch: typeof document.ontouchstart != "undefined",
+        Pointer: window.navigator.pointerEnabled,
+        MSPoniter: window.navigator.msPointerEnabled
+    }
+})();
