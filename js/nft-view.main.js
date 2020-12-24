@@ -48,15 +48,20 @@ window.addEventListener('DOMContentLoaded', function () {
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
+        window.alert(event.pageY);
         prevPageX = event.pageX;    // 横軸
     })
 
     scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         if (prevPageY) {
+            window.alert(((prevPageY - event.pageY) / scene.clientHeight / 5) * 10);
+            window.alert(zoomRate);
+
             if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
 
                 zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
+                window.alert(zoomRate);
                 AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
                 });
@@ -81,6 +86,7 @@ var _ua = (function () {
 window.addEventListener('DOMContentLoaded', function () {
 
     var wrapPos = nft.getAttribute('position');
+    window.alert("0");
 
     //wrapPos.x += 0;
     //wrapPos.y -= 0.5;
@@ -88,11 +94,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // ↓ 上下移動ボタン押下
     var upbtn = document.getElementById('swUp');
+    window.alert("1");
 
     upbtn.addEventListener('click', function () {
         y += 0.2;
         nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     });
+    window.alert("2");
 
     var downbtn = document.getElementById('swDown');
 
@@ -101,6 +109,7 @@ window.addEventListener('DOMContentLoaded', function () {
         nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
     });
     // ↑ 
+    window.alert("3");
 
     // ↓ UPボタン長押し
     var bUP = document.querySelector('#swUp');
@@ -108,6 +117,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var eventStart = 'touchstart';
     var eventEnd = 'touchend';
     var eventLeave = 'touchmove';
+    window.alert("4");
 
     bUP.addEventListener(eventStart, e => {
         e.preventDefault();
@@ -117,12 +127,14 @@ window.addEventListener('DOMContentLoaded', function () {
             nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
         }, 10);
     })
+    window.alert("5");
 
     bUP.addEventListener(eventEnd, e => {
         e.preventDefault();
         bUP.classList.remove('active');
         clearInterval(timer);
     });
+    window.alert("6");
 
     bUP.addEventListener(eventLeave, e => {
         e.preventDefault();
@@ -130,6 +142,7 @@ window.addEventListener('DOMContentLoaded', function () {
         clearInterval(timer);
     });
     // ↑ 
+    window.alert("7");
 
     // ↓ DOWNボタン長押し
     bDOWN.addEventListener(eventStart, e => {
@@ -153,5 +166,6 @@ window.addEventListener('DOMContentLoaded', function () {
         clearInterval(timer);
     });
     // ↑
+    window.alert("8");
 
 });
