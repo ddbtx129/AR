@@ -48,6 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var scale = nft.getAttribute("scale");
     var zoom = scale.split(' ');
     var zoomR = zoom[0];
+    window.alert(zoomR);
 
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
