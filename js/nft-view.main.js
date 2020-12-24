@@ -51,8 +51,6 @@ window.addEventListener('DOMContentLoaded', function () {
     var zoomRate = 1;
     window.alert("1");
     document.scene.addEventListener(_start, function (e) {
-        window.alert(!!e.changedTouches);
-        window.alert(e.changedTouches[0]);
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
