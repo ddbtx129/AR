@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function () {
     window.alert("11");
 
     var scale = nft.getAttribute("scale");
-    window.alert(scale);
+    window.alert(scale.width);
 
     var zoom = scale.split(' ');
     var zoomR = zoom[0];
