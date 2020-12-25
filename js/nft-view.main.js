@@ -1,6 +1,6 @@
-var webArViewer;
+var nftarView;
 
-(function (global) {
+(function () {
     window.alert('-1');
 
     var rootPath = "https://ddbtx129.github.io/AR/";
@@ -45,21 +45,21 @@ var webArViewer;
             window.alert('0');
             this.getArg();
             window.alert('1');
-            if (setArData()) {
-                window.alert('2');
-                var deviceEvents = {
-                    Touch: typeof document.ontouchstart !== 'undefined',
-                    Pointer: window.navigator.pointerEnabled,
-                    MSPointer: window.navigator.msPointerEnabled
-                };
-                window.alert('3');
-                this.eventNames = {
-                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
-                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
-                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
-                };
-                //window.alert('4');
-            }
+            //if (setArData()) {
+            //    window.alert('2');
+            //    var deviceEvents = {
+            //        Touch: typeof document.ontouchstart !== 'undefined',
+            //        Pointer: window.navigator.pointerEnabled,
+            //        MSPointer: window.navigator.msPointerEnabled
+            //    };
+            //    window.alert('3');
+            //    this.eventNames = {
+            //        start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
+            //        move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
+            //        end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
+            //    };
+            //    //window.alert('4');
+            //}
 
             //this.setSwitcher();
             window.alert('5');
@@ -383,7 +383,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //}
     //})();
 
-    webArViewer.ar = ar;
-    webArViewer.ar.init();
+    nftarView.ar = ar;
+    nftarView.ar.init();
 
 }());
