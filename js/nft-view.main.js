@@ -1,8 +1,10 @@
 var webArViewer = webArViewer || {};
 
 (function (global) {
+    window.alert('-1');
 
     var rootPath = "https://ddbtx129.github.io/AR/";
+
     var scene = document.getElementById('ar-scene');
     var marker = document.getElementById('ar-nft');
     var nft = document.getElementById("ar-gltf-main");
@@ -38,27 +40,29 @@ var webArViewer = webArViewer || {};
     //var zoomRate = nft.size.h;
 
     var ar = {
-
+        
         init: function () {
-
+            window.alert('0');
             this.getArg();
-
+            window.alert('1');
             if (setArData()) {
-
+                window.alert('2');
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-
+                window.alert('3');
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
+                window.alert('4');
             }
 
             this.setSwitcher();
+            window.alert('5');
         },
 
         getArg: function () {
