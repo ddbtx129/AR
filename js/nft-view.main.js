@@ -84,6 +84,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // ↑
     window.alert("0");
     // ↓ 上下移動ボタン押下
+    var timer;
     bUP.addEventListener('click', function () {
         arPosY += 0.2;
         window.alert(arPosY);
