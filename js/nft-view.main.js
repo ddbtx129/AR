@@ -43,17 +43,22 @@ var webArViewer = webArViewer || {};
 
             this.getArg();
 
-            var deviceEvents = {
-                Touch: typeof document.ontouchstart !== 'undefined',
-                Pointer: window.navigator.pointerEnabled,
-                MSPointer: window.navigator.msPointerEnabled
-            };
+            if (setArData()) {
 
-            this.eventNames = {
-                start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
-                move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
-                end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
-            };
+                var deviceEvents = {
+                    Touch: typeof document.ontouchstart !== 'undefined',
+                    Pointer: window.navigator.pointerEnabled,
+                    MSPointer: window.navigator.msPointerEnabled
+                };
+
+                this.eventNames = {
+                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
+                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
+                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
+                };
+            }
+
+            this.setSwitcher();
         },
 
         getArg: function () {
