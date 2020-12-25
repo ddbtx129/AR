@@ -25,12 +25,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
     nft.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
     nft.setAttribute('position', { x: arPosX, y: arPosY + (zoomRate / 2), z: arPosZ });
-    nft.setAttribute('rotation', String(arRotation) + ' 0 0');
+    //nft.setAttribute('rotation', String(arRotation) + ' 0 0');
+    nft.setAttribute('rotation', '0 0 0');
 
     if (isShadow) {
         shodow.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
         shodow.setAttribute('position', { x: arPosX, y: arPosY, z: arPosZ });
-        shodow.setAttribute('rotation', String(shadowRotation) + ' 0 0');
+        shodow.setAttribute('rotation', '-90 0 0');
     }
 
     var anglebtn = document.querySelector('#swAngle');
@@ -39,11 +40,11 @@ window.addEventListener('DOMContentLoaded', function () {
     var bDOWN = document.querySelector('#swDown');
 
     // ↓ rotation 切替
-    anglebtn.classList.add('current');
+    parallelbtn.classList.add('current');
 
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
-            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(arRotation) + ' 0 0'));
+            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
             anglebtn.classList.add('current');
             parallelbtn.classList.remove('current');
         }
