@@ -86,11 +86,13 @@ window.addEventListener('DOMContentLoaded', function () {
     // ↓ 上下移動ボタン押下
     bUP.addEventListener('click', function () {
         arPosY += 0.2;
+        window.alert(arPosY);
         nft.setAttribute('position', AFRAME.utils.coordinates.stringify({ x: arPosX, y: arPosY, z: arPosZ }));
     });
 
     bDOWN.addEventListener('click', function () {
         arPosY -= 0.2;
+        window.alert(arPosY);
         nft.setAttribute('position', AFRAME.utils.coordinates.stringify({ x: arPosX, y: arPosY, z: arPosZ }));
     });
     // ↑ 
