@@ -42,9 +42,9 @@ var nftarView;
     var ar = {
         
         init: function () {
-            window.alert('0');
-            this.getArg();
-            window.alert('1');
+            window.alert('2');
+            this.setArg();
+            
             //if (setArData()) {
             //    window.alert('2');
             //    var deviceEvents = {
@@ -65,7 +65,7 @@ var nftarView;
             window.alert('5');
         },
 
-        getArg: function () {
+        setArg : function () {
 
             var self = this;
 
@@ -89,7 +89,7 @@ var nftarView;
             arg.ObjectList12 = arg.o1 && arg.o2;
 
             self.arg = arg;
-        },
+        }
 
         //setArData: function () {
 
@@ -382,8 +382,9 @@ window.addEventListener('DOMContentLoaded', function () {
     //    MSPoniter: window.navigator.msPointerEnabled
     //}
     //})();
-
+    window.alert('0');
     nftarView.ar = ar;
+    window.alert('1');
     nftarView.ar.init();
 
 }());
