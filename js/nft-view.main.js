@@ -86,19 +86,19 @@ window.addEventListener('DOMContentLoaded', function () {
     var bDOWN = document.querySelector('#swDown');
 
     var timer;
-
+    window.alert(arPosY);
     bUP.addEventListener('click', function (e) {
         window.alert(arPosY);
         arPosY += 2;
         window.alert(arPosY);
-        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
+        //nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
     });
 
     bDOWN.addEventListener('click', function (e) {
         window.alert(arPosY);
         arPosY -= 2;
         window.alert(arPosY);
-        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
+        //nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
     });
     // ↑ 
 
