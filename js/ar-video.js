@@ -9,9 +9,9 @@ function getArVideo() {
     var vObj;
 
     if ((arg["o1"]) && (arg["o2"])) {
-        sObj = 'article/video/' + arg["o1"] + '/' + arg["o2"] + '.mp4';
+        vObj = 'article/video/' + arg["o1"] + '/' + arg["o2"] + '.mp4';
     } else {
-        sObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
+        vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
     }
 
     video.setAttribute("src", vObj);
@@ -21,9 +21,9 @@ function getArVideo() {
     var mObj;
 
     if ((arg["m1"]) && (arg["m2"])) {
-        nObj = path + 'pattern/' + arg["m1"] + '/pattern-' + arg["m2"] + '.patt';
+        mObj = path + 'pattern/' + arg["m1"] + '/pattern-' + arg["m2"] + '.patt';
     } else {
-        nObj = !(arg["m"]) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + arg["m"] + '.patt';
+        mObj = !(arg["m"]) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + arg["m"] + '.patt';
     }
 
     marker.setAttribute("url", mObj);
@@ -40,9 +40,9 @@ function getNftVideo() {
     var vObj;
 
     if ((arg["o1"]) && (arg["o2"])) {
-        nObj = path + 'article/video/' + arg["o1"] + '/' + arg["o2"] + '.mp4';
+        vObj = path + 'article/video/' + arg["o1"] + '/' + arg["o2"] + '.mp4';
     } else {
-        nObj = !(arg["o"]) ? path + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
+        vObj = !(arg["o"]) ? path + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
     }
 
     video.setAttribute("src", vObj);
@@ -60,7 +60,7 @@ function getNftObject() {
     } else {
         nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + '.gltf';
     }
-
+    window.alert(nObj);
     nft.setAttribute('gltf-model', nObj);
 
     if(!!(arg["xs"]))
@@ -75,7 +75,6 @@ function getNftObject() {
         }
 
         shodow.setAttribute('gltf-model-shadow', sObj);
-
         shodow.style.visibility = 'visible';
     }
 };
@@ -92,6 +91,8 @@ function getNftMarker() {
     } else {
         nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
     }
+
+    window.alert(nObj);
 
     nft.setAttribute('url', nObj);
 };
