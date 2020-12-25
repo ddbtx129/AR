@@ -87,6 +87,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
     if (!(bUP)) {
         window.al("ボタンエラー");
+    } else {
+        window.al(bUP);
     }
     var timer;
 
