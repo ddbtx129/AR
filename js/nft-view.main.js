@@ -4,9 +4,9 @@
 
     var rootPath = "https://ddbtx129.github.io/AR/";
 
-    //var scene = document.getElementById('ar-scene');
-    //var marker = document.getElementById('ar-nft');
-    //var nft = document.getElementById("ar-gltf-main");
+    var scene = document.getElementById('ar-scene');
+    var marker = document.getElementById('ar-nft');
+    var nft = document.getElementById("ar-gltf-main");
 
     //var wrapPos = nft.getAttribute('position');
     //var arPosX = !(arg["x"]) ? 0 : arg["x"];
