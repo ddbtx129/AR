@@ -4,10 +4,6 @@
 
     var rootPath = "https://ddbtx129.github.io/AR/";
 
-    var scene = document.getElementById('ar-scene');
-    var marker = document.getElementById('ar-nft');
-    var nft = document.getElementById("ar-gltf-main");
-
     //var wrapPos = nft.getAttribute('position');
     //var arPosX = !(arg["x"]) ? 0 : arg["x"];
     //var arPosY = !(arg["y"]) ? 0 : arg["y"];
@@ -119,6 +115,10 @@
         //        Err_Exit('画像情報が取得できませんでした。');
         //        return false;
         //    } else {
+            //var marker = document.getElementById('ar-nft');
+            //var nft = document.getElementById("ar-gltf-main");
+
+
         //        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
 
         //        dataObj.isMarker = !!self.arg.markerList;
@@ -159,6 +159,10 @@
         //},
 
         //setSwitcher: function () {
+
+            //var scene = document.getElementById('ar-scene');
+        //var nft = document.getElementById("ar-gltf-main");
+
 
         //    var self = this;
 
@@ -235,6 +239,21 @@
         //},
 
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //window.addEventListener('DOMContentLoaded', function () {
 
