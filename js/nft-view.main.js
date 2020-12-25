@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var arPosZ = !(arg["z"]) ? 0 : arg["z"];
     var arRotation = 0;
     var shadowRotation = 0;
-    window.alert(arPosY);
+
     var isShadow = !!(arg["xs"]);
 
     nft.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
@@ -80,31 +80,28 @@ window.addEventListener('DOMContentLoaded', function () {
     //    prevPageY = null;
     //})
     // ↑
-    window.alert("0");
+
     // ↓ 上下移動ボタン押下
     var bUP = document.querySelector('#swUp');
     var bDOWN = document.querySelector('#swDown');
 
-    if (!(bUP)) {
-        window.alert("ボタンエラー");
-    } else {
-        window.alert(bUP);
-    }
     var timer;
 
     bUP.addEventListener('click', function (e) {
+        window.alert(arPosY);
         arPosY += 2;
         window.alert(arPosY);
         nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
     });
-    window.alert("1");
+
     bDOWN.addEventListener('click', function (e) {
+        window.alert(arPosY);
         arPosY -= 2;
         window.alert(arPosY);
         nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
     });
     // ↑ 
-    window.alert("2");
+
     // ↓ UPボタン長押し
     bUP.addEventListener(_start, e => {
         e.preventDefault();
@@ -114,20 +111,20 @@ window.addEventListener('DOMContentLoaded', function () {
             nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
         }, 10);
     })
-    window.alert("3");
+
     bUP.addEventListener(_end, e => {
         e.preventDefault();
         bUP.classList.remove('active');
         clearInterval(timer);
     });
-    window.alert("4");
+
     bUP.addEventListener(_move, e => {
         e.preventDefault();
         bUP.classList.remove('active');
         clearInterval(timer);
     });
     // ↑ 
-    window.alert("5");
+
     // ↓ DOWNボタン長押し
     bDOWN.addEventListener(_start, e => {
         e.preventDefault();
@@ -137,13 +134,13 @@ window.addEventListener('DOMContentLoaded', function () {
             nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
         }, 10);
     })
-    window.alert("6");
+
     bDOWN.addEventListener(_end, e => {
         e.preventDefault();
         bDOWN.classList.remove('active');
         clearInterval(timer);
     });
-    window.alert("7");
+
     bDOWN.addEventListener(_move, e => {
         e.preventDefault();
         bDOWN.classList.remove('active');
