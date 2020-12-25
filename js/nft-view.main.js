@@ -36,7 +36,7 @@
 
     window.alert('0');
     //nftarView.ar = ar;
-    ar.init();
+    //ar.init();
     window.alert('1');
 
     var ar = {
