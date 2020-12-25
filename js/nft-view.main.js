@@ -18,8 +18,8 @@ window.addEventListener('DOMContentLoaded', function () {
     var arPosX = !(arg["x"]) ? 0 : arg["x"];
     var arPosY = !(arg["y"]) ? 0 : arg["y"];
     var arPosZ = !(arg["z"]) ? 0 : arg["z"];
-    var arRotation = -45;
-    var shadowRotation = -90;
+    var arRotation = 90;
+    var shadowRotation = 0;
 
     var isShadow = !!(arg["xs"]);
 
@@ -45,8 +45,7 @@ window.addEventListener('DOMContentLoaded', function () {
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
 
-            //var rotation = { x: arRotation, y: 0, z: 0 };
-            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0' + arRotation));
+            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0' + arRotation + '0'));
            
             anglebtn.classList.add('current');
             parallelbtn.classList.remove('current');
@@ -56,8 +55,7 @@ window.addEventListener('DOMContentLoaded', function () {
     parallelbtn.addEventListener('click', function () {
         if (!parallelbtn.classList.contains('current')) {
 
-            //var rotation = { x: arRotation - 90, y: 0, z: 0 };
-            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0' + arRotation - 90));
+            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
             parallelbtn.classList.add('current');
             anglebtn.classList.remove('current');
