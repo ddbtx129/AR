@@ -38,7 +38,7 @@
 
     //var zoomRate = nft.size.h;
 
-    ar: function() {
+    var ar = {
         
         init: function () {
             window.alert('2');
@@ -383,7 +383,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //})();
     window.alert('0');
     //nftarView.ar = ar;
-    ar();
+    ar.init();
 
     window.alert('1');
     //nftarView.ar.init();
