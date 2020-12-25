@@ -37,11 +37,11 @@ window.addEventListener('DOMContentLoaded', function () {
     var parallelbtn = document.querySelector('#swParallel');
     var bUP = document.querySelector('#swUp');
     var bDOWN = document.querySelector('#swDown');
-    windnow.alert('0');
+    window.alert('0');
     // ↓ rotation 切替
 
     anglebtn.classList.add('current');
-    windnow.alert('1');
+    window.alert('1');
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
 
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function () {
             parallelbtn.classList.remove('current');
         }
     })
-    windnow.alert('2');
+    window.alert('2');
     parallelbtn.addEventListener('click', function () {
         if (!parallelbtn.classList.contains('current')) {
 
@@ -64,18 +64,17 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
     // ↑
-    windnow.alert('3');
+    window.alert('3');
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
     })
-    windnow.alert('4');
+    window.alert('4');
     scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         if (prevPageY) {
 
-            window.alert(zoomR);
             AFRAME.utils.entity.getAttribut
             if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
 
@@ -87,12 +86,12 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-    windnow.alert('5');
+    window.alert('5');
 
     scene.addEventListener(_end, function (e) {
         prevPageY = null;
     })
-    windnow.alert('6');
+    window.alert('6');
 
     // ↓ 上下移動ボタン押下
 
