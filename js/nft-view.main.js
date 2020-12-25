@@ -36,8 +36,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     var anglebtn = document.querySelector('#swAngle');
     var parallelbtn = document.querySelector('#swParallel');
-    var bUP = document.querySelector('#swUp');
-    var bDOWN = document.querySelector('#swDown');
 
     // ↓ rotation 切替
     parallelbtn.classList.add('current');
@@ -84,7 +82,14 @@ window.addEventListener('DOMContentLoaded', function () {
     // ↑
     window.alert("0");
     // ↓ 上下移動ボタン押下
+    var bUP = document.querySelector('#swUp');
+    var bDOWN = document.querySelector('#swDown');
+
+    if (!(bUP)) {
+        window.al("ボタンエラー");
+    }
     var timer;
+
     bUP.addEventListener('click', function () {
         arPosY += 0.2;
         window.alert(arPosY);
