@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
             arRotation = { x: arRotation, y: 0, z: 0 };
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
+            windnow.alert(arRotation);
             anglebtn.classList.add('current');
             parallelbtn.classList.remove('current');
         }
@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
             arRotation = { x: arRotation - 90, y: 0, z: 0 };
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
+            windnow.alert(arRotation - 90);
             parallelbtn.classList.add('current');
             anglebtn.classList.remove('current');
         }
