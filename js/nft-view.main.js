@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var arPosZ = !(arg["z"]) ? 0 : arg["z"];
     var arRotation = 0;
     var shadowRotation = 0;
-
+    window.alert(arPosY);
     var isShadow = !!(arg["xs"]);
 
     nft.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
@@ -90,16 +90,16 @@ window.addEventListener('DOMContentLoaded', function () {
     }
     var timer;
 
-    bUP.addEventListener('click', function () {
-        arPosY += 0.2;
+    bUP.addEventListener('click', function (e) {
+        arPosY += 2;
         window.alert(arPosY);
-        nft.setAttribute('position', AFRAME.utils.coordinates.stringify({ x: arPosX, y: arPosY, z: arPosZ }));
+        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
     });
     window.alert("1");
-    bDOWN.addEventListener('click', function () {
-        arPosY -= 0.2;
+    bDOWN.addEventListener('click', function (e) {
+        arPosY -= 2;
         window.alert(arPosY);
-        nft.setAttribute('position', AFRAME.utils.coordinates.stringify({ x: arPosX, y: arPosY, z: arPosZ }));
+        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
     });
     // ↑ 
     window.alert("2");
@@ -108,8 +108,8 @@ window.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         bUP.classList.add('active');
         timer = setInterval(() => {
-            arPosY += 0.02;
-            nft.setAttribute('position', AFRAME.utils.coordinates.stringify({ x: arPosX, y: arPosY, z: arPosZ }));
+            arPosY += 0.2;
+            nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
         }, 10);
     })
     window.alert("3");
@@ -131,8 +131,8 @@ window.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         bDOWN.classList.add('active');
         timer = setInterval(() => {
-            arPosY -= 0.02;
-            nft.setAttribute('position', AFRAME.utils.coordinates.stringify({ x: arPosX, y: arPosY, z: arPosZ }));
+            arPosY -= 0.2;
+            nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
         }, 10);
     })
     window.alert("6");
