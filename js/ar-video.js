@@ -32,23 +32,22 @@ function getNftObject() {
 
     var arg = GetQueryString();
 
-    var nft = document.getElementById("ar-gltf");
+    var nft = document.getElementById("ar-gltf-main");
 
     var nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + ".gltf";
-
-    var nSclale = !(arg["wh"]) ? "20 20 20" : arg["wh"] + " " + arg["wh"] + " " + arg["wh"];
-
-    var nX = !(arg["x"]) ? 0 : arg["x"];
-    var nY = !(arg["y"]) ? 0 : arg["y"];
-    var nZ = !(arg["z"]) ? 0 : arg["z"];
-
     nft.setAttribute("gltf-model", nObj);
-    nft.setAttribute("scale", nSclale);
-    nft.setAttribute("position", { x: nX, y: nY, z: nX }); //nX + ' ' + nY + ' ' + nZ );
-    nft.setAttribute("rotation", "-30 0 0");
+
+    if(!!(arg["xs"]))
+    {
+        var shodow = document.getElementById("ar-gltf-shadow");
+        var sObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + "-hs.gltf";
+        shodow.setAttribute("gltf-model-shadow", sObj);
+
+        shodow.style.visibility = 'visible';
+    }
 };
 
-function getNftImage() {
+function getNftMarker() {
     
     var arg = GetQueryString();
 

@@ -1,20 +1,51 @@
 var scene = document.getElementById('ar-scene');
-var nft = document.getElementById("ar-gltf");
+var nft = document.getElementById("ar-gltf-main");
+var shodow = document.getElementById("ar-gltf-shadow");
+
+var arg = GetQueryString();
 
 window.addEventListener('DOMContentLoaded', function () {
 
-    // ↓ rotation 切替
+    var _start = _ua.Pointer ? 'pointerdown' : _ua.MSPointer ? 'MSPointerDown' : _ua.Touch ? 'touchstart' : 'mousedown';
+    var _move = _ua.Pointer ? 'pointermove' : _ua.MSPointer ? 'MSPointerMove' : _ua.Touch ? 'touchmove' : 'mousemove';
+    var _end = _ua.Pointer ? 'pointerup' : _ua.MSPointer ? 'MSPointerUp' : _ua.Touch ? 'touchend' : 'mouseup';
+
+    var wrapPos = nft.getAttribute('position');
+    var zoomRate = !(arg["wh"]) ? 20 : arg["wh"];;
+    var prevPageY;
+    var prevPageX;
+
+    var arPosX = !(arg["x"]) ? 0 : arg["x"];
+    var arPosY = !(arg["y"]) ? 0 : arg["y"];
+    var arPosZ = !(arg["z"]) ? 0 : arg["z"];
+    var arRotation = -45;
+    var shadowRotation = -90;
+
+    var isShadow = !!(arg["xs"]);
+
+    nft.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
+    nft.setAttribute('position', { x: arPosX, y: arPosY + (zoomRate / 2), z: arPosZ });
+    nft.setAttribute('rotation', { x: arRotation, y: 0, z: 0 });
+
+    if (isShadow) {
+        shodow.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
+        shodow.setAttribute('position', { x: arPosX, y: arPosY, z: arPosZ });
+        shodow.setAttribute('rotation', { x: shadowRotation, y: 0, z: 0 });
+    }
 
     var anglebtn = document.querySelector('#swAngle');
     var parallelbtn = document.querySelector('#swParallel');
+    var bUP = document.querySelector('#swUp');
+    var bDOWN = document.querySelector('#swDown');
 
-    var arRotation = '-45 0 0';
+    // ↓ rotation 切替
 
     anglebtn.classList.add('current');
 
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
-            arRotation = '-45 0 0';
+
+            arRotation = { x: arRotation, y: 0, z: 0 };
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
             anglebtn.classList.add('current');
@@ -24,7 +55,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
     parallelbtn.addEventListener('click', function () {
         if (!parallelbtn.classList.contains('current')) {
-            arRotation = '-90 0 0';
+
+            arRotation = { x: arRotation - 90, y: 0, z: 0 };
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
 
             parallelbtn.classList.add('current');
@@ -32,25 +64,6 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
     // ↑
-});
-
-window.addEventListener('DOMContentLoaded', function () {
-
-    var _start = _ua.Pointer ? 'pointerdown' : _ua.MSPointer ? 'MSPointerDown' : _ua.Touch ? 'touchstart' : 'mousedown';
-    var _move = _ua.Pointer ? 'pointermove' : _ua.MSPointer ? 'MSPointerMove' : _ua.Touch ? 'touchmove' : 'mousemove';
-    var _end = _ua.Pointer ? 'pointerup' : _ua.MSPointer ? 'MSPointerUp' : _ua.Touch ? 'touchend' : 'mouseup';
-
-    var wrapPos = nft.getAttribute('position');
-    var prevPageY;
-    var prevPageX;
-    var zoomRate = 1;
-    window.alert("11");
-
-    var scale = nft.getAttribute("scale");
-    window.alert(scale.width);
-
-    var zoom = scale.split(' ');
-    var zoomR = zoom[0];
 
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -61,20 +74,15 @@ window.addEventListener('DOMContentLoaded', function () {
     scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         if (prevPageY) {
-            //window.alert(((prevPageY - event.pageY) / scene.clientHeight / 5) * 10);
+
             window.alert(zoomR);
             AFRAME.utils.entity.getAttribut
-            //if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
-            if ((zoomR + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
+            if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10) > 0.1) {
 
-                //zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
-                zoomR += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
+                zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 10;
 
-                //AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                //});
                 AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomR + ' ' + zoomR + ' ' + zoomR
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
                 });
             }
         }
@@ -83,6 +91,66 @@ window.addEventListener('DOMContentLoaded', function () {
     scene.addEventListener(_end, function (e) {
         prevPageY = null;
     })
+
+    // ↓ 上下移動ボタン押下
+
+    bUP.addEventListener('click', function () {
+        y += 0.2;
+        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+    });
+
+    bDOWN.addEventListener('click', function () {
+        wrapPos.y -= 0.2;
+        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+    });
+    // ↑ 
+
+    // ↓ UPボタン長押し
+
+    bUP.addEventListener(eventStart, e => {
+        e.preventDefault();
+        bUP.classList.add('active');
+        timer = setInterval(() => {
+            wrapPos.y += 0.02;
+            nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+        }, 10);
+    })
+
+    bUP.addEventListener(eventEnd, e => {
+        e.preventDefault();
+        bUP.classList.remove('active');
+        clearInterval(timer);
+    });
+
+    bUP.addEventListener(eventLeave, e => {
+        e.preventDefault();
+        bUP.classList.remove('active');
+        clearInterval(timer);
+    });
+    // ↑ 
+
+    // ↓ DOWNボタン長押し
+    bDOWN.addEventListener(_start, e => {
+        e.preventDefault();
+        bDOWN.classList.add('active');
+        timer = setInterval(() => {
+            wrapPos.y -= 0.02;
+            nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+        }, 10);
+    })
+
+    bDOWN.addEventListener(_end, e => {
+        e.preventDefault();
+        bDOWN.classList.remove('active');
+        clearInterval(timer);
+    });
+
+    bUP.addEventListener(_move, e => {
+        e.preventDefault();
+        bUP.classList.remove('active');
+        clearInterval(timer);
+    });
+    // ↑
 
 });
 
@@ -93,90 +161,3 @@ var _ua = (function () {
         MSPoniter: window.navigator.msPointerEnabled
     }
 })();
-
-window.addEventListener('DOMContentLoaded', function () {
-
-    var wrapPos = nft.getAttribute('position');
-    window.alert("0");
-
-    //wrapPos.x += 0;
-    //wrapPos.y -= 0.5;
-    //wrapPos.z -= 8;
-
-    // ↓ 上下移動ボタン押下
-    var upbtn = document.getElementById('swUp');
-    window.alert("1");
-
-    upbtn.addEventListener('click', function () {
-        y += 0.2;
-        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-    });
-    window.alert("2");
-
-    var downbtn = document.getElementById('swDown');
-
-    downbtn.addEventListener('click', function () {
-        wrapPos.y -= 0.2;
-        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-    });
-    // ↑ 
-    window.alert("3");
-
-    // ↓ UPボタン長押し
-    var bUP = document.querySelector('#swUp');
-    var bDOWN = document.querySelector('#swDown');
-    var eventStart = 'touchstart';
-    var eventEnd = 'touchend';
-    var eventLeave = 'touchmove';
-    window.alert("4");
-
-    bUP.addEventListener(eventStart, e => {
-        e.preventDefault();
-        bUP.classList.add('active');
-        timer = setInterval(() => {
-            wrapPos.y += 0.02;
-            nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-        }, 10);
-    })
-    window.alert("5");
-
-    bUP.addEventListener(eventEnd, e => {
-        e.preventDefault();
-        bUP.classList.remove('active');
-        clearInterval(timer);
-    });
-    window.alert("6");
-
-    bUP.addEventListener(eventLeave, e => {
-        e.preventDefault();
-        bUP.classList.remove('active');
-        clearInterval(timer);
-    });
-    // ↑ 
-    window.alert("7");
-
-    // ↓ DOWNボタン長押し
-    bDOWN.addEventListener(eventStart, e => {
-        e.preventDefault();
-        bDOWN.classList.add('active');
-        timer = setInterval(() => {
-            wrapPos.y -= 0.02;
-            nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-        }, 10);
-    })
-
-    bDOWN.addEventListener(eventEnd, e => {
-        e.preventDefault();
-        bDOWN.classList.remove('active');
-        clearInterval(timer);
-    });
-
-    bUP.addEventListener(eventLeave, e => {
-        e.preventDefault();
-        bUP.classList.remove('active');
-        clearInterval(timer);
-    });
-    // ↑
-    window.alert("8");
-
-});
