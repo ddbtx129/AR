@@ -98,7 +98,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // ↑ 
     window.alert("2");
     // ↓ UPボタン長押し
-    bUP.addEventListener(eventStart, e => {
+    bUP.addEventListener(_start, e => {
         e.preventDefault();
         bUP.classList.add('active');
         timer = setInterval(() => {
@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }, 10);
     })
     window.alert("3");
-    bUP.addEventListener(eventEnd, e => {
+    bUP.addEventListener(_end, e => {
         e.preventDefault();
         bUP.classList.remove('active');
         clearInterval(timer);
