@@ -1,14 +1,13 @@
 ﻿
 var webArNft = {};
-var rootPath = "https://ddbtx129.github.io/AR/";
 
-(function () {
+(function (rootPath) {
 
 	var nft = {
 
 		nftInit: function () {
 
-			if (setardata()) {
+			if (true) {
 
 				var deviceevents = {
 			        touch: typeof document.ontouchstart !== 'undefined',
@@ -23,8 +22,35 @@ var rootPath = "https://ddbtx129.github.io/AR/";
 			    };
 
 			}
+		},
 
+		setArg: function () {
+
+			var self = this;
+
+			var arg = {};
+			var pair = location.search.substring(1).split('&');
+
+			for (var i = 0; pair[i]; i++) {
+				var kv = pair[i].split('=');
+				arg[kv[0]] = decodeURIComponent(kv[1]);
+			}
+
+			// 影
+			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
+			// サイズ
+			arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+			// マーカー
+			arg.markerList = arg.m;
+			arg.markerList12 = arg.m1 && arg.m2;
+			// ar-gltf-main
+			arg.ObjectList = arg.o;
+			arg.ObjectList12 = arg.o1 && arg.o2;
+
+			self.arg = arg;
 		}
 	};
 
-}());
+	(webArNft.nft = nft).nftInit();
+
+}("https://ddbtx129.github.io/AR/ar-test"));
