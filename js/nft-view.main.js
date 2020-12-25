@@ -43,7 +43,7 @@ var nftarView;
         
         init: function () {
             window.alert('2');
-            this.setArg();
+            //this.setArg();
             
             //if (setArData()) {
             //    window.alert('2');
