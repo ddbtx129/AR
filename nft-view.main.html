@@ -47,8 +47,9 @@
 
             <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 
-                <a-entity id="ar-gltf" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-45 0 0"></a-entity>
-                
+                <a-entity id="ar-gltf-main" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-45 0 0" style="visibility: visible"></a-entity>
+                <a-entity id="ar-gltf-shadow" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-90 0 0" style="visibility: hidden"></a-entity>
+
             </a-nft>
 
             <a-camera-static />
@@ -56,7 +57,7 @@
         </a-scene>
 
         <script>
-            getNftImage();
+            getNftMarker();
             getNftObject();
         </script>
         
