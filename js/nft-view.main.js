@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var arPosX = !(arg["x"]) ? 0 : arg["x"];
     var arPosY = !(arg["y"]) ? 0 : arg["y"];
     var arPosZ = !(arg["z"]) ? 0 : arg["z"];
-    var arRotation = 90;
+    var arRotation = 0;
     var shadowRotation = 0;
 
     var isShadow = !!(arg["xs"]);
@@ -59,32 +59,32 @@ window.addEventListener('DOMContentLoaded', function () {
     // ↑
 
     // 拡大・縮小
-    window.alert('3');
-    scene.addEventListener(_start, function (e) {
-        var event = e.changedTouches ? e.changedTouches[0] : e;
-        prevPageY = event.pageY;    // 縦軸
-        prevPageX = event.pageX;    // 横軸
-    })
+    //window.alert('3');
+    //scene.addEventListener(_start, function (e) {
+    //    var event = e.changedTouches ? e.changedTouches[0] : e;
+    //    prevPageY = event.pageY;    // 縦軸
+    //    prevPageX = event.pageX;    // 横軸
+    //})
 
-    scene.addEventListener(_move, function (e) {
-        var event = e.changedTouches ? e.changedTouches[0] : e;
-        if (prevPageY) {
+    //scene.addEventListener(_move, function (e) {
+    //    var event = e.changedTouches ? e.changedTouches[0] : e;
+    //    if (prevPageY) {
 
-            AFRAME.utils.entity.getAttribut
-            if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+    //        AFRAME.utils.entity.getAttribut
+    //        if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
 
-                zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+    //            zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 
-                AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                });
-            }
-        }
-    });
+    //            AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+    //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+    //            });
+    //        }
+    //    }
+    //});
 
-    scene.addEventListener(_end, function (e) {
-        prevPageY = null;
-    })
+    //scene.addEventListener(_end, function (e) {
+    //    prevPageY = null;
+    //})
     // ↑
 
     // ↓ 上下移動ボタン押下
