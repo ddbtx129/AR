@@ -38,6 +38,11 @@
 
     //var zoomRate = nft.size.h;
 
+    window.alert('0');
+    //nftarView.ar = ar;
+    ar.init();
+    window.alert('1');
+
     var ar = {
         
         init: function () {
@@ -381,10 +386,6 @@ window.addEventListener('DOMContentLoaded', function () {
     //    MSPoniter: window.navigator.msPointerEnabled
     //}
     //})();
-    window.alert('0');
-    //nftarView.ar = ar;
-    ar.init();
 
-    window.alert('1');
     //nftarView.ar.init();
 }());
