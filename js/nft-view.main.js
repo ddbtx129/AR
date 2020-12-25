@@ -1,4 +1,3 @@
-var nftarView;
 
 (function () {
     window.alert('-1');
@@ -39,11 +38,11 @@ var nftarView;
 
     //var zoomRate = nft.size.h;
 
-    var ar = {
+    ar: function() {
         
         init: function () {
             window.alert('2');
-            //this.setArg();
+            this.setArg();
             
             //if (setArData()) {
             //    window.alert('2');
@@ -383,8 +382,9 @@ window.addEventListener('DOMContentLoaded', function () {
     //}
     //})();
     window.alert('0');
-    nftarView.ar = ar;
-    window.alert('1');
-    nftarView.ar.init();
+    //nftarView.ar = ar;
+    ar();
 
+    window.alert('1');
+    //nftarView.ar.init();
 }());
