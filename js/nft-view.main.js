@@ -142,7 +142,6 @@ window.addEventListener('DOMContentLoaded', function () {
         clearInterval(timer);
     });
     // ↑
-
 });
 
 var _ua = (function () {
