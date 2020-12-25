@@ -86,9 +86,9 @@ window.addEventListener('DOMContentLoaded', function () {
     var bDOWN = document.querySelector('#swDown');
 
     if (!(bUP)) {
-        window.al("ボタンエラー");
+        window.alert("ボタンエラー");
     } else {
-        window.al(bUP);
+        window.alert(bUP);
     }
     var timer;
 
