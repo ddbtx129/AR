@@ -37,40 +37,40 @@ window.addEventListener('DOMContentLoaded', function () {
     var parallelbtn = document.querySelector('#swParallel');
     var bUP = document.querySelector('#swUp');
     var bDOWN = document.querySelector('#swDown');
-
+    windnow.alert('0');
     // ↓ rotation 切替
 
     anglebtn.classList.add('current');
-
+    windnow.alert('1');
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
 
             var rotation = { x: arRotation, y: 0, z: 0 };
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(rotation));
-            windnow.alert(arRotation);
+           
             anglebtn.classList.add('current');
             parallelbtn.classList.remove('current');
         }
     })
-
+    windnow.alert('2');
     parallelbtn.addEventListener('click', function () {
         if (!parallelbtn.classList.contains('current')) {
 
             var rotation = { x: arRotation - 90, y: 0, z: 0 };
             nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(rotation));
-            windnow.alert(arRotation - 90);
+
             parallelbtn.classList.add('current');
             anglebtn.classList.remove('current');
         }
     })
     // ↑
-
+    windnow.alert('3');
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         prevPageY = event.pageY;    // 縦軸
         prevPageX = event.pageX;    // 横軸
     })
-
+    windnow.alert('4');
     scene.addEventListener(_move, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
         if (prevPageY) {
@@ -87,10 +87,12 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+    windnow.alert('5');
 
     scene.addEventListener(_end, function (e) {
         prevPageY = null;
     })
+    windnow.alert('6');
 
     // ↓ 上下移動ボタン押下
 
