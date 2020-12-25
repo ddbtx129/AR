@@ -38,15 +38,15 @@ window.addEventListener('DOMContentLoaded', function () {
     var bUP = document.querySelector('#swUp');
     var bDOWN = document.querySelector('#swDown');
     window.alert('0');
-    // ↓ rotation 切替
 
+    // ↓ rotation 切替
     anglebtn.classList.add('current');
     window.alert('1');
     anglebtn.addEventListener('click', function () {
         if (!anglebtn.classList.contains('current')) {
 
-            var rotation = { x: arRotation, y: 0, z: 0 };
-            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(rotation));
+            //var rotation = { x: arRotation, y: 0, z: 0 };
+            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation + '0 0'));
            
             anglebtn.classList.add('current');
             parallelbtn.classList.remove('current');
@@ -56,14 +56,16 @@ window.addEventListener('DOMContentLoaded', function () {
     parallelbtn.addEventListener('click', function () {
         if (!parallelbtn.classList.contains('current')) {
 
-            var rotation = { x: arRotation - 90, y: 0, z: 0 };
-            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(rotation));
+            //var rotation = { x: arRotation - 90, y: 0, z: 0 };
+            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation - 90 + '0 0' ));
 
             parallelbtn.classList.add('current');
             anglebtn.classList.remove('current');
         }
     })
     // ↑
+
+    // 拡大・縮小
     window.alert('3');
     scene.addEventListener(_start, function (e) {
         var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -92,6 +94,7 @@ window.addEventListener('DOMContentLoaded', function () {
         prevPageY = null;
     })
     window.alert('6');
+    // ↑
 
     // ↓ 上下移動ボタン押下
 

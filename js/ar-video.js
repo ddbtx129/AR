@@ -60,7 +60,7 @@ function getNftObject() {
     } else {
         nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + '.gltf';
     }
-    window.alert(nObj);
+
     nft.setAttribute('gltf-model', nObj);
 
     if(!!(arg["xs"]))
@@ -91,8 +91,6 @@ function getNftMarker() {
     } else {
         nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
     }
-
-    window.alert(nObj);
 
     nft.setAttribute('url', nObj);
 };
