@@ -97,20 +97,20 @@
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 				window.alert(!!(dataObj.isShadow))
 
-				if (!dataObj.isShadow) {
-					var el = document.querySelector('ar-gltf-shadow');
-					el.remove();
-				} else {
-					//
-				}
+				//if (!dataObj.isShadow) {
+				//	var el = document.querySelector('ar-gltf-shadow');
+				//	el.remove();
+				//} else {
+				//	//
+				//}
 
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 
 				dataObj.size = { w: wh[0], h: wh[1], d: wh[0] };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 
-				nft.setAttribute('scale', dataobj.size.w + ' ' + dataObj.size.h + ' ' + dataObj.size.d);
-				nft.setAttribute('position', dataObj.posVec3.x + ' ' + dataObj.posVec3.y + ' ' + dataObj.posVec3.z);
+				nft.setAttribute('scale', String(dataobj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.d));
+				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 		    }
 
