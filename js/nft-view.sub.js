@@ -106,9 +106,9 @@
 				window.alert(12);
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 				dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
-
-		        window.alert(13);
-		        dataObj.posVec3 = this.positionVec3('main');
+				window.alert(dataObj.size.h);
+				window.alert(13);
+				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				window.alert(16);
 				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
 				window.alert(17);
@@ -125,10 +125,9 @@
 		    return true;
 		},
 
-		positionVec3: function (type) {
+		positionVec3: function (type, arHeight) {
 			window.alert(14);
-			var self = this;
-			var h1_2 = self.dataObj.size.h / 2;
+			var h1_2 = arHeight / 2;
 			window.alert(15);
 			if (type === 'shadow') {
 				return { x: 0, y: 0, z: -h1_2 };
