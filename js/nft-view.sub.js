@@ -63,13 +63,13 @@
 		    var self = this;
 		    var arData = null;
 
-		    dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
+		    //dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 		    window.alert(6);
 
 		    // データの準備
 		    var dataObj = {
 		        path: function () {
-		            if (dataObj.isObject) {
+		        	if (!self.arg.ObjectList) {
 		                return (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf');
 		            } else {
 		            	return ((!self.arg.o) ? '' : self.arg.o + 'article/nftobject/' + self.arg.o + '.gltf');
