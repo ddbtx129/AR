@@ -1,4 +1,4 @@
-﻿var path = "https://ddbtx129.github.io/AR/";
+﻿var path = "https://ddbtx129.github.io/ARar-test/";
 
 function getArVideo() {
 
