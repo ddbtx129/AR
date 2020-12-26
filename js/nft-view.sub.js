@@ -1,34 +1,16 @@
 ﻿
-var webArNft = {};
+(function (global) {
 
-(function (rootPath) {
-
+	var webArNft = {};
+	var rootPath = "https://ddbtx129.github.io/AR/";
 	window.alert(0);
 
 	var nft = {
 
-		nftInit: function () {
-			window.alert(3);
-			if (true) {
-
-				var deviceevents = {
-			        touch: typeof document.ontouchstart !== 'undefined',
-			        pointer: window.navigator.pointerenabled,
-			        mspointer: window.navigator.mspointerenabled
-			    };
-
-			    this.eventnames = {
-			        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
-			        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
-			        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
-			    };
-
-			}
-		},
 
 		setArg: function () {
 			window.alert(4);
-
+			nftInit();
 			//var self = this;
 
 			//var arg = {};
@@ -50,14 +32,36 @@ var webArNft = {};
 			//// ar-gltf-main
 			//arg.ObjectList = arg.o;
 			//arg.ObjectList12 = arg.o1 && arg.o2;
-			window.alert(5);
 
 			//self.arg = arg;
+		},
+
+		nftInit: function () {
+			window.alert(3);
+
+			//if (true) {
+
+			//	var deviceevents = {
+			//        touch: typeof document.ontouchstart !== 'undefined',
+			//        pointer: window.navigator.pointerenabled,
+			//        mspointer: window.navigator.mspointerenabled
+			//    };
+
+			//    this.eventnames = {
+			//        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
+			//        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
+			//        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
+			//    };
+
+			//}
 		}
+
 	};
+
 	window.alert(1);
+	
 	webArNft.nft = nft;
 	window.alert(2);
-	webArNft.nft.nftInit().setArg();
+	webArNft.nft.setArg();
 
-}("https://ddbtx129.github.io/AR/"));
+}());
