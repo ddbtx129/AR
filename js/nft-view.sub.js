@@ -109,8 +109,8 @@
 				dataObj.size = { w: wh[0], h: wh[1], d: wh[0] };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 
-				nft.setAttribute('scale', dataObj.size);
-				nft.setAttribute('position', dataObj.posVec3);
+				nft.setAttribute('scale', dataobj.size.w + ' ' + dataObj.size.h + ' ' + dataObj.size.d);
+				nft.setAttribute('position', dataObj.posVec3.x + ' ' + dataObj.posVec3.y + ' ' + dataObj.posVec3.z);
 				nft.setAttribute('rotation', '0 0 0');
 		    }
 
