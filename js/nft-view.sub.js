@@ -105,7 +105,8 @@
 		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 				window.alert(12);
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
-		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
+				dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
+
 		        window.alert(13);
 		        dataObj.posVec3 = this.positionVec3('main');
 				window.alert(16);
@@ -127,7 +128,7 @@
 		positionVec3: function (type) {
 			window.alert(14);
 			var self = this;
-			var h1_2 = self.arData.size.h / 2;
+			var h1_2 = self.dataObj.size.h / 2;
 			window.alert(15);
 			if (type === 'shadow') {
 				return { x: 0, y: 0, z: -h1_2 };
