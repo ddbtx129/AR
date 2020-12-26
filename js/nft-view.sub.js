@@ -107,10 +107,14 @@
 				window.alert(wh[0]);
 				window.alert(wh[1]);
 				//dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
-				dataObj.size = {
-					w: 80,
-					h: 80
-				};
+				dataObj.size = self.arg.sizeList ? {
+					w: parseInt(Number(self.arg.sizeList / 10), 10),
+					h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
+				} : {
+						w: 2,
+						h: 2
+					};
+
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				window.alert(11);
 				window.alert(dataObj.size.h);
