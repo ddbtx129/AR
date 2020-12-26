@@ -42,7 +42,7 @@
 
             <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
-                <a-entity id="ar-gltf-main" gltf-model="" scale="40 40 40" position="0 0 0" rotation="0 0 0" style="visibility: visible"></a-entity>
+                <a-entity id="ar-gltf-main" gltf-model="" scale="4 4 4" position="0 0 0" rotation="0 0 0" style="visibility: visible"></a-entity>
                 <a-entity id="ar-gltf-shadow" gltf-model="" scale="40 40 40" position="0 0 0" rotation="-90 0 0" style="visibility: hidden"></a-entity>
 
             </a-nft>
@@ -62,7 +62,7 @@
             window.alert(document.getElementById('ar-nft').getAttribute('url'));
             window.alert(document.getElementById('ar-gltf-main').getAttribute('gltf-model'));
             var size = document.getElementById('ar-gltf-main').getAttribute('scale');
-            window.alert(size.w);
+            window.alert(size.width());
         </script>
 
     </body>
