@@ -129,6 +129,9 @@
 			for (var i = 0; i < s; i++) {
 				for (var j = 0; j < k; j++) {
 					rtn[i] += String(num[i + j]);
+					window.alert(i);
+					window.alert(j);
+					window.alert(i + j);
 				}
 			}
 			window.alert(rtn[0]);
