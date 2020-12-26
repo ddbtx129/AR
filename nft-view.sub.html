@@ -1,0 +1,69 @@
+﻿<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>ＡＲ</title>
+
+<!--        <link rel="stylesheet" href="css/ar-view.css">-->
+        <link rel="stylesheet" href="css/nft-view.css">
+
+        <script type="text/javascript" src="js/ar-test/ar.main.js"></script>
+        <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+        <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+        <script type="text/javascript" src="js/camera.swich.js"></script>
+        <script type="text/javascript" src="js/ar-video.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="arjs-loader">
+            <div>データ読み込み中<br>しばらくお待ちください...</div>
+        </div>
+
+        <!--<div class="switch">
+            <a id="swMarker" class="swItem"><img src="asset/marker-t.png" width="30"></a>
+            <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
+        </div>-->
+
+        <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
+
+        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: inline" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: inline" />
+
+        <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
+        <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
+
+        <a-scene id="ar-scene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+            <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+                
+                <a-entity id="ar-gltf-main" gltf-model="" scale="40 40 1" position="0 0 0" rotation="0 0 0" style="visibility: visible"></a-entity>
+                <a-entity id="ar-gltf-shadow" gltf-model="" scale="40 40 1" position="0 0 0" rotation="-90 0 0" style="visibility: hidden"></a-entity>
+
+            </a-nft>
+
+            <a-camera-static />
+
+        </a-scene>
+
+        <script>
+            getNftMarker();
+            getNftObject();
+            
+        </script>
+
+        <script src="js/nft-view.sub.js"></script>
+
+    </body>
+
+</html>
