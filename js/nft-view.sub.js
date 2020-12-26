@@ -3,6 +3,8 @@ var webArNft = {};
 
 (function (rootPath) {
 
+	window.alert(0);
+
 	var nft = {
 
 		nftInit: function () {
@@ -51,6 +53,7 @@ var webArNft = {};
 		}
 	};
 
-	(webArNft.nft = nft).nftInit();
+	webArNft.nft = nft;
+	webArNft.nft.nftInit();
 
 }("https://ddbtx129.github.io/AR/"));
