@@ -123,10 +123,12 @@
 
 		JoinNum: function (val, s) {
 			var num = val.split('')
+			window.alert(s);
+			window.alert(num.length);
 			var k = num.length / s;
 			var rtn = {};
 			window.alert(s);
-			window.alert(val.split(''));
+			window.alert(num.length);
             
 			for (var i = 0; i < s; i++) {
 				for (var j = 0; j < k; j++) {
