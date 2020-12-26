@@ -29,22 +29,22 @@ var webArNft = {};
 		setArg: function () {
 			window.alert(4);
 
-			var self = this;
+			//var self = this;
 
-			var arg = {};
-			var pair = location.search.substring(1).split('&');
+			//var arg = {};
+			//var pair = location.search.substring(1).split('&');
 
-			for (var i = 0; pair[i]; i++) {
-				var kv = pair[i].split('=');
-				arg[kv[0]] = decodeURIComponent(kv[1]);
-				window.alert(arg[kv[0]]);
-			}
+			//for (var i = 0; pair[i]; i++) {
+			//	var kv = pair[i].split('=');
+			//	arg[kv[0]] = decodeURIComponent(kv[1]);
+			//	window.alert(arg[kv[0]]);
+			//}
 
-			// 影
-			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-			// サイズ
-			arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-			// マーカー
+			//// 影
+			//arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
+			//// サイズ
+			//arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+			//// マーカー
 			//arg.markerList = arg.m;
 			//arg.markerList12 = arg.m1 && arg.m2;
 			//// ar-gltf-main
@@ -52,7 +52,7 @@ var webArNft = {};
 			//arg.ObjectList12 = arg.o1 && arg.o2;
 			window.alert(5);
 
-			self.arg = arg;
+			//self.arg = arg;
 		}
 	};
 	window.alert(1);
