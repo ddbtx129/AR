@@ -72,11 +72,12 @@
 		        	if (!self.arg.ObjectList) {
 		                return (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf');
 		            } else {
-		            	return ((!self.arg.o) ? '' : self.arg.o + 'article/nftobject/' + self.arg.o + '.gltf');
+		        		return (!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf');
 		            }
 		        }
 		    };
-
+            
+		    window.alert(dataObj.path);
 		    window.alert(7);
 
 		    if (!dataObj.path) {
