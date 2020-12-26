@@ -106,7 +106,7 @@
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 				window.alert(wh[0]);
 				window.alert(wh[1]);
-				//dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
+				//dataObj.size = { w: 80, h: 80 };
 				dataObj.size = {
 					w: Number(wh[0]),
 					h: Number(wh[1])
