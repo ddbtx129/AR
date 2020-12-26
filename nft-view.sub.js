@@ -13,17 +13,17 @@
 
 			if (this.setArData()) {
 
-			//	var deviceevents = {
-			//        touch: typeof document.ontouchstart !== 'undefined',
-			//        pointer: window.navigator.pointerenabled,
-			//        mspointer: window.navigator.mspointerenabled
-			//    };
+				var deviceevents = {
+			        touch: typeof document.ontouchstart !== 'undefined',
+			        pointer: window.navigator.pointerenabled,
+			        mspointer: window.navigator.mspointerenabled
+			    };
 
-			//    this.eventnames = {
-			//        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
-			//        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
-			//        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
-			//    };
+			    this.eventnames = {
+			        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
+			        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
+			        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
+			    };
 
 			}
 		},
@@ -65,7 +65,6 @@
 
 			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 			window.alert(6);
-			window.alert(!(self.arg.ObjectList));
 
 			// データの準備
 			var dataObj = {
@@ -104,16 +103,20 @@
 		        window.alert(11);
 
 		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				window.alert(12);
+				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
+				dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
 
-		        var wh = JoinNum(String(self.arg.sizeList ? self.arg.sizeList : '1010').split(''), 2);
-		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
-		        window.alert(12);
-
-		        dataObj.posVec3 = self.positionVec3('main');
-
-		        nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
-		        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
-		        nft.setAttribute('rotation', '0 0 0');
+				window.alert(13);
+				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
+				window.alert(16);
+				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
+				window.alert(17);
+				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
+				window.alert(18);
+				nft.setAttribute('rotation', '0 0 0');
+				window.alert(19);
+				
 		    }
 
 		    arData = dataObj;
@@ -122,18 +125,16 @@
 		    return true;
 		},
 
-		JoinNum: function (val, s) {
-			var k = val.length / s;
-			var rtn = {};
-
-			for (var i = 0; i < s; i++) {
-				for (var j = 0; j < k; j++) {
-					rtn[i] += String(val[i + j]);
-				}
+		positionVec3: function (type, arHeight) {
+			window.alert(14);
+			var h1_2 = arHeight / 2;
+			window.alert(15);
+			if (type === 'shadow') {
+				return { x: 0, y: 0, z: -h1_2 };
+			} else {
+				return { x: 0, y: h1_2, z: 0 };
 			}
-
-			return rtn;
-        }
+		}
 	};
 
 	window.alert(1);
