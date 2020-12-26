@@ -8,7 +8,8 @@ var webArNft = {};
 	var nft = {
 
 		nftInit: function () {
-
+			window.alert(3);
+			setArg();
 			if (true) {
 
 				var deviceevents = {
@@ -27,6 +28,7 @@ var webArNft = {};
 		},
 
 		setArg: function () {
+			window.alert(4);
 
 			var self = this;
 
@@ -36,6 +38,7 @@ var webArNft = {};
 			for (var i = 0; pair[i]; i++) {
 				var kv = pair[i].split('=');
 				arg[kv[0]] = decodeURIComponent(kv[1]);
+				window.alert(arg[kv[0]]);
 			}
 
 			// 影
@@ -48,12 +51,14 @@ var webArNft = {};
 			// ar-gltf-main
 			arg.ObjectList = arg.o;
 			arg.ObjectList12 = arg.o1 && arg.o2;
+			window.alert(5);
 
 			self.arg = arg;
 		}
 	};
-
+	window.alert(1);
 	webArNft.nft = nft;
+	window.alert(2);
 	webArNft.nft.nftInit();
 
 }("https://ddbtx129.github.io/AR/"));
