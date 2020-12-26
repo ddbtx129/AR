@@ -95,7 +95,7 @@
 
 				window.alert(1)
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-				window.alert(dataObj.isShadow)
+				window.alert(!!(dataObj.isShadow))
 
 				if (!dataObj.isShadow) {
 					var el = document.querySelector('ar-gltf-shadow');
