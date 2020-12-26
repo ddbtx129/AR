@@ -67,10 +67,11 @@
 			window.alert(6);
 
 			// データの準備
-			var dataObj = { path: ((!self.arg.ObjectList) ?
+			var objPath = ((!self.arg.ObjectList) ?
 		                (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf')
 		                :
-		        		(!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf')) };
+		        		(!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf'));
+			var dataObj = { path: objPath };
             
 		    window.alert(dataObj.path);
 		    window.alert(7);
