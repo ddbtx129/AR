@@ -7,6 +7,26 @@
 
 	var nft = {
 
+		nftInit: function () {
+			window.alert(3);
+			this.setArg();
+
+			//if (true) {
+
+			//	var deviceevents = {
+			//        touch: typeof document.ontouchstart !== 'undefined',
+			//        pointer: window.navigator.pointerenabled,
+			//        mspointer: window.navigator.mspointerenabled
+			//    };
+
+			//    this.eventnames = {
+			//        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
+			//        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
+			//        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
+			//    };
+
+			//}
+		},
 
 		setArg: function () {
 			window.alert(4);
@@ -34,26 +54,6 @@
 			//arg.ObjectList12 = arg.o1 && arg.o2;
 
 			//self.arg = arg;
-		},
-
-		nftInit: function () {
-			window.alert(3);
-
-			//if (true) {
-
-			//	var deviceevents = {
-			//        touch: typeof document.ontouchstart !== 'undefined',
-			//        pointer: window.navigator.pointerenabled,
-			//        mspointer: window.navigator.mspointerenabled
-			//    };
-
-			//    this.eventnames = {
-			//        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
-			//        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
-			//        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
-			//    };
-
-			//}
 		}
 
 	};
@@ -62,6 +62,6 @@
 	
 	webArNft.nft = nft;
 	window.alert(2);
-	webArNft.nft.setArg();
+	webArNft.nft.nftInit();
 
 }());
