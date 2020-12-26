@@ -9,7 +9,6 @@ var webArNft = {};
 
 		nftInit: function () {
 			window.alert(3);
-			setArg();
 			if (true) {
 
 				var deviceevents = {
@@ -59,6 +58,6 @@ var webArNft = {};
 	window.alert(1);
 	webArNft.nft = nft;
 	window.alert(2);
-	webArNft.nft.nftInit();
+	webArNft.nft.nftInit().setArg();
 
 }("https://ddbtx129.github.io/AR/"));
