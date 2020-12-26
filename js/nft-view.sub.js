@@ -46,11 +46,11 @@ var webArNft = {};
 			// サイズ
 			arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
 			// マーカー
-			arg.markerList = arg.m;
-			arg.markerList12 = arg.m1 && arg.m2;
-			// ar-gltf-main
-			arg.ObjectList = arg.o;
-			arg.ObjectList12 = arg.o1 && arg.o2;
+			//arg.markerList = arg.m;
+			//arg.markerList12 = arg.m1 && arg.m2;
+			//// ar-gltf-main
+			//arg.ObjectList = arg.o;
+			//arg.ObjectList12 = arg.o1 && arg.o2;
 			window.alert(5);
 
 			self.arg = arg;
