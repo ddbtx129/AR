@@ -113,8 +113,8 @@
 		    }
 
 		    arData = dataObj;
-		    self.arData = arData;
-			window.alert(3);
+			self.arData = arData;
+			window.alert(dataObj.size.w);
 		    return true;
 		},
 
