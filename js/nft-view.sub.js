@@ -65,15 +65,14 @@
 
 			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 			window.alert(6);
-			window.alert(!(self.arg.ObjectList));
-			window.alert(self.arg.o1);
 
 			// データの準備
-			var objPath = (!(self.arg.ObjectList) ?
-		                (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf')
-		                :
-		        		(!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf'));
-			var dataObj = { path: objPath };
+			var dataObj = {
+				path: (!(self.arg.ObjectList) ?
+							(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.gltf')
+							:
+							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '.gltf'))
+			};
             
 		    window.alert(dataObj.path);
 		    window.alert(7);
@@ -95,11 +94,11 @@
 		        if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
-                            rootPath + 'ImageDescriptors/' + self.arg.m1 + '/' + self.arg.m2));
+                            rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2));
 		        } else {
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
-                            !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.m + '/' + self.arg.m));
+                            !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
 		        }
 		        window.alert(11);
 
