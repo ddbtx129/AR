@@ -108,7 +108,9 @@
 
 				dataObj.size = { w: wh[0], h: wh[1], d: wh[0] };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
-				window.alert(0);
+				window.alert(1);
+				window.alert(dataobj.size.w);
+				window.alert(2);
 				nft.setAttribute('scale', String(dataobj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.d));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
@@ -116,7 +118,7 @@
 
 		    arData = dataObj;
 		    self.arData = arData;
-			window.alert(1);
+			window.alert(3);
 		    return true;
 		},
 
