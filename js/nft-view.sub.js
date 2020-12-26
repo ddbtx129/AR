@@ -108,7 +108,9 @@
 				window.alert(wh[1]);
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
-				window.alert(1);
+				window.alert(11);
+				window.alert(dataObj.size.h);
+				window.alert(12);
 				window.alert(dataobj.size.w);
 				window.alert(2);
 				nft.setAttribute('scale', String(dataobj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
