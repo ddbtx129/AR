@@ -128,10 +128,9 @@
             
 			for (var i = 0; i < s; i++) {
 				for (var j = 0; j < k; j++) {
-					rtn[i] += String(num[(i + j) +i]);
-					window.alert("i:" + i);
-					window.alert("j:" + j);
-					window.alert("i+j:" + i + j);
+					rtn[i] += String(num[(i + j) + i]);
+					window.alert(i + j) + i);
+					window.alert(rtn[i]);
 				}
 			}
 			window.alert(rtn[0]);
