@@ -13,17 +13,17 @@
 
 			if (this.setArData()) {
 
-			//	var deviceevents = {
-			//        touch: typeof document.ontouchstart !== 'undefined',
-			//        pointer: window.navigator.pointerenabled,
-			//        mspointer: window.navigator.mspointerenabled
-			//    };
+				var deviceevents = {
+			        touch: typeof document.ontouchstart !== 'undefined',
+			        pointer: window.navigator.pointerenabled,
+			        mspointer: window.navigator.mspointerenabled
+			    };
 
-			//    this.eventnames = {
-			//        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
-			//        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
-			//        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
-			//    };
+			    this.eventnames = {
+			        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
+			        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
+			        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
+			    };
 
 			}
 		},
@@ -104,7 +104,7 @@
 
 		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 		        window.alert(12);
-		        var wh = String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10').split(',');
+		        var wh = this.JoinNum(String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010'), 2);
 		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
 		        window.alert(13);
 
@@ -112,33 +112,15 @@
 
 		        nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
 		        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
-		        nft.setAttribute('rotation', '0 0 0');
+				nft.setAttribute('rotation', '0 0 0');
+				window.alert(14);
 		    }
 
 		    arData = dataObj;
 		    self.arData = arData;
 
 		    return true;
-		},
-
-		JoinNum: function (val, s) {
-			var num = val.split(',')
-			var k = num.length / s;
-			var rtn = {};
-			
-			for (var i = 0; i < s; i++) {
-				for (var j = 0; j < k; j++) {
-					if(String(num[(i + j) + i]) != ','){
-					rtn[i] += String(num[(i + j) + i]);
-					}
-				}
-			}
-			window.alert('End');
-			window.alert(num[0]);
-			window.alert(num[1]);
-
-			return num;
-        }
+		}
 	};
 
 	window.alert(1);
