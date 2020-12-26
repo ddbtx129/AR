@@ -128,6 +128,7 @@
 		positionVec3: function (type) {
 			window.alert(14);
 			var self = this;
+			window.alert(self.dataObj.size.h);
 			var h1_2 = self.dataObj.size.h / 2;
 			window.alert(h1_2);
 			window.alert(15);
