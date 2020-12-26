@@ -125,14 +125,14 @@
 			var num = val.split('')
 			var k = num.length / s;
 			var rtn = {};
-			window.alert(s);
-			window.alert(num.length);
             
 			for (var i = 0; i < s; i++) {
 				for (var j = 0; j < k; j++) {
 					rtn[i] += String(num[i + j]);
 				}
 			}
+			window.alert(rtn[0]);
+			window.alert(rtn[1]);
 
 			return rtn;
         }
