@@ -93,9 +93,8 @@
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
 				}
 
-				window.alert(1)
+				window.alert(0)
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-				window.alert(!!(dataObj.isShadow))
 
 				//if (!dataObj.isShadow) {
 				//	var el = document.querySelector('ar-gltf-shadow');
