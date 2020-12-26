@@ -111,7 +111,7 @@
 		        dataObj.posVec3 = self.positionVec3('main');
 
 		        nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
-		        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
+				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
 				nft.setAttribute('rotation', '0 0 0');
 				window.alert(14);
 		    }
