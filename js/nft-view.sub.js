@@ -66,6 +66,7 @@
 			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 			window.alert(6);
 			window.alert(!(self.arg.ObjectList));
+			window.alert(self.arg.o1);
 
 			// データの準備
 			var objPath = (!(self.arg.ObjectList) ?
