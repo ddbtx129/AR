@@ -43,14 +43,25 @@
 
 			// 影
 			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
+			window.alert(arg.shodowList);
 			// サイズ
 			arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+			window.alert(arg.sizeList);
 			// マーカー
 			arg.markerList = arg.m;
-			arg.markerList12 = arg.m1 && arg.m2;
+			window.alert(arg.markerList);
+			arg.markerList1 = arg.m1;
+			window.alert(arg.markerList1);
+			arg.markerList2 = arg.m2;
+			window.alert(arg.markerList2);
+
 			// ar-gltf-main
 			arg.ObjectList = arg.o;
-			arg.ObjectList12 = arg.o1 && arg.o2;
+			window.alert(arg.ObjectList);
+			arg.ObjectList1 = arg.o1;
+			window.alert(arg.ObjectList1);
+			arg.ObjectList2 = arg.o2;
+			window.alert(arg.ObjectList2);
 
 			self.arg = arg;
 		}
