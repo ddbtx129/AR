@@ -106,22 +106,22 @@
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 				window.alert(wh[0]);
 				window.alert(wh[1]);
-				//dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
-				dataObj.size = self.arg.sizeList ? {
-					w: parseInt(Number(self.arg.sizeList / 10), 10),
-					h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
-				} : {
-						w: 2,
-						h: 2
-					};
+				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
+				//dataObj.size = self.arg.sizeList ? {
+				//	w: parseInt(Number(self.arg.sizeList / 10), 10),
+				//	h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
+				//} : {
+				//		w: 2,
+				//		h: 2
+				//	};
 
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				window.alert(11);
 				window.alert(dataObj.size.h);
 				window.alert(12);
-				window.alert(dataobj.size.w);
+				window.alert(dataObj.size.w);
 				window.alert(2);
-				nft.setAttribute('scale', String(dataobj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 		    }
