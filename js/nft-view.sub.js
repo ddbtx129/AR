@@ -93,7 +93,12 @@
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
 		        }
 
-		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				if (!dataObj.isShadow) {
+					document.getElementById('ar-gltf-shadow').remove();
+				} else {
+					//
+				}
 
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 
