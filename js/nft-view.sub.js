@@ -124,6 +124,8 @@
 		JoinNum: function (val, s) {
 			var k = val.length / s;
 			var rtn = {};
+			window.alert(s);
+			window.alert(val);
 
 			for (var i = 0; i < s; i++) {
 				for (var j = 0; j < k; j++) {
