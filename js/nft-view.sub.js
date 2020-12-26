@@ -133,7 +133,7 @@
 			window.alert(103);
 
 			var zoomRate = self.arData.size.h;
-			window.alert(!!(self.arData));
+			window.alert(!!(self.arData.size));
             // 拡大・縮小
             scene.addEventListener(deviceEvents.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
