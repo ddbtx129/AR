@@ -76,9 +76,10 @@
 		            }
 		        }
 		    };
+
 		    window.alert(7);
 
-		    if (!arData.path) {
+		    if (!dataObj.path) {
 		        // 画像なかった
 		        Err_Exit('画像情報が取得できませんでした。');
 		        return false;
