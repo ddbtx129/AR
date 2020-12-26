@@ -107,19 +107,31 @@
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
 		        window.alert(13);
-
 		        dataObj.posVec3 = self.positionVec3('main');
-
-		        nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
-				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
-				nft.setAttribute('rotation', '0 0 0');
 				window.alert(14);
+				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
+				window.alert(15);
+				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
+				window.alert(16);
+				nft.setAttribute('rotation', '0 0 0');
+				window.alert(17);
 		    }
 
 		    arData = dataObj;
 		    self.arData = arData;
 
 		    return true;
+		},
+
+		positionVec3: function (type) {
+			var self = this;
+			var h1_2 = self.arData.size.h / 2;
+
+			if (type === 'shadow') {
+				return { x: 0, y: 0, z: -h1_2 };
+			} else {
+				return { x: 0, y: h1_2, z: 0 };
+			}
 		}
 	};
 

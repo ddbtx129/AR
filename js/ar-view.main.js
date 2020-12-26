@@ -5,9 +5,9 @@ var webArViewer = webArViewer || {};
     webArViewer.scene = document.querySelector('a-scene');
 
     var ar = {
-        C: {
-            arNum: 1
-        },
+        //C: {
+        //    arNum: 1
+        //},
 
         init: function () {
 
@@ -468,9 +468,9 @@ var webArViewer = webArViewer || {};
             var isWarp = self.arData.isWarp;
 
             if (type === 'shadow') {
-                return { x: 0, y: 0, z: -h1_2 + (isWarp ? 0.2 : -2) };
+                return { x: 0, y: 0, z: -h1_2 + (isWarp ? 0.2 : 0) };
             } else {
-                return { x: 0, y: h1_2, z: -(isWarp ? width - 0.2 : 2) };
+                return { x: 0, y: h1_2, z: -(isWarp ? width - 0.2 : 0) };
             }
         }
     };
