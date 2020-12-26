@@ -91,11 +91,15 @@
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
-		        }
+				}
 
+				window.alert(1)
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				window.alert(dataObj.isShadow1)
+
 				if (!dataObj.isShadow) {
-					document.getElementById('ar-gltf-shadow').remove();
+					var el = document.querySelector('ar-gltf-shadow');
+					el.remove();
 				} else {
 					//
 				}
