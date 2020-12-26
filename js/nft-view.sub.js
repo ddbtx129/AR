@@ -104,7 +104,7 @@
 
 		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 		        window.alert(12);
-		        var wh = this.JoinNum(String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010'), 2);
+		        var wh = this.JoinNum(String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10'), 2);
 		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
 		        window.alert(13);
 
@@ -122,14 +122,11 @@
 		},
 
 		JoinNum: function (val, s) {
-			window.alert(val[0]);
-			window.alert(val[1]);
-			var num = val.split('')
-			var k = num.length / s;
+			var num = val.split(',')
 			var rtn = {};
             
 			for (var i = 0; i < s; i++) {
-				rtn[i] = '';
+				rtn[i] = num[i];
 				for (var j = 0; j < k; j++) {
 					if(String(num[(i + j) + i]) != ','){
 					rtn[i] += String(num[(i + j) + i]);
@@ -137,10 +134,10 @@
 				}
 			}
 			window.alert('End');
-			window.alert(rtn[0]);
-			window.alert(rtn[1]);
+			window.alert(num[0]);
+			window.alert(num[1]);
 
-			return rtn;
+			return num;
         }
 	};
 
