@@ -122,6 +122,7 @@
 		},
 
 		JoinNum: function (val, s) {
+			window.alert(val);
 			var num = val.split('')
 			var k = num.length / s;
 			var rtn = {};
