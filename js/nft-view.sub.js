@@ -65,9 +65,10 @@
 
 			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 			window.alert(6);
+			window.alert(!(self.arg.ObjectList));
 
 			// データの準備
-			var objPath = ((!self.arg.ObjectList) ?
+			var objPath = (!(self.arg.ObjectList) ?
 		                (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf')
 		                :
 		        		(!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf'));
