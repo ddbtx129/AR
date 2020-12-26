@@ -123,10 +123,10 @@
 
 		JoinNum: function (val, s) {
 			var num = val.split(',')
+			var k = num.length / s;
 			var rtn = {};
-            
+			
 			for (var i = 0; i < s; i++) {
-				rtn[i] = num[i];
 				for (var j = 0; j < k; j++) {
 					if(String(num[(i + j) + i]) != ','){
 					rtn[i] += String(num[(i + j) + i]);
