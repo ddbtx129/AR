@@ -108,7 +108,7 @@
 
 				dataObj.size = { w: wh[0], h: wh[1], d: wh[0] };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
-
+				window.alert(0);
 				nft.setAttribute('scale', String(dataobj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.d));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
@@ -116,7 +116,7 @@
 
 		    arData = dataObj;
 		    self.arData = arData;
-
+			window.alert(1);
 		    return true;
 		},
 
@@ -137,53 +137,53 @@
             var zoomRate = self.arData.size.h;
 			window.alert(104);
 
-            // 拡大・縮小
-            scene.addEventListener(deviceEvents.start, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                prevPageY = event.pageY;    // 縦軸
-				prevPageX = event.pageX;    // 横軸
-				window.alert(201);
-            })
+    //        // 拡大・縮小
+    //        scene.addEventListener(deviceEvents.start, function (e) {
+    //            var event = e.changedTouches ? e.changedTouches[0] : e;
+    //            prevPageY = event.pageY;    // 縦軸
+				//prevPageX = event.pageX;    // 横軸
+				//window.alert(201);
+    //        })
 
-            scene.addEventListener(deviceEvents.move, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                if (prevPageY) {
-                    if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-                        zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-                        AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-						});
-						window.alert(202);
-                    }
+    //        scene.addEventListener(deviceEvents.move, function (e) {
+    //            var event = e.changedTouches ? e.changedTouches[0] : e;
+    //            if (prevPageY) {
+    //                if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+    //                    zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+    //                    AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+    //                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+				//		});
+				//		window.alert(202);
+    //                }
+    //            }
+    //        })
+
+    //        scene.addEventListener(deviceEvents.end, function (e) {
+				//prevPageY = null;
+				//window.alert(203);
+    //        })
+
+			// ↓ rotation 切替
+            var anglebtn = document.querySelector('#swAngle');
+            var parallelbtn = document.querySelector('#swParallel');
+
+            parallelbtn.classList.add('current');
+
+            anglebtn.addEventListener('click', function () {
+                if (!anglebtn.classList.contains('current')) {
+                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+                    anglebtn.classList.add('current');
+                    parallelbtn.classList.remove('current');
                 }
             })
 
-            scene.addEventListener(deviceEvents.end, function (e) {
-				prevPageY = null;
-				window.alert(203);
+            parallelbtn.addEventListener('click', function () {
+                if (!parallelbtn.classList.contains('current')) {
+                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                    parallelbtn.classList.add('current');
+                    anglebtn.classList.remove('current');
+                }
             })
-
-			//// ↓ rotation 切替
-   //         var anglebtn = document.querySelector('#swAngle');
-   //         var parallelbtn = document.querySelector('#swParallel');
-
-   //         parallelbtn.classList.add('current');
-
-   //         anglebtn.addEventListener('click', function () {
-   //             if (!anglebtn.classList.contains('current')) {
-   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-   //                 anglebtn.classList.add('current');
-   //                 parallelbtn.classList.remove('current');
-   //             }
-   //         })
-
-   //         parallelbtn.addEventListener('click', function () {
-   //             if (!parallelbtn.classList.contains('current')) {
-   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-   //                 parallelbtn.classList.add('current');
-   //                 anglebtn.classList.remove('current');
-   //             }
-   //         })
 
    //         // ↓ 上下移動ボタン押下
    //         var bUP = document.querySelector('#swUp');
