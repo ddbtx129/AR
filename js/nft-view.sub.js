@@ -122,7 +122,8 @@
 		},
 
 		JoinNum: function (val, s) {
-			window.alert(val);
+			window.alert(val[0]);
+			window.alert(val[1]);
 			var num = val.split('')
 			var k = num.length / s;
 			var rtn = {};
@@ -132,9 +133,6 @@
 				for (var j = 0; j < k; j++) {
 					if(String(num[(i + j) + i]) != ','){
 					rtn[i] += String(num[(i + j) + i]);
-					window.alert(i);
-					window.alert(String(num[(i + j) + i]));
-					window.alert(rtn[i]);
 					}
 				}
 			}
