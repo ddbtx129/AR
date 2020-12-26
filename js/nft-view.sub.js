@@ -102,7 +102,7 @@
 				//} else {
 				//	//
 				//}
-				
+				window.alert(String(self.arg.sizeList));
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
