@@ -60,22 +60,17 @@
 		setArData: function () {
 			window.alert(5);
 
-		    var self = this;
-		    var arData = null;
+			var self = this;
+			var arData = null;
 
-		    //dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
-		    window.alert(6);
+			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
+			window.alert(6);
 
-		    // データの準備
-		    var dataObj = {
-		        path: function () {
-		        	if (!self.arg.ObjectList) {
-		                return (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf');
-		            } else {
-		        		return (!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf');
-		            }
-		        }
-		    };
+			// データの準備
+			var dataObj = { path: ((!self.arg.ObjectList) ?
+		                (rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '.gltf')
+		                :
+		        		(!(self.arg.o) ? '' : rootPath + 'article/nftobject/' + self.arg.o + '.gltf')) };
             
 		    window.alert(dataObj.path);
 		    window.alert(7);
