@@ -130,7 +130,7 @@
 				rtn[i] = '';
 				for (var j = 0; j < k; j++) {
 					rtn[i] += String(num[(i + j) + i]);
-					window.alert((i + j) + i);
+					window.alert(( String(num[(i + j) + i]));
 					window.alert(rtn[i]);
 				}
 			}
