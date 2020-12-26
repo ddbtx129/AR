@@ -129,10 +129,12 @@
 			for (var i = 0; i < s; i++) {
 				rtn[i] = '';
 				for (var j = 0; j < k; j++) {
+					if(String(num[(i + j) + i]) != ','){
 					rtn[i] += String(num[(i + j) + i]);
 					window.alert(i);
 					window.alert(String(num[(i + j) + i]));
 					window.alert(rtn[i]);
+					}
 				}
 			}
 			window.alert('End');
