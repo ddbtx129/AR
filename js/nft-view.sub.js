@@ -104,23 +104,9 @@
 				//}
 				
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
-				window.alert(wh[0]);
-				window.alert(wh[1]);
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
-				//dataObj.size = self.arg.sizeList ? {
-				//	w: parseInt(Number(self.arg.sizeList / 10), 10),
-				//	h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
-				//} : {
-				//		w: 2,
-				//		h: 2
-				//	};
-
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
-				window.alert(11);
-				window.alert(dataObj.size.h);
-				window.alert(12);
-				window.alert(dataObj.size.w);
-				window.alert(2);
+
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
@@ -147,33 +133,32 @@
 			window.alert(103);
 
             var zoomRate = self.arData.size.h;
-			window.alert(104);
 
-    //        // 拡大・縮小
-    //        scene.addEventListener(deviceEvents.start, function (e) {
-    //            var event = e.changedTouches ? e.changedTouches[0] : e;
-    //            prevPageY = event.pageY;    // 縦軸
-				//prevPageX = event.pageX;    // 横軸
-				//window.alert(201);
-    //        })
+            // 拡大・縮小
+            scene.addEventListener(deviceEvents.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+				prevPageX = event.pageX;    // 横軸
+				window.alert(201);
+            })
 
-    //        scene.addEventListener(deviceEvents.move, function (e) {
-    //            var event = e.changedTouches ? e.changedTouches[0] : e;
-    //            if (prevPageY) {
-    //                if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-    //                    zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-    //                    AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-    //                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-				//		});
-				//		window.alert(202);
-    //                }
-    //            }
-    //        })
+            scene.addEventListener(deviceEvents.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                if (prevPageY) {
+                    if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+                        zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+                        AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+						});
+						window.alert(202);
+                    }
+                }
+            })
 
-    //        scene.addEventListener(deviceEvents.end, function (e) {
-				//prevPageY = null;
-				//window.alert(203);
-    //        })
+            scene.addEventListener(deviceEvents.end, function (e) {
+				prevPageY = null;
+				window.alert(203);
+            })
 
 			// ↓ rotation 切替
             var anglebtn = document.querySelector('#swAngle');
