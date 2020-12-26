@@ -104,7 +104,7 @@
 
 		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 		        window.alert(12);
-		        var wh = JoinNum(String(self.arg.sizeList ? self.arg.sizeList : '1010'), 2);
+		        var wh = this.JoinNum(String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010'), 2);
 		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
 		        window.alert(13);
 
@@ -122,10 +122,7 @@
 		},
 
 		JoinNum: function (val, s) {
-			window.alert(s);
-			window.alert(val);
 			var num = val.split('')
-			window.alert(num.length);
 			var k = num.length / s;
 			var rtn = {};
 			window.alert(s);
