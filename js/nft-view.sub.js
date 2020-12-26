@@ -129,6 +129,7 @@
 			window.alert(14);
 			var self = this;
 			var h1_2 = self.dataObj.size.h / 2;
+			window.alert(h1_2);
 			window.alert(15);
 			if (type === 'shadow') {
 				return { x: 0, y: 0, z: -h1_2 };
