@@ -10,7 +10,7 @@
 
 		setArg: function () {
 			window.alert(4);
-			nftInit();
+			this.nftInit();
 			//var self = this;
 
 			//var arg = {};
