@@ -108,7 +108,7 @@
 				dataObj.size = { w: wh[0], h: wh[1], d: wh[0] };
 				window.alert(dataObj.size.h);
 				window.alert(13);
-				dataObj.posVec3 = self.positionVec3('main'.dataObj.size.h);
+				dataObj.posVec3 = this.positionVec3('main'.dataObj.size.h);
 				window.alert(16);
 				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
 				window.alert(17);
