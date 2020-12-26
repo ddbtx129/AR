@@ -125,7 +125,7 @@
             var prevPageX;
 			window.alert(103);
 
-            var zoomRate = self.arData.si.h;
+            var zoomRate = self.arData.size.h;
 			window.alert(104);
 
             // 拡大・縮小
