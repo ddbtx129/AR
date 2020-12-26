@@ -141,7 +141,7 @@
 				prevPageX = event.pageX;    // 横軸
 				window.alert(201);
             })
-
+			window.alert(104);
             scene.addEventListener(deviceEvents.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
@@ -154,18 +154,18 @@
                     }
                 }
             })
-
+			window.alert(105);
             scene.addEventListener(deviceEvents.end, function (e) {
 				prevPageY = null;
 				window.alert(203);
             })
-
+			window.alert(106);
 			// ↓ rotation 切替
             var anglebtn = document.querySelector('#swAngle');
             var parallelbtn = document.querySelector('#swParallel');
 
             parallelbtn.classList.add('current');
-
+			window.alert(107);
             anglebtn.addEventListener('click', function () {
                 if (!anglebtn.classList.contains('current')) {
                     nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
@@ -173,7 +173,7 @@
                     parallelbtn.classList.remove('current');
                 }
             })
-
+			window.alert(108);
             parallelbtn.addEventListener('click', function () {
                 if (!parallelbtn.classList.contains('current')) {
                     nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
@@ -181,7 +181,7 @@
                     anglebtn.classList.remove('current');
                 }
             })
-
+			window.alert(109);
    //         // ↓ 上下移動ボタン押下
    //         var bUP = document.querySelector('#swUp');
    //         var bDOWN = document.querySelector('#swDown');
