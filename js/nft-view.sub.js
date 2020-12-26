@@ -73,8 +73,6 @@
 							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '.gltf'))
 			};
             
-		    window.alert(dataObj.path);
-
 		    if (!dataObj.path) {
 		        // 画像なかった
 		        Err_Exit('画像情報が取得できませんでした。');
@@ -104,7 +102,7 @@
 
 				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
 				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
-				nft.setAttribute('rotation', '0 0 0');
+				nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 		    }
 
 		    arData = dataObj;
@@ -115,27 +113,27 @@
 
         setSwitcher: function () {
 
-			window / alert(100);
+			window.alert(100);
             var scene = document.getElementById('ar-scene');
 			var nft = document.getElementById("ar-gltf-main");
-			window / alert(101);
+			window.alert(101);
 
             var self = this;
-			window / alert(102);
+			window.alert(102);
 
             var prevPageY;
             var prevPageX;
-			window / alert(103);
+			window.alert(103);
 
             var zoomRate = self.arData.si.h;
-			window / alert(104);
+			window.alert(104);
 
             // 拡大・縮小
             scene.addEventListener(deviceEvents.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
-				window / alert(201);
+				window.alert(201);
             })
 
             scene.addEventListener(deviceEvents.move, function (e) {
@@ -146,14 +144,14 @@
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
 						});
-						window / alert(202);
+						window.alert(202);
                     }
                 }
             })
 
             scene.addEventListener(deviceEvents.end, function (e) {
 				prevPageY = null;
-				window / alert(203);
+				window.alert(203);
             })
 
 			//// ↓ rotation 切替
@@ -198,11 +196,8 @@
         },
 
 		positionVec3: function (type, sizeHeight) {
-			window.alert(14);
-			var self = this;
 			var h1_2 = sizeHeight / 2;
-			window.alert(h1_2);
-			window.alert(15);
+
 			if (type === 'shadow') {
 				return { x: 0, y: 0, z: -h1_2 };
 			} else {
