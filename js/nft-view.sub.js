@@ -164,26 +164,26 @@
             })
 
 			//// ↓ rotation 切替
-            var anglebtn = document.querySelector('#swAngle');
-            var parallelbtn = document.querySelector('#swParallel');
+   //         var anglebtn = document.querySelector('#swAngle');
+   //         var parallelbtn = document.querySelector('#swParallel');
 
-            parallelbtn.classList.add('current');
+   //         parallelbtn.classList.add('current');
 
-            anglebtn.addEventListener('click', function () {
-                if (!anglebtn.classList.contains('current')) {
-                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-                    anglebtn.classList.add('current');
-                    parallelbtn.classList.remove('current');
-                }
-            })
+   //         anglebtn.addEventListener('click', function () {
+   //             if (!anglebtn.classList.contains('current')) {
+   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+   //                 anglebtn.classList.add('current');
+   //                 parallelbtn.classList.remove('current');
+   //             }
+   //         })
 
-            parallelbtn.addEventListener('click', function () {
-                if (!parallelbtn.classList.contains('current')) {
-                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                    parallelbtn.classList.add('current');
-                    anglebtn.classList.remove('current');
-                }
-            })
+   //         parallelbtn.addEventListener('click', function () {
+   //             if (!parallelbtn.classList.contains('current')) {
+   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+   //                 parallelbtn.classList.add('current');
+   //                 anglebtn.classList.remove('current');
+   //             }
+   //         })
 
    //         // ↓ 上下移動ボタン押下
    //         var bUP = document.querySelector('#swUp');
