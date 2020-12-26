@@ -88,28 +88,27 @@
 
 		        var marker = document.getElementById('ar-nft');
 		        var nft = document.getElementById("ar-gltf-main");
+		        window.alert(9);
 
 		        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
+		        window.alert(10);
 
-		        dataObj.isMarker = !!self.arg.markerList;
-		        dataObj.isMarker12 = !!self.arg.markerList1 && !!self.arg.markerList2;
-
-		        if (dataObj.isMarker12) {
+		        if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             rootPath + 'ImageDescriptors/' + self.arg.m1 + '/' + self.arg.m2));
 		        } else {
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
-                            !(sel.arg.isMarker) ? '' : path + 'ImageDescriptors/' + self.arg.m + '/' + self.arg.m));
+                            !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.m + '/' + self.arg.m));
 		        }
-		        window.alert(9);
+		        window.alert(11);
 
 		        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 		        var wh = JoinNum(String(self.arg.sizeList ? self.arg.sizeList : '1010').split(''), 2);
 		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
-		        window.alert(10);
+		        window.alert(12);
 
 		        dataObj.posVec3 = self.positionVec3('main');
 
