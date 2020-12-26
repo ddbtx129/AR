@@ -107,14 +107,15 @@
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '1010')).split(',');
 		        dataObj.size = { w: wh[0], y: wh[1], z: wh[0] };
 		        window.alert(13);
-		        dataObj.posVec3 = self.positionVec3('main');
-				window.alert(14);
-				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
-				window.alert(15);
-				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
+		        dataObj.posVec3 = this.positionVec3('main');
 				window.alert(16);
-				nft.setAttribute('rotation', '0 0 0');
+				nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
 				window.alert(17);
+				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(dataObj.posVec3));
+				window.alert(18);
+				nft.setAttribute('rotation', '0 0 0');
+				window.alert(19);
+				
 		    }
 
 		    arData = dataObj;
@@ -124,9 +125,10 @@
 		},
 
 		positionVec3: function (type) {
+			window.alert(14);
 			var self = this;
 			var h1_2 = self.arData.size.h / 2;
-
+			window.alert(15);
 			if (type === 'shadow') {
 				return { x: 0, y: 0, z: -h1_2 };
 			} else {
