@@ -1,5 +1,7 @@
 ﻿var defaultPos = { x: 0, y: 0, z: 0};
 var defaultSize = { w: 10, h: 10 };
+var zoomW = 0;
+var zoomH = 0;
 
 (function (global) {
 
@@ -154,8 +156,8 @@ var defaultSize = { w: 10, h: 10 };
             var prevPageY;
             var prevPageX;
 
-			var zoomW = defaultSize.w;
-			var zoomH = defaultSize.h;
+			zoomW = defaultSize.w;
+			zoomH = defaultSize.h;
 
             // 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
