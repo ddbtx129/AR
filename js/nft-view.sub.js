@@ -149,37 +149,37 @@
 
             var self = this;
 
-   //         var prevPageY;
-   //         var prevPageX;
+            var prevPageY;
+            var prevPageX;
 
-			//var zoomRate = self.arData.size.h;
+			var zoomRate = self.arData.size.h;
 
-   //         // 拡大・縮小
-   //         scene.addEventListener(deviceEvents.start, function (e) {
-   //             var event = e.changedTouches ? e.changedTouches[0] : e;
-   //             prevPageY = event.pageY;    // 縦軸
-			//	prevPageX = event.pageX;    // 横軸
-			//	window.alert(201);
-   //         })
-			//window.alert(104);
-   //         scene.addEventListener(deviceEvents.move, function (e) {
-   //             var event = e.changedTouches ? e.changedTouches[0] : e;
-   //             if (prevPageY) {
-   //                 if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-   //                     zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-   //                     AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-   //                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-			//			});
-			//			window.alert(202);
-   //                 }
-   //             }
-   //         })
-			//window.alert(105);
-   //         scene.addEventListener(deviceEvents.end, function (e) {
-			//	prevPageY = null;
-			//	window.alert(203);
-   //         })
-			//window.alert(106);
+            // 拡大・縮小
+            scene.addEventListener(deviceEvents.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+				prevPageX = event.pageX;    // 横軸
+				window.alert(201);
+            })
+			window.alert(104);
+            scene.addEventListener(deviceEvents.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                if (prevPageY) {
+                    if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+                        zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+                        AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+						});
+						window.alert(202);
+                    }
+                }
+            })
+			window.alert(105);
+            scene.addEventListener(deviceEvents.end, function (e) {
+				prevPageY = null;
+				window.alert(203);
+            })
+			window.alert(106);
 
 			// ↓ rotation 切替
             var anglebtn = document.querySelector('#swAngle');
