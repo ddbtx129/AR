@@ -155,7 +155,7 @@
 
 			//var zoomRate = self.arData.size.h;
 
-			window.alert(self.defaultHeight);
+			window.alert(defaultHeight);
    //         // 拡大・縮小
    //         scene.addEventListener(deviceEvents.start, function (e) {
    //             var event = e.changedTouches ? e.changedTouches[0] : e;
