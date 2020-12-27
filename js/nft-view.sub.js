@@ -8,6 +8,8 @@
 
 		nftInit: function () {
 
+			var defaultHeight = 10;
+
 			this.setArg();
 
 			if (this.setArData()) {
@@ -123,10 +125,12 @@
 				//} else {
 				//	//
 				//}
-				window.alert(0);
+				window.alert(10);
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
+
+				self.defaultHeight = dataObj.posVec3.h;
 
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
@@ -135,7 +139,7 @@
 
 		    arData = dataObj;
 			self.arData = arData;
-			window.alert(1);
+			window.alert(11);
 		    return true;
 		},
 
@@ -150,6 +154,8 @@
    //         var prevPageX;
 
 			//var zoomRate = self.arData.size.h;
+
+			var posVec3 = this.positionVec3('main', self.defaultHeight);
 
    //         // 拡大・縮小
    //         scene.addEventListener(deviceEvents.start, function (e) {
@@ -190,7 +196,6 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
-					var posVec3 = this.positionVec3('main', self.arData.size.h);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
@@ -201,7 +206,6 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					var posVec3 = this.positionVec3('main', self.arData.size.h);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
