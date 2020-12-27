@@ -123,7 +123,7 @@
 				//} else {
 				//	//
 				//}
-				window.alert(1);
+				window.alert(0);
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
@@ -135,7 +135,7 @@
 
 		    arData = dataObj;
 			self.arData = arData;
-			window.alert(2);
+			window.alert(1);
 		    return true;
 		},
 
@@ -190,7 +190,8 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
-					nft.setAttribute('position', String(self.arData.posVec3.x) + ' ' + String(self.arData.posVec3.y) + ' ' + String(self.arData.posVec3.z));
+					var posVec3 = this.positionVec3('main', self.arData.size.h);
+					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
 
@@ -200,7 +201,8 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					nft.setAttribute('position', String(self.arData.posVec3.x) + ' ' + String(self.arData.posVec3.y) + ' ' + String(self.arData.posVec3.z));
+					var posVec3 = this.positionVec3('main', self.arData.size.h);
+					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
 
