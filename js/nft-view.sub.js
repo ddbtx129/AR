@@ -162,6 +162,8 @@
 			window.alert(103);
 
 			var zoomRate = self.arData.size.h;
+			var moveRate = self.arData.size.h;
+
 			window.alert(!!(self.arData));
    //         // 拡大・縮小
    //         scene.addEventListener(deviceEvents.start, function (e) {
@@ -217,13 +219,22 @@
 			var bDOWN = document.querySelector('#swDown');
 
 			bUP.addEventListener('click', function (e) {
-				wrapPos.z += 50;
+				if (!!(anglebtn.classList.contains('current'))) {
+					wrapPos.z -= moveRate;
+				} else {
+					wrapPos.y -= moveRate;
+                }
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
             bDOWN.addEventListener('click', function (e) {
 				wrapPos.z -= 50;
+				if (!!(anglebtn.classList.contains('current'))) {
+					wrapPos.z += moveRate;
+				} else {
+					wrapPos.y -= moveRate;
+				}
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
             })
