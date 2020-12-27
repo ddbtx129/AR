@@ -29,7 +29,7 @@
         <div class="arjs-loader">
             <div>データ読み込み中<br>しばらくお待ちください...</div>
         </div>
-        <a id="area1">0</a>
+
         <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
 
         <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: inline" />
@@ -44,8 +44,10 @@
 
                 <!--<a-entity id="ar-gltf-main" gltf-model="" scale="100 100 100" position="0 0 0" rotation="0 0 0" style="visibility: visible"></a-entity>
         <a-entity id="ar-gltf-shadow" gltf-model="" scale="10 10 10" position="0 0 0" rotation="-90 0 0" style="visibility: hidden"></a-entity>-->
-<!--                <a-entity id="ar-gltf-main" gltf-model="" scale="" position="" rotation="" animation__scale = "property: scale; dur: 5; easing: linear; loop: false; to: 0 0 0;" style="visibility: visible"></a-entity>-->
+
                 <a-entity id="ar-gltf-main" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>
+                 <a-entity id="ar-gltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: hidden"></a-entity>
+
             </a-nft>
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
@@ -59,18 +61,7 @@
 
         </a-scene>
 
-        <!--<script>
-            getNftMarker();
-            getNftObject();
-        </script>-->
-
         <script src="js/nft-view.sub.js"></script>
-
-        <!--<script>
-            window.alert(document.getElementById('ar-nft').getAttribute('url'));
-            window.alert(document.getElementById('ar-gltf-main').getAttribute('gltf-model'));
-            var size = document.getElementById('ar-gltf-main').getAttribute('width');
-        </script>-->
 
     </body>
 
