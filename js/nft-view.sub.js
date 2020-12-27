@@ -200,79 +200,79 @@
                 }
             })
 
-			//var wrapPos = nft.getAttribute('position');
+			var wrapPos = nft.getAttribute('position');
 
-   //         // ↓ 上移動ボタン押下
-			//var upbtn = document.querySelector('#swUp');
-			//var downbtn = document.querySelector('#swDown');
+			var upbtn = document.querySelector('#swUp');
+			var downbtn = document.querySelector('#swDown');
 
-			//upbtn.addEventListener('click', function (e) {
-			//	if (!!(anglebtn.classList.contains('current'))) {
-			//		wrapPos.y += 5;
-			//	} else {
-			//		wrapPos.z -= 5;
-   //             }
-			//	nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-			//})
+            // ↓ 上移動ボタン押下
+			upbtn.addEventListener('click', function (e) {
+				if (!!(anglebtn.classList.contains('current'))) {
+					wrapPos.y += 5;
+				} else {
+					wrapPos.z -= 5;
+                }
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			})
 
-			//// ↓ 下移動ボタン押下
-			//downbtn.addEventListener('click', function (e) {
-			//	if (!!(anglebtn.classList.contains('current'))) {
-			//		wrapPos.y -= 5;
-			//	} else {
-			//		wrapPos.z += 5;
-			//	}
-			//	nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-			//})
+			// ↓ 下移動ボタン押下
+			downbtn.addEventListener('click', function (e) {
+				if (!!(anglebtn.classList.contains('current'))) {
+					wrapPos.y -= 5;
+				} else {
+					wrapPos.z += 5;
+				}
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			})
 
-			//var bUP = document.querySelector('#swUp');
-			//var bDOWN = document.querySelector('#swDown');
+			var bUP = document.querySelector('#swUp');
+			var bDOWN = document.querySelector('#swDown');
 
-			//var timer;
+			var timer;
 
-			//// ↓ UPボタン長押し
-			//bUP.addEventListener(deviceEvents.start, e => {
-			//	e.preventDefault();
-			//	bUP.classList.add('active');
-			//	timer = setInterval(() => {
-			//		wrapPos.y += 5;
-			//		nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-			//	}, 10);
-			//})
+			// ↓ UPボタン長押し
+			bUP.addEventListener(self.eventnames.start, e => {
+				e.preventDefault();
+				bUP.classList.add('active');
+				timer = setInterval(() => {
+					wrapPos.y += 5;
+					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+				}, 10);
+			})
 
-			//bUP.addEventListener(deviceEvents.end, e => {
-			//	e.preventDefault();
-			//	bUP.classList.remove('active');
-			//	clearInterval(timer);
-			//});
+			bUP.addEventListener(self.eventnames.end, e => {
+				e.preventDefault();
+				bUP.classList.remove('active');
+				clearInterval(timer);
+			});
 
-			//bUP.addEventListener(deviceEvents.move, e => {
-			//	e.preventDefault();
-			//	bUP.classList.remove('active');
-			//	clearInterval(timer);
-			//});
+			bUP.addEventListener(self.move, e => {
+				e.preventDefault();
+				bUP.classList.remove('active');
+				clearInterval(timer);
+			});
 
-			//// ↓ DOWNボタン長押し
-			//bDOWN.addEventListener(deviceEvents.start, e => {
-			//	e.preventDefault();
-			//	bDOWN.classList.add('active');
-			//	timer = setInterval(() => {
-			//		wrapPos.y -= 5;
-			//		nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-			//	}, 10);
-			//})
+			// ↓ DOWNボタン長押し
+			bDOWN.addEventListener(self.eventnames.start, e => {
+				e.preventDefault();
+				bDOWN.classList.add('active');
+				timer = setInterval(() => {
+					wrapPos.y -= 5;
+					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+				}, 10);
+			})
 
-			//bDOWN.addEventListener(deviceEvents.end, e => {
-			//	e.preventDefault();
-			//	bDOWN.classList.remove('active');
-			//	clearInterval(timer);
-			//});
+			bDOWN.addEventListener(self.eventnames.end, e => {
+				e.preventDefault();
+				bDOWN.classList.remove('active');
+				clearInterval(timer);
+			});
 
-			//bDOWN.addEventListener(deviceEvents.move, e => {
-			//	e.preventDefault();
-			//	bDOWN.classList.remove('active');
-			//	clearInterval(timer);
-			//});
+			bDOWN.addEventListener(self.eventnames.move, e => {
+				e.preventDefault();
+				bDOWN.classList.remove('active');
+				clearInterval(timer);
+			});
 
 		},
 
