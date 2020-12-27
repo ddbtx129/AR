@@ -169,12 +169,14 @@ var defaultSize = { w: 10, h: 10 };
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
 					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-						window.alert(event.pageY);
+						window.alert(((prevPageY - event.pageY));
+						window.alert((scene.clientHeight / 5));
+
 						zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 
-                        AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: '20 20 20'
-						});
+      //                  AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+						//	property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+						//});
                     }
                 }
             })
