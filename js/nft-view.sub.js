@@ -177,7 +177,7 @@ var zoomH = 0;
 						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 
 						//window.alert(zoomRate);
-
+						document.getElementById("area1").innerText = zoomW;
 						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
 							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
 						});
