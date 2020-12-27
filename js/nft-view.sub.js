@@ -153,13 +153,16 @@ var zoomH = 0;
 					//nftShadow.setAttribute('rotation', '-90 0 0');
 
 					//dataObj.shadow = shadow;
-
-					var shadow = document.createElement('a-entity');
+					var arShadow = document.getElementById('source2');
 
 					var source = (!(self.arg.ObjectList) ?
 						(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
-							:
+						:
 						(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'));
+
+					arShadow.setAttribute("src", source);
+
+					var shadow = document.createElement('a-entity');
 
 					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
 
@@ -170,7 +173,7 @@ var zoomH = 0;
 					});
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: source, transparent: true, alphaTest: 0.1,
+						shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
 						color: 'black', opacity: 0.3, depthTest: false
 					});
 
