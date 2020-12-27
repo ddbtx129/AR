@@ -119,8 +119,6 @@ var zoomH = 0;
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
 				}
 
-				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				defaultSize = dataObj.size;
@@ -132,25 +130,23 @@ var zoomH = 0;
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 
-				var el = document.getElementById('ar-gltf-shadow');
+				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
+				var nftShadow = document.getElementById('ar-gltf-shadow');
+				
 				if (!dataObj.isShadow) {
-					el.remove();
+					nftShadow.remove();
 				} else {
-					var shadow = document.createElement('a-entity');
-
-					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(this.positionVec3('shadow')));
-
-					shadow.setAttribute('rotation', '-90 0 0');
-
-					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-					});
-
-					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
-						color: 'black', opacity: 0.3, depthTest: false
-					});
+					var shadow = {
+						path: (!(self.arg.ObjectList) ?
+							(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
+							:
+							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '-xs.gltf'))
+					};
+					
+					nftShadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+					nftShadow.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
+					nftShadow.setAttribute('rotation', '-90 0 0');
 
 					dataObj.shadow = shadow;
 				}
@@ -169,35 +165,35 @@ var zoomH = 0;
 
             var self = this;
 
-            var prevPageY;
-            var prevPageX;
+            //var prevPageY;
+            //var prevPageX;
 
-			zoomW = defaultSize.w;
-			zoomH = defaultSize.h;
+			//zoomW = defaultSize.w;
+			//zoomH = defaultSize.h;
 
-            // 拡大・縮小
-			scene.addEventListener(self.eventnames.start, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                prevPageY = event.pageY;    // 縦軸
-				prevPageX = event.pageX;    // 横軸
-            })
+   //         // 拡大・縮小
+			//scene.addEventListener(self.eventnames.start, function (e) {
+   //             var event = e.changedTouches ? e.changedTouches[0] : e;
+   //             prevPageY = event.pageY;    // 縦軸
+			//	prevPageX = event.pageX;    // 横軸
+   //         })
 			
-			scene.addEventListener(self.eventnames.move, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                if (prevPageY) {
-					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
-						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
-						});
-                    }
-                }
-            })
+			//scene.addEventListener(self.eventnames.move, function (e) {
+   //             var event = e.changedTouches ? e.changedTouches[0] : e;
+   //             if (prevPageY) {
+			//		if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
+			//			zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+			//			zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+			//			AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+			//				property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
+			//			});
+   //                 }
+   //             }
+   //         })
 
-			scene.addEventListener(self.eventnames.end, function (e) {
-				prevPageY = null;
-            })
+			//scene.addEventListener(self.eventnames.end, function (e) {
+			//	prevPageY = null;
+   //         })
 
 			// ↓ rotation 切替
             var anglebtn = document.querySelector('#swAngle');
