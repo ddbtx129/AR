@@ -43,8 +43,10 @@
 
 			// 影
 			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
+			window.alert((parseInt(arg.wh, 16).toString(10)).length);
 			// サイズ
 			if (arg.sizeList = !!arg.wh) {
+				
 				switch ((parseInt(arg.wh, 16).toString(10)).length / 2) {
 					case 2:
 						 arg.sizeLis = (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
