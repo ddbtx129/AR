@@ -1,4 +1,5 @@
-﻿
+﻿var defaultHeight = 10;
+
 (function (global) {
 
 	var webArNft = {};
@@ -7,8 +8,6 @@
 	var nft = {
 
 		nftInit: function () {
-
-			var defaultHeight = 10;
 
 			this.setArg();
 
@@ -130,7 +129,7 @@
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 
-				self.defaultHeight = dataObj.posVec3.h;
+				defaultHeight = dataObj.posVec3.h;
 
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
@@ -195,7 +194,7 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
-					var posVec3 = this.positionVec3('main', self.defaultHeight);
+					var posVec3 = this.positionVec3('main', defaultHeight);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
@@ -206,7 +205,7 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					var posVec3 = this.positionVec3('main', self.defaultHeight);
+					var posVec3 = this.positionVec3('main', defaultHeight);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
