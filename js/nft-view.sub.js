@@ -123,7 +123,7 @@
 				//} else {
 				//	//
 				//}
-				window.alert(111);
+				window.alert(1);
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
@@ -135,7 +135,7 @@
 
 		    arData = dataObj;
 			self.arData = arData;
-			window.alert(112);
+			window.alert(2);
 		    return true;
 		},
 
@@ -235,7 +235,11 @@
 				e.preventDefault();
 				bUP.classList.add('active');
 				timer = setInterval(() => {
-					wrapPos.y += 5;
+					if (!!(anglebtn.classList.contains('current'))) {
+						wrapPos.y += 5;
+					} else {
+						wrapPos.z -= 5;
+					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				}, 10);
 			})
@@ -257,7 +261,11 @@
 				e.preventDefault();
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
-					wrapPos.y -= 5;
+					if (!!(anglebtn.classList.contains('current'))) {
+						wrapPos.y -= 5;
+					} else {
+						wrapPos.z += 5;
+					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				}, 10);
 			})
