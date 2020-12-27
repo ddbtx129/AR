@@ -215,15 +215,15 @@
 			var wrapPos = nft.getAttribute('position');
             var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
-			window.alert(wrapPos.y);
+
 			bUP.addEventListener('click', function (e) {
-				wrapPos.y += 50;
+				wrapPos.z += 50;
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
             bDOWN.addEventListener('click', function (e) {
-				wrapPos.y -= 50;
+				wrapPos.z -= 50;
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
             })
