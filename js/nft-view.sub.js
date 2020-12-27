@@ -215,7 +215,7 @@
 			var wrapPos = nft.getAttribute('position');
             var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
-			window.alert(bUP);
+			window.alert(wrapPos.y);
 			bUP.addEventListener('click', function (e) {
 				window.alert(201);
 				wrapPos.y += 20;
