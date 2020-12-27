@@ -188,7 +188,9 @@
                 if (!anglebtn.classList.contains('current')) {
                     nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
                     anglebtn.classList.add('current');
-                    parallelbtn.classList.remove('current');
+					parallelbtn.classList.remove('current');
+					// position リセット
+					nft.setAttribute('position', String(self.arData.size.x) + ' ' + String(self.arData.size.y) + ' ' + String(self.arData.size.z));
                 }
             })
 
@@ -196,7 +198,9 @@
                 if (!parallelbtn.classList.contains('current')) {
                     nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                     parallelbtn.classList.add('current');
-                    anglebtn.classList.remove('current');
+					anglebtn.classList.remove('current');
+					// position リセット
+					nft.setAttribute('position', String(self.arData.size.x) + ' ' + String(self.arData.size.y) + ' ' + String(self.arData.size.z));
                 }
             })
 
