@@ -165,7 +165,7 @@
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
 					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-						window.alert(104);
+						window.alert(event.pageY);
                         zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
