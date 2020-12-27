@@ -333,24 +333,23 @@ var webArViewer = webArViewer || {};
                 });
 
                 // ↓ 上下移動ボタン押下
-                var upbtn = document.getElementById('swUp');
+                //var upbtn = document.getElementById('swUp');
+                //var downbtn = document.getElementById('swDown');
+                var bUP = document.getElementById('swUp');
+                var bDOWN = document.getElementById('swDown');
 
-                upbtn.addEventListener('click', function () {
+                bUP.addEventListener('click', function () {
                     wrapPos.y += 0.2;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 });
 
-                var downbtn = document.getElementById('swDown');
-
-                downbtn.addEventListener('click', function () {
+                bDOWN.addEventListener('click', function () {
                     wrapPos.y -= 0.2;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 });
                 // ↑ 
 
                 // ↓ UPボタン長押し
-                var bUP = document.getElementById('swUp');
-                var bDOWN = document.getElementById('swDown');
                 var eventStart = 'touchstart';
                 var eventEnd = 'touchend';
                 var eventLeave = 'touchmove';
