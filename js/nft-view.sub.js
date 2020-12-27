@@ -215,20 +215,18 @@
             // ↓ 上下移動ボタン押下
             var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
-			window.alert(!!bUP);
-			window.alert(!!bDOWN);
 
             bUP.addEventListener('click', function (e) {
-                window.alert(arPosY);
+				window.alert(self.arData..posVec3.y);
                 self.arData..posVec3.y += 0.2;
-                window.alert(arPosY);
+				window.alert(self.arData..posVec3.y);
                 nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
             })
 
             bDOWN.addEventListener('click', function (e) {
-                window.alert(arPosY);
+				window.alert(self.arData..posVec3.y);
                 self.arData.posVec3.y -= 0.2;
-                window.alert(arPosY);
+				window.alert(self.arData..posVec3.y);
                 nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
             })
         },
