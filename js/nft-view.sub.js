@@ -48,21 +48,29 @@
 			//arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
 
 			if (!!arg.wh) {
-				switch ((parseInt(arg.wh, 16).toString(10)).length / 2) {
+				switch ((parseInt(arg.wh, 16).toString(10)).length) {
 					case 2:
-						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
 						window.alert(2);
 						break;
-					case 3:
-						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+					case 4:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
 						window.alert(3);
 						break;
-					case 4:
+					case 6:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+						window.alert(4);
+						break;
+					case 8:
 						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
 						window.alert(4);
 						break;
+					case 10:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
+						window.alert(4);
+						break;
 					default:
-						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
 						window.alert("default");
 						break;
 
