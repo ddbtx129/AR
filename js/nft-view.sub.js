@@ -152,17 +152,17 @@
             var prevPageY;
             var prevPageX;
 
-			var zoomRate = self.arData.size.h;
+			var zoomRate = 160;
 
             // 拡大・縮小
-            scene.addEventListener(deviceEvents.start, function (e) {
+			scene.addEventListener(self.eventnames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
 				window.alert(201);
             })
 			window.alert(104);
-            scene.addEventListener(deviceEvents.move, function (e) {
+			scene.addEventListener(self.eventnames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
@@ -175,7 +175,7 @@
                 }
             })
 			window.alert(105);
-            scene.addEventListener(deviceEvents.end, function (e) {
+			scene.addEventListener(self.eventnames.end, function (e) {
 				prevPageY = null;
 				window.alert(203);
             })
