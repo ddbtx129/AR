@@ -231,7 +231,7 @@
 				e.preventDefault();
 				bUP.classList.add('active');
 				timer = setInterval(() => {
-					arPosY += 0.2;
+					wrapPos.y += 5;
 					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z)));
 				}, 10);
 			})
@@ -254,7 +254,7 @@
 				e.preventDefault();
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
-					arPosY -= 0.2;
+					wrapPos.y -= 5;
 					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z)));
 				}, 10);
 			})
