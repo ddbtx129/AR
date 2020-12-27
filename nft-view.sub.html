@@ -42,20 +42,19 @@
 
         <a-scene id="ar-scene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
+                <a-entity light="type: ambient; color: #BBB"></a-entity>
+                <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+                <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+
             <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
-<!--                <a-entity id="ar-gltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>-->
+                <a-entity id="ar-gltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>
                 <a-entity id="ar-gltf-main" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>
-            </a-nft>
 
-            <a-entity light="type: ambient; color: #BBB"></a-entity>
-            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
-            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+            </a-nft>
 
             <!--<a-camera-static />-->
             <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
-            <!--<a-light type="directional" color="#FFF" intensity="0.5" position="-1 1 2"></a-light>
-    <a-light type="ambient" color="#FFF"></a-light>-->
 
         </a-scene>
 
