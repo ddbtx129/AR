@@ -150,7 +150,7 @@ var zoomH = 0;
 					nftShadow.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.shadow.path));
 
 					nftShadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
-					nftShadow.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
+					nftShadow.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y - (dataObj.size.h / 2)) + ' ' + String(dataObj.posVec3.z));
 					nftShadow.setAttribute('rotation', '-90 0 0');
 
 					//dataObj.shadow = shadow;
