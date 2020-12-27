@@ -155,7 +155,6 @@
 
 			//var zoomRate = self.arData.size.h;
 
-			window.alert(defaultHeight);
    //         // 拡大・縮小
    //         scene.addEventListener(deviceEvents.start, function (e) {
    //             var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -195,6 +194,7 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
+					window.alert(defaultHeight);
 					var posVec3 = this.positionVec3('main', defaultHeight);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
@@ -206,6 +206,7 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
+					window.alert(defaultHeight);
 					var posVec3 = this.positionVec3('main', defaultHeight);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
