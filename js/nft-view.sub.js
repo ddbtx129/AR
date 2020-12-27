@@ -176,7 +176,7 @@ var defaultSize = { w: 10, h: 10 };
 
 						//window.alert(zoomRate);
 
-                        AFRAME.utils.entity.setComponentProperty(nft, 'animation', {
+						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
 							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
 						});
                     }
