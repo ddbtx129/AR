@@ -172,10 +172,9 @@ var defaultSize = { w: 10, h: 10 };
 						window.alert(event.pageY);
 						zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 
-                        //AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-						//});
-						nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+                        AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: '20 20 20'
+						});
                     }
                 }
             })
