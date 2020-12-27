@@ -147,7 +147,7 @@ var zoomH = 0;
 							:
 							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '-xs.gltf'))
 					};
-
+					window.alert(0);
 					nftShadow.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.shadow.path));
 					nftShadow.style.zIndex = 999;
 
