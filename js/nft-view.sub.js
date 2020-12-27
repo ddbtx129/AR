@@ -166,12 +166,12 @@ var defaultSize = { w: 10, h: 10 };
 			scene.addEventListener(self.eventnames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) * 10 > 0.1) {
+					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
 						//window.alert((prevPageY - event.pageY));
 						//window.alert((scene.clientHeight / 5));
 
-						zoomRate += (((prevPageY - event.pageY) / scene.clientHeight / 5) * 10);
-						window.alert(zoomRate);
+						zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						//window.alert(zoomRate);
 
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
 							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
