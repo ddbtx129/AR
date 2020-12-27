@@ -127,10 +127,6 @@ var zoomH = 0;
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				defaultPos = dataObj.posVec3;
 
-				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
-				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
-				nft.setAttribute('rotation', '0 0 0');
-
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 				var nftShadow = document.getElementById('ar-gltf-shadow');
@@ -140,24 +136,50 @@ var zoomH = 0;
 					nftShadow.style.visibility = "hidden";
 				} else {
 
-					nftShadow.style.visibility = "visible";
+					nftShadow.style.visibility = "hidden";
 
-					dataObj.shadow = {
-						path: (!(self.arg.ObjectList) ?
-							(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
-							:
-							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '-xs.gltf'))
-					};
-					window.alert(0);
-					nftShadow.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.shadow.path));
-					nftShadow.style.zIndex = 999;
+					//dataObj.shadow = {
+					//	path: (!(self.arg.ObjectList) ?
+					//		(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
+					//		:
+					//		(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '-xs.gltf'))
+					//};
+					//window.alert(1);
+					//nftShadow.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.shadow.path));
+					//nftShadow.style.zIndex = 999;
 
-					nftShadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
-					nftShadow.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z + (dataObj.size.h / 2)));
-					nftShadow.setAttribute('rotation', '-90 0 0');
+					//nftShadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+					//nftShadow.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z + (dataObj.size.h / 2)));
+					//nftShadow.setAttribute('rotation', '-90 0 0');
 
 					//dataObj.shadow = shadow;
+
+					var shadow = document.createElement('a-entity');
+
+					var source = (!(self.arg.ObjectList) ?
+						(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
+							:
+						(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'));
+
+					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+
+					shadow.setAttribute('rotation', '-90 0 0');
+
+					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+						primitive: 'plane', scale: String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w)
+					});
+
+					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+						shader: 'flat', npot: true, src: source, transparent: true, alphaTest: 0.1,
+						color: 'black', opacity: 0.3, depthTest: false
+					});
+
+					shadow && nft.appendChild(shadow);
 				}
+
+				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
+				nft.setAttribute('rotation', '0 0 0');
 		    }
 
 		    arData = dataObj;
