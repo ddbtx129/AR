@@ -124,7 +124,7 @@
 				//} else {
 				//	//
 				//}
-				window.alert(10);
+
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 
@@ -138,8 +138,8 @@
 
 		    arData = dataObj;
 			self.arData = arData;
-			window.alert(11);
-		    return true;
+
+			return true;
 		},
 
         setSwitcher: function () {
@@ -160,11 +160,12 @@
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
             })
-			window.alert(104);
+			
 			scene.addEventListener(self.eventnames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-                    if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+						window.alert(104);
                         zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
@@ -172,11 +173,10 @@
                     }
                 }
             })
-			window.alert(105);
+
 			scene.addEventListener(self.eventnames.end, function (e) {
 				prevPageY = null;
             })
-			window.alert(106);
 
 			// ↓ rotation 切替
             var anglebtn = document.querySelector('#swAngle');
