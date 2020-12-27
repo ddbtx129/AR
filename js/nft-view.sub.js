@@ -182,7 +182,7 @@ var zoomH = 0;
 					});
 
 					dataObj.shadow = shadow;
-
+					dataObj.shadow && nft.appendChild(dataObj.shadow);
 				}
 
 		    }
@@ -199,8 +199,6 @@ var zoomH = 0;
 			var nft = document.getElementById("ar-gltf-main");
 
 			var self = this;
-
-			self.arData.shadow && nft.appendChild(self.arData.shadow);
 
             //var prevPageY;
             //var prevPageX;
