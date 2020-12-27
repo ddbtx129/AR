@@ -65,7 +65,7 @@
 						arg.sizeLis = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
 						window.alert("default");
 						break;
-				};
+				}
 			};
 
 			// マーカー
