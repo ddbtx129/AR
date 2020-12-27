@@ -154,7 +154,7 @@ var defaultSize = { w: 10, h: 10 };
             var prevPageY;
             var prevPageX;
 
-			var zoomRate = defaultSize.h;
+			var zoomRate = 1;
 
             // 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
@@ -166,11 +166,11 @@ var defaultSize = { w: 10, h: 10 };
 			scene.addEventListener(self.eventnames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
+					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) * 10 > 0.1) {
 						//window.alert((prevPageY - event.pageY));
 						//window.alert((scene.clientHeight / 5));
 
-						zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						zoomRate += (((prevPageY - event.pageY) / scene.clientHeight / 5) * 10);
 						window.alert(zoomRate);
 
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
