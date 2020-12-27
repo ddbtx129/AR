@@ -134,9 +134,11 @@ var zoomH = 0;
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 				//var nftShadow = document.getElementById('ar-gltf-shadow');
-				
+				var arShadow = document.getElementById('source');
+
 				if (!dataObj.isShadow) {
 					//nftShadow.remove();
+					arShadow.remove();
 					nftShadow.style.visibility = "hidden";
 				} else {
 
@@ -157,8 +159,7 @@ var zoomH = 0;
 					//nftShadow.setAttribute('rotation', '-90 0 0');
 
 					//dataObj.shadow = shadow;
-					var arShadow = document.getElementById('source2');
-
+					
 					var source = (!(self.arg.ObjectList) ?
 						(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
 						:
@@ -195,10 +196,10 @@ var zoomH = 0;
 
         setSwitcher: function () {
 
-            var scene = document.getElementById('ar-scene');
-			var nft = document.getElementById("ar-gltf-main");
+   //         var scene = document.getElementById('ar-scene');
+			//var nft = document.getElementById("ar-gltf-main");
 
-			var self = this;
+			//var self = this;
 
             //var prevPageY;
             //var prevPageX;
@@ -230,11 +231,150 @@ var zoomH = 0;
 			//	prevPageY = null;
    //         })
 
-			// ↓ rotation 切替
-            var anglebtn = document.querySelector('#swAngle');
-            var parallelbtn = document.querySelector('#swParallel');
+			//// ↓ rotation 切替
+   //         var anglebtn = document.querySelector('#swAngle');
+   //         var parallelbtn = document.querySelector('#swParallel');
 
-            parallelbtn.classList.add('current');
+   //         parallelbtn.classList.add('current');
+
+			//anglebtn.addEventListener('click', function () {
+			//	if (!anglebtn.classList.contains('current')) {
+			//		nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+			//		anglebtn.classList.add('current');
+			//		parallelbtn.classList.remove('current');
+			//		// position リセット
+			//		nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+			//	}
+			//})
+
+			//parallelbtn.addEventListener('click', function () {
+   //             if (!parallelbtn.classList.contains('current')) {
+			//		nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+   //                 parallelbtn.classList.add('current');
+			//		anglebtn.classList.remove('current');
+			//		// position リセット
+			//		nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+   //             }
+   //         })
+
+			//var wrapPos = nft.getAttribute('position');
+
+			//var upbtn = document.querySelector('#swUp');
+			//var downbtn = document.querySelector('#swDown');
+
+   //         // ↓ 上移動ボタン押下
+			//upbtn.addEventListener('click', function (e) {
+			//	if (!!(anglebtn.classList.contains('current'))) {
+			//		wrapPos.y += 5;
+			//	} else {
+			//		wrapPos.z -= 5;
+   //             }
+			//	nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//})
+
+			//// ↓ 下移動ボタン押下
+			//downbtn.addEventListener('click', function (e) {
+			//	if (!!(anglebtn.classList.contains('current'))) {
+			//		wrapPos.y -= 5;
+			//	} else {
+			//		wrapPos.z += 5;
+			//	}
+			//	nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//})
+
+			//var bUP = document.querySelector('#swUp');
+			//var bDOWN = document.querySelector('#swDown');
+
+			//var timer;
+
+			//// ↓ UPボタン長押し
+			//bUP.addEventListener(self.eventnames.start, e => {
+			//	e.preventDefault();
+			//	bUP.classList.add('active');
+			//	timer = setInterval(() => {
+			//		if (!!(anglebtn.classList.contains('current'))) {
+			//			wrapPos.y += 5;
+			//		} else {
+			//			wrapPos.z -= 5;
+			//		}
+			//		nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//	}, 10);
+			//})
+
+			//bUP.addEventListener(self.eventnames.end, e => {
+			//	e.preventDefault();
+			//	bUP.classList.remove('active');
+			//	clearInterval(timer);
+			//});
+
+			//bUP.addEventListener(self.move, e => {
+			//	e.preventDefault();
+			//	bUP.classList.remove('active');
+			//	clearInterval(timer);
+			//});
+
+			//// ↓ DOWNボタン長押し
+			//bDOWN.addEventListener(self.eventnames.start, e => {
+			//	e.preventDefault();
+			//	bDOWN.classList.add('active');
+			//	timer = setInterval(() => {
+			//		if (!!(anglebtn.classList.contains('current'))) {
+			//			wrapPos.y -= 5;
+			//		} else {
+			//			wrapPos.z += 5;
+			//		}
+			//		nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//	}, 10);
+			//})
+
+			//bDOWN.addEventListener(self.eventnames.end, e => {
+			//	e.preventDefault();
+			//	bDOWN.classList.remove('active');
+			//	clearInterval(timer);
+			//});
+
+			//bDOWN.addEventListener(self.eventnames.move, e => {
+			//	e.preventDefault();
+			//	bDOWN.classList.remove('active');
+			//	clearInterval(timer);
+			//});
+
+			var scene = document.getElementById('ar-scene');
+			var nft = document.getElementById("ar-gltf-main");
+			var self = this;
+
+			//var prevPageY;
+			//var prevPageX;
+			//zoomW = defaultSize.w;
+			//zoomH = defaultSize.h;
+			//         // 拡大・縮小
+			//scene.addEventListener(self.eventnames.start, function (e) {
+			//             var event = e.changedTouches ? e.changedTouches[0] : e;
+			//             prevPageY = event.pageY;    // 縦軸
+			//	prevPageX = event.pageX;    // 横軸
+			//         })
+
+			//scene.addEventListener(self.eventnames.move, function (e) {
+			//             var event = e.changedTouches ? e.changedTouches[0] : e;
+			//             if (prevPageY) {
+			//		if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
+			//			zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+			//			zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+			//			AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+			//				property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
+			//			});
+			//                 }
+			//             }
+			//         })
+			//scene.addEventListener(self.eventnames.end, function (e) {
+			//	prevPageY = null;
+			//         })
+
+			// ↓ rotation 切替
+			var anglebtn = document.querySelector('#swAngle');
+			var parallelbtn = document.querySelector('#swParallel');
+
+			parallelbtn.classList.add('current');
 
 			anglebtn.addEventListener('click', function () {
 				if (!anglebtn.classList.contains('current')) {
@@ -247,27 +387,26 @@ var zoomH = 0;
 			})
 
 			parallelbtn.addEventListener('click', function () {
-                if (!parallelbtn.classList.contains('current')) {
+				if (!parallelbtn.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                    parallelbtn.classList.add('current');
+					parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
-                }
-            })
+				}
+			})
 
 			var wrapPos = nft.getAttribute('position');
-
 			var upbtn = document.querySelector('#swUp');
 			var downbtn = document.querySelector('#swDown');
 
-            // ↓ 上移動ボタン押下
+			// ↓ 上移動ボタン押下
 			upbtn.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
 					wrapPos.y += 5;
 				} else {
 					wrapPos.z -= 5;
-                }
+				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
@@ -283,7 +422,6 @@ var zoomH = 0;
 
 			var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
-
 			var timer;
 
 			// ↓ UPボタン長押し
@@ -331,7 +469,7 @@ var zoomH = 0;
 				bDOWN.classList.remove('active');
 				clearInterval(timer);
 			});
-
+			
 			bDOWN.addEventListener(self.eventnames.move, e => {
 				e.preventDefault();
 				bDOWN.classList.remove('active');
