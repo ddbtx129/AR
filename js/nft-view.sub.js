@@ -23,7 +23,6 @@
 			        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
 			        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
 			    };
-
 			}
 
 			this.setSwitcher();
@@ -146,14 +145,6 @@
 			self.arData = arData;
 			window.alert(dataObj.size.w);
 		    return true;
-		},
-
-
-		setWrap: function () {
-			var self = this;
-			var offsetPos = self.arg.offsetPos ? decodeURI(self.arg.offsetPos) : '0 0 0';
-			self.wrap = document.createElement('a-entity');
-			self.wrap.setAttribute('position', offsetPos);
 		},
 
         setSwitcher: function () {
