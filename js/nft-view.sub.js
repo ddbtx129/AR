@@ -219,7 +219,7 @@
 			bUP.addEventListener('click', function (e) {
 				window.alert(201);
 				wrapPos.y += 0.2;
-				window.alert(202);
+				window.alert(wrapPos.y);
 				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				window.alert(203);
 			})
@@ -227,7 +227,7 @@
             bDOWN.addEventListener('click', function (e) {
 				window.alert(301);
 				wrapPos.y -= 0.2;
-				window.alert(302);
+				window.alert(wrapPos.y);
 				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				window.alert(303);
             })
