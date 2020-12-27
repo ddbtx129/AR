@@ -23,6 +23,8 @@
 a {
     position: absolute;
     text-decoration: none;
+    top: 0%;
+    left: 0%;
     color: #666;
     font-weight: bold;
     -webkit-touch-callout: none;
