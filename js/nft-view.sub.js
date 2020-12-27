@@ -154,8 +154,8 @@ var defaultSize = { w: 10, h: 10 };
             var prevPageY;
             var prevPageX;
 
-			var zoomW = dataObj.size.w;
-			var zoomH = dataObj.size.h;
+			var zoomW = defaultSize.w;
+			var zoomH = defaultSize.h;
 
             // 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
