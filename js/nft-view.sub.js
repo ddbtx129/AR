@@ -136,7 +136,8 @@ var zoomH = 0;
 				var nftShadow = document.getElementById('ar-gltf-shadow');
 				
 				if (!dataObj.isShadow) {
-					nftShadow.remove();
+					//nftShadow.remove();
+					nftShadow.style.visibility = "hidden";
 				} else {
 
 					nftShadow.style.visibility = "visible";
@@ -169,6 +170,7 @@ var zoomH = 0;
 
             var scene = document.getElementById('ar-scene');
 			var nft = document.getElementById("ar-gltf-main");
+			var nftShadow = document.getElementById('ar-gltf-shadow');
 
             var self = this;
 
@@ -210,21 +212,27 @@ var zoomH = 0;
 
 			anglebtn.addEventListener('click', function () {
                 if (!anglebtn.classList.contains('current')) {
-                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					nftShadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+					nftShadow.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z - wrapPos.y));
                 }
             })
 
 			parallelbtn.addEventListener('click', function () {
                 if (!parallelbtn.classList.contains('current')) {
-                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					nftShadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos));
+					nftShadow.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z + wrapPos.y));
                 }
             })
 
