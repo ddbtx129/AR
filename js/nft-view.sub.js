@@ -154,7 +154,8 @@ var defaultSize = { w: 10, h: 10 };
             var prevPageY;
             var prevPageX;
 
-			var zoomRate = 1;
+			var zoomW = dataObj.size.w;
+			var zoomH = dataObj.size.h;
 
             // 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
@@ -166,15 +167,17 @@ var defaultSize = { w: 10, h: 10 };
 			scene.addEventListener(self.eventnames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
+					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
 						//window.alert((prevPageY - event.pageY));
 						//window.alert((scene.clientHeight / 5));
 
-						zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+
 						//window.alert(zoomRate);
 
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
 						});
                     }
                 }
