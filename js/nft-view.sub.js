@@ -1,4 +1,5 @@
 ﻿var defaultPos = { x: 0, y: 0, z: 0};
+var defaultSize = { w: 10, h: 10 };
 
 (function (global) {
 
@@ -127,6 +128,7 @@
 
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
+				defaultSize = dataObj.size;
 
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				defaultPos = dataObj.posVec3;
@@ -146,6 +148,8 @@
 
             var scene = document.getElementById('ar-scene');
 			var nft = document.getElementById("ar-gltf-main");
+			var nftSize = nft.getAttribute("scale");
+			window.alert(nftSize.w);
 
             var self = this;
 
@@ -166,10 +170,12 @@
                 if (prevPageY) {
 					if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
 						window.alert(event.pageY);
-                        zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-                        AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-						});
+						zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+
+                        //AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+						//});
+						nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
                     }
                 }
             })
