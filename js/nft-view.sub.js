@@ -1,4 +1,4 @@
-﻿var defaultHeight = 10;
+﻿var defaultPos = { x: 0, y: 0, z: 0};
 
 (function (global) {
 
@@ -128,9 +128,8 @@
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 
-				defaultHeight = dataObj.size.h;
-
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
+				defaultPos = dataObj.posVec3;
 
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
@@ -194,9 +193,7 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
-					window.alert(defaultHeight);
-					var posVec3 = this.positionVec3('main', defaultHeight);
-					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
                 }
             })
 
@@ -206,9 +203,7 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					window.alert(defaultHeight);
-					var posVec3 = this.positionVec3('main', defaultHeight);
-					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
                 }
             })
 
