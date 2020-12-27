@@ -1,5 +1,4 @@
-﻿import { start } from "repl";
-
+﻿
 (function (global) {
 
 	var webArNft = {};
@@ -124,7 +123,7 @@
 				//} else {
 				//	//
 				//}
-
+				window.alert(111);
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
@@ -136,6 +135,7 @@
 
 		    arData = dataObj;
 			self.arData = arData;
+			window.alert(112);
 		    return true;
 		},
 
@@ -146,11 +146,10 @@
 
             var self = this;
 
-            var prevPageY;
-            var prevPageX;
+   //         var prevPageY;
+   //         var prevPageX;
 
-			var zoomRate = self.arData.size.h;
-			var moveRate = self.arData.size.h;
+			//var zoomRate = self.arData.size.h;
 
    //         // 拡大・縮小
    //         scene.addEventListener(deviceEvents.start, function (e) {
@@ -179,102 +178,101 @@
    //         })
 			//window.alert(106);
 			// ↓ rotation 切替
-            var anglebtn = document.querySelector('#swAngle');
-            var parallelbtn = document.querySelector('#swParallel');
+   //         var anglebtn = document.querySelector('#swAngle');
+   //         var parallelbtn = document.querySelector('#swParallel');
 
-            parallelbtn.classList.add('current');
-			window.alert(107);
-            anglebtn.addEventListener('click', function () {
-                if (!anglebtn.classList.contains('current')) {
-                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-                    anglebtn.classList.add('current');
-                    parallelbtn.classList.remove('current');
-                }
-            })
+   //         parallelbtn.classList.add('current');
+			//window.alert(107);
+   //         anglebtn.addEventListener('click', function () {
+   //             if (!anglebtn.classList.contains('current')) {
+   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+   //                 anglebtn.classList.add('current');
+   //                 parallelbtn.classList.remove('current');
+   //             }
+   //         })
 
-			parallelbtn.addEventListener('click', function () {
-                if (!parallelbtn.classList.contains('current')) {
-                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                    parallelbtn.classList.add('current');
-                    anglebtn.classList.remove('current');
-                }
-            })
-			window.alert(109);
+			//parallelbtn.addEventListener('click', function () {
+   //             if (!parallelbtn.classList.contains('current')) {
+   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+   //                 parallelbtn.classList.add('current');
+   //                 anglebtn.classList.remove('current');
+   //             }
+   //         })
+			//window.alert(109);
 
-			var wrapPos = nft.getAttribute('position');
+			//var wrapPos = nft.getAttribute('position');
 
-            // ↓ 上移動ボタン押下
-			var upbtn = document.getElementById('swUp');
-			var downbtn = document.getElementById('swDown');
+   //         // ↓ 上移動ボタン押下
+			//var upbtn = document.querySelector('#swUp');
+			//var downbtn = document.querySelector('#swDown');
 
-			upbtn.addEventListener('click', function (e) {
-				if (!!(anglebtn.classList.contains('current'))) {
-					wrapPos.y += 5;
-				} else {
-					wrapPos.z -= 5;
-                }
-				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-			})
+			//upbtn.addEventListener('click', function (e) {
+			//	if (!!(anglebtn.classList.contains('current'))) {
+			//		wrapPos.y += 5;
+			//	} else {
+			//		wrapPos.z -= 5;
+   //             }
+			//	nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//})
 
-			// ↓ 下移動ボタン押下
-			downbtn.addEventListener('click', function (e) {
-				if (!!(anglebtn.classList.contains('current'))) {
-					wrapPos.y -= 5;
-				} else {
-					wrapPos.z += 5;
-				}
-				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-			})
+			//// ↓ 下移動ボタン押下
+			//downbtn.addEventListener('click', function (e) {
+			//	if (!!(anglebtn.classList.contains('current'))) {
+			//		wrapPos.y -= 5;
+			//	} else {
+			//		wrapPos.z += 5;
+			//	}
+			//	nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//})
 
-			var bUP = document.querySelector('#swUp');
-			var bDOWN = document.querySelector('#swDown');
+			//var bUP = document.querySelector('#swUp');
+			//var bDOWN = document.querySelector('#swDown');
 
-			var timer;
+			//var timer;
 
-			// ↓ UPボタン長押し
-			bUP.addEventListener(deviceEvents.start, e => {
-				e.preventDefault();
-				bUP.classList.add('active');
-				timer = setInterval(() => {
-					wrapPos.y += 5;
-					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-				}, 10);
-			})
+			//// ↓ UPボタン長押し
+			//bUP.addEventListener(deviceEvents.start, e => {
+			//	e.preventDefault();
+			//	bUP.classList.add('active');
+			//	timer = setInterval(() => {
+			//		wrapPos.y += 5;
+			//		nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//	}, 10);
+			//})
 
-			bUP.addEventListener(deviceEvents.end, e => {
-				e.preventDefault();
-				bUP.classList.remove('active');
-				clearInterval(timer);
-			});
+			//bUP.addEventListener(deviceEvents.end, e => {
+			//	e.preventDefault();
+			//	bUP.classList.remove('active');
+			//	clearInterval(timer);
+			//});
 
-			bUP.addEventListener(deviceEvents.move, e => {
-				e.preventDefault();
-				bUP.classList.remove('active');
-				clearInterval(timer);
-			});
-			// ↑ 
+			//bUP.addEventListener(deviceEvents.move, e => {
+			//	e.preventDefault();
+			//	bUP.classList.remove('active');
+			//	clearInterval(timer);
+			//});
 
-			// ↓ DOWNボタン長押し
-			bDOWN.addEventListener(deviceEvents.start, e => {
-				e.preventDefault();
-				bDOWN.classList.add('active');
-				timer = setInterval(() => {
-					wrapPos.y -= 5;
-					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-				}, 10);
-			})
+			//// ↓ DOWNボタン長押し
+			//bDOWN.addEventListener(deviceEvents.start, e => {
+			//	e.preventDefault();
+			//	bDOWN.classList.add('active');
+			//	timer = setInterval(() => {
+			//		wrapPos.y -= 5;
+			//		nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			//	}, 10);
+			//})
 
-			bDOWN.addEventListener(deviceEvents.end, e => {
-				e.preventDefault();
-				bDOWN.classList.remove('active');
-				clearInterval(timer);
-			});
+			//bDOWN.addEventListener(deviceEvents.end, e => {
+			//	e.preventDefault();
+			//	bDOWN.classList.remove('active');
+			//	clearInterval(timer);
+			//});
 
-			bDOWN.addEventListener(deviceEvents.move, e => {
-				e.preventDefault();
-				bDOWN.classList.remove('active');
-				clearInterval(timer);
-			});
+			//bDOWN.addEventListener(deviceEvents.move, e => {
+			//	e.preventDefault();
+			//	bDOWN.classList.remove('active');
+			//	clearInterval(timer);
+			//});
 
 		},
 
