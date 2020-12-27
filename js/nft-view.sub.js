@@ -212,23 +212,25 @@
                 }
             })
 			window.alert(109);
-   //         // ↓ 上下移動ボタン押下
-   //         var bUP = document.querySelector('#swUp');
-   //         var bDOWN = document.querySelector('#swDown');
+            // ↓ 上下移動ボタン押下
+            var bUP = document.querySelector('#swUp');
+			var bDOWN = document.querySelector('#swDown');
+			window.alert(!!bUP);
+			window.alert(!!bDOWN);
 
-   //         bUP.addEventListener('click', function (e) {
-   //             window.alert(arPosY);
-   //             self.arData..posVec3.y += 0.2;
-   //             window.alert(arPosY);
-   //             nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
-   //         })
+            bUP.addEventListener('click', function (e) {
+                window.alert(arPosY);
+                self.arData..posVec3.y += 0.2;
+                window.alert(arPosY);
+                nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
+            })
 
-   //         bDOWN.addEventListener('click', function (e) {
-   //             window.alert(arPosY);
-   //             self.arData.posVec3.y -= 0.2;
-   //             window.alert(arPosY);
-   //             nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
-   //         })
+            bDOWN.addEventListener('click', function (e) {
+                window.alert(arPosY);
+                self.arData.posVec3.y -= 0.2;
+                window.alert(arPosY);
+                nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
+            })
         },
 
 		positionVec3: function (type, sizeHeight) {
