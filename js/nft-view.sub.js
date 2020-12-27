@@ -217,21 +217,15 @@
 			var bDOWN = document.querySelector('#swDown');
 			window.alert(wrapPos.y);
 			bUP.addEventListener('click', function (e) {
-				window.alert(wrapPos.y);
 				wrapPos.y += 50;
-				window.alert(wrapPos.y);
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
-				window.alert(203);
 			})
 
             bDOWN.addEventListener('click', function (e) {
-				window.alert(wrapPos.y);
 				wrapPos.y -= 50;
-				window.alert(wrapPos.y);
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
-				window.alert(303);
             })
         },
 
