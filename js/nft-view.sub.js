@@ -159,7 +159,6 @@
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
-				window.alert(201);
             })
 			window.alert(104);
 			scene.addEventListener(self.eventnames.move, function (e) {
@@ -170,14 +169,12 @@
                         AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
 						});
-						window.alert(202);
                     }
                 }
             })
 			window.alert(105);
 			scene.addEventListener(self.eventnames.end, function (e) {
 				prevPageY = null;
-				window.alert(203);
             })
 			window.alert(106);
 
