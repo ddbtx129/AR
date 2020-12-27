@@ -190,7 +190,7 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
-					nft.setAttribute('position', String(self.arData.size.x) + ' ' + String(self.arData.size.y) + ' ' + String(self.arData.size.z));
+					nft.setAttribute('position', String(self.arData.posVec3.x) + ' ' + String(self.arData.posVec3.y) + ' ' + String(self.arData.posVec3.z));
                 }
             })
 
@@ -200,7 +200,7 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					nft.setAttribute('position', String(self.arData.size.x) + ' ' + String(self.arData.size.y) + ' ' + String(self.arData.size.z));
+					nft.setAttribute('position', String(self.arData.posVec3.x) + ' ' + String(self.arData.posVec3.y) + ' ' + String(self.arData.posVec3.z));
                 }
             })
 
