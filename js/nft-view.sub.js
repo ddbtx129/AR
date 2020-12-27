@@ -137,6 +137,9 @@ var zoomH = 0;
 				if (!dataObj.isShadow) {
 					nftShadow.remove();
 				} else {
+
+					nftShadow.style.visibility = "visible";
+
 					var shadow = {
 						path: (!(self.arg.ObjectList) ?
 							(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
