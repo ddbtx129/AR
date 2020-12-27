@@ -149,7 +149,7 @@ var defaultSize = { w: 10, h: 10 };
             var scene = document.getElementById('ar-scene');
 			var nft = document.getElementById("ar-gltf-main");
 			var nftSize = nft.getAttribute("scale");
-			window.alert(nftSize.w);
+			window.alert(nftSize.height);
 
             var self = this;
 
