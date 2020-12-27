@@ -107,7 +107,7 @@ var webArViewer = webArViewer || {};
                     h: dataObj.size.h * 10
                 };
             }
-            window.alert(dataObj.size.w);
+
             dataObj.isGif = !!(self.arg['p'] || '').match(/\.gif$/i);
 
             if (dataObj.path) {
