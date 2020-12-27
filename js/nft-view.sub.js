@@ -220,7 +220,8 @@
 				window.alert(201);
 				wrapPos.y += 20;
 				window.alert(wrapPos.y);
-				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
 				window.alert(203);
 			})
 
@@ -228,7 +229,8 @@
 				window.alert(301);
 				wrapPos.y -= 20;
 				window.alert(wrapPos.y);
-				nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
 				window.alert(303);
             })
         },
