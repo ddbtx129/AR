@@ -217,7 +217,7 @@
 			var bDOWN = document.querySelector('#swDown');
 			window.alert(wrapPos.y);
 			bUP.addEventListener('click', function (e) {
-				window.alert(201);
+				window.alert(wrapPos.y);
 				wrapPos.y += 20;
 				window.alert(wrapPos.y);
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
@@ -226,7 +226,7 @@
 			})
 
             bDOWN.addEventListener('click', function (e) {
-				window.alert(301);
+				window.alert(wrapPos.y);
 				wrapPos.y -= 20;
 				window.alert(wrapPos.y);
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
