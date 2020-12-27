@@ -213,7 +213,7 @@
 					wrapPos.z -= 5;
                 }
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
             bDOWN.addEventListener('click', function (e) {
@@ -223,7 +223,7 @@
 					wrapPos.z += 5;
 				}
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
 			// ↓ UPボタン長押し
@@ -232,7 +232,7 @@
 				bUP.classList.add('active');
 				timer = setInterval(() => {
 					arPosY += 0.2;
-					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
+					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z)));
 				}, 10);
 			})
 
@@ -255,7 +255,7 @@
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
 					arPosY -= 0.2;
-					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
+					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z)));
 				}, 10);
 			})
 
