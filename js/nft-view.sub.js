@@ -200,31 +200,36 @@
                 }
             })
 			window.alert(109);
-            // ↓ 上下移動ボタン押下
-			var wrapPos = nft.getAttribute('position');
-            var bUP = document.querySelector('#swUp');
-			var bDOWN = document.querySelector('#swDown');
-			var timer;
 
-			bUP.addEventListener('click', function (e) {
+			var wrapPos = nft.getAttribute('position');
+
+            // ↓ 上移動ボタン押下
+			var upbtn = document.getElementById('swUp');
+			var downbtn = document.getElementById('swDown');
+
+			upbtn.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
 					wrapPos.y += 5;
 				} else {
 					wrapPos.z -= 5;
                 }
-				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
-            bDOWN.addEventListener('click', function (e) {
+			// ↓ 下移動ボタン押下
+			downbtn.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
 					wrapPos.y -= 5;
 				} else {
 					wrapPos.z += 5;
 				}
-				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
+
+			var bUP = document.querySelector('#swUp');
+			var bDOWN = document.querySelector('#swDown');
+
+			var timer;
 
 			// ↓ UPボタン長押し
 			bUP.addEventListener(deviceEvents.start, e => {
@@ -232,7 +237,7 @@
 				bUP.classList.add('active');
 				timer = setInterval(() => {
 					wrapPos.y += 5;
-					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z)));
+					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				}, 10);
 			})
 
@@ -255,7 +260,7 @@
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
 					wrapPos.y -= 5;
-					nft.setAttribute('position', AFRAME.utils.coordinates.stringify(String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z)));
+					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				}, 10);
 			})
 
