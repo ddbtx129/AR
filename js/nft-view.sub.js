@@ -48,23 +48,21 @@
 			//arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
 
 			if (!!(arg.wh)) {
-				arg.sizeList = (function () {
-					switch ((parseInt(arg.wh, 16).toString(10)) / 2) {
-						case 2:
-							return (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-							break;
-						case 3:
-							return (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
-							break;
-						case 4:
-							return (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
-							break;
-						default:
-							return (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-							break;
-					}
-				});
-			}
+				 switch ((parseInt(arg.wh, 16).toString(10)) / 2) {
+					case 2:
+						 arg.sizeLis = (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+						break;
+					case 3:
+						 arg.sizeLis = (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+						break;
+					case 4:
+						 arg.sizeLis = (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
+						break;
+					default:
+						 arg.sizeLis = (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+						break;
+				};
+			};
 
 			// マーカー
 			arg.markerList = arg.m;
