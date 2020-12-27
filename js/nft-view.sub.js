@@ -127,6 +127,10 @@ var zoomH = 0;
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				defaultPos = dataObj.posVec3;
 
+				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
+				nft.setAttribute('rotation', '0 0 0');
+
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 				//var nftShadow = document.getElementById('ar-gltf-shadow');
@@ -181,9 +185,6 @@ var zoomH = 0;
 
 				}
 
-				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
-				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
-				nft.setAttribute('rotation', '0 0 0');
 		    }
 
 		    arData = dataObj;
@@ -199,7 +200,7 @@ var zoomH = 0;
 
 			var self = this;
 
-			self.arData.shadow && self.arDat.nft.appendChild(shadow);
+			self.arData.shadow && nft.appendChild(self.arData.shadow);
 
             //var prevPageY;
             //var prevPageX;
@@ -242,7 +243,6 @@ var zoomH = 0;
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
-						// position リセット						
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 				}
