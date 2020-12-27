@@ -170,14 +170,11 @@ var zoomH = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
 					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
-						//window.alert((prevPageY - event.pageY));
-						//window.alert((scene.clientHeight / 5));
-
 						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 
-						//window.alert(zoomRate);
 						document.getElementById("area1").innerText = zoomW;
+
 						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
 							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
 						});
