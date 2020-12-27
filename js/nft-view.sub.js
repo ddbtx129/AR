@@ -129,14 +129,14 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				var nftShadow = document.getElementById('ar-gltf-shadow');
+				//var nftShadow = document.getElementById('ar-gltf-shadow');
 				
 				if (!dataObj.isShadow) {
 					//nftShadow.remove();
 					nftShadow.style.visibility = "hidden";
 				} else {
 
-					nftShadow.style.visibility = "hidden";
+					//nftShadow.style.visibility = "hidden";
 
 					//dataObj.shadow = {
 					//	path: (!(self.arg.ObjectList) ?
@@ -174,7 +174,8 @@ var zoomH = 0;
 						color: 'black', opacity: 0.3, depthTest: false
 					});
 
-					shadow && nft.appendChild(shadow);
+					dataObj.shadow = shadow;
+
 				}
 
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
@@ -193,7 +194,9 @@ var zoomH = 0;
             var scene = document.getElementById('ar-scene');
 			var nft = document.getElementById("ar-gltf-main");
 
-            var self = this;
+			var self = this;
+
+			self.arData.shadow && self.arDat.nft.appendChild(shadow);
 
             //var prevPageY;
             //var prevPageX;
@@ -232,26 +235,23 @@ var zoomH = 0;
             parallelbtn.classList.add('current');
 
 			anglebtn.addEventListener('click', function () {
-                if (!anglebtn.classList.contains('current')) {
+				if (!anglebtn.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-
-                    anglebtn.classList.add('current');
+					anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
-
+						// position リセット						
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
-                }
-            })
+				}
+			})
 
 			parallelbtn.addEventListener('click', function () {
                 if (!parallelbtn.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
-
 					// position リセット
-					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
                 }
             })
 
