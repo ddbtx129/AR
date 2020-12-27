@@ -220,20 +220,19 @@
 
 			bUP.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
-					wrapPos.z -= moveRate;
+					wrapPos.z -= moveRate * 10;
 				} else {
-					wrapPos.y -= moveRate;
+					wrapPos.y += moveRate * 10;
                 }
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
 			})
 
             bDOWN.addEventListener('click', function (e) {
-				wrapPos.z -= 50;
 				if (!!(anglebtn.classList.contains('current'))) {
-					wrapPos.z += moveRate;
+					wrapPos.z += moveRate * 10;
 				} else {
-					wrapPos.y -= moveRate;
+					wrapPos.y -= moveRate * 10;
 				}
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
