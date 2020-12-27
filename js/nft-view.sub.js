@@ -121,13 +121,6 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				//if (!dataObj.isShadow) {
-				//	var el = document.querySelector('ar-gltf-shadow');
-				//	el.remove();
-				//} else {
-				//	//
-				//}
-
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				defaultSize = dataObj.size;
@@ -138,6 +131,29 @@ var zoomH = 0;
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
+
+				var el = document.getElementById('ar-gltf-shadow');
+
+				if (!dataObj.isShadow) {
+					el.remove();
+				} else {
+					var shadow = document.createElement('a-entity');
+
+					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(this.positionVec3('shadow')));
+
+					shadow.setAttribute('rotation', '-90 0 0');
+
+					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+					});
+
+					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+						shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+						color: 'black', opacity: 0.3, depthTest: false
+					});
+
+					dataObj.shadow = shadow;
+				}
 		    }
 
 		    arData = dataObj;
@@ -172,11 +188,8 @@ var zoomH = 0;
 					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
 						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-
-						document.getElementById("area1").innerText = zoomW;
-
 						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
+							property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
 						});
                     }
                 }
