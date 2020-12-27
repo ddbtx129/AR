@@ -221,8 +221,10 @@
 			bUP.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
 					wrapPos.z -= moveRate * 10;
+					window.alert(z);
 				} else {
 					wrapPos.y += moveRate * 10;
+					window.alert(y);
                 }
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
