@@ -122,7 +122,6 @@
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
 				}
 
-				window.alert(0)
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 				//if (!dataObj.isShadow) {
@@ -131,7 +130,7 @@
 				//} else {
 				//	//
 				//}
-				window.alert(String(self.arg.sizeList));
+
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
@@ -143,28 +142,22 @@
 
 		    arData = dataObj;
 			self.arData = arData;
-			window.alert(dataObj.size.w);
 		    return true;
 		},
 
         setSwitcher: function () {
 
-			window.alert(100);
             var scene = document.getElementById('ar-scene');
 			var nft = document.getElementById("ar-gltf-main");
-			window.alert(101);
 
             var self = this;
-			window.alert(102);
 
             var prevPageY;
             var prevPageX;
-			window.alert(103);
 
 			var zoomRate = self.arData.size.h;
 			var moveRate = self.arData.size.h;
 
-			window.alert(!!(self.arData));
    //         // 拡大・縮小
    //         scene.addEventListener(deviceEvents.start, function (e) {
    //             var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -204,8 +197,8 @@
                     parallelbtn.classList.remove('current');
                 }
             })
-			window.alert(108);
-            parallelbtn.addEventListener('click', function () {
+
+			parallelbtn.addEventListener('click', function () {
                 if (!parallelbtn.classList.contains('current')) {
                     nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                     parallelbtn.classList.add('current');
@@ -223,9 +216,7 @@
 				//	wrapPos.z -= moveRate * 10;
 				//	window.alert(z);
 				//} else {
-				window.alert("y11");
 					wrapPos.y += moveRate * 10;
-					window.alert("y12");
                 //}
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
@@ -235,9 +226,7 @@
 				//if (!!(anglebtn.classList.contains('current'))) {
 				//	wrapPos.z += moveRate * 10;
 				//} else {
-				window.alert("y21");
 					wrapPos.y -= moveRate * 10;
-					window.alert("y22");
 				//}
 				//nft.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(dwrapPos.y) + ' ' + String(wrapPos.z));
