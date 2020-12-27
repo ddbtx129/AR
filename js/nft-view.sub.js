@@ -177,28 +177,28 @@
 			//	window.alert(203);
    //         })
 			//window.alert(106);
+
 			// ↓ rotation 切替
-   //         var anglebtn = document.querySelector('#swAngle');
-   //         var parallelbtn = document.querySelector('#swParallel');
+            var anglebtn = document.querySelector('#swAngle');
+            var parallelbtn = document.querySelector('#swParallel');
 
-   //         parallelbtn.classList.add('current');
-			//window.alert(107);
-   //         anglebtn.addEventListener('click', function () {
-   //             if (!anglebtn.classList.contains('current')) {
-   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-   //                 anglebtn.classList.add('current');
-   //                 parallelbtn.classList.remove('current');
-   //             }
-   //         })
+            parallelbtn.classList.add('current');
 
-			//parallelbtn.addEventListener('click', function () {
-   //             if (!parallelbtn.classList.contains('current')) {
-   //                 nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-   //                 parallelbtn.classList.add('current');
-   //                 anglebtn.classList.remove('current');
-   //             }
-   //         })
-			//window.alert(109);
+			anglebtn.addEventListener('click', function () {
+                if (!anglebtn.classList.contains('current')) {
+                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+                    anglebtn.classList.add('current');
+                    parallelbtn.classList.remove('current');
+                }
+            })
+
+			parallelbtn.addEventListener('click', function () {
+                if (!parallelbtn.classList.contains('current')) {
+                    nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                    parallelbtn.classList.add('current');
+                    anglebtn.classList.remove('current');
+                }
+            })
 
 			//var wrapPos = nft.getAttribute('position');
 
