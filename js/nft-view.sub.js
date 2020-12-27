@@ -195,7 +195,7 @@
                     anglebtn.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
-					var posVec3 = this.positionVec3('main', self.arData.size.h);
+					var posVec3 = this.positionVec3('main', defaultHeight);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
@@ -206,7 +206,7 @@
                     parallelbtn.classList.add('current');
 					anglebtn.classList.remove('current');
 					// position リセット
-					var posVec3 = this.positionVec3('main', self.arData.size.h);
+					var posVec3 = this.positionVec3('main', defaultHeight);
 					nft.setAttribute('position', String(posVec3.x) + ' ' + String(posVec3.y) + ' ' + String(posVec3.z));
                 }
             })
