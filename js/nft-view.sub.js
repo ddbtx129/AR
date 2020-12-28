@@ -143,36 +143,36 @@ var zoomH = 0;
 				//	height: val.size.h, radius: val.size.w, segmentsHeight: 18, segmentsRadial: 36
 				//});
 
-				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				//dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				if (dataObj.isShadow) {
+				//if (dataObj.isShadow) {
 
-					var shadow = document.createElement('a-entity');
+				//	var shadow = document.createElement('a-entity');
 
-					shadow = {
-						path: (!(self.arg.ObjectList) ?
-							(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
-							:
-							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
-					};
+				//	shadow = {
+				//		path: (!(self.arg.ObjectList) ?
+				//			(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
+				//			:
+				//			(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
+				//	};
 
-					var shadowPosVec3 = this.positionVec3('shadow');
+				//	var shadowPosVec3 = this.positionVec3('shadow');
 
-					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
-					shadow.setAttribute('rotation', '-90 0 0');
+				//	shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
+				//	shadow.setAttribute('rotation', '-90 0 0');
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-					});
+				//	AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+				//		primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+				//	});
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: shadow.path, transparent: true, alphaTest: 0.1,
-						color: 'black', opacity: 0.3, depthTest: false
-					});
+				//	AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+				//		shader: 'flat', npot: true, src: shadow.path, transparent: true, alphaTest: 0.1,
+				//		color: 'black', opacity: 0.3, depthTest: false
+				//	});
 
-					dataObj.shadow = shadow;
-					nft.appendChild(dataObj.shadow);
-				}
+				//	dataObj.shadow = shadow;
+				//	nft.appendChild(dataObj.shadow);
+				//}
 		    }
 
 		    arData = dataObj;
