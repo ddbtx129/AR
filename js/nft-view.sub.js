@@ -170,11 +170,10 @@ var zoomH = 0;
 					var shadow = document.createElement('a-entity');
 
 					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-
 					shadow.setAttribute('rotation', '-90 0 0');
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-						primitive: 'plane', scale: String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w)
+						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
 					});
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
