@@ -157,14 +157,14 @@ var zoomH = 0;
 					};
 
 					var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
-					window.alert(shadowPosVec3.z);
+					window.alert(shadowPosVec3.x);
 					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(shadowPosVec3.z));
-					shadow.setAttribute('rotation', '-90 0 0');
+					shadow.setAttribute('rotation', '0 0 0');
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', { primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w });
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: "#arGltf-main", transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false
+						shader: 'flat', npot: true, src: shadowSrc.path, transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false
 					});
 
 					dataObj.shadow = shadow;
@@ -328,7 +328,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: 0, z: -sizeHeight };
+				return { x: 0, y: -sizeHeight, z: 0 };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
