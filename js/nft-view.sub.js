@@ -155,7 +155,7 @@ var zoomH = 0;
 					shadow.setAttribute('rotation', '-90 0 0');
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-						primitive: 'box', scale: String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w)
+						primitive: 'box', depth: dataObj.size.w, height: dataObj.size.h, width: dataObj.size.w
 					});
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
