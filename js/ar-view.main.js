@@ -66,6 +66,13 @@ var webArViewer = webArViewer || {};
             arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
             // マーカー
             arg.markerList = arg.m;
+            arg.markerList1 = arg.m1;
+            arg.markerList2 = arg.m2;
+
+            // arGltf-main
+            arg.ObjectList = arg.p;
+            arg.ObjectList1 = arg.p1;
+            arg.ObjectList2 = arg.p2;
 
             self.arg = arg;
         },
@@ -80,7 +87,13 @@ var webArViewer = webArViewer || {};
             var arData = null;
 
             // データの準備
-            var dataObj = { path: self.arg['p'] };
+            //var dataObj = { path: self.arg['p'] };
+            var dataObj = {
+                path: (!(self.arg.ObjectList) ?
+                    ('article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
+                    :
+                    (!(self.arg.ObjectList) ? '' : 'article/pic/' + self.arg.ObjectList))
+            };
 
             dataObj.isWarp = self.arg.warpList && !!Number(self.arg.warpList);
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
