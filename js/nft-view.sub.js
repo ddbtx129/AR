@@ -143,11 +143,11 @@ var zoomH = 0;
 				//	height: val.size.h, radius: val.size.w, segmentsHeight: 18, segmentsRadial: 36
 				//});
 
-				//dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				//if (dataObj.isShadow) {
+				if (dataObj.isShadow) {
 
-				//	var shadow = document.createElement('a-entity');
+					var shadow = document.createElement('a-entity');
 
 				//	shadow = {
 				//		path: (!(self.arg.ObjectList) ?
@@ -170,9 +170,9 @@ var zoomH = 0;
 				//		color: 'black', opacity: 0.3, depthTest: false
 				//	});
 
-				//	dataObj.shadow = shadow;
-				//	nft.appendChild(dataObj.shadow);
-				//}
+					dataObj.shadow = shadow;
+					nft.appendChild(dataObj.shadow);
+				}
 		    }
 
 		    arData = dataObj;
