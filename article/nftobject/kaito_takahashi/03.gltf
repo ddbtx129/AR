@@ -45,12 +45,7 @@
         },
         {
             "mesh" : 0,
-            "name" : "\u5e73\u9762",
-            "scale" : [
-                20,
-                1,
-                20
-            ]
+            "name" : "\u5e73\u9762"
         }
     ],
     "materials" : [
@@ -94,7 +89,7 @@
         {
             "bufferView" : 4,
             "mimeType" : "image/png",
-            "name" : "kaito_takahashi_3"
+            "name" : "03"
         }
     ],
     "accessors" : [
