@@ -89,8 +89,6 @@ var zoomH = 0;
 			var self = this;
 			var arData = null;
 
-			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
-
 			// データの準備
 			var dataObj = {
 				path: (!(self.arg.ObjectList) ?
@@ -147,27 +145,19 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				//var nftShadow = document.getElementById('arGltf-shadow');
-				//var arShadow = document.getElementById('source');
-
-				if (!dataObj.isShadow) {
-					//nftShadow.remove();
-					//arShadow.remove();
-					//nftShadow.style.visibility = "hidden";
-				} else {
-
-					//nftShadow.style.visibility = "hidden";
+				if (dataObj.isShadow) {
 
 					var shadow = document.createElement('a-entity');
 
-					shadow.Source = {
+					shadow = {
 						path: (!(self.arg.ObjectList) ?
 							(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
 							:
 							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
 					};
 
-					var shadowPosVec3 = this.positionVec3('shadow')
+					var shadowPosVec3 = this.positionVec3('shadow');
+
 					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
 					shadow.setAttribute('rotation', '-90 0 0');
 
@@ -176,12 +166,12 @@ var zoomH = 0;
 					});
 
 					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: shadow.Source.path, transparent: true, alphaTest: 0.1,
+						shader: 'flat', npot: true, src: shadow.path, transparent: true, alphaTest: 0.1,
 						color: 'black', opacity: 0.3, depthTest: false
 					});
 
 					dataObj.shadow = shadow;
-					scene.appendChild(dataObj.shadow);
+					nft.appendChild(dataObj.shadow);
 				}
 		    }
 
