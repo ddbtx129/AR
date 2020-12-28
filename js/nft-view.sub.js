@@ -159,7 +159,7 @@ var zoomH = 0;
 
 					shadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 					shadow.setAttribute('position', String(shadow.posVec3.x) + ' ' + String(shadow.posVec3.y) + ' ' + String(shadow.posVec3.z));
-					shadow.setAttribute('rotation', '-90 0 0');
+					shadow.setAttribute('rotation', '-80 0 0');
 
 					//var shadow = document.createElement('a-entity');
 
