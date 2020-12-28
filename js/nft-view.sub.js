@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(10);
+			window.alert(110);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -226,6 +226,8 @@ var zoomH = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
+				var w1 = nft.getBoundingClientRect().width;
+				window.alert(w1);
             })
 			
 			scene.addEventListener(self.eventnames.move, function (e) {
