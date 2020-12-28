@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(115);
+			window.alert(116);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -231,11 +231,12 @@ var zoomH = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
 					if (((prevPageY - event.pageY) / scene.clientHeight / 5) * 48 > 0.1) {
-						zoomW += (prevPageY - event.pageY) / scene.clientHeight / 5;
-						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 48;
-						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomH + ' ' + zoomH + ' ' + zoomH
-						});
+						window.alert((prevPageY - event.pageY));
+						//zoomW += (prevPageY - event.pageY) / scene.clientHeight / 5;
+						//zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 48;
+						//AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+						//	property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomH + ' ' + zoomH + ' ' + zoomH
+						//});
                     }
                 }
             })
