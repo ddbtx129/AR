@@ -4,10 +4,10 @@ AFRAME.registerComponent('videohandler', {
     init: function () {
 
         // ビデオ格納用の変数定義を追加
-        var video = null;
-        var marker = this.el;
-
-        video = document.querySelector('#arVideo');
+        var video = document.querySelector('#arVideo');
+        //var marker = this.el;
+        var marker = document.querySelector('#arMarker');
+        //video = document.querySelector('#arVideo');
 
         // マーカーを検出したイベントの登録
         marker.addEventListener('markerFound', function () {
@@ -30,23 +30,6 @@ AFRAME.registerComponent('videohandler', {
         });
     }
 });
-
-//AFRAME.registerComponent('move-object', {
-//    init: function () {
-//        document.addEventListener('click', (e) => {
-//            let rect = document.querySelector('body').getBoundingClientRect();
-
-//            // カメラに写る幅とスクリーン幅の比
-//            const d = a / rect.width;
-//            const x = (e.clientX - rect.width / 2) * d;
-//            const y = -(e.clientY - rect.height / 2) * d;
-
-//            // オブジェクトを配置
-//            const obj = document.querySelector("a-sphere");
-//            obj.object3D.position.set(x, y, -z);
-//        })
-//    }
-//});
 
 window.addEventListener('DOMContentLoaded', function () {
 
