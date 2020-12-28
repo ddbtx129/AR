@@ -39,6 +39,8 @@
             <audio id="arAudio" src="videopath" autoplay></audio>
         </a-assets>
 
+        <script type="text/javascript">getArVideo();</script>
+
         <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
         <!--<a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">-->
         <a-scene id="arScene" vr-mode-ui="enabled: false;"
@@ -55,7 +57,7 @@
 
         </a-scene>
 
-        <script type="text/javascript">getArVideo();</script>
+        <script type="text/javascript">getArMarker();</script>
 
     </body>
 
