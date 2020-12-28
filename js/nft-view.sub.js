@@ -135,14 +135,14 @@ var zoomH = 0;
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 
-				var ts, tl;
-				ts = -32;
-				tl = 64;
+				//var ts, tl;
+				//ts = -32;
+				//tl = 64;
 
-				AFRAME.utils.entity.setComponentProperty(nft, 'geometry', {
-					primitive: 'cylinder', openEnded: true, thetaStart: ts, thetaLength: tl,
-					height: val.size.h, radius: val.size.w, segmentsHeight: 18, segmentsRadial: 36
-				});
+				//AFRAME.utils.entity.setComponentProperty(nft, 'geometry', {
+				//	primitive: 'cylinder', openEnded: true, thetaStart: ts, thetaLength: tl,
+				//	height: val.size.h, radius: val.size.w, segmentsHeight: 18, segmentsRadial: 36
+				//});
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
@@ -180,22 +180,22 @@ var zoomH = 0;
 
 					//arShadow.setAttribute("src", source);
 
-					var shadow = document.createElement('a-entity');
+					//var shadow = document.createElement('a-entity');
 
-					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-					shadow.setAttribute('rotation', '-90 0 0');
+					//shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+					//shadow.setAttribute('rotation', '-90 0 0');
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-					});
+					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+					//	primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+					//});
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
-						color: 'black', opacity: 0.3, depthTest: false
-					});
+					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+					//	shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
+					//	color: 'black', opacity: 0.3, depthTest: false
+					//});
 
-					dataObj.shadow = shadow;
-					marker.appendChild(dataObj.shadow);
+					//dataObj.shadow = shadow;
+					//marker.appendChild(dataObj.shadow);
 				}
 		    }
 
@@ -206,6 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
+			window.alert(0);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -346,7 +347,7 @@ var zoomH = 0;
 				bDOWN.classList.remove('active');
 				clearInterval(timer);
 			});
-
+			window.alert(1);
 		},
 
 		positionVec3: function (type, sizeHeight) {
