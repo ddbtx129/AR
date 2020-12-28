@@ -149,8 +149,7 @@ var zoomH = 0;
 
 					var shadow = document.createElement('a-entity');
 
-					shadow = {
-						path: (!(self.arg.ObjectList) ?
+					var src = { path: (!(self.arg.ObjectList) ?
 							(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
 							:
 							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
@@ -166,7 +165,7 @@ var zoomH = 0;
 				//	});
 
 				//	AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-				//		shader: 'flat', npot: true, src: shadow.path, transparent: true, alphaTest: 0.1,
+				//		shader: 'flat', npot: true, src: src.path, transparent: true, alphaTest: 0.1,
 				//		color: 'black', opacity: 0.3, depthTest: false
 				//	});
 
