@@ -237,7 +237,7 @@ var zoomH = 0;
 			var bAngle = document.querySelector('#swAngle');
 			var bParallel = document.querySelector('#swParallel');
 
-			parallelbtn.classList.add('current');
+			bParallel.classList.add('current');
 			window.alert(5);
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
