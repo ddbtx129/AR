@@ -149,12 +149,12 @@ var zoomH = 0;
 
 					var shadow = document.createElement('a-entity');
 
-				//	shadow = {
-				//		path: (!(self.arg.ObjectList) ?
-				//			(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
-				//			:
-				//			(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
-				//	};
+					shadow = {
+						path: (!(self.arg.ObjectList) ?
+							(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
+							:
+							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
+					};
 
 				//	var shadowPosVec3 = this.positionVec3('shadow');
 
