@@ -88,7 +88,6 @@ var zoomH = 0;
 
 			var self = this;
 			var arData = null;
-			var scene = document.getElementById('arScene');
 
 			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 
@@ -108,6 +107,7 @@ var zoomH = 0;
 
 			} else {
 
+				var scene = document.getElementById('arScene');
 		        var marker = document.getElementById('arNft');
 		        var nft = document.getElementById("arGltf-main");
 
@@ -180,22 +180,22 @@ var zoomH = 0;
 
 					//arShadow.setAttribute("src", source);
 
-					//var shadow = document.createElement('a-entity');
+					var shadow = document.createElement('a-entity');
 
-					//shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-					//shadow.setAttribute('rotation', '-90 0 0');
+					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+					shadow.setAttribute('rotation', '-90 0 0');
 
-					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-					//	primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-					//});
+					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+					});
 
-					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-					//	shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
-					//	color: 'black', opacity: 0.3, depthTest: false
-					//});
+					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+						shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
+						color: 'black', opacity: 0.3, depthTest: false
+					});
 
-					//dataObj.shadow = shadow;
-					//marker.appendChild(dataObj.shadow);
+					dataObj.shadow = shadow;
+					marker.appendChild(dataObj.shadow);
 				}
 		    }
 
@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(0);
+			window.alert(10);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -347,7 +347,7 @@ var zoomH = 0;
 				bDOWN.classList.remove('active');
 				clearInterval(timer);
 			});
-			window.alert(1);
+			window.alert(11);
 		},
 
 		positionVec3: function (type, sizeHeight) {
