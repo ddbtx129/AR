@@ -7,7 +7,7 @@ AFRAME.registerComponent('videohandler', {
         var video = null;
         var marker = this.el;
 
-        video = document.querySelector('#ar-video');
+        video = document.querySelector('#arVideo');
 
         // マーカーを検出したイベントの登録
         marker.addEventListener('markerFound', function () {
