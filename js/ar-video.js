@@ -5,7 +5,7 @@ function getArVideo() {
 
     //var arg = GetQueryString();
 
-    var video = document.getElementById("ar-video");
+    var video = document.getElementById("arVideo");
     //var vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
     var vObj;
 
@@ -37,8 +37,8 @@ function getNftVideo() {
     
     //var arg = GetQueryString();
 
-    var video = document.getElementById("ar-video");
-    var audio = document.getElementById("ar-audio");
+    var video = document.getElementById("arVideo");
+    var audio = document.getElementById("arAudio");
     
     //var vObj = !(arg["o"]) ? path + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
     var vObj;
