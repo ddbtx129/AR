@@ -14,7 +14,7 @@ function getArVideo() {
     } else {
         vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
     }
-
+    window.alert(vObj);
     video.setAttribute("src", vObj);
 };
 
@@ -29,7 +29,7 @@ function getArMarker() {
     } else {
         mObj = !(arg["m"]) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + arg["m"] + '.patt';
     }
-
+    window.alert(mObj);
     marker.setAttribute("url", mObj);
 };
 
