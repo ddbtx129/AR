@@ -157,7 +157,7 @@ var zoomH = 0;
 					};
 
 					var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
-					window.alert(shadowPosVec3.x);
+					window.alert(shadowPosVec3.z);
 					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(shadowPosVec3.z));
 					shadow.setAttribute('rotation', '0 0 0');
 
@@ -168,7 +168,7 @@ var zoomH = 0;
 					});
 
 					dataObj.shadow = shadow;
-					marker.appendChild(dataObj.shadow);
+					nft.appendChild(dataObj.shadow);
 				}
 		    }
 
