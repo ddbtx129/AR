@@ -242,8 +242,8 @@ var zoomH = 0;
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-					bParallel.classList.add('current');
-					parallelbtn.classList.remove('current');
+					bAngle.classList.add('current');
+					bParallel.classList.remove('current');
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 				}
