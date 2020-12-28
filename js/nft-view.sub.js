@@ -268,7 +268,7 @@ var zoomH = 0;
 			window.alert(7);
 			// ↓ 上移動ボタン押下
 			bUP.addEventListener('click', function (e) {
-				if (!!(anglebtn.classList.contains('current'))) {
+				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y += 5;
 				} else {
 					wrapPos.z -= 5;
@@ -278,7 +278,7 @@ var zoomH = 0;
 
 			// ↓ 下移動ボタン押下
 			bDOWN.addEventListener('click', function (e) {
-				if (!!(anglebtn.classList.contains('current'))) {
+				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y -= 5;
 				} else {
 					wrapPos.z += 5;
@@ -291,7 +291,7 @@ var zoomH = 0;
 				e.preventDefault();
 				bUP.classList.add('active');
 				timer = setInterval(() => {
-					if (!!(anglebtn.classList.contains('current'))) {
+					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y += 5;
 					} else {
 						wrapPos.z -= 5;
@@ -317,7 +317,7 @@ var zoomH = 0;
 				e.preventDefault();
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
-					if (!!(anglebtn.classList.contains('current'))) {
+					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y -= 5;
 					} else {
 						wrapPos.z += 5;
