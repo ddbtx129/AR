@@ -152,7 +152,9 @@ var zoomH = 0;
 					var shadowPath = (!(self.arg.ObjectList) ?
 							(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
 							:
-							(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'));
+						(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'));
+
+					nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(shadowPath));
 
 					shadow.posVec3 = this.positionVec3('shadow', dataObj.size.h);
 					defaultPosS = shadow.posVec3;
