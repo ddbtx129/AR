@@ -4,10 +4,10 @@ AFRAME.registerComponent('videohandler', {
     init: function () {
 
         // ビデオ格納用の変数定義を追加
-        var video = document.querySelector('#arVideo');
+        var video = document.querySelector('#ar-video');
         //var marker = this.el;
         var marker = document.querySelector('#arMarker');
-        //video = document.querySelector('#arVideo');
+        //video = document.querySelector('#ar-video');
 
         // マーカーを検出したイベントの登録
         marker.addEventListener('markerFound', function () {
@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
         if (videostate >= 1 && videostate < 2) {
 
-            var video = document.querySelector('#arVideo');
+            var video = document.querySelector('#ar-video');
             video.play();
 
             videostate = 1;
