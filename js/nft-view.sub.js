@@ -148,7 +148,7 @@ var zoomH = 0;
 				var shadow = document.getElementById("arGltf-shadow");
 
 				if (dataObj.isShadow) {
-					window.alert(0);
+
 					var shadowPath = (!(self.arg.ObjectList) ?
 							(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
 							:
@@ -328,7 +328,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: h1_2, z: -sizeHeight };
+				return { x: 0, y: h1_2, z: sizeHeight };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
