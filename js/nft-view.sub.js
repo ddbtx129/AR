@@ -227,7 +227,7 @@ var zoomH = 0;
 
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
-					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('270 0 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('180 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 
 					//shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 180 180'));
