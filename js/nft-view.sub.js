@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(116);
+			window.alert(117);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -219,6 +219,8 @@ var zoomH = 0;
 			zoomW = defaultSize.w;
 			zoomH = defaultSize.h;
 
+			var rate = defaultSize.h / 4;
+
 			// 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -230,11 +232,11 @@ var zoomH = 0;
 			scene.addEventListener(self.eventnames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-					if (zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5) * 48 > 1) {
-						zoomW += (prevPageY - event.pageY) / scene.clientHeight / 5;
-						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 48;
+					if (zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate > 1) {
+						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 40;
+						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 40;
 						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomH + ' ' + zoomH + ' ' + zoomH
+							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
 						});
                     }
                 }
