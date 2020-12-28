@@ -230,7 +230,7 @@ var zoomH = 0;
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 
-					shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 180 0'));
+					shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 180 180'));
 					shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
 
 					bAngle.classList.add('current');
