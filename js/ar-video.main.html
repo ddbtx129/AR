@@ -1,0 +1,64 @@
+﻿<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>ＡＲ</title>
+
+        <link rel="stylesheet" href="css/ar-video.css">
+
+        <script type="text/javascript" src="js/ar.main.js"></script>
+        <script type="text/javascript" src="js/ar/aframe.min.js"></script>
+        <script type="text/javascript" src="js/ar/aframe-ar.js"></script>
+        <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
+        <script type="text/javascript" src="js/ar.event.js"></script>
+        <script type="text/javascript" src="js/ar-video.js"></script>
+
+    </head>
+
+    <body style='margin : 0px; overflow: hidden;'>
+
+        <div id="info1" class="info1">
+            <a id="swPlay" class="InfoItem">
+                <p id="p1">画面をタップすると、再生が開始されます。<br><br>音声が流れますのでご注意下さい。</p>
+            </a>
+        </div>
+
+        <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
+
+        <a-assets>
+            <video id="arVideo" autoplay loop="true" preload="none" src='article/notfound_video.mp4' controls></video>
+            <audio id="ar-audio" src="videopath" autoplay></audio>
+        </a-assets>
+
+        <script type="text/javascript">getArVideo();</script>
+
+        <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
+        <!--<a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">-->
+        <a-scene id="arScene" vr-mode-ui="enabled: false;"
+                 renderer='antialias: true; alpha: true; precision: mediump;'
+                 embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
+
+            <!-- 『.patt』ファイルを読み込む -->
+            <a-marker id="arMarker" type='pattern' url='pattern/pattern-0.patt' videohandler>
+                <a-video src="#arVideo" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
+            </a-marker>
+
+            <!--<a-camera-static />-->
+            <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
+
+        </a-scene>
+
+        <script type="text/javascript">getArMarker();</script>
+
+    </body>
+
+</html>
