@@ -1,5 +1,7 @@
 ﻿var defaultPos = { x: 0, y: 0, z: 0};
 var defaultSize = { w: 10, h: 10 };
+var defaultPosS = { x: 0, y: 0, z: 0 };
+var defaultSizeS = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
 
@@ -145,31 +147,49 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
+				var shadow = document.getElementById("arGltf-shadow");
+
 				if (dataObj.isShadow) {
 
-					var shadow = document.createElement('a-entity');
+					shadow.getAttribute('gltf-model', AFRAME.utils.coordinates.stringify((!(self.arg.ObjectList) ?
+						(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
+						:
+						(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '-xs.gltf'))));
 
-					var shadowSrc = {
-						path: (!(self.arg.ObjectList) ?
-							(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
-							:
-							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
-					};
+					shadow.posVec3 = this.positionVec3('shadow', dataObj.size.h);
+					defaultPosS = shadow.posVec3;
 
-					var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
-					window.alert(shadowPosVec3.z);
-					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(shadowPosVec3.z));
-					shadow.setAttribute('rotation', '-45 0 0');
+					shadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+					shadow.setAttribute('position', String(shadow.posVec3.x) + ' ' + String(shadow.posVec3.y) + ' ' + String(shadow.posVec3.z));
+					shadow.setAttribute('rotation', '-90 0 0');
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', { primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w });
+					//var shadow = document.createElement('a-entity');
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false
-					});
+					//var shadowSrc = {
+					//	path: (!(self.arg.ObjectList) ?
+					//		(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
+					//		:
+					//		(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
+					//};
+
+					//var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
+					//window.alert(shadowPosVec3.z);
+					//shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(shadowPosVec3.z));
+					//shadow.setAttribute('rotation', '-45 0 0');
+
+					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', { primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w });
+
+					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+					//	shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false
+					//});
+
+					shadow.style.visibility = "visible";
 
 					dataObj.shadow = shadow;
-					marker.appendChild(dataObj.shadow);
-				}
+					//marker.appendChild(dataObj.shadow);
+				} else {
+					shadow.style.visibility = "hidden";
+                }
 		    }
 
 		    arData = dataObj;
@@ -328,7 +348,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: -sizeHeight, z: 0 };
+				return { x: 0, y: 0, z: -sizeHeight };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
