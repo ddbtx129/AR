@@ -35,22 +35,23 @@
         <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
 
         <a-assets>
-            <video id="ar-video" autoplay loop="true" preload="none" src='article/notfound_video.mp4' controls></video>
-            <audio src="videopath" autoplay></audio>
+            <video id="arVideo" autoplay loop="true" preload="none" src='article/notfound_video.mp4' controls></video>
+            <audio id="arAudio" src="videopath" autoplay></audio>
         </a-assets>
 
         <!-- デバッグ用の画面表示、VR用のボタンをそれぞれ非表示に -->
         <!--<a-scene embedded arjs="debugUIEnabled:false;" vr-mode-ui="enabled: false">-->
-        <a-scene vr-mode-ui="enabled: false;"
-                    renderer='antialias: true; alpha: true; precision: mediump;'
-                    embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
+        <a-scene id="arScene" vr-mode-ui="enabled: false;"
+                 renderer='antialias: true; alpha: true; precision: mediump;'
+                 embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
-                <!-- 『.patt』ファイルを読み込む -->
-                <a-marker id="ar-marker" type='pattern' url='pattern/pattern-0.patt' videohandler>
-                    <a-video src="#ar-video" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
-                </a-marker>
+            <!-- 『.patt』ファイルを読み込む -->
+            <a-marker id="arMarker" type='pattern' url='pattern/pattern-0.patt' videohandler>
+                <a-video src="#arVideo" width="4" height="2.3" position="0 0 0" rotation="-30 0 0" play="true"></a-video>
+            </a-marker>
 
-                <a-entity camera></a-entity>
+            <!--<a-camera-static />-->
+            <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
 
         </a-scene>
 

@@ -40,17 +40,17 @@
         <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
       
-        <a-scene id="ar-scene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
             
-<!--            <a-assets id="arAssets">
+            <!--<a-assets id="arAssets">
                 <img crossorigin="anonymous" id="source" src="">
             </a-assets>-->
 
 
-            <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+            <a-nft videohandler type="nft" id="arNft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
-<!--                <a-entity id="ar-gltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>-->
-                <a-entity id="ar-gltf-main" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>
+                <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>-->
+                <a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>
 
             </a-nft>
 
