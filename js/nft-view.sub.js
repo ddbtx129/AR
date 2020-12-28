@@ -149,23 +149,23 @@ var zoomH = 0;
 
 				if (dataObj.isShadow) {
 
-					var shadowPath = (!(self.arg.ObjectList) ?
-							(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
-							:
-						(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'));
+					//var shadowPath = (!(self.arg.ObjectList) ?
+					//		(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
+					//		:
+					//	(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'));
 
-					shadow.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(shadowPath));
+					//shadow.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(shadowPath));
 
-					shadow.posVec3 = this.positionVec3('shadow', dataObj.size.h);
-					defaultPosS = shadow.posVec3;
+					//shadow.posVec3 = this.positionVec3('shadow', dataObj.size.h);
+					//defaultPosS = shadow.posVec3;
 
-					shadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
-					shadow.setAttribute('position', String(shadow.posVec3.x) + ' ' + String(shadow.posVec3.y) + ' ' + String(shadow.posVec3.z));
-					shadow.setAttribute('rotation', '-85 0 0');
+					//shadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+					//shadow.setAttribute('position', String(shadow.posVec3.x) + ' ' + String(shadow.posVec3.y) + ' ' + String(shadow.posVec3.z));
+					//shadow.setAttribute('rotation', '-85 0 0');
 
-					shadow.style.zIndex = 9899;
+					//shadow.style.zIndex = 9899;
 
-					shadow.style.visibility = "visible";
+					//shadow.style.visibility = "visible";
 
 				} else {
 					shadow.style.visibility = "hidden";
@@ -182,7 +182,7 @@ var zoomH = 0;
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
-			var shadow = document.getElementById("arGltf-shadow");
+			//var shadow = document.getElementById("arGltf-shadow");
 
 			var self = this;
 
@@ -230,8 +230,8 @@ var zoomH = 0;
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 
-					shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 180 180'));
-					shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y - defaultSize.h) + ' ' + String(defaultPosS.z));
+					//shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 180 180'));
+					//shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
 
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
@@ -243,8 +243,8 @@ var zoomH = 0;
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 
-					shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-85 0 0'));
-					shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
+					//shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-85 0 0'));
+					//shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
 
 					bParallel.classList.add('current');
 					bAngle.classList.remove('current');
@@ -252,7 +252,7 @@ var zoomH = 0;
 			})
 
 			var wrapPos = nft.getAttribute('position');
-			var wraPosS = shadow.getAttribute('position');
+			//var wraPosS = shadow.getAttribute('position');
 
 			var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
@@ -263,26 +263,26 @@ var zoomH = 0;
 			bUP.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y += 5;
-					wraPosS.z += 5;
+					//wraPosS.z += 5;
 				} else {
 					wrapPos.z -= 5;
-					wraPosS.y -= 5;
+					//wraPosS.y -= 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-				shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+				//shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 			})
 
 			// ↓ 下移動ボタン押下
 			bDOWN.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y -= 5;
-					wraPosS.z -= 5;
+					//wraPosS.z -= 5;
 				} else {
 					wrapPos.z += 5;
-					wraPosS.y += 5;
+					//wraPosS.y += 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-				shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+				//shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 			})
 
 			// ↓ UPボタン長押し
@@ -292,13 +292,13 @@ var zoomH = 0;
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y += 2;
-						wrapPosS.z -= 2;
+						//wrapPosS.z -= 2;
 					} else {
 						wrapPos.z -= 2;
-						wrapPosS.y += 2;
+						//wrapPosS.y += 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+					//shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 				}, 10);
 			})
 
@@ -321,13 +321,13 @@ var zoomH = 0;
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y -= 2;
-						wrapPosS.z += 2;
+						//wrapPosS.z += 2;
 					} else {
 						wrapPos.z += 2;
-						wrapPosS.y -= 2;
+						//wrapPosS.y -= 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+					//shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 				}, 10);
 			})
 
