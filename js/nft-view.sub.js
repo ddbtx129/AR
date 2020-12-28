@@ -297,7 +297,7 @@ var zoomH = 0;
 				bUP.classList.add('active');
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
-						wrapPos.y += 2;
+						wrapPos.x += 2;
 						wrapPosS.z += 2;
 					} else {
 						wrapPos.z -= 2;
@@ -328,7 +328,7 @@ var zoomH = 0;
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
-						wrapPos.y -= 2;
+						wrapPos.x -= 2;
 						wrapPosS.z -= 2;
 					} else {
 						wrapPos.z += 2;
