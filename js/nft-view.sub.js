@@ -272,6 +272,7 @@ var zoomH = 0;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				if (self.arData.isShadow) {
+					window.alert(self.arData.isShadow);
 					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
                 }
 			})
@@ -287,6 +288,7 @@ var zoomH = 0;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				if (self.arData.isShadow) {
+					window.alert(self.arData.isShadow);
 					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 				}
 			})
