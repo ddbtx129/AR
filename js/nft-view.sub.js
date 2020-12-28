@@ -76,7 +76,7 @@ var zoomH = 0;
 			arg.markerList1 = arg.m1;
 			arg.markerList2 = arg.m2;
 
-			// ar-gltf-main
+			// arGltf-main
 			arg.ObjectList = arg.o;
 			arg.ObjectList1 = arg.o1;
 			arg.ObjectList2 = arg.o2;
@@ -107,8 +107,8 @@ var zoomH = 0;
 
 			} else {
 
-		        var marker = document.getElementById('ar-nft');
-		        var nft = document.getElementById("ar-gltf-main");
+		        var marker = document.getElementById('arNft');
+		        var nft = document.getElementById("arGltf-main");
 
 		        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
 				nft.style.zIndex = 9999;
@@ -136,7 +136,7 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				//var nftShadow = document.getElementById('ar-gltf-shadow');
+				//var nftShadow = document.getElementById('arGltf-shadow');
 				//var arShadow = document.getElementById('source');
 
 				if (!dataObj.isShadow) {
@@ -180,7 +180,7 @@ var zoomH = 0;
 					//});
 
 					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-					//	shader: 'flat', npot: true, src: '#ar-gltf-main', transparent: true, alphaTest: 0.1,
+					//	shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
 					//	color: 'black', opacity: 0.3, depthTest: false
 					//});
 
@@ -198,8 +198,8 @@ var zoomH = 0;
 
         setSwitcher: function () {
 
-            var scene = document.getElementById('ar-scene');
-			var nft = document.getElementById("ar-gltf-main");
+            var scene = document.getElementById('arScene');
+			var nft = document.getElementById("arGltf-main");
 
 			var self = this;
 
@@ -209,29 +209,29 @@ var zoomH = 0;
 			zoomW = defaultSize.w;
 			zoomH = defaultSize.h;
 
-   //         // 拡大・縮小
-			//scene.addEventListener(self.eventnames.start, function (e) {
-   //             var event = e.changedTouches ? e.changedTouches[0] : e;
-   //             prevPageY = event.pageY;    // 縦軸
-			//	prevPageX = event.pageX;    // 横軸
-   //         })
+			// 拡大・縮小
+			scene.addEventListener(self.eventnames.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+				prevPageX = event.pageX;    // 横軸
+            })
 			
-			//scene.addEventListener(self.eventnames.move, function (e) {
-   //             var event = e.changedTouches ? e.changedTouches[0] : e;
-   //             if (prevPageY) {
-			//		if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
-			//			zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-			//			zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-			//			AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-			//				property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
-			//			});
-   //                 }
-   //             }
-   //         })
+			scene.addEventListener(self.eventnames.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                if (prevPageY) {
+					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
+						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+							property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
+						});
+                    }
+                }
+            })
 
-			//scene.addEventListener(self.eventnames.end, function (e) {
-			//	prevPageY = null;
-   //         })
+			scene.addEventListener(self.eventnames.end, function (e) {
+				prevPageY = null;
+            })
 
 			// ↓ rotation 切替
 			var bAngle = document.querySelector('#swAngle');

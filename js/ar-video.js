@@ -4,7 +4,7 @@ function getArVideo() {
 
     var arg = GetQueryString();
 
-    var video = document.getElementById("ar-video");
+    var video = document.getElementById("arVideo");
     //var vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
     var vObj;
 
@@ -16,7 +16,7 @@ function getArVideo() {
 
     video.setAttribute("src", vObj);
     
-    var marker = document.getElementById("ar-marker");
+    var marker = document.getElementById("arMarker");
     //var mObj = !(arg["m"]) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + arg["m"] + '.patt';
     var mObj;
 
@@ -33,8 +33,8 @@ function getNftVideo() {
     
     var arg = GetQueryString();
 
-    var video = document.getElementById("ar-video");
-    var audio = document.getElementById("ar-audio");
+    var video = document.getElementById("arVideo");
+    var audio = document.getElementById("arAudio");
     
     //var vObj = !(arg["o"]) ? path + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
     var vObj;
@@ -53,7 +53,7 @@ function getNftObject() {
 
     var arg = GetQueryString();
 
-    var nft = document.getElementById('ar-gltf-main');
+    var nft = document.getElementById('arGltf-main');
 
     if ((arg["o1"]) && (arg["o2"])) {
         nObj = path + 'article/nftobject/' + arg["o1"] + '/' + arg["o2"] + '.gltf';
@@ -65,7 +65,7 @@ function getNftObject() {
 
     if(!!(arg["xs"]))
     {
-        var shodow = document.getElementById('ar-gltf-shadow');
+        var shodow = document.getElementById('arGltf-shadow');
         var sObj;
 
         if ((arg["o1"]) && (arg["o2"])) {
@@ -83,7 +83,7 @@ function getNftMarker() {
     
     var arg = GetQueryString();
 
-    var nft = document.getElementById('ar-nft');
+    var nft = document.getElementById('arNft');
     var nObj;
 
     if ((arg["m1"]) && (arg["m2"])) {
