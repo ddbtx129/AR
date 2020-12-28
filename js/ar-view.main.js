@@ -121,7 +121,7 @@ var webArViewer = webArViewer || {};
                 };
             }
 
-            dataObj.isGif = !!(self.arg['p'] || '').match(/\.gif$/i);
+            dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
 
             if (dataObj.path) {
 
