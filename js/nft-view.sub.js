@@ -328,7 +328,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: 0, z: -sizeHeight };
+				return { x: 0, y: 0, z: 0 };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
