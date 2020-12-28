@@ -136,14 +136,12 @@ var zoomH = 0;
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 
-				//var ts, tl;
-				//ts = -32;
-				//tl = 64;
+				var ts, tl;
+				ts = -32;
+				tl = 64;
 
-				//AFRAME.utils.entity.setComponentProperty(nft, 'geometry', {
-				//	primitive: 'cylinder', openEnded: true, thetaStart: ts, thetaLength: tl,
-				//	height: val.size.h, radius: val.size.w, segmentsHeight: 18, segmentsRadial: 36
-				//});
+				AFRAME.utils.entity.setComponentProperty(nft, 'geometry', {
+					primitive: 'cylinder', openEnded: true, thetaStart: ts, thetaLength: tl, height: dataObj.size.h, radius: dataObj.size.w, segmentsHeight: 18, segmentsRadial: 36 });
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
