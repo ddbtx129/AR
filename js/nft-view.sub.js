@@ -228,7 +228,7 @@ var zoomH = 0;
             })
 			
 			scene.addEventListener(self.eventnames.move, function (e) {
-				var w1 = nft.clientWidth;
+				var w1 = scene.clientWidth;
 				window.alert(w1);
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
