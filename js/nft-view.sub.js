@@ -100,10 +100,13 @@ var zoomH = 0;
 			};
 
 		    if (!dataObj.path) {
-		        // 画像なかった
+
+				// 画像なかった
 		        Err_Exit('画像情報が取得できませんでした。');
 		        return false;
-		    } else {
+
+			} else {
+
 		        var marker = document.getElementById('ar-nft');
 		        var nft = document.getElementById("ar-gltf-main");
 
@@ -139,7 +142,7 @@ var zoomH = 0;
 				if (!dataObj.isShadow) {
 					//nftShadow.remove();
 					//arShadow.remove();
-					nftShadow.style.visibility = "hidden";
+					//nftShadow.style.visibility = "hidden";
 				} else {
 
 					//nftShadow.style.visibility = "hidden";
@@ -167,22 +170,22 @@ var zoomH = 0;
 
 					//arShadow.setAttribute("src", source);
 
-					var shadow = document.createElement('a-entity');
+					//var shadow = document.createElement('a-entity');
 
-					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-					shadow.setAttribute('rotation', '-90 0 0');
+					//shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+					//shadow.setAttribute('rotation', '-90 0 0');
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-					});
+					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+					//	primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+					//});
 
-					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-						shader: 'flat', npot: true, src: '#ar-gltf-main', transparent: true, alphaTest: 0.1,
-						color: 'black', opacity: 0.3, depthTest: false
-					});
+					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+					//	shader: 'flat', npot: true, src: '#ar-gltf-main', transparent: true, alphaTest: 0.1,
+					//	color: 'black', opacity: 0.3, depthTest: false
+					//});
 
-					dataObj.shadow = shadow;
-					nft.appendChild(dataObj.shadow);
+					//dataObj.shadow = shadow;
+					//nft.appendChild(dataObj.shadow);
 				}
 
 		    }
@@ -200,11 +203,11 @@ var zoomH = 0;
 
 			var self = this;
 
-            //var prevPageY;
-            //var prevPageX;
+            var prevPageY;
+            var prevPageX;
 
-			//zoomW = defaultSize.w;
-			//zoomH = defaultSize.h;
+			zoomW = defaultSize.w;
+			zoomH = defaultSize.h;
 
    //         // 拡大・縮小
 			//scene.addEventListener(self.eventnames.start, function (e) {
@@ -231,12 +234,12 @@ var zoomH = 0;
    //         })
 
 			// ↓ rotation 切替
-			var anglebtn = document.querySelector('#swAngle');
-			var parallelbtn = document.querySelector('#swParallel');
+			var bAngle = document.querySelector('#swAngle');
+			var bParallel = document.querySelector('#swParallel');
 
 			parallelbtn.classList.add('current');
 
-			anglebtn.addEventListener('click', function () {
+			bAngle.addEventListener('click', function () {
 				if (!anglebtn.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					anglebtn.classList.add('current');
@@ -246,7 +249,7 @@ var zoomH = 0;
 				}
 			})
 
-			parallelbtn.addEventListener('click', function () {
+			bParallel.addEventListener('click', function () {
 				if (!parallelbtn.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 					parallelbtn.classList.add('current');
@@ -257,11 +260,14 @@ var zoomH = 0;
 			})
 
 			var wrapPos = nft.getAttribute('position');
-			var upbtn = document.querySelector('#swUp');
-			var downbtn = document.querySelector('#swDown');
+
+			var bUP = document.querySelector('#swUp');
+			var bDOWN = document.querySelector('#swDown');
+
+			var timer;
 
 			// ↓ 上移動ボタン押下
-			upbtn.addEventListener('click', function (e) {
+			bUP.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
 					wrapPos.y += 5;
 				} else {
@@ -271,7 +277,7 @@ var zoomH = 0;
 			})
 
 			// ↓ 下移動ボタン押下
-			downbtn.addEventListener('click', function (e) {
+			bDOWN.addEventListener('click', function (e) {
 				if (!!(anglebtn.classList.contains('current'))) {
 					wrapPos.y -= 5;
 				} else {
@@ -279,10 +285,6 @@ var zoomH = 0;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
-
-			var bUP = document.querySelector('#swUp');
-			var bDOWN = document.querySelector('#swDown');
-			var timer;
 
 			// ↓ UPボタン長押し
 			bUP.addEventListener(self.eventnames.start, e => {
