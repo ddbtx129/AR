@@ -39,10 +39,10 @@
 
         <a-assets>
             <video src='notfound_video.mp4'
-                   preload="auto" id="ar-video" response-type="arraybuffer" loop
+                   preload="auto" id="arVideo" response-type="arraybuffer" loop
                    crossorigin webkit-playsinline autoplay playsinline controls></video>
             <audio src='notfound_video.mp4'
-                   preload="auto" id="ar-audio" response-type="arraybuffer" loop
+                   preload="auto" id="arAudio" response-type="arraybuffer" loop
                    crossorigin webkit-playsinline autoplay playsinline controls></audio>
         </a-assets>
 
@@ -56,7 +56,7 @@
                    type="nft" id="arNft" url=""
                    smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 <!-- position  x z y 軸-->
-                <a-video src="#ar-video"
+                <a-video src="#arVideo"
                          position="50 -75 -75" rotation="-45 0 0" width='213' height='120' play="true"></a-video>
             </a-nft>
 
