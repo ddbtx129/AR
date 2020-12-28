@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
         if (videostate >= 1 && videostate < 2) {
 
-            var video = document.querySelector('#ar-video');
+            var video = document.querySelector('#arVideo');
             video.play();
 
             videostate = 1;
