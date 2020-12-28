@@ -151,17 +151,17 @@ var zoomH = 0;
 
 					var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
 					window.alert(shadowPosVec3.y);
-				//	shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
-				//	shadow.setAttribute('rotation', '-90 0 0');
+					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
+					shadow.setAttribute('rotation', '-90 0 0');
 
-				//	AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-				//		primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-				//	});
+					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+					});
 
-				//	AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-				//		shader: 'flat', npot: true, src: src.path, transparent: true, alphaTest: 0.1,
-				//		color: 'black', opacity: 0.3, depthTest: false
-				//	});
+					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+						shader: 'flat', npot: true, src: "#arGltf-main", transparent: true, alphaTest: 0.1,
+						color: 'black', opacity: 0.3, depthTest: false
+					});
 
 					dataObj.shadow = shadow;
 					nft.appendChild(dataObj.shadow);
