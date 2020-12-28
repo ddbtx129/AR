@@ -228,15 +228,13 @@ var zoomH = 0;
             })
 			
 			scene.addEventListener(self.eventnames.move, function (e) {
-				var w1 = scene.clientWidth;
-				window.alert(w1);
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
 					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
 						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: 250 + ' ' + 250 + ' ' + 250
+							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomH + ' ' + zoomH + ' ' + zoomH
 						});
                     }
                 }
