@@ -14,6 +14,18 @@ a {
     -webkit-touch-callout: none;
 }
 
+.info {
+    position: absolute;
+    text-decoration: none;
+    top: 0%;
+    left: 0%;
+    color: #666;
+    font-weight: bold;
+    display: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
 .info1 {
     position: fixed;
     bottom:0;

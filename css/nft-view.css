@@ -14,13 +14,14 @@
     -webkit-touch-callout: none;
 }
 
-a {
+.info {
     position: absolute;
     text-decoration: none;
     top: 0%;
     left: 0%;
     color: #666;
     font-weight: bold;
+    display: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
 }
