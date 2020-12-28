@@ -240,9 +240,9 @@ var zoomH = 0;
 			parallelbtn.classList.add('current');
 			window.alert(5);
 			bAngle.addEventListener('click', function () {
-				if (!anglebtn.classList.contains('current')) {
+				if (!bAngle.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-					anglebtn.classList.add('current');
+					bParallel.classList.add('current');
 					parallelbtn.classList.remove('current');
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
@@ -250,10 +250,10 @@ var zoomH = 0;
 			})
 
 			bParallel.addEventListener('click', function () {
-				if (!parallelbtn.classList.contains('current')) {
+				if (!bParallel.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-					parallelbtn.classList.add('current');
-					anglebtn.classList.remove('current');
+					bParallel.classList.add('current');
+					bAngle.classList.remove('current');
 					// position リセット
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 				}
