@@ -159,7 +159,7 @@ var zoomH = 0;
 
 					shadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 					shadow.setAttribute('position', String(shadow.posVec3.x) + ' ' + String(shadow.posVec3.y) + ' ' + String(shadow.posVec3.z));
-					shadow.setAttribute('rotation', '-90 0 0');
+					shadow.setAttribute('rotation', '-75 0 0');
 
 					shadow.style.zIndex = 9899;
 
@@ -328,7 +328,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: 0, z: 0 };
+				return { x: 50, y: h1_2, z: 0 };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
