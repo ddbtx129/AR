@@ -150,9 +150,9 @@ var zoomH = 0;
 					var shadow = document.createElement('a-entity');
 
 					var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
-					window.alert(shadowPosVec3.y);
-					//shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
-					//shadow.setAttribute('rotation', '-90 0 0');
+					window.alert(shadowPosVec3.z);
+					shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(shadowPosVec3.z));
+					shadow.setAttribute('rotation', '-90 0 0');
 
 					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
 					//	primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
