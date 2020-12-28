@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(110);
+			window.alert(111);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -215,7 +215,7 @@ var zoomH = 0;
 
 			var prevPageY;
 			var prevPageX;
-			var w = nft.getBoundingClientRect().width;
+			var w = nft.clientWidth;
 			window.alert(w);
 
 			zoomW = defaultSize.w;
@@ -226,7 +226,7 @@ var zoomH = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
-				var w1 = nft.getBoundingClientRect().width;
+				var w1 = nft.clientWidth;
 				window.alert(w1);
             })
 			
