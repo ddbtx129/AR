@@ -88,6 +88,7 @@ var zoomH = 0;
 
 			var self = this;
 			var arData = null;
+			var scene = document.getElementById('arScene');
 
 			//dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList1;
 
@@ -134,6 +135,15 @@ var zoomH = 0;
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 
+				var ts, tl;
+				ts = -32;
+				tl = 64;
+
+				AFRAME.utils.entity.setComponentProperty(nft, 'geometry', {
+					primitive: 'cylinder', openEnded: true, thetaStart: ts, thetaLength: tl,
+					height: val.size.h, radius: val.size.w, segmentsHeight: 18, segmentsRadial: 36
+				});
+
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 				//var nftShadow = document.getElementById('arGltf-shadow');
@@ -170,24 +180,23 @@ var zoomH = 0;
 
 					//arShadow.setAttribute("src", source);
 
-					//var shadow = document.createElement('a-entity');
+					var shadow = document.createElement('a-entity');
 
-					//shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-					//shadow.setAttribute('rotation', '-90 0 0');
+					shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+					shadow.setAttribute('rotation', '-90 0 0');
 
-					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-					//	primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
-					//});
+					AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+						primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w
+					});
 
-					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-					//	shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
-					//	color: 'black', opacity: 0.3, depthTest: false
-					//});
+					AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+						shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1,
+						color: 'black', opacity: 0.3, depthTest: false
+					});
 
-					//dataObj.shadow = shadow;
-					//nft.appendChild(dataObj.shadow);
+					dataObj.shadow = shadow;
+					marker.appendChild(dataObj.shadow);
 				}
-
 		    }
 
 		    arData = dataObj;
@@ -197,15 +206,15 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(0);
-            var scene = document.getElementById('arScene');
+
+			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
-			window.alert(1);
+
 			var self = this;
-			window.alert(2);
-            var prevPageY;
+
+			var prevPageY;
             var prevPageX;
-			window.alert(3);
+
 			zoomW = defaultSize.w;
 			zoomH = defaultSize.h;
 
@@ -232,13 +241,13 @@ var zoomH = 0;
 			scene.addEventListener(self.eventnames.end, function (e) {
 				prevPageY = null;
             })
-			window.alert(4);
+
 			// ↓ rotation 切替
 			var bAngle = document.querySelector('#swAngle');
 			var bParallel = document.querySelector('#swParallel');
 
 			bParallel.classList.add('current');
-			window.alert(5);
+
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
@@ -258,14 +267,14 @@ var zoomH = 0;
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 				}
 			})
-			window.alert(6);
+
 			var wrapPos = nft.getAttribute('position');
 
 			var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
 
 			var timer;
-			window.alert(7);
+
 			// ↓ 上移動ボタン押下
 			bUP.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
@@ -285,7 +294,7 @@ var zoomH = 0;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
-			window.alert(8);
+
 			// ↓ UPボタン長押し
 			bUP.addEventListener(self.eventnames.start, e => {
 				e.preventDefault();
@@ -311,7 +320,7 @@ var zoomH = 0;
 				bUP.classList.remove('active');
 				clearInterval(timer);
 			});
-			window.alert(9);
+
 			// ↓ DOWNボタン長押し
 			bDOWN.addEventListener(self.eventnames.start, e => {
 				e.preventDefault();
@@ -337,7 +346,7 @@ var zoomH = 0;
 				bDOWN.classList.remove('active');
 				clearInterval(timer);
 			});
-			window.alert(10);
+
 		},
 
 		positionVec3: function (type, sizeHeight) {
