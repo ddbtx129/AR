@@ -155,8 +155,8 @@ var zoomH = 0;
 							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
 					};
 
-				//	var shadowPosVec3 = this.positionVec3('shadow');
-
+					var shadowPosVec3 = this.positionVec3('shadow');
+					window.alert(shadowPosVec3.w);
 				//	shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
 				//	shadow.setAttribute('rotation', '-90 0 0');
 
