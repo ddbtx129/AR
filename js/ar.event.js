@@ -5,8 +5,8 @@ AFRAME.registerComponent('videohandler', {
 
         // ビデオ格納用の変数定義を追加
         var video = document.querySelector('#arVideo');
-        //var marker = this.el;
-        var marker = document.querySelector('#arMarker');
+        var marker = this.el;
+        //var marker = document.querySelector('#arMarker');
         //video = document.querySelector('#arVideo');
 
         // マーカーを検出したイベントの登録
