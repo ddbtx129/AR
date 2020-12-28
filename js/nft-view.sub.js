@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(111);
+			window.alert(112);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -233,6 +233,7 @@ var zoomH = 0;
 					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
 						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5);
 						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5);
+						window.alert(zoomH);
 						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
 							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomH + ' ' + zoomH + ' ' + zoomH
 						});
