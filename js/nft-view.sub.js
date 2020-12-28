@@ -17,16 +17,16 @@ var zoomH = 0;
 			if (this.setArData()) {
 
 				var deviceevents = {
-			        touch: typeof document.ontouchstart !== 'undefined',
-			        pointer: window.navigator.pointerenabled,
-			        mspointer: window.navigator.mspointerenabled
-			    };
+					touch: typeof document.ontouchstart !== 'undefined',
+					pointer: window.navigator.pointerenabled,
+					mspointer: window.navigator.mspointerenabled
+				};
 
-			    this.eventnames = {
-			        start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
-			        move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
-			        end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
-			    };
+				this.eventnames = {
+					start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
+					move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
+					end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
+				};
 			}
 
 			this.setSwitcher();
@@ -98,7 +98,7 @@ var zoomH = 0;
 							:
 							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '.gltf'))
 			};
-            
+
 		    if (!dataObj.path) {
 		        // 画像なかった
 		        Err_Exit('画像情報が取得できませんでした。');
@@ -134,11 +134,11 @@ var zoomH = 0;
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
 				//var nftShadow = document.getElementById('ar-gltf-shadow');
-				var arShadow = document.getElementById('source');
+				//var arShadow = document.getElementById('source');
 
 				if (!dataObj.isShadow) {
 					//nftShadow.remove();
-					arShadow.remove();
+					//arShadow.remove();
 					nftShadow.style.visibility = "hidden";
 				} else {
 
@@ -183,7 +183,7 @@ var zoomH = 0;
 					});
 
 					dataObj.shadow = shadow;
-					dataObj.shadow && nft.appendChild(dataObj.shadow);
+					nft.appendChild(dataObj.shadow);
 				}
 
 		    }
