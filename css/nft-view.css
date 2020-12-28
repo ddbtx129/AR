@@ -14,12 +14,6 @@
     -webkit-touch-callout: none;
 }
 
-.ar-video1 {
-    z-index: 4;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
 a {
     position: absolute;
     text-decoration: none;
