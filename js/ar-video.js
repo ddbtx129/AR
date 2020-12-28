@@ -13,7 +13,7 @@ function getArVideo() {
     } else {
         vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
     }
-
+    window.alert(vObj);
     video.setAttribute("src", vObj);
     
     var marker = document.getElementById("arMarker");
