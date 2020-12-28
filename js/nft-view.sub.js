@@ -215,8 +215,6 @@ var zoomH = 0;
 
 			var prevPageY;
 			var prevPageX;
-			var w = nft.clientWidth;
-			window.alert(w);
 
 			zoomW = defaultSize.w;
 			zoomH = defaultSize.h;
@@ -226,11 +224,12 @@ var zoomH = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
-				var w1 = nft.clientWidth;
-				window.alert(w1);
+
             })
 			
 			scene.addEventListener(self.eventnames.move, function (e) {
+				var w1 = nft.clientWidth;
+				window.alert(w1);
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
 					if ((zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5))> 0.1) {
