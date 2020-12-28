@@ -1,8 +1,9 @@
 ﻿var path = "https://ddbtx129.github.io/AR/";
+var arg = GetQueryString();
 
 function getArVideo() {
 
-    var arg = GetQueryString();
+    //var arg = GetQueryString();
 
     var video = document.getElementById("arVideo");
     //var vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
@@ -13,9 +14,12 @@ function getArVideo() {
     } else {
         vObj = !(arg["o"]) ? 'article/video/notfound_video.mp4' : 'article/video/' + arg["o"] + '.mp4';
     }
-    window.alert(vObj);
+
     video.setAttribute("src", vObj);
-    
+};
+
+function getArMarker() {
+
     var marker = document.getElementById("arMarker");
     //var mObj = !(arg["m"]) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + arg["m"] + '.patt';
     var mObj;
@@ -31,7 +35,7 @@ function getArVideo() {
 
 function getNftVideo() {
     
-    var arg = GetQueryString();
+    //var arg = GetQueryString();
 
     var video = document.getElementById("arVideo");
     var audio = document.getElementById("arAudio");
@@ -51,7 +55,7 @@ function getNftVideo() {
 
 function getNftObject() {
 
-    var arg = GetQueryString();
+    //var arg = GetQueryString();
 
     var nft = document.getElementById('arGltf-main');
 
