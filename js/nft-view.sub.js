@@ -254,6 +254,7 @@ var zoomH = 0;
 			})
 
 			var wrapPos = nft.getAttribute('position');
+			var wraPosS = shadow.getAttribute('position');
 
 			var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
@@ -264,20 +265,30 @@ var zoomH = 0;
 			bUP.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y += 5;
+					wraPosS.y += 5;
 				} else {
 					wrapPos.z -= 5;
+					wraPosS.z -= 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+				if (self.arData.isShadow) {
+					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+                }
 			})
 
 			// ↓ 下移動ボタン押下
 			bDOWN.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y -= 5;
+					wraPosS.y -= 5;
 				} else {
 					wrapPos.z += 5;
+					wraPosS.z += 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+				if (self.arData.isShadow) {
+					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+				}
 			})
 
 			// ↓ UPボタン長押し
@@ -287,10 +298,15 @@ var zoomH = 0;
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y += 2;
+						wrapPosS.y += 2;
 					} else {
 						wrapPos.z -= 2;
+						wrapPosS.z -= 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+					if (self.arData.isShadow) {
+						shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+					}
 				}, 10);
 			})
 
@@ -313,10 +329,15 @@ var zoomH = 0;
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y -= 2;
+						wrapPosS.y -= 2;
 					} else {
 						wrapPos.z += 2;
+						wrapPosS.z += 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+					if (self.arData.isShadow) {
+						shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
+					}
 				}, 10);
 			})
 
@@ -337,7 +358,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: h1_2, z: sizeHeight * 0.9 };
+				return { x: 0, y: h1_2, z: sizeHeight - 50 };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
