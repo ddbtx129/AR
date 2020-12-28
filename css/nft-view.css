@@ -128,7 +128,7 @@ a {
 .ar-parallel.current {
     opacity: 1;
 }
-
+/*
 .arjs-loader {
     height: 100%;
     width: 100%;
@@ -146,7 +146,7 @@ a {
         text-align: center;
         font-size: 1.25em;
         color: white;
-    }
+    }*/
 
 
 @-webkit-keyframes attention {
