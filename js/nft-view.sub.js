@@ -182,6 +182,7 @@ var zoomH = 0;
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
+			var shadow = document.getElementById("arGltf-shadow");
 
 			var self = this;
 
@@ -192,7 +193,7 @@ var zoomH = 0;
 			zoomH = defaultSize.h;
 
 			var rate = defaultSize.h / 4;
-
+			
 			// 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -227,20 +228,28 @@ var zoomH = 0;
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+					if (self.arData.isShadow) {
+						shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+						shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
+					}
+
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
-					// position リセット
-					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 				}
 			})
 
 			bParallel.addEventListener('click', function () {
 				if (!bParallel.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+					if (self.arData.isShadow) {
+						shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-85 0 0'));
+						shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
+					}
+					// position リセット
 					bParallel.classList.add('current');
 					bAngle.classList.remove('current');
-					// position リセット
-					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 				}
 			})
 
@@ -328,7 +337,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: h1_2, z: sizeHeight };
+				return { x: 0, y: h1_2, z: sizeHeight - (h1_2 / 2) };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
