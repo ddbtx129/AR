@@ -94,9 +94,9 @@ var zoomH = 0;
 			// データの準備
 			var dataObj = {
 				path: (!(self.arg.ObjectList) ?
-							(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.gltf')
-							:
-							(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '.gltf'))
+					(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.gltf')
+					:
+					(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '.gltf'))
 			};
 
 		    if (!dataObj.path) {
@@ -150,9 +150,9 @@ var zoomH = 0;
 				if (dataObj.isShadow) {
 
 					shadow.getAttribute('gltf-model', AFRAME.utils.coordinates.stringify((!(self.arg.ObjectList) ?
-						(rootPath + 'article/nftobject/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
+						(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
 						:
-						(!(self.arg.ObjectList) ? '' : rootPath + 'article/nftobject/' + self.arg.ObjectList + '-xs.gltf'))));
+						(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'))));
 
 					shadow.posVec3 = this.positionVec3('shadow', dataObj.size.h);
 					defaultPosS = shadow.posVec3;

@@ -60,9 +60,9 @@ function getNftObject() {
     var nft = document.getElementById('arGltf-main');
 
     if ((arg["o1"]) && (arg["o2"])) {
-        nObj = path + 'article/nftobject/' + arg["o1"] + '/' + arg["o2"] + '.gltf';
+        nObj = path + 'article/gltf/' + arg["o1"] + '/' + arg["o2"] + '.gltf';
     } else {
-        nObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + '.gltf';
+        nObj = !(arg["o"]) ? '' : path + 'article/gltf/' + arg["o"] + '.gltf';
     }
 
     nft.setAttribute('gltf-model', nObj);
@@ -73,9 +73,9 @@ function getNftObject() {
         var sObj;
 
         if ((arg["o1"]) && (arg["o2"])) {
-            sObj = path + 'article/nftobject/' + arg["o1"] + '/' + arg["o2"] + '-hs.gltf';;
+            sObj = path + 'article/gltf/' + arg["o1"] + '/' + arg["o2"] + '-hs.gltf';;
         } else {
-            sObj = !(arg["o"]) ? '' : path + 'article/nftobject/' + arg["o"] + '-hs.gltf';
+            sObj = !(arg["o"]) ? '' : path + 'article/gltf/' + arg["o"] + '-hs.gltf';
         }
 
         shodow.setAttribute('gltf-model-shadow', sObj);
