@@ -229,10 +229,8 @@ var zoomH = 0;
 				if (!bAngle.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
-					if (self.arData.isShadow) {
-						shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-						shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
-					}
+					shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
 				}
@@ -242,10 +240,8 @@ var zoomH = 0;
 				if (!bParallel.classList.contains('current')) {
 					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
-					if (self.arData.isShadow) {
-						shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-85 0 0'));
-						shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
-					}
+					shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-85 0 0'));
+					shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
 					// position リセット
 					bParallel.classList.add('current');
 					bAngle.classList.remove('current');
@@ -270,10 +266,7 @@ var zoomH = 0;
 					wraPosS.y -= 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-				if (self.arData.isShadow) {
-					window.alert(self.arData.isShadow);
-					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
-                }
+				shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 			})
 
 			// ↓ 下移動ボタン押下
@@ -286,9 +279,7 @@ var zoomH = 0;
 					wraPosS.y += 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-				if (self.arData.isShadow) {
-					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
-				}
+				shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 			})
 
 			// ↓ UPボタン長押し
@@ -304,10 +295,7 @@ var zoomH = 0;
 						wrapPosS.y += 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-					if (self.arData.isShadow) {
-						window.alert(self.arData.isShadow);
-						shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
-					}
+					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 				}, 10);
 			})
 
@@ -336,9 +324,7 @@ var zoomH = 0;
 						wrapPosS.y -= 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
-					if (self.arData.isShadow) {
-						shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
-					}
+					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 				}, 10);
 			})
 
