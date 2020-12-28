@@ -206,7 +206,7 @@ var zoomH = 0;
 		},
 
 		setSwitcher: function () {
-			window.alert(100);
+			window.alert(101);
 
 			var scene = document.getElementById('arScene');
 			var nft = document.getElementById("arGltf-main");
@@ -215,7 +215,7 @@ var zoomH = 0;
 
 			var prevPageY;
 			var prevPageX;
-			var size = nft.getAttribute("scale").width;
+			var size = nft.getAttribute("scale").split(' ');
 			window.alert(size);
 
 			zoomW = defaultSize.w;
