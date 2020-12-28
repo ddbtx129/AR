@@ -149,13 +149,7 @@ var zoomH = 0;
 
 					var shadow = document.createElement('a-entity');
 
-					var src = { path: (!(self.arg.ObjectList) ?
-							(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
-							:
-							(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
-					};
-
-					var shadowPosVec3 = this.positionVec3('shadow');
+					var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
 					window.alert(shadowPosVec3.w);
 				//	shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(dashadowPosVec3.z));
 				//	shadow.setAttribute('rotation', '-90 0 0');
