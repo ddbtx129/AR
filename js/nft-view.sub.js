@@ -265,10 +265,10 @@ var zoomH = 0;
 			bUP.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y += 5;
-					wraPosS.y += 5;
+					wraPosS.z += 5;
 				} else {
 					wrapPos.z -= 5;
-					wraPosS.z -= 5;
+					wraPosS.y -= 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				if (self.arData.isShadow) {
@@ -280,10 +280,10 @@ var zoomH = 0;
 			bDOWN.addEventListener('click', function (e) {
 				if (!!(bAngle.classList.contains('current'))) {
 					wrapPos.y -= 5;
-					wraPosS.y -= 5;
+					wraPosS.z -= 5;
 				} else {
 					wrapPos.z += 5;
-					wraPosS.z += 5;
+					wraPosS.y += 5;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				if (self.arData.isShadow) {
@@ -298,10 +298,10 @@ var zoomH = 0;
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y += 2;
-						wrapPosS.y += 2;
+						wrapPosS.z += 2;
 					} else {
 						wrapPos.z -= 2;
-						wrapPosS.z -= 2;
+						wrapPosS.y -= 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 					if (self.arData.isShadow) {
@@ -329,10 +329,10 @@ var zoomH = 0;
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
 						wrapPos.y -= 2;
-						wrapPosS.y -= 2;
+						wrapPosS.z -= 2;
 					} else {
 						wrapPos.z += 2;
-						wrapPosS.z += 2;
+						wrapPosS.y += 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 					if (self.arData.isShadow) {
