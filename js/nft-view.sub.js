@@ -280,9 +280,9 @@ var zoomH = 0;
 				bUP.classList.add('active');
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
-						wrapPos.y += 1;
+						wrapPos.y += 2;
 					} else {
-						wrapPos.z -= 1;
+						wrapPos.z -= 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				}, 10);
@@ -306,9 +306,9 @@ var zoomH = 0;
 				bDOWN.classList.add('active');
 				timer = setInterval(() => {
 					if (!!(bAngle.classList.contains('current'))) {
-						wrapPos.y -= 1;
+						wrapPos.y -= 2;
 					} else {
-						wrapPos.z += 1;
+						wrapPos.z += 2;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				}, 10);
