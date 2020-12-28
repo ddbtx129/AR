@@ -233,7 +233,6 @@ var zoomH = 0;
 						shadow.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 						shadow.setAttribute('position', String(defaultPosS.x) + ' ' + String(defaultPosS.y) + ' ' + String(defaultPosS.z));
 					}
-
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
 				}
@@ -288,7 +287,6 @@ var zoomH = 0;
 				}
 				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 				if (self.arData.isShadow) {
-					window.alert(self.arData.isShadow);
 					shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 				}
 			})
@@ -307,6 +305,7 @@ var zoomH = 0;
 					}
 					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 					if (self.arData.isShadow) {
+						window.alert(self.arData.isShadow);
 						shadow.setAttribute('position', String(wrapPosS.x) + ' ' + String(wrapPosS.y) + ' ' + String(wrapPosS.z));
 					}
 				}, 10);
