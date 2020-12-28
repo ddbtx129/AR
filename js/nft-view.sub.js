@@ -148,43 +148,25 @@ var zoomH = 0;
 				var shadow = document.getElementById("arGltf-shadow");
 
 				if (dataObj.isShadow) {
-
-					shadow.getAttribute('gltf-model', AFRAME.utils.coordinates.stringify((!(self.arg.ObjectList) ?
-						(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
-						:
-						(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'))));
+					window.alert(0);
+					var shadowPath = (!(self.arg.ObjectList) ?
+							(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '-xs.gltf')
+							:
+							(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '-xs.gltf'));
 
 					shadow.posVec3 = this.positionVec3('shadow', dataObj.size.h);
 					defaultPosS = shadow.posVec3;
 
 					shadow.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 					shadow.setAttribute('position', String(shadow.posVec3.x) + ' ' + String(shadow.posVec3.y) + ' ' + String(shadow.posVec3.z));
-					shadow.setAttribute('rotation', '-80 0 0');
+					shadow.setAttribute('rotation', '-90 0 0');
 
-					//var shadow = document.createElement('a-entity');
-
-					//var shadowSrc = {
-					//	path: (!(self.arg.ObjectList) ?
-					//		(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
-					//		:
-					//		(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
-					//};
-
-					//var shadowPosVec3 = this.positionVec3('shadow', dataObj.size.h);
-					//window.alert(shadowPosVec3.z);
-					//shadow.setAttribute('position', String(shadowPosVec3.x) + ' ' + String(shadowPosVec3.y) + ' ' + String(shadowPosVec3.z));
-					//shadow.setAttribute('rotation', '-45 0 0');
-
-					//AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', { primitive: 'plane', height: dataObj.size.h, width: dataObj.size.w });
-
-					//AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-					//	shader: 'flat', npot: true, src: '#arGltf-main', transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false
-					//});
+					shadow.style.zIndex = 9899;
 
 					shadow.style.visibility = "visible";
 
-					dataObj.shadow = shadow;
-					//marker.appendChild(dataObj.shadow);
+					//dataObj.shadow = shadow;
+
 				} else {
 					shadow.style.visibility = "hidden";
                 }
@@ -346,7 +328,7 @@ var zoomH = 0;
 			var h1_2 = sizeHeight / 2;
 
 			if (type === 'shadow') {
-				return { x: 0, y: 0, z: 0 };
+				return { x: 0, y: 0, z: -sizeHeight };
 			} else {
 				return { x: 0, y: h1_2, z: 0 };
 			}
