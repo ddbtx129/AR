@@ -46,16 +46,11 @@
         },
         {
             "mesh" : 0,
-            "name" : "\u5e73\u9762",
-            "scale" : [
-                -1,
-                1,
-                -1
-            ]
+            "name" : "\u5e73\u9762"
         },
         {
             "mesh" : 1,
-            "name" : "\u5e73\u9762.002",
+            "name" : "\u5e73\u9762.001",
             "rotation" : [
                 0.7071068286895752,
                 0,
@@ -63,14 +58,14 @@
                 0.7071068286895752
             ],
             "scale" : [
-                -1,
-                -1,
+                1,
+                1,
                 -1
             ],
             "translation" : [
                 0,
                 -1,
-                -1
+                1
             ]
         }
     ],
@@ -91,7 +86,7 @@
         {
             "alphaMode" : "BLEND",
             "doubleSided" : true,
-            "name" : "\u30de\u30c6\u30ea\u30a2\u30eb.002",
+            "name" : "\u30de\u30c6\u30ea\u30a2\u30eb.001",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
                     "index" : 1,
