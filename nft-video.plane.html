@@ -57,8 +57,10 @@
                    smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 <!-- position  x y z 軸-->
                 <!--<a-video src="#arVideo" position="50 -75 -75" rotation="-45 0 0" width='213' height='120' play="true"></a-video>-->
-                <a-entity id="testobj2" position="50 -75 -75" shadow="receive: true">
-                    <a-plane id="nft-video" src="#arVideo" position="0 1 -4" rotation="-5 0 0" width="213" height="120" material="transparent: false;"></a-plane>
+                <a-entity id="testobj2" position="50 -75 -75" shadow=">
+                    <a-plane id="nft-video" position="0 1 -4" rotation="-5 0 0" width="213" height="120" material="transparent: false;">
+                        <a-video src="#arVideo" position="50 -75 -75" rotation="-45 0 0" width='213' height='120' play="true"></a-video>
+                    </a-plane>
                 </a-entity>
             </a-nft>
 
