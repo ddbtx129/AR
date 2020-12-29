@@ -48,9 +48,10 @@
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: false;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-        <a-assets id="arAssets">
-            <img crossorigin="anonymous" id="source" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09.png">
-        </a-assets>
+            <a-assets id="arAssets">
+                <img crossorigin="anonymous" id="source" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09.png">
+                <img crossorigin="anonymous" id="source1" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09-xs.png">
+            </a-assets>
 
             <a-nft videohandler type="nft" id="arNft" url="https://ddbtx129.github.io/AR/ImageDescriptors/kento_yamazaki/01/01" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
@@ -61,6 +62,7 @@
                     <a-entity id="testobj0" position="" rotation="">
                         <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0">
                             <a-entity id="testobj2" scale="0.19 0.19 0.19" material="transparent: false">
+                                <a-image src="#source1" width="4" height="4" rotation="-5 0 0" ></a-image>
                                 <a-image src="#source" width="4" height="4" rotation="-90 0 0"></a-image>
                             </a-entity>
                         </a-plane>
@@ -79,7 +81,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST9")
+            window.alert("shadow TEST10")
             var shadow = document.createElement('a-entity');
             shadow.setAttribute('id', 'shadow');
 
