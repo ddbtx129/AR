@@ -1,4 +1,5 @@
-﻿
+﻿var rootPath = "https://ddbtx129.github.io/AR/";
+
 (function () {
 
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
@@ -10,20 +11,14 @@
 
                 // TODO: iOS 11.0以上の場合
                 if (navigator.userAgent.indexOf('Safari') == -1) {
-                    //window.alert('【Safari】をご使用下さい。')
-                    //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
                     Err_Exit('【Safari】をご使用下さい。');
                 }
 
             } else {
-                //window.alert('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。')
-                //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
                 Err_Exit('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。');
             }
 
         } else if (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-            //window.alert('【Chrome】をご使用下さい。')
-            //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
             Err_Exit('【Chrome】をご使用下さい。');
         }
 
@@ -39,20 +34,11 @@
         if (param['ed'] != null) {
 
             if (parseInt(param['ed'].toString(), 16).toString(10) < (year + month + day).toString()) {
-                //window.alert('表示期限が終了しているため、表示することができません。')
-                //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
                 Err_Exit('表示期限が終了しているため、表示することができません。');
             }
         }
         
-        document.addEventListener("touchmove", function(e) {
-              e.preventDefault();
-            }, { passive: false }
-        );
-
     } else {
-        //window.alert('パソコンで表示することはできません。')
-        //location.href = "https://www.aoshima-bk.co.jp/special/webar/warning.php"
             Err_Exit('パソコンで表示することはできません。');
     }
 

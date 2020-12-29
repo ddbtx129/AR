@@ -1,413 +1,307 @@
+﻿var defaultPos = { x: 0, y: 0, z: 0};
+var defaultSize = { w: 10, h: 10 };
+var zoomW = 0;
+var zoomH = 0;
+
+(function (global) {
+
+	var webArNft = {};
+
+
+	var nft = {
+
+		nftInit: function () {
+
+			this.setArg();
+
+			if (this.setArData()) {
+
+				var deviceevents = {
+					touch: typeof document.ontouchstart !== 'undefined',
+					pointer: window.navigator.pointerenabled,
+					mspointer: window.navigator.mspointerenabled
+				};
+
+				this.eventnames = {
+					start: deviceevents.pointer ? 'pointerdown' : deviceevents.mspointer ? 'mspointerdown' : deviceevents.touch ? 'touchstart' : 'mousedown',
+					move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
+					end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
+				};
+			}
+
+			this.setSwitcher();
+		},
+
+		setArg: function () {
+
+			var self = this;
+
+			var arg = {};
+			var pair = location.search.substring(1).split('&');
+
+			for (var i = 0; pair[i]; i++) {
+				var kv = pair[i].split('=');
+				arg[kv[0]] = decodeURIComponent(kv[1]);
+			}
+
+			// 影
+			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
+			// サイズ
+			if (!!arg.wh) {
+				switch ((parseInt(arg.wh, 16).toString(10)).length) {
+					case 2:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+						break;
+					case 4:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+						break;
+					case 6:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+						break;
+					case 8:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
+						break;
+					case 10:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
+						break;
+					default:
+						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+						break;
 
-(function () {
-    window.alert('-1');
-
-    var rootPath = "https://ddbtx129.github.io/AR/";
-
-    //var wrapPos = nft.getAttribute('position');
-    //var arPosX = !(arg["x"]) ? 0 : arg["x"];
-    //var arPosY = !(arg["y"]) ? 0 : arg["y"];
-    //var arPosZ = !(arg["z"]) ? 0 : arg["z"];
-    //var arRotation = { x: 0, y: 0, z: 0 };
-    //var shadowRotation = 0;
-
-    //var shodow = document.getElementById("ar-gltf-shadow");
-    //var isShadow = !!(arg["xs"]);
-
-    //var arScale = !(arg["wh"]) ? 44 : (parseInt(arg["wh"], 16));
-
-    ////nft.size = !(arg["wh"]) ? {
-    ////    w: parseInt(Number(self.arg.sizeList / 10), 10),
-    ////    h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
-    ////} : {
-    ////        w: 2,
-    ////        h: 2
-    ////};
-
-    ////var arScale = (function () {
-    ////    if (!(arg["wh"])) {
-    ////        return { x: 20, y: 20, z: 0 }
-    ////    } else {
-    ////        return (parseInt(arg["wh"], 16))
-    ////    }
-    ////});
-
-    //var zoomRate = nft.size.h;
-
-    window.alert('0');
-    //nftarView.ar = ar;
-    //ar.init();
-    window.alert('1');
-
-    var ar = {
-        
-        init: function () {
-            window.alert('2');
-            this.setArg();
-            
-            //if (setArData()) {
-            //    window.alert('2');
-            //    var deviceEvents = {
-            //        Touch: typeof document.ontouchstart !== 'undefined',
-            //        Pointer: window.navigator.pointerEnabled,
-            //        MSPointer: window.navigator.msPointerEnabled
-            //    };
-            //    window.alert('3');
-            //    this.eventNames = {
-            //        start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
-            //        move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
-            //        end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
-            //    };
-            //    //window.alert('4');
-            //}
-
-            //this.setSwitcher();
-            window.alert('5');
-        },
-
-        setArg : function () {
-
-            var self = this;
-
-            var arg = {};
-            var pair = location.search.substring(1).split('&');
-
-            for (var i = 0; pair[i]; i++) {
-                var kv = pair[i].split('=');
-                arg[kv[0]] = decodeURIComponent(kv[1]);
-            }
-
-            // 影
-            arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-            // サイズ
-            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-            // マーカー
-            arg.markerList = arg.m;
-            arg.markerList1 = arg.m1;
-            arg.markerList2 = arg.m2;
-
-            // ar-gltf-main
-            arg.ObjectList = arg.o;
-            arg.ObjectList1 = arg.o1;
-            arg.ObjectList2 = arg.o2;
-
-            self.arg = arg;
-        }
-
-        //setArData: function () {
-
-        //    var self = this;
-
-        //    var arData = null;
-
-        //    dataObj.isObject = !self.arg.ObjectList && self.arg.ObjectList12;
-
-        //    // データの準備
-        //    var dataObj = {
-        //        path: function () {
-        //            if (dataObj.isObject) {
-        //                return rootPath + 'article/nftobject/' + self.arg.o1 + '/' + s.arg.o2 + '-hs.gltf';
-        //            } else {
-        //                return (!(arg["o"]) ? '' : path + 'article/nftobject/' + self.arg.o + '-hs.gltf');
-        //            }
-        //        }
-        //    };
-
-        //    if (!arData.path) {
-        //        // 画像なかった
-        //        Err_Exit('画像情報が取得できませんでした。');
-        //        return false;
-        //    } else {
-            //var marker = document.getElementById('ar-nft');
-            //var nft = document.getElementById("ar-gltf-main");
-
-
-        //        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
-
-        //        dataObj.isMarker = !!self.arg.markerList;
-        //        dataObj.isMarker12 = !!self.arg.markerList12;
-
-        //        if (dataObj.isMarker12) {
-        //            nObj = path + 'ImageDescriptors/' + arg["m1"] + '/' + arg["m2"];
-        //            marker.setAttribute('url', AFRAME.utils.coordinates.stringify(dataObj.path));
-        //        } else {
-        //            nObj = !(arg["m"]) ? '' : path + 'ImageDescriptors/' + arg["m"] + '/' + arg["m"];
-        //            marker.setAttribute('url', AFRAME.utils.coordinates.stringify(!(sel.arg.isMarker) ? '' : path + 'ImageDescriptors/' + self.arg.m + '/' + self.arg.m));
-        //        }
-
-        //        dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-
-        //        dataObj.size = self.arg.sizeList ? {
-        //            w: parseInt(Number(self.arg.sizeList / 10), 10),
-        //            h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10,
-        //            z: 1
-        //        } : {
-        //                w: 4,
-        //                h: 4,
-        //                z: 1
-        //            };
+				}
+			};
 
-        //        dataObj.posVec3 = self.positionVec3('main');
+			// マーカー
+			arg.markerList = arg.m;
+			arg.markerList1 = arg.m1;
+			arg.markerList2 = arg.m2;
+
+			// arGltf-main
+			arg.ObjectList = arg.o;
+			arg.ObjectList1 = arg.o1;
+			arg.ObjectList2 = arg.o2;
+
+			self.arg = arg;
+		},
+
+		setArData: function () {
+
+			var self = this;
+			var arData = null;
+
+			// データの準備
+			var dataObj = {
+				path: (!(self.arg.ObjectList) ?
+					(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.gltf')
+					:
+					(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '.gltf'))
+			};
+
+		    if (!dataObj.path) {
+
+				// 画像なかった
+		        Err_Exit('画像情報が取得できませんでした。');
+		        return false;
+
+			} else {
+
+				var scene = document.getElementById('arScene');
+		        var marker = document.getElementById('arNft');
+		        var nft = document.getElementById("arGltf-main");
+
+		        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
+				nft.style.zIndex = 9999;
+
+		        if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
+		        	marker.setAttribute('url',
+                        AFRAME.utils.coordinates.stringify(
+							rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
+		        } else {
+		        	marker.setAttribute('url',
+                        AFRAME.utils.coordinates.stringify(
+                            !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+				}
+
+				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
+
+				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
+				defaultSize = dataObj.size;
+
+				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
+				defaultPos = dataObj.posVec3;
+
+				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
+				nft.setAttribute('rotation', '0 0 0');
+
+				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+
+				var shadow = document.getElementById("arGltf-shadow");
+				shadow.style.visibility = "hidden";
+		    }
+
+		    arData = dataObj;
+			self.arData = arData;
+
+			return true;
+		},
+
+		setSwitcher: function () {
+
+			var scene = document.getElementById('arScene');
+			var nft = document.getElementById("arGltf-main");
+
+			var self = this;
+
+			var prevPageY;
+			var prevPageX;
+
+			zoomW = defaultSize.w;
+			zoomH = defaultSize.h;
+
+			var rate = defaultSize.h / 4;
+			
+			// 拡大・縮小
+			scene.addEventListener(self.eventnames.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+				prevPageX = event.pageX;    // 横軸
+
+            })
+			
+			scene.addEventListener(self.eventnames.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                if (prevPageY) {
+					if (zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate > 1) {
+						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 40;
+						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 40;
+						AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
+							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
+						});
+                    }
+                }
+            })
+
+			scene.addEventListener(self.eventnames.end, function (e) {
+				prevPageY = null;
+            })
+
+			// ↓ rotation 切替
+			var bAngle = document.querySelector('#swAngle');
+			var bParallel = document.querySelector('#swParallel');
+
+			bParallel.classList.add('current');
+
+			bAngle.addEventListener('click', function () {
+				if (!bAngle.classList.contains('current')) {
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+					bAngle.classList.add('current');
+					bParallel.classList.remove('current');
+				}
+			})
+
+			bParallel.addEventListener('click', function () {
+				if (!bParallel.classList.contains('current')) {
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+					bParallel.classList.add('current');
+					bAngle.classList.remove('current');
+				}
+			})
+
+			var wrapPos = nft.getAttribute('position');
+
+			var bUP = document.querySelector('#swUp');
+			var bDOWN = document.querySelector('#swDown');
+
+			var timer;
+
+			// ↓ 上移動ボタン押下
+			bUP.addEventListener('click', function (e) {
+				if (!!(bAngle.classList.contains('current'))) {
+					wrapPos.y += 5;
+				} else {
+					wrapPos.z -= 5;
+				}
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			})
+
+			// ↓ 下移動ボタン押下
+			bDOWN.addEventListener('click', function (e) {
+				if (!!(bAngle.classList.contains('current'))) {
+					wrapPos.y -= 5;
+				} else {
+					wrapPos.z += 5;
+				}
+				nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+			})
+
+			// ↓ UPボタン長押し
+			bUP.addEventListener(self.eventnames.start, e => {
+				e.preventDefault();
+				bUP.classList.add('active');
+				timer = setInterval(() => {
+					if (!!(bAngle.classList.contains('current'))) {
+						wrapPos.y += 2;
+					} else {
+						wrapPos.z -= 2;
+					}
+					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+				}, 10);
+			})
+
+			bUP.addEventListener(self.eventnames.end, e => {
+				e.preventDefault();
+				bUP.classList.remove('active');
+				clearInterval(timer);
+			});
+
+			bUP.addEventListener(self.move, e => {
+				e.preventDefault();
+				bUP.classList.remove('active');
+				clearInterval(timer);
+			});
+
+			// ↓ DOWNボタン長押し
+			bDOWN.addEventListener(self.eventnames.start, e => {
+				e.preventDefault();
+				bDOWN.classList.add('active');
+				timer = setInterval(() => {
+					if (!!(bAngle.classList.contains('current'))) {
+						wrapPos.y -= 2;
+					} else {
+						wrapPos.z += 2;
+					}
+					nft.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
+				}, 10);
+			})
+
+			bDOWN.addEventListener(self.eventnames.end, e => {
+				e.preventDefault();
+				bDOWN.classList.remove('active');
+				clearInterval(timer);
+			});
+			
+			bDOWN.addEventListener(self.eventnames.move, e => {
+				e.preventDefault();
+				bDOWN.classList.remove('active');
+				clearInterval(timer);
+			});
+		},
+
+		positionVec3: function (type, sizeHeight) {
+			var h1_2 = sizeHeight / 2;
+
+			if (type === 'shadow') {
+				return { x: 0, y: h1_2, z: sizeHeight - 50 };
+			} else {
+				return { x: 0, y: h1_2, z: 0 };
+			}
+		}
+	};
+
+	webArNft.nft = nft;
+	webArNft.nft.nftInit();
 
-        //        nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(dataObj.size));
-        //        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
-        //        nft.setAttribute('rotation', '0 0 0');
-        //    }
-
-        //    arData = dataObj;
-
-        //    self.arData = arData;
-
-        //    return true;
-        //},
-
-        //setSwitcher: function () {
-
-            //var scene = document.getElementById('ar-scene');
-        //var nft = document.getElementById("ar-gltf-main");
-
-
-        //    var self = this;
-
-        //    var prevPageY;
-        //    var prevPageX;
-
-        //    var zoomRate = self.arData.si.h;
-
-        //    // 拡大・縮小
-        //    scene.addEventListener(deviceEvents.start, function (e) {
-        //        var event = e.changedTouches ? e.changedTouches[0] : e;
-        //        prevPageY = event.pageY;    // 縦軸
-        //        prevPageX = event.pageX;    // 横軸
-        //    })
-
-        //    scene.addEventListener(deviceEvents.move, function (e) {
-        //        var event = e.changedTouches ? e.changedTouches[0] : e;
-        //        if (prevPageY) {
-        //            if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-        //                zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-        //                AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-        //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-        //                });
-        //            }
-        //        }
-        //    })
-
-        //    scene.addEventListener(deviceEvents.end, function (e) {
-        //        prevPageY = null;
-        //    })
-
-        //    var anglebtn = document.querySelector('#swAngle');
-        //    var parallelbtn = document.querySelector('#swParallel');
-
-        //    // ↓ rotation 切替
-        //    parallelbtn.classList.add('current');
-
-        //    anglebtn.addEventListener('click', function () {
-        //        if (!anglebtn.classList.contains('current')) {
-        //            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-        //            anglebtn.classList.add('current');
-        //            parallelbtn.classList.remove('current');
-        //        }
-        //    })
-
-        //    parallelbtn.addEventListener('click', function () {
-        //        if (!parallelbtn.classList.contains('current')) {
-        //            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-        //            parallelbtn.classList.add('current');
-        //            anglebtn.classList.remove('current');
-        //        }
-        //    })
-
-        //    // ↓ 上下移動ボタン押下
-        //    var bUP = document.querySelector('#swUp');
-        //    var bDOWN = document.querySelector('#swDown');
-
-        //    bUP.addEventListener('click', function (e) {
-        //        window.alert(arPosY);
-        //        self.arData..posVec3.y += 0.2;
-        //        window.alert(arPosY);
-        //        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
-        //    })
-
-        //    bDOWN.addEventListener('click', function (e) {
-        //        window.alert(arPosY);
-        //        self.arData.posVec3.y -= 0.2;
-        //        window.alert(arPosY);
-        //        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(self.arData.posVec3));
-        //    })
-
-
-
-        //},
-
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //window.addEventListener('DOMContentLoaded', function () {
-
-    //    nft.setAttribute('scale', AFRAME.utils.coordinates.stringify(nft.size));
-    //    nft.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
-    //    //nft.setAttribute('position', { x: arPosX, y: arPosY, z: arPosZ });
-    //    //nft.setAttribute('rotation', String(arRotation) + ' 0 0');
-    //    nft.setAttribute('rotation', '0 0 0');
-
-    //    var prevPageY;
-    //    var prevPageX;
-
-    //    if (isShadow) {
-    //        shodow.setAttribute('scale', zoomRate + " " + zoomRate + " " + zoomRate);
-    //        shodow.setAttribute('position', { x: arPosX, y: arPosY, z: arPosZ });
-    //        shodow.setAttribute('rotation', '-90 0 0');
-    //    }
-
-    //    var anglebtn = document.querySelector('#swAngle');
-    //    var parallelbtn = document.querySelector('#swParallel');
-
-    //    // ↓ rotation 切替
-    //    parallelbtn.classList.add('current');
-
-    //    anglebtn.addEventListener('click', function () {
-    //        if (!anglebtn.classList.contains('current')) {
-    //            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-    //            anglebtn.classList.add('current');
-    //            parallelbtn.classList.remove('current');
-    //        }
-    //    })
-
-    //    parallelbtn.addEventListener('click', function () {
-    //        if (!parallelbtn.classList.contains('current')) {
-    //            nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-    //            parallelbtn.classList.add('current');
-    //            anglebtn.classList.remove('current');
-    //        }
-    //    })
-    //    // ↑
-    //});
-
-////window.addEventListener('DOMContentLoaded', function () {
-
-//    // 拡大・縮小
-//    scene.addEventListener(_start, function (e) {
-//        var event = e.changedTouches ? e.changedTouches[0] : e;
-//        prevPageY = event.pageY;    // 縦軸
-//        prevPageX = event.pageX;    // 横軸
-//    })
-
-//    scene.addEventListener(_move, function (e) {
-//        var event = e.changedTouches ? e.changedTouches[0] : e;
-//        if (prevPageY) {
-//            if ((zoomRate + ((prevPageY - event.pageY) / scene.clientHeight / 5)) > 0.1) {
-//                zoomRate += ((prevPageY - event.pageY) / scene.clientHeight / 5);
-//                AFRAME.utils.entity.setComponentProperty(nft, 'animation__scale', {
-//                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-//                });
-//            }
-//        }
-//    });
-
-//    scene.addEventListener(_end, function (e) {
-//        prevPageY = null;
-//    })
-//    // ↑
-////});
-
-//window.addEventListener('DOMContentLoaded', function () {
-
-//    // ↓ 上下移動ボタン押下
-//    var bUP = document.querySelector('#swUp');
-//    var bDOWN = document.querySelector('#swDown');
-
-//    bUP.addEventListener('click', function (e) {
-//        window.alert(arPosY);
-//        arPosY += 2;
-//        window.alert(arPosY);
-//        //nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
-//    });
-
-//    bDOWN.addEventListener('click', function (e) {
-//        window.alert(arPosY);
-//        arPosY -= 2;
-//        window.alert(arPosY);
-//        //nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
-//    });
-//    // ↑ 
-//});
-
-window.addEventListener('DOMContentLoaded', function () {
-
-    //var bUP = document.querySelector('#swUp');
-    //var bDOWN = document.querySelector('#swDown');
-    //var timer;
-
-    // ↓ UPボタン長押し
-    //bUP.addEventListener(_start, e => {
-    //    e.preventDefault();
-    //    bUP.classList.add('active');
-    //    timer = setInterval(() => {
-    //        arPosY += 0.2;
-    //        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
-    //    }, 10);
-    //})
-
-    //bUP.addEventListener(_end, e => {
-    //    e.preventDefault();
-    //    bUP.classList.remove('active');
-    //    clearInterval(timer);
-    //});
-
-    //bUP.addEventListener(_move, e => {
-    //    e.preventDefault();
-    //    bUP.classList.remove('active');
-    //    clearInterval(timer);
-    //});
-    //// ↑ 
-
-    //// ↓ DOWNボタン長押し
-    //bDOWN.addEventListener(_start, e => {
-    //    e.preventDefault();
-    //    bDOWN.classList.add('active');
-    //    timer = setInterval(() => {
-    //        arPosY -= 0.2;
-    //        nft.setAttribute('position', AFRAME.utils.coordinates.stringify(arPosX + ' ' + arPosY + ' ' + arPosZ));
-    //    }, 10);
-    //})
-
-    //bDOWN.addEventListener(_end, e => {
-    //    e.preventDefault();
-    //    bDOWN.classList.remove('active');
-    //    clearInterval(timer);
-    //});
-
-    //bDOWN.addEventListener(_move, e => {
-    //    e.preventDefault();
-    //    bDOWN.classList.remove('active');
-    //    clearInterval(timer);
-    //});
-    // ↑
-});
-
-    //var _ua = (function () {
-    //return {
-    //    Touch: typeof document.ontouchstart != "undefined",
-    //    Pointer: window.navigator.pointerEnabled,
-    //    MSPoniter: window.navigator.msPointerEnabled
-    //}
-    //})();
-
-    //nftarView.ar.init();
 }());
