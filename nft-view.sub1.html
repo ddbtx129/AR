@@ -78,7 +78,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST1")
+            window.alert("shadow TEST2")
             var shadow = document.createElement('a-entity');
             shadow.setAttribute('id', 'shadow');
 
@@ -87,7 +87,7 @@
             shadow.setAttribute('rotation', '-90 0 0');
 
             AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                primitive: 'plane', height: 8, width: 8
+                primitive: 'plane', height: 4, width: 4
             });
 
             AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
