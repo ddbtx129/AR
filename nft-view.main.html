@@ -13,12 +13,13 @@
 
         <title>ＡＲ</title>
 
-<!--        <link rel="stylesheet" href="css/ar-view.css">-->
+        <!--        <link rel="stylesheet" href="css/ar-view.css">-->
         <link rel="stylesheet" href="css/nft-view.css">
 
         <script type="text/javascript" src="js/ar.main.js"></script>
         <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
         <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+        <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
         <script type="text/javascript" src="js/camera.swich.js"></script>
         <script type="text/javascript" src="js/ar-video.js"></script>
 
@@ -30,10 +31,7 @@
             <div>データ読み込み中<br>しばらくお待ちください...</div>
         </div>
 
-        <!--<div class="switch">
-            <a id="swMarker" class="swItem"><img src="asset/marker-t.png" width="30"></a>
-            <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
-        </div>-->
+        <a id="info"></a>
 
         <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
 
@@ -43,26 +41,28 @@
         <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
 
-        <a-scene id="ar-scene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-            <a-nft videohandler type="nft" id="ar-nft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
-                
-                <a-entity id="ar-gltf-main" gltf-model="" scale="40 40 1" position="0 0 0" rotation="0 0 0" style="visibility: visible"></a-entity>
-                <a-entity id="ar-gltf-shadow" gltf-model="" scale="40 40 1" position="0 0 0" rotation="-90 0 0" style="visibility: hidden"></a-entity>
+            <a-assets id="arAssets">
+                <img crossorigin="anonymous" id="source" src="https://ddbtx129.github.io/AR/article/pic/miabyss/01.png">
+            </a-assets>
 
+            <a-nft videohandler type="nft" id="arNft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
+
+                <a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>
+                <a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>
             </a-nft>
 
-            <a-camera-static />
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+
+            <!--<a-camera-static />-->
+            <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
 
         </a-scene>
 
-        <script>
-            getNftMarker();
-            getNftObject();
-            
-        </script>
-
-        <script src="js/nft-view.main.js"></script>
+        <script src="js/nft-view.sub.js"></script>
 
     </body>
 
