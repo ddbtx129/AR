@@ -58,9 +58,9 @@
                 <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
                 <!--<a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
 
-                <a-plane id="testobj1" color="cyan" rotation="-90 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0">
+                <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0">
                     <a-entity id="testobj2" scale="0.19 0.19 0.19" material="transparent: false">
-                        <a-image src="#source" width="4" height="4" rotation="-90 0 0"></a-image>
+                        <a-image src="#source" width="4" height="4" rotation="0 0 0"></a-image>
                     </a-entity>
                 </a-plane>
 
@@ -76,13 +76,13 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST6")
+            window.alert("shadow TEST7")
             var shadow = document.createElement('a-entity');
             shadow.setAttribute('id', 'shadow');
 
             shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
 
-            shadow.setAttribute('rotation', '0 0 0');
+            shadow.setAttribute('rotation', '-80 0 0');
 
             AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                 primitive: 'plane', height: 4, width: 4
