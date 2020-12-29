@@ -42,17 +42,19 @@
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
       
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-            
-            <!--<a-assets id="arAssets">
-                <img crossorigin="anonymous" id="source" src="">
-            </a-assets>-->
+
+            <a-assets id="arAssets">
+                <img crossorigin="anonymous" id="source1" src="https://ddbtx129.github.io/AR/article/pic/miabyss/01.png">
+            </a-assets>
 
             <a-nft videohandler type="nft" id="arNft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
                 <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>-->
                 <a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>
                 <a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>
-
+                <a-entity id="testobj2" position="0 0 0" shadow="receive: true">
+                    <a-plane id="testobj1" position="0 1 -4" rotation="-90 0 0" width="4" height="4" src="#source" material="transparent: true; opacity: 0.3"></a-plane>
+                </a-entity>
             </a-nft>
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
