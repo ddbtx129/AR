@@ -61,8 +61,8 @@
                 <a-entity  id="testobj" position="" rotation="">
                     <a-entity id="testobj0" position="" rotation="">
                         <!--position="50 0 -200"-->
-                        <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="50 50 50" material=" shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false">
-                            <a-entity id="testobj1" position="0 0 0" geometry="primitive: 'plane', height: 4, width: 4" material="transparent:  true; opacity: 0.3">
+                        <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="50 50 50" material="transparent: false">
+                            <a-entity id="testobj1" position="0 0 0" geometry="primitive: 'plane', height: 4, width: 4" material=" shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1, color: 'black', opacity: 0.3, depthTest: false">
                                 <!--<a-image src="#source" width="4" height="4" rotation="-5 180 180" style="color: black"></a-image>-->
                             </a-entity>
                             <a-entity id="testobj2" position="0 0 0" material="transparent: false">
@@ -84,7 +84,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST25")
+            window.alert("shadow TEST26")
 
             //var shadow = document.createElement('a-entity');
             //shadow.setAttribute('id', 'shadow');
