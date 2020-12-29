@@ -117,7 +117,7 @@ var zoomH = 0;
 		        if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
-                            rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2));
+							rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2)) + '/' + self.arg.markerList2;
 		        } else {
 		        	marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
