@@ -303,6 +303,7 @@ var webArViewer = webArViewer || {};
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
+            window.alert(self.wrap.outerHTML);
 
             if (self.arg.preview) {
                 // ボタン 表示・非表示切替
@@ -379,7 +380,6 @@ var webArViewer = webArViewer || {};
                 })
 
                 bUP.addEventListener(eventEnd, e => {
-                    window.alert(document.getElementById("shadow").outerHTML);
                     e.preventDefault();
                     bUP.classList.remove('active');
                     clearInterval(timer);
