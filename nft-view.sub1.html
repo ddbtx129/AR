@@ -55,32 +55,38 @@
                 <img crossorigin="anonymous" id="source1" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09-xs.png">
             </a-assets>
 
-            <!--<a-nft videohandler type="nft" id="arNft" url="https://ddbtx129.github.io/AR/ImageDescriptors/kento_yamazaki/01/01" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">-->
+            <a-nft videohandler type="nft" id="arNft" url="https://ddbtx129.github.io/AR/ImageDescriptors/kento_yamazaki/01/01" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
                 <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
                 <!--<a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
                 <a-entity id="testobj" position="" rotation="">
                     <!--position="50 0 -200"-->
                     <!--<a-plane id="testobj1" color="black" rotation="-90 0 0" scale="50 50 50" material="transparent: true; opacity: 0">
-                    <a-entity id="testobj2" position="0 0 0" material="transparent: false" shadow="receive: true">
-                        <a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>
-                    </a-entity>
-                </a-plane>-->
-                    <a-sphere position="0 1 -4"
-                              color="#222"
-                              scale="1 1 1"
-                              shadow="receive: true"></a-sphere>
+        <a-entity id="testobj2" position="0 0 0" material="transparent: false" shadow="receive: true">
+            <a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>
+        </a-entity>
+    </a-plane>-->
+                    <!--<a-sphere position="0 1 -4"
+              color="#222"
+              scale="1 1 1"
+              shadow="receive: true"></a-sphere>-->
                     <a-plane position="0 0 -4"
                              rotation="-90 0 0"
                              width="4"
                              height="4"
+                             src="#source1"
+                             shadow="receive: true" material="transparent: false;"></a-plane>
+                    <a-plane position="0 0 -4"
+                             rotation="0 0 0"
+                             width="4"
+                             height="4"
                              src="#source"
-                             shadow="receive: true"  material="transparent: false;"></a-plane>
+                             shadow="receive: true" material="transparent: false;"></a-plane>
                     <a-entity light="type: directional; color: #fff; castShadow:true;"
                               position="-10 10 10"></a-entity>
                 </a-entity>
 
-            <!--</a-nft>-->
+            </a-nft>
 
             <!--<a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
@@ -93,7 +99,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST61")
+            window.alert("shadow TEST63")
         </script>
 
     </body>
