@@ -13,7 +13,7 @@
 
     <title>ＡＲ</title>
 
-    <!--<link rel="stylesheet" href="css/ar-view.css">-->
+    <!--        <link rel="stylesheet" href="css/ar-view.css">-->
     <link rel="stylesheet" href="css/nft-view.css">
 
     <script type="text/javascript" src="js/ar.main.js"></script>
@@ -48,9 +48,9 @@
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: false;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-            <!--<a-assets id="arAssets">
-            <img crossorigin="anonymous" id="source" src="">
-        </a-assets>-->
+        <a-assets id="arAssets">
+            <img crossorigin="anonymous" id="source" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09.png">
+        </a-assets>
 
             <a-nft videohandler type="nft" id="arNft" url="https://ddbtx129.github.io/AR/ImageDescriptors/kento_yamazaki/01/01" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
 
@@ -58,8 +58,9 @@
                 <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
                 <!--<a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
 
-                <a-plane color="cyan" rotation="-90 0 0" scale="200 275 200" position="50 0 -200" material="transparent: true; opacity: 0.9">
+                <a-plane color="cyan" rotation="-90 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0.9">
                     <a-entity scale="0.19 0.19 0.19" material="transparent: false">
+                        <a-image src="#source" width="4" height="4" rotation="0 0 0"></a-image>
                         <!--<a-text value="Agama Pelacur: Dramaturgi Transendental" anchor="center" align="center" color="red"
                                 position="0 2 0.2" transparent: false></a-text>
                         <a-text value="Writers: Prof. Dr. Nur Syam, M.Si" anchor="center" align="left" color="red"
