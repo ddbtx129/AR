@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/nft-view.css">
 
     <!--<script type="text/javascript" src="js/ar.main.js"></script>-->
+    <script type="text/javascript" src="js/ar/aframe.min.js"></script>
     <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
     <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
     <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
@@ -61,10 +62,16 @@
                 <a-entity id="testobj" position="" rotation="">
                     <!--position="50 0 -200"-->
                     <a-plane id="testobj1" color="black" rotation="-90 0 0" scale="50 50 50" material="transparent: true; opacity: 0.5">
-                        <a-entity id="testobj2" position="0 0 0" material="transparent: false">
+                        <a-entity id="testobj2" position="0 0 0" material="transparent: false" shadow="receive: true">
                             <a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>
                         </a-entity>
                     </a-plane>
+                    <a-plane position="0 0 -4"
+                             rotation="-90 0 0"
+                             width="4"
+                             height="4"
+                             color="#ccc"
+                             shadow="receive: true"></a-plane>
                 </a-entity>
 
             </a-nft>
@@ -80,7 +87,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST55")
+            window.alert("shadow TEST56")
         </script>
 
     </body>
