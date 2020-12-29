@@ -1,30 +1,34 @@
 ﻿<html>
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <meta name="robots" content="noindex,nofollow,noarchive">
-        <meta name="twitter:card" content="summary" />
-        <meta property="og:title" content="WebAR" />
-        <meta property="og:description" content="標準ブラウザからARが見られます。" />
-        <meta property="og:image" content="asset/share.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="WebAR" />
+    <meta property="og:description" content="標準ブラウザからARが見られます。" />
+    <meta property="og:image" content="asset/share.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <title>ＡＲ</title>
+    <title>ＡＲ</title>
 
-        <!--        <link rel="stylesheet" href="css/ar-view.css">-->
-        <link rel="stylesheet" href="css/nft-view.css">
+    <!--        <link rel="stylesheet" href="css/ar-view.css">-->
+    <link rel="stylesheet" href="css/nft-view.css">
 
-        <script type="text/javascript" src="js/ar.main.js"></script>
-        <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
-        <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
-        <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
-        <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
-        <script type="text/javascript" src="js/camera.swich.js"></script>
-        <script type="text/javascript" src="js/ar-video.js"></script>
+    <script type="text/javascript" src="js/ar.main.js"></script>
+    <!--<script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+    <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+    <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
+    <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
+    <script type="text/javascript" src="js/camera.swich.js"></script>
+    <script type="text/javascript" src="js/ar-video.js"></script>-->
+    <script src='https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js'></script>
+    <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js">
+    </script>
 
-    </head>
+</head>
 
     <body>
 
@@ -42,7 +46,7 @@
         <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
 
-        <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: false;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
             <!--<a-assets id="arAssets">
             <img crossorigin="anonymous" id="source" src="">
