@@ -302,6 +302,8 @@ var webArViewer = webArViewer || {};
             var self = this;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
+            window.alert(self.wrap.outerHTML);
+
             self.arData.main && self.wrap.appendChild(self.arData.main);
             window.alert(self.wrap.outerHTML);
 
