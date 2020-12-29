@@ -60,10 +60,8 @@
 
                 <a-plane id="testobj1" color="cyan" rotation="-90 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0">
                     <a-entity id="testobj2" scale="0.19 0.19 0.19" material="transparent: false">
-                        <a-image src="#source" width="8" height="8" rotation="0 0 0"></a-image>
-                            <!--<a-text value="Agama Pelacur: Dramaturgi Transendental" anchor="center" align="center" color="red"
-                            position="0 2 0.2" transparent: false></a-text>
-                            </a-entity>
+                        <a-image src="#source" width="4" height="4" rotation="0 0 0"></a-image>
+                    </a-entity>
                 </a-plane>
 
             </a-nft>
@@ -78,13 +76,13 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST4")
+            window.alert("shadow TEST5")
             var shadow = document.createElement('a-entity');
             shadow.setAttribute('id', 'shadow');
 
             shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
 
-            shadow.setAttribute('rotation', '-90 0 0');
+            shadow.setAttribute('rotation', '0 0 0');
 
             AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                 primitive: 'plane', height: 4, width: 4
@@ -97,7 +95,7 @@
 
             var obj = document.getElementById("testobj2");
 
-            //obj.appendChild(shadow);
+            obj.appendChild(shadow);
 
         </script>
 
