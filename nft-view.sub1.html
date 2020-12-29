@@ -59,10 +59,8 @@
                 <!--<a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
 
                 <a-plane color="cyan" rotation="-90 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0">
-                    <a-entity scale="0.19 0.19 0.19" material="transparent: false">
+                    <a-entity id="testobj" scale="0.19 0.19 0.19" material="transparent: false">
                         <a-image src="#source" width="8" height="8" rotation="0 0 0"></a-image>
-                        <!--<a-entity position="50 0 -200" rotation="0 0 0" geometry="primitive: plane; width: 8; height: 8" 
-                                  material="transparent: false; shader: flatnpot: true, src: #source, transparent: true, alphaTest: 0.1, color: black, opacity: 0.3, depthTest: false"></a-entity>-->
                             <!--<a-text value="Agama Pelacur: Dramaturgi Transendental" anchor="center" align="center" color="red"
                 position="0 2 0.2" transparent: false></a-text>
         <a-text value="Writers: Prof. Dr. Nur Syam, M.Si" anchor="center" align="left" color="red"
@@ -85,7 +83,27 @@
 
         </a-scene>
 
-        <!--<script src="js/nft-view.sub.js"></script>-->
+        <script>
+            var shadow = document.createElement('a-entity');
+            shadow.setAttribute('id', 'shadow');
+
+            shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+
+            shadow.setAttribute('rotation', '-90 0 0');
+
+            AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                primitive: 'plane', height: 8, width: 8
+            });
+
+            AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+                color: 'black', opacity: 0.3, depthTest: false
+            });
+
+            var obj = document.querySelector("#testobj");
+            obj.appendChild(shadow);
+
+        </script>
 
     </body>
 
