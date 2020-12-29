@@ -202,7 +202,7 @@ var webArViewer = webArViewer || {};
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w
                 });
-
+                window.alert(String(shadow));
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
