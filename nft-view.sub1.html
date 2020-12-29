@@ -61,16 +61,16 @@
                 <!--<a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
                 <a-entity id="testobj" position="" rotation="">
                     <!--position="50 0 -200"-->
-                    <!--<a-plane id="testobj1" color="black" rotation="-90 0 0" scale="50 50 50" material="transparent: true; opacity: 0">
-        <a-entity id="testobj2" position="0 0 0" material="transparent: false" shadow="receive: true">
-            <a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>
-        </a-entity>
-    </a-plane>-->
+                    <a-plane id="testobj1" color="black" rotation="-90 0 0" scale="50 50 50" src="#source" material="transparent: false;">
+                        <a-entity id="testobj2" position="0 0 0" material="transparent: false" shadow="receive: true">
+                            <!--<a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>-->
+                        </a-entity>
+                    </a-plane>
                     <!--<a-sphere position="0 1 -4"
               color="#222"
               scale="1 1 1"
               shadow="receive: true"></a-sphere>-->
-                    <a-plane position="0 0 -4"
+                    <!--<a-plane position="0 0 -4"
                              rotation="0 0 0"
                              width="4"
                              height="4"
@@ -81,7 +81,7 @@
                              width="4"
                              height="4"
                              src="#source1"
-                             shadow="receive: true" material="transparent: false;"></a-plane>
+                             shadow="receive: true" material="transparent: false;"></a-plane>-->
                     <!--<a-entity light="type: directional; color: #fff; castShadow:true;"
                               position="-10 10 10"></a-entity>-->
                 </a-entity>
@@ -99,7 +99,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST66")
+            window.alert("shadow TEST67")
         </script>
 
     </body>
