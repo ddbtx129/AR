@@ -61,7 +61,7 @@
                 <a-entity  id="testobj" position="" rotation="">
                     <a-entity id="testobj0" position="" rotation="">
                         <!--position="50 0 -200"-->
-                        <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="100 100 100" material="transparent: true; opacity: 0">
+                        <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="50 50 50" material="transparent: true; opacity: 0">
                             <a-entity id="testobj1" material="transparent: false">
                                 <a-image src="#source1" width="4" height="4" rotation="-5 0 0"></a-image>
                             </a-entity>
@@ -84,26 +84,27 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST17")
-            var shadow = document.createElement('a-entity');
-            shadow.setAttribute('id', 'shadow');
+            window.alert("shadow TEST18")
+            window.alert(document.getElementByI("testobj2").douterHTML);
+            //var shadow = document.createElement('a-entity');
+            //shadow.setAttribute('id', 'shadow');
 
-            shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+            //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
 
-            shadow.setAttribute('rotation', '-5 0 0');
+            //shadow.setAttribute('rotation', '-5 0 0');
 
-            AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                primitive: 'plane', height: 4, width: 4
-            });
+            //AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+            //    primitive: 'plane', height: 4, width: 4
+            //});
 
-            AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
-                color: 'black', opacity: 0.3, depthTest: false
-            });
+            //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+            //    shader: 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+            //    color: 'black', opacity: 0.3, depthTest: false
+            //});
 
-            var obj = document.getElementById("testobj");
+            //var obj = document.getElementById("testobj");
 
-            obj.appendChild(shadow);
+            //obj.appendChild(shadow);
 
         </script>
 
