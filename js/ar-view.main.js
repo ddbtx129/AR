@@ -194,6 +194,7 @@ var webArViewer = webArViewer || {};
 
             if (val.isShadow) {
                 var shadow = document.createElement('a-entity');
+                shadow.setAttribute('id', 'shadow');
 
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
 
@@ -207,7 +208,7 @@ var webArViewer = webArViewer || {};
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
                 });
-                window.alert(shadow.outerHTML);
+                
                 // アニメーション
                 if (val.isQuart) {
                     AFRAME.utils.entity.setComponentProperty(shadow, 'animation__alpha', {
@@ -378,6 +379,7 @@ var webArViewer = webArViewer || {};
                 })
 
                 bUP.addEventListener(eventEnd, e => {
+                    window.alert(document.getElementById("shadow").outerHTML);
                     e.preventDefault();
                     bUP.classList.remove('active');
                     clearInterval(timer);
