@@ -62,8 +62,9 @@
             <!--position="50 0 -200"-->
             <!--<a-plane id="testobj1" color="black" rotation="-5 0 0" scale="1 1 1" src="#source" material="transparent: false;"></a-plane>-->
             <a-entity id="testobj2" position="0 0 0" shadow="receive: true">
-                <a-plane id="testobj1" rotation="-5 0 0" scale="1 1 1" src="#source" material="transparent: false;" style="z-index: 9999"></a-plane>
-                <a-plane id="testobj1" color="black" src="#source" rotation="-85 0 0" scale="1 1 1" material="npot: true, transparent: false, alphaTest: 0.1, opacity: 0.3" style="z-index: 999"></a-plane>
+                <a-entry id="main" geometry="rotation: -85 0 0, width: 4, height: 4" material="src: '#source', transparent: false, metalness: 0, roughness: 0.5"></a-entry>
+                <!--<a-plane id="testobj1" rotation="-5 0 0" scale="1 1 1" src="#source" material="transparent: false;" style="z-index: 9999"></a-plane>
+                <a-plane id="testobj1" color="black" src="#source" rotation="-85 0 0" scale="1 1 1" material="npot: true, transparent: false, alphaTest: 0.1, opacity: 0.3" style="z-index: 999"></a-plane>-->
                 <!--<a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>-->
             </a-entity>
             <!--<a-entity id="testobj2" material="transparent: false" shadow="receive: true">-->
@@ -71,17 +72,12 @@
                 <!--<a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>-->
             <!--</a-entity>-->
 
-            <!--<a-plane id="testobj1" rotation="0 0 0" scale="1 1 1" src="#source" material="transparent: false;">
-    <a-entity id="testobj2" position="0 0 0" material="transparent: false" shadow="receive: true">-->
-            <!--<a-image id="img2" src="#source" width="4" height="4" rotation="0 0 0"></a-image>-->
-            <!--</a-entity>
-    </a-plane>-->
             <!--</a-entity>-->
             <!--</a-nft>-->
-            <!--<a-entity light="type: ambient; color: #BBB"></a-entity>
-    <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
-    <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>-->
-            <a-entity light="type: directional; color: #fff; castShadow: true;" position="-10 10 10"></a-entity>
+            <a-entity light="type: ambient; castShadow: true; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; castShadow: true; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; castShadow: true; intensity: 0.17" position="0 -4 1"></a-entity>
+            <a-entity light="type: directional; color: #FFF; castShadow: true;" position="-10 10 10"></a-entity>
 
             <!--<a-camera-static />-->
             <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
@@ -89,7 +85,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST45");
+            window.alert("shadow TEST46");
         </script>
 
     </body>
