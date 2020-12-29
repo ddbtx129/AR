@@ -60,7 +60,7 @@
 
                 <a-plane id="testobj1" color="cyan" rotation="-90 0 0" scale="200 200 200" position="50 0 -200" material="transparent: true; opacity: 0">
                     <a-entity id="testobj2" scale="0.19 0.19 0.19" material="transparent: false">
-                        <a-image src="#source" width="4" height="4" rotation="0 0 0"></a-image>
+                        <a-image src="#source" width="4" height="4" rotation="-90 0 0"></a-image>
                     </a-entity>
                 </a-plane>
 
@@ -76,7 +76,7 @@
         </a-scene>
 
         <script>
-            window.alert("shadow TEST5")
+            window.alert("shadow TEST6")
             var shadow = document.createElement('a-entity');
             shadow.setAttribute('id', 'shadow');
 
@@ -93,7 +93,7 @@
                 color: 'black', opacity: 0.3, depthTest: false
             });
 
-            var obj = document.getElementById("testobj2");
+            var obj = document.getElementById("testobj1");
 
             obj.appendChild(shadow);
 
