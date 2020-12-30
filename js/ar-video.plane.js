@@ -39,7 +39,9 @@ var zoomH = 0;
 
 			defaultPos = main.getAttribute('position');
 			defaultSize = { w: main.clientWidth, h: main.clientHeight };
-			window.alert(1);
+			window.alert(defaultPos.w);
+			window.alert(defaultPos.h);
+
 			return true;
         },
 
