@@ -35,17 +35,17 @@ var zoomH = 0;
 
 		setProperty: function () {
 
-			var main = document.getElementById("arMain");
+			var main = document.querySelector("#arMain");
 
-			defaultPos = {
-				x: main.getBoundingClientRect().x,
-				y: main.getBoundingClientRect().y,
-				z: 0
-			};
+			defaultPos = main.getAttribute("position");
 
-			defaultSize = { w: main.clientWidth, h: main.clientHeight };
-			window.alert(main.clientWidth);
-			window.alert(main.clientHeight);
+			defaultSize.w = main.getAttribute("width");
+			defaultSize.h = main.getAttribute("height");
+			window.alert(defaultPos.x);
+			window.alert(defaultPos.y);
+			window.alert(defaultSize.w);
+			window.alert(defaultSize.h);
+
 			return true;
         },
 
@@ -116,8 +116,6 @@ var zoomH = 0;
 			})
 
 			var wrapPos = main.getAttribute('position');
-			window.alert(wrapPos.w);
-			window.alert(wrapPos.h);
 
 			var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
