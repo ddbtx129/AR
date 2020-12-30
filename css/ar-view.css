@@ -17,7 +17,7 @@ a {
 #version {
     position: absolute;
     bottom: 0%;
-    left: 6%;
+    left: 50px;
     font-size: x-small;
     color: silver
 }
@@ -76,7 +76,7 @@ a {
 .swichcamera {
     position: absolute;
     bottom: 0%;
-    left: 2%;
+    left: 4px;
     width: 40px;
     height: 40px;
     z-index: 5;

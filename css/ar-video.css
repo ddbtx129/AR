@@ -9,7 +9,6 @@ a {
     text-decoration: none;
     color: #666;
     font-weight: bold;
-
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
@@ -17,7 +16,7 @@ a {
 #version {
     position: absolute;
     bottom: 0%;
-    left: 6%;
+    left: 50px;
     font-size: x-small;
     color: silver
 }
