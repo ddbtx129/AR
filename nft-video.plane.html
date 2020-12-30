@@ -58,11 +58,15 @@
                    smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
                 <!--<a-video src="#arVideo" position="50 -75 -75" rotation="-45 0 0" width='213' height='120' play="true"></a-video>-->
                 <a-plane id="nft-video" position="0 0 0" rotation="90 0 0" width="213" height="120" material="transparent: false">
-                    <a-entity position="90 0 0" shadow=">
-                        <a-video src="#arVideo" position="0 0 0" rotation="-5 0 0" width='213' height='120' play="true"></a-video>
+                    <a-entity position="90 0 0" shadow="">
+                        <a-video src="#arVideo" position="50 -75 -75" rotation="-5 0 0" width='213' height='120' play="true" shadow="receive: true"></a-video>
                     </a-entity>
                 </a-plane>
             </a-nft>
+
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 1" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; castShadow: true;" position="0 -4 1"></a-entity>
 
             <!--<a-entity camera></a-entity>-->
             <!--<a-camera-static />-->
@@ -72,7 +76,7 @@
 
         <script type="text/javascript">getNftMarker();</script>
 
-        <p id="version">v1.0.4</p>
+        <p id="version">v1.0.5</p>
     
     </body>
 
