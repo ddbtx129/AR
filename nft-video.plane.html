@@ -38,6 +38,12 @@
 
         <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
 
+        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: none" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: none" />
+
+        <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
+        <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
+
         <a-assets>
             <video src='notfound_video.mp4'
                    preload="auto" id="arVideo" response-type="arraybuffer" loop
@@ -54,7 +60,7 @@
                  embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
             <a-nft videohandler type="nft" id="arNft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
-                <a-plane id="nft-video" position="40 -75 -75" rotation="-90 0 0" width="213" height="120" material="transparent: true, opacity: 0.1">
+                <a-plane id="nft-video" position="40 -75 -75" rotation="-90 0 0" width="213" height="120" material="transparent: true, opacity: 0">
 <!--                    <a-entity position="-90 0 0" material="transparent: true; ">-->
                         <a-video src="#arVideo" position="0 0 0" rotation="5 0 0" width='213' height='120' play="true" shadow="receive: true"></a-video>
 <!--                    </a-entity>-->
@@ -73,7 +79,7 @@
 
         <script type="text/javascript">getNftMarker();</script>
 
-        <p id="version">v1.0.16</p>
+        <p id="version">v1.0.17</p>
     
     </body>
 
