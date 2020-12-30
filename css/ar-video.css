@@ -58,6 +58,52 @@ a {
     -webkit-touch-callout: none;
 }
 
+.ar-up {
+    position: absolute;
+    bottom: 38%;
+    right: 2%;
+    width: 30px;
+    height: 30px;
+    z-index: 6;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.ar-down {
+    position: absolute;
+    bottom: 30%;
+    right: 2%;
+    width: 30px;
+    height: 30px;
+    z-index: 7;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.ar-angle {
+    position: absolute;
+    opacity: 0.5;
+    bottom: 38%;
+    left: 4px;
+    width: 30px;
+    height: 30px;
+    z-index: 6;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.ar-parallel {
+    position: absolute;
+    opacity: 0.5;
+    bottom: 30%;
+    left: 4px;
+    width: 30px;
+    height: 30px;
+    z-index: 7;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
 .arjs-loader {
     height: 100%;
     width: 100%;
