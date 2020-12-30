@@ -29,7 +29,6 @@ var zoomH = 0;
 			}
 
 			this.setSwitcher();
-
 		},
 
 		setProperty: function () {
@@ -76,7 +75,8 @@ var zoomH = 0;
 						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
 						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
 						AFRAME.utils.entity.setComponentProperty(main, 'animation__scale', {
-							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
+							//property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
+							property: 'size', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + 0
 						});
 					}
 				}
@@ -195,7 +195,6 @@ var zoomH = 0;
 				clearInterval(timer);
 			});
 			window.alert(6);
-
 		}
 	}
 

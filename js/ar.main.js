@@ -5,11 +5,24 @@
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
         && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
 
-        if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0) {
+        if (navigator.userAgent.indexOf('iPhone') > 0) {
 
             if (iosVersion() >= 11) {
 
                 // TODO: iOS 11.0以上の場合
+                if (navigator.userAgent.indexOf('Safari') == -1) {
+                    Err_Exit('【Safari】をご使用下さい。');
+                }
+
+            } else {
+                Err_Exit('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。');
+            }
+
+        } else if (navigator.userAgent.indexOf('iPad') > 0) {
+
+            if (iosVersion() >= 13) {
+
+                // TODO: iOS 13.0以上の場合
                 if (navigator.userAgent.indexOf('Safari') == -1) {
                     Err_Exit('【Safari】をご使用下さい。');
                 }
