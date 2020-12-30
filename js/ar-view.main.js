@@ -194,10 +194,9 @@ var webArViewer = webArViewer || {};
 
             if (val.isShadow) {
                 var shadow = document.createElement('a-entity');
+
                 shadow.setAttribute('id', 'shadow');
-
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-
                 shadow.setAttribute('rotation', '-90 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
@@ -302,10 +301,7 @@ var webArViewer = webArViewer || {};
             var self = this;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
-            window.alert(self.wrap.outerHTML);
-
             self.arData.main && self.wrap.appendChild(self.arData.main);
-            window.alert(self.wrap.outerHTML);
 
             if (self.arg.preview) {
                 // ボタン 表示・非表示切替
