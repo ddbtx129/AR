@@ -37,9 +37,15 @@ var zoomH = 0;
 
 			var main = document.getElementById("arMain");
 
-			defaultPos = main.b.clientWidth
-			defaultSize = { w: main.clientWidth, h: main.clientHeight };
+			defaultPos = {
+				x: main.getBoundingClientRect().x,
+				y: main.getBoundingClientRect().y,
+				z: 0
+			};
 
+			defaultSize = { w: main.clientWidth, h: main.clientHeight };
+			window.alert(main.clientWidth);
+			window.alert(main.clientHeight);
 			return true;
         },
 
