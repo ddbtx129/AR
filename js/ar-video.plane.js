@@ -35,7 +35,8 @@ var zoomH = 0;
 
 		setProperty: function () {
 
-			var main = document.getElementById("arMain");
+			var scene = document.getElementById('arScene');
+			var main = scene.getElementById("arMain");
 
 			defaultPos = main.getAttribute('position');
 			defaultSize = { w: main.clientWidth, h: main.clientHeight };
