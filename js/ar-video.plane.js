@@ -8,9 +8,9 @@ var zoomH = 0;
 
     var webArVideo = {};
 
-    var videoview = {
+    var VideoView = {
 
-		videoInit: function () {
+		VideoInit: function () {
 
 			if (this.setProperty()) {
 
@@ -199,7 +199,7 @@ var zoomH = 0;
 		}
 	}
 
-	webArVideo.videoview = videoview;
-	webArVideo.videoview.videoInit();
+	webArVideo.VideoView = VideoView;
+	webArVideo.VideoView.VideoInit();
 
 }());
