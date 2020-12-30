@@ -191,5 +191,6 @@ var zoomH = 0;
 	}
 
 	webArVideo.videoview = videoview;
-	webArVideo.videoview.init();
+	webArVideo.videoview.videoInit();
+
 }());
