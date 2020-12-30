@@ -194,7 +194,7 @@ var zoomH = 0;
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
 					//nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-					view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
@@ -204,7 +204,7 @@ var zoomH = 0;
 			bParallel.addEventListener('click', function () {
 				if (!bParallel.classList.contains('current')) {
 					//nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-					view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 					bParallel.classList.add('current');
 					bAngle.classList.remove('current');
