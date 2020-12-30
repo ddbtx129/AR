@@ -106,7 +106,7 @@ var zoomH = 0;
 
 				var scene = document.getElementById('arScene');
 		        var marker = document.getElementById('arNft');
-		        var nft = document.getElementById("arGltf-main");
+		        var nft = document.getElementById("arMain");
 
 		        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
 				nft.style.zIndex = 9999;
@@ -148,8 +148,8 @@ var zoomH = 0;
 		setSwitcher: function () {
 
 			var scene = document.getElementById('arScene');
-			var nft = document.getElementById("arGltf-main");
-			var view = document.getElementById("nftView");
+			var nft = document.getElementById("arMain");
+			var view = document.getElementById("arView");
 
 			var self = this;
 

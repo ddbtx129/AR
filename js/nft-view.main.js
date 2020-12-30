@@ -7,7 +7,6 @@ var zoomH = 0;
 
 	var webArNft = {};
 
-
 	var nft = {
 
 		nftInit: function () {
