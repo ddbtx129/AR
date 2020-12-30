@@ -135,7 +135,7 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				var shadow = document.getElementById("arGltf-shadow");
+				var shadow = document.getElementById("arShadow");
 				shadow.style.visibility = "hidden";
 		    }
 
