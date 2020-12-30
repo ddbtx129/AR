@@ -35,13 +35,10 @@ var zoomH = 0;
 
 		setProperty: function () {
 
-			var scene = document.getElementById('arScene');
-			var main = scene.getElementById("arMain");
+			var main = document.getElementById("arMain");
 
 			defaultPos = main.getAttribute('position');
 			defaultSize = { w: main.clientWidth, h: main.clientHeight };
-			window.alert(defaultPos.w);
-			window.alert(defaultPos.h);
 
 			return true;
         },
@@ -113,6 +110,8 @@ var zoomH = 0;
 			})
 
 			var wrapPos = main.getAttribute('position');
+			window.alert(wrapPos.w);
+			window.alert(wrapPos.h);
 
 			var bUP = document.querySelector('#swUp');
 			var bDOWN = document.querySelector('#swDown');
