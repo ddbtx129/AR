@@ -78,9 +78,17 @@
         </a-scene>
 
         <script type="text/javascript">getNftMarker();</script>
+        <script>
+            window.onload = function () {
+                var a = document.getElementById("d1").getBoundingClientRect();
+                console.log("x:" + a.x);       //表示領域の上からの座標位置
+                console.log("y:" + a.y);     //表示領域の左からの座標位置
+                console.log("z:" + a.z);   //表示領域の右からの座標位置
+            }
+        </script>
         <script src="js/ar-video.plane.js"></script>
 
-        <p id="version">v1.0.28</p>
+        <p id="version">v1.0.29</p>
 
     </body>
 
