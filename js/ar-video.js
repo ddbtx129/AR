@@ -12,9 +12,10 @@ function VideoEvent () {
 
     var videoview = {
 
-        videoInit: function () {
-
+		videoInit: function () {
+			window.alert(0);
 			if (this.setProperty()) {
+				window.alert(2);
 
 				var deviceevents = {
 					touch: typeof document.ontouchstart !== 'undefined',
@@ -27,9 +28,11 @@ function VideoEvent () {
 					move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
 					end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
 				};
+				window.alert(3);
 			}
 
 			this.setSwitcher();
+			window.alert(4);
 		},
 
 		setProperty: function () {
@@ -38,7 +41,7 @@ function VideoEvent () {
 
 			defaultPos = main.getAttribute('position');
 			defaultSize = { w: main.clientWidth, h: main.clientHeight };
-
+			window.alert(1);
 			return true;
         },
 
