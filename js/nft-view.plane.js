@@ -11,8 +11,6 @@ var zoomH = 0;
 
 		nftInit: function () {
 
-			document.getElementById("version").innerText = "1.0.6";
-
 			this.setArg();
 
 			if (this.setArData()) {
@@ -168,7 +166,6 @@ var zoomH = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
 				prevPageX = event.pageX;    // 横軸
-
             })
 			
 			scene.addEventListener(self.eventnames.move, function (e) {
