@@ -20,7 +20,7 @@
         <script type="text/javascript" src="js/ar/aframe-ar.js"></script>
         <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
         <script type="text/javascript" src="js/ar.event.js"></script>
-        <script type="text/javascript" src="js/ar-video.js"></script>
+        <script type="text/javascript" src="js/video.object.js"></script>
 
     </head>
 
@@ -33,6 +33,12 @@
         </div>
 
         <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
+
+        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: none" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: none" />
+
+        <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
+        <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
 
         <a-assets>
             <video id="arVideo" autoplay loop="true" preload="none" src='article/notfound_video.mp4' controls></video>
