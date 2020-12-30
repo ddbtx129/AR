@@ -18,6 +18,7 @@
         <script type="text/javascript" src="js/ar.main.js"></script>
         <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
         <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+        <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
         <script type="text/javascript" src="js/ar.event.js"></script>
         <script type="text/javascript" src="js/ar-video.js"></script>
 
@@ -55,13 +56,12 @@
             <a-nft videohandler
                    type="nft" id="arNft" url=""
                    smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
-                <!-- position  x y z 軸-->
                 <!--<a-video src="#arVideo" position="50 -75 -75" rotation="-45 0 0" width='213' height='120' play="true"></a-video>-->
-<!--                <a-entity id="testobj2" position="50 -75 -75" shadow=">-->
-                    <a-plane id="nft-video" position="0 1 -4" rotation="-90 0 0" width="213" height="120" material="transparent: true; opacity 0">
-                        <a-video src="#arVideo" position="50 -75 -75" rotation="-5 0 0" width='213' height='120' play="true"></a-video>
-                    </a-plane>
-<!--                </a-entity>-->
+                <a-plane id="nft-video" position="0 0 0" rotation="0 0 0" width="213" height="120" material="transparent: true; opacity 0">
+                    <a-entity position="0 0 0" shadow=">
+                        <a-video src="#arVideo" position="0 0 0" rotation="-5 0 0" width='213' height='120' play="true"></a-video>
+                    </a-entity>
+                </a-plane>
             </a-nft>
 
             <!--<a-entity camera></a-entity>-->
@@ -72,7 +72,7 @@
 
         <script type="text/javascript">getNftMarker();</script>
 
-        <p id="version">v1.0.0</p>
+        <p id="version">v1.0.1</p>
     
     </body>
 
