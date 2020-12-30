@@ -11,9 +11,8 @@ var zoomH = 0;
     var videoview = {
 
 		videoInit: function () {
-			window.alert(0);
+
 			if (this.setProperty()) {
-				window.alert(2);
 
 				var deviceevents = {
 					touch: typeof document.ontouchstart !== 'undefined',
@@ -26,11 +25,11 @@ var zoomH = 0;
 					move: deviceevents.pointer ? 'pointermove' : deviceevents.mspointer ? 'mspointermove' : deviceevents.touch ? 'touchmove' : 'mousemove',
 					end: deviceevents.pointer ? 'pointerup' : deviceevents.mspointer ? 'mspointerup' : deviceevents.touch ? 'touchend' : 'mouseup'
 				};
-				window.alert(3);
+
 			}
 
 			this.setSwitcher();
-			window.alert(4);
+
 		},
 
 		setProperty: function () {
@@ -41,15 +40,12 @@ var zoomH = 0;
 
 			defaultSize.w = main.getAttribute("width");
 			defaultSize.h = main.getAttribute("height");
-			window.alert(defaultPos.x);
-			window.alert(defaultPos.y);
-			window.alert(defaultSize.w);
-			window.alert(defaultSize.h);
 
 			return true;
         },
 
 		setSwitcher: function () {
+			window.alert(0);
 
 			var scene = document.getElementById('arScene');
 			var main = document.getElementById("arMain");
@@ -64,6 +60,7 @@ var zoomH = 0;
 			zoomH = defaultSize.h;
 
 			var rate = defaultSize.h / 4;
+			window.alert(1);
 
 			// 拡大・縮小
 			scene.addEventListener(self.eventnames.start, function (e) {
@@ -88,6 +85,7 @@ var zoomH = 0;
 			scene.addEventListener(self.eventnames.end, function (e) {
 				prevPageY = null;
 			})
+			window.alert(2);
 
 			// ↓ rotation 切替
 			var bAngle = document.querySelector('#swAngle');
@@ -114,6 +112,7 @@ var zoomH = 0;
 					bAngle.classList.remove('current');
 				}
 			})
+			window.alert(3);
 
 			var wrapPos = main.getAttribute('position');
 
@@ -141,6 +140,7 @@ var zoomH = 0;
 				}
 				main.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
+			window.alert(4);
 
 			// ↓ UPボタン長押し
 			bUP.addEventListener(self.eventnames.start, e => {
@@ -167,6 +167,7 @@ var zoomH = 0;
 				bUP.classList.remove('active');
 				clearInterval(timer);
 			});
+			window.alert(5);
 
 			// ↓ DOWNボタン長押し
 			bDOWN.addEventListener(self.eventnames.start, e => {
@@ -193,6 +194,8 @@ var zoomH = 0;
 				bDOWN.classList.remove('active');
 				clearInterval(timer);
 			});
+			window.alert(6);
+
 		}
 	}
 
