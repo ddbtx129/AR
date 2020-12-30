@@ -59,7 +59,7 @@ var zoomH = 0;
 			zoomW = defaultSize.w;
 			zoomH = defaultSize.h;
 
-			var rate = defaultSize.h / 4;
+			var rate = ((defaultSize.h / 4) < 1) ? 1 : defaultSize.h / 4;
 			window.alert(1);
 
 			// 拡大・縮小
@@ -73,8 +73,8 @@ var zoomH = 0;
 				var event = e.changedTouches ? e.changedTouches[0] : e;
 				if (prevPageY) {
 					if (zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate > 1) {
-						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 40;
-						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * 40;
+						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
+						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
 						AFRAME.utils.entity.setComponentProperty(main, 'animation__scale', {
 							property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
 						});
