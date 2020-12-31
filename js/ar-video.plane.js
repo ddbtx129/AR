@@ -44,7 +44,7 @@ var zoomH = 0;
         },
 
 		setSwitcher: function () {
-			window.alert(0);
+			window.alert(10);
 
 			var scene = document.getElementById('arScene');
 			var main = document.getElementById("arMain");
@@ -58,34 +58,34 @@ var zoomH = 0;
 			zoomW = defaultSize.w;
 			zoomH = defaultSize.h;
 
-			var rate = ((defaultSize.h / 4) < 1) ? 1 : defaultSize.h / 4;
-			window.alert(1);
+			//var rate = ((defaultSize.h / 4) < 1) ? 1 : defaultSize.h / 4;
+			//window.alert(1);
 
-			// 拡大・縮小
-			scene.addEventListener(self.eventnames.start, function (e) {
-				var event = e.changedTouches ? e.changedTouches[0] : e;
-				prevPageY = event.pageY;    // 縦軸
-				prevPageX = event.pageX;    // 横軸
-			})
+			//// 拡大・縮小
+			//scene.addEventListener(self.eventnames.start, function (e) {
+			//	var event = e.changedTouches ? e.changedTouches[0] : e;
+			//	prevPageY = event.pageY;    // 縦軸
+			//	prevPageX = event.pageX;    // 横軸
+			//})
 
-			scene.addEventListener(self.eventnames.move, function (e) {
-				var event = e.changedTouches ? e.changedTouches[0] : e;
-				if (prevPageY) {
-					if (zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate > 1) {
-						zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
-						zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
-						AFRAME.utils.entity.setComponentProperty(main, 'animation__scale', {
-							//property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
-							property: 'size', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + 0
-						});
-					}
-				}
-			})
+			//scene.addEventListener(self.eventnames.move, function (e) {
+			//	var event = e.changedTouches ? e.changedTouches[0] : e;
+			//	if (prevPageY) {
+			//		if (zoomH + ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate > 1) {
+			//			zoomW += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
+			//			zoomH += ((prevPageY - event.pageY) / scene.clientHeight / 5) * rate;
+			//			AFRAME.utils.entity.setComponentProperty(main, 'animation__scale', {
+			//				//property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + zoomW
+			//				property: 'size', dur: 5, easing: 'linear', loop: false, to: zoomW + ' ' + zoomH + ' ' + 0
+			//			});
+			//		}
+			//	}
+			//})
 
-			scene.addEventListener(self.eventnames.end, function (e) {
-				prevPageY = null;
-			})
-			window.alert(2);
+			//scene.addEventListener(self.eventnames.end, function (e) {
+			//	prevPageY = null;
+			//})
+
 
 			// ↓ rotation 切替
 			var bAngle = document.querySelector('#swAngle');
@@ -112,7 +112,7 @@ var zoomH = 0;
 					bAngle.classList.remove('current');
 				}
 			})
-			window.alert(3);
+			window.alert(11);
 
 			var wrapPos = main.getAttribute('position');
 
@@ -140,7 +140,7 @@ var zoomH = 0;
 				}
 				main.setAttribute('position', String(wrapPos.x) + ' ' + String(wrapPos.y) + ' ' + String(wrapPos.z));
 			})
-			window.alert(4);
+			window.alert(12);
 
 			// ↓ UPボタン長押し
 			bUP.addEventListener(self.eventnames.start, e => {
@@ -167,7 +167,7 @@ var zoomH = 0;
 				bUP.classList.remove('active');
 				clearInterval(timer);
 			});
-			window.alert(5);
+			window.alert(13);
 
 			// ↓ DOWNボタン長押し
 			bDOWN.addEventListener(self.eventnames.start, e => {
@@ -194,7 +194,7 @@ var zoomH = 0;
 				bDOWN.classList.remove('active');
 				clearInterval(timer);
 			});
-			window.alert(6);
+			window.alert(14);
 		}
 	}
 
