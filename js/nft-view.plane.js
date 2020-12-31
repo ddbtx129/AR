@@ -109,7 +109,7 @@ var zoomH = 0;
 		        //var nft = document.getElementById("arMain");
 				var marker = document.querySelector('#arNft');
 				var nft = document.querySelector("#arMain");
-				//var nft = document.querySelector("#arView");
+				var base = document.querySelector("#arView");
 				//var obj = document.querySelector("#arMain");
 
 				nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
@@ -126,7 +126,7 @@ var zoomH = 0;
                         AFRAME.utils.coordinates.stringify(
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
 				}
-
+				base.setAttribute()
 				var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
@@ -134,6 +134,10 @@ var zoomH = 0;
 
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				defaultPos = dataObj.posVec3;
+
+				base.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
+				base.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
+				base.setAttribute('rotation', '0 0 0');
 
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
