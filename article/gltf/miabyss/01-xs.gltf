@@ -46,26 +46,21 @@
         },
         {
             "mesh" : 0,
-            "name" : "\u5e73\u9762.001",
-            "rotation" : [
-                0.6427876353263855,
-                0,
-                0,
-                0.766044557094574
-            ],
-            "translation" : [
-                0,
-                0.9900000095367432,
-                -0.17000003159046173
-            ]
+            "name" : "\u5e73\u9762"
         },
         {
             "mesh" : 1,
-            "name" : "\u5e73\u9762",
+            "name" : "\u5e73\u9762.001",
+            "rotation" : [
+                -0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ],
             "translation" : [
                 0,
-                0,
-                -0.9899999499320984
+                -1,
+                1
             ]
         }
     ],
@@ -73,7 +68,7 @@
         {
             "alphaMode" : "BLEND",
             "doubleSided" : true,
-            "name" : "\u30de\u30c6\u30ea\u30a2\u30eb.001",
+            "name" : "\u30de\u30c6\u30ea\u30a2\u30eb",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
                     "index" : 0,
@@ -86,7 +81,7 @@
         {
             "alphaMode" : "BLEND",
             "doubleSided" : true,
-            "name" : "\u30de\u30c6\u30ea\u30a2\u30eb",
+            "name" : "\u30de\u30c6\u30ea\u30a2\u30eb.001",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
                     "index" : 1,
@@ -99,7 +94,7 @@
     ],
     "meshes" : [
         {
-            "name" : "\u5e73\u9762.002",
+            "name" : "\u5e73\u9762",
             "primitives" : [
                 {
                     "attributes" : {
@@ -113,7 +108,7 @@
             ]
         },
         {
-            "name" : "\u5e73\u9762",
+            "name" : "\u5e73\u9762.001",
             "primitives" : [
                 {
                     "attributes" : {
