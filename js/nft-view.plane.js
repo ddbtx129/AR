@@ -105,8 +105,10 @@ var zoomH = 0;
 			} else {
 
 				var scene = document.getElementById('arScene');
-		        var marker = document.getElementById('arNft');
-		        var nft = document.getElementById("arMain");
+		        //var marker = document.getElementById('arNft');
+		        //var nft = document.getElementById("arMain");
+				var marker = document.querySelector('#arNft');
+				var nft = document.querySelector("#arMain");
 
 		        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
 				nft.style.zIndex = 9999;
@@ -135,7 +137,7 @@ var zoomH = 0;
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-				var shadow = document.getElementById("arShadow");
+				var shadow = document.querySelector("#arShadow");
 				shadow.style.visibility = "hidden";
 		    }
 
@@ -147,9 +149,12 @@ var zoomH = 0;
 
 		setSwitcher: function () {
 
-			var scene = document.getElementById('arScene');
-			var nft = document.getElementById("arMain");
-			var view = document.getElementById("arView");
+			//var scene = document.getElementById('arScene');
+			//var nft = document.getElementById("arMain");
+			//var view = document.getElementById("arView");
+			var scene = document.querySelector('#arScene');
+			var nft = document.querySelector("#arMain");
+			var view = document.querySelector("#arView");
 
 			var self = this;
 
