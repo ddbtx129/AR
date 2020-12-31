@@ -45,6 +45,7 @@ var zoomH = 0;
 
 			// 影
 			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
+
 			// サイズ
 			if (!!arg.wh) {
 				switch ((parseInt(arg.wh, 16).toString(10)).length) {
@@ -66,10 +67,9 @@ var zoomH = 0;
 					default:
 						arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
 						break;
-
 				}
 			};
-
+			window.alert(String(arg.sizeList));
 			// マーカー
 			arg.markerList = arg.m;
 			arg.markerList1 = arg.m1;
@@ -125,7 +125,7 @@ var zoomH = 0;
 
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				defaultSize = dataObj.size;
-				window.alert(dataObj.size.w);
+				
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				defaultPos = dataObj.posVec3;
 
