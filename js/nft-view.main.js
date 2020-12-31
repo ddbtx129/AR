@@ -125,7 +125,7 @@ var zoomH = 0;
 
 				dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
 				defaultSize = dataObj.size;
-
+				window.alert(dataObj.size.w);
 				dataObj.posVec3 = this.positionVec3('main', dataObj.size.h);
 				defaultPos = dataObj.posVec3;
 
