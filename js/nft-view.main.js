@@ -131,7 +131,7 @@ var zoomH = 0;
 
 				nft.setAttribute('scale', String(dataObj.size.w) + ' ' + String(dataObj.size.h) + ' ' + String(dataObj.size.w));
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
-				nft.setAttribute('rotation', '90 180 0');
+				nft.setAttribute('rotation', '90 0 0');
 
 				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
@@ -193,7 +193,7 @@ var zoomH = 0;
 
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
-					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 180 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
@@ -202,7 +202,7 @@ var zoomH = 0;
 
 			bParallel.addEventListener('click', function () {
 				if (!bParallel.classList.contains('current')) {
-					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 180 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 					bParallel.classList.add('current');
 					bAngle.classList.remove('current');
