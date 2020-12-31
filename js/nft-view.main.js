@@ -45,7 +45,7 @@ var zoomH = 0;
 
 			// 影
 			arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-			window.alert("桁数：" + String(ar.wh));
+			window.alert("数：" + String(ar.wh));
 			window.alert("桁数：" + String((parseInt(arg.wh, 16).toString(10)).length));
 			// サイズ
 			if (!!arg.wh) {
