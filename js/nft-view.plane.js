@@ -109,9 +109,13 @@ var zoomH = 0;
 		        //var nft = document.getElementById("arMain");
 				var marker = document.querySelector('#arNft');
 				var nft = document.querySelector("#arMain");
+				//var nft = document.querySelector("#arView");
+				//var obj = document.querySelector("#arMain");
 
-		        nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
+				nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
 				nft.style.zIndex = 9999;
+				//obj.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
+				//nft.style.zIndex = 9999;
 
 		        if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
 		        	marker.setAttribute('url',
@@ -135,10 +139,14 @@ var zoomH = 0;
 				nft.setAttribute('position', String(dataObj.posVec3.x) + ' ' + String(dataObj.posVec3.y) + ' ' + String(dataObj.posVec3.z));
 				nft.setAttribute('rotation', '0 0 0');
 
-				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-
 				var shadow = document.querySelector("#arShadow");
-				shadow.style.visibility = "hidden";
+
+				dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
+				//if (isShadow) {
+				//	shadow
+    //            }
+
+				//shadow.style.visibility = "hidden";
 		    }
 
 		    arData = dataObj;
@@ -153,8 +161,9 @@ var zoomH = 0;
 			//var nft = document.getElementById("arMain");
 			//var view = document.getElementById("arView");
 			var scene = document.querySelector('#arScene');
-			var nft = document.querySelector("#arMain");
-			var view = document.querySelector("#arView");
+			//var nft = document.querySelector("#arMain");
+			//var view = document.querySelector("#arView");
+			var nft = document.querySelector("#arView");
 
 			var self = this;
 
@@ -198,8 +207,8 @@ var zoomH = 0;
 
 			bAngle.addEventListener('click', function () {
 				if (!bAngle.classList.contains('current')) {
-					//nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-					view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					//view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 					bAngle.classList.add('current');
 					bParallel.classList.remove('current');
@@ -208,8 +217,8 @@ var zoomH = 0;
 
 			bParallel.addEventListener('click', function () {
 				if (!bParallel.classList.contains('current')) {
-					//nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
-					view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+					nft.setAttribute('rotation', AFRAME.utils.coordinates.stringify('90 0 0'));
+					//view.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 					nft.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
 					bParallel.classList.add('current');
 					bAngle.classList.remove('current');
