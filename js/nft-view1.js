@@ -256,7 +256,7 @@ var zoomH = 0;
 
             var prevPageY;
             var prevPageX;
-            var zoomRate = self.arData.size.h;
+            var zoomRate = 1;
 
             bAngle.classList.add('current');
 
