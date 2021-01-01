@@ -34,7 +34,7 @@ window.alert(25);
                 this.setScene();
             }
 window.alert(26);
-            this.setSwitcher();
+            //this.setSwitcher();
             window.alert(27);
         },
 
