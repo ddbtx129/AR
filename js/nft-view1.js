@@ -311,15 +311,11 @@ var zoomH = 0;
                 prevPageX = event.pageX;    // 横軸
             });
 
-            window.alert(defaultSize.h);
-
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        window.alert(zoomRate);
                         zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        window.alert(zoomRate);
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
                         });
