@@ -108,6 +108,7 @@ var webArViewer = webArViewer || {};
             if (dataObj.path) {
 
                 var source = document.createElement('img');
+                window.alert(dataObj.path);
 
                 source.setAttribute('crossorigin', 'anonymous');
                 source.setAttribute('id', 'source');
@@ -160,12 +161,12 @@ var webArViewer = webArViewer || {};
 
         setWrap: function () {
             var self = this;
-            var offsetPos = self.arg.offsetPos ? decodeURI(self.arg.offsetPos) : '40 -75 -75';
+            var base = self.arg.base ? decodeURI(self.arg.base) : '40 -75 -75';
             self.wrap = document.createElement('a-plane');
-            self.wrap.setAttribute('id', 'arBase');
-            self.wrap.setAttribute('position', offsetPos);
+            self.wrap.setAttribute('id', 'base');
+            self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '0 0 0');
-            AFRAME.utils.entity.setComponentProperty(offsetPos, 'material', { transparent: true, opacity: 0 });
+            AFRAME.utils.entity.setComponentProperty(base, 'material', { transparent: true, opacity: 0 });
         },
 
         createModel: function () {
@@ -356,12 +357,14 @@ var webArViewer = webArViewer || {};
                     marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
+
+                    window.alert(rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2);
                 } else {
                     marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
                 }
-
+                
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
