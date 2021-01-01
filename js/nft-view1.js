@@ -54,7 +54,32 @@ var zoomH = 0;
             // 影
             arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
             // サイズ
-            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+            //arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+
+            // サイズ
+            if (!!arg.wh) {
+                switch ((parseInt(arg.wh, 16).toString(10)).length) {
+                    case 2:
+                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+                        break;
+                    case 4:
+                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+                        break;
+                    case 6:
+                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+                        break;
+                    case 8:
+                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
+                        break;
+                    case 10:
+                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
+                        break;
+                    default:
+                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+                        break;
+                }
+            };
+
             // マーカー
             arg.markerList = arg.m;
             arg.markerList1 = arg.m1;
