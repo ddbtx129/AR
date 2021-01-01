@@ -3,7 +3,7 @@ var webArViewer = webArViewer || {};
 (function (global) {
 
     webArViewer.scene = document.querySelector('a-scene');
-    var rootPath = 'https://ddbtx129.github.io/AR/';
+
     var ar = {
 
         init: function () {
@@ -95,7 +95,7 @@ var webArViewer = webArViewer || {};
 
                 source.setAttribute('crossorigin', 'anonymous');
                 source.setAttribute('id', 'source');
-                source.setAttribute('src', dataObj.path);
+                source.setAttribute('src', rootPath + dataObj.path);
                 assets.appendChild(source);
             }
 
@@ -103,10 +103,7 @@ var webArViewer = webArViewer || {};
 
             if (!arData.path) {
                 // 画像なかった
-                if (window.confirm('画像情報が取得できませんでした。')) {
-                    location.href = "http://www.aoshima-bk.co.jp/";
-                }
-
+                Err_Exit('画像情報が取得できませんでした。');
                 return false;
             }
 
@@ -214,11 +211,11 @@ var webArViewer = webArViewer || {};
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
             // ボタン 表示
-            document.getElementById("swUp").style.display = 'inline';
-            document.getElementById("swDown").style.display = 'inline';
+            //document.getElementById("swUp").style.display = 'inline';
+            //document.getElementById("swDown").style.display = 'inline';
 
-            document.getElementById("swAngle").style.display = 'inline';
-            document.getElementById("swParallel").style.display = 'inline';
+            //document.getElementById("swAngle").style.display = 'inline';
+            //document.getElementById("swParallel").style.display = 'inline';
 
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
@@ -238,21 +235,11 @@ var webArViewer = webArViewer || {};
             } else {
                 mWrap.setAttribute('url',
                     AFRAME.utils.coordinates.stringify(
-                        !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+                        !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
 
-            mWrap.appendChild(self.wrap);
-            webArViewer.scene.appendChild(mWrap);
-            //webArViewer.scene.appendChild(self.wrap);
-
-            var wrapPos = nft.getAttribute('position');
-
-            var prevPageY;
-            var prevPageX;
-            var zoomRate = 1;
-
-            var bAngle = document.querySelector('#swAngle');
-            var bParallel = document.querySelector('#swParallel');
+            var bAngle = document.getElementById('swAngle');
+            var bParallel = document.getElementById('swParallel');
             var arRotation = '-5 0 0';
 
             bAngle.classList.add('current');
@@ -301,8 +288,15 @@ var webArViewer = webArViewer || {};
             //});
 
             //// ↓ 上下移動ボタン押下
-            //var bUP = document.querySelector('#swUp');
-            //var bDOWN = document.querySelector('#swDown');
+
+            //var wrapPos = nft.getAttribute('position');
+
+            //var prevPageY;
+            //var prevPageX;
+            //var zoomRate = 1;
+
+            //var bUP = document.getElementById('swUp');
+            //var bDOWN = document.getElementById('swDown');
             //var timer;
 
             //bUP.addEventListener('click', function () {
@@ -361,6 +355,10 @@ var webArViewer = webArViewer || {};
             //    clearInterval(timer);
             //});
             //// ↑ 
+
+            mWrap.appendChild(self.wrap);
+            webArViewer.scene.appendChild(mWrap);
+            //webArViewer.scene.appendChild(self.wrap);
         },
 
         positionVec3: function (type) {
