@@ -274,7 +274,7 @@ var webArViewer = webArViewer || {};
             var prevPageY;
             var prevPageX;
             var zoomRate = self.wrap.size.h;
-
+            window.alert(zoomRate);
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -284,7 +284,6 @@ var webArViewer = webArViewer || {};
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
-
                 if (prevPageY) {
                     if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
