@@ -87,23 +87,26 @@ var webArViewer = webArViewer || {};
 
             dataObj.isMarker = !!self.arg.markerList;
 
-            dataObj.isDeca = self.arg.decaList && !!Number(self.arg.decaList);
+            //dataObj.isDeca = self.arg.decaList && !!Number(self.arg.decaList);
 
-            dataObj.size = self.arg.sizeList ? {
-                w: parseInt(Number(self.arg.sizeList / 10), 10),
-                h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
-            } : {
-                w: 2,
-                h: 2
-            };
+            //dataObj.size = self.arg.sizeList ? {
+            //    w: parseInt(Number(self.arg.sizeList / 10), 10),
+            //    h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
+            //} : {
+            //    w: 2,
+            //    h: 2
+            //};
 
-            if (dataObj.isDeca) {
-                dataObj.size = {
-                    w: dataObj.size.w * 10,
-                    h: dataObj.size.h * 10
-                };
-            }
+            //if (dataObj.isDeca) {
+            //    dataObj.size = {
+            //        w: dataObj.size.w * 10,
+            //        h: dataObj.size.h * 10
+            //    };
+            //}
 
+            var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
+
+            dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
 
             if (dataObj.path) {
