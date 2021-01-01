@@ -3,7 +3,7 @@ var webArViewer = webArViewer || {};
 (function (global) {
 
     webArViewer.scene = document.querySelector('a-scene');
-
+    var rootPath = 'https://ddbtx129.github.io/AR/';
     var ar = {
         //C: {
         //    arNum: 1
@@ -345,14 +345,14 @@ window.alert(26);
                 // ↑ 
 
             } else {
-
+window.alert(40);
                 // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'none';
                 document.getElementById("swDown").style.display = 'none';
-
+window.alert(41);
                 document.getElementById("swAngle").style.display = 'inline';
                 document.getElementById("swParallel").style.display = 'inline';
-
+window.alert(42);
                 var mWrap = document.createElement('a-nft');
                 mWrap.setAttribute('preset', 'custom');
                 mWrap.setAttribute('type', 'nft');
@@ -361,7 +361,7 @@ window.alert(26);
                 mWrap.setAttribute('smoothCount', '10');
                 mWrap.setAttribute('smoothTolerance', '0.01');
                 mWrap.setAttribute('smoothThreshold', '5');
-
+window.alert(43);
                 if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
                     marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
@@ -372,6 +372,7 @@ window.alert(26);
                     marker.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+                    window.alert(44);
                 }
                 
                 mWrap.appendChild(self.wrap);
