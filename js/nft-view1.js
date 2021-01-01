@@ -363,13 +363,13 @@ window.alert(42);
                 mWrap.setAttribute('smoothThreshold', '5');
 window.alert(43);
                 if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
-                    marker.setAttribute('url',
+                    mWrap.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
 
                     window.alert(rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2);
                 } else {
-                    marker.setAttribute('url',
+                    mWrap.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
                     window.alert(44);
@@ -388,7 +388,7 @@ window.alert(43);
                 } else {
                     anglebtn.classList.add('current');
                 }
-
+                    window.alert(45);
                 anglebtn.addEventListener('click', function () {
                     if (!anglebtn.classList.contains('current')) {
                         arRotation = '-5 0 0';
@@ -398,7 +398,7 @@ window.alert(43);
                         parallelbtn.classList.remove('current');
                     }
                 });
-
+                    window.alert(46);
                 parallelbtn.addEventListener('click', function () {
                     if (!parallelbtn.classList.contains('current')) {
                         arRotation = '-90 0 0';
@@ -409,7 +409,7 @@ window.alert(43);
                     }
                 });
                 // ↑
-
+                    window.alert(47);
                 return;
             }
 
