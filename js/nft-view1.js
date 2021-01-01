@@ -10,15 +10,15 @@ var webArViewer = webArViewer || {};
         //},
         
         init: function () {
-window.alert(20);
+
             this.setArg();
-window.alert(21);
+
             if (this.setArData()) {
-window.alert(22);
+
                 this.setWrap();
-window.alert(23);
+
                 this.createModel();
-window.alert(24);
+
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
@@ -30,12 +30,12 @@ window.alert(24);
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-window.alert(25);
+
                 this.setScene();
             }
-window.alert(26);
+
             //this.setSwitcher();
-            window.alert(27);
+
         },
 
         setArg: function () {
@@ -161,21 +161,16 @@ window.alert(26);
         },
 
         setWrap: function () {
-            window.alert(30);
+
             var self = this;
-                        window.alert(31);
             var base = self.arg.base ? decodeURI(self.arg.base) : '40 -75 -75';
-                        window.alert(32);
+
             self.wrap = document.createElement('a-plane');
-                        window.alert(33);
             self.wrap.setAttribute('id', 'base');
-                        window.alert(34);
+            self.wrap.setAttribute('scale', '40 40 1');
             self.wrap.setAttribute('position', base);
-                        window.alert(35);
             self.wrap.setAttribute('rotation', '0 0 0');
-                        window.alert(36);
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-             window.alert(37);
         },
 
         createModel: function () {
@@ -429,9 +424,8 @@ window.alert(43);
             }
         }
     };
-window.alert(10);
+
     webArViewer.ar = ar;
-    window.alert(11);
     webArViewer.ar.init();
-window.alert(12);
+
 }());
