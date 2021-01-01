@@ -31,7 +31,7 @@ var webArViewer = webArViewer || {};
                 this.setScene();
             }
 
-            this.setSwitcher();
+            //this.setSwitcher();
 
         },
 
@@ -213,7 +213,7 @@ var webArViewer = webArViewer || {};
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            //if (self.arg.preview) {
+            if (self.arg.preview) {
 
                 // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'inline';
@@ -222,12 +222,14 @@ var webArViewer = webArViewer || {};
                 document.getElementById("swAngle").style.display = 'inline';
                 document.getElementById("swParallel").style.display = 'inline';
 
-                var wrapPos = self.wrap.getAttribute('position');
-                wrapPos.x += 0;
-                wrapPos.y -= 0.5;
-                wrapPos.z -= 8;
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', '0 0 0');
+                //var wrapPos = self.wrap.getAttribute('position');
+                //wrapPos.x += 0;
+                //wrapPos.y -= 0.5;
+                //wrapPos.z -= 8;
+                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                //self.wrap.setAttribute('rotation', '0 0 0');
+
+                var wrapPos = nft.getAttribute('position');
 
                 var prevPageY;
                 var prevPageX;
@@ -259,7 +261,6 @@ var webArViewer = webArViewer || {};
                 // ↓ 上下移動ボタン押下
                 var bUP = document.querySelector('#swUp');
                 var bDOWN = document.querySelector('#swDown');
-
 
                 bUP.addEventListener('click', function () {
                     wrapPos.y += 0.2;
@@ -320,7 +321,7 @@ var webArViewer = webArViewer || {};
                 });
                 // ↑ 
 
-            //} else {
+            } else {
 
                 // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'none';
@@ -381,8 +382,8 @@ var webArViewer = webArViewer || {};
                 });
                 // ↑
 
-                //return;
-            //}
+                return;
+            }
 
             webArViewer.scene.appendChild(self.wrap);
         },
