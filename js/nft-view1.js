@@ -174,7 +174,7 @@ window.alert(26);
                         window.alert(35);
             self.wrap.setAttribute('rotation', '0 0 0');
                         window.alert(36);
-            self.wrap.setAttribute(base, 'material', { transparent: true, opacity: 0 });
+            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
              window.alert(37);
         },
 
