@@ -213,7 +213,14 @@ var webArViewer = webArViewer || {};
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            if (self.arg.preview) {
+            //if (self.arg.preview) {
+
+                // ボタン 表示・非表示切替
+                document.getElementById("swUp").style.display = 'inline';
+                document.getElementById("swDown").style.display = 'inline';
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
 
                 // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'inline';
@@ -321,14 +328,7 @@ var webArViewer = webArViewer || {};
                 });
                 // ↑ 
 
-            } else {
-
-                // ボタン 表示・非表示切替
-                document.getElementById("swUp").style.display = 'none';
-                document.getElementById("swDown").style.display = 'none';
-
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+            //} else {
 
                 var mWrap = document.createElement('a-nft');
                 mWrap.setAttribute('preset', 'custom');
@@ -382,8 +382,8 @@ var webArViewer = webArViewer || {};
                 });
                 // ↑
 
-                return;
-            }
+            //    return;
+            //}
 
             webArViewer.scene.appendChild(self.wrap);
         },
