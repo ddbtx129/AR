@@ -108,14 +108,17 @@ var zoomH = 0;
 		        //var marker = document.getElementById('arNft');
 		        //var nft = document.getElementById("arMain");
 				var marker = document.querySelector('#arNft');
-				var nft = document.querySelector("#arMain");
-				var base = document.querySelector("#arView");
+				//var nft = document.querySelector("#arMain");
+				var nft = document.querySelector("#arView");
 				//var obj = document.querySelector("#arMain");
+				var img = document.querySelector("#source");
 
-				nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
-				nft.style.zIndex = 9999;
+				//nft.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
+				//nft.style.zIndex = 9999;
 				//obj.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify(dataObj.path));
 				//nft.style.zIndex = 9999;
+
+				img.setAttribute('src', AFRAME.utils.coordinates.stringify(dataObj.path));
 
 		        if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
 		        	marker.setAttribute('url',
