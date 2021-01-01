@@ -210,12 +210,12 @@ var webArViewer = webArViewer || {};
             if (!val.isGif) {
                 main.setAttribute('rotation', '-5 0 0');
             } else {
-                main.setAttribute('rotation', (!val.isWarp && !self.arg.preview ? '-30' : (self.arg.preview ? '-5' : '-30')) + ' 0 0');
+                main.setAttribute('rotation', '-30 0 0');
             }
 
             AFRAME.utils.entity.setComponentProperty(main, 'material', {
                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
-                side: 'double', transparent: true, alphaTest: 0.1, metalness: val.isReflect ? 0.1 : 0, roughness: val.isReflect ? 0.3 : 0.5
+                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
             });
 
             AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
