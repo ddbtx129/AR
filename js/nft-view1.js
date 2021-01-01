@@ -177,8 +177,8 @@ var zoomH = 0;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', '4 4 4');
-            //self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.h); // '4 4 4');
+            //self.wrap.setAttribute('scale', '4 4 4');
+            self.wrap.setAttribute('scale', (defaultSize.w / 10) + ' ' + (defaultSize.h / 10) + ' ' + (defaultSize.h / 10)); // '4 4 4');
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -281,7 +281,7 @@ var zoomH = 0;
 
             var prevPageY;
             var prevPageX;
-            var zoomRate = 1;
+            var zoomRate = (defaultSize.w / 10);
 
             bAngle.classList.add('current');
 
