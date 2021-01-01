@@ -5,7 +5,7 @@ var webArViewer = webArViewer || {};
     webArViewer.scene = document.querySelector('a-scene');
     var rootPath = 'https://ddbtx129.github.io/AR/';
     var ar = {
-        
+
         init: function () {
 
             this.setArg();
@@ -83,23 +83,6 @@ var webArViewer = webArViewer || {};
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
             dataObj.isMarker = !!self.arg.markerList;
-
-            //dataObj.isDeca = self.arg.decaList && !!Number(self.arg.decaList);
-
-            //dataObj.size = self.arg.sizeList ? {
-            //    w: parseInt(Number(self.arg.sizeList / 10), 10),
-            //    h: Number(self.arg.sizeList) - parseInt(Number(self.arg.sizeList / 10), 10) * 10
-            //} : {
-            //    w: 2,
-            //    h: 2
-            //};
-
-            //if (dataObj.isDeca) {
-            //    dataObj.size = {
-            //        w: dataObj.size.w * 10,
-            //        h: dataObj.size.h * 10
-            //    };
-            //}
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 
@@ -183,7 +166,6 @@ var webArViewer = webArViewer || {};
             }
 
             if (val.isShadow) {
-                //var shadow = document.createElement('a-entity');
                 var shadow = document.createElement('a-image');
 
                 shadow.setAttribute('id', 'shadow');
@@ -231,13 +213,14 @@ var webArViewer = webArViewer || {};
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            if (self.arg.preview) {
+            //if (self.arg.preview) {
+
                 // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'inline';
                 document.getElementById("swDown").style.display = 'inline';
 
-                document.getElementById("swAngle").style.display = 'none';
-                document.getElementById("swParallel").style.display = 'none';
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
 
                 var wrapPos = self.wrap.getAttribute('position');
                 wrapPos.x += 0;
@@ -274,8 +257,9 @@ var webArViewer = webArViewer || {};
                 });
 
                 // ↓ 上下移動ボタン押下
-                var bUP = document.getElementById('swUp');
-                var bDOWN = document.getElementById('swDown');
+                var bUP = document.querySelector('#swUp');
+                var bDOWN = document.querySelector('#swDown');
+
 
                 bUP.addEventListener('click', function () {
                     wrapPos.y += 0.2;
@@ -289,12 +273,9 @@ var webArViewer = webArViewer || {};
                 // ↑ 
 
                 // ↓ UPボタン長押し
-                var eventStart = 'touchstart';
-                var eventEnd = 'touchend';
-                var eventLeave = 'touchmove';
                 var timer;
 
-                bUP.addEventListener(eventStart, e => {
+                bUP.addEventListener(self.eventNames.start, e => {
                     e.preventDefault();
                     bUP.classList.add('active');
                     timer = setInterval(() => {
@@ -303,13 +284,13 @@ var webArViewer = webArViewer || {};
                     }, 10);
                 })
 
-                bUP.addEventListener(eventEnd, e => {
+                bUP.addEventListener(self.eventNames.end, e => {
                     e.preventDefault();
                     bUP.classList.remove('active');
                     clearInterval(timer);
                 });
 
-                bUP.addEventListener(eventLeave, e => {
+                bUP.addEventListener(self.eventNames.move, e => {
                     e.preventDefault();
                     bUP.classList.remove('active');
                     clearInterval(timer);
@@ -317,7 +298,7 @@ var webArViewer = webArViewer || {};
                 // ↑ 
 
                 // ↓ DOWNボタン長押し
-                bDOWN.addEventListener(eventStart, e => {
+                bDOWN.addEventListener(self.eventNames.start, e => {
                     e.preventDefault();
                     bDOWN.classList.add('active');
                     timer = setInterval(() => {
@@ -326,28 +307,28 @@ var webArViewer = webArViewer || {};
                     }, 10);
                 })
 
-                bDOWN.addEventListener(eventEnd, e => {
+                bDOWN.addEventListener(self.eventNames.end, e => {
                     e.preventDefault();
                     bDOWN.classList.remove('active');
                     clearInterval(timer);
                 });
 
-                bUP.addEventListener(eventLeave, e => {
+                bUP.addEventListener(self.eventNames.move, e => {
                     e.preventDefault();
                     bUP.classList.remove('active');
                     clearInterval(timer);
                 });
                 // ↑ 
 
-            } else {
-window.alert(40);
+            //} else {
+
                 // ボタン 表示・非表示切替
                 document.getElementById("swUp").style.display = 'none';
                 document.getElementById("swDown").style.display = 'none';
-window.alert(41);
+
                 document.getElementById("swAngle").style.display = 'inline';
                 document.getElementById("swParallel").style.display = 'inline';
-window.alert(42);
+
                 var mWrap = document.createElement('a-nft');
                 mWrap.setAttribute('preset', 'custom');
                 mWrap.setAttribute('type', 'nft');
@@ -356,20 +337,17 @@ window.alert(42);
                 mWrap.setAttribute('smoothCount', '10');
                 mWrap.setAttribute('smoothTolerance', '0.01');
                 mWrap.setAttribute('smoothThreshold', '5');
-window.alert(43);
+
                 if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
                     mWrap.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
-
-                    window.alert(rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2);
                 } else {
                     mWrap.setAttribute('url',
                         AFRAME.utils.coordinates.stringify(
                             !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
-                    window.alert(44);
                 }
-                
+
                 mWrap.appendChild(self.wrap);
                 webArViewer.scene.appendChild(mWrap);
 
@@ -383,30 +361,28 @@ window.alert(43);
                 } else {
                     anglebtn.classList.add('current');
                 }
-                    window.alert(45);
+
                 anglebtn.addEventListener('click', function () {
                     if (!anglebtn.classList.contains('current')) {
                         arRotation = '-5 0 0';
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
                         anglebtn.classList.add('current');
                         parallelbtn.classList.remove('current');
                     }
                 });
-                    window.alert(46);
+
                 parallelbtn.addEventListener('click', function () {
                     if (!parallelbtn.classList.contains('current')) {
                         arRotation = '-90 0 0';
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
                         parallelbtn.classList.add('current');
                         anglebtn.classList.remove('current');
                     }
                 });
                 // ↑
-                    window.alert(47);
-                return;
-            }
+
+                //return;
+            //}
 
             webArViewer.scene.appendChild(self.wrap);
         },
