@@ -161,13 +161,21 @@ window.alert(26);
         },
 
         setWrap: function () {
+            window.alert(30);
             var self = this;
+                        window.alert(31);
             var base = self.arg.base ? decodeURI(self.arg.base) : '40 -75 -75';
+                        window.alert(32);
             self.wrap = document.createElement('a-plane');
+                        window.alert(33);
             self.wrap.setAttribute('id', 'base');
+                        window.alert(34);
             self.wrap.setAttribute('position', base);
+                        window.alert(35);
             self.wrap.setAttribute('rotation', '0 0 0');
-            AFRAME.utils.entity.setComponentProperty(base, 'material', { transparent: true, opacity: 0 });
+                        window.alert(36);
+            self.wrap.setAttribute(base, 'material', { transparent: true, opacity: 0 });
+             window.alert(37);
         },
 
         createModel: function () {
