@@ -92,7 +92,6 @@ var webArViewer = webArViewer || {};
             if (dataObj.path) {
 
                 var source = document.createElement('img');
-                window.alert(dataObj.path);
 
                 source.setAttribute('crossorigin', 'anonymous');
                 source.setAttribute('id', 'source');
@@ -215,19 +214,35 @@ var webArViewer = webArViewer || {};
 
             //if (self.arg.preview) {
 
-                // ボタン 表示・非表示切替
-                document.getElementById("swUp").style.display = 'inline';
-                document.getElementById("swDown").style.display = 'inline';
+            // ボタン 表示・非表示切替
+            document.getElementById("swUp").style.display = 'inline';
+            document.getElementById("swDown").style.display = 'inline';
 
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+            document.getElementById("swAngle").style.display = 'inline';
+            document.getElementById("swParallel").style.display = 'inline';
 
-                // ボタン 表示・非表示切替
-                document.getElementById("swUp").style.display = 'inline';
-                document.getElementById("swDown").style.display = 'inline';
+            var mWrap = document.createElement('a-nft');
+            mWrap.setAttribute('preset', 'custom');
+            mWrap.setAttribute('type', 'nft');
+            mWrap.setAttribute('id', 'arMarker');
+            mWrap.setAttribute('smooth', 'true');
+            mWrap.setAttribute('smoothCount', '10');
+            mWrap.setAttribute('smoothTolerance', '0.01');
+            mWrap.setAttribute('smoothThreshold', '5');
 
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+            if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
+                mWrap.setAttribute('url',
+                    AFRAME.utils.coordinates.stringify(
+                        rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
+            } else {
+                mWrap.setAttribute('url',
+                    AFRAME.utils.coordinates.stringify(
+                        !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+            }
+
+            mWrap.appendChild(self.wrap);
+            webArViewer.scene.appendChild(mWrap);
+            //webArViewer.scene.appendChild(self.wrap);
 
                 //var wrapPos = self.wrap.getAttribute('position');
                 //wrapPos.x += 0;
@@ -240,7 +255,16 @@ var webArViewer = webArViewer || {};
 
                 var prevPageY;
                 var prevPageX;
-                var zoomRate = 1;
+            var zoomRate = 1;
+
+            var bAngle = document.querySelector('#swAngle');
+            var bParallel = document.querySelector('#swParallel');
+            var arRotation = '-5 0 0';
+
+            // ↓ 上下移動ボタン押下
+            var bUP = document.querySelector('#swUp');
+            var bDOWN = document.querySelector('#swDown');
+            var timer;
 
                 webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                     var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -265,9 +289,6 @@ var webArViewer = webArViewer || {};
                     prevPageY = null;
                 });
 
-                // ↓ 上下移動ボタン押下
-                var bUP = document.querySelector('#swUp');
-                var bDOWN = document.querySelector('#swDown');
 
                 bUP.addEventListener('click', function () {
                     wrapPos.y += 0.2;
@@ -281,7 +302,6 @@ var webArViewer = webArViewer || {};
                 // ↑ 
 
                 // ↓ UPボタン長押し
-                var timer;
 
                 bUP.addEventListener(self.eventNames.start, e => {
                     e.preventDefault();
@@ -330,62 +350,35 @@ var webArViewer = webArViewer || {};
 
             //} else {
 
-                var mWrap = document.createElement('a-nft');
-                mWrap.setAttribute('preset', 'custom');
-                mWrap.setAttribute('type', 'nft');
-                mWrap.setAttribute('id', 'arMarker');
-                mWrap.setAttribute('smooth', 'true');
-                mWrap.setAttribute('smoothCount', '10');
-                mWrap.setAttribute('smoothTolerance', '0.01');
-                mWrap.setAttribute('smoothThreshold', '5');
-
-                if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
-                    mWrap.setAttribute('url',
-                        AFRAME.utils.coordinates.stringify(
-                            rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
-                } else {
-                    mWrap.setAttribute('url',
-                        AFRAME.utils.coordinates.stringify(
-                            !(self.arg.markerList) ? '' : path + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
-                }
-
-                mWrap.appendChild(self.wrap);
-                webArViewer.scene.appendChild(mWrap);
-
                 // ↓ rotation 切替
-                var anglebtn = document.getElementById('swAngle');
-                var parallelbtn = document.getElementById('swParallel');
-                var arRotation = '-5 0 0';
 
-                if (self.arg.preview) {
-                    parallelbtn.classList.add('current');
-                } else {
-                    anglebtn.classList.add('current');
-                }
+                //if (self.arg.preview) {
+                //    bParallel.classList.add('current');
+                //} else {
+                    bAngle.classList.add('current');
+                //}
 
-                anglebtn.addEventListener('click', function () {
-                    if (!anglebtn.classList.contains('current')) {
+                bAngle.addEventListener('click', function () {
+                    if (!bAngle.classList.contains('current')) {
                         arRotation = '-5 0 0';
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                        anglebtn.classList.add('current');
-                        parallelbtn.classList.remove('current');
+                        bAngle.classList.add('current');
+                        bParallel.classList.remove('current');
                     }
                 });
 
-                parallelbtn.addEventListener('click', function () {
-                    if (!parallelbtn.classList.contains('current')) {
+                bParallel.addEventListener('click', function () {
+                    if (!bParallel.classList.contains('current')) {
                         arRotation = '-90 0 0';
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                        parallelbtn.classList.add('current');
-                        anglebtn.classList.remove('current');
+                        bParallel.classList.add('current');
+                        bAngle.classList.remove('current');
                     }
                 });
                 // ↑
 
             //    return;
             //}
-
-            webArViewer.scene.appendChild(self.wrap);
         },
 
         positionVec3: function (type) {
