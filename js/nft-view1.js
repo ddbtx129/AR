@@ -1,5 +1,10 @@
 var webArViewer = webArViewer || {};
 
+var defaultPos = { x: 0, y: 0, z: 0 };
+var defaultSize = { w: 10, h: 10 };
+var zoomW = 0;
+var zoomH = 0;
+
 (function (global) {
 
     webArViewer.scene = document.querySelector('a-scene');
@@ -88,6 +93,7 @@ var webArViewer = webArViewer || {};
 
             dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
+            defaultSize = dataObj.size;
 
             if (dataObj.path) {
 
@@ -142,13 +148,12 @@ var webArViewer = webArViewer || {};
         setWrap: function () {
 
             var self = this;
-            var base = self.arg.base ? decodeURI(self.arg.base) : '0 0 0';
+            var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
             //self.wrap.setAttribute('scale', '4 4 4');
-            self.wrap.setAttribute('scale', self.arData.size.w + ' ' + self.arData.size.h + ' ' + self.arData.size.h); // '4 4 4');
-            windnow.alert(self.arData.size.w);
+            self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.h); // '4 4 4');
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -184,6 +189,7 @@ var webArViewer = webArViewer || {};
 
             var main = document.createElement('a-image');
             var posVec3 = self.positionVec3('main');
+            defaultPos = posVec3;
 
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
