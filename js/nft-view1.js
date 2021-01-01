@@ -238,11 +238,11 @@ var webArViewer = webArViewer || {};
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
 
-            //var wrapPos = self.wrap.getAttribute('position');
+            var wrapPos = self.wrap.getAttribute('position');
 
-            //var prevPageY;
-            //var prevPageX;
-            //var zoomRate = 1;
+            var prevPageY;
+            var prevPageX;
+            var zoomRate = 1;
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
