@@ -8,17 +8,17 @@ var webArViewer = webArViewer || {};
         //C: {
         //    arNum: 1
         //},
-
+        
         init: function () {
-
+window.alert(20);
             this.setArg();
-
+window.alert(21);
             if (this.setArData()) {
-
+window.alert(22);
                 this.setWrap();
-
+window.alert(23);
                 this.createModel();
-
+window.alert(24);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
@@ -30,11 +30,12 @@ var webArViewer = webArViewer || {};
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-
+window.alert(25);
                 this.setScene();
             }
-
+window.alert(26);
             this.setSwitcher();
+            window.alert(27);
         },
 
         setArg: function () {
@@ -419,8 +420,9 @@ var webArViewer = webArViewer || {};
             }
         }
     };
-
+window.alert(10);
     webArViewer.ar = ar;
+    window.alert(11);
     webArViewer.ar.init();
-
+window.alert(12);
 }());
