@@ -273,7 +273,7 @@ var webArViewer = webArViewer || {};
 
             var prevPageY;
             var prevPageX;
-            var zoomRate = self.wrap.size;
+            var zoomRate = self.wrap.size.h;
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
