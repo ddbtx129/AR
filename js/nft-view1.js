@@ -146,9 +146,10 @@ var webArViewer = webArViewer || {};
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', '4 4 4');
+            //self.wrap.setAttribute('scale', '4 4 4');
+            self.wrap.setAttribute('scale', dataObj.size.w + ' ' + dataObj.size.h + ' ' + dataObj.size.h); // '4 4 4');
             self.wrap.setAttribute('position', base);
-            self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
@@ -248,7 +249,7 @@ var webArViewer = webArViewer || {};
 
             var prevPageY;
             var prevPageX;
-            var zoomRate = 4;
+            var zoomRate = dataObj.size.h;
 
             bAngle.classList.add('current');
 
