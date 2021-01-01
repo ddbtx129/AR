@@ -142,7 +142,7 @@ var webArViewer = webArViewer || {};
         setWrap: function () {
 
             var self = this;
-            var base = self.arg.base ? decodeURI(self.arg.base) : '40 -75 -75';
+            var base = self.arg.base ? decodeURI(self.arg.base) : '0 0 0';
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
@@ -262,7 +262,6 @@ var webArViewer = webArViewer || {};
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
                 }
@@ -272,7 +271,6 @@ var webArViewer = webArViewer || {};
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
                 }
@@ -309,12 +307,12 @@ var webArViewer = webArViewer || {};
             var timer;
 
             bUP.addEventListener('click', function () {
-                wrapPos.y += 0.2;
+                wrapPos.y += 1;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
-                wrapPos.y -= 0.2;
+                wrapPos.y -= 1;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
@@ -324,7 +322,7 @@ var webArViewer = webArViewer || {};
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    wrapPos.y += 0.02;
+                    wrapPos.y += 0.2;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
@@ -347,7 +345,7 @@ var webArViewer = webArViewer || {};
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    wrapPos.y -= 0.02;
+                    wrapPos.y -= 0.2;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
@@ -373,9 +371,9 @@ var webArViewer = webArViewer || {};
             var isWarp = self.arData.isWarp;
 
             if (type === 'shadow') {
-                return { x: 0, y: 0, z: -h1_2 + (isWarp ? 0.2 : 0) };
+                return { x: 0, y: 0, z: -h1_2 };
             } else {
-                return { x: 0, y: h1_2, z: -(isWarp ? width - 0.2 : 0) };
+                return { x: 0, y: h1_2, z: 0 };
             }
         }
     };
