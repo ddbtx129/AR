@@ -238,6 +238,16 @@ var webArViewer = webArViewer || {};
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
 
+            mWrap.appendChild(self.wrap);
+            webArViewer.scene.appendChild(mWrap);
+            //webArViewer.scene.appendChild(self.wrap);
+
+            var wrapPos = self.wrap.getAttribute('position');
+
+            var prevPageY;
+            var prevPageX;
+            var zoomRate = 1;
+
             var bAngle = document.getElementById('swAngle');
             var bParallel = document.getElementById('swParallel');
             var arRotation = '-5 0 0';
@@ -288,13 +298,6 @@ var webArViewer = webArViewer || {};
             //});
 
             //// ↓ 上下移動ボタン押下
-
-            //var wrapPos = nft.getAttribute('position');
-
-            //var prevPageY;
-            //var prevPageX;
-            //var zoomRate = 1;
-
             //var bUP = document.getElementById('swUp');
             //var bDOWN = document.getElementById('swDown');
             //var timer;
@@ -355,10 +358,6 @@ var webArViewer = webArViewer || {};
             //    clearInterval(timer);
             //});
             //// ↑ 
-
-            mWrap.appendChild(self.wrap);
-            webArViewer.scene.appendChild(mWrap);
-            //webArViewer.scene.appendChild(self.wrap);
         },
 
         positionVec3: function (type) {
