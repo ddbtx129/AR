@@ -246,11 +246,12 @@ var webArViewer = webArViewer || {};
             var bParalle = document.getElementById('swParallel');
             var arRotation = '-5 0 0';
 
-            if (self.arg.preview) {
-                parallelbtn.classList.add('current');
-            } else {
-                bAngle.classList.add('current');
-            }
+            var prevPageY;
+            var prevPageX;
+            var zoomRate = self.wrap.size.h;
+            window.alert(zoomRate);
+
+            bAngle.classList.add('current');
 
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
@@ -271,10 +272,6 @@ var webArViewer = webArViewer || {};
             });
             // ↑
 
-            var prevPageY;
-            var prevPageX;
-            var zoomRate = self.wrap.size.h;
-            window.alert(zoomRate);
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
