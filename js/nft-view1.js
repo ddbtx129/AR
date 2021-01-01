@@ -286,9 +286,10 @@ var zoomH = 0;
                 prevPageX = event.pageX;    // 横軸
             });
 
+            window.alert(defaultSize.h);
+
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
-                window.alert(zoomRate);
                 if (prevPageY) {
                     if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         window.alert(zoomRate);
