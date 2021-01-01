@@ -276,29 +276,29 @@ var webArViewer = webArViewer || {};
                 }
             });
 
-            // 拡大・縮小
-            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                prevPageY = event.pageY;    // 縦軸
-                prevPageX = event.pageX;    // 横軸
-            });
+            //// 拡大・縮小
+            //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+            //    var event = e.changedTouches ? e.changedTouches[0] : e;
+            //    prevPageY = event.pageY;    // 縦軸
+            //    prevPageX = event.pageX;    // 横軸
+            //});
 
-            webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
+            //webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
+            //    var event = e.changedTouches ? e.changedTouches[0] : e;
 
-                if (prevPageY) {
-                    if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                        });
-                    }
-                }
-            });
+            //    if (prevPageY) {
+            //        if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+            //            zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+            //            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+            //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+            //            });
+            //        }
+            //    }
+            //});
 
-            webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-                prevPageY = null;
-            });
+            //webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+            //    prevPageY = null;
+            //});
 
             //// ↓ 上下移動ボタン押下
             //var bUP = document.querySelector('#swUp');
