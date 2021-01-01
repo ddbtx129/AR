@@ -91,9 +91,12 @@ var zoomH = 0;
 			// データの準備
 			var dataObj = {
 				path: (!(self.arg.ObjectList) ?
-					(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.gltf')
+					//(rootPath + 'article/gltf/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.gltf')
+					//:
+					//(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '.gltf'))
+					(rootPath + 'article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2 + '.png')
 					:
-					(!(self.arg.ObjectList) ? '' : rootPath + 'article/gltf/' + self.arg.ObjectList + '.gltf'))
+					(!(self.arg.ObjectList) ? '' : rootPath + 'article/pic/' + self.arg.ObjectList + '.png'))
 			};
 
 		    if (!dataObj.path) {
