@@ -5,9 +5,6 @@ var webArViewer = webArViewer || {};
     webArViewer.scene = document.querySelector('a-scene');
     var rootPath = 'https://ddbtx129.github.io/AR/';
     var ar = {
-        //C: {
-        //    arNum: 1
-        //},
         
         init: function () {
 
@@ -170,7 +167,7 @@ var webArViewer = webArViewer || {};
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', '40 40 1');
+            self.wrap.setAttribute('scale', '4 4 4');
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
