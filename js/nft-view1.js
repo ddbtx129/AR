@@ -148,6 +148,7 @@ var webArViewer = webArViewer || {};
             self.wrap.setAttribute('id', 'base');
             //self.wrap.setAttribute('scale', '4 4 4');
             self.wrap.setAttribute('scale', self.arData.size.w + ' ' + self.arData.size.h + ' ' + self.arData.size.h); // '4 4 4');
+            windnow.alert(self.arData.size.w);
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
