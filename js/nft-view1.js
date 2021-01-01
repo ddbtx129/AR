@@ -238,12 +238,6 @@ var webArViewer = webArViewer || {};
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
 
-            var wrapPos = self.wrap.getAttribute('position');
-
-            var prevPageY;
-            var prevPageX;
-            var zoomRate = 1;
-
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
 
@@ -277,6 +271,10 @@ var webArViewer = webArViewer || {};
             });
             // ↑
 
+            var prevPageY;
+            var prevPageX;
+            var zoomRate = self.wrap.size;
+
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -300,6 +298,8 @@ var webArViewer = webArViewer || {};
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
             });
+
+            var wrapPos = self.wrap.getAttribute('position');
 
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
