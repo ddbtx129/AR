@@ -1,0 +1,82 @@
+﻿<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="WebAR" />
+    <meta property="og:description" content="標準ブラウザからARが見られます。" />
+    <meta property="og:image" content="asset/share.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>ＡＲ</title>
+
+    <!--        <link rel="stylesheet" href="css/ar-view.css">-->
+    <link rel="stylesheet" href="css/nft-view.css">
+
+    <!--<script type="text/javascript" src="js/ar.main.js"></script>-->
+    <script type="text/javascript" src="js/ar/aframe.min.js"></script>
+    <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+    <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+    <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
+    <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
+    <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
+    <!--<script type="text/javascript" src="js/camera.swich.js"></script>-->
+    <!--<script type="text/javascript" src="js/video.object.js"></script>-->
+
+</head>
+
+    <body>
+
+        <!--<div class="arjs-loader">
+            <div>データ読み込み中<br>しばらくお待ちください...</div>
+        </div>-->
+
+        <a id="info"></a>
+
+        <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" />
+
+        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: inline" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: inline" />
+
+        <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
+        <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
+
+        <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: false;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+            <a-assets id="arAssets">
+                <img crossorigin="anonymous" id="source" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09.png">
+                <img crossorigin="anonymous" id="source1" src="https://ddbtx129.github.io/AR/article/pic/kento_yamazaki/09-xs.png">
+            </a-assets>
+
+            <a-nft videohandler type="nft" id="arNft" url="https://ddbtx129.github.io/AR/ImageDescriptors/kento_yamazaki/01/01" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5" />
+                
+            <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale = "" style="visibility: visible"></a-entity>-->
+            <!--<a-entity id="arGltf-shadow" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
+            <!--<a-entity id="arGltf-main" gltf-model="" scale="" position="" rotation="" animation__scale="" style="visibility: visible"></a-entity>-->
+            <a-entity id="testobj" position="" rotation="">
+                <a-entity id="testobj0" position="" rotation="">
+                    <!--position="50 0 -200"-->
+                    <a-plane id="testobj1" color="cyan" rotation="0 0 0" scale="50 50 50" material="transparent: true; opacity: 0">
+                        <a-entity id="testobj1" material="transparent: false">
+                            <!--<a-image src="#source1" width="4" height="4" rotation="-5 0 0"></a-image>-->
+                            <a-image src="#source1" width="4" height="4" rotation="-5 0 180"></a-image>
+                        </a-entity>
+                        <a-entity id="testobj2" material="transparent: false">
+                            <a-image src="#source" width="4" height="4" rotation="-90 0 0"></a-image>
+                            <!--<a-image id="img2" src="#source" width="4" height="4" rotation="-90 0 0"></a-image>-->
+                        </a-entity>
+                    </a-plane>
+                </a-entity>
+
+        </a-scene>
+
+        <script>
+            window.alert("shadow 60");
+        </script>
+
+    </body>
+
+</html>
