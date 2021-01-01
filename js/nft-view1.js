@@ -245,12 +245,10 @@ var webArViewer = webArViewer || {};
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
             var arRotation = '-5 0 0';
-            window.alert(0);
 
             var prevPageY;
             var prevPageX;
-            var zoomRate = self.wrap.size.h;
-            window.alert(zoomRate);
+            var zoomRate = 4;
 
             bAngle.classList.add('current');
 
