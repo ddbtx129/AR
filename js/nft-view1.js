@@ -238,40 +238,46 @@ var webArViewer = webArViewer || {};
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
 
+            //var wrapPos = self.wrap.getAttribute('position');
+
+            //var prevPageY;
+            //var prevPageX;
+            //var zoomRate = 1;
+
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
-            //webArViewer.scene.appendChild(self.wrap);
 
-            var wrapPos = self.wrap.getAttribute('position');
-
-            var prevPageY;
-            var prevPageX;
-            var zoomRate = 1;
-
+            // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
-            var bParallel = document.getElementById('swParallel');
+            var bParalle = document.getElementById('swParallel');
             var arRotation = '-5 0 0';
 
-            bAngle.classList.add('current');
+            if (self.arg.preview) {
+                parallelbtn.classList.add('current');
+            } else {
+                bAngle.classList.add('current');
+            }
 
-            // 表示方法切り替え
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+
                     bAngle.classList.add('current');
-                    bParallel.classList.remove('current');
+                    bParalle.classList.remove('current');
                 }
             });
 
-            bParallel.addEventListener('click', function () {
-                if (!bParallel.classList.contains('current')) {
+            bParalle.addEventListener('click', function () {
+                if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                    bParallel.classList.add('current');
+
+                    bParalle.classList.add('current');
                     bAngle.classList.remove('current');
                 }
             });
+            // ↑
 
             //// 拡大・縮小
             //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
