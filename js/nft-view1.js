@@ -207,21 +207,22 @@ var webArViewer = webArViewer || {};
         },
 
         setScene: function () {
+
             var self = this;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            //if (self.arg.preview) {
-
-            // ボタン 表示・非表示切替
+            // ボタン 表示
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swAngle").style.display = 'inline';
             document.getElementById("swParallel").style.display = 'inline';
 
+            // NFTマーカー
             var mWrap = document.createElement('a-nft');
+
             mWrap.setAttribute('preset', 'custom');
             mWrap.setAttribute('type', 'nft');
             mWrap.setAttribute('id', 'arMarker');
@@ -244,141 +245,122 @@ var webArViewer = webArViewer || {};
             webArViewer.scene.appendChild(mWrap);
             //webArViewer.scene.appendChild(self.wrap);
 
-                //var wrapPos = self.wrap.getAttribute('position');
-                //wrapPos.x += 0;
-                //wrapPos.y -= 0.5;
-                //wrapPos.z -= 8;
-                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                //self.wrap.setAttribute('rotation', '0 0 0');
+            var wrapPos = nft.getAttribute('position');
 
-                var wrapPos = nft.getAttribute('position');
-
-                var prevPageY;
-                var prevPageX;
+            var prevPageY;
+            var prevPageX;
             var zoomRate = 1;
 
             var bAngle = document.querySelector('#swAngle');
             var bParallel = document.querySelector('#swParallel');
             var arRotation = '-5 0 0';
 
-            // ↓ 上下移動ボタン押下
-            var bUP = document.querySelector('#swUp');
-            var bDOWN = document.querySelector('#swDown');
-            var timer;
+            bAngle.classList.add('current');
 
-                webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-                    var event = e.changedTouches ? e.changedTouches[0] : e;
-                    prevPageY = event.pageY;    // 縦軸
-                    prevPageX = event.pageX;    // 横軸
-                });
-
-                webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
-                    var event = e.changedTouches ? e.changedTouches[0] : e;
-
-                    if (prevPageY) {
-                        if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                            zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                            });
-                        }
-                    }
-                });
-
-                webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-                    prevPageY = null;
-                });
-
-
-                bUP.addEventListener('click', function () {
-                    wrapPos.y += 0.2;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                });
-
-                bDOWN.addEventListener('click', function () {
-                    wrapPos.y -= 0.2;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                });
-                // ↑ 
-
-                // ↓ UPボタン長押し
-
-                bUP.addEventListener(self.eventNames.start, e => {
-                    e.preventDefault();
-                    bUP.classList.add('active');
-                    timer = setInterval(() => {
-                        wrapPos.y += 0.02;
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    }, 10);
-                })
-
-                bUP.addEventListener(self.eventNames.end, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-
-                bUP.addEventListener(self.eventNames.move, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-                // ↑ 
-
-                // ↓ DOWNボタン長押し
-                bDOWN.addEventListener(self.eventNames.start, e => {
-                    e.preventDefault();
-                    bDOWN.classList.add('active');
-                    timer = setInterval(() => {
-                        wrapPos.y -= 0.02;
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    }, 10);
-                })
-
-                bDOWN.addEventListener(self.eventNames.end, e => {
-                    e.preventDefault();
-                    bDOWN.classList.remove('active');
-                    clearInterval(timer);
-                });
-
-                bUP.addEventListener(self.eventNames.move, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-                // ↑ 
-
-            //} else {
-
-                // ↓ rotation 切替
-
-                //if (self.arg.preview) {
-                //    bParallel.classList.add('current');
-                //} else {
+            // 表示方法切り替え
+            bAngle.addEventListener('click', function () {
+                if (!bAngle.classList.contains('current')) {
+                    arRotation = '-5 0 0';
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                     bAngle.classList.add('current');
-                //}
+                    bParallel.classList.remove('current');
+                }
+            });
 
-                bAngle.addEventListener('click', function () {
-                    if (!bAngle.classList.contains('current')) {
-                        arRotation = '-5 0 0';
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                        bAngle.classList.add('current');
-                        bParallel.classList.remove('current');
+            bParallel.addEventListener('click', function () {
+                if (!bParallel.classList.contains('current')) {
+                    arRotation = '-90 0 0';
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    bParallel.classList.add('current');
+                    bAngle.classList.remove('current');
+                }
+            });
+
+            // 拡大・縮小
+            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+                prevPageX = event.pageX;    // 横軸
+            });
+
+            webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+
+                if (prevPageY) {
+                    if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+                        });
                     }
-                });
+                }
+            });
 
-                bParallel.addEventListener('click', function () {
-                    if (!bParallel.classList.contains('current')) {
-                        arRotation = '-90 0 0';
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                        bParallel.classList.add('current');
-                        bAngle.classList.remove('current');
-                    }
-                });
-                // ↑
+            webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+                prevPageY = null;
+            });
 
-            //    return;
-            //}
+            //// ↓ 上下移動ボタン押下
+            //var bUP = document.querySelector('#swUp');
+            //var bDOWN = document.querySelector('#swDown');
+            //var timer;
+
+            //bUP.addEventListener('click', function () {
+            //    wrapPos.y += 0.2;
+            //    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            //});
+
+            //bDOWN.addEventListener('click', function () {
+            //    wrapPos.y -= 0.2;
+            //    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            //});
+            //// ↑ 
+
+            //// ↓ UPボタン長押し
+            //bUP.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bUP.classList.add('active');
+            //    timer = setInterval(() => {
+            //        wrapPos.y += 0.02;
+            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            //    }, 10);
+            //})
+
+            //bUP.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer);
+            //});
+
+            //bUP.addEventListener(self.eventNames.move, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer);
+            //});
+            //// ↑ 
+
+            //// ↓ DOWNボタン長押し
+            //bDOWN.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.add('active');
+            //    timer = setInterval(() => {
+            //        wrapPos.y -= 0.02;
+            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            //    }, 10);
+            //})
+
+            //bDOWN.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.remove('active');
+            //    clearInterval(timer);
+            //});
+
+            //bUP.addEventListener(self.eventNames.move, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer);
+            //});
+            //// ↑ 
         },
 
         positionVec3: function (type) {
