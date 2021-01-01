@@ -31,7 +31,7 @@ var webArViewer = webArViewer || {};
                 this.setScene();
             }
 
-            //this.setSwitcher();
+            this.setSwitcher();
 
         },
 
