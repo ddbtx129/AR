@@ -143,12 +143,13 @@ var zoomH = 0;
                 window.alert(15);
 
                 if (dataObj.isPng || dataObj.isGIf) {
-
+                    window.alert(16);
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
                     assets.appendChild(img);
+                    window.alert(17);
                 }
                 else if (dataObj.isMp4) {
 
@@ -194,7 +195,6 @@ var zoomH = 0;
                 }
 
             }
-            window.alert(16);
 
             arData = dataObj;
 
@@ -277,16 +277,17 @@ var zoomH = 0;
                 });
 
                 self.arData.shadow = shadow;
+                window.alert(22);
             }
-            window.alert(22);
+
             var elname = '';
 
             if (val.isPng || val.arData) {
                 elname = 'a-image'
+                window.alert(23);
             } else if (val.isMp4) {
                 elname = 'a-video'
             }
-            window.alert(23);
 
             var main = document.createElement(elname);
             var posVec3 = self.positionVec3('main');
@@ -296,12 +297,14 @@ var zoomH = 0;
             window.alert(25);
             if (!val.isGif) {
                 main.setAttribute('rotation', '-5 0 0');
+                window.alert(26);
                 if (val.isMp4) {
                     main.setAttribute('width', 'true');
                     main.setAttribute('height', 'true');
                     main.setAttribute('play', 'true');
+                    window.alert(26.5);
                 }
-                window.alert(26);
+                window.alert(27);
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
