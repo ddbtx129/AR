@@ -138,7 +138,7 @@ var zoomH = 0;
             if (dataObj.path) {
                 window.alert(14);
 
-                var folder = !!(dataObj.isMp4) ? 'pic' : 'video';
+                var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
                 window.alert(15);
 
