@@ -282,6 +282,7 @@ var zoomH = 0;
             var prevPageY;
             var prevPageX;
             var zoomRate = (defaultSize.w / 10);
+            var wrapPos = defaultPos;
 
             bAngle.classList.add('current');
 
@@ -328,25 +329,23 @@ var zoomH = 0;
             });
 
             //var wrapPos = self.wrap('position');
-            var wrapPos = defaultPos;
-            window.alert(0);
 
             // ↓ 上下移動ボタン押下
+            var arBase = document.querySelector('#base');
             var bUP = document.querySelector('#swUp');
             var bDOWN = document.querySelector('#swDown');
             var timer;
-            window.alert(1);
 
             bUP.addEventListener('click', function () {
                 wrapPos.y += 1;
-                window.alert(wrapPos.y);
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
                 wrapPos.y -= 1;
-                window.alert(wrapPos.y);
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
 
