@@ -293,6 +293,7 @@ var zoomH = 0;
                     arRotation = '-5 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                     arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
+                    wrapPos = defaultPos;
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
                 }
@@ -303,6 +304,7 @@ var zoomH = 0;
                     arRotation = '-90 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                     arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
+                    wrapPos = defaultPos;
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
                 }
@@ -331,8 +333,6 @@ var zoomH = 0;
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
             });
-
-            //var wrapPos = self.wrap('position');
 
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
