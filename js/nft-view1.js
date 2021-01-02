@@ -274,8 +274,6 @@ var zoomH = 0;
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
 
-            var arBase = document.getElementById('base');
-
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
@@ -291,9 +289,9 @@ var zoomH = 0;
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
                     wrapPos = defaultPos;
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
                 }
@@ -302,9 +300,9 @@ var zoomH = 0;
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
                     wrapPos = defaultPos;
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
                 }
@@ -334,6 +332,8 @@ var zoomH = 0;
                 prevPageY = null;
             });
 
+            var arBase = document.getElementById('base');
+
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
@@ -345,8 +345,8 @@ var zoomH = 0;
                 } else {
                     wrapPos.z -= 5;
                 }
-                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
@@ -355,8 +355,8 @@ var zoomH = 0;
                 } else {
                     wrapPos.z += 5;
                 }
-                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
 
@@ -370,8 +370,8 @@ var zoomH = 0;
                     } else {
                         wrapPos.z -= 2;
                     }
-                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
 
@@ -398,8 +398,8 @@ var zoomH = 0;
                     } else {
                         wrapPos.z += 2;
                     }
-                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
 
