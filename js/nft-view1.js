@@ -331,11 +331,11 @@ var zoomH = 0;
             //var wrapPos = self.wrap('position');
 
             // ↓ 上下移動ボタン押下
-            var arBase = document.querySelector('#base');
-            var bUP = document.querySelector('#swUp');
-            var bDOWN = document.querySelector('#swDown');
+            var arBase = document.getElementById('base');
+            var bUP = document.getElementById('swUp');
+            var bDOWN = document.getElementById('swDown');
             var timer;
-
+            window.alert(arBase);
             bUP.addEventListener('click', function () {
                 wrapPos.y += 1;
                 //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
@@ -355,7 +355,8 @@ var zoomH = 0;
                 bUP.classList.add('active');
                 timer = setInterval(() => {
                     wrapPos.y += 0.2;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
 
@@ -378,7 +379,8 @@ var zoomH = 0;
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
                     wrapPos.y -= 0.2;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
 
