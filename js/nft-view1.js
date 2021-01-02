@@ -290,6 +290,8 @@ var zoomH = 0;
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
                     wrapPos = defaultPos;
+                    window.alert(wrapPos.y);
+                    window.alert(wrapPos.z);
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
@@ -301,6 +303,8 @@ var zoomH = 0;
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
                     wrapPos = defaultPos;
+                    window.alert(wrapPos.y);
+                    window.alert(wrapPos.z);
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
