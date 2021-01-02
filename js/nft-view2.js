@@ -22,7 +22,7 @@ var videostate = 0;
                 this.setWrap();
                 window.alert(3);
                 this.createModel();
-                //this.createVideoInfo();
+                
                 window.alert(4);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -312,6 +312,7 @@ var videostate = 0;
                 elname = 'a-image'
                 window.alert(23);
             } else if (val.isMp4) {
+                this.createVideoInfo();
                 elname = 'a-video'
             }
 
