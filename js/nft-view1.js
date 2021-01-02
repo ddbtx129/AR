@@ -274,6 +274,8 @@ var zoomH = 0;
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
 
+            var arBase = document.getElementById('base');
+
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
@@ -290,6 +292,7 @@ var zoomH = 0;
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    arBase.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
                 }
@@ -299,6 +302,7 @@ var zoomH = 0;
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    arBase.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
                 }
@@ -331,7 +335,6 @@ var zoomH = 0;
             //var wrapPos = self.wrap('position');
 
             // ↓ 上下移動ボタン押下
-            var arBase = document.getElementById('base');
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
@@ -348,9 +351,9 @@ var zoomH = 0;
 
             bDOWN.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += 5;
+                    wrapPos.y -= 5;
                 } else {
-                    wrapPos.z -= 5;
+                    wrapPos.z += 5;
                 }
                 //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
@@ -391,9 +394,9 @@ var zoomH = 0;
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y += 2;
+                        wrapPos.y -= 2;
                     } else {
-                        wrapPos.z -= 2;
+                        wrapPos.z += 2;
                     }
                     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
