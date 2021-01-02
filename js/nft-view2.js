@@ -341,8 +341,9 @@ var videostate = 0;
             AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                 primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
             });
-            window.alert(29);
+            window.alert('29' + 'end1');
             self.arData.main = main;
+            window.alert('29' + 'end2');
         },
 
         setScene: function () {
