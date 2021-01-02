@@ -282,14 +282,14 @@ var zoomH = 0;
             var prevPageY;
             var prevPageX;
             var zoomRate = (defaultSize.w / 10);
-            var wrapPos = defaultPos;
+            var wrapPos = self.positionVec3('main');
 
             bAngle.classList.add('current');
 
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
-                    wrapPos = defaultPos;
+                    wrapPos = self.positionVec3('main');;
                     window.alert(wrapPos.y);
                     window.alert(wrapPos.z);
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
@@ -302,7 +302,7 @@ var zoomH = 0;
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
-                    wrapPos = defaultPos;
+                    wrapPos = self.positionVec3('main');
                     window.alert(wrapPos.y);
                     window.alert(wrapPos.z);
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
