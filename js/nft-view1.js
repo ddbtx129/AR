@@ -329,11 +329,13 @@ var zoomH = 0;
 
             //var wrapPos = self.wrap.getAttribute('position');
             var wrapPos = defaultPos;
+            window.alert(0);
 
             // ↓ 上下移動ボタン押下
             var bUP = document.querySelector('#swUp');
             var bDOWN = document.querySelector('#swDown');
             var timer;
+            window.alert(1);
 
             bUP.addEventListener('click', function () {
                 wrapPos.y += 1;
