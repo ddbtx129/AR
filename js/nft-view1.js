@@ -331,8 +331,8 @@ var zoomH = 0;
             var wrapPos = defaultPos;
 
             // ↓ 上下移動ボタン押下
-            var bUP = document.getElementById('swUp');
-            var bDOWN = document.getElementById('swDown');
+            var bUP = document.querySelector('#swUp');
+            var bDOWN = document.querySelector('#swDown');
             var timer;
 
             bUP.addEventListener('click', function () {
