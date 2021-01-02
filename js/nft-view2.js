@@ -22,7 +22,7 @@ var videostate = 0;
                 this.setWrap();
                 window.alert(3);
                 this.createModel();
-                this.createVideoInfo();
+                //this.createVideoInfo();
                 window.alert(4);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -201,39 +201,6 @@ var videostate = 0;
             return true;
         },
 
-        createVideoInfo: function () {
-
-            var self = this;
-
-            self.videoinfo = document.createAttribute("div");
-            self.videoinfo.setAttribute('id', 'info1');
-            self.videoinfo.setAttribute('info1', 'info1');
-            
-            self.videotag = document.createAttribute("a");
-            self.videotag.setAttribute('id', 'swPlay');
-            self.videotag.setAttribute('info1', 'InfoItem');
-            self.videoinfo.appendChild(self.videotag);
-
-            self.videotext = document.createAttribute("p");
-            self.videotext.setAttribute('id', 'p1');
-            self.videotag.appendChild(self.videotext);
-
-            //self.pbr = document.createAttribute('br')
-            self.ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
-            //self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
-            self.videotag.appendChild(self.ptext1);
-
-            document.body.appendChild(self.videoinfo);
-
-            self.play = document.createAttribute("img");
-            self.play.setAttribute('id', 'player');
-            self.play.setAttribute('class', 'playbutton');
-            self.play.setAttribute('src', 'asset/play.png');
-            self.play.style.display = 'none';
-
-            document.body.appendChild(self.play);
-        },
-
         setSwitcher: function () {
 
             var self = this;
@@ -271,6 +238,42 @@ var videostate = 0;
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+        },
+
+        createVideoInfo: function () {
+
+            var self = this;
+
+            self.videoinfo = document.createAttribute("div");
+            self.videoinfo.setAttribute('id', 'info1');
+            self.videoinfo.setAttribute('info1', 'info1');
+
+            self.videotag = document.createAttribute("a");
+            self.videotag.setAttribute('id', 'swPlay');
+            self.videotag.setAttribute('info1', 'InfoItem');
+
+            self.videotext = document.createAttribute("p");
+            self.videotext.setAttribute('id', 'p1');
+
+
+            ////self.pbr = document.createAttribute('br')
+            //self.ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
+            ////self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
+            //self.videotag.appendChild(self.ptext1);
+
+            //document.body.appendChild(self.videoinfo);
+
+            self.play = document.createAttribute("img");
+            self.play.setAttribute('id', 'player');
+            self.play.setAttribute('class', 'playbutton');
+            self.play.setAttribute('src', 'asset/play.png');
+            self.play.style.display = 'none';
+
+            self.videoinfo.appendChild(self.videotag);
+            self.videotag.appendChild(self.videotext);
+
+            document.body.appendChild(self.videoinfo);
+            document.body.appendChild(self.play);
         },
 
         createModel: function () {
