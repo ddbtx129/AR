@@ -168,7 +168,7 @@ var zoomH = 0;
 
                     var video = document.createElement("arVideo");
                     video.setAttribute("src", dataObj.path);
-                    video.setAttribute('id', 'arVideo');
+                    video.setAttribute('id', 'source');
                     video.setAttribute('preload', 'auto');
                     video.setAttribute('response-type', 'arraybuffer');
                     video.setAttribute('loop', 'true');
@@ -338,6 +338,8 @@ var zoomH = 0;
 
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
+
+            if (val.isMp4) mWrap.setAttribute('videohandler', '');
 
             mWrap.setAttribute('preset', 'custom');
             mWrap.setAttribute('type', 'nft');
