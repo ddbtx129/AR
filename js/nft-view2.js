@@ -111,6 +111,7 @@ var zoomH = 0;
                     :
                     (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
             };
+            window.alert(String(dataObj.path));
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -132,7 +133,6 @@ var zoomH = 0;
             defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
 
             if (dataObj.path) {
-                window.alert(dataObj.path);
 
                 var folder = !!(dataObj.isMp4) ? 'pic' : 'video';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
