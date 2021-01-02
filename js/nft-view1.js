@@ -406,8 +406,8 @@ var zoomH = 0;
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
             } else {
-                //return { x: 0, y: h1_2, z: 0 };
-                return { x: 10, y: 0, z: 0 };
+                return { x: 0, y: h1_2, z: 0 };
+                //return { x: 10, y: 0, z: 0 };
             }
         }
     };
