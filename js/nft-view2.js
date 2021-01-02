@@ -148,7 +148,7 @@ var zoomH = 0;
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
-                    img.appendChild(img);
+                    assets.appendChild(img);
                 }
                 else if (dataObj.isMp4) {
 
