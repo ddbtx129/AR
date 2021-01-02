@@ -292,7 +292,7 @@ var zoomH = 0;
                 if (!bAngle.classList.contains('current')) {
                     arRotation = '-5 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                    arBase.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
                 }
@@ -302,7 +302,7 @@ var zoomH = 0;
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                    arBase.setAttribute('position', String(defaultPos.x) + ' ' + String(defaultPos.y) + ' ' + String(defaultPos.z));
+                    arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
                 }
