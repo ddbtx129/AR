@@ -200,6 +200,7 @@ var zoomH = 0;
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
+            window.alert(String(dataObj.path));
 
             return true;
         },
