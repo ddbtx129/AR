@@ -116,6 +116,7 @@ var zoomH = 0;
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+            window.alert(11);
 
             // データの準備
             //var dataObj =
@@ -127,15 +128,19 @@ var zoomH = 0;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
+            window.alert(12);
 
             var wh = (String(!!(dataObj.isMp4) ? '213, 120' : !!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
+            window.alert(13);
 
             if (dataObj.path) {
+                window.alert(14);
 
                 var folder = !!(dataObj.isMp4) ? 'pic' : 'video';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
+                window.alert(15);
 
                 if (dataObj.isPng || dataObj.isGIf) {
 
@@ -189,6 +194,7 @@ var zoomH = 0;
                 }
 
             }
+            window.alert(16);
 
             arData = dataObj;
 
