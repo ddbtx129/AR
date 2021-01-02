@@ -351,11 +351,10 @@ var videostate = 0;
 
             var self = this;
             var val = self.arData;
-            window.alert(31);
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
-            window.alert(32);
+
             // ボタン 表示
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
@@ -366,8 +365,6 @@ var videostate = 0;
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
 
-            //if (val.isMp4) mWrap.setAttribute('videohandler');
-
             mWrap.setAttribute('preset', 'custom');
             mWrap.setAttribute('type', 'nft');
             mWrap.setAttribute('id', 'arMarker');
@@ -375,7 +372,6 @@ var videostate = 0;
             mWrap.setAttribute('smoothCount', '10');
             mWrap.setAttribute('smoothTolerance', '0.01');
             mWrap.setAttribute('smoothThreshold', '5');
-            window.alert(33);
 
             if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
                 mWrap.setAttribute('url',
@@ -386,54 +382,9 @@ var videostate = 0;
                     AFRAME.utils.coordinates.stringify(
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
-            window.alert(34);
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
-            window.alert(35);
-
-            //if (val.isMp4) {
-
-            //    // マーカーを検出したイベントの登録
-            //    mWrap.addEventListener('markerFound', function () {
-
-            //        if (videostate == 0) {
-            //            sekf.play.style.display = 'inline';
-            //        }
-
-            //        // マーカー認識したら、ビデオ再生
-            //        val.arData.video.play();
-            //        videostate = 1;
-            //    });
-
-            //    // マーカーを見失ったイベントの登録
-            //    mWrap.addEventListener('markerLost', function () {
-            //        // マーカー認識が外れたら、、ビデオ停止
-            //        val.arData.video.pause();
-            //        videostate = 2;
-            //    });
-
-            //    var btn = val.play;
-
-            //    btn.addEventListener('click', function () {
-
-            //        if (videostate >= 1 && videostate < 2) {
-
-            //            //var video = document.querySelector('#source');
-            //            val.arData.video.play();
-
-            //            videostate = 1;
-
-            //            // プレインボタン 非表示
-            //            //document.getElementById("player").style.display = 'none';
-            //            val.arData.play.style.display = 'none';
-
-            //            self.videotext.style.display = "none";
-            //            sekf.videoinfo.style.display = "none";
-            //        }
-            //    });
-            //}
-            window.alert(36);
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
@@ -444,7 +395,7 @@ var videostate = 0;
             var prevPageX;
             var zoomRate = (defaultSize.w / 10);
             var wrapPos = self.positionVec3('main');
-            window.alert(37);
+
             bAngle.classList.add('current');
 
             bAngle.addEventListener('click', function () {
@@ -457,7 +408,7 @@ var videostate = 0;
                     bParalle.classList.remove('current');
                 }
             });
-            window.alert(38);
+
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
@@ -469,7 +420,7 @@ var videostate = 0;
                 }
             });
             // ↑
-            window.alert(39);
+
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -534,7 +485,7 @@ var videostate = 0;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
-            });
+            })
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
@@ -562,7 +513,7 @@ var videostate = 0;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
-            });
+            })
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
@@ -575,7 +526,7 @@ var videostate = 0;
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
-            // ↑ 
+            // ↑
 
         },
 
