@@ -337,11 +337,13 @@ var zoomH = 0;
 
             bUP.addEventListener('click', function () {
                 wrapPos.y += 1;
+                window.alert(wrapPos.y);
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
                 wrapPos.y -= 1;
+                window.alert(wrapPos.y);
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
