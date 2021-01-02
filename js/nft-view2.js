@@ -12,9 +12,9 @@ var zoomH = 0;
     var ar = {
 
         init: function () {
-            window.alert(0);
+
             this.setArg();
-            window.alert(1);
+
             if (this.setArData()) {
                 window.alert(2);
                 this.setWrap();
@@ -96,20 +96,30 @@ var zoomH = 0;
         },
 
         setArData: function () {
-
+            window.alert(10);
             var self = this;
-
+            window.alert(11);
             var assets = document.createElement('a-assets');
             assets.setAttribute('timeout', '9000');
-
+            window.alert(12);
             var arData = null;
+            window.alert(13);
+
+            // データの準備
+            var dataObj = {
+                path: (!(self.arg.ObjectList) ?
+                    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
+                    :
+                    (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
+            };
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+            window.alert(14);
 
             // データの準備
-            //var dataObj = {
+            //var dataObj =
             //    path: (!(self.arg.ObjectList) ?
             //        ('article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
             //        :
@@ -123,17 +133,10 @@ var zoomH = 0;
             dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
 
-            var folder = !!(dataObj.isMp4) ? 'pic' : 'video';
-
             if (dataObj.path) {
 
-                // データの準備
-                var dataObj = {
-                    path: (!(self.arg.ObjectList) ?
-                        (rootPath + 'article/' + folder +'/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-                        :
-                        (!(self.arg.ObjectList) ? '' : rootPath + 'article/' + folder + '/' + self.arg.ObjectList))
-                };
+                var folder = !!(dataObj.isMp4) ? 'pic' : 'video';
+                dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
 
                 if (dataObj.isPng || dataObj.isGIf) {
 
