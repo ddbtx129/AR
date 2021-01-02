@@ -341,9 +341,9 @@ var videostate = 0;
             AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                 primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
             });
-            window.alert('29' + 'end1');
+
             self.arData.main = main;
-            window.alert('29' + 'end2');
+            window.alert(29);
         },
 
         setScene: function () {
@@ -392,47 +392,47 @@ var videostate = 0;
             webArViewer.scene.appendChild(mWrap);
             window.alert(35);
 
-            if (val.isMp4) {
+            //if (val.isMp4) {
 
-                // マーカーを検出したイベントの登録
-                mWrap.addEventListener('markerFound', function () {
+            //    // マーカーを検出したイベントの登録
+            //    mWrap.addEventListener('markerFound', function () {
 
-                    if (videostate == 0) {
-                        sekf.play.style.display = 'inline';
-                    }
+            //        if (videostate == 0) {
+            //            sekf.play.style.display = 'inline';
+            //        }
 
-                    // マーカー認識したら、ビデオ再生
-                    val.arData.video.play();
-                    videostate = 1;
-                });
+            //        // マーカー認識したら、ビデオ再生
+            //        val.arData.video.play();
+            //        videostate = 1;
+            //    });
 
-                // マーカーを見失ったイベントの登録
-                mWrap.addEventListener('markerLost', function () {
-                    // マーカー認識が外れたら、、ビデオ停止
-                    val.arData.video.pause();
-                    videostate = 2;
-                });
+            //    // マーカーを見失ったイベントの登録
+            //    mWrap.addEventListener('markerLost', function () {
+            //        // マーカー認識が外れたら、、ビデオ停止
+            //        val.arData.video.pause();
+            //        videostate = 2;
+            //    });
 
-                var btn = val.play;
+            //    var btn = val.play;
 
-                btn.addEventListener('click', function () {
+            //    btn.addEventListener('click', function () {
 
-                    if (videostate >= 1 && videostate < 2) {
+            //        if (videostate >= 1 && videostate < 2) {
 
-                        //var video = document.querySelector('#source');
-                        val.arData.video.play();
+            //            //var video = document.querySelector('#source');
+            //            val.arData.video.play();
 
-                        videostate = 1;
+            //            videostate = 1;
 
-                        // プレインボタン 非表示
-                        //document.getElementById("player").style.display = 'none';
-                        val.arData.play.style.display = 'none';
+            //            // プレインボタン 非表示
+            //            //document.getElementById("player").style.display = 'none';
+            //            val.arData.play.style.display = 'none';
 
-                        self.videotext.style.display = "none";
-                        sekf.videoinfo.style.display = "none";
-                    }
-                });
-            }
+            //            self.videotext.style.display = "none";
+            //            sekf.videoinfo.style.display = "none";
+            //        }
+            //    });
+            //}
             window.alert(36);
 
             // ↓ rotation 切替
