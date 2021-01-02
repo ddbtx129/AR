@@ -47,10 +47,10 @@
 
         <a-assets>
             <video src='notfound_video.mp4'
-                   preload="auto" id="arVideo" response-type="arraybuffer" loop
+                   preload="auto" id="arVideo" width='213' height='120' response-type="arraybuffer" loop
                    crossorigin webkit-playsinline autoplay playsinline controls></video>
             <audio src='notfound_video.mp4'
-                   preload="auto" id="arAudio" response-type="arraybuffer" loop
+                   preload="auto" id="arAudio" width='213' height='120' response-type="arraybuffer" loop
                    crossorigin webkit-playsinline autoplay playsinline controls></audio>
         </a-assets>
 
@@ -61,8 +61,8 @@
                  embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
             <a-nft videohandler type="nft" id="arNft" url="" smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5">
-                <a-plane id="arView" color="#FFF" position="40 -75 -75" rotation="-90 0 0">
-                    <a-video id="arMain" src="#arVideo" position="0 0 0" rotation="5 0 0" width='213' height='120' play="true" shadow="receive: true"></a-video>
+                <a-plane id="arView" color="#FFF" position="0 0 0" rotation="0 0 0">
+                    <a-video id="arMain" src="#arVideo" rotation="5 0 0" play="true" shadow="receive: true"></a-video>
                 </a-plane>
             </a-nft>
 
