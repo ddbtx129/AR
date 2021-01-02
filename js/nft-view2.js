@@ -158,7 +158,7 @@ var videostate = 0;
 
                     window.alert(18);
 
-                    dataObj.video = document.createElement("arVideo");
+                    var video = document.createElement("arVideo");
                     video.setAttribute("src", dataObj.path);
                     video.setAttribute('id', 'source');
                     video.setAttribute('preload', 'auto');
@@ -171,7 +171,7 @@ var videostate = 0;
                     video.setAttribute("autoplay", "");
                     window.alert(18.1);
 
-                    dataObj.audio = document.createElement("arAudio");
+                    var audio = document.createElement("arAudio");
                     audio.setAttribute("src", dataObj.path);
                     audio.setAttribute('id', 'arVideo');
                     audio.setAttribute('preload', 'auto');
@@ -183,10 +183,12 @@ var videostate = 0;
                     audio.setAttribute("controls", "");
                     audio.setAttribute("autoplay", "");
 
+                    dataObj.video = video;
+                    dataObj.audio = audio;
+
                     assets.appendChild(video);
                     assets.appendChild(audio);
                     window.alert(18.2);
-
                 }
             }
             window.alert(18.3);
