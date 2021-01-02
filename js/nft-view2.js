@@ -253,30 +253,30 @@ var videoState = 0;
 
             var self = this;
             window.alert(50);
-            var videoinfo = document.createAttribute("div");
+            var videoinfo = document.createElement("div");
             videoinfo.setAttribute('id', 'info1');
             videoinfo.setAttribute('info1', 'info1');
 
             window.alert(51);
 
-            var videotag = document.createAttribute("a");
+            var videotag = document.createElement("a");
             videotag.setAttribute('id', 'swPlay');
             videotag.setAttribute('info1', 'InfoItem');
             window.alert(52);
 
-            var videotext = document.createAttribute("p");
+            var videotext = document.createElement("p");
             videotext.setAttribute('id', 'p1');
             window.alert(53);
 
 
-            var pbr = document.createAttribute('br')
+            var pbr = document.createElement('br')
             var ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
             ////self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
             //self.videotag.appendChild(self.ptext1);
 
             window.alert(54);
 
-            var play = document.createAttribute("img");
+            var play = document.createElement("img");
             play.setAttribute('id', 'player');
             play.setAttribute('class', 'playbutton');
             play.setAttribute('src', 'asset/play.png');
