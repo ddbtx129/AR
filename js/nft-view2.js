@@ -156,6 +156,7 @@ var videostate = 0;
                 }
                 else if (dataObj.isMp4) {
 
+                    window.alert(18);
 
                     dataObj.video = document.createElement("arVideo");
                     video.setAttribute("src", dataObj.path);
@@ -168,6 +169,7 @@ var videostate = 0;
                     video.setAttribute("playsinline", "");
                     video.setAttribute("controls", "");
                     video.setAttribute("autoplay", "");
+                    window.alert(18.1);
 
                     dataObj.audio = document.createElement("arAudio");
                     audio.setAttribute("src", dataObj.path);
@@ -183,8 +185,11 @@ var videostate = 0;
 
                     assets.appendChild(video);
                     assets.appendChild(audio);
+                    window.alert(18.2);
+
                 }
             }
+            window.alert(18.3);
 
             arData = dataObj;
 
@@ -193,6 +198,7 @@ var videostate = 0;
                 Err_Exit('画像情報が取得できませんでした。');
                 return false;
             }
+            window.alert(18.4);
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
