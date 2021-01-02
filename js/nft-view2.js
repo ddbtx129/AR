@@ -12,28 +12,29 @@ var zoomH = 0;
     var ar = {
 
         init: function () {
-
+            window.alert(0);
             this.setArg();
-
+            window.alert(1);
             if (this.setArData()) {
-
+                window.alert(2);
                 this.setWrap();
-
+                window.alert(3);
                 this.createModel();
-
+                window.alert(4);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-
+                window.alert(5);
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-
+                window.alert(6);
                 this.setScene();
+                window.alert(7);
             }
 
             //this.setSwitcher();
