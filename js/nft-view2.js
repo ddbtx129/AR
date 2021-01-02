@@ -346,13 +346,15 @@ var videostate = 0;
         },
 
         setScene: function () {
+            window.alert(30);
 
             var self = this;
             var val = self.arData;
+            window.alert(31);
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
-
+            window.alert(32);
             // ボタン 表示
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
@@ -372,7 +374,7 @@ var videostate = 0;
             mWrap.setAttribute('smoothCount', '10');
             mWrap.setAttribute('smoothTolerance', '0.01');
             mWrap.setAttribute('smoothThreshold', '5');
-            window.alert(30);
+            window.alert(33);
 
             if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
                 mWrap.setAttribute('url',
@@ -383,11 +385,11 @@ var videostate = 0;
                     AFRAME.utils.coordinates.stringify(
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
-            window.alert(31);
+            window.alert(34);
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
-            window.alert(32);
+            window.alert(35);
 
             if (val.isMp4) {
 
@@ -430,7 +432,7 @@ var videostate = 0;
                     }
                 });
             }
-            window.alert(33);
+            window.alert(36);
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
@@ -441,7 +443,7 @@ var videostate = 0;
             var prevPageX;
             var zoomRate = (defaultSize.w / 10);
             var wrapPos = self.positionVec3('main');
-            window.alert(34);
+            window.alert(37);
             bAngle.classList.add('current');
 
             bAngle.addEventListener('click', function () {
@@ -454,7 +456,7 @@ var videostate = 0;
                     bParalle.classList.remove('current');
                 }
             });
-            window.alert(35);
+            window.alert(38);
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
@@ -466,7 +468,7 @@ var videostate = 0;
                 }
             });
             // ↑
-
+            window.alert(39);
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
