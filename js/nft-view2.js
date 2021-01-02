@@ -96,14 +96,13 @@ var zoomH = 0;
         },
 
         setArData: function () {
-            window.alert(10);
+
             var self = this;
-            window.alert(11);
+
             var assets = document.createElement('a-assets');
             assets.setAttribute('timeout', '9000');
-            window.alert(12);
+
             var arData = null;
-            window.alert(13);
 
             // データの準備
             var dataObj = {
@@ -116,7 +115,6 @@ var zoomH = 0;
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
-            window.alert(14);
 
             // データの準備
             //var dataObj =
@@ -134,6 +132,7 @@ var zoomH = 0;
             defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
 
             if (dataObj.path) {
+                window.alert(dataObj.path);
 
                 var folder = !!(dataObj.isMp4) ? 'pic' : 'video';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
@@ -248,11 +247,11 @@ var zoomH = 0;
 
             var self = this;
             var val = self.arData;
-
+            window.alert(20);
             if (!val.path) {
                 return;
             }
-
+            window.alert(21);
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-image');
@@ -272,6 +271,7 @@ var zoomH = 0;
 
                 self.arData.shadow = shadow;
             }
+            window.alert(22);
             var elname = '';
 
             if (val.isPng || val.arData) {
@@ -279,13 +279,14 @@ var zoomH = 0;
             } else if (val.isMp4) {
                 elname = 'a-video'
             }
+            window.alert(23);
 
             var main = document.createElement(elname);
             var posVec3 = self.positionVec3('main');
             defaultPos = posVec3;
-
+            window.alert(24);
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
-
+            window.alert(25);
             if (!val.isGif) {
                 main.setAttribute('rotation', '-5 0 0');
                 if (val.isMp4) {
@@ -293,19 +294,21 @@ var zoomH = 0;
                     main.setAttribute('height', 'true');
                     main.setAttribute('play', 'true');
                 }
+                window.alert(26);
+
             } else {
                 main.setAttribute('rotation', '-30 0 0');
             }
-
+            window.alert(27);
             AFRAME.utils.entity.setComponentProperty(main, 'material', {
                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
             });
-
+            window.alert(28);
             AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                 primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
             });
-
+            window.alert(29);
             self.arData.main = main;
         },
 
