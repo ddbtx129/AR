@@ -5,6 +5,8 @@ var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
 
+var videostate = 0;
+
 (function (global) {
 
     webArViewer.scene = document.querySelector('a-scene');
@@ -20,6 +22,7 @@ var zoomH = 0;
                 this.setWrap();
                 window.alert(3);
                 this.createModel();
+                this.createVideoInfo();
                 window.alert(4);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -153,20 +156,8 @@ var zoomH = 0;
                 }
                 else if (dataObj.isMp4) {
 
-                    //var vObj;
 
-                    //if ((arg["o1"]) && (arg["o2"])) {
-                    //    vObj = path + 'article/video/' + arg["o1"] + '/' + arg["o2"] + '.mp4';
-                    //} else {
-                    //    vObj = !(arg["o"]) ? rootPath + 'article/video/notfound_video.mp4' : path + 'article/video/' + arg["o"] + '.mp4';
-                    //}
-
-                    //dataObj.path = (!(self.arg.ObjectList) ?
-                    //    ('article/video/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-                    //    :
-                    //    (!(self.arg.ObjectList) ? '' : 'article/video/' + self.arg.ObjectList));
-
-                    var video = document.createElement("arVideo");
+                    dataObj.video = document.createElement("arVideo");
                     video.setAttribute("src", dataObj.path);
                     video.setAttribute('id', 'source');
                     video.setAttribute('preload', 'auto');
@@ -178,7 +169,7 @@ var zoomH = 0;
                     video.setAttribute("controls", "");
                     video.setAttribute("autoplay", "");
 
-                    var audio = document.createElement("arAudio");
+                    dataObj.audio = document.createElement("arAudio");
                     audio.setAttribute("src", dataObj.path);
                     audio.setAttribute('id', 'arVideo');
                     audio.setAttribute('preload', 'auto');
@@ -193,7 +184,6 @@ var zoomH = 0;
                     assets.appendChild(video);
                     assets.appendChild(audio);
                 }
-
             }
 
             arData = dataObj;
@@ -209,6 +199,39 @@ var zoomH = 0;
             window.alert(String(dataObj.path));
 
             return true;
+        },
+
+        createVideoInfo: function () {
+
+            var self = this;
+
+            self.videoinfo = document.createAttribute("div");
+            self.videoinfo.setAttribute('id', 'info1');
+            self.videoinfo.setAttribute('info1', 'info1');
+            
+            self.videotag = document.createAttribute("a");
+            self.videotag.setAttribute('id', 'swPlay');
+            self.videotag.setAttribute('info1', 'InfoItem');
+            self.videoinfo.appendChild(self.videotag);
+
+            self.videotext = document.createAttribute("p");
+            self.videotext.setAttribute('id', 'p1');
+            self.videotag.appendChild(self.videotext);
+
+            //self.pbr = document.createAttribute('br')
+            self.ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
+            //self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
+            self.videotag.appendChild(self.ptext1);
+
+            document.body.appendChild(self.videoinfo);
+
+            self.play = document.createAttribute("img");
+            self.play.setAttribute('id', 'player');
+            self.play.setAttribute('class', 'playbutton');
+            self.play.setAttribute('src', 'asset/play.png');
+            self.play.style.display = 'none';
+
+            document.body.appendChild(self.play);
         },
 
         setSwitcher: function () {
@@ -325,6 +348,7 @@ var zoomH = 0;
         setScene: function () {
 
             var self = this;
+            var val = self.arData;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
@@ -339,7 +363,7 @@ var zoomH = 0;
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
 
-            //if (val.isMp4) mWrap.setAttribute('videohandler', '');
+            //if (val.isMp4) mWrap.setAttribute('videohandler');
 
             mWrap.setAttribute('preset', 'custom');
             mWrap.setAttribute('type', 'nft');
@@ -361,6 +385,48 @@ var zoomH = 0;
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
+
+            if (val.isMp4) {
+
+                // マーカーを検出したイベントの登録
+                mWrap.addEventListener('markerFound', function () {
+
+                    if (videostate == 0) {
+                        sekf.play.style.display = 'inline';
+                    }
+
+                    // マーカー認識したら、ビデオ再生
+                    val.arData.video.play();
+                    videostate = 1;
+                });
+
+                // マーカーを見失ったイベントの登録
+                mWrap.addEventListener('markerLost', function () {
+                    // マーカー認識が外れたら、、ビデオ停止
+                    val.arData.video.pause();
+                    videostate = 2;
+                });
+
+                var btn = val.play;
+
+                btn.addEventListener('click', function () {
+
+                    if (videostate >= 1 && videostate < 2) {
+
+                        //var video = document.querySelector('#source');
+                        val.arData.video.play();
+
+                        videostate = 1;
+
+                        // プレインボタン 非表示
+                        //document.getElementById("player").style.display = 'none';
+                        val.arData.play.style.display = 'none';
+
+                        self.videotext.style.display = "none";
+                        sekf.videoinfo.style.display = "none";
+                    }
+                });
+            }
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
@@ -461,7 +527,7 @@ var zoomH = 0;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
-            })
+            });
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
@@ -489,7 +555,7 @@ var zoomH = 0;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
-            })
+            });
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
@@ -503,6 +569,7 @@ var zoomH = 0;
                 clearInterval(timer);
             });
             // ↑ 
+
         },
 
         positionVec3: function (type) {
