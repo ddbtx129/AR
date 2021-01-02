@@ -337,13 +337,21 @@ var zoomH = 0;
             var timer;
 
             bUP.addEventListener('click', function () {
-                wrapPos.z += 10;
+                if (!!(bAngle.classList.contains('current'))) {
+                    wrapPos.y += 5;
+                } else {
+                    wrapPos.z -= 5;
+                }
                 //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
-                wrapPos.z -= 10;
+                if (!!(bAngle.classList.contains('current'))) {
+                    wrapPos.y += 5;
+                } else {
+                    wrapPos.z -= 5;
+                }
                 //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
@@ -354,7 +362,11 @@ var zoomH = 0;
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    wrapPos.z += 2;
+                    if (!!(bAngle.classList.contains('current'))) {
+                        wrapPos.y += 2;
+                    } else {
+                        wrapPos.z -= 2;
+                    }
                     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -378,7 +390,11 @@ var zoomH = 0;
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    wrapPos.z -= 2;
+                    if (!!(bAngle.classList.contains('current'))) {
+                        wrapPos.y += 2;
+                    } else {
+                        wrapPos.z -= 2;
+                    }
                     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
