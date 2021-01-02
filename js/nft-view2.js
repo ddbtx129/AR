@@ -7,6 +7,7 @@ var zoomH = 0;
 
 var videoInfo = {};
 var videoState = 0;
+var rootPath = "https://ddbtx129.github.io/AR/";
 
 (function (global) {
 
