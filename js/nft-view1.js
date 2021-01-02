@@ -327,7 +327,8 @@ var zoomH = 0;
                 prevPageY = null;
             });
 
-            var wrapPos = self.wrap.getAttribute('position');
+            //var wrapPos = self.wrap.getAttribute('position');
+            var wrapPos = defaultPos;
 
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
