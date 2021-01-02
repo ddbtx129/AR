@@ -339,7 +339,7 @@ var zoomH = 0;
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
 
-            if (val.isMp4) mWrap.setAttribute('videohandler', '');
+            //if (val.isMp4) mWrap.setAttribute('videohandler', '');
 
             mWrap.setAttribute('preset', 'custom');
             mWrap.setAttribute('type', 'nft');
