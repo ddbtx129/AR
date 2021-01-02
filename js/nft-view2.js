@@ -5,7 +5,8 @@ var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
 
-var videostate = 0;
+var videoInfo = {};
+var videoState = 0;
 
 (function (global) {
 
@@ -251,37 +252,47 @@ var videostate = 0;
         createVideoInfo: function () {
 
             var self = this;
+            window.alert(50);
+            var videoinfo = document.createAttribute("div");
+            videoinfo.setAttribute('id', 'info1');
+            videoinfo.setAttribute('info1', 'info1');
 
-            self.videoinfo = document.createAttribute("div");
-            self.videoinfo.setAttribute('id', 'info1');
-            self.videoinfo.setAttribute('info1', 'info1');
+            window.alert(51);
 
-            self.videotag = document.createAttribute("a");
-            self.videotag.setAttribute('id', 'swPlay');
-            self.videotag.setAttribute('info1', 'InfoItem');
+            var videotag = document.createAttribute("a");
+            videotag.setAttribute('id', 'swPlay');
+            videotag.setAttribute('info1', 'InfoItem');
+            window.alert(52);
 
-            self.videotext = document.createAttribute("p");
-            self.videotext.setAttribute('id', 'p1');
+            var videotext = document.createAttribute("p");
+            videotext.setAttribute('id', 'p1');
+            window.alert(53);
 
 
-            ////self.pbr = document.createAttribute('br')
-            //self.ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
+            var pbr = document.createAttribute('br')
+            var ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
             ////self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
             //self.videotag.appendChild(self.ptext1);
 
-            //document.body.appendChild(self.videoinfo);
+            window.alert(54);
 
-            self.play = document.createAttribute("img");
-            self.play.setAttribute('id', 'player');
-            self.play.setAttribute('class', 'playbutton');
-            self.play.setAttribute('src', 'asset/play.png');
-            self.play.style.display = 'none';
+            var play = document.createAttribute("img");
+            play.setAttribute('id', 'player');
+            play.setAttribute('class', 'playbutton');
+            play.setAttribute('src', 'asset/play.png');
+            play.style.display = 'none';
+            window.alert(55);
 
-            self.videoinfo.appendChild(self.videotag);
-            self.videotag.appendChild(self.videotext);
-
-            document.body.appendChild(self.videoinfo);
-            document.body.appendChild(self.play);
+            videotext.appendChild(ptext1);
+            videotag.appendChild(videotext);
+            videoinfo.appendChild(videotag);
+            window.alert(56);
+            document.body.appendChild(videoinfo);
+            document.body.appendChild(play);
+            window.alert(57);
+            videoInfo.videoinfo = videoinfo;
+            videoInfo.play = play;
+            window.alert(58);
         },
 
         createModel: function () {
