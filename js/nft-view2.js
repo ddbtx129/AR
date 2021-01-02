@@ -372,6 +372,7 @@ var videostate = 0;
             mWrap.setAttribute('smoothCount', '10');
             mWrap.setAttribute('smoothTolerance', '0.01');
             mWrap.setAttribute('smoothThreshold', '5');
+            window.alert(30);
 
             if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
                 mWrap.setAttribute('url',
@@ -382,9 +383,11 @@ var videostate = 0;
                     AFRAME.utils.coordinates.stringify(
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
+            window.alert(31);
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
+            window.alert(32);
 
             if (val.isMp4) {
 
@@ -427,6 +430,7 @@ var videostate = 0;
                     }
                 });
             }
+            window.alert(33);
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
@@ -437,7 +441,7 @@ var videostate = 0;
             var prevPageX;
             var zoomRate = (defaultSize.w / 10);
             var wrapPos = self.positionVec3('main');
-
+            window.alert(34);
             bAngle.classList.add('current');
 
             bAngle.addEventListener('click', function () {
@@ -450,7 +454,7 @@ var videostate = 0;
                     bParalle.classList.remove('current');
                 }
             });
-
+            window.alert(35);
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     arRotation = '-90 0 0';
