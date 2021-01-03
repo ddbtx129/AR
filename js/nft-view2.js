@@ -40,7 +40,9 @@ var videoState = 0;
                 window.alert(7);
 
                 if (!this.arData.isMp4) {
+                    window.alert(0);
                     document.getElementById("info1").style.display = "none";
+                    window.alert(1);
                     this.setPlayer();
 
                 }
@@ -517,6 +519,8 @@ var videoState = 0;
 
             var self = this;
             window.alert(8);
+            window.alert(self.mWrap);
+
             // ビデオ格納用の変数定義を追加
             var marker = self.mWrap;
             var video = self.arData.video;
