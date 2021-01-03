@@ -325,9 +325,9 @@ var videoState = 0;
 
             if (val.isPng || val.arData) {
                 elname = 'a-image'
-                window.alert(23);
             } else if (val.isMp4) {
                 this.createVideoInfo();
+                window.alert(23);
                 elname = 'a-video'
             }
 
