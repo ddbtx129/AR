@@ -157,7 +157,7 @@ var videoState = 0;
 
                     window.alert(18);
 
-                    var video = document.createElement("arVideo");
+                    var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
                     video.setAttribute('id', 'source');
                     video.setAttribute('preload', 'auto');
@@ -170,9 +170,9 @@ var videoState = 0;
                     video.setAttribute("autoplay", "");
                     window.alert(18.1);
 
-                    var audio = document.createElement("arAudio");
+                    var audio = document.createElement("audio");
                     audio.setAttribute("src", dataObj.path);
-                    audio.setAttribute('id', 'arVideo');
+                    audio.setAttribute('id', 'source2');
                     audio.setAttribute('preload', 'auto');
                     audio.setAttribute('response-type', 'arraybuffer');
                     audio.setAttribute('loop', 'true');
@@ -511,6 +511,56 @@ var videoState = 0;
             // ↑
 
         },
+
+        //setVideo: function () {
+
+        //    var self = this;
+
+        //    // ビデオ格納用の変数定義を追加
+        //    var marker = this.el;
+        //    var video = self.arData.video;
+
+        //    // マーカーを検出したイベントの登録
+        //    marker.addEventListener('markerFound', function () {
+
+        //        if (videostate == 0) {
+        //            document.getElementById("player").style.display = 'inline';
+        //        }
+
+        //        // マーカー認識したら、ビデオ再生
+        //        video.play();
+        //        videostate = 1;
+        //    });
+
+        //    // マーカーを見失ったイベントの登録
+        //    marker.addEventListener('markerLost', function () {
+
+        //        // マーカー認識が外れたら、、ビデオ停止
+        //        video.pause();
+        //        videostate = 2;
+        //    });
+
+        //    var btn = document.getElementById('player');
+
+        //    btn.addEventListener('click', function () {
+
+        //        if (videostate >= 1 && videostate < 2) {
+
+        //            var video = document.querySelector('#source');
+
+        //            video.play();
+
+        //            videostate = 1;
+
+        //            // プレインボタン 非表示
+        //            document.getElementById("player").style.display = 'none';
+
+        //            p1.style.display = "none";
+        //            info1.style.display = "none";
+        //        }
+        //    });
+
+        //},
 
         positionVec3: function (type) {
             var self = this;
