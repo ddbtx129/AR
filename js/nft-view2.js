@@ -151,6 +151,7 @@ var videoState = 0;
                 }
                 else if (dataObj.isMp4) {
 
+                    document.getElementById('info1').style.display = "inline";
                     document.body.style.display = 'table-cell';
                     window.alert(18);
 
