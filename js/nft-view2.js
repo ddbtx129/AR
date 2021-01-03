@@ -227,8 +227,6 @@ var objecttype = "pic";
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-            window.alert((defaultSize.w / 10));
-            window.alert((defaultSize.h / 10));
         },
 
         createModel: function () {
@@ -350,9 +348,6 @@ var objecttype = "pic";
             var zoomRateW = (defaultSize.w / 10);
             var zoomRateH = (defaultSize.h / 10);
             var zoomRate = defaultSize.w / defaultSize.h;
-            window.alert(zoomRateW);
-            window.alert(zoomRateH);
-            window.alert(zoomRate);
 
             var wrapPos = self.positionVec3('main');
 
@@ -392,14 +387,17 @@ var objecttype = "pic";
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                        //});
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-                        });
+                        if (val.isMp4) {
+                            zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
+                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                            });
+                        } else {
+                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            });
+                        }
                     }
                 }
             });
