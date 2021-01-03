@@ -341,8 +341,8 @@ var videoState = 0;
                 main.setAttribute('rotation', '-5 0 0');
                 window.alert(26);
                 if (val.isMp4) {
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
+                    //main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
+                    //main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
                     window.alert(26.5);
                 } 
