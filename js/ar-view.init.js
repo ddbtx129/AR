@@ -17,6 +17,8 @@
     };
 
     var isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+    window.alert(dataObj.path);
+    window.alert(!!isMp4);
 
     window.alert(110);
     if (isMp4) {
