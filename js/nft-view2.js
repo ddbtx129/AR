@@ -8,6 +8,8 @@ var zoomH = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "pic";
+var dec = 2;
+var SizeRate = 10;
 
 (function (global) {
 
@@ -70,21 +72,33 @@ var objecttype = "pic";
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
                     case 2:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+                        dec = 1;
+                        SizeRate = 1;
                         break;
                     case 4:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+                        dec = 1;
+                        SizeRate = 10;
                         break;
                     case 6:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+                        dec = 2;
+                        SizeRate = 100;
                         break;
                     case 8:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
+                        dec = 3;
+                        SizeRate = 1000;
                         break;
                     case 10:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
+                        dec = 4;
+                        SizeRate = 10000;
                         break;
                     default:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+                        dec = 1;
+                        SizeRate = 1;
                         break;
                 }
             };
@@ -225,7 +239,9 @@ var objecttype = "pic";
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (defaultSize.w / 10).toFixed(1) + ' ' + (defaultSize.h / 10).toFixed(1) + ' ' + (defaultSize.h / 10).toFixed(1));
+            if (this.arData.isMp4) {
+                self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            }
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -349,10 +365,12 @@ var objecttype = "pic";
 
             var prevPageY;
             var prevPageX;
-            var zoomRateW = (defaultSize.w / 10);
-            var zoomRateH = (defaultSize.h / 10);
-            var zoomRate = defaultSize.w / defaultSize.h;
-
+            //var zoomRateW = (defaultSize.w / 10);
+            //var zoomRateH = (defaultSize.h / 10);
+            //var zoomRate = defaultSize.w / defaultSize.h;
+            var zoomRateW = 4;
+            var zoomRateH = 4;
+            var zoomRate = 1;
             var wrapPos = self.positionVec3('main');
 
             bAngle.classList.add('current');
@@ -411,8 +429,6 @@ var objecttype = "pic";
                 prevPageX = null;
             });
 
-            var arBase = document.getElementById('base');
-
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
@@ -425,7 +441,6 @@ var objecttype = "pic";
                     wrapPos.z -= 5;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
@@ -435,7 +450,6 @@ var objecttype = "pic";
                     wrapPos.z += 5;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
 
@@ -450,7 +464,6 @@ var objecttype = "pic";
                         wrapPos.z -= 2;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
 
@@ -478,7 +491,6 @@ var objecttype = "pic";
                         wrapPos.z += 2;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    //arBase.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
             })
 
@@ -494,14 +506,11 @@ var objecttype = "pic";
                 clearInterval(timer);
             });
             // ↑
-
         },
 
         positionVec3: function (type) {
             var self = this;
             var h1_2 = self.arData.size.h / 2;
-            var width = self.arData.size.w;
-            var isWarp = self.arData.isWarp;
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
