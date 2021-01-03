@@ -126,7 +126,7 @@ var videoState = 0;
             dataObj.isMarker = !!self.arg.markerList;
             window.alert(12);
 
-            var wh = (String(!!(dataObj.isMp4) ? '213, 120' : !!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
+            var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
             window.alert(13);
@@ -341,8 +341,8 @@ var videoState = 0;
                 main.setAttribute('rotation', '-5 0 0');
                 window.alert(26);
                 if (val.isMp4) {
-                    //main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
-                    //main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
+                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
+                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
                     window.alert(26.5);
                 } 
