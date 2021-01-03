@@ -7,7 +7,6 @@ var zoomH = 0;
 
 var videoInfo = {};
 var videoState = 0;
-var rootPath = "https://ddbtx129.github.io/AR/";
 
 (function (global) {
 
@@ -143,6 +142,8 @@ var rootPath = "https://ddbtx129.github.io/AR/";
             if (dataObj.path) {
                 window.alert(14);
 
+                document.body.classList.add('picture');
+
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
                 window.alert(15);
@@ -158,6 +159,7 @@ var rootPath = "https://ddbtx129.github.io/AR/";
                 }
                 else if (dataObj.isMp4) {
 
+                    document.body.classList.add('video');
                     window.alert(18);
 
                     var video = document.createElement("arVideo");
