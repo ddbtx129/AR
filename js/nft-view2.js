@@ -43,8 +43,7 @@ var videoState = 0;
                     window.alert(0);
                     document.getElementById("info1").style.display = "none";
                 } else {
-                    window.alert(1);
-                    this.setPlayer();
+
                 }
             }
 
@@ -362,6 +361,8 @@ var videoState = 0;
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
+
+            self.mWrap = mWrap;
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
