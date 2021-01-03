@@ -352,43 +352,45 @@ var SizeRate = 10;
 
             self.mWrap = mWrap;
 
-            //// ↓ rotation 切替
-            //var bAngle = document.getElementById('swAngle');
-            //var bParalle = document.getElementById('swParallel');
-            //var arRotation = '-5 0 0';
+            // ↓ rotation 切替
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+            var arPicRotation = '-5 0 0';
+            var arGifRotation = '-30 0 0';
+            var arVRotation = '-90 0 0'
 
-            //var prevPageY;
-            //var prevPageX;
-            //var zoomRateW = (defaultSize.w / 10);
-            //var zoomRateH = (defaultSize.h / 10);
-            //var zoomRate = defaultSize.w / defaultSize.h;
+            var prevPageY;
+            var prevPageX;
+            var zoomRateW = (defaultSize.w / 10);
+            var zoomRateH = (defaultSize.h / 10);
+            var zoomRate = defaultSize.w / defaultSize.h;
 
-            //var wrapPos = self.positionVec3('main');
+            var wrapPos = self.positionVec3('main');
 
-            //bAngle.classList.add('current');
+            bAngle.classList.add('current');
 
-            //bAngle.addEventListener('click', function () {
-            //    if (!bAngle.classList.contains('current')) {
-            //        arRotation = '-5 0 0';
-            //        wrapPos = self.positionVec3('main');;
-            //        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //        bAngle.classList.add('current');
-            //        bParalle.classList.remove('current');
-            //    }
-            //});
+            bAngle.addEventListener('click', function () {
+                if (!bAngle.classList.contains('current')) {
+                    var arRotation = arPicRotation;
+                    wrapPos = self.positionVec3('main');;
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    bAngle.classList.add('current');
+                    bParalle.classList.remove('current');
+                }
+            });
 
-            //bParalle.addEventListener('click', function () {
-            //    if (!bParalle.classList.contains('current')) {
-            //        arRotation = '-90 0 0';
-            //        wrapPos = self.positionVec3('main');
-            //        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //        bParalle.classList.add('current');
-            //        bAngle.classList.remove('current');
-            //    }
-            //});
-            //// ↑
+            bParalle.addEventListener('click', function () {
+                if (!bParalle.classList.contains('current')) {
+                    var arRotation = arVRotation;
+                    wrapPos = self.positionVec3('main');
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    bParalle.classList.add('current');
+                    bAngle.classList.remove('current');
+                }
+            });
+            // ↑
 
             //// 拡大・縮小
             //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
