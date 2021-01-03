@@ -42,9 +42,9 @@ var videoState = 0;
                 if (!this.arData.isMp4) {
                     window.alert(0);
                     document.getElementById("info1").style.display = "none";
+                } else {
                     window.alert(1);
                     this.setPlayer();
-
                 }
             }
 
