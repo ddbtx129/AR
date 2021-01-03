@@ -132,9 +132,6 @@ var objecttype = "pic";
 
             if (dataObj.path) {
 
-                //document.body.style.width = '100%';
-                //document.body.style.height = '100%';
-
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
 
@@ -146,8 +143,6 @@ var objecttype = "pic";
                     assets.appendChild(img);
                 }
                 else if (dataObj.isMp4) {
-
-                    //document.body.style.display = 'table-cell';
 
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
@@ -232,6 +227,8 @@ var objecttype = "pic";
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+            window.alert((defaultSize.w / 10));
+            window.alert((defaultSize.h / 10));
         },
 
         createModel: function () {
@@ -353,6 +350,9 @@ var objecttype = "pic";
             var zoomRateW = (defaultSize.w / 10);
             var zoomRateH = (defaultSize.h / 10);
             var zoomRate = defaultSize.w / defaultSize.h;
+            window.alert(zoomRateW);
+            window.alert(zoomRateH);
+            window.alert(zoomRate);
 
             var wrapPos = self.positionVec3('main');
 
