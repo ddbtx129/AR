@@ -296,7 +296,8 @@ var videoState = 0;
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
                     window.alert(26.5);
-                    let element = document.querySelector("info1");
+                    
+                    var element = document.querySelector("info1");
                     element.style.display = "inline";
                 } 
 
