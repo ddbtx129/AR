@@ -224,7 +224,7 @@ var objecttype = "pic";
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
             //self.wrap.setAttribute('scale', (defaultSize.w / 10) + ' ' + (defaultSize.h / 10) + ' ' + (defaultSize.h / 10));
-            self.wrap.setAttribute('scale', '4 4 4');
+            self.wrap.setAttribute('scale', (self.arData.isMp4 ? '8 4.5 4.5' : '4 4 4'));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
