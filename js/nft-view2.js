@@ -38,6 +38,10 @@ var videoState = 0;
                 window.alert(6);
                 this.setScene();
                 window.alert(7);
+
+                if (!this.arData.isMp4) {
+                    document.getElementById("info1").style.display = "none";
+                }
             }
 
             //this.setSwitcher();
