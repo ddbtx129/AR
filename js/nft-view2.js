@@ -288,21 +288,21 @@ var SizeRate = 10;
 
             if (!val.isGif) {
                 main.setAttribute('rotation', '0 0 0');
-                main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
-                main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
+                main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.h));
+                main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.w));
 
                 if (val.isMp4) {
                     main.setAttribute('play', 'true');
                 }
 
-                //AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                //    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
-                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                //});
+                AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
+                    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                });
 
-                //AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                //    primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
-                //});
+                AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+                    primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
+                });
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
