@@ -467,6 +467,7 @@ var videoState = 0;
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
+                prevPageX = null;
             });
 
             var arBase = document.getElementById('base');
