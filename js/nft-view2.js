@@ -412,7 +412,9 @@ var videoState = 0;
 
             var prevPageY;
             var prevPageX;
-            var zoomRate = (defaultSize.w / 10);
+            var zoomRateW = (defaultSize.w / 10);
+            var zoomRateH = (defaultSize.h / 10);
+
             var wrapPos = self.positionVec3('main');
 
             bAngle.classList.add('current');
@@ -450,10 +452,14 @@ var videoState = 0;
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-                    if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                    if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        zoomRateW += (prevPageX - event.pageX) / webArViewer.scene.clientWidth  / 5;
+                        zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+                        //});
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                     }
                 }
