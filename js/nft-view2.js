@@ -237,7 +237,7 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.w / SizeRate).toFixed(dec));
+            self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.w / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -288,7 +288,7 @@ var SizeRate = 10;
 
             if (!val.isGif) {
                 main.setAttribute('rotation', '-5 0 0');
-
+                window.alert(val.isMp4);
                 if (val.isMp4) {
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
