@@ -143,8 +143,6 @@ var SizeRate = 10;
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
-            window.alert(defaultSize.w);
-            window.alert(defaultSize.h);
 
             if (dataObj.path) {
 
@@ -239,7 +237,7 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.w / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -305,8 +303,6 @@ var SizeRate = 10;
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
                 });
-                window.alert(val.size.w);
-                window.alert(val.size.h);
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
@@ -394,36 +390,36 @@ var SizeRate = 10;
             });
             // ↑
 
-            //// 拡大・縮小
-            //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-            //    var event = e.changedTouches ? e.changedTouches[0] : e;
-            //    prevPageY = event.pageY;    // 縦軸
-            //    prevPageX = event.pageX;    // 横軸
-            //});
+            // 拡大・縮小
+            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+                prevPageX = event.pageX;    // 横軸
+            });
 
-            //webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
-            //    var event = e.changedTouches ? e.changedTouches[0] : e;
-            //    if (prevPageY) {
-            //        if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-            //            zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-            //            //if (val.isMp4) {
-            //            //    zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
-            //            //    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-            //            //        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-            //            //    });
-            //            //} else {
-            //                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-            //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-            //                });
-            //            //}
-            //        }
-            //    }
-            //});
+            webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                if (prevPageY) {
+                    if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        //if (val.isMp4) {
+                        //    zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
+                        //    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                        //        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                        //    });
+                        //} else {
+                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            });
+                        //}
+                    }
+                }
+            });
 
-            //webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-            //    prevPageY = null;
-            //    prevPageX = null;
-            //});
+            webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+                prevPageY = null;
+                prevPageX = null;
+            });
 
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
