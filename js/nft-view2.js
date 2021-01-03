@@ -41,11 +41,12 @@ var videoState = 0;
 
                 if (!this.arData.isMp4) {
                     document.getElementById("info1").style.display = "none";
+                    this.setPlayer();
+
                 }
             }
 
             //this.setSwitcher();
-
         },
 
         setArg: function () {
@@ -512,55 +513,59 @@ var videoState = 0;
 
         },
 
-        //setVideo: function () {
+        setPlayer: function () {
 
-        //    var self = this;
+            var self = this;
+            window.alert(8);
+            // ビデオ格納用の変数定義を追加
+            var marker = self.mWrap;
+            var video = self.arData.video;
+            var info1 = document.getElementById("info1");
 
-        //    // ビデオ格納用の変数定義を追加
-        //    var marker = this.el;
-        //    var video = self.arData.video;
+            window.alert(9);
+            window.alert(video);
 
-        //    // マーカーを検出したイベントの登録
-        //    marker.addEventListener('markerFound', function () {
+            // マーカーを検出したイベントの登録
+            marker.addEventListener('markerFound', function () {
 
-        //        if (videostate == 0) {
-        //            document.getElementById("player").style.display = 'inline';
-        //        }
+                if (videostate == 0) {
+                    document.getElementById("player").style.display = 'inline';
+                }
 
-        //        // マーカー認識したら、ビデオ再生
-        //        video.play();
-        //        videostate = 1;
-        //    });
+                // マーカー認識したら、ビデオ再生
+                video.play();
+                videostate = 1;
+            });
 
-        //    // マーカーを見失ったイベントの登録
-        //    marker.addEventListener('markerLost', function () {
+            // マーカーを見失ったイベントの登録
+            marker.addEventListener('markerLost', function () {
 
-        //        // マーカー認識が外れたら、、ビデオ停止
-        //        video.pause();
-        //        videostate = 2;
-        //    });
+                // マーカー認識が外れたら、、ビデオ停止
+                video.pause();
+                videostate = 2;
+            });
 
-        //    var btn = document.getElementById('player');
+            var btn = document.getElementById('player');
 
-        //    btn.addEventListener('click', function () {
+            btn.addEventListener('click', function () {
 
-        //        if (videostate >= 1 && videostate < 2) {
+                if (videostate >= 1 && videostate < 2) {
 
-        //            var video = document.querySelector('#source');
+                    //var video = document.querySelector('#source');
 
-        //            video.play();
+                    video.play();
 
-        //            videostate = 1;
+                    videostate = 1;
 
-        //            // プレインボタン 非表示
-        //            document.getElementById("player").style.display = 'none';
+                    // プレインボタン 非表示
+                    document.getElementById("player").style.display = 'none';
 
-        //            p1.style.display = "none";
-        //            info1.style.display = "none";
-        //        }
-        //    });
+                    p1.style.display = "none";
+                    info1.style.display = "none";
+                }
+            });
 
-        //},
+        },
 
         positionVec3: function (type) {
             var self = this;
