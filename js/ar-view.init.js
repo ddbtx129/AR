@@ -10,10 +10,10 @@
     }
 
     var dataObj = {
-        path: (!(arg.ObjectList) ?
-            (arg.ObjectList1 + '/' + arg.ObjectList2)
+        path: (!(arg.o) ?
+            (arg.o1 + '/' + arg.o2)
             :
-            (!(arg.ObjectList) ? '' : arg.ObjectList))
+            (!(arg.o) ? '' : arg.o))
     };
 
     var isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
