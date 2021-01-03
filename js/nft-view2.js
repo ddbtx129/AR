@@ -142,8 +142,8 @@ var videoState = 0;
             if (dataObj.path) {
                 window.alert(14);
 
-                //document.body.style.width = '100%';
-                //document.body.style.height = '100%';
+                document.body.style.width = '100%';
+                document.body.style.height = '100%';
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
@@ -160,7 +160,7 @@ var videoState = 0;
                 }
                 else if (dataObj.isMp4) {
 
-                    //document.body.style.display = 'table-cell';
+                    document.body.style.display = 'table-cell';
                     window.alert(18);
 
                     var video = document.createElement("arVideo");
