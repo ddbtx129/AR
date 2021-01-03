@@ -127,8 +127,8 @@ var videoState = 0;
             window.alert(12);
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
-            dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
-            defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
+            dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
+            defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
             window.alert(13);
 
             if (dataObj.path) {
