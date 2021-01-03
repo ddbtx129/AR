@@ -149,7 +149,6 @@ var videoState = 0;
                 }
                 else if (dataObj.isMp4) {
 
-                    document.getElementById('info1').style.display = "inline";
                     document.body.style.display = 'table-cell';
 
                     window.alert(18);
@@ -297,6 +296,8 @@ var videoState = 0;
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
                     window.alert(26.5);
+
+                    document.getElementById('info1').style.display = "inline";
                 } 
 
                 window.alert(27);
