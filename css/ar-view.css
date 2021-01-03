@@ -4,15 +4,6 @@ body {
     -webkit-user-select: none;
 }
 
-body.picture {
-    width: 100%;
-    height: 100%;
-}
-
-body.video {
-    display: table-cell;
-}
-
 a {
     text-decoration: none;
     color: #666;
