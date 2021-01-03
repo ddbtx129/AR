@@ -9,6 +9,13 @@
         arg[kv[0]] = decodeURIComponent(kv[1]);
     }
 
+    var dataObj = {
+        path: (!(self.arg.ObjectList) ?
+            (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
+            :
+            (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
+    };
+
     var isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
 
     window.alert(110);
