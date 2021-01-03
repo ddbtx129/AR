@@ -453,8 +453,8 @@ var videoState = 0;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRateW += (prevPageX - event.pageX) / webArViewer.scene.clientWidth / 5;
-                        window.alert(String((prevPageX - event.pageX) / webArViewer.scene.clientWidth / 5) + ' ' + String((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5));
+                        var ZoomRate = ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) / 9;
+                        zoomRateW += (((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) / 9) * 16;
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                         //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
