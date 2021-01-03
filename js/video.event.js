@@ -12,21 +12,25 @@ AFRAME.registerComponent('videohandler', {
         // マーカーを検出したイベントの登録
         marker.addEventListener('markerFound', function () {
 
-            if (videostate == 0) {
-                document.getElementById("player").style.display = 'inline';
-            }
+            if (objecttype == "video") {
+                if (videostate == 0) {
+                    document.getElementById("player").style.display = 'inline';
+                }
 
-            // マーカー認識したら、ビデオ再生
-            video.play();
-            videostate = 1;
+                // マーカー認識したら、ビデオ再生
+                video.play();
+                videostate = 1
+            };
         });
 
         // マーカーを見失ったイベントの登録
         marker.addEventListener('markerLost', function () {
+            if (objecttype == "video") {
 
-            // マーカー認識が外れたら、、ビデオ停止
-            video.pause();
-            videostate = 2;
+                // マーカー認識が外れたら、、ビデオ停止
+                video.pause();
+                videostate = 2;
+            }
         });
     }
 });
@@ -37,18 +41,20 @@ window.addEventListener('DOMContentLoaded', function () {
 
     btn.addEventListener('click', function () {
 
-        if (videostate >= 1 && videostate < 2) {
+        if (objecttype == "video") {
+            if (videostate >= 1 && videostate < 2) {
 
-            var video = document.querySelector('#source');
-            video.play();
+                var video = document.querySelector('#source');
+                video.play();
 
-            videostate = 1;
+                videostate = 1;
 
-            // プレインボタン 非表示
-            document.getElementById("player").style.display = 'none';
+                // プレインボタン 非表示
+                document.getElementById("player").style.display = 'none';
 
-            p1.style.display = "none";
-            info1.style.display = "none";
+                p1.style.display = "none";
+                info1.style.display = "none";
+            }
         }
     });
 });

@@ -7,6 +7,7 @@ var zoomH = 0;
 
 var videoInfo = {};
 var videoState = 0;
+var objecttype = "pic";
 
 (function (global) {
 
@@ -19,31 +20,30 @@ var videoState = 0;
             this.setArg();
 
             if (this.setArData()) {
-                window.alert(2);
+
                 this.setWrap();
-                window.alert(3);
+
                 this.createModel();
-                window.alert(4);
+
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-                window.alert(5);
+
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-                window.alert(6);
+
                 this.setScene();
-                window.alert(7);
 
                 if (!this.arData.isMp4) {
-                    window.alert(0);
+                    objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
                 } else {
-                    //this.setPlayer();
+                    objecttype = "video";
                 }
             }
 
@@ -118,46 +118,36 @@ var videoState = 0;
                     :
                     (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
             };
-            window.alert(String(dataObj.path));
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
-            window.alert(11);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
-            window.alert(12);
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
-            window.alert(13);
 
             if (dataObj.path) {
-                window.alert(14);
 
                 //document.body.style.width = '100%';
                 //document.body.style.height = '100%';
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                window.alert(15);
 
                 if (dataObj.isPng || dataObj.isGIf) {
-                    window.alert(16);
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
                     assets.appendChild(img);
-                    window.alert(17);
                 }
                 else if (dataObj.isMp4) {
 
                     //document.body.style.display = 'table-cell';
-
-                    window.alert(18);
 
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
@@ -170,7 +160,6 @@ var videoState = 0;
                     video.setAttribute("playsinline", "");
                     video.setAttribute("controls", "");
                     video.setAttribute("autoplay", "");
-                    window.alert(18.1);
 
                     var audio = document.createElement("audio");
                     audio.setAttribute("src", dataObj.path);
@@ -189,10 +178,8 @@ var videoState = 0;
 
                     assets.appendChild(video);
                     assets.appendChild(audio);
-                    window.alert(18.2);
                 }
             }
-            window.alert(18.3);
 
             arData = dataObj;
 
@@ -201,11 +188,9 @@ var videoState = 0;
                 Err_Exit('画像情報が取得できませんでした。');
                 return false;
             }
-            window.alert(18.4);
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
-            window.alert(String(dataObj.path));
 
             return true;
         },
@@ -253,11 +238,11 @@ var videoState = 0;
 
             var self = this;
             var val = self.arData;
-            window.alert(20);
+
             if (!val.path) {
                 return;
             }
-            window.alert(21);
+
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-image');
@@ -276,7 +261,6 @@ var videoState = 0;
                 });
 
                 self.arData.shadow = shadow;
-                window.alert(22);
             }
 
             var elname = '';
@@ -284,32 +268,29 @@ var videoState = 0;
             if (val.isPng || val.arData) {
                 elname = 'a-image'
             } else if (val.isMp4) {
-                window.alert(23);
                 elname = 'a-video'
             }
 
             var main = document.createElement(elname);
             var posVec3 = self.positionVec3('main');
             defaultPos = posVec3;
-            window.alert(24);
+
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
-            window.alert(25);
+
             if (!val.isGif) {
                 main.setAttribute('rotation', '-5 0 0');
-                window.alert(26);
+
                 if (val.isMp4) {
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
-                    window.alert(26.5);
                 }
 
-                window.alert(27);
                 AFRAME.utils.entity.setComponentProperty(main, 'material', {
                     shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
                     side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                 });
-                window.alert(28);
+
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
                 });
@@ -319,11 +300,9 @@ var videoState = 0;
             }
 
             self.arData.main = main;
-            window.alert(29);
         },
 
         setScene: function () {
-            window.alert(30);
 
             var self = this;
             var val = self.arData;
@@ -513,62 +492,6 @@ var videoState = 0;
                 clearInterval(timer);
             });
             // ↑
-
-        },
-
-        setPlayer: function () {
-
-            var self = this;
-            window.alert(8);
-            window.alert(self.mWrap);
-
-            // ビデオ格納用の変数定義を追加
-            var marker = self.mWrap;
-            var video = self.arData.video;
-            var info1 = document.getElementById("info1");
-
-            window.alert(9);
-            window.alert(video);
-
-            // マーカーを検出したイベントの登録
-            marker.addEventListener('markerFound', function () {
-
-                if (videostate == 0) {
-                    document.getElementById("player").style.display = 'inline';
-                }
-
-                // マーカー認識したら、ビデオ再生
-                video.play();
-                videostate = 1;
-            });
-
-            // マーカーを見失ったイベントの登録
-            marker.addEventListener('markerLost', function () {
-
-                // マーカー認識が外れたら、、ビデオ停止
-                video.pause();
-                videostate = 2;
-            });
-
-            var btn = document.getElementById('player');
-
-            btn.addEventListener('click', function () {
-
-                if (videostate >= 1 && videostate < 2) {
-
-                    //var video = document.querySelector('#source');
-
-                    video.play();
-
-                    videostate = 1;
-
-                    // プレインボタン 非表示
-                    document.getElementById("player").style.display = 'none';
-
-                    p1.style.display = "none";
-                    info1.style.display = "none";
-                }
-            });
 
         },
 
