@@ -141,8 +141,8 @@ var SizeRate = 10;
             dataObj.isMarker = !!self.arg.markerList;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
-            dataObj.size = { w: Number(wh[0]), h: Number(wh[0]) };
-            defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
+            dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
+            defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
 
             if (dataObj.path) {
 
@@ -237,7 +237,7 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.w / SizeRate).toFixed(dec));
+            //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.w / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
