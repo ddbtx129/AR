@@ -402,16 +402,16 @@ var SizeRate = 10;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        //if (val.isMp4) {
-                        //    zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
-                        //    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                        //        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-                        //    });
-                        //} else {
+                        if (objecttype == 'video') {
+                            zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
+                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                            });
+                        } else {
                             AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                                 property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                             });
-                        //}
+                        }
                     }
                 }
             });
