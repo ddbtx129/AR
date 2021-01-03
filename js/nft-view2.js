@@ -58,9 +58,7 @@ var videoState = 0;
 
             // 影
             arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-            // サイズ
-            //arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-
+ 
             // サイズ
             if (!!arg.wh) {
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
@@ -153,6 +151,7 @@ var videoState = 0;
 
                     document.getElementById('info1').style.display = "inline";
                     document.body.style.display = 'table-cell';
+
                     window.alert(18);
 
                     var video = document.createElement("arVideo");
@@ -245,52 +244,6 @@ var videoState = 0;
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
-        //createVideoInfo: function () {
-
-        //    var self = this;
-        //    window.alert(50);
-        //    var videoinfo = document.createElement("div");
-        //    videoinfo.setAttribute('id', 'info1');
-        //    videoinfo.setAttribute('info1', 'info1');
-
-        //    window.alert(51);
-
-        //    var videotag = document.createElement("a");
-        //    videotag.setAttribute('id', 'swPlay');
-        //    videotag.setAttribute('info1', 'InfoItem');
-        //    window.alert(52);
-
-        //    var videotext = document.createElement("p");
-        //    videotext.setAttribute('id', 'p1');
-        //    window.alert(53);
-
-
-        //    var pbr = document.createElement('br')
-        //    var ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
-        //    ////self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
-        //    //self.videotag.appendChild(self.ptext1);
-
-        //    window.alert(54);
-
-        //    var play = document.createElement("img");
-        //    play.setAttribute('id', 'player');
-        //    play.setAttribute('class', 'playbutton');
-        //    play.setAttribute('src', 'asset/play.png');
-        //    play.style.display = 'none';
-        //    window.alert(55);
-
-        //    videotext.appendChild(ptext1);
-        //    videotag.appendChild(videotext);
-        //    videoinfo.appendChild(videotag);
-        //    window.alert(56);
-        //    document.body.appendChild(videoinfo);
-        //    document.body.appendChild(play);
-        //    window.alert(57);
-        //    videoInfo.videoinfo = videoinfo;
-        //    videoInfo.play = play;
-        //    window.alert(58);
-        //},
-
         createModel: function () {
 
             var self = this;
@@ -374,11 +327,11 @@ var videoState = 0;
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
             // ボタン 表示
-            //document.getElementById("swUp").style.display = 'inline';
-            //document.getElementById("swDown").style.display = 'inline';
+            document.getElementById("swUp").style.display = 'inline';
+            document.getElementById("swDown").style.display = 'inline';
 
-            //document.getElementById("swAngle").style.display = 'inline';
-            //document.getElementById("swParallel").style.display = 'inline';
+            document.getElementById("swAngle").style.display = 'inline';
+            document.getElementById("swParallel").style.display = 'inline';
 
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
