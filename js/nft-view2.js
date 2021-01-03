@@ -58,7 +58,7 @@ var videoState = 0;
 
             // 影
             arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
- 
+
             // サイズ
             if (!!arg.wh) {
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
@@ -131,8 +131,8 @@ var videoState = 0;
             if (dataObj.path) {
                 window.alert(14);
 
-                document.body.style.width = '100%';
-                document.body.style.height = '100%';
+                //document.body.style.width = '100%';
+                //document.body.style.height = '100%';
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
@@ -149,7 +149,7 @@ var videoState = 0;
                 }
                 else if (dataObj.isMp4) {
 
-                    document.body.style.display = 'table-cell';
+                    //document.body.style.display = 'table-cell';
 
                     window.alert(18);
 
@@ -296,7 +296,7 @@ var videoState = 0;
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
                     window.alert(26.5);
-                } 
+                }
 
                 window.alert(27);
                 AFRAME.utils.entity.setComponentProperty(main, 'material', {
