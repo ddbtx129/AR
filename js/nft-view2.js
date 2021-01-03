@@ -122,14 +122,6 @@ var videoState = 0;
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
             window.alert(11);
 
-            // データの準備
-            //var dataObj =
-            //    path: (!(self.arg.ObjectList) ?
-            //        ('article/pic/' + self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-            //        :
-            //        (!(self.arg.ObjectList) ? '' : 'article/pic/' + self.arg.ObjectList))
-            //};
-
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
             window.alert(12);
@@ -353,21 +345,23 @@ var videoState = 0;
                     main.setAttribute('height', 'true');
                     main.setAttribute('play', 'true');
                     window.alert(26.5);
+                } else {
+                    window.alert(27);
+                    AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
+                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                    });
+                    window.alert(28);
+                    AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+                        primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
+                    });
                 }
+
                 window.alert(27);
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
             }
-            window.alert(27);
-            AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
-                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-            });
-            window.alert(28);
-            AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
-            });
 
             self.arData.main = main;
             window.alert(29);
