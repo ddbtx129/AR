@@ -288,10 +288,10 @@ var SizeRate = 10;
 
             if (!val.isGif) {
                 main.setAttribute('rotation', '-5 0 0');
-                window.alert(val.isMp4);
+                main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
+                main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
+
                 if (val.isMp4) {
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
                     main.setAttribute('play', 'true');
                 }
 
