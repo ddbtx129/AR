@@ -129,6 +129,8 @@ var objecttype = "pic";
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
+            window.alert(defaultSize.w);
+            window.alert(defaultSize.h);
 
             if (dataObj.path) {
 
@@ -289,6 +291,8 @@ var objecttype = "pic";
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
                 });
+                window.alert(val.size.w);
+                window.alert(val.size.h);
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
