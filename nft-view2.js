@@ -8,6 +8,8 @@ var zoomH = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "pic";
+var dec = 2;
+var SizeRate = 10;
 
 (function (global) {
 
@@ -70,21 +72,33 @@ var objecttype = "pic";
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
                     case 2:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+                        dec = 1;
+                        SizeRate = 1;
                         break;
                     case 4:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+                        dec = 1;
+                        SizeRate = 10;
                         break;
                     case 6:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+                        dec = 2;
+                        SizeRate = 100;
                         break;
                     case 8:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
+                        dec = 3;
+                        SizeRate = 1000;
                         break;
                     case 10:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
+                        dec = 4;
+                        SizeRate = 10000;
                         break;
                     default:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+                        dec = 1;
+                        SizeRate = 1;
                         break;
                 }
             };
@@ -129,11 +143,10 @@ var objecttype = "pic";
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
+            window.alert(defaultSize.w);
+            window.alert(defaultSize.h);
 
             if (dataObj.path) {
-
-                //document.body.style.width = '100%';
-                //document.body.style.height = '100%';
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
@@ -146,8 +159,6 @@ var objecttype = "pic";
                     assets.appendChild(img);
                 }
                 else if (dataObj.isMp4) {
-
-                    //document.body.style.display = 'table-cell';
 
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
@@ -228,7 +239,9 @@ var objecttype = "pic";
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (defaultSize.w / 10) + ' ' + (defaultSize.h / 10) + ' ' + (defaultSize.h / 10));
+            if (this.arData.isMp4) {
+                self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            }
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -254,7 +267,7 @@ var objecttype = "pic";
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w
                 });
-
+                
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
@@ -294,6 +307,8 @@ var objecttype = "pic";
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
                 });
+                window.alert(val.size.w);
+                window.alert(val.size.h);
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
@@ -392,14 +407,17 @@ var objecttype = "pic";
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                        //});
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-                        });
+                        if (val.isMp4) {
+                            zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
+                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                            });
+                        } else {
+                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            });
+                        }
                     }
                 }
             });
@@ -492,7 +510,6 @@ var objecttype = "pic";
                 clearInterval(timer);
             });
             // ↑
-
         },
 
         positionVec3: function (type) {
