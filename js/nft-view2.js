@@ -139,10 +139,13 @@ var videoState = 0;
             defaultSize = { w: Number(wh[0]), h: Number(wh[0]) };
             window.alert(13);
 
+            var body = document.body;
+
             if (dataObj.path) {
                 window.alert(14);
 
-                document.body.classList.add('picture');
+                body.style.width = '100%';
+                body.style.height = '100%';
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
@@ -159,7 +162,7 @@ var videoState = 0;
                 }
                 else if (dataObj.isMp4) {
 
-                    document.body.classList.add('video');
+                    body.style.display = 'table-cell';
                     window.alert(18);
 
                     var video = document.createElement("arVideo");
