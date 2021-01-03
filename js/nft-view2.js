@@ -43,7 +43,7 @@ var videoState = 0;
                     window.alert(0);
                     document.getElementById("info1").style.display = "none";
                 } else {
-
+                    this.setPlayer();
                 }
             }
 
