@@ -23,7 +23,6 @@ var videoState = 0;
                 this.setWrap();
                 window.alert(3);
                 this.createModel();
-                
                 window.alert(4);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -245,51 +244,51 @@ var videoState = 0;
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
-        createVideoInfo: function () {
+        //createVideoInfo: function () {
 
-            var self = this;
-            window.alert(50);
-            var videoinfo = document.createElement("div");
-            videoinfo.setAttribute('id', 'info1');
-            videoinfo.setAttribute('info1', 'info1');
+        //    var self = this;
+        //    window.alert(50);
+        //    var videoinfo = document.createElement("div");
+        //    videoinfo.setAttribute('id', 'info1');
+        //    videoinfo.setAttribute('info1', 'info1');
 
-            window.alert(51);
+        //    window.alert(51);
 
-            var videotag = document.createElement("a");
-            videotag.setAttribute('id', 'swPlay');
-            videotag.setAttribute('info1', 'InfoItem');
-            window.alert(52);
+        //    var videotag = document.createElement("a");
+        //    videotag.setAttribute('id', 'swPlay');
+        //    videotag.setAttribute('info1', 'InfoItem');
+        //    window.alert(52);
 
-            var videotext = document.createElement("p");
-            videotext.setAttribute('id', 'p1');
-            window.alert(53);
+        //    var videotext = document.createElement("p");
+        //    videotext.setAttribute('id', 'p1');
+        //    window.alert(53);
 
 
-            var pbr = document.createElement('br')
-            var ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
-            ////self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
-            //self.videotag.appendChild(self.ptext1);
+        //    var pbr = document.createElement('br')
+        //    var ptext1 = document.createTextNode('画面をタップすると、再生が開始されます。\n\n音声が流れますのでご注意下さい。');
+        //    ////self.ptext2 = document.createTextNode('音声が流れますのでご注意下さい。');
+        //    //self.videotag.appendChild(self.ptext1);
 
-            window.alert(54);
+        //    window.alert(54);
 
-            var play = document.createElement("img");
-            play.setAttribute('id', 'player');
-            play.setAttribute('class', 'playbutton');
-            play.setAttribute('src', 'asset/play.png');
-            play.style.display = 'none';
-            window.alert(55);
+        //    var play = document.createElement("img");
+        //    play.setAttribute('id', 'player');
+        //    play.setAttribute('class', 'playbutton');
+        //    play.setAttribute('src', 'asset/play.png');
+        //    play.style.display = 'none';
+        //    window.alert(55);
 
-            videotext.appendChild(ptext1);
-            videotag.appendChild(videotext);
-            videoinfo.appendChild(videotag);
-            window.alert(56);
-            document.body.appendChild(videoinfo);
-            document.body.appendChild(play);
-            window.alert(57);
-            videoInfo.videoinfo = videoinfo;
-            videoInfo.play = play;
-            window.alert(58);
-        },
+        //    videotext.appendChild(ptext1);
+        //    videotag.appendChild(videotext);
+        //    videoinfo.appendChild(videotag);
+        //    window.alert(56);
+        //    document.body.appendChild(videoinfo);
+        //    document.body.appendChild(play);
+        //    window.alert(57);
+        //    videoInfo.videoinfo = videoinfo;
+        //    videoInfo.play = play;
+        //    window.alert(58);
+        //},
 
         createModel: function () {
 
@@ -326,7 +325,6 @@ var videoState = 0;
             if (val.isPng || val.arData) {
                 elname = 'a-image'
             } else if (val.isMp4) {
-                this.createVideoInfo();
                 window.alert(23);
                 elname = 'a-video'
             }
