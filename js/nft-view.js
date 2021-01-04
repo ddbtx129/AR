@@ -389,6 +389,8 @@ var SizeRate = 10;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
+                    window.alert("bAngle" + document.querySelector("main").getAttribute("rotation"));
+                    window.alert("bAngle" + document.querySelector("shadow").getAttribute("rotation"));
                 }
             });
 
@@ -400,6 +402,8 @@ var SizeRate = 10;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
+                    window.alert("bParalle" + document.querySelector("main").getAttribute("rotation"));
+                    window.alert("bParalle" + document.querySelector("shadow").getAttribute("rotation"));
                 }
             });
             // ↑
