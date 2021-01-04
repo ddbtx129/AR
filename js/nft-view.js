@@ -142,8 +142,8 @@ var SizeRate = 10;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
-            defaultAngle = (self.arg.angleList && self.arg.angleList == 'p') ? -90 : -5;
-            window.alert((self.arg.angleList && self.arg.angleList == 'p'));
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
+            window.alert(self.arg.angleList && Number(self.arg.angleList) == 1);
             window.alert(defaultAngle);
             
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
