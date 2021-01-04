@@ -48,11 +48,6 @@ var SizeRate = 10;
                 } else {
                     objecttype = "video";
                 }
-
-                if (defaultAngle != -5) {
-                    // イベントを発生させる
-                    bParalle.dispatchEvent(new Event("click", { "bubbles": true, "cancelable": true }));
-                }
             }
 
             //this.setSwitcher();
@@ -532,5 +527,10 @@ var SizeRate = 10;
 
     webArViewer.ar = ar;
     webArViewer.ar.init();
+
+    if (defaultAngle != -5) {
+        // イベントを発生させる
+        bParalle.dispatchEvent(new Event("click", { "bubbles": true, "cancelable": true }));
+    }
 
 }());
