@@ -240,9 +240,9 @@ var SizeRate = 10;
             //self.wrap.setAttribute('scale', '4 4 4');
             self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
-            self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('rotation', '-5 0 0');
+            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
             //self.wrap.setAttribute('material', 'shader: html; target: #source, transparent: true, opacity: 0');
-            //self.wrap.setAttribute('material', 'shader: standard, transparent: true, opacity: 0');
         },
 
         createModel: function () {
@@ -289,7 +289,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', '0 0 0');
+                main.setAttribute('rotation', '-5 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
@@ -357,7 +357,7 @@ var SizeRate = 10;
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
-            var arPicRotation = '0 0 0';
+            var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
             var arVRotation = '-90 0 0'
 
