@@ -375,13 +375,6 @@ var SizeRate = 10;
 
             var wrapPos = self.positionVec3('main');
 
-            if (defaultAngle == -5) {
-                bAngle.classList.add('current');
-            } else {
-                bParalle.classList.add('current');
-                dispatchEvent
-            }
-
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     var arRotation = arPicRotation;
@@ -395,7 +388,6 @@ var SizeRate = 10;
 
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
-                    window.alert("Paralle")
                     var arRotation = arVRotation;
                     wrapPos = self.positionVec3('main');
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
