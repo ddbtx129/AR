@@ -50,9 +50,8 @@ var SizeRate = 10;
                 }
 
                 if (defaultAngle != -5) {
-                    var event = new Event("click", { "bubbles": true, "cancelable": true });
                     // イベントを発生させる
-                    bParalle.dispatchEvent(event);
+                    bParalle.dispatchEvent(new Event("click", { "bubbles": true, "cancelable": true }));
                 }
             }
 
@@ -401,6 +400,7 @@ var SizeRate = 10;
 
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
+                    window.alert("Paralle")
                     var arRotation = arVRotation;
                     wrapPos = self.positionVec3('main');
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
