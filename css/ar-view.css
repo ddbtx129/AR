@@ -50,6 +50,9 @@ a {
     bottom:0;
     width: 100%;
     text-align:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 700;
     font-size: medium;
     background-color: rgba(235, 235, 235, 0.8);
