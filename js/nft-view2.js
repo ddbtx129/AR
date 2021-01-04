@@ -45,7 +45,7 @@ var SizeRate = 10;
                     objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
                 } else {
-                    document.body.style.display = "table-cell;";
+                    //document.body.style.display = "table-cell;";
                     objecttype = "video";
                 }
             }
