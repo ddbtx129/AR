@@ -237,10 +237,11 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            //self.wrap.setAttribute('scale', '2 2 2');
+            //self.wrap.setAttribute('scale', '2 4 4');
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('color', '#000');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
@@ -296,13 +297,13 @@ var SizeRate = 10;
                     main.setAttribute('play', 'true');
                 }
 
+                AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+                    primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
+                });
+
                 AFRAME.utils.entity.setComponentProperty(main, 'material', {
                     shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
                     side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                });
-
-                AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                    primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
                 });
 
             } else {
@@ -412,6 +413,7 @@ var SizeRate = 10;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
+
                     }
                 }
             });
