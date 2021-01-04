@@ -375,6 +375,8 @@ var SizeRate = 10;
 
             var wrapPos = self.positionVec3('main');
 
+            bAngle.classList.add('current');
+
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     var arRotation = arPicRotation;
