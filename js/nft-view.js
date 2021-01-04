@@ -142,7 +142,7 @@ var SizeRate = 10;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
-            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? 90 : -5;
             window.alert(self.arg.angleList && Number(self.arg.angleList) == 1);
             window.alert(defaultAngle);
             
@@ -249,7 +249,7 @@ var SizeRate = 10;
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('rotation', String(defaultAngle) + ' 0 0');
+            self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
