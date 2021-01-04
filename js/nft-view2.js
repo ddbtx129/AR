@@ -140,7 +140,7 @@ var SizeRate = 10;
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
 
-            var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '40, 40')).split(',');
+            var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
 
@@ -288,8 +288,8 @@ var SizeRate = 10;
 
             if (!val.isGif) {
                 main.setAttribute('rotation', '0 0 0');
-                main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.h));
-                main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.w));
+                main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
+                main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
                 if (val.isMp4) {
                     main.setAttribute('play', 'true');
@@ -403,17 +403,11 @@ var SizeRate = 10;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        if (objecttype == 'video') {
-                            zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
-                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-                            });
-                        } else {
-                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                            });
-                        }
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                        });
                     }
                 }
             });
