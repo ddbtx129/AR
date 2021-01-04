@@ -142,7 +142,7 @@ var SizeRate = 10;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
-            defaultAngle = (self.arg.angleList && self.arg.angleList == 'p') ? -90 : -5;
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
@@ -266,7 +266,7 @@ var SizeRate = 10;
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-                shadow.setAttribute('rotation', '-180 0 0');
+                shadow.setAttribute('rotation', '-90 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w
@@ -295,7 +295,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', '-90 0 0');
+                main.setAttribute('rotation', '-5 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
@@ -379,6 +379,7 @@ var SizeRate = 10;
                 bAngle.classList.add('current');
             } else {
                 bParalle.classList.add('current');
+                dispatchEvent
             }
 
             bAngle.addEventListener('click', function () {
@@ -402,6 +403,12 @@ var SizeRate = 10;
                     bAngle.classList.remove('current');
                 }
             });
+
+            if (defaultAngle != -5) {
+                var event = new Event("click", { "bubbles": true, "cancelable": true });
+                // イベントを発生させる
+                bParalle.dispatchEvent(event);
+            }
             // ↑
 
             // 拡大・縮小
