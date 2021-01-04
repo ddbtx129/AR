@@ -404,10 +404,13 @@ var SizeRate = 10;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
+                        //zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                        //});
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                     }
                 }
