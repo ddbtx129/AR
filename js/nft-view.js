@@ -1,5 +1,6 @@
 var webArViewer = webArViewer || {};
 
+var defaultAngle = -5;
 var defaultPos = { x: 0, y: 0, z: 0 };
 var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
@@ -103,6 +104,8 @@ var SizeRate = 10;
                 }
             };
 
+            arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
+
             // マーカー
             arg.markerList = arg.m;
             arg.markerList1 = arg.m1;
@@ -139,6 +142,7 @@ var SizeRate = 10;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
+            defaultAngle = (self.arg.shodowList && self.arg.angleList == 'p') ? -90 : -5;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
@@ -243,7 +247,9 @@ var SizeRate = 10;
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('rotation', '-5 0 0');
+            var angle = 'p';
+
+            self.wrap.setAttribute('rotation', String(defaultAngle) + ' 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
@@ -291,7 +297,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', '-5 0 0');
+                main.setAttribute('rotation', String(defaultAngle) + ' 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
@@ -371,7 +377,11 @@ var SizeRate = 10;
 
             var wrapPos = self.positionVec3('main');
 
-            bAngle.classList.add('current');
+            if (defaultAngle == -5) {
+                bAngle.classList.add('current');
+            } else {
+                bParalle.classList.add('current');
+            }
 
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
