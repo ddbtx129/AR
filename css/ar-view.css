@@ -56,7 +56,8 @@ a {
     padding: 5px 8px;
     border-radius: 0 0 0 0;
     z-index: 1;
-
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     /*display: flex;
     justify-content: center;
     align-items: center;*/
