@@ -1,31 +1,31 @@
 ﻿<html>
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <meta name="robots" content="noindex,nofollow,noarchive">
-    <meta name="twitter:card" content="summary" />
-    <meta property="og:title" content="WebAR" />
-    <meta property="og:description" content="標準ブラウザからARが見られます。" />
-    <meta property="og:image" content="asset/share.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>ＡＲ</title>
+        <title>ＡＲ</title>
 
-    <link rel="stylesheet" href="css/ar-view.css">
+        <link rel="stylesheet" href="css/ar-view.css">
 
-    <script type="text/javascript" src="js/ar.init.js"></script>
+        <script type="text/javascript" src="js/ar.init.js"></script>
 
-    <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
-    <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
-    <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
-    <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
-    <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
-    <script type="text/javascript" src="js/camera.swich.js"></script>
-    <script type="text/javascript" src="js/video.event.js"></script>
+        <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+        <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+        <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
+        <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
+        <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
+        <script type="text/javascript" src="js/camera.swich.js"></script>
+        <script type="text/javascript" src="js/video.event.js"></script>
 
-</head>
+    </head>
 
     <body>
 
@@ -37,6 +37,11 @@
             <a id="swPlay" class="InfoItem">
                 <p id="p1">画面をタップすると、再生が開始されます。<br><br>音声が流れますのでご注意下さい。</p>
             </a>
+        </div>
+
+        <div  id="modeswitch" class="switch" style="display: none" >
+            <a id="swMarker" class="swItem"><img src="asset/marker-t.png" width="30"></a>
+            <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
         </div>
 
         <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
@@ -63,7 +68,7 @@
 
         <script src="js/gifshader.js"></script>
         <script src="js/chromakey.js"></script>
-        <script src="js/nft-view.js"></script>
+        <script src="js/nft-view2.js"></script>
 
         <p id="version">v1.0.12</p>
 
