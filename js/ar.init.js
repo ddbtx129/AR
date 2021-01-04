@@ -51,9 +51,9 @@
             }
         }
         
-    } else {
-            Err_Exit('パソコンで表示することはできません。');
-    }
+    } //else {
+    //        Err_Exit('パソコンで表示することはできません。');
+    //}
 
     function iosVersion() {
         var v, versions;
