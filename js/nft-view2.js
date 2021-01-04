@@ -237,8 +237,8 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            //self.wrap.setAttribute('scale', '4 4 4');
-            self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            self.wrap.setAttribute('scale', '4 4 4');
+            //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -413,7 +413,6 @@ var SizeRate = 10;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-
                     }
                 }
             });
