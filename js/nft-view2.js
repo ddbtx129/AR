@@ -187,6 +187,8 @@ var SizeRate = 10;
 
                     assets.appendChild(video);
                     assets.appendChild(audio);
+
+                    document.getElementById("scrshot").style.display = "none";
                 }
             }
 
@@ -243,7 +245,6 @@ var SizeRate = 10;
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-            //self.wrap.setAttribute('material', 'shader: html; target: #source, transparent: true, opacity: 0');
         },
 
         createModel: function () {
