@@ -266,7 +266,7 @@ var SizeRate = 10;
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-                shadow.setAttribute('rotation', '-90 0 0');
+                shadow.setAttribute('rotation', '-180 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w
@@ -295,7 +295,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', '-5 0 0');
+                main.setAttribute('rotation', '-90 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
@@ -389,8 +389,6 @@ var SizeRate = 10;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
-                    window.alert("bAngle" + document.querySelector("main").getAttribute("rotation"));
-                    window.alert("bAngle" + document.querySelector("shadow").getAttribute("rotation"));
                 }
             });
 
@@ -402,8 +400,6 @@ var SizeRate = 10;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
-                    window.alert("bParalle" + document.querySelector("main").getAttribute("rotation"));
-                    window.alert("bParalle" + document.querySelector("shadow").getAttribute("rotation"));
                 }
             });
             // ↑
