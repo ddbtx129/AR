@@ -526,8 +526,11 @@ var SizeRate = 10;
 
     if (defaultAngle != -5) {
         window.alert(0);
+        var evant = new Event("click", { "bubbles": true, "cancelable": true });
+        window.alert(0.5);
+        var bParalle = document.getElementById('swParallel');
         // イベントを発生させる
-        bParalle.dispatchEvent(new Event("click", { "bubbles": true, "cancelable": true }));
+        bParalle.dispatchEvent(evant);
         window.alert(1);
     }
 
