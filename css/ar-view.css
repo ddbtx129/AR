@@ -47,7 +47,10 @@ a {
 
 .info1 {
     position: absolute;
+    display: flex;
     bottom:0;
+    left: 0%;
+    right: 0%;
     width: 100%;
     text-align:center;
     font-weight: 700;
@@ -56,8 +59,6 @@ a {
     padding: 5px 8px;
     border-radius: 0 0 0 0;
     z-index: 1;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
     /*display: flex;
     justify-content: center;
     align-items: center;*/
