@@ -200,6 +200,7 @@ var SizeRate = 10;
                     assets.appendChild(audio);
 
                     document.getElementById("scrshot").style.display = "none";
+                    document.getElementById("swCamera").style.display = "none";
                 }
             }
 
@@ -273,7 +274,7 @@ var SizeRate = 10;
 
             if (val.isShadow) {
 
-                var shadow = document.createElement('a-image');
+                var shadow = document.createElement('a-entity');
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
@@ -294,7 +295,7 @@ var SizeRate = 10;
             var elname = '';
 
             if (val.isPng || val.arData) {
-                elname = 'a-image'
+                elname = 'a-entity'
             } else if (val.isMp4) {
                 elname = 'a-video'
             }
