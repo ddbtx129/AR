@@ -390,14 +390,12 @@ var SizeRate = 10;
 
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
-                    window.alert(2);
                     var arRotation = arVRotation;
                     wrapPos = self.positionVec3('main');
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
-                    window.alert(3);
                 }
             });
             // ↑
@@ -525,13 +523,10 @@ var SizeRate = 10;
     webArViewer.ar.init();
 
     if (defaultAngle != -5) {
-        window.alert(0);
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
-        window.alert(0.5);
         var bParalle = document.getElementById('swParallel');
         // イベントを発生させる
         bParalle.dispatchEvent(evant);
-        window.alert(1);
     }
 
 }());
