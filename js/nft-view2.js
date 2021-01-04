@@ -242,7 +242,7 @@ var SizeRate = 10;
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '0 0 0');
             //self.wrap.setAttribute('material', 'shader: html; target: #source, transparent: true, opacity: 0');
-            self.wrap.setAttribute('material', 'shader: standard, transparent: true, opacity: 0');
+            //self.wrap.setAttribute('material', 'shader: standard, transparent: true, opacity: 0');
         },
 
         createModel: function () {
