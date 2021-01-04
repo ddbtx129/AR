@@ -240,6 +240,7 @@ var SizeRate = 10;
             self.wrap.setAttribute('scale', '4 4 4');
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '-5 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
             //self.wrap.setAttribute('material', 'shader: html; target: #source, transparent: true, opacity: 0');
