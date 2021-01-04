@@ -335,11 +335,11 @@ var SizeRate = 10;
             document.getElementById("swAngle").style.display = 'inline';
             document.getElementById("swParallel").style.display = 'inline';
 
-            if (self.arg.preview) {
+            //if (self.arg.preview) {
 
-                webArViewer.scene.appendChild(self.wrap);
+            //    webArViewer.scene.appendChild(self.wrap);
 
-            } else {
+            //} else {
 
                 // NFTマーカー
                 var mWrap = document.createElement('a-nft');
@@ -366,7 +366,7 @@ var SizeRate = 10;
                 webArViewer.scene.appendChild(mWrap);
 
                 self.mWrap = mWrap;
-            }
+            //}
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
