@@ -160,6 +160,7 @@ var SizeRate = 10;
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
+                    window.alert(dataObj.path);
                     assets.appendChild(img);
                 }
                 else if (dataObj.isMp4) {
@@ -241,16 +242,20 @@ var SizeRate = 10;
         setWrap: function () {
 
             var self = this;
-            var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
+            //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
 
-            self.wrap = document.createElement('a-plane');
-            self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', '4 4 4');
-            //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            //self.wrap = document.createElement('a-plane');
+            //self.wrap.setAttribute('id', 'base');
+            //self.wrap.setAttribute('scale', '4 4 4');
+            ////self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            //self.wrap.setAttribute('position', base);
+            //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            //self.wrap.setAttribute('rotation', '0 0 0');
+            //self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+
+            var base = self.arg.base ? decodeURI(self.arg.base) : '0 0 0';
+            self.wrap = document.createElement('a-entity');
             self.wrap.setAttribute('position', base);
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('rotation', '0 0 0');
-            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
         createModel: function () {
