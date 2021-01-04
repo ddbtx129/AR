@@ -239,6 +239,7 @@ var SizeRate = 10;
             self.wrap.setAttribute('id', 'base');
             //self.wrap.setAttribute('scale', '2 4 4');
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
+            self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.h);
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('color', '#000');
