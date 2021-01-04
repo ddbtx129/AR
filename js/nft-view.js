@@ -142,10 +142,8 @@ var SizeRate = 10;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
-            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? 90 : -5;
-            window.alert(self.arg.angleList && Number(self.arg.angleList) == 1);
-            window.alert(defaultAngle);
-            
+            defaultAngle = (self.arg.angleList && self.arg.angleList == 'p') ? -90 : -5;
+
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
             dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
@@ -297,7 +295,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                main.setAttribute('rotation', String(defaultAngle) + ' 0 0');
+                main.setAttribute('rotation', '-5 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
