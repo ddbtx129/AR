@@ -1,6 +1,5 @@
 body {
     font-family: sans-serif;
-    /*display: table-cell;*/
     margin: 0;
     overflow: hidden;
     -webkit-touch-callout: none;
@@ -47,7 +46,7 @@ a {
 }
 
 .info1 {
-    position: fixed;
+    position: absolute;
     bottom:0;
     width: 100%;
     text-align:center;
