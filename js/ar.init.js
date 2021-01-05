@@ -48,11 +48,18 @@
 
             if (parseInt(param['ed'].toString(), 16).toString(10) < (year + month + day).toString()) {
                 Err_Exit('表示期限が終了しているため、表示することができません。');
+                return;
             }
         }
-        
-    } //else {
+
+        // 初期化のために実行
+        onResize();
+        // リサイズイベント発生時に実行
+        window.addEventListener('resize', onResize);
+    }
+    //} else {
     //        Err_Exit('パソコンで表示することはできません。');
+    //        retuern;
     //}
 
     function iosVersion() {
@@ -95,6 +102,20 @@ function GetQueryString() {
 
     return null;
 };
+
+function onResize() {
+    // サイズを取得
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // レンダラーのサイズを調整する
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+
+    // カメラのアスペクト比を正す
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+}
 
 window.addEventListener('DOMContentLoaded', function () {
 
