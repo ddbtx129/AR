@@ -268,7 +268,7 @@ var SizeRate = 10;
                 return;
             }
 
-            var wh = { w: (self.arg.preview) ? val.size.w / 2 : val.size.w, h: (self.arg.preview) ? val.size.h / 2 : val.size.h };
+            var wh = { w: val.size.w, h: val.size.h };
 
             if (val.isShadow) {
 
@@ -350,8 +350,8 @@ var SizeRate = 10;
 
             var prevPageY;
             var prevPageX;
-            var zoomRateW = (self.arg.preview) ? defaultSize.w / 2 : defaultSize.w;
-            var zoomRateH = (self.arg.preview) ? defaultSize.h / 2 : defaultSize.h;
+            var zoomRateW = defaultSize.w;
+            var zoomRateH = defaultSize.h;
             var zoomRate = zoomRateW / zoomRateH;
 
             var wrapPos = self.positionVec3('main');
@@ -537,7 +537,7 @@ var SizeRate = 10;
 
         positionVec3: function (type) {
             var self = this;
-            var h1_2 = ((self.arg.preview) ? (self.arData.size.h / 2) / 2 : (self.arData.size.h / 2));
+            var h1_2 = (self.arData.size.h / 2);
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
