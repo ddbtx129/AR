@@ -534,7 +534,7 @@ var SizeRate = 10;
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
             } else {
-                return { x: 0, y: h1_2, z: ((self.arg.preview) ? -h1_2 : 0) };
+                return { x: 0, y: h1_2, z: 0 };
             }
         }
     };
