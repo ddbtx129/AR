@@ -21,15 +21,13 @@ var SizeRate = 10;
         init: function () {
 
             this.setArg();
-            window.alert(0);
 
             if (this.setArData()) {
-                window.alert(1);
 
                 this.setWrap();
-                window.alert(2);
+
                 this.createModel();
-                window.alert(3);
+
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
@@ -41,10 +39,9 @@ var SizeRate = 10;
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-                window.alert(4);
 
                 this.setScene();
-                window.alert(5);
+
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
@@ -53,11 +50,9 @@ var SizeRate = 10;
                     objecttype = "video";
                 }
             }
-            window.alert(6);
 
             if (!this.arData.isMp4) {
                 this.setSwitcher();
-                window.alert(7);
             }
         },
 
