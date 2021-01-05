@@ -251,7 +251,7 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', '4 4 4');
+            self.wrap.setAttribute('scale', '1 1 1');
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
