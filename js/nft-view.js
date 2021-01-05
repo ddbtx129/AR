@@ -45,7 +45,7 @@ var SizeRate = 10;
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
-                    document.getElementById("modeswitch").style.display = "inline";
+                    document.getElementById("modeSwitch").style.display = "inline";
                 } else {
                     objecttype = "video";
                 }
