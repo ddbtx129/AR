@@ -476,8 +476,10 @@ var SizeRate = 10;
                 bUP.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
+                        window.alert('UP-Y')
                         wrapPos.y += 0.02;
                     } else {
+                        window.alert('UP-Z')
                         wrapPos.z -= 0.02;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
@@ -503,8 +505,10 @@ var SizeRate = 10;
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
+                        window.alert('DOWN-Y')
                         wrapPos.y -= 0.02;
                     } else {
+                        window.alert('DOWN-Z')
                         wrapPos.z += 0.02;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
