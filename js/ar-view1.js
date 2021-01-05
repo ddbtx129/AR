@@ -383,11 +383,9 @@ var SizeRate = 10;
 
                 if (!!self.arg.m1 && !!self.arg.m2) {
                     mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt'));
-                    window.alert('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt');
                 } else {
                     mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(
                         !(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt'));
-                    window.alert(!(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt');
                 }
 
                 mWrap.appendChild(self.wrap);
@@ -424,14 +422,14 @@ var SizeRate = 10;
                 });
                 // ↑
             }
-            window.alert(0);
+
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
                 prevPageX = event.pageX;    // 横軸
             });
-            window.alert(1);
+
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
@@ -443,33 +441,33 @@ var SizeRate = 10;
                     }
                 }
             });
-            window.alert(2);
+
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
                 prevPageX = null;
             });
-            window.alert(3);
+
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            window.alert(4);
+
             bUP.addEventListener('click', function () {
-                window.alert(5);
                 if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
-                    wrapPos.y += 0.2;
+                    wrapPos.y += 5;
+                    window.alert(wrapPos.y);
                 } else {
-                    wrapPos.z -= 0.2;
+                    wrapPos.z -= 5;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
-                window.alert(6);
                 if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
-                    wrapPos.y -= 0.2;
+                    wrapPos.y -= 5;
+                    window.alert(wrapPos.y);
                 } else {
-                    wrapPos.z += 0.2;
+                    wrapPos.z += 5;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
@@ -477,16 +475,14 @@ var SizeRate = 10;
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
-                window.alert(7);
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
-                        window.alert('UP-Y')
-                        wrapPos.y += 0.02;
+                        wrapPos.y += 2;
+                        window.alert(wrapPos.y);
                     } else {
-                        window.alert('UP-Z')
-                        wrapPos.z -= 0.02;
+                        wrapPos.z -= 2;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -513,11 +509,10 @@ var SizeRate = 10;
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
-                        window.alert('DOWN-Y')
-                        wrapPos.y -= 0.02;
+                        wrapPos.y -= 2;
+                        window.alert(wrapPos.y);
                     } else {
-                        window.alert('DOWN-Z')
-                        wrapPos.z += 0.02;
+                        wrapPos.z += 2;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
