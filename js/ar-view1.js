@@ -253,16 +253,10 @@ var SizeRate = 10;
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', '1 1 1');
-            //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-
-            //var base = self.arg.base ? decodeURI(self.arg.base) : '0 0 0';
-            //self.wrap = document.createElement('a-entity');
-            //self.wrap.setAttribute('position', base);
-            //self.wrap.setAttribute('rotation', '0 0 0');
         },
 
         createModel: function () {
@@ -274,6 +268,8 @@ var SizeRate = 10;
                 return;
             }
 
+            var wh = { w: (self.arg.preview) ? val.size.w / 2 : val.size.w, h: (self.arg.preview) ? val.size.h / 2 : val.size.h };
+
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-entity');
@@ -283,7 +279,7 @@ var SizeRate = 10;
                 shadow.setAttribute('rotation', '-90 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                    primitive: 'plane', height: val.size.h, width: val.size.w
+                    primitive: 'plane', height: wh.h, width: wh.w
                 });
                 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
@@ -312,15 +308,15 @@ var SizeRate = 10;
             if (!val.isGif) {
 
                 main.setAttribute('rotation', '-5 0 0');
-                main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
-                main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
+                main.setAttribute('width', AFRAME.utils.coordinates.stringify(wh.w));
+                main.setAttribute('height', AFRAME.utils.coordinates.stringify(wh.h));
 
                 if (val.isMp4) {
                     main.setAttribute('play', 'true');
                 }
 
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                    primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
+                    primitive: 'plane', height: wh.h, width: wh.w, segmentsHeight: 1, segmentsWidth: 1
                 });
 
                 AFRAME.utils.entity.setComponentProperty(main, 'material', {
@@ -350,12 +346,13 @@ var SizeRate = 10;
             var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
             var arVRotation = '-90 0 0'
+            var wh = { w: (self.arg.preview) ? val.size.w / 2 : val.size.w, h: (self.arg.preview) ? val.size.h / 2 : val.size.h };
 
             var prevPageY;
             var prevPageX;
-            var zoomRateW = defaultSize.w;
-            var zoomRateH = defaultSize.h;
-            var zoomRate = defaultSize.w / defaultSize.h;
+            var zoomRateW = (self.arg.preview) ? defaultSize.w / 2 : defaultSize.w;
+            var zoomRateH = (self.arg.preview) ? defaultSize.h / 2 : defaultSize.h;
+            var zoomRate = zoomRateW / zoomRateH;
 
             var wrapPos = self.positionVec3('main');
 
@@ -532,7 +529,7 @@ var SizeRate = 10;
 
         positionVec3: function (type) {
             var self = this;
-            var h1_2 = self.arData.size.h / 2;
+            var h1_2 = ((self.arg.preview) ? (self.arData.size.h / 2) : (self.arData.size.h / 2) / 2);
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -(h1_2) };
