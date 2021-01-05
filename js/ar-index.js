@@ -2,15 +2,18 @@
 
 (function () {
 
+    document.addEventListener("touchmove",
+        function (e) {
+            window.alert(0);
+            e.preventDefault();
+        }, { passive: false });
+
+    this.LockScroll();
+
     // 初期化のために実行
     onResize();
     // リサイズイベント発生時に実行
     window.addEventListener('resize', onResize);
-
-    document.addEventListener("touchmove",
-        function (e) {
-            e.preventDefault();
-        }, { passive: false });
 
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
         && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
@@ -108,6 +111,39 @@ function GetQueryString() {
     return null;
 };
 
+function LockScroll() {
+    document.addEventListener("mousewheel", handleMouseWheel, { passive: false });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.addEventListener("keydown", handleKeyDown, { passive: false });
+    document.body.style.overflow = "hidden";
+};
+
+function UnLockScroll() {
+    document.removeEventListener("mousewheel", handleMouseWheel, { passive: false });
+    document.removeEventListener("touchmove", handleTouchMove, { passive: false });
+    document.removeEventListener("keydown", handleKeyDown, { passive: false });
+    document.body.style.overflow = "visible";
+};
+
+function handleMouseWheel(e) {
+    e.preventDefault();
+};
+
+function handleTouchMove(e) {
+    e.preventDefault();
+};
+
+function handleKeyDown(e) {
+    switch (e.keyCode) {
+        case 0x25:
+        case 0x26:
+        case 0x27:
+        case 0x28:
+            e.preventDefault();
+            break;
+    }
+};
+
 function onResize() {
     // サイズを取得
     const width = window.innerWidth;
@@ -120,7 +156,7 @@ function onResize() {
     // カメラのアスペクト比を正す
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-}
+};
 
 function Err_Exit(msg) {
     window.alert(msg);
