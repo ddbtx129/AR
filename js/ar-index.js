@@ -4,7 +4,6 @@
 
     document.addEventListener("touchmove",
         function (e) {
-            window.alert(0);
             e.preventDefault();
         }, { passive: false });
 

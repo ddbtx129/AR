@@ -457,18 +457,18 @@ var SizeRate = 10;
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += 5;
+                    wrapPos.y += 0.2;
                 } else {
-                    wrapPos.z -= 5;
+                    wrapPos.z -= 0.2;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y -= 5;
+                    wrapPos.y -= 0.2;
                 } else {
-                    wrapPos.z += 5;
+                    wrapPos.z += 0.2;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
@@ -480,9 +480,9 @@ var SizeRate = 10;
                 bUP.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y += 2;
+                        wrapPos.y += 0.02;
                     } else {
-                        wrapPos.z -= 2;
+                        wrapPos.z -= 0.02;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -507,9 +507,9 @@ var SizeRate = 10;
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y -= 2;
+                        wrapPos.y -= 0.02;
                     } else {
-                        wrapPos.z += 2;
+                        wrapPos.z += 0.02;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
