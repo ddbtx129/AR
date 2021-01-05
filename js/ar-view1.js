@@ -263,6 +263,7 @@ var SizeRate = 10;
             //var base = self.arg.base ? decodeURI(self.arg.base) : '0 0 0';
             self.wrap = document.createElement('a-entity');
             self.wrap.setAttribute('position', base);
+            self.wrap.setAttribute('rotation', '0 0 0');
         },
 
         createModel: function () {
@@ -280,8 +281,7 @@ var SizeRate = 10;
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-                //shadow.setAttribute('rotation', '-90 0 0');
-                shadow.setAttribute('rotation', (!!(self.arg.preview) ? '0' : '-90') + ' 0 0');
+                shadow.setAttribute('rotation', '-90 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: val.size.h, width: val.size.w
@@ -311,8 +311,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
-                //main.setAttribute('rotation', '-5 0 0');
-                main.setAttribute('rotation', (!!(self.arg.preview) ? '-85' : '-5') + ' 0 0');
+                main.setAttribute('rotation', '-5 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
 
