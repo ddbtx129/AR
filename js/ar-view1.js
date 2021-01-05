@@ -431,12 +431,14 @@ var SizeRate = 10;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
                 prevPageX = event.pageX;    // 横軸
+                window.alert(0);
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        window.alert(1);
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
@@ -446,6 +448,7 @@ var SizeRate = 10;
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+                window.alert(2);
                 prevPageY = null;
                 prevPageX = null;
             });
