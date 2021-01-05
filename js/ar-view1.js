@@ -48,6 +48,7 @@ var SizeRate = 10;
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
+                    document.getElementById("modeSwitch").style.display = "inline";
                 } else {
                     objecttype = "video";
                 }
@@ -341,128 +342,17 @@ var SizeRate = 10;
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
+            // ボタン 表示・非表示切替
+            document.getElementById("swUp").style.display = 'inline';
+            document.getElementById("swDown").style.display = 'inline';
+
+            document.getElementById("swAngle").style.display = 'inline';
+            document.getElementById("swParallel").style.display = 'inline';
 
             if (self.arg.preview) {
-                // ボタン 表示・非表示切替
-                document.getElementById("swUp").style.display = 'inline';
-                document.getElementById("swDown").style.display = 'inline';
 
-                document.getElementById("swAngle").style.display = 'none';
-                document.getElementById("swParallel").style.display = 'none';
-
-                var wrapPos = self.wrap.getAttribute('position');
-                wrapPos.x += 0;
-                wrapPos.y -= 0.5;
-                wrapPos.z -= 8;
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', '0 0 0');
-
-                var prevPageY;
-                var prevPageX;
-                var zoomRate = 1;
-
-
-                webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-                    var event = e.changedTouches ? e.changedTouches[0] : e;
-                    prevPageY = event.pageY;    // 縦軸
-                    prevPageX = event.pageX;    // 横軸
-                });
-
-                webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
-                    var event = e.changedTouches ? e.changedTouches[0] : e;
-
-                    if (prevPageY) {
-                        if ((zoomRate + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                            zoomRate += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRate + ' ' + zoomRate + ' ' + zoomRate
-                            });
-                        }
-                    }
-                });
-
-                webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-                    prevPageY = null;
-                    prevPageX = null;
-                });
-
-                // ↓ 上下移動ボタン押下
-                var upbtn = document.getElementById('swUp');
-
-                upbtn.addEventListener('click', function () {
-                    wrapPos.y += 0.2;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                });
-
-                var downbtn = document.getElementById('swDown');
-
-                downbtn.addEventListener('click', function () {
-                    wrapPos.y -= 0.2;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                });
-                // ↑
-
-                // ↓ UPボタン長押し
-                var bUP = document.getElementById('swUp');
-                var bDOWN = document.getElementById('swDown');
-                var eventStart = 'touchstart';
-                var eventEnd = 'touchend';
-                var eventLeave = 'touchmove';
-                var timer;
-
-                bUP.addEventListener(eventStart, e => {
-                    e.preventDefault();
-                    bUP.classList.add('active');
-                    timer = setInterval(() => {
-                        wrapPos.y += 0.02;
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    }, 10);
-                })
-
-                bUP.addEventListener(eventEnd, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-
-                bUP.addEventListener(eventLeave, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-                // ↑ 
-
-                // ↓ DOWNボタン長押し
-                bDOWN.addEventListener(eventStart, e => {
-                    e.preventDefault();
-                    bDOWN.classList.add('active');
-                    timer = setInterval(() => {
-                        wrapPos.y -= 0.02;
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    }, 10);
-                })
-
-                bDOWN.addEventListener(eventEnd, e => {
-                    e.preventDefault();
-                    bDOWN.classList.remove('active');
-                    clearInterval(timer);
-                });
-
-                bUP.addEventListener(eventLeave, e => {
-                    e.preventDefault();
-                    bUP.classList.remove('active');
-                    clearInterval(timer);
-                });
-                // ↑
-            }
-            else {
-
-                // ボタン 表示・非表示切替
-                document.getElementById("swUp").style.display = 'none';
-                document.getElementById("swDown").style.display = 'none';
-
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+                webArViewer.scene.appendChild(self.wrap);
+            } else {
 
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
@@ -481,195 +371,149 @@ var SizeRate = 10;
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
-
-                // ↓ rotation 切替
-                var anglebtn = document.getElementById('swAngle');
-                var parallelbtn = document.getElementById('swParallel');
-                var arRotation = '-5 0 0';
-
-                var bAngle = document.getElementById('swAngle');
-                var bParalle = document.getElementById('swParallel');
-                var arPicRotation = '-5 0 0';
-                var arGifRotation = '-30 0 0';
-                var arVRotation = '-90 0 0'
-
-                if (self.arg.preview) {
-                    parallelbtn.classList.add('current');
-                } else {
-                    anglebtn.classList.add('current');
-                }
-
-                bAngle.addEventListener('click', function () {
-                    if (!bAngle.classList.contains('current')) {
-                        arRotation = '-5 0 0';
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
-                        bAngle.classList.add('current');
-                        bParalle.classList.remove('current');
-                    }
-                });
-
-                bParalle.addEventListener('click', function () {
-                    if (!bParalle.classList.contains('current')) {
-                        arRotation = '-90 0 0';
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-
-                        bParalle.classList.add('current');
-                        bAngle.classList.remove('current');
-                    }
-                });
-                // ↑
-
-                return;
             }
 
-            webArViewer.scene.appendChild(self.wrap);
+            // ↓ rotation 切替
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+            var arPicRotation = '-5 0 0';
+            var arGifRotation = '-30 0 0';
+            var arVRotation = '-90 0 0'
 
-            //// ↓ rotation 切替
-            //var bAngle = document.getElementById('swAngle');
-            //var bParalle = document.getElementById('swParallel');
-            //var arPicRotation = '-5 0 0';
-            //var arGifRotation = '-30 0 0';
-            //var arVRotation = '-90 0 0'
+            var prevPageY;
+            var prevPageX;
+            var zoomRateW = (defaultSize.w / 10);
+            var zoomRateH = (defaultSize.h / 10);
+            var zoomRate = defaultSize.w / defaultSize.h;
 
-            //var prevPageY;
-            //var prevPageX;
-            //var zoomRateW = (defaultSize.w / 10);
-            //var zoomRateH = (defaultSize.h / 10);
-            //var zoomRate = defaultSize.w / defaultSize.h;
+            var wrapPos = self.positionVec3('main');
 
-            //var wrapPos = self.positionVec3('main');
+            bAngle.classList.add('current');
 
-            //bAngle.classList.add('current');
+            bAngle.addEventListener('click', function () {
+                if (!bAngle.classList.contains('current')) {
+                    var arRotation = arPicRotation;
+                    wrapPos = self.positionVec3('main');;
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    bAngle.classList.add('current');
+                    bParalle.classList.remove('current');
+                }
+            });
 
-            //bAngle.addEventListener('click', function () {
-            //    if (!bAngle.classList.contains('current')) {
-            //        var arRotation = arPicRotation;
-            //        wrapPos = self.positionVec3('main');;
-            //        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //        bAngle.classList.add('current');
-            //        bParalle.classList.remove('current');
-            //    }
-            //});
+            bParalle.addEventListener('click', function () {
+                if (!bParalle.classList.contains('current')) {
+                    var arRotation = arVRotation;
+                    wrapPos = self.positionVec3('main');
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    bParalle.classList.add('current');
+                    bAngle.classList.remove('current');
+                }
+            });
+            // ↑
 
-            //bParalle.addEventListener('click', function () {
-            //    if (!bParalle.classList.contains('current')) {
-            //        var arRotation = arVRotation;
-            //        wrapPos = self.positionVec3('main');
-            //        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //        bParalle.classList.add('current');
-            //        bAngle.classList.remove('current');
-            //    }
-            //});
-            //// ↑
+            // 拡大・縮小
+            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                prevPageY = event.pageY;    // 縦軸
+                prevPageX = event.pageX;    // 横軸
+            });
 
-            //// 拡大・縮小
-            //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-            //    var event = e.changedTouches ? e.changedTouches[0] : e;
-            //    prevPageY = event.pageY;    // 縦軸
-            //    prevPageX = event.pageX;    // 横軸
-            //});
+            webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
+                var event = e.changedTouches ? e.changedTouches[0] : e;
+                if (prevPageY) {
+                    if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                        });
+                    }
+                }
+            });
 
-            //webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
-            //    var event = e.changedTouches ? e.changedTouches[0] : e;
-            //    if (prevPageY) {
-            //        if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-            //            //zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
-            //            zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-            //            //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-            //            //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-            //            //});
-            //            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-            //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-            //            });
-            //        }
-            //    }
-            //});
+            webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+                prevPageY = null;
+                prevPageX = null;
+            });
 
-            //webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-            //    prevPageY = null;
-            //    prevPageX = null;
-            //});
+            // ↓ 上下移動ボタン押下
+            var bUP = document.getElementById('swUp');
+            var bDOWN = document.getElementById('swDown');
+            var timer;
 
-            //// ↓ 上下移動ボタン押下
-            //var bUP = document.getElementById('swUp');
-            //var bDOWN = document.getElementById('swDown');
-            //var timer;
+            bUP.addEventListener('click', function () {
+                if (!!(bAngle.classList.contains('current'))) {
+                    wrapPos.y += 0.2;
+                } else {
+                    wrapPos.z -= 0.2;
+                }
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            });
 
-            //bUP.addEventListener('click', function () {
-            //    if (!!(bAngle.classList.contains('current'))) {
-            //        wrapPos.y += 5;
-            //    } else {
-            //        wrapPos.z -= 5;
-            //    }
-            //    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //});
+            bDOWN.addEventListener('click', function () {
+                if (!!(bAngle.classList.contains('current'))) {
+                    wrapPos.y -= 0.2;
+                } else {
+                    wrapPos.z += 0.2;
+                }
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            });
+            // ↑ 
 
-            //bDOWN.addEventListener('click', function () {
-            //    if (!!(bAngle.classList.contains('current'))) {
-            //        wrapPos.y -= 5;
-            //    } else {
-            //        wrapPos.z += 5;
-            //    }
-            //    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //});
-            //// ↑ 
+            // ↓ UPボタン長押し
+            bUP.addEventListener(self.eventNames.start, e => {
+                e.preventDefault();
+                bUP.classList.add('active');
+                timer = setInterval(() => {
+                    if (!!(bAngle.classList.contains('current'))) {
+                        wrapPos.y += 0.02;
+                    } else {
+                        wrapPos.z -= 0.02;
+                    }
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                }, 10);
+            })
 
-            //// ↓ UPボタン長押し
-            //bUP.addEventListener(self.eventNames.start, e => {
-            //    e.preventDefault();
-            //    bUP.classList.add('active');
-            //    timer = setInterval(() => {
-            //        if (!!(bAngle.classList.contains('current'))) {
-            //            wrapPos.y += 2;
-            //        } else {
-            //            wrapPos.z -= 2;
-            //        }
-            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //    }, 10);
-            //})
+            bUP.addEventListener(self.eventNames.end, e => {
+                e.preventDefault();
+                bUP.classList.remove('active');
+                clearInterval(timer);
+            });
 
-            //bUP.addEventListener(self.eventNames.end, e => {
-            //    e.preventDefault();
-            //    bUP.classList.remove('active');
-            //    clearInterval(timer);
-            //});
+            bUP.addEventListener(self.eventNames.move, e => {
+                e.preventDefault();
+                bUP.classList.remove('active');
+                clearInterval(timer);
+            });
+            // ↑ 
 
-            //bUP.addEventListener(self.eventNames.move, e => {
-            //    e.preventDefault();
-            //    bUP.classList.remove('active');
-            //    clearInterval(timer);
-            //});
-            //// ↑ 
+            // ↓ DOWNボタン長押し
+            bDOWN.addEventListener(self.eventNames.start, e => {
+                e.preventDefault();
+                bDOWN.classList.add('active');
+                timer = setInterval(() => {
+                    if (!!(bAngle.classList.contains('current'))) {
+                        wrapPos.y -= 0.02;
+                    } else {
+                        wrapPos.z += 0.02;
+                    }
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                }, 10);
+            })
 
-            //// ↓ DOWNボタン長押し
-            //bDOWN.addEventListener(self.eventNames.start, e => {
-            //    e.preventDefault();
-            //    bDOWN.classList.add('active');
-            //    timer = setInterval(() => {
-            //        if (!!(bAngle.classList.contains('current'))) {
-            //            wrapPos.y -= 2;
-            //        } else {
-            //            wrapPos.z += 2;
-            //        }
-            //        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            //    }, 10);
-            //})
+            bDOWN.addEventListener(self.eventNames.end, e => {
+                e.preventDefault();
+                bDOWN.classList.remove('active');
+                clearInterval(timer);
+            });
 
-            //bDOWN.addEventListener(self.eventNames.end, e => {
-            //    e.preventDefault();
-            //    bDOWN.classList.remove('active');
-            //    clearInterval(timer);
-            //});
-
-            //bUP.addEventListener(self.eventNames.move, e => {
-            //    e.preventDefault();
-            //    bUP.classList.remove('active');
-            //    clearInterval(timer);
-            //});
-            //// ↑
+            bUP.addEventListener(self.eventNames.move, e => {
+                e.preventDefault();
+                bUP.classList.remove('active');
+                clearInterval(timer);
+            });
+            // ↑
         },
 
         positionVec3: function (type) {
