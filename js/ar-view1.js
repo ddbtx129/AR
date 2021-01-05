@@ -306,6 +306,7 @@ var SizeRate = 10;
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
+
                 main.setAttribute('rotation', '-5 0 0');
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(val.size.w));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(val.size.h));
@@ -345,7 +346,22 @@ var SizeRate = 10;
             document.getElementById("swAngle").style.display = 'inline';
             document.getElementById("swParallel").style.display = 'inline';
 
+            var arPicRotation = '-5 0 0';
+            var arGifRotation = '-30 0 0';
+            var arVRotation = '-90 0 0'
+
+            var prevPageY;
+            var prevPageX;
+            var zoomRateW = defaultSize.w;
+            var zoomRateH = defaultSize.h;
+            var zoomRate = defaultSize.w / defaultSize.h;
+
+            var wrapPos = self.positionVec3('main');
+            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
             if (self.arg.preview) {
+
+                self.wrap.setAttribute('rotation', '0 0 0');
 
                 webArViewer.scene.appendChild(self.wrap);
 
@@ -373,17 +389,7 @@ var SizeRate = 10;
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
-            var arPicRotation = '-5 0 0';
-            var arGifRotation = '-30 0 0';
-            var arVRotation = '-90 0 0'
 
-            var prevPageY;
-            var prevPageX;
-            var zoomRateW = (defaultSize.w / 10);
-            var zoomRateH = (defaultSize.h / 10);
-            var zoomRate = defaultSize.w / defaultSize.h;
-
-            var wrapPos = self.positionVec3('main');
 
             bAngle.classList.add('current');
 
