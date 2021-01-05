@@ -401,7 +401,7 @@ var SizeRate = 10;
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
                         var arRotation = arPicRotation;
-                        wrapPos = self.positionVec3('main');;
+                        wrapPos = self.positionVec3('main');
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
@@ -452,7 +452,7 @@ var SizeRate = 10;
             var timer;
 
             bUP.addEventListener('click', function () {
-                if (!!(bAngle.classList.contains('current'))) {
+                if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
                     wrapPos.y += 0.2;
                 } else {
                     wrapPos.z -= 0.2;
@@ -461,7 +461,7 @@ var SizeRate = 10;
             });
 
             bDOWN.addEventListener('click', function () {
-                if (!!(bAngle.classList.contains('current'))) {
+                if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
                     wrapPos.y -= 0.2;
                 } else {
                     wrapPos.z += 0.2;
@@ -475,7 +475,7 @@ var SizeRate = 10;
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    if (!!(bAngle.classList.contains('current'))) {
+                    if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
                         wrapPos.y += 0.02;
                     } else {
                         wrapPos.z -= 0.02;
@@ -502,7 +502,7 @@ var SizeRate = 10;
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    if (!!(bAngle.classList.contains('current'))) {
+                    if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
                         wrapPos.y -= 0.02;
                     } else {
                         wrapPos.z += 0.02;
