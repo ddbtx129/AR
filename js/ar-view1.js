@@ -46,6 +46,7 @@ var SizeRate = 10;
                     objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
                     document.getElementById("modeSwitch").style.display = "inline";
+                    document.getElementById("swCamera").style.display = "inline";
                 } else {
                     objecttype = "video";
                 }
@@ -389,7 +390,6 @@ var SizeRate = 10;
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
-
 
             bAngle.classList.add('current');
 
