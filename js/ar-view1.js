@@ -540,7 +540,7 @@ var SizeRate = 10;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (defaultAngle != -5) {
+    if (defaultAngle != -5 && !(ar.arg.preview)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
         // イベントを発生させる
