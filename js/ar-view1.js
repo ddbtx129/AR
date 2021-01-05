@@ -354,7 +354,8 @@ var SizeRate = 10;
             var arVRotation = '-90 0 0'
 
             var prevPageY;
-            var zoomRateH = defaultSize.h;
+            //var zoomRateH = defaultSize.h;
+            var zoomRateH = 1;
 
             var wrapPos = self.positionVec3('main');
 
@@ -426,14 +427,12 @@ var SizeRate = 10;
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
-                window.alert(0);
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        window.alert(1);
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
