@@ -2,6 +2,16 @@
 
 (function () {
 
+    // 初期化のために実行
+    onResize();
+    // リサイズイベント発生時に実行
+    window.addEventListener('resize', onResize);
+
+    document.addEventListener("touchmove",
+        function (e) {
+            e.preventDefault();
+        }, { passive: false });
+
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
         && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
 
@@ -51,16 +61,6 @@
                 return;
             }
         }
-
-        document.addEventListener("touchmove",
-            function (e) {
-                e.preventDefault();
-            }, { passive: false });
-
-        // 初期化のために実行
-        onResize();
-        // リサイズイベント発生時に実行
-        window.addEventListener('resize', onResize);
     }
     //} else {
     //        Err_Exit('パソコンで表示することはできません。');
