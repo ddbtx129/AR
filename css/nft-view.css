@@ -17,6 +17,11 @@ canvas {
     -webkit-user-select: none;
 }
 
+a-camera {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
 .playbutton {
     position: absolute;
     top: 45%;
