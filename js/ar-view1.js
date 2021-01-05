@@ -532,9 +532,9 @@ var SizeRate = 10;
             var h1_2 = ((self.arg.preview) ? (self.arData.size.h / 2) / 2 : (self.arData.size.h / 2));
 
             if (type === 'shadow') {
-                return { x: 0, y: 0, z: 0 };
+                return { x: 0, y: 0, z: -h1_2 };
             } else {
-                return { x: 0, y: h1_2, z: h1_2 };
+                return { x: 0, y: h1_2, z: ((self.arg.preview) ? -h1_2 : 0) };
             }
         }
     };
