@@ -253,7 +253,7 @@ var SizeRate = 10;
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('rotation', (self.arg.preview ? '90 0 0' : '0 0 0'));
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
 
             //var base = self.arg.base ? decodeURI(self.arg.base) : '0 0 0';
