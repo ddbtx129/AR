@@ -259,11 +259,7 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            if (!self.arData.isMp4) {
-                self.wrap.setAttribute('scale', '1 1 1');
-            } else {
-                self.wrap.setAttribute('scale', '1.6 0.9 0.9');
-            }
+            self.wrap.setAttribute('scale', '1 1 1');
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
