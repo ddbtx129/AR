@@ -368,6 +368,9 @@ var SizeRate = 10;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
 
+                bParalle.classList.add('current');
+                bAngle.classList.remove('current');
+
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
@@ -453,9 +456,8 @@ var SizeRate = 10;
             var timer;
 
             bUP.addEventListener('click', function () {
-                if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
+                if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y += 5;
-                    window.alert(wrapPos.y);
                 } else {
                     wrapPos.z -= 5;
                 }
@@ -463,9 +465,8 @@ var SizeRate = 10;
             });
 
             bDOWN.addEventListener('click', function () {
-                if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
+                if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y -= 5;
-                    window.alert(wrapPos.y);
                 } else {
                     wrapPos.z += 5;
                 }
@@ -478,9 +479,8 @@ var SizeRate = 10;
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
+                    if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y += 2;
-                        window.alert(wrapPos.y);
                     } else {
                         wrapPos.z -= 2;
                     }
@@ -489,14 +489,12 @@ var SizeRate = 10;
             })
 
             bUP.addEventListener(self.eventNames.end, e => {
-                window.alert(8);
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
 
             bUP.addEventListener(self.eventNames.move, e => {
-                window.alert(9);
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
@@ -508,9 +506,8 @@ var SizeRate = 10;
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
+                    if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y -= 2;
-                        window.alert(wrapPos.y);
                     } else {
                         wrapPos.z += 2;
                     }
