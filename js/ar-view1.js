@@ -383,9 +383,11 @@ var SizeRate = 10;
 
                 if (!!self.arg.m) {
                     mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt'));
+                    window.alert('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt');
                 } else {
                     mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(
                         !(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt'));
+                    window.alert(!(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt');
                 }
 
                 mWrap.appendChild(self.wrap);
