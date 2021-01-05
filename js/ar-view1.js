@@ -343,6 +343,9 @@ var SizeRate = 10;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+
             var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
             var arVRotation = '-90 0 0'
@@ -397,9 +400,6 @@ var SizeRate = 10;
                 self.mWrap = mWrap;
 
                 // ↓ rotation 切替
-                var bAngle = document.getElementById('swAngle');
-                var bParalle = document.getElementById('swParallel');
-
                 bAngle.classList.add('current');
 
                 bAngle.addEventListener('click', function () {

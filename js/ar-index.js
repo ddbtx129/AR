@@ -4,11 +4,12 @@
 
     document.addEventListener("touchmove",
         function (e) {
+            window.alert(0);
             e.preventDefault();
         }, { passive: false });
 
     this.LockScroll();
-            window.alert(0);
+
     // 初期化のために実行
     onResize();
     // リサイズイベント発生時に実行
