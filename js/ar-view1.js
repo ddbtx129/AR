@@ -381,7 +381,7 @@ var SizeRate = 10;
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
 
-                if (!!self.arg.m1 && !!self.arg.m2) {
+                if (!!(self.arg.markerList1) && !!(self.arg.markerList2) {
                     mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt'));
                     window.alert('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt');
                 } else {
