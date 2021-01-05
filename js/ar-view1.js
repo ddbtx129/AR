@@ -352,13 +352,9 @@ var SizeRate = 10;
             var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
             var arVRotation = '-90 0 0'
-            var wh = { w: (self.arg.preview) ? val.size.w / 2 : val.size.w, h: (self.arg.preview) ? val.size.h / 2 : val.size.h };
 
             var prevPageY;
-            var prevPageX;
-            var zoomRateW = defaultSize.w;
             var zoomRateH = defaultSize.h;
-            var zoomRate = zoomRateW / zoomRateH;
 
             var wrapPos = self.positionVec3('main');
 
@@ -430,8 +426,7 @@ var SizeRate = 10;
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
-                prevPageX = event.pageX;    // 横軸
-                window.alert(1);
+                window.alert(0);
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
@@ -448,9 +443,7 @@ var SizeRate = 10;
             });
             
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-                window.alert(2);
                 prevPageY = null;
-                prevPageX = null;
             });
 
             // ↓ 上下移動ボタン押下
