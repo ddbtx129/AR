@@ -14,6 +14,7 @@ var SizeRate = 10;
 
 (function (global) {
 
+    document.getElementById("info1").style.display = "none";
     webArViewer.scene = document.querySelector('a-scene');
 
     var ar = {
@@ -531,10 +532,10 @@ var SizeRate = 10;
 
         positionVec3: function (type) {
             var self = this;
-            var h1_2 = self.arData.size.h / 2;
+            var h1_2 = self.arData.size.h / 3;
 
             if (type === 'shadow') {
-                return { x: 0, y: 0, z: -h1_2 };
+                return { x: 0, y: 0, z: -(h1_2) };
             } else {
                 return { x: 0, y: h1_2, z: 0 };
             }
