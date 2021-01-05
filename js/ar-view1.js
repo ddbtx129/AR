@@ -431,7 +431,7 @@ var SizeRate = 10;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
                 prevPageX = event.pageX;    // 横軸
-                window.alert(0);
+                window.alert(1);
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
@@ -446,7 +446,7 @@ var SizeRate = 10;
                     }
                 }
             });
-
+            
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 window.alert(2);
                 prevPageY = null;
