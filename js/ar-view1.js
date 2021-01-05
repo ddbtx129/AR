@@ -252,7 +252,7 @@ var SizeRate = 10;
 
             self.wrap = document.createElement('a-plane');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', '2 2 2');
+            self.wrap.setAttribute('scale', '1 1 1');
             //self.wrap.setAttribute('scale', (defaultSize.w / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec) + ' ' + (defaultSize.h / SizeRate).toFixed(dec));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
@@ -532,7 +532,7 @@ var SizeRate = 10;
 
         positionVec3: function (type) {
             var self = this;
-            var h1_2 = self.arData.size.h / 4;
+            var h1_2 = self.arData.size.h / 2;
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -(h1_2) };
