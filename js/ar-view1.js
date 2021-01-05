@@ -44,11 +44,11 @@ var SizeRate = 10;
 
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
-                    document.getElementById("info1").style.display = "none";
                     document.getElementById("modeSwitch").style.display = "inline";
                     document.getElementById("swCamera").style.display = "inline";
                 } else {
                     objecttype = "video";
+                    document.getElementById("info1").style.display = "inline";
                 }
             }
 
