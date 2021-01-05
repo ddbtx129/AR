@@ -23,6 +23,8 @@ var SizeRate = 10;
 
             this.setArg();
 
+            videostate = 0;
+
             if (this.setArData()) {
 
                 this.setWrap();
@@ -373,6 +375,17 @@ var SizeRate = 10;
 
                 webArViewer.scene.appendChild(self.wrap);
 
+                if (vak.isMp4) {
+
+                    var video = document.querySelector('#source');
+
+                    if (videostate == 0) {
+                        document.getElementById("player").style.display = 'inline';
+                    }
+
+                    videostate = 1
+                };
+
             } else {
 
                 document.getElementById("swAngle").style.display = 'inline';
@@ -380,6 +393,7 @@ var SizeRate = 10;
 
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
+                mWrap.setAttribute('videohandler', ''); 
                 mWrap.setAttribute('preset', 'custom');
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
