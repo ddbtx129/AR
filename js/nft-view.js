@@ -45,12 +45,13 @@ var SizeRate = 10;
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                     document.getElementById("info1").style.display = "none";
+                    document.getElementById("modeswitch").style.display = "inline";
                 } else {
                     objecttype = "video";
                 }
             }
 
-            //this.setSwitcher();
+            this.setSwitcher();
         },
 
         setArg: function () {
@@ -334,31 +335,38 @@ var SizeRate = 10;
             document.getElementById("swAngle").style.display = 'inline';
             document.getElementById("swParallel").style.display = 'inline';
 
-            // NFTマーカー
-            var mWrap = document.createElement('a-nft');
-            mWrap.setAttribute('videohandler', ''); 
-            mWrap.setAttribute('preset', 'custom');
-            mWrap.setAttribute('type', 'nft');
-            mWrap.setAttribute('id', 'arMarker');
-            mWrap.setAttribute('smooth', 'true');
-            mWrap.setAttribute('smoothCount', '10');
-            mWrap.setAttribute('smoothTolerance', '0.01');
-            mWrap.setAttribute('smoothThreshold', '5');
+            if (self.arg.preview) {
 
-            if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
-                mWrap.setAttribute('url',
-                    AFRAME.utils.coordinates.stringify(
-                        rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
+                webArViewer.scene.appendChild(self.wrap);
+
             } else {
-                mWrap.setAttribute('url',
-                    AFRAME.utils.coordinates.stringify(
-                        !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+
+                // NFTマーカー
+                var mWrap = document.createElement('a-nft');
+                mWrap.setAttribute('videohandler', ''); 
+                mWrap.setAttribute('preset', 'custom');
+                mWrap.setAttribute('type', 'nft');
+                mWrap.setAttribute('id', 'arMarker');
+                mWrap.setAttribute('smooth', 'true');
+                mWrap.setAttribute('smoothCount', '10');
+                mWrap.setAttribute('smoothTolerance', '0.01');
+                mWrap.setAttribute('smoothThreshold', '5');
+
+                if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
+                    mWrap.setAttribute('url',
+                        AFRAME.utils.coordinates.stringify(
+                            rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
+                } else {
+                    mWrap.setAttribute('url',
+                        AFRAME.utils.coordinates.stringify(
+                            !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+                }
+
+                mWrap.appendChild(self.wrap);
+                webArViewer.scene.appendChild(mWrap);
+
+                self.mWrap = mWrap;
             }
-
-            mWrap.appendChild(self.wrap);
-            webArViewer.scene.appendChild(mWrap);
-
-            self.mWrap = mWrap;
 
             // ↓ rotation 切替
             var bAngle = document.getElementById('swAngle');
@@ -411,11 +419,7 @@ var SizeRate = 10;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        //zoomRateW += ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * zoomRate;
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
-                        //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateW + ' ' + zoomRateH + ' ' + zoomRateH
-                        //});
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
