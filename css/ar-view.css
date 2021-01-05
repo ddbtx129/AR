@@ -12,6 +12,14 @@ a {
     -webkit-touch-callout: none;
 }
 
+#version {
+    position: absolute;
+    bottom: 0%;
+    left: 50px;
+    font-size: x-small;
+    color: silver
+}
+
 canvas {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -20,14 +28,6 @@ canvas {
 a-camera {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-}
-
-#version {
-    position: absolute;
-    bottom: 0%;
-    left: 50px;
-    font-size: x-small;
-    color: silver
 }
 
 .playbutton {
@@ -120,17 +120,6 @@ a-camera {
     -webkit-touch-callout: none;
 }
 
-.playbutton {
-    position: absolute;
-    top: 45%;
-    left: 42%;
-    width: 72px;
-    height: 72px;
-    z-index: 5;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
 .ar-up {
     position: absolute;
     bottom: 38%;
@@ -183,15 +172,6 @@ a-camera {
 
 .ar-parallel.current {
     opacity: 1;
-}
-
-.loading {
-    position: absolute;
-    top: 45%;
-    left: 42%;
-    width: 72px;
-    height: 72px;
-    z-index: 5;
 }
 
 .arjs-loader {
