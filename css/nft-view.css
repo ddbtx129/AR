@@ -12,6 +12,11 @@
     color: silver
 }
 
+canvas {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
 .playbutton {
     position: absolute;
     top: 45%;
@@ -150,6 +155,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
     .arjs-loader div {

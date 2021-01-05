@@ -11,6 +11,10 @@ a {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+canvas {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
 
 #version {
     position: absolute;
