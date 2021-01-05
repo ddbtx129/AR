@@ -45,7 +45,9 @@ var SizeRate = 10;
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                     document.getElementById("modeSwitch").style.display = "inline";
-                    document.getElementById("swCamera").style.display = "inline";
+                    if (this.arg.preview) {
+                        document.getElementById("swCamera").style.display = "inline";
+                    }
                 } else {
                     objecttype = "video";
                     document.getElementById("info1").style.display = "inline";
@@ -344,7 +346,6 @@ var SizeRate = 10;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
-
             var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
             var arVRotation = '-90 0 0'
@@ -372,7 +373,6 @@ var SizeRate = 10;
 
                 document.getElementById("swAngle").style.display = 'inline';
                 document.getElementById("swParallel").style.display = 'inline';
-
 
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
