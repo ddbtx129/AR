@@ -44,7 +44,8 @@ a {
 }
 
 .info1 {
-    position: absolute;
+    position: fixed;
+    display: table-cell;
     right: 0%;
     bottom:0%;
     width: 100%;
