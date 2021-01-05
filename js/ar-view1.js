@@ -346,6 +346,9 @@ var SizeRate = 10;
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
+            bAngle.classList.add('current');
+            bParalle.classList.remove('current');
+
             var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
             var arVRotation = '-90 0 0'
@@ -370,9 +373,6 @@ var SizeRate = 10;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
-
-                bParalle.classList.add('current');
-                bAngle.classList.remove('current');
 
                 webArViewer.scene.appendChild(self.wrap);
 
