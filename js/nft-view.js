@@ -14,6 +14,7 @@ var SizeRate = 10;
 
 (function (global) {
 
+    document.getElementById("info1").style.display = "inline";
     webArViewer.scene = document.querySelector('a-scene');
 
     var ar = {
