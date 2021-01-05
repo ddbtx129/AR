@@ -264,7 +264,7 @@ var SizeRate = 10;
             if (!self.arData.isMp4) {
                 self.wrap.setAttribute('scale', '1 1 1');
             } else {
-                self.wrap.setAttribute('scale', '0.9 1.6 0.9');
+                self.wrap.setAttribute('scale', '4 2.3 2.3');
             }
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
