@@ -422,14 +422,14 @@ var SizeRate = 10;
                 });
                 // ↑
             }
-
+            window.alert(0);
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
                 prevPageX = event.pageX;    // 横軸
             });
-
+            window.alert(1);
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
@@ -441,18 +441,19 @@ var SizeRate = 10;
                     }
                 }
             });
-
+            window.alert(2);
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
                 prevPageX = null;
             });
-
+            window.alert(3);
             // ↓ 上下移動ボタン押下
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-
+            window.alert(4);
             bUP.addEventListener('click', function () {
+                window.alert(5);
                 if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
                     wrapPos.y += 0.2;
                 } else {
@@ -462,6 +463,7 @@ var SizeRate = 10;
             });
 
             bDOWN.addEventListener('click', function () {
+                window.alert(6);
                 if (!!(bAngle.classList.contains('current')) || self.arg.preview) {
                     wrapPos.y -= 0.2;
                 } else {
@@ -473,6 +475,7 @@ var SizeRate = 10;
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
+                window.alert(7);
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
@@ -488,12 +491,14 @@ var SizeRate = 10;
             })
 
             bUP.addEventListener(self.eventNames.end, e => {
+                window.alert(8);
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
 
             bUP.addEventListener(self.eventNames.move, e => {
+                window.alert(9);
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
