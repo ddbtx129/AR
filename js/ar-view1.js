@@ -356,13 +356,16 @@ var SizeRate = 10;
 
             var wrapPos = self.positionVec3('main');
 
-            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
             if (self.arg.preview) {
 
                 document.getElementById("swAngle").style.display = 'none';
                 document.getElementById("swParallel").style.display = 'none';
 
+                wrapPos.x += 0;
+                wrapPos.y -= 0.5;
+                wrapPos.z -= 8;
+
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
 
                 webArViewer.scene.appendChild(self.wrap);
