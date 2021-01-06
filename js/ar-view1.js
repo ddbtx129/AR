@@ -236,6 +236,7 @@ var SizeRate = 10;
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&preview=1', ''));
+                    window.alert("replace &preview=1");
                     videostate = 0;
                     this.setDiplayBtn();
                 }
@@ -244,6 +245,7 @@ var SizeRate = 10;
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&preview=1');
+                    window.alert("&preview=1");
                     videostate = 0;
                     this.setDiplayBtn();
                 }
