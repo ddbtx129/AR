@@ -553,6 +553,7 @@ var SizeRate = 10;
 
         setDiplayBtn: function()
         {
+            indow.alret(0.1);
             var self = this;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
