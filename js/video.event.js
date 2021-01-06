@@ -59,11 +59,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 p1.style.display = "none";
                 info1.style.display = "none";
-                //if (arType == 1) {
-                //    document.getElementById("modeSwitch").style.display = 'inline';
-                //} else {
-                //    document.getElementById("modeSwitch").style.display = 'none';
-                //}
             }
         }
     })
