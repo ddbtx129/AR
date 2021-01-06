@@ -46,14 +46,15 @@ var SizeRate = 10;
                 this.setScene();
                 window.alert(101);
 
-                this.setDiplayBtn();
-                window.alert(102);
-
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                 } else {
                     objecttype = "video";
                 }
+
+                this.setDiplayBtn();
+                window.alert(102);
+
                 window.alert(103);
 
             }
@@ -553,7 +554,7 @@ var SizeRate = 10;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
             window.alret(0);
-            if (objecttype== 'pic') {
+            if (objecttype == 'pic') {
                 document.getElementById("modeSwitch").style.display = "inline";
                 document.getElementById("scrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
