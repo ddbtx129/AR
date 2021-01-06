@@ -55,9 +55,7 @@ var SizeRate = 10;
                 this.setDiplayBtn();
             }
 
-            if (!this.arData.isMp4) {
-                this.setSwitcher();
-            }
+            this.setSwitcher();
         },
 
         setArg: function () {
@@ -152,6 +150,7 @@ var SizeRate = 10;
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
+
             if (dataObj.isMp4) {
                 dataObj.size = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
                 defaultSize = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
