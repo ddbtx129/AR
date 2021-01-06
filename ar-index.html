@@ -64,19 +64,19 @@
                         Err_Exit('表示期限が終了しているため、表示することができません。');
                     }
                 }
-
-                var param = document.location.search.substring(1);
-                var rootPath = "https://ddbtx129.github.io/AR/"
-
-                if (param.t) {
-                    location.href = rootPath + 'nft-view.html' + '/?' + param;
-                } else {
-                    location.href = rootPath + 'ar-view1.html' + '/?' + param;
-                }
             }
             //} else {
             //        Err_Exit('パソコンで表示することはできません。');
             //}
+
+            var param = document.location.search.substring(1);
+            var rootPath = "https://ddbtx129.github.io/AR/"
+
+            if (param.t) {
+                location.href = rootPath + 'nft-view.html' + '?' + param;
+            } else {
+                location.href = rootPath + 'ar-view1.html' + '?' + param;
+            }
 
             function iosVersion() {
                 var v, versions;
