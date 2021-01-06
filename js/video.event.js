@@ -1,6 +1,6 @@
 ﻿var videostate = 0;
 
-AFRAME.registerComponent('videohandler', {
+AFRAME.registerComponent('markerhandler', {
     init: function () {
 
         // ビデオ格納用の変数定義を追加
@@ -29,6 +29,13 @@ AFRAME.registerComponent('videohandler', {
                 videostate = 2;
             }
         });
+    }
+});
+
+
+AFRAME.registerComponent('videohandler', {
+    init: function () {
+
     }
 });
 

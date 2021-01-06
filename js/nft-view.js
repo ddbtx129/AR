@@ -337,7 +337,7 @@ var SizeRate = 10;
 
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
-            mWrap.setAttribute('videohandler', ''); 
+            mWrap.setAttribute('markerhandler', ''); 
             mWrap.setAttribute('preset', 'custom');
             mWrap.setAttribute('type', 'nft');
             mWrap.setAttribute('id', 'arMarker');

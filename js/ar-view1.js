@@ -45,14 +45,11 @@ var SizeRate = 10;
 
                 this.setScene();
 
-
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                 } else {
                     objecttype = "video";
                 }
-
-                this.setDiplayBtn();
             }
 
             this.setSwitcher();
@@ -376,16 +373,6 @@ var SizeRate = 10;
 
             if (self.arg.preview) {
 
-                if (val.isMp4) {
-                    var video = document.querySelector('#source');
-                    if (videostate == 0) {
-                        document.getElementById("player").style.display = 'inline';
-                    }
-                    videostate = 1
-                } else {
-                    document.getElementById("player").style.display = 'none';
-                }
-
                 //document.getElementById("swAngle").style.display = 'none';
                 //document.getElementById("swParallel").style.display = 'none';
 
@@ -404,7 +391,7 @@ var SizeRate = 10;
 
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
-                mWrap.setAttribute('videohandler', ''); 
+                mWrap.setAttribute('markerhandler', ''); 
                 mWrap.setAttribute('preset', 'custom');
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
@@ -560,6 +547,8 @@ var SizeRate = 10;
 
             if (objecttype == 'pic') {
 
+                document.getElementById("player").style.display = 'none';
+
                 if (val.preview) {
                     document.getElementById("swCamera").style.display = "inline";
 
@@ -581,6 +570,12 @@ var SizeRate = 10;
 
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
+
+                var video = document.querySelector('#source');
+                if (videostate == 0) {
+                    document.getElementById("player").style.display = 'inline';
+                    videostate = 1
+                }
             }
         },
 
@@ -605,5 +600,7 @@ var SizeRate = 10;
         // イベントを発生させる
         bParalle.dispatchEvent(evant);
     }
+
+    webArViewer.ar.setDiplayBtn();
 
 }());
