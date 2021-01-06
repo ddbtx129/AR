@@ -553,6 +553,7 @@ var SizeRate = 10;
 
         setDiplayBtn: function()
         {
+            var self = this;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
             window.alret(0);
@@ -560,7 +561,7 @@ var SizeRate = 10;
                 document.getElementById("modeSwitch").style.display = "inline";
                 document.getElementById("scrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
-                if (this.arg.preview) {
+                if (self.arg.preview) {
                     document.getElementById("swCamera").style.display = "inline";
                     document.getElementById("swAngle").style.display = 'inline';
                     document.getElementById("swParallel").style.display = 'inline';
