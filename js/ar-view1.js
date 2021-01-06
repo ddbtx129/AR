@@ -553,7 +553,7 @@ var SizeRate = 10;
 
         setDiplayBtn: function()
         {
-            window.alret('-1');
+            window.alert('-1');
             var self = this;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
