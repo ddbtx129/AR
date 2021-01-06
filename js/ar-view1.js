@@ -22,9 +22,9 @@ var SizeRate = 10;
         init: function () {
 
             this.setArg();
-
+            window.alert(0);
             videostate = 0;
-
+            window.alert(1);
             if (this.setArData()) {
 
                 this.setWrap();
@@ -56,7 +56,7 @@ var SizeRate = 10;
                     document.getElementById("info1").style.display = "inline";
                 }
             }
-
+            window.alert(2);
             if (!this.arData.isMp4) {
                 this.setSwitcher();
             }
