@@ -14,7 +14,6 @@ AFRAME.registerComponent('videohandler', {
                 if (videostate == 0) {
                     document.getElementById("player").style.display = 'inline';
                 }
-
                 // マーカー認識したら、ビデオ再生
                 video.play();
                 videostate = 1
@@ -40,6 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function () {
 
         if (objecttype == "video") {
+
             if (videostate >= 1 && videostate < 2) {
 
                 var video = document.querySelector('#source');
@@ -52,11 +52,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 p1.style.display = "none";
                 info1.style.display = "none";
-                if (arType == 1) {
-                    document.getElementById("modeSwitch").style.display = 'inline';
-                } else {
-                    document.getElementById("modeSwitch").style.display = 'none';
-                }
+                //if (arType == 1) {
+                //    document.getElementById("modeSwitch").style.display = 'inline';
+                //} else {
+                //    document.getElementById("modeSwitch").style.display = 'none';
+                //}
             }
         }
     });
