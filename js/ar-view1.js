@@ -238,7 +238,7 @@ var SizeRate = 10;
                     location.replace(location.search.replace('&preview=1', ''));
                     window.alert("replace &preview=1");
                     videostate = 0;
-                    this.setDiplayBtn();
+                    this.setDiplayBtn(0);
                 }
             });
 
@@ -247,7 +247,7 @@ var SizeRate = 10;
                     location.replace(location.search + '&preview=1');
                     window.alert("&preview=1");
                     videostate = 0;
-                    this.setDiplayBtn();
+                    this.setDiplayBtn(1);
                 }
             });
         },
@@ -541,7 +541,7 @@ var SizeRate = 10;
             // ↑
         },
 
-        setDiplayBtn: function () {
+        setDiplayBtn: function (mode) {
 
             var self = this;
             var val = self.arData;
@@ -554,7 +554,7 @@ var SizeRate = 10;
 
                 document.getElementById("player").style.display = 'none';
 
-                if (val.preview) {
+                if (mode) {
                     document.getElementById("swCamera").style.display = "inline";
 
                     document.getElementById("scrshot").style.display = "none";
@@ -574,7 +574,7 @@ var SizeRate = 10;
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
 
-                if (val.preview) {
+                if (mode) {
                     window.alert('video2');
                     document.getElementById("swAngle").style.display = 'none';
                     document.getElementById("swParallel").style.display = 'none';
@@ -614,6 +614,6 @@ var SizeRate = 10;
         bParalle.dispatchEvent(evant);
     }
 
-    webArViewer.ar.setDiplayBtn();
+    webArViewer.ar.setDiplayBtn(!!(ar.arg.preview));
 
 }());
