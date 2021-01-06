@@ -386,6 +386,7 @@ var SizeRate = 10;
                 self.wrap.setAttribute('rotation', '0 0 0');
 
                 webArViewer.scene.appendChild(self.wrap);
+
             } else {
 
                 //document.getElementById("swAngle").style.display = 'inline';
@@ -565,21 +566,26 @@ var SizeRate = 10;
                 }
 
             } else {
-                document.getElementById("info1").style.display = "inline";
 
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+                document.getElementById("info1").style.display = "inline";
 
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
 
                 if (val.preview) {
+                    document.getElementById("swAngle").style.display = 'none';
+                    document.getElementById("swParallel").style.display = 'none';
+
                     var video = document.querySelector('#source');
                     if (videostate == 0) {
                         document.getElementById("player").style.display = 'inline';
                         videostate = 1
                     }
+                } else {
+                    document.getElementById("swAngle").style.display = 'inline';
+                    document.getElementById("swParallel").style.display = 'inline';
                 }
+
             }
         },
 

@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-    var v = document.querySelector('#main');
+    var v = document.querySelector('#source');
 
     //ロード開始
     v.addEventListener('loadedmetadata', function () {
@@ -71,15 +71,10 @@ window.addEventListener('DOMContentLoaded', function () {
     })
     //読み込み完了
     v.addEventListener('loadeddata', function () {
-        if (objecttype == "video") {
-            window.alert("読み込み完了");
-        }
     })
     //再生可能
     v.addEventListener('canplay', function () {
-        if (objecttype == "video") {
-            window.alert("再生可能");
-        }
+
     })
     //再生中
     v.addEventListener('playing', function () {
