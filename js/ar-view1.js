@@ -348,6 +348,17 @@ var SizeRate = 10;
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
 
+            if (vak.isMp4) {
+                var video = document.querySelector('#source');
+                if (videostate == 0) {
+                    document.getElementById("player").style.display = 'inline';
+                }
+                videostate = 1
+            } else {
+                document.getElementById("player").style.display = 'none';
+                videostate = 0
+            }
+
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
@@ -380,16 +391,6 @@ var SizeRate = 10;
 
                 webArViewer.scene.appendChild(self.wrap);
 
-                if (vak.isMp4) {
-
-                    var video = document.querySelector('#source');
-
-                    if (videostate == 0) {
-                        document.getElementById("player").style.display = 'inline';
-                    }
-
-                    videostate = 1
-                };
 
             } else {
 
@@ -547,7 +548,7 @@ var SizeRate = 10;
         {
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
-
+            widnow.alret(0);
             if (objecttype== 'pic') {
                 document.getElementById("modeSwitch").style.display = "inline";
                 document.getElementById("scrshot").style.display = "inline";
@@ -563,6 +564,7 @@ var SizeRate = 10;
                 }
 
             } else {
+                document.getElementById("modeSwitch").style.display = "inline";
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
             }
