@@ -350,12 +350,13 @@ var SizeRate = 10;
             //document.getElementById("swDown").style.display = 'inline';
 
             if (val.isMp4) {
-                var video = document.querySelector('#source');
-                if (videostate == 0) {
-                    document.getElementById("player").style.display = 'inline';
-                }
-                videostate = 1
-            } else {
+            //    var video = document.querySelector('#source');
+            //    if (videostate == 0) {
+            //        document.getElementById("player").style.display = 'inline';
+            //    }
+            //    videostate = 1
+            //} else {
+            if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
                 videostate = 0
             }
