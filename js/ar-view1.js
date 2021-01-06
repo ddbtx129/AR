@@ -42,15 +42,20 @@ var SizeRate = 10;
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-
+                window.alert(100);
                 this.setScene();
+                window.alert(101);
+
                 this.setDiplayBtn();
+                window.alert(102);
 
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
                 } else {
-                objecttype = "video";
+                    objecttype = "video";
                 }
+                window.alert(103);
+
             }
 
             if (!this.arData.isMp4) {
