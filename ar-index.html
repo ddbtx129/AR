@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	    <meta charset="utf-8" />
+        <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
         <meta name="robots" content="noindex,nofollow,noarchive">
         <meta name="twitter:card" content="summary" />
@@ -17,19 +17,19 @@
         <script type="text/javascript">
 
             var param = GetParam();
-
+            window.alert(0);
             if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
                 && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
-
+                window.alert(1);
                 if (navigator.userAgent.indexOf('iPhone') > 0) {
-
+                    window.alert(2);
                     if (iosVersion() >= 11) {
-
+                        window.alert(3);
                         // TODO: iOS 11.0以上の場合
                         if (navigator.userAgent.indexOf('Safari') == -1) {
                             Err_Exit('【Safari】をご使用下さい。');
                         }
-
+                        window.alert(4);
                     } else {
                         Err_Exit('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。');
                     }
@@ -46,18 +46,18 @@
                     } else {
                         Err_Exit('このバージョンのiOSは対応していません。iOS11以上をご使用下さい。');
                     }
-
+                    window.alert(5);
                 } else if (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
                     Err_Exit('【Chrome】をご使用下さい。');
                 }
-
+                window.alert(6);
                 var date = new Date();
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 var day = date.getDate();
                 month = ('0' + month).slice(-2);
                 day = ('0' + day).slice(-2);
-
+                window.alert(7);
                 if (!!(param.ed)) {
 
                     if (parseInt(param.ed.toString(), 16).toString(10) < (year + month + day).toString()) {
@@ -68,10 +68,10 @@
             //} else {
             //        Err_Exit('パソコンで表示することはできません。');
             //}
-
+            window.alert(8);
             var param = document.location.search.substring(1);
             var rootPath = "https://ddbtx129.github.io/AR/"
-
+            window.alert(9);
             if (param.t) {
                 location.href = rootPath + 'nft-view.html' + '?' + param;
             } else {
