@@ -66,7 +66,26 @@ window.addEventListener('DOMContentLoaded', function () {
                 //}
             }
         }
-    });
+    })
+
+    var v = document.querySelector('#source');
+
+    //ロード開始
+    v.addEventListener('loadedmetadata', function () {
+
+    })
+    //読み込み完了
+    v.addEventListener('loadeddata', function () {
+        window.alert("読み込み完了");
+    })
+    //再生可能
+    v.addEventListener('canplay', function () {
+
+    })
+    //再生中
+    v.addEventListener('playing', function () {
+
+    })
 });
 
 
