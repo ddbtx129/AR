@@ -558,9 +558,6 @@ var SizeRate = 10;
 
             if (objecttype == 'pic') {
 
-                document.getElementById("scrshot").style.display = "inline";
-                document.getElementById("swCamera").style.display = "inline";
-
                 if (val.preview) {
                     document.getElementById("swCamera").style.display = "inline";
 
@@ -575,6 +572,8 @@ var SizeRate = 10;
                 }
 
             } else {
+                document.getElementById("info1").style.display = "inline";
+
                 document.getElementById("swAngle").style.display = 'inline';
                 document.getElementById("swParallel").style.display = 'inline';
 
