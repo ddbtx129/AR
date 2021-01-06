@@ -47,7 +47,11 @@ var SizeRate = 10;
 
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
-
+                    window.al(0);
+                    document.getElementById("modeSwitch").style.display = "inline";
+                    if (this.arg.preview) {
+                        document.getElementById("swCamera").style.display = "inline";
+                    }
                 } else {
                     objecttype = "video";
                     //document.getElementById("info1").style.display = "inline";
@@ -238,21 +242,13 @@ var SizeRate = 10;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search.replace('&preview=1', '')); d
-                    ocument.getElementById("modeSwitch").style.display = "inline";
-                    if (this.arg.preview) {
-                        document.getElementById("swCamera").style.display = "inline";
-                    }
+                    location.replace(location.search.replace('&preview=1', '')); 
                 }
             });
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&preview=1');
-                    ocument.getElementById("modeSwitch").style.display = "inline";
-                    if (this.arg.preview) {
-                        document.getElementById("swCamera").style.display = "inline";
-                    }
                 }
             });
         },
