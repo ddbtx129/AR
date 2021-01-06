@@ -347,7 +347,7 @@ var SizeRate = 10;
             // ボタン 表示・非表示切替
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
-
+            window.alert(11);
             if (vak.isMp4) {
                 var video = document.querySelector('#source');
                 if (videostate == 0) {
@@ -358,6 +358,7 @@ var SizeRate = 10;
                 document.getElementById("player").style.display = 'none';
                 videostate = 0
             }
+            window.alert(12);
 
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
@@ -390,8 +391,6 @@ var SizeRate = 10;
                 self.wrap.setAttribute('rotation', '0 0 0');
 
                 webArViewer.scene.appendChild(self.wrap);
-
-
             } else {
 
                 //document.getElementById("swAngle").style.display = 'inline';
