@@ -9,7 +9,7 @@ var arType = 1;
         }, { passive: false });
 
     var param = GetQueryString();
-    
+
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
         && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
 
@@ -64,22 +64,21 @@ var arType = 1;
     //        retuern;
     //}
 
+    var para = GetParam();
     var aframeminjs = 'js/ar/aframe.min.js';
     var aframearjs = 'js/ar/aframe-ar.js';
 
-    if (param['t'] != null) {
-
-        arType = parseInt(param['t'].toString(), 10);
-
-        if (arType == 2) {
+    if (para.t) {
+        if (parseInt(para.t.toString(), 10) == 2) {
             aframeminjs = 'js/nft/aframe-master.min.js';
             aframearjs = 'js/nft/aframe-ar-nft.js';
-
-        } else if (arType == 1) {
+        } else {
             aframeminjs = 'js/ar/aframe.min.js';
             aframearjs = 'js/ar/aframe-ar.js';
         }
-    }
+
+        arType = parseInt(para.t.toString(), 10);
+    } 
 
     loadscriptheader(aframeminjs, 'aframe-animation-js');
     loadscriptheader(aframearjs, 'aframe-animation-js');
@@ -179,6 +178,28 @@ var arType = 1;
 
 }());
 
+function GetParam() {
+    // URLのパラメータを取得
+    var urlParam = location.search.substring(1);
+
+    // パラメータを格納する用の配列を用意
+    var paramArray = [];
+
+    // URLにパラメータが存在する場合
+    if (urlParam) {
+        // 「&」が含まれている場合は「&」で分割
+        var param = urlParam.split('&');
+
+        // 用意した配列にパラメータを格納
+        for (i = 0; i < param.length; i++) {
+            var paramItem = param[i].split('=');
+            paramArray[paramItem[0]] = paramItem[1];
+        }
+    }
+
+    return paramArray;
+}
+
 function loadscriptheader(src) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -194,7 +215,8 @@ function loadscriptbody(src) {
     script.src = src;
 
     document.body.appendChild(script);
-    window.alert(src + "完了");
+
+    return script;
 }
 
 function loadscript(src, before) {
@@ -204,10 +226,9 @@ function loadscript(src, before) {
 
     var s = document.getElementById(before);
     s.parentNode.insertBefore(script, s);
-    window.alert(src + "完了");
 }
 
-function bobyInit(){
+function bobyInit() {
     LockScroll();
 
     // 初期化のために実行
@@ -226,6 +247,16 @@ function loadARScript() {
         objscriptjs = 'js/ar-view1.js';
     }
 
-    loadscriptbody(objscriptjs, 'version');
+    //var script = loadscriptbody(objscriptjs, 'version');
+    var request = new XMLHttpRequest();
+    request.open('GET', objscriptjs, false);
+    request.send(null);
+
+    if (request.status === 200) {
+        var script = document.createElement('script');
+        script.text = request.responseText;
+        document.head.appendChild(script);
+    }
+    
     window.alert(objscriptjs + "追加終了");
 }
