@@ -345,8 +345,8 @@ var SizeRate = 10;
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
             // ボタン 表示・非表示切替
-            document.getElementById("swUp").style.display = 'inline';
-            document.getElementById("swDown").style.display = 'inline';
+            //document.getElementById("swUp").style.display = 'inline';
+            //document.getElementById("swDown").style.display = 'inline';
 
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
@@ -548,17 +548,23 @@ var SizeRate = 10;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
-            if (!this.arData.isMp4) {
+            if (objecttype== 'pic') {
                 document.getElementById("modeSwitch").style.display = "inline";
+                document.getElementById("scrshot").style.display = "inline";
+                document.getElementById("swCamera").style.display = "inline";
                 if (this.arg.preview) {
                     document.getElementById("swCamera").style.display = "inline";
                     document.getElementById("swAngle").style.display = 'inline';
                     document.getElementById("swParallel").style.display = 'inline';
                 } else {
+                    document.getElementById("swCamera").style.display = "none";
                     document.getElementById("swAngle").style.display = 'none';
                     document.getElementById("swParallel").style.display = 'none';
                 }
 
+            } else {
+                document.getElementById("scrshot").style.display = "none";
+                document.getElementById("swCamera").style.display = "none";
             }
         },
 
