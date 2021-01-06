@@ -44,17 +44,12 @@ var SizeRate = 10;
                 };
 
                 this.setScene();
+                this.setDiplayBtn();
 
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
-                    window.alert(0);
-                    document.getElementById("modeSwitch").style.display = "inline";
-                    if (this.arg.preview) {
-                        document.getElementById("swCamera").style.display = "inline";
-                    }
                 } else {
-                    objecttype = "video";
-                    //document.getElementById("info1").style.display = "inline";
+                objecttype = "video";
                 }
             }
 
@@ -242,13 +237,15 @@ var SizeRate = 10;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search.replace('&preview=1', '')); 
+                    location.replace(location.search.replace('&preview=1', ''));
+                    this.setDiplayBtn();
                 }
             });
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&preview=1');
+                    this.setDiplayBtn();
                 }
             });
         },
@@ -371,8 +368,8 @@ var SizeRate = 10;
 
             if (self.arg.preview) {
 
-                document.getElementById("swAngle").style.display = 'none';
-                document.getElementById("swParallel").style.display = 'none';
+                //document.getElementById("swAngle").style.display = 'none';
+                //document.getElementById("swParallel").style.display = 'none';
 
                 wrapPos.x += 0;
                 wrapPos.y -= 2;
@@ -396,8 +393,8 @@ var SizeRate = 10;
 
             } else {
 
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+                //document.getElementById("swAngle").style.display = 'inline';
+                //document.getElementById("swParallel").style.display = 'inline';
 
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
@@ -544,6 +541,25 @@ var SizeRate = 10;
                 clearInterval(timer);
             });
             // ↑
+        },
+
+        setDiplayBtn: function()
+        {
+            document.getElementById("swUp").style.display = 'inline';
+            document.getElementById("swDown").style.display = 'inline';
+
+            if (!this.arData.isMp4) {
+                document.getElementById("modeSwitch").style.display = "inline";
+                if (this.arg.preview) {
+                    document.getElementById("swCamera").style.display = "inline";
+                    document.getElementById("swAngle").style.display = 'inline';
+                    document.getElementById("swParallel").style.display = 'inline';
+                } else {
+                    document.getElementById("swAngle").style.display = 'none';
+                    document.getElementById("swParallel").style.display = 'none';
+                }
+
+            }
         },
 
         positionVec3: function (type) {
