@@ -548,7 +548,7 @@ var SizeRate = 10;
         {
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
-            widnow.alret(0);
+            window.alret(0);
             if (objecttype== 'pic') {
                 document.getElementById("modeSwitch").style.display = "inline";
                 document.getElementById("scrshot").style.display = "inline";
