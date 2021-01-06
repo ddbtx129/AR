@@ -236,7 +236,6 @@ var SizeRate = 10;
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&preview=1', ''));
-                    window.alert("replace &preview=1");
                     videostate = 0;
                     this.setDiplayBtn(0);
                 }
@@ -245,7 +244,6 @@ var SizeRate = 10;
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&preview=1');
-                    window.alert("&preview=1");
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
@@ -288,7 +286,7 @@ var SizeRate = 10;
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: wh.h, width: wh.w
                 });
-                
+
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
@@ -396,7 +394,7 @@ var SizeRate = 10;
 
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
-                mWrap.setAttribute('markerhandler', ''); 
+                mWrap.setAttribute('markerhandler', '');
                 mWrap.setAttribute('preset', 'custom');
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
@@ -457,7 +455,7 @@ var SizeRate = 10;
                     }
                 }
             });
-            
+
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
             });
@@ -568,22 +566,21 @@ var SizeRate = 10;
                 }
 
             } else {
-                window.alert('video1');
+
                 document.getElementById("info1").style.display = "inline";
 
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
 
                 if (mode) {
-                    window.alert('video2');
+
                     document.getElementById("swAngle").style.display = 'none';
                     document.getElementById("swParallel").style.display = 'none';
-                    window.alert('video3');
+
                     var video = document.querySelector('#source');
+
                     if (videostate == 0) {
-                        window.alert('video4');
                         document.getElementById("player").style.display = 'inline';
-                        videostate = 1
                     }
                 } else {
                     document.getElementById("swAngle").style.display = 'inline';
