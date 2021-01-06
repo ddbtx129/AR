@@ -80,7 +80,7 @@ window.addEventListener('DOMContentLoaded', function () {
     })
     //再生可能
     v.addEventListener('canplay', function () {
-
+        window.alert("再生可能");
     })
     //再生中
     v.addEventListener('playing', function () {
