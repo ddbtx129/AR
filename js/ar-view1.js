@@ -349,7 +349,7 @@ var SizeRate = 10;
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
 
-            if (val.isMp4) {
+            //if (val.isMp4) {
             //    var video = document.querySelector('#source');
             //    if (videostate == 0) {
             //        document.getElementById("player").style.display = 'inline';
