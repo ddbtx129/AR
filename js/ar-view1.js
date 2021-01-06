@@ -353,8 +353,10 @@ var SizeRate = 10;
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
+            if (!!bParalle.classList.remove('current')) {
+                bParalle.classList.remove('current');
+            }
             bAngle.classList.add('current');
-            bParalle.classList.remove('current');
 
             var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
