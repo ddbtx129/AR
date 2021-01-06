@@ -42,23 +42,17 @@ var SizeRate = 10;
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-                window.alert(100);
+
                 this.setScene();
-                window.alert(101);
+
 
                 if (!this.arData.isMp4) {
-                    window.alert(1010);
                     objecttype = "pic";
                 } else {
-                     window.alert(1011);
                     objecttype = "video";
                 }
 
                 this.setDiplayBtn();
-                window.alert(102);
-
-                window.alert(103);
-
             }
 
             if (!this.arData.isMp4) {
@@ -211,8 +205,8 @@ var SizeRate = 10;
                     assets.appendChild(video);
                     assets.appendChild(audio);
 
-                    document.getElementById("scrshot").style.display = "none";
-                    document.getElementById("swCamera").style.display = "none";
+                    //document.getElementById("scrshot").style.display = "none";
+                    //document.getElementById("swCamera").style.display = "none";
                 }
             }
 
@@ -355,7 +349,7 @@ var SizeRate = 10;
             // ボタン 表示・非表示切替
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
-            window.alert(11);
+
             if (val.isMp4) {
                 var video = document.querySelector('#source');
                 if (videostate == 0) {
@@ -366,7 +360,6 @@ var SizeRate = 10;
                 document.getElementById("player").style.display = 'none';
                 videostate = 0
             }
-            window.alert(12);
 
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
@@ -374,6 +367,7 @@ var SizeRate = 10;
             if (!!bParalle.classList.remove('current')) {
                 bParalle.classList.remove('current');
             }
+
             bAngle.classList.add('current');
 
             var arPicRotation = '-5 0 0';
@@ -551,29 +545,30 @@ var SizeRate = 10;
             // ↑
         },
 
-        setDiplayBtn: function()
-        {
-            window.alert('-1');
+        setDiplayBtn: function () {
+
             var self = this;
+            var val = self.arData;
+
+            document.getElementById("modeSwitch").style.display = "inline";
+            document.getElementById("swAngle").style.display = 'inline';
+            document.getElementById("swParallel").style.display = 'inline';
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
-            window.alert(0);
+
             if (objecttype == 'pic') {
-                document.getElementById("modeSwitch").style.display = "inline";
+
                 document.getElementById("scrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
-                if (self.arg.preview) {
+
+                if (val.preview) {
                     document.getElementById("swCamera").style.display = "inline";
-                    document.getElementById("swAngle").style.display = 'inline';
-                    document.getElementById("swParallel").style.display = 'inline';
+
                 } else {
                     document.getElementById("swCamera").style.display = "none";
-                    document.getElementById("swAngle").style.display = 'none';
-                    document.getElementById("swParallel").style.display = 'none';
                 }
 
             } else {
-                document.getElementById("modeSwitch").style.display = "inline";
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
             }
