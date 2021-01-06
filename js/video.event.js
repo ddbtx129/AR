@@ -6,8 +6,6 @@ AFRAME.registerComponent('videohandler', {
         // ビデオ格納用の変数定義を追加
         var video = document.querySelector('#source');
         var marker = this.el;
-        //var marker = document.querySelector('#arMarker');
-        //video = document.querySelector('#arVideo');
 
         // マーカーを検出したイベントの登録
         marker.addEventListener('markerFound', function () {
@@ -54,6 +52,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 p1.style.display = "none";
                 info1.style.display = "none";
+
+                document.getElementById("modeSwitch").style.display = 'inline';
             }
         }
     });

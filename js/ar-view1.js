@@ -53,7 +53,7 @@ var SizeRate = 10;
                     }
                 } else {
                     objecttype = "video";
-                    document.getElementById("info1").style.display = "inline";
+                    //document.getElementById("info1").style.display = "inline";
                 }
             }
 

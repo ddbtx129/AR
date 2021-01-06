@@ -45,9 +45,9 @@ var SizeRate = 10;
 
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
-                    document.getElementById("info1").style.display = "none";
                 } else {
                     objecttype = "video";
+                    //document.getElementById("info1").style.display = "inline";
                 }
             }
 
@@ -105,7 +105,7 @@ var SizeRate = 10;
                 }
             };
 
-            arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
+            arg.angleList = arg.an && (parseInt(arg.an, 10).toString(2));
 
             // マーカー
             arg.markerList = arg.m;
