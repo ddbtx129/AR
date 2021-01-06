@@ -47,8 +47,10 @@ var SizeRate = 10;
                 window.alert(101);
 
                 if (!this.arData.isMp4) {
+                    window.alert(1010);
                     objecttype = "pic";
                 } else {
+                     window.alert(1011);
                     objecttype = "video";
                 }
 
