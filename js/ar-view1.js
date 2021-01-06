@@ -47,7 +47,7 @@ var SizeRate = 10;
 
                 if (!this.arData.isMp4) {
                     objecttype = "pic";
-                    window.al(0);
+                    window.alert(0);
                     document.getElementById("modeSwitch").style.display = "inline";
                     if (this.arg.preview) {
                         document.getElementById("swCamera").style.display = "inline";
