@@ -356,9 +356,11 @@ var SizeRate = 10;
             //    }
             //    videostate = 1
             //} else {
+
+            videostate = 0
+
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
-                videostate = 0
             }
 
             var bAngle = document.getElementById('swAngle');
