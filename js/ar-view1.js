@@ -349,14 +349,6 @@ var SizeRate = 10;
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
 
-            //if (val.isMp4) {
-            //    var video = document.querySelector('#source');
-            //    if (videostate == 0) {
-            //        document.getElementById("player").style.display = 'inline';
-            //    }
-            //    videostate = 1
-            //} else {
-
             videostate = 0
 
             if (!val.isMp4) {
@@ -383,6 +375,16 @@ var SizeRate = 10;
             var wrapPos = self.positionVec3('main');
 
             if (self.arg.preview) {
+
+                if (val.isMp4) {
+                    var video = document.querySelector('#source');
+                    if (videostate == 0) {
+                        document.getElementById("player").style.display = 'inline';
+                    }
+                    videostate = 1
+                } else {
+                    document.getElementById("player").style.display = 'none';
+                }
 
                 //document.getElementById("swAngle").style.display = 'none';
                 //document.getElementById("swParallel").style.display = 'none';
