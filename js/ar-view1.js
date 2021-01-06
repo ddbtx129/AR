@@ -571,10 +571,12 @@ var SizeRate = 10;
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
 
-                var video = document.querySelector('#source');
-                if (videostate == 0) {
-                    document.getElementById("player").style.display = 'inline';
-                    videostate = 1
+                if (val.preview) {
+                    var video = document.querySelector('#source');
+                    if (videostate == 0) {
+                        document.getElementById("player").style.display = 'inline';
+                        videostate = 1
+                    }
                 }
             }
         },
