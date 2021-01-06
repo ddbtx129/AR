@@ -8,15 +8,8 @@ var arType = 1;
             e.preventDefault();
         }, { passive: false });
 
-    //LockScroll();
-
-    //// 初期化のために実行
-    //onResize();
-    //// リサイズイベント発生時に実行
-    //window.addEventListener('resize', onResize);
-
     var param = GetQueryString();
-
+    
     if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0
         && navigator.userAgent.indexOf('Mobile') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
 
@@ -212,6 +205,15 @@ function loadscript(src, before) {
     var s = document.getElementById(before);
     s.parentNode.insertBefore(script, s);
     window.alert(src + "完了");
+}
+
+function bobyInit(){
+    LockScroll();
+
+    // 初期化のために実行
+    onResize();
+    // リサイズイベント発生時に実行
+    window.addEventListener('resize', onResize);
 }
 
 function loadARScript() {
