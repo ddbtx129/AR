@@ -584,6 +584,8 @@ var SizeRate = 10;
                 } else {
                     document.getElementById("swAngle").style.display = 'inline';
                     document.getElementById("swParallel").style.display = 'inline';
+
+                    document.getElementById("player").style.display = 'none';
                 }
             }
         },

@@ -193,7 +193,7 @@ var SizeRate = 10;
                     assets.appendChild(video);
                     assets.appendChild(audio);
 
-                    document.getElementById("scrshot").style.display = "none";
+                    //document.getElementById("scrshot").style.display = "none";
                 }
             }
 
@@ -329,11 +329,11 @@ var SizeRate = 10;
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
             // ボタン 表示
-            document.getElementById("swUp").style.display = 'inline';
-            document.getElementById("swDown").style.display = 'inline';
+            //document.getElementById("swUp").style.display = 'inline';
+            //document.getElementById("swDown").style.display = 'inline';
 
-            document.getElementById("swAngle").style.display = 'inline';
-            document.getElementById("swParallel").style.display = 'inline';
+            //document.getElementById("swAngle").style.display = 'inline';
+            //document.getElementById("swParallel").style.display = 'inline';
 
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
@@ -503,6 +503,38 @@ var SizeRate = 10;
             });
             // ↑
         },
+        setDiplayBtn: function (mode) {
+
+            var self = this;
+            var val = self.arData;
+
+            document.getElementById("modeSwitch").style.display = "none";
+            document.getElementById("swUp").style.display = 'inline';
+            document.getElementById("swDown").style.display = 'inline';
+
+            document.getElementById("player").style.display = 'none';
+
+            if (objecttype == 'pic') {
+
+                document.getElementById("info1").style.display = "none";
+
+                document.getElementById("scrshot").style.display = "inline";
+                document.getElementById("swCamera").style.display = "inline";
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
+
+            } else {
+
+                document.getElementById("info1").style.display = "inline";
+
+                document.getElementById("scrshot").style.display = "none";
+                document.getElementById("swCamera").style.display = "none";
+
+                document.getElementById("swAngle").style.display = 'none';
+                document.getElementById("swParallel").style.display = 'none';
+            }
+        },
 
         positionVec3: function (type) {
             var self = this;
@@ -525,5 +557,7 @@ var SizeRate = 10;
         // イベントを発生させる
         bParalle.dispatchEvent(evant);
     }
+
+    webArViewer.ar.setDiplayBtn(0);
 
 }());
