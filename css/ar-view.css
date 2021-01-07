@@ -20,23 +20,13 @@ a {
     color: silver
 }
 
-canvas {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-}
-
-a-camera {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-}
-
 .playbutton {
     position: absolute;
     top: 45%;
     left: 42%;
     width: 72px;
     height: 72px;
-    z-index: 11;
+    z-index: 5;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
@@ -54,30 +44,27 @@ a-camera {
 }
 
 .info1 {
-    position: fixed;
-    display: table-cell;
+    position: absolute;
     right: 0%;
-    bottom: 0%;
+    bottom:0%;
     width: 100%;
-    text-align: center;
+    text-align:center;
     font-weight: 700;
     font-size: medium;
     background-color: rgba(235, 235, 235, 0.8);
     padding: 5px 8px;
     border-radius: 0 0 0 0;
-    z-index: 10;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
+    z-index: 1;
 }
 
 .switch {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: rgba(235, 235, 235, 0.6);
-    padding: 5px 3px 5px 5px;
-    border-radius: 10px 0 0 10px;
-    z-index: 11;
+    background-color: rgba(235, 235, 235, 0.8);
+    padding: 5px 8px;
+    border-radius: 10px 10px 0 0;
+    z-index: 2;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
@@ -116,6 +103,18 @@ a-camera {
     width: 40px;
     height: 40px;
     z-index: 5;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.playbutton {
+    position: absolute;
+    top: 45%;
+    left: 42%;
+    width: 72px;
+    height: 72px;
+    z-index: 5;
+
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
@@ -174,6 +173,15 @@ a-camera {
     opacity: 1;
 }
 
+.loading {
+    position: absolute;
+    top: 45%;
+    left: 42%;
+    width: 72px;
+    height: 72px;
+    z-index: 5;
+}
+
 .arjs-loader {
     height: 100%;
     width: 100%;
@@ -185,8 +193,6 @@ a-camera {
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
 }
 
     .arjs-loader div {
