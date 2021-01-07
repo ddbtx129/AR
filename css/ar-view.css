@@ -179,13 +179,16 @@ a-camera {
 .arjs-loader {
     height: 100%;
     width: 100%;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 9999;
+    display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
     .arjs-loader div {
