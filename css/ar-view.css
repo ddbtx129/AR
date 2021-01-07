@@ -67,7 +67,7 @@ a-camera {
     background-color: rgba(235, 235, 235, 0.8);
     padding: 5px 8px;
     border-radius: 0 0 0 0;
-    z-index: 9;
+    z-index: 1;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
 }
@@ -176,7 +176,7 @@ a-camera {
     opacity: 1;
 }
 
-.arjs-loader {
+/*.arjs-loader {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -196,10 +196,29 @@ a-camera {
         font-size: 1.25em;
         z-index: 999;
         color: white;
+    }*/
+
+.arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
     }
 
 @-webkit-keyframes attention {
-  0% {
+    0% {
     opacity: 0
   }
   10% {
