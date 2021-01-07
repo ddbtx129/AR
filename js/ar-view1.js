@@ -552,15 +552,13 @@ var SizeRate = 10;
 
                 document.getElementById("player").style.display = 'none';
 
+                document.getElementById("scrshot").style.display = "inline";
+                document.getElementById("swCamera").style.display = "inline";
+
                 if (mode) {
-                    document.getElementById("swCamera").style.display = "inline";
-
-                    document.getElementById("scrshot").style.display = "none";
-                    document.getElementById("swCamera").style.display = "none";
-
+                    document.getElementById("swAngle").style.display = 'none';
+                    document.getElementById("swParallel").style.display = 'none';
                 } else {
-                    document.getElementById("swCamera").style.display = "none";
-
                     document.getElementById("swAngle").style.display = 'inline';
                     document.getElementById("swParallel").style.display = 'inline';
                 }
@@ -582,6 +580,7 @@ var SizeRate = 10;
                     if (videostate == 0) {
                         document.getElementById("player").style.display = 'inline';
                     }
+
                 } else {
                     document.getElementById("swAngle").style.display = 'inline';
                     document.getElementById("swParallel").style.display = 'inline';
