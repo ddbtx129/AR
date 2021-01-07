@@ -194,7 +194,7 @@ a-camera {
     .arjs-loader div {
         position: absolute;
         top: 50%;
-        margin: 0 auto;
+        margin: auto;
         text-align: center;
         font-size: 1.25em;
         color: white;
