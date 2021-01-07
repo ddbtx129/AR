@@ -3,10 +3,10 @@ var arType = 1;
 
 (function () {
 
-    //document.addEventListener("touchmove",
-    //    function (e) {
-    //        e.preventDefault();
-    //    }, { passive: false });
+    document.addEventListener("touchmove",
+        function (e) {
+            e.preventDefault();
+        }, { passive: false });
 
     //// 初期化のために実行
     //onResize();
