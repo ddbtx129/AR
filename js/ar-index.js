@@ -2,10 +2,16 @@
 var arType = 1;
 
 (function () {
+
     document.addEventListener("touchmove",
         function (e) {
             e.preventDefault();
         }, { passive: false });
+
+    // 初期化のために実行
+    onResize();
+    // リサイズイベント発生時に実行
+    window.addEventListener('resize', onResize);
 
     var param = GetParam();
 
@@ -56,10 +62,10 @@ var arType = 1;
                 return;
             }
         }
-    } //else {
-      //      Err_Exit('パソコンで表示することはできません。');
-      //      retuern;
-    //}
+    } else {
+            Err_Exit('パソコンで表示することはできません。');
+            retuern;
+    }
 
     function GetQueryString() {
 
