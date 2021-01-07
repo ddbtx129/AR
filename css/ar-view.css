@@ -195,8 +195,8 @@ a-camera {
         position: absolute;
         height: 100%;
         width: 100%;
-        margin-top: auto;
-        margin-bottom: auto;
+        margin-top: 50%;
+        margin-bottom: 50%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
