@@ -194,7 +194,6 @@ a-camera {
     .arjs-loader div {
         position: absolute; /* 絶対指定 */
         top: 50%; /* 上の要素を中央配置 */
-        left: 50%; /* 左右の要素を中央配置 */
         text-align: center;
         font-size: 1.25em;
         z-index: 999;
