@@ -176,7 +176,7 @@ a-camera {
     opacity: 1;
 }
 
-/*.arjs-loader {
+.arjs-loader {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -192,28 +192,12 @@ a-camera {
 }
 
     .arjs-loader div {
+        position: absolute; /* 絶対指定 */
+        top: 50%; /* 上の要素を中央配置 */
+        left: 50%; /* 左右の要素を中央配置 */
         text-align: center;
         font-size: 1.25em;
         z-index: 999;
-        color: white;
-    }*/
-
-.arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-    .arjs-loader div {
-        text-align: center;
-        font-size: 1.25em;
         color: white;
     }
 
