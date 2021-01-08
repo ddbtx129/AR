@@ -43,12 +43,12 @@ var SizeRate = 10;
 
                 this.setScene();
 
-                if (!this.arData.isMp4) {
-                    objecttype = "pic";
-                } else {
-                    objecttype = "video";
-                    //document.getElementById("info1").style.display = "inline";
-                }
+                //if (!this.arData.isMp4) {
+                //    objecttype = "pic";
+                //} else {
+                //    objecttype = "video";
+                //    //document.getElementById("info1").style.display = "inline";
+                //}
             }
 
             //this.setSwitcher();
@@ -117,6 +117,8 @@ var SizeRate = 10;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
 
+            ar.MkObjList = arg.mo;
+
             self.arg = arg;
         },
 
@@ -129,17 +131,44 @@ var SizeRate = 10;
 
             var arData = null;
 
-            // データの準備
-            var dataObj = {
-                path: (!(self.arg.ObjectList) ?
-                    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-                    :
-                    (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
-            };
+            dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType(self.arg.typeList);
 
-            dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
-            dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
-            dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+            switch (dataObj.type) {
+                case 'gif':
+                    dataObj.isGif = !!(dataObj.type);
+                    break;
+                case 'mp4':
+                    dataObj.isMp4 = !!(dataObj.type);
+                    break;
+                case 'gltf':
+                    dataObj.isGltf = !!(dataObj.type);
+                case 'png':
+                default:
+                    dataObj.isPng = !!(dataObj.type);
+                    break;
+            }
+
+            // データの準備
+            //var dataObj = {
+            //    path: (!(self.arg.ObjectList) ?
+            //        (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
+            //        :
+            //        (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
+            //};
+            var object = '';
+            if (!(self.arg.ObjectList)) {
+                object = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
+                    (self.arg.MkObjList + '/' + self.arg.ObjectList2)
+                    :
+                    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
+            } else {
+                object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
+            }
+            var dataObj = { path: object + '.' + String(dataObj.type) };
+
+            //dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
+            //dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
+            //dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
@@ -153,6 +182,7 @@ var SizeRate = 10;
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
+                objecttype = folder;
 
                 if (dataObj.isPng || dataObj.isGIf) {
                     var img = document.createElement('img');
@@ -218,7 +248,7 @@ var SizeRate = 10;
             var swMarker = document.getElementById('swMarker');
             var swPreview = document.getElementById('swPreview');
 
-            if (self.arg.preview) {
+            if (self.arg.pv) {
                 swPreview.classList.add('current');
             } else {
                 swMarker.classList.add('current');
@@ -355,6 +385,18 @@ var SizeRate = 10;
                     AFRAME.utils.coordinates.stringify(
                         !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
             }
+
+            var mk = '';
+
+            if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+            } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+            } else if ((self.arg.markerList)) {
+                mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+            }
+
+            mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);

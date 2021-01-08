@@ -171,6 +171,29 @@ var arType = 1;
 
 }());
 
+function GetFileType(arg) {
+    var exct = 'png';
+
+    switch (arg) {
+
+        case 'g':
+            exct = 'gif';
+            break;
+        case 'v':
+            exct = 'mp4';
+            break;
+        case 'd':
+            exct = 'gltf';
+            break;
+        case 'p':
+        default:
+            exct = 'png';
+            break;
+    }
+
+    return exct;
+}
+
 function loadscriptheader(src) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
