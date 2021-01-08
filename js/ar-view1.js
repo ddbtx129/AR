@@ -133,6 +133,7 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
             window.alert('0');
             var arData = null;
+            window.alert(self.arg.typeList);
 
             dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType(self.arg.typeList);
             window.alert('1');
