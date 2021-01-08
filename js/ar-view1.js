@@ -26,10 +26,11 @@ var SizeRate = 10;
             videostate = 0;
 
             if (this.setArData()) {
-
+                window.alert('0');
                 this.setWrap();
-
+                window.alert('1');
                 this.createModel();
+                window.alert('2');
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -43,8 +44,9 @@ var SizeRate = 10;
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
 
+                window.alert('3');
                 this.setScene();
-
+                window.alert('0');
                 //if (!this.arData.isMp4) {
                 //    objecttype = "pic";
                 //} else {
@@ -53,6 +55,7 @@ var SizeRate = 10;
             }
 
             this.setSwitcher();
+            window.alert('5');
         },
 
         setArg: function () {
