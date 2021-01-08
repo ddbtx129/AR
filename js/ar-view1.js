@@ -45,11 +45,11 @@ var SizeRate = 10;
 
                 this.setScene();
 
-                if (!this.arData.isMp4) {
-                    objecttype = "pic";
-                } else {
-                    objecttype = "video";
-                }
+                //if (!this.arData.isMp4) {
+                //    objecttype = "pic";
+                //} else {
+                //    objecttype = "video";
+                //}
             }
 
             this.setSwitcher();
@@ -108,15 +108,19 @@ var SizeRate = 10;
 
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
 
+            arg.typeList = arg.t;
+
             // マーカー
             arg.markerList = arg.m;
             arg.markerList1 = arg.m1;
             arg.markerList2 = arg.m2;
 
-            // arGltf-main
+            // オブジェクト
             arg.ObjectList = arg.o;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
+
+            ar.MkObjList = arg.mo;
 
             self.arg = arg;
         },
@@ -130,20 +134,53 @@ var SizeRate = 10;
 
             var arData = null;
 
-            // データの準備
-            var dataObj = {
-                path: (!(self.arg.ObjectList) ?
-                    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-                    :
-                    (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
-            };
+            dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType(self.arg.typeList);
 
-            dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
-            dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
-            dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+            dataObj.isPng = 1;
+            dataObj.isGif = 0;
+            dataObj.isMp4 = 0;
+            dataObj.isGltf = 0;
+
+            switch (dataObj.type) {
+                case 'gif':
+                    dataObj.isGif = !!(dataObj.type);
+                    break;
+                case 'mp4':
+                    dataObj.isMp4 = !!(dataObj.type);
+                    break;
+                case 'gltf':
+                    dataObj.isGltf = !!(dataObj.type);
+                case 'png':
+                default:
+                    dataObj.isPng = !!(dataObj.type);
+                    break;
+            }
+
+            // データの準備
+            //var dataObj = {
+            //    path: (!(self.arg.ObjectList) ?
+            //        (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
+            //        :
+            //        (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
+            //};
+            var object = '';
+            if (!(self.arg.ObjectList)) {
+                object = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
+                    (self.arg.MkObjList + '/' + self.arg.ObjectList2)
+                    :
+                    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
+            } else {
+                object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
+            }
+
+            var dataObj = { path: object + '.' + String(dataObj.type) };
+
+            //dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
+            //dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
+            //dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            dataObj.isMarker = !!self.arg.markerList;
+            //dataObj.isMarker = !!self.arg.markerList;
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
@@ -158,8 +195,9 @@ var SizeRate = 10;
 
             if (dataObj.path) {
 
-                var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
+                var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
+                objecttype = folder;
 
                 if (dataObj.isPng || dataObj.isGIf) {
 
@@ -203,6 +241,12 @@ var SizeRate = 10;
 
                     //document.getElementById("scrshot").style.display = "none";
                     //document.getElementById("swCamera").style.display = "none";
+                } else if (dataObj.isGltf) {
+                    var model = document.createElement('a-asset-item');
+                    model.setAttribute('crossorigin', 'anonymous');
+                    model.setAttribute('id', 'source');
+                    model.setAttribute('src', dataObj.path);
+                    assets.appendChild(model);
                 }
             }
 
@@ -227,7 +271,8 @@ var SizeRate = 10;
             var swMarker = document.getElementById('swMarker');
             var swPreview = document.getElementById('swPreview');
 
-            if (self.arg.preview) {
+            //if (self.arg.preview) {
+            if (self.arg.pv) {
                 swPreview.classList.add('current');
             } else {
                 swMarker.classList.add('current');
@@ -235,7 +280,7 @@ var SizeRate = 10;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search.replace('&preview=1', ''));
+                    location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
                     this.setDiplayBtn(0);
                 }
@@ -243,7 +288,7 @@ var SizeRate = 10;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search + '&preview=1');
+                    location.replace(location.search + '&pv=1');
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
@@ -297,9 +342,9 @@ var SizeRate = 10;
 
             var elname = '';
 
-            if (val.isPng || val.arData) {
+            if (!val.isMp4) {
                 elname = 'a-entity'
-            } else if (val.isMp4) {
+            } else {
                 elname = 'a-video'
             }
 
@@ -319,6 +364,7 @@ var SizeRate = 10;
                 if (val.isMp4) {
                     main.setAttribute('play', 'true');
                 }
+
 
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                     primitive: 'plane', height: wh.h, width: wh.w, segmentsHeight: 1, segmentsWidth: 1
@@ -348,8 +394,6 @@ var SizeRate = 10;
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
 
-            videostate = 0
-
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
             }
@@ -373,7 +417,8 @@ var SizeRate = 10;
 
             var wrapPos = self.positionVec3('main');
 
-            if (self.arg.preview) {
+            //if (self.arg.preview) {
+            if (self.arg.pv) {
 
                 //document.getElementById("swAngle").style.display = 'none';
                 //document.getElementById("swParallel").style.display = 'none';
@@ -399,12 +444,24 @@ var SizeRate = 10;
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
 
-                if (!!self.arg.m1 && !!self.arg.m2) {
-                    mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt'));
-                } else {
-                    mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(
-                        !(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt'));
+                //if (!!self.arg.m1 && !!self.arg.m2) {
+                //    mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt'));
+                //} else {
+                //    mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(
+                //        !(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt'));
+                //}
+
+                var mk = 'pattern/pattern-def.patt';
+
+                if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                    mk = 'pattern/' + self.arg.MkObjList + '/pattern-' + self.arg.markerList2 + '.patt';
+                } else if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                    mk = 'pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt';
+                } else if ((self.arg.markerList)) {
+                    mk = 'pattern/pattern-' + self.arg.markerList + '.patt';
                 }
+
+                mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(mk));
 
                 mWrap.appendChild(self.wrap);
 
@@ -579,6 +636,7 @@ var SizeRate = 10;
 
                     if (videostate == 0) {
                         document.getElementById("player").style.display = 'inline';
+                        videostate = 1
                     }
 
                 } else {
@@ -605,13 +663,13 @@ var SizeRate = 10;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (defaultAngle != -5 && !(ar.arg.preview)) {
+    if (defaultAngle != -5 && !(ar.arg.pv)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
         // イベントを発生させる
         bParalle.dispatchEvent(evant);
     }
 
-    webArViewer.ar.setDiplayBtn(!!(ar.arg.preview));
+    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
 }());
