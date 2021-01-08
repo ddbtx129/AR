@@ -72,8 +72,12 @@
             var param = document.location.search.substring(1);
             var rootPath = "https://ddbtx129.github.io/AR/"
 
-            if (param.t) {
-                location.href = rootPath + 'nft-view.html' + '?' + param;
+            if (param.ar) {
+                if (Number(param.ar) == 2) {
+                    location.href = rootPath + 'nft-view.html' + '?' + param;
+                } else if (Number(param.t) == 1) {
+                    location.href = rootPath + 'nft-view.html' + '?' + param;
+                }
             } else {
                 location.href = rootPath + 'ar-view1.html' + '?' + param;
             }
