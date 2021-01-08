@@ -348,8 +348,6 @@ var SizeRate = 10;
             //document.getElementById("swUp").style.display = 'inline';
             //document.getElementById("swDown").style.display = 'inline';
 
-            videostate = 0
-
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
             }
@@ -579,6 +577,7 @@ var SizeRate = 10;
 
                     if (videostate == 0) {
                         document.getElementById("player").style.display = 'inline';
+                        videostate = 1
                     }
 
                 } else {
