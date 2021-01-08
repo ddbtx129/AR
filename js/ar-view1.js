@@ -131,16 +131,16 @@ var SizeRate = 10;
 
             var assets = document.createElement('a-assets');
             assets.setAttribute('timeout', '9000');
-
+            window.alert('0');
             var arData = null;
 
             dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType(self.arg.typeList);
-
+            window.alert('1');
             dataObj.isPng = 1;
             dataObj.isGif = 0;
             dataObj.isMp4 = 0;
             dataObj.isGltf = 0;
-
+            window.alert('2');
             switch (dataObj.type) {
                 case 'gif':
                     dataObj.isGif = !!(dataObj.type);
@@ -155,7 +155,7 @@ var SizeRate = 10;
                     dataObj.isPng = !!(dataObj.type);
                     break;
             }
-
+            window.alert('3');
             // データの準備
             //var dataObj = {
             //    path: (!(self.arg.ObjectList) ?
@@ -172,9 +172,9 @@ var SizeRate = 10;
             } else {
                 object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
-
+            window.alert('4');
             var dataObj = { path: object + '.' + String(dataObj.type) };
-
+            window.alert('5');
             //dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             //dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             //dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
@@ -184,7 +184,7 @@ var SizeRate = 10;
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
-
+            window.alert('6');
             if (dataObj.isMp4) {
                 dataObj.size = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
                 defaultSize = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
@@ -192,21 +192,21 @@ var SizeRate = 10;
                 dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
                 defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
             }
-
+            window.alert('7');
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
                 objecttype = folder;
-
+                window.alert('8');
                 if (dataObj.isPng || dataObj.isGIf) {
-
+                    window.alert('0');
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
                     assets.appendChild(img);
-
+                    window.alert('0');
                 } else if (dataObj.isMp4) {
 
                     var video = document.createElement("video");
