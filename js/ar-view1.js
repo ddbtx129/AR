@@ -107,6 +107,7 @@ var SizeRate = 10;
             };
 
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
+            window.alert(arg.t);
 
             arg.typeList = arg.t;
 
