@@ -424,9 +424,9 @@ var SizeRate = 10;
                 //document.getElementById("swAngle").style.display = 'none';
                 //document.getElementById("swParallel").style.display = 'none';
 
-                wrapPos.x += 0;
+                wrapPos.x -= 0;
                 wrapPos.y -= 2;
-                wrapPos.z -= 8;
+                wrapPos.z -= 4;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
@@ -591,7 +591,7 @@ var SizeRate = 10;
 
             var self = this;
             var val = self.arData;
-            window.alert(objecttype);
+
             document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
