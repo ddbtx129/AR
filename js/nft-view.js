@@ -8,7 +8,7 @@ var zoomH = 0;
 
 var videoInfo = {};
 var videoState = 0;
-var objecttype = "pic";
+var objecttype = "png";
 var dec = 2;
 var SizeRate = 10;
 
@@ -42,13 +42,6 @@ var SizeRate = 10;
                 };
 
                 this.setScene();
-
-                //if (!this.arData.isMp4) {
-                //    objecttype = "pic";
-                //} else {
-                //    objecttype = "video";
-                //    //document.getElementById("info1").style.display = "inline";
-                //}
             }
 
             //this.setSwitcher();
@@ -117,7 +110,7 @@ var SizeRate = 10;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
 
-            ar.MkObjList = arg.mo;
+            arg.MkObjList = arg.mo;
 
             self.arg = arg;
         },
@@ -130,31 +123,11 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
 
             var arData = null;
+            var dataObj = { objecttype: 'png' };
 
-            dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType(self.arg.typeList);
-
-            switch (dataObj.type) {
-                case 'gif':
-                    dataObj.isGif = !!(dataObj.type);
-                    break;
-                case 'mp4':
-                    dataObj.isMp4 = !!(dataObj.type);
-                    break;
-                case 'gltf':
-                    dataObj.isGltf = !!(dataObj.type);
-                case 'png':
-                default:
-                    dataObj.isPng = !!(dataObj.type);
-                    break;
-            }
+            dataObj.objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
 
             // データの準備
-            //var dataObj = {
-            //    path: (!(self.arg.ObjectList) ?
-            //        (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-            //        :
-            //        (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
-            //};
             var object = '';
             if (!(self.arg.ObjectList)) {
                 object = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
@@ -164,11 +137,13 @@ var SizeRate = 10;
             } else {
                 object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
-            var dataObj = { path: object + '.' + String(dataObj.type) };
 
-            //dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
-            //dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
-            //dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+            dataObj = { path: object + '.' + String(dataObj.objecttype) };
+
+            dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
+            dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
+            dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
+            dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             dataObj.isMarker = !!self.arg.markerList;
@@ -182,16 +157,16 @@ var SizeRate = 10;
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                objecttype = folder;
 
-                if (dataObj.isPng || dataObj.isGIf) {
+                if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
+
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
-                    assets.appendChild(img);
-                }
-                else if (dataObj.isMp4) {
+                    assets.appendChild(img
+
+                } else if (!!(dataObj.isMp4)) {
 
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
@@ -237,6 +212,7 @@ var SizeRate = 10;
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
+            objecttype = dataObj.objecttype;
 
             return true;
         },
@@ -358,13 +334,6 @@ var SizeRate = 10;
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            // ボタン 表示
-            //document.getElementById("swUp").style.display = 'inline';
-            //document.getElementById("swDown").style.display = 'inline';
-
-            //document.getElementById("swAngle").style.display = 'inline';
-            //document.getElementById("swParallel").style.display = 'inline';
-
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
             mWrap.setAttribute('markerhandler', ''); 
@@ -376,15 +345,15 @@ var SizeRate = 10;
             mWrap.setAttribute('smoothTolerance', '0.01');
             mWrap.setAttribute('smoothThreshold', '5');
 
-            if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
-                mWrap.setAttribute('url',
-                    AFRAME.utils.coordinates.stringify(
-                        rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
-            } else {
-                mWrap.setAttribute('url',
-                    AFRAME.utils.coordinates.stringify(
-                        !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
-            }
+            //if ((!!self.arg.markerList1) && (!!self.arg.markerList2)) {
+            //    mWrap.setAttribute('url',
+            //        AFRAME.utils.coordinates.stringify(
+            //            rootPath + 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2));
+            //} else {
+            //    mWrap.setAttribute('url',
+            //        AFRAME.utils.coordinates.stringify(
+            //            !(self.arg.markerList) ? '' : rootPath + 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList));
+            //}
 
             var mk = '';
 
@@ -556,7 +525,7 @@ var SizeRate = 10;
 
             document.getElementById("player").style.display = 'none';
 
-            if (objecttype == 'pic') {
+            if (objecttype != 'mp4') {
 
                 document.getElementById("info1").style.display = "none";
 

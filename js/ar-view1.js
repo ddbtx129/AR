@@ -44,12 +44,6 @@ var SizeRate = 10;
                 };
 
                 this.setScene();
-
-                //if (!this.arData.isMp4) {
-                //    objecttype = "pic";
-                //} else {
-                //    objecttype = "video";
-                //}
             }
 
             this.setSwitcher();
@@ -138,12 +132,6 @@ var SizeRate = 10;
             dataObj.objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
 
             // データの準備
-            //var dataObj = {
-            //    path: (!(self.arg.ObjectList) ?
-            //        (self.arg.ObjectList1 + '/' + self.arg.ObjectList2)
-            //        :
-            //        (!(self.arg.ObjectList) ? '' : self.arg.ObjectList))
-            //};
             var object = '';
             if (!(self.arg.ObjectList)) {
                 object = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
@@ -174,20 +162,20 @@ var SizeRate = 10;
                 dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
                 defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
             }
-            window.alert(dataObj.path);
+
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
-                    window.alert('0');
+
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
                     assets.appendChild(img);
-                    window.alert('0');
+
                 } else if (!!(dataObj.isMp4)) {
 
                     var video = document.createElement("video");
@@ -223,6 +211,7 @@ var SizeRate = 10;
                     //document.getElementById("scrshot").style.display = "none";
                     //document.getElementById("swCamera").style.display = "none";
                 } else if (dataObj.isGltf) {
+
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'source');
@@ -372,10 +361,6 @@ var SizeRate = 10;
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            // ボタン 表示・非表示切替
-            //document.getElementById("swUp").style.display = 'inline';
-            //document.getElementById("swDown").style.display = 'inline';
-
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
             }
@@ -416,22 +401,12 @@ var SizeRate = 10;
 
             } else {
 
-                //document.getElementById("swAngle").style.display = 'inline';
-                //document.getElementById("swParallel").style.display = 'inline';
-
                 // ARマーカー
                 var mWrap = document.createElement('a-marker');
                 mWrap.setAttribute('markerhandler', '');
                 mWrap.setAttribute('preset', 'custom');
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
-
-                //if (!!self.arg.m1 && !!self.arg.m2) {
-                //    mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify('pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt'));
-                //} else {
-                //    mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(
-                //        !(self.arg.markerList) ? 'pattern/pattern-def.patt' : 'pattern/pattern-' + self.arg.markerList + '.patt'));
-                //}
 
                 var mk = 'pattern/pattern-def.patt';
 
