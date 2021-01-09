@@ -131,7 +131,6 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
 
             var arData = null;
-            //var dataObj = { objecttype: 'png' };
 
             objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
             dataObj.isLogo = !!(self.arg.LogoList);
@@ -152,7 +151,7 @@ var SizeRate = 10;
 
             n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
 
-            dataObj = { path: object + '.' + String(objecttype) };
+            var dataObj = { path: object + '.' + String(objecttype) };
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -250,7 +249,6 @@ var SizeRate = 10;
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
-            dataObj.objecttype = objecttype;
 
             return true;
         },
