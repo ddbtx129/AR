@@ -393,7 +393,6 @@ var SizeRate = 10;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
-            self.arData.logo && self.wrap.appendChild(self.arData.logo);
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -431,6 +430,10 @@ var SizeRate = 10;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
 
+                if (val.isLogo) {
+                    self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
+                }
+
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
@@ -453,6 +456,10 @@ var SizeRate = 10;
                 }
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(mk));
+
+                if (val.isLogo) {
+                    self.arData.logo && mWrap.appendChild(self.arData.logo);
+                }
 
                 mWrap.appendChild(self.wrap);
 
