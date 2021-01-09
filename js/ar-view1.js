@@ -426,7 +426,7 @@ var SizeRate = 10;
 
                 wrapPos.x -= 0;
                 wrapPos.y -= 4;
-                wrapPos.z -= 4;
+                wrapPos.z -= 8;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
