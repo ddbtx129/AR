@@ -378,9 +378,9 @@ var SizeRate = 10;
             if (val.isLogo) {
                 var logo = document.createElement('a-entity');
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', '2 -2 0');
+                logo.setAttribute('position', '0 -1 0');
                 logo.setAttribute('rotation', '-10 0 0');
-                logo.setAttribute('scale', '10 10 10');
+                logo.setAttribute('scale', '20 20 20');
                 logo.setAttribute('gltf-model', '#logosource');
                 self.arData.logo = logo;
             }
@@ -394,9 +394,6 @@ var SizeRate = 10;
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
-            if (val.isLogo) {
-                self.arData.logo && self.wrap.appendChild(self.arData.logo);
-            }
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -431,6 +428,9 @@ var SizeRate = 10;
                 self.wrap.setAttribute('rotation', '0 0 0');
 
                 webArViewer.scene.appendChild(self.wrap);
+                if (val.isLogo) {
+                    self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
+                }
 
             } else {
 
@@ -454,6 +454,10 @@ var SizeRate = 10;
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(mk));
 
                 mWrap.appendChild(self.wrap);
+
+                if (val.isLogo) {
+                    self.arData.logo && mWrap.appendChild(self.arData.logo);
+                }
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
@@ -484,6 +488,8 @@ var SizeRate = 10;
                 });
                 // ↑
             }
+
+
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
