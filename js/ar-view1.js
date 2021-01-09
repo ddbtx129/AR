@@ -425,8 +425,8 @@ var SizeRate = 10;
                 //document.getElementById("swParallel").style.display = 'none';
 
                 wrapPos.x -= 0;
-                wrapPos.y -= 4;
-                wrapPos.z -= 16;
+                wrapPos.y -= 8;
+                wrapPos.z -= 8;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
