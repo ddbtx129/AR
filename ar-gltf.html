@@ -6,14 +6,16 @@
 <body style="margin: 0px; overflow: hidden;">
 <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
     <a-assets>
-        <a-asset-item id="tree" src="article/gltf/miabyss/logo-02.gltf"></a-asset-item>
+        <a-asset-item id="tree" src="article/gltf/miabyss/logo-01.gltf"></a-asset-item>
     </a-assets>
     <a-marker type="pattern" url="pattern/pattern-0.patt">
-        <a-entity   position="0 0 0" 
-                    rotation="-30 0 0"
-                    scale="10 10 10"
-                    gltf-model="#tree" >
-        </a-entity>
+        <a-plane scale="2 2 2" position="0 0 0" rotation="0 0 0" src="asset/plane.png" material="transparent: true, opacity: 0">
+            <a-entity position="0 0 0"
+                      rotation="-30 0 0"
+                      scale="10 10 10"
+                      gltf-model="#tree">
+            </a-entity>
+        </a-plane>
     </a-marker>
     <a-entity camera></a-entity>
 </a-scene>
