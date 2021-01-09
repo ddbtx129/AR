@@ -425,7 +425,7 @@ var SizeRate = 10;
                 //document.getElementById("swParallel").style.display = 'none';
 
                 wrapPos.x -= 0;
-                wrapPos.y -= 2;
+                wrapPos.y -= ((val.isMp4) ? 0 : 2);
                 wrapPos.z -= 10;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
