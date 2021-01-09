@@ -107,7 +107,6 @@ var SizeRate = 10;
             };
 
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
-            window.alert(arg.t);
 
             arg.typeList = arg.t;
 
@@ -134,9 +133,9 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
             window.alert('0');
             var arData = null;
-            window.alert(self.arg.typeList);
 
-            dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType('p');
+            dataObj.type = 'png';
+            dataObj.type = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
             window.alert('1');
             dataObj.isPng = 1;
             dataObj.isGif = 0;
