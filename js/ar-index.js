@@ -62,10 +62,11 @@ var arType = 1;
                 return;
             }
         }
-    } else {
-            Err_Exit('パソコンで表示することはできません。');
-            retuern;
     }
+    //} else {
+    //        Err_Exit('パソコンで表示することはできません。');
+    //        retuern;
+    //}
 
     function GetQueryString() {
 
