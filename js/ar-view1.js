@@ -229,7 +229,7 @@ var SizeRate = 10;
                 }
 
                 if (dataObj.isLogo) {
-                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList + 'gltf';
+                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList + '.gltf';
 
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
@@ -378,10 +378,10 @@ var SizeRate = 10;
             if (val.isLogo) {
                 var logo = document.createElement('a-entity');
                 main.setAttribute('id', 'logo');
-                main.setAttribute('position', AFRAME.utils.coordinates.stringify('20 -20 0'));
+                main.setAttribute('position', '20 -20 0');
                 main.setAttribute('rotation', '-10 0 0');
-                main.setAttribute('scale', AFRAME.utils.coordinates.stringify('10 10 10'));
-                main.setAttribute('gltf-model', AFRAME.utils.coordinates.stringify('#logosource'));
+                main.setAttribute('scale', '10 10 10');
+                main.setAttribute('gltf-model', '#logosource');
                 self.arData.logo = logo;
             }
         },
