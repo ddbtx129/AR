@@ -118,6 +118,8 @@ var SizeRate = 10;
 
             arg.LogoList = arg.l;
 
+            arg.PVList = arg.pv;
+
             self.arg = arg;
         },
 
@@ -129,9 +131,9 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
 
             var arData = null;
-            var dataObj = { objecttype: 'png' };
+            //var dataObj = { objecttype: 'png' };
 
-            dataObj.objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
+            objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
             dataObj.isLogo = !!(self.arg.LogoList);
 
             // データの準備
@@ -150,12 +152,13 @@ var SizeRate = 10;
 
             n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
 
-            dataObj = { path: object + '.' + String(dataObj.objecttype) };
+            dataObj = { path: object + '.' + String(objecttype) };
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
+            dataObj.isPV = !!(arg.PVList);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             //dataObj.isMarker = !!self.arg.markerList;
@@ -247,7 +250,7 @@ var SizeRate = 10;
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
-            objecttype = dataObj.objecttype;
+            dataObj.objecttype = objecttype;
 
             return true;
         },
@@ -348,6 +351,7 @@ var SizeRate = 10;
                 main.setAttribute('rotation', '-5 0 0');
 
                 if (!val.isGltf) {
+
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(wh.w));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(wh.h));
 
@@ -590,7 +594,6 @@ var SizeRate = 10;
             var self = this;
             var val = self.arData;
             window.alert(objecttype);
-
             document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
