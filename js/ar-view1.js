@@ -378,7 +378,7 @@ var SizeRate = 10;
             if (val.isLogo) {
                 var logo = document.createElement('a-entity');
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', '-4 -4 -4');
+                logo.setAttribute('position', '2 -2 0');
                 logo.setAttribute('rotation', '-10 0 0');
                 logo.setAttribute('scale', '10 10 10');
                 logo.setAttribute('gltf-model', '#logosource');
