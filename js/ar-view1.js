@@ -589,6 +589,7 @@ var SizeRate = 10;
 
             var self = this;
             var val = self.arData;
+            window.alert(objecttype);
 
             document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
