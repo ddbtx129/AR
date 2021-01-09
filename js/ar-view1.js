@@ -432,10 +432,6 @@ var SizeRate = 10;
 
                 webArViewer.scene.appendChild(self.wrap);
 
-                if (val.isLogo) {
-                    webArViewer.scene.appendChild(self.arData.logo);
-                }
-
             } else {
 
                 // ARマーカー
@@ -458,10 +454,6 @@ var SizeRate = 10;
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(mk));
 
                 mWrap.appendChild(self.wrap);
-
-                if (val.isLogo) {
-                    mWrap.appendChild(self.arData.logo);
-                }
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
@@ -491,6 +483,11 @@ var SizeRate = 10;
                     }
                 });
                 // ↑
+            }
+
+
+            if (val.isLogo) {
+                webArViewer.scene.appendChild(self.arData.logo);
             }
 
             // 拡大・縮小
