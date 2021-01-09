@@ -177,16 +177,16 @@ function GetFileType (arg) {
     switch (arg) {
 
         case 'g':
-            exct = 'gif';
+            return 'gif';
             break;
         case 'v':
-            exct = 'mp4';
+            return 'mp4';
             break;
         case 'd':
-            exct = 'gltf';
+            return 'gltf';
             break;
         case 'p':
-            exct = 'png';
+            return 'png';
             break;
     }
 
