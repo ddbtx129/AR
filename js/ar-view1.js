@@ -193,7 +193,7 @@ var SizeRate = 10;
                 dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
                 defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
             }
-            window.alert('7');
+            window.alert(dataObj.path);
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
