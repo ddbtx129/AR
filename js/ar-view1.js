@@ -133,9 +133,8 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
             window.alert('0');
             var arData = null;
-            var dataObj = null;
+            var dataObj = { objecttype: 'png' };
 
-            dataObj.objecttype = 'png';
             dataObj.objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
             window.alert('1');
             dataObj.isPng = 1;
