@@ -199,7 +199,7 @@ var SizeRate = 10;
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
                 window.alert('8');
-                if (dataObj.isPng || dataObj.isGIf) {
+                if (dataObj.isPng || dataObj.isGif) {
                     window.alert('0');
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
