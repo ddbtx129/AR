@@ -120,7 +120,7 @@ var SizeRate = 10;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
 
-            ar.MkObjList = arg.mo;
+            arg.MkObjList = arg.mo;
 
             self.arg = arg;
         },
