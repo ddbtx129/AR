@@ -199,7 +199,7 @@ var SizeRate = 10;
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
                 window.alert('8');
-                if (dataObj.isPng || dataObj.isGif) {
+                if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
                     window.alert('0');
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
@@ -207,7 +207,7 @@ var SizeRate = 10;
                     img.setAttribute('src', dataObj.path);
                     assets.appendChild(img);
                     window.alert('0');
-                } else if (dataObj.isMp4) {
+                } else if (!!(dataObj.isMp4)) {
 
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
