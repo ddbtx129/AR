@@ -8,7 +8,7 @@ var zoomH = 0;
 
 var videoInfo = {};
 var videoState = 0;
-var objecttype = "pic";
+var objecttype = "png";
 var dec = 2;
 var SizeRate = 10;
 
@@ -134,26 +134,26 @@ var SizeRate = 10;
             window.alert('0');
             var arData = null;
 
-            dataObj.type = 'png';
-            dataObj.type = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
+            dataObj.objecttype = 'png';
+            dataObj.objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
             window.alert('1');
             dataObj.isPng = 1;
             dataObj.isGif = 0;
             dataObj.isMp4 = 0;
             dataObj.isGltf = 0;
             window.alert('2');
-            switch (dataObj.type) {
+            switch (dataObj.objecttype) {
                 case 'gif':
-                    dataObj.isGif = !!(dataObj.type);
+                    dataObj.isGif = !!(dataObj.objecttype);
                     break;
                 case 'mp4':
-                    dataObj.isMp4 = !!(dataObj.type);
+                    dataObj.isMp4 = !!(dataObj.objecttype);
                     break;
                 case 'gltf':
-                    dataObj.isGltf = !!(dataObj.type);
+                    dataObj.isGltf = !!(dataObj.objecttype);
                 case 'png':
                 default:
-                    dataObj.isPng = !!(dataObj.type);
+                    dataObj.isPng = !!(dataObj.objecttype);
                     break;
             }
             window.alert('3');
@@ -174,7 +174,7 @@ var SizeRate = 10;
                 object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
             window.alert('4');
-            var dataObj = { path: object + '.' + String(dataObj.type) };
+            var dataObj = { path: object + '.' + String(dataObj.objecttype) };
             window.alert('5');
             //dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             //dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -198,7 +198,6 @@ var SizeRate = 10;
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                objecttype = folder;
                 window.alert('8');
                 if (dataObj.isPng || dataObj.isGIf) {
                     window.alert('0');
@@ -261,6 +260,7 @@ var SizeRate = 10;
 
             webArViewer.scene.appendChild(assets);
             self.arData = arData;
+            objecttype = dataObj.objecttype;
 
             return true;
         },
@@ -606,7 +606,7 @@ var SizeRate = 10;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
-            if (objecttype == 'pic') {
+            if (objecttype != 'mp4') {
 
                 document.getElementById("player").style.display = 'none';
 

@@ -10,7 +10,7 @@ AFRAME.registerComponent('markerhandler', {
         // マーカーを検出したイベントの登録
         marker.addEventListener('markerFound', function () {
 
-            if (objecttype == "video") {
+            if (objecttype == "mp4") {
                 if (videostate == 0) {
                     document.getElementById("player").style.display = 'inline';
                 }
@@ -22,8 +22,7 @@ AFRAME.registerComponent('markerhandler', {
 
         // マーカーを見失ったイベントの登録
         marker.addEventListener('markerLost', function () {
-            if (objecttype == "video") {
-
+            if (objecttype == "mp4") {
                 // マーカー認識が外れたら、、ビデオ停止
                 video.pause();
                 videostate = 2;
@@ -45,7 +44,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     btn.addEventListener('click', function () {
 
-        if (objecttype == "video") {
+        if (objecttype == "mp4") {
 
             if (videostate >= 1 && videostate < 2) {
 
