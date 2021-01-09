@@ -133,6 +133,7 @@ var SizeRate = 10;
             assets.setAttribute('timeout', '9000');
             window.alert('0');
             var arData = null;
+            var dataObj = null;
 
             dataObj.objecttype = 'png';
             dataObj.objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
@@ -174,7 +175,7 @@ var SizeRate = 10;
                 object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
             window.alert('4');
-            var dataObj = { path: object + '.' + String(dataObj.objecttype) };
+            dataObj = { path: object + '.' + String(dataObj.objecttype) };
             window.alert('5');
             //dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             //dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
