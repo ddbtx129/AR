@@ -136,7 +136,7 @@ var SizeRate = 10;
             var arData = null;
             window.alert(self.arg.typeList);
 
-            dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType(self.arg.typeList);
+            dataObj.type = !(self.arg.typeList) ? GetFileType('') : GetFileType('p');
             window.alert('1');
             dataObj.isPng = 1;
             dataObj.isGif = 0;
