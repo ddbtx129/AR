@@ -377,11 +377,11 @@ var SizeRate = 10;
 
             if (val.isLogo) {
                 var logo = document.createElement('a-entity');
-                main.setAttribute('id', 'logo');
-                main.setAttribute('position', '20 -20 0');
-                main.setAttribute('rotation', '-10 0 0');
-                main.setAttribute('scale', '10 10 10');
-                main.setAttribute('gltf-model', '#logosource');
+                logo.setAttribute('id', 'logo');
+                logo.setAttribute('position', '20 -20 0');
+                logo.setAttribute('rotation', '-10 0 0');
+                logo.setAttribute('scale', '10 10 10');
+                logo.setAttribute('gltf-model', '#logosource');
                 self.arData.logo = logo;
             }
         },
@@ -393,6 +393,10 @@ var SizeRate = 10;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
+
+            if (val.isLogo) {
+                self.arData.logo && self.wrap.appendChild(self.arData.logo);
+            }
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -417,11 +421,7 @@ var SizeRate = 10;
 
             var wrapPos = self.positionVec3('main');
 
-            //if (self.arg.preview) {
             if (self.arg.pv) {
-
-                //document.getElementById("swAngle").style.display = 'none';
-                //document.getElementById("swParallel").style.display = 'none';
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
@@ -483,11 +483,6 @@ var SizeRate = 10;
                     }
                 });
                 // ↑
-            }
-
-
-            if (val.isLogo) {
-                webArViewer.scene.appendChild(self.arData.logo);
             }
 
             // 拡大・縮小
