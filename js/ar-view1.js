@@ -157,7 +157,7 @@ var SizeRate = 10;
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
             dataObj.isLogo = !!(self.arg.LogoList);
-            dataObj.isPV = !!(self.arg..PVList);
+            dataObj.isPV = !!(self.arg.PVList);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             //dataObj.isMarker = !!self.arg.markerList;
