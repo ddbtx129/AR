@@ -430,11 +430,11 @@ var SizeRate = 10;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', '0 0 0');
 
-                if (val.isLogo) {
-                    self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
-                }
-
                 webArViewer.scene.appendChild(self.wrap);
+
+                if (val.isLogo) {
+                    webArViewer.scene.appendChild(self.arData.logo);
+                }
 
             } else {
 
@@ -457,11 +457,11 @@ var SizeRate = 10;
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(mk));
 
-                if (val.isLogo) {
-                    self.arData.logo && mWrap.appendChild(self.arData.logo);
-                }
-
                 mWrap.appendChild(self.wrap);
+
+                if (val.isLogo) {
+                    mWrap.appendChild(self.arData.logo);
+                }
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
