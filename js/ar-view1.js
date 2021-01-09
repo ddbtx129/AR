@@ -378,8 +378,8 @@ var SizeRate = 10;
             if (val.isLogo) {
                 var logo = document.createElement('a-entity');
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', ((val.isPV) ? '0 -1 -2' : '-1 -2 0'));
-                logo.setAttribute('rotation', '-10 0 0');
+                logo.setAttribute('position', ((val.isPV) ? '0 -1 -1.5' : '-1 -2 0'));
+                logo.setAttribute('rotation', '20 0 0');
                 logo.setAttribute('scale', ((val.isPV) ? '8 8 8' : '22 22 22'));
                 logo.setAttribute('gltf-model', '#logosource');
                 self.arData.logo = logo;
