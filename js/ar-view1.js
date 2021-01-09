@@ -133,7 +133,6 @@ var SizeRate = 10;
             var arData = null;
 
             objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
-            dataObj.isLogo = !!(self.arg.LogoList);
 
             // データの準備
             var object = '';
@@ -157,6 +156,7 @@ var SizeRate = 10;
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
+            dataObj.isLogo = !!(self.arg.LogoList);
             dataObj.isPV = !!(arg.PVList);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
