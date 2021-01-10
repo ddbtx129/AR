@@ -380,7 +380,7 @@ var SizeRate = 10;
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                 logo.setAttribute('rotation', '-5 0 0');
-                logo.setAttribute('scale', (val.isPV) ? '8, 8, 8' : '25, 25 25');
+                logo.setAttribute('scale', (!val.isMp4) ? ((val.isPV) ? '8, 8, 8' : '25, 25 25') : ((val.isPV) ? '16, 16, 16' : '50, 50 50'));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 self.arData.logo = logo;
