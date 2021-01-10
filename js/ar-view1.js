@@ -387,8 +387,8 @@ var SizeRate = 10;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('rotation', '-90 0 0');
-                logo.setAttribute('scale', (String(logoscale) + ',' + String(logoscale) + ',' + String(logoscale)));
+                logo.setAttribute('rotation', '-5 0 0');
+                logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 //if (val.isQuart) {
@@ -400,9 +400,10 @@ var SizeRate = 10;
                 //    });
                 //}
 
-                //logo.setAttribute('radius', logoscale / 2);
-                //AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                //    property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'linear' });
+                logo.setAttribute('radius', logoscale / 2);
+
+                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                    property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'linear' });
 
                 self.arData.logo = logo;
             }
