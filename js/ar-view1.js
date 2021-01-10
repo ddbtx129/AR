@@ -400,10 +400,10 @@ var SizeRate = 10;
                 //    });
                 //}
 
-                logo.setAttribute('radius', logoscale / 2);
+                logo.setAttribute('radius', logoscale);
 
                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                    property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'linear' });
+                    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'linear' });
 
                 self.arData.logo = logo;
             }
