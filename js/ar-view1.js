@@ -387,7 +387,7 @@ var SizeRate = 10;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('rotation', '-5 0 0');
+                logo.setAttribute('rotation', '-90 0 0');
                 logo.setAttribute('scale', (String(logoscale) + ',' + String(logoscale) + ',' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
