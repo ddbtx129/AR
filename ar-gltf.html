@@ -9,7 +9,7 @@
         <a-asset-item id="tree" src="article/gltf/miabyss/logo-01.gltf"></a-asset-item>
     </a-assets>
     <a-marker type="pattern" url="pattern/pattern-0.patt">
-        <a-plane scale="2 2 2" position="0 0 0" rotation="0 0 0" src="asset/plane.png" material="transparent: true, opacity: 0">
+        <!--<a-plane scale="2 2 2" position="0 0 0" rotation="0 0 0" src="asset/plane.png" material="transparent: true, opacity: 0">
             <a-entity position="0 0 0"
                       rotation="-30 0 0"
                       scale="10 10 10"
@@ -23,7 +23,17 @@
                          repeat="indefinite"
                          easing="ease">
             </a-animation>
-        </a-plane>
+        </a-plane>-->
+        <a-cube rotation="20 0 0">
+            <a-animation attribute="rotation"
+                         from="20 0 0"
+                         to="20 180 0"
+                         direction="alternate"
+                         dur="4000"
+                         repeat="indefinite"
+                         easing="ease">
+            </a-animation>
+        </a-cube>
     </a-marker>
     <a-entity camera></a-entity>
 </a-scene>
