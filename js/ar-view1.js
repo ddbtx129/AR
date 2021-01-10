@@ -510,6 +510,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                            self.arData.logo.setAttribute('rotation', '-90 0 0');
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
                         bParalle.classList.add('current');
