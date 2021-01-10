@@ -393,17 +393,17 @@ var SizeRate = 10;
 
                 //if (val.isQuart) {
 
-                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
-                        property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos.x + ' ' + (logopos.y + logoscale / 3) + ' ' + logopos.z
-                    });
+                    //AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
+                    //    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos.x + ' ' + (logopos.y + logoscale / 3) + ' ' + logopos.z
+                    //});
 
-                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
-                        property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
-                    });
+                    //AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
+                    //    property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
+                    //});
                 //}
 
                 //if (val.isTurn) {
-                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                         property: 'rotation', dur: 3000, easing: 'easeOutElastic', elasticity: 300, from: '0 0 0', to: '0 360 0', startEvents: 'turn'
                     });
                 //}
@@ -533,7 +533,7 @@ var SizeRate = 10;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation__scale', {
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                     }
