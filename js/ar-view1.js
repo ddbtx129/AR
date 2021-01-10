@@ -660,7 +660,7 @@ var SizeRate = 10;
                 if (angle == 'a') {
                     return { x: -1, y: -2, z: 0 };
                 } else {
-                    return { x: -1, y: 0, z: -2 };
+                    return { x: -1, y: 0, z: 2 };
                 }
             }        },
 
