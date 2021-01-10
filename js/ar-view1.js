@@ -116,12 +116,17 @@ var SizeRate = 10;
 
             arg.MkObjList = arg.mo;
 
-            arg.LogoList = arg.l;
+            var logo = arg.l && (parseInt(arg.l, 16).toString(10));
+            arg.LogoList = '';
+            agr.LogoAnimeList = ('0,0').split(',');
 
-            // 反射 
-            arg.reflectList = arg.xr && (parseInt(arg.xr, 16).toString(2)).toString(2);
-            // ターン
-            arg.turnList = arg.xt && (parseInt(arg.xt, 16).toString(2)).toString(2);
+            if (!!(logo)) {
+                arg.LogoList = ((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[0];
+                agr.LogoAnimeList = (((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[1]).match(/.{1}/g).split(',');
+                window.alert(arg.LogoList);
+                window.alert(arg.LogoAnimeList[0]);
+                window.alert(arg.LogoAnimeList[1]);
+            }
 
             arg.PVList = arg.pv;
 
@@ -494,7 +499,6 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                                 property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 1500, loop: true, easing: 'linear'
                             });
@@ -512,9 +516,8 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                property: 'rotation', from: '-90 0 0', to: '-90 360 0', dur: 1500, loop: true, easing: 'linear'
+                                property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 1500, loop: true, easing: 'linear'
                             });
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
