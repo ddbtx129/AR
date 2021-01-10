@@ -122,12 +122,8 @@ var SizeRate = 10;
 
             if (!!(logo)) {
                 window.alert(logo);
-                arg.LogoList = (logo.length == 3 ? '0' + logo.toString() : logo.toString());
-                window.alert(((arg.LogoList.match(/.{2}/g).split(','))[0]).toString());
-
-                agr.LogoAnimeList = (((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[1]).match(/.{1}/g).split(',');
-                window.alert(arg.LogoList);
-                window.alert(arg.LogoAnimeList[0]);
+                arg.LogoList = (logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g);
+                agr.LogoAnimeList = ((arg.LogoList.split(','))[1]).split(',');
                 window.alert(arg.LogoAnimeList[1]);
             }
 
