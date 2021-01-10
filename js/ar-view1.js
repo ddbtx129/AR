@@ -403,7 +403,7 @@ var SizeRate = 10;
                 //}
 
                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                    property: 'rotation', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300, from: '0 0 0', to: '0 360 0' });
+                    property: 'rotation', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300, from: '-5 0 0', to: '-5 0 360' });
 
                 self.arData.logo = logo;
             }
