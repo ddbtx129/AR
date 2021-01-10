@@ -119,9 +119,9 @@ var SizeRate = 10;
             var logo = arg.l && (parseInt(arg.l, 16).toString(10));
             arg.LogoList = '';
             arg.LogoAnimeList = ('0,0').split(',');
-            window.alert(logo);
 
             if (!!(logo)) {
+                window.alert(logo);
                 arg.LogoList = ((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[0];
                 agr.LogoAnimeList = (((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[1]).match(/.{1}/g).split(',');
                 window.alert(arg.LogoList);
