@@ -117,15 +117,15 @@ var SizeRate = 10;
             arg.MkObjList = arg.mo;
 
             var logo = arg.l && (parseInt(arg.l, 16).toString(10));
-            arg.LogoList = '';
+            arg.LogoList = arg.l && ('0000' + (parseInt(arg.l, 16).toString(10))).slice(-2);
             arg.LogoAnimeList = ('0,0').split(',');
-
-            if (!!(logo)) {
-                window.alert(logo);
-                arg.LogoList = (logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g);
-                agr.LogoAnimeList = ((arg.LogoList.split(','))[1]).split(',');
-                window.alert(arg.LogoAnimeList[1]);
-            }
+            window.alert(arg.LogoList);
+            //if (!!(logo)) {
+            //    window.alert(logo);
+            //    arg.LogoList = (logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g);
+            //    agr.LogoAnimeList = ((arg.LogoList.split(','))[1]).split(',');
+            //    window.alert(arg.LogoAnimeList[1]);
+            //}
 
             arg.PVList = arg.pv;
 
