@@ -378,7 +378,7 @@ var SizeRate = 10;
                 var logo = document.createElement('a-entity');
 
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo()));
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                 logo.setAttribute('rotation', '-5 0 0');
                 logo.setAttribute('scale', (val.isPV) ? '8, 8, 8' : '25, 25 25');
                 logo.setAttribute('gltf-model', '#logosource');
@@ -474,7 +474,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo()));
+                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                         }
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
@@ -489,7 +489,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo()));
+                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
@@ -651,13 +651,17 @@ var SizeRate = 10;
             }
         },
 
-        positionVec3Logo: function () {
+        positionVec3Logo: function (angle) {
             var self = this;
 
             if (self.arData.isPV) {
                 return { x: -1, y: -1, z: -1.5 };
             } else {
-                return { x: -1, y: -2, z: 0 };
+                if (angle == 'a') {
+                    return { x: -1, y: -2, z: 0 };
+                } else {
+                    return { x: -1, y: 0, z: -2 };
+                }
             }        },
 
         positionVec3: function (type) {
