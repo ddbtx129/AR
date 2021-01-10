@@ -374,12 +374,15 @@ var SizeRate = 10;
             self.arData.main = main;
 
             if (val.isLogo) {
+
                 var logo = document.createElement('a-entity');
+
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(((val.isPV) ? posAttribute(-1, -1, -1.5) : posAttribute(-1, -2, 0))));
-                logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-5 0 0'));
-                logo.setAttribute('scale', AFRAME.utils.coordinates.stringify((val.isPV) ? '8, 8, 8' : '25, 25 25'));
+                logo.setAttribute('position', ((val.isPV) ? '-1, -1, -1.5' : '-1, -2, 0'));
+                logo.setAttribute('rotation', '-5 0 0');
+                logo.setAttribute('scale', (val.isPV) ? '8, 8, 8' : '25, 25 25');
                 logo.setAttribute('gltf-model', '#logosource');
+
                 self.arData.logo = logo;
             }
         },
