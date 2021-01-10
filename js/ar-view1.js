@@ -378,7 +378,7 @@ var SizeRate = 10;
                 var logo = document.createElement('a-entity');
 
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(positionVec3Logo()));
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo()));
                 logo.setAttribute('rotation', '-5 0 0');
                 logo.setAttribute('scale', (val.isPV) ? '8, 8, 8' : '25, 25 25');
                 logo.setAttribute('gltf-model', '#logosource');
@@ -474,7 +474,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(positionVec3Logo()));
+                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo()));
                         }
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
@@ -489,7 +489,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
-                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(positionVec3Logo()));
+                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo()));
                         }
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
