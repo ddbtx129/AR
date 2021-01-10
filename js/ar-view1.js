@@ -118,6 +118,11 @@ var SizeRate = 10;
 
             arg.LogoList = arg.l;
 
+            // 反射 
+            arg.reflectList = arg.xr && (parseInt(arg.xr, 16).toString(2)).toString(2);
+            // ターン
+            arg.turnList = arg.xt && (parseInt(arg.xt, 16).toString(2)).toString(2);
+
             arg.PVList = arg.pv;
 
             self.arg = arg;
@@ -377,11 +382,31 @@ var SizeRate = 10;
 
                 var logo = document.createElement('a-entity');
 
+                var logopos = self.positionVec3Logo('a');
+                var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
+
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('rotation', '-5 0 0');
-                logo.setAttribute('scale', (!val.isMp4) ? ((val.isPV) ? '8, 8, 8' : '25, 25 25') : ((val.isPV) ? '16, 16, 16' : '50, 50 50'));
+                logo.setAttribute('scale', (String(logoscale) + ',' + String(logoscale) + ',' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
+
+                //if (val.isQuart) {
+
+                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
+                        property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos.x + ' ' + (logopos.y + logoscale / 3) + ' ' + logopos.z
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
+                        property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
+                    });
+                //}
+
+                //if (val.isTurn) {
+                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                        property: 'rotation', dur: 3000, easing: 'easeOutElastic', elasticity: 300, from: '0 0 0', to: '0 360 0', startEvents: 'turn'
+                    });
+                //}
 
                 self.arData.logo = logo;
             }
@@ -414,7 +439,6 @@ var SizeRate = 10;
             var arVRotation = '-90 0 0'
 
             var prevPageY;
-            //var zoomRateH = defaultSize.h;
             var zoomRateH = 2;
 
             var wrapPos = self.positionVec3('main');
@@ -442,14 +466,14 @@ var SizeRate = 10;
                 mWrap.setAttribute('type', 'pattern');
                 mWrap.setAttribute('id', 'arMarker');
 
-                var mk = 'pattern/pattern-def.patt';
+                var mk = 'pattern/p-def.patt';
 
                 if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                    mk = 'pattern/' + self.arg.MkObjList + '/pattern-' + self.arg.markerList2 + '.patt';
+                    mk = 'pattern/' + self.arg.MkObjList + '/p-' + self.arg.markerList2 + '.patt';
                 } else if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                    mk = 'pattern/' + self.arg.markerList1 + '/pattern-' + self.arg.markerList2 + '.patt';
+                    mk = 'pattern/' + self.arg.markerList1 + '/p-' + self.arg.markerList2 + '.patt';
                 } else if ((self.arg.markerList)) {
-                    mk = 'pattern/pattern-' + self.arg.markerList + '.patt';
+                    mk = 'pattern/p-' + self.arg.markerList + '.patt';
                 }
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(mk));
@@ -662,7 +686,8 @@ var SizeRate = 10;
                 } else {
                     return { x: -1, y: 0, z: 2.5 };
                 }
-            }        },
+            }
+        },
 
         positionVec3: function (type) {
             var self = this;
