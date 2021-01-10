@@ -676,12 +676,12 @@ var SizeRate = 10;
             var self = this;
 
             if (self.arData.isPV) {
-                return { x: -0.4, y: -0.5, z: -4 };
+                return { x: 0, y: -0.5, z: -2 };
             } else {
                 if (angle == 'a') {
-                    return { x: -1, y: -2.5, z: -0.5 };
+                    return { x: 0, y: -2.5, z: 0 };
                 } else {
-                    return { x: -1, y: 0, z: 2 };
+                    return { x: 0, y: 0, z: 2.5 };
                 }
             }
         },
