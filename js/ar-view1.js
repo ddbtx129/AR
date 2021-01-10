@@ -402,11 +402,8 @@ var SizeRate = 10;
                     //});
                 //}
 
-                //if (val.isTurn) {
-                    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                        property: 'rotation', dur: 3000, easing: 'easeOutElastic', elasticity: 300, from: '0 0 0', to: '0 360 0', startEvents: 'turn'
-                    });
-                //}
+                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                    property: 'rotation', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300, from: '0 0 0', to: '0 360 0' });
 
                 self.arData.logo = logo;
             }
