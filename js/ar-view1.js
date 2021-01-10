@@ -217,8 +217,6 @@ var SizeRate = 10;
                     assets.appendChild(video);
                     assets.appendChild(audio);
 
-                    //document.getElementById("scrshot").style.display = "none";
-                    //document.getElementById("swCamera").style.display = "none";
                 } else if (dataObj.isGltf) {
 
                     var model = document.createElement('a-asset-item');
@@ -378,7 +376,7 @@ var SizeRate = 10;
             if (val.isLogo) {
                 var logo = document.createElement('a-entity');
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(((val.isPV) ? { x: -1, y: -1, z: -1.5 } : { x: -1, y: -2, z: 0 }))));
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(((val.isPV) ? positionVec3(-1, -1, -1.5) : positionVec3(-1, -2, 0))));
                 logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify({ x: -5, y: 0, z: 0 }));
                 logo.setAttribute('scale', AFRAME.utils.coordinates.stringify((val.isPV) ? { w: 8, h: 8, d: 8 } : { w: 25, h: 25, d: 25 })));
                 logo.setAttribute('gltf-model', '#logosource');
@@ -642,6 +640,10 @@ var SizeRate = 10;
                     document.getElementById("player").style.display = 'none';
                 }
             }
+        },
+
+        positionVec3: function (px, py, pz) {
+            var self = this; return { x: px, y: py, z: pz };
         },
 
         positionVec3: function (type) {
