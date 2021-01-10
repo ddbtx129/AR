@@ -655,7 +655,7 @@ var SizeRate = 10;
             var self = this;
 
             if (self.arData.isPV) {
-                return { x: -0.5, y: -0.5, z: -2 };
+                return { x: -0.3, y: -0.5, z: -2 };
             } else {
                 if (angle == 'a') {
                     return { x: -1, y: -2.5, z: 0 };
