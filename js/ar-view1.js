@@ -123,7 +123,7 @@ var SizeRate = 10;
             if (!!(logo)) {
                 window.alert(logo);
                 arg.LogoList = (logo.length == 3 ? '0' + logo.toString() : logo.toString());
-                window.alert(arg.LogoList);
+                window.alert(arg.LogoList.match(/.{2}/g));
 
                 agr.LogoAnimeList = (((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[1]).match(/.{1}/g).split(',');
                 window.alert(arg.LogoList);
