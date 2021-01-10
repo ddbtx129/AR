@@ -377,8 +377,8 @@ var SizeRate = 10;
                 var logo = document.createElement('a-entity');
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(((val.isPV) ? positionVec3(-1, -1, -1.5) : positionVec3(-1, -2, 0))));
-                logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify({ x: -5, y: 0, z: 0 }));
-                logo.setAttribute('scale', AFRAME.utils.coordinates.stringify((val.isPV) ? { w: 8, h: 8, d: 8 } : { w: 25, h: 25, d: 25 })));
+                logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-5 0 0'));
+                logo.setAttribute('scale', AFRAME.utils.coordinates.stringify((val.isPV) ? '8, 8, 8' : '25, 25 25')));
                 logo.setAttribute('gltf-model', '#logosource');
                 self.arData.logo = logo;
             }
@@ -406,9 +406,9 @@ var SizeRate = 10;
 
             bAngle.classList.add('current');
 
-            var arPicRotation = { x: -5, y: 0, z: 0 }; //'-5 0 0';
-            var arGifRotation = { x: -30, y: 0, z: 0 }; //'-30 0 0';
-            var arVRotation = { x: -90, y: 0, z: 0 }; //'-90 0 0'
+            var arPicRotation = '-5 0 0';
+            var arGifRotation = '-30 0 0';
+            var arVRotation = '-90 0 0'
 
             var prevPageY;
             //var zoomRateH = defaultSize.h;
