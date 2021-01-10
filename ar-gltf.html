@@ -44,14 +44,12 @@
         </a-assets>
         <!-- a-markerのtypeにpatternを設定, 作ったpattファイルをurlにを指定 -->
         <a-marker type="pattern" url="pattern/p-def.patt">
-            <!-- 赤い立方体を表示 -->
-            <a-box position="0 0.5 0" width="0.5" height="0.5" depth="0.5" color="red"></a-box>
             <a-entity>
                 <!-- idを指定して画像を表示、x軸回りで-90度回転 -->
                 <a-image src="#kinga_sinnen" width="2" height="2" rotation="-90 0 0"></a-image>
                 <!-- a-imageを内包するa-entityをy軸周りで360度回転するアニメーション -->
                 <!-- dur(間隔):4000(ms), repeat(繰り返し):止めない限り無限, easing(イージング):線形(イージングしない)-->
-                <a-animation attribute="rotation" to="0 360 0" dur="4000" repeat="indefinite" easing="linear"></a-animation>
+                <a-animation attribute="rotation" to="360 0 0" dur="4000" repeat="indefinite" easing="linear"></a-animation>
             </a-entity>
         </a-marker>
         <a-entity camera></a-entity>
