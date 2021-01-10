@@ -118,7 +118,7 @@ var SizeRate = 10;
 
             var logo = arg.l && (parseInt(arg.l, 16).toString(10));
             arg.LogoList = '';
-            agr.LogoAnimeList = ('0,0').split(',');
+            arg.LogoAnimeList = ('0,0').split(',');
 
             if (!!(logo)) {
                 arg.LogoList = ((logo.length == 3 ? '0' + logo.toString() : logo.toString()).match(/.{2}/g).split(','))[0];
