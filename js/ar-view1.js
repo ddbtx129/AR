@@ -387,7 +387,7 @@ var SizeRate = 10;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('rotation', '-90 0 0');
+                logo.setAttribute('rotation', '-5 0 0');
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
@@ -403,7 +403,7 @@ var SizeRate = 10;
                 logo.setAttribute('radius', logoscale);
 
                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'linear' });
+                    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 1500, loop: true, easing: 'linear' });
 
                 self.arData.logo = logo;
             }
@@ -495,6 +495,9 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                            AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                                property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 1500, loop: true, easing: 'linear'
+                            });
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                         }
                         bAngle.classList.add('current');
@@ -510,6 +513,9 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                            AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                                property: 'rotation', from: '-90 0 0', to: '-90 360 0', dur: 1500, loop: true, easing: 'linear'
+                            });
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
                         bParalle.classList.add('current');
