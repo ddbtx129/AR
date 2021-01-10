@@ -4,38 +4,57 @@
 <script src="js/ar/aframe.min.js"></script>
 <script src="js/ar/aframe-ar.js"></script>
 <body style="margin: 0px; overflow: hidden;">
-<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
-    <!--<a-assets>
-        <a-asset-item id="tree" src="article/gltf/miabyss/logo-01.gltf"></a-asset-item>
-    </a-assets>-->
-    <!--<a-marker type="pattern" url="pattern/pattern-0.patt">-->
-        <!--<a-plane scale="2 2 2" position="0 0 0" rotation="0 0 0" src="asset/plane.png" material="transparent: true, opacity: 0">
-            <a-entity position="0 0 0"
-                      rotation="-30 0 0"
-                      scale="10 10 10"
-                      gltf-model="#tree">
+    <!--<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+        <a-assets>
+            <a-asset-item id="tree" src="article/gltf/miabyss/logo-01.gltf"></a-asset-item>
+        </a-assets>
+        <a-marker type="pattern" url="pattern/pattern-0.patt">-->
+    <!--<a-plane scale="2 2 2" position="0 0 0" rotation="0 0 0" src="asset/plane.png" material="transparent: true, opacity: 0">
+        <a-entity position="0 0 0"
+                  rotation="-30 0 0"
+                  scale="10 10 10"
+                  gltf-model="#tree">
+        </a-entity>
+        <a-animation attribute="rotation"
+                     from="20 0 0"
+                     to="20 180 0"
+                     direction="alternate"
+                     dur="4000"
+                     repeat="indefinite"
+                     easing="ease">
+        </a-animation>
+    </a-plane>-->
+    <!--<a-cube rotation="20 0 0">
+                <a-animation attribute="rotation"
+                             from="20 0 0"
+                             to="20 180 0"
+                             direction="alternate"
+                             dur="4000"
+                             repeat="indefinite"
+                             easing="ease">
+                </a-animation>
+            </a-cube>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>-->
+    <a-scene embedded arjs="debugUIEnabled: false" vr-mode-ui="enabled: false">
+        <a-assets>
+            <!-- 画像をプリロード -->
+            <img id="kinga_sinnen" src="article/pic/akira_takano/01.png">
+        </a-assets>
+        <!-- a-markerのtypeにpatternを設定, 作ったpattファイルをurlにを指定 -->
+        <a-marker type="pattern" url="pattern-marker.patt">
+            <!-- 赤い立方体を表示 -->
+            <a-box position="0 0.5 0" width="0.5" height="0.5" depth="0.5" color="red"></a-box>
+            <a-entity>
+                <!-- idを指定して画像を表示、x軸回りで-90度回転 -->
+                <a-image src="#kinga_sinnen" width="2" height="2" rotation="-90 0 0"></a-image>
+                <!-- a-imageを内包するa-entityをy軸周りで360度回転するアニメーション -->
+                <!-- dur(間隔):4000(ms), repeat(繰り返し):止めない限り無限, easing(イージング):線形(イージングしない)-->
+                <a-animation attribute="rotation" to="0 360 0" dur="4000" repeat="indefinite" easing="linear"></a-animation>
             </a-entity>
-            <a-animation attribute="rotation"
-                         from="20 0 0"
-                         to="20 180 0"
-                         direction="alternate"
-                         dur="4000"
-                         repeat="indefinite"
-                         easing="ease">
-            </a-animation>
-        </a-plane>-->
-        <a-cube rotation="20 0 0">
-            <a-animation attribute="rotation"
-                         from="20 0 0"
-                         to="20 180 0"
-                         direction="alternate"
-                         dur="4000"
-                         repeat="indefinite"
-                         easing="ease">
-            </a-animation>
-        </a-cube>
-    <!--</a-marker>-->
-    <a-entity camera></a-entity>
-</a-scene>
+        </a-marker>
+        <a-entity camera></a-entity>
+        </a-sce
 </body>
 </html>
