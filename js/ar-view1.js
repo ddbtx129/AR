@@ -402,6 +402,8 @@ var SizeRate = 10;
                     //});
                 //}
 
+                logo.setAttribute('radius', '1.25');
+
                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                     property: 'rotation', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300, from: '-5 0 0', to: '-5 0 360' });
 
