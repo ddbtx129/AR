@@ -173,9 +173,9 @@ var SizeRate = 10;
             dataObj.isReflection = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[0]) : 0);
             dataObj.isTurn = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[1]) : 0);
 
-            window.alert(!!dataObj.isLogo);
-            window.alert(!!dataObj.isReflection);
-            window.alert(!!dataObj.isTurn);
+            window.alert(dataObj.isLogo);
+            window.alert(dataObj.isReflection);
+            window.alert(dataObj.isTurn);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
@@ -244,7 +244,7 @@ var SizeRate = 10;
                 }
 
                 if (dataObj.isLogo) {
-                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList + '.gltf';
+                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
 
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
