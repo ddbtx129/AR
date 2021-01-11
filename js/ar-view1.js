@@ -126,6 +126,10 @@ var SizeRate = 10;
                 arg.LogoList = (logo).toString().split(',');
                 var anime = (arg.LogoList[1] && ('00' + (parseInt(arg.LogoList[1]).toString(10))).slice(-2));
                 arg.LogoAnimeList = anime.split('');
+                window.alert(arg.LogoList[0]);
+                window.alert(arg.LogoList[1]);
+                window.alert(arg.LogoAnimeList[0]);
+                window.alert(arg.LogoAnimeList[1]);
             }
 
             arg.PVList = arg.pv;
