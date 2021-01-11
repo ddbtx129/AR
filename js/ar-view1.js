@@ -548,6 +548,7 @@ var SizeRate = 10;
                             //} else {
                             //    self.arData.logo.setAttribute('rotation', '-90 0 0');
                             //}
+                            window.alert(arRotation);
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
@@ -759,5 +760,5 @@ var SizeRate = 10;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-    window.alert('開始6')
+    window.alert('開始')
 }());
