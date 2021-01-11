@@ -26,26 +26,26 @@ var SizeRate = 10;
             videostate = 0;
 
             if (this.setArData()) {
-                window.al(0);
+                window.alert(0);
                 this.setWrap();
-                window.al(1);
+                window.alert(1);
                 this.createModel();
-                window.al(2);
+                window.alert(2);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-                window.al(3);
+                window.alert(3);
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-                window.al(4);
+                window.alert(4);
                 this.setScene();
             }
-            window.al(5);
+            window.alert(5);
             this.setSwitcher();
         },
 
