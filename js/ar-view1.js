@@ -412,11 +412,11 @@ var SizeRate = 10;
                     logo.setAttribute('radius', logoscale);
                     if (val.isTurn == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                            property: 'rotation', from: '0 0 0', to: '0 0 360', dur: 3000, loop: true, easing: 'linear'
+                            property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
                         });
                     } else if (val.isTurn == 2) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                            property: 'rotation', from: '0 0 0', to: '0 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                            property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                         });
                     }
                 }
