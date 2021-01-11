@@ -534,7 +534,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             if (val.isTurn == 1) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                                     property: 'rotation', from: '0 0 0', to: '0 0 360', dur: 3000, loop: true, easing: 'linear'
