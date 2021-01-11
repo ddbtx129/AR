@@ -511,15 +511,15 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                            if (val.isTurn == 1) {
-                                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
-                                });
-                            } else if (val.isTurn == 2) {
-                                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
-                                });
-                            } 
+                            //if (val.isTurn == 1) {
+                            //    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                            //        property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
+                            //    });
+                            //} else if (val.isTurn == 2) {
+                            //    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                            //        property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                            //    });
+                            //} 
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                         }
                         bAngle.classList.add('current');
@@ -534,16 +534,16 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                            if (val.isTurn == 1) {
-                                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
-                                });
-                            } else if (val.isTurn == 2) {
-                                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
-                                });
-                            }
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+                            //if (val.isTurn == 1) {
+                            //    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                            //        property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
+                            //    });
+                            //} else if (val.isTurn == 2) {
+                            //    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                            //        property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                            //    });
+                            //}
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
                         bParalle.classList.add('current');
