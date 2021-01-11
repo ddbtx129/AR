@@ -715,7 +715,7 @@ var SizeRate = 10;
                 if (angle == 'a') {
                     return { x: 0, y: -2.5, z: 0 };
                 } else {
-                    return { x: 0, y: 0, z: 2.5 };
+                    return { x: 0, y: 0, z: 2 };
                 }
             }
         },
