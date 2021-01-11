@@ -123,7 +123,7 @@ var SizeRate = 10;
 
             if (!!(logo)){ 
                 logo = (logo.match(/.{2}/g));
-                arg.LogoList = logo.split(',');
+                arg.LogoList = (logo).toString().split(',');
                 var anime = (arg.LogoList[1] && ('00' + (parseInt(arg.LogoList[1]).toString(10))).slice(-2));
                 arg.LogoAnimeList = anime.split('');
             }
