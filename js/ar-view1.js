@@ -26,26 +26,26 @@ var SizeRate = 10;
             videostate = 0;
 
             if (this.setArData()) {
-
+                window.al(0);
                 this.setWrap();
-
+                window.al(1);
                 this.createModel();
-
+                window.al(2);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-
+                window.al(3);
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-
+                window.al(4);
                 this.setScene();
             }
-
+            window.al(5);
             this.setSwitcher();
         },
 
@@ -170,8 +170,8 @@ var SizeRate = 10;
             dataObj.isPV = !!(self.arg.PVList);
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
-            dataObj.isReflection = (!!(self.arg.LogoAnimeList) ? self.arg.LogoAnimeList[0] : '0');
-            dataObj.isTurn = (!!(self.arg.LogoAnimeList) ? self.arg.LogoAnimeList[1] : '0');
+            dataObj.isReflection = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[0]) : 0);
+            dataObj.isTurn = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[1]) : 0);
 
             window.alert(dataObj.isLogo);
             window.alert(dataObj.isReflection);
@@ -368,7 +368,7 @@ var SizeRate = 10;
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(wh.w));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(wh.h));
 
-                    if (val.isMp4) {
+                    if (!!val.isMp4) {
                         main.setAttribute('play', 'true');
                     }
 
