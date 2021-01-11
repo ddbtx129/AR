@@ -539,11 +539,11 @@ var SizeRate = 10;
                         if (!!(val.isLogo)) {
                             if (val.isTurn == 1) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation', from: '-90 0 0', to: '-90 -360 0', dur: 3000, loop: true, easing: 'linear'
+                                    property: 'rotation', from: '-90 0 0', to: '-90 360 0', dur: 3000, loop: true, easing: 'linear'
                                 });
                             } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation', from: '-90 0 0', to: '-90 -360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                                    property: 'rotation', from: '-90 0 0', to: '-90 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                                 });
                             } else {
                                 self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
