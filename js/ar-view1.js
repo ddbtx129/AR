@@ -754,5 +754,5 @@ var SizeRate = 10;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-    window.alert('開始1')
+    window.alert('開始2')
 }());
