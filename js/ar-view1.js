@@ -395,7 +395,6 @@ var SizeRate = 10;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                //logo.setAttribute('rotation', '0 0 0');
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
@@ -418,6 +417,8 @@ var SizeRate = 10;
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                             property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                         });
+                    } else {
+                        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                     }
                 }
 
@@ -757,5 +758,5 @@ var SizeRate = 10;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-    window.alert('開始4')
+
 }());
