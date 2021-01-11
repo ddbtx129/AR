@@ -510,7 +510,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                             //if (val.isTurn == 1) {
                             //    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                             //        property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
@@ -534,7 +534,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                             //if (val.isTurn == 1) {
                             //    AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                             //        property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
@@ -754,5 +754,5 @@ var SizeRate = 10;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-
+    window.alert('開始1')
 }());
