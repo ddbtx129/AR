@@ -537,7 +537,7 @@ var SizeRate = 10;
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             if (val.isTurn == 1) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
+                                    property: 'rotation', from: '-90 0 180', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
                                 });
                             } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
