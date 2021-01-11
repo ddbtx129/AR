@@ -518,8 +518,7 @@ var SizeRate = 10;
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                                     property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                                 });
-                            }
-                        }else {
+                            } else {
                                 self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             }
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
