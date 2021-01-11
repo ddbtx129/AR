@@ -511,9 +511,9 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
                             if (val.isTurn == 1) {
-                                //AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                //    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 1500, loop: true, easing: 'linear'
-                                //});
+                                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                                    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 1500, loop: true, easing: 'linear'
+                                });
                             } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                                     property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
@@ -535,10 +535,11 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (val.isLogo) {
-                            if (val.isTurn) { 
-                                //AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                //    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 1500, loop: true, easing: 'linear'
-                                //});
+                            if (val.isTurn == 1) {
+                                AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                                    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 1500, loop: true, easing: 'linear'
+                                });
+                            } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
                                     property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                                 });
