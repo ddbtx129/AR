@@ -412,11 +412,11 @@ var SizeRate = 10;
                     logo.setAttribute('radius', logoscale);
                     if (val.isTurn == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                            property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'linear'
+                            property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'linear'
                         });
                     } else if (val.isTurn == 2) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                            property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                            property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                         });
                     }
                 }
@@ -513,11 +513,11 @@ var SizeRate = 10;
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             if (val.isTurn == 1) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'linear'
+                                    property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'linear'
                                 });
                             } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                                    property: 'rotation', from: '-5 0 0', to: '-5 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                                    property: 'rotation', from: '-5 0 0', to: '-5 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
                                 });
                             } 
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
