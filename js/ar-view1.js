@@ -395,7 +395,7 @@ var SizeRate = 10;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('rotation', '0 0 0');
+                //logo.setAttribute('rotation', '0 0 0');
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
@@ -511,18 +511,18 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
-                            //if (val.isTurn == 1) {
-                            //    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                            //        property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
-                            //    });
-                            //} else if (val.isTurn == 2) {
-                            //    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                            //        property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
-                            //    });
-                            //} else {
-                            //    self.arData.logo.setAttribute('rotation', '0 0 0');
-                            //} 
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arDefRotation));
+                            if (val.isTurn == 1) {
+                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                                    property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
+                                });
+                            } else if (val.isTurn == 2) {
+                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                                    property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                                });
+                            } else {
+                                self.arData.logo.setAttribute('rotation', '0 0 0');
+                            } 
+                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arDefRotation));
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                         }
                         bAngle.classList.add('current');
@@ -537,20 +537,19 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
-                            //if (val.isTurn == 1) {
-                            //    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                            //        property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
-                            //    });
-                            //} else if (val.isTurn == 2) {
-                            //    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                            //        property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
-                            //    });
-                            //} else {
-                            //    self.arData.logo.setAttribute('rotation', '-90 0 0');
-                            //}
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                            if (val.isTurn == 1) {
+                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                                    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'linear'
+                                });
+                            } else if (val.isTurn == 2) {
+                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                                    property: 'rotation', from: '-90 0 0', to: '-90 0 360', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                                });
+                            } else {
+                                self.arData.logo.setAttribute('rotation', '-90 0 0');
+                            }
+                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
-                            window.alert(document.getElementById('logo').getAttribute('rotation').toString());
                         }
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
@@ -760,5 +759,5 @@ var SizeRate = 10;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-    window.alert('開始1')
+    window.alert('開始2')
 }());
