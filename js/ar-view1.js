@@ -122,9 +122,9 @@ var SizeRate = 10;
             arg.LogoAnimeList = {};
 
             if (!!(logo)){ 
-                arg.LogoList = logo.split(',');
-                var anime = (arg.LogoList[1] && ('00' + (parseInt(arg.LogoList[1]).toString(10))).slice(-2)).match(/.{1}/g);
-                arg.LogoAnimeList = anime.split(',');
+                arg.LogoList = (logo.match(/.{2}/g)).split(',');
+                var anime = (arg.LogoList[1] && ('00' + (parseInt(arg.LogoList[1]).toString(10))).slice(-2));
+                arg.LogoAnimeList = anime.split('');
             }
 
             arg.PVList = arg.pv;
