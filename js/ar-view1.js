@@ -126,10 +126,6 @@ var SizeRate = 10;
                 arg.LogoList = (logo).toString().split(',');
                 var anime = (arg.LogoList[1] && ('00' + (parseInt(arg.LogoList[1]).toString(10))).slice(-2));
                 arg.LogoAnimeList = anime.split('');
-                window.alert(arg.LogoList[0]);
-                window.alert(arg.LogoList[1]);
-                window.alert(arg.LogoAnimeList[0]);
-                window.alert(arg.LogoAnimeList[1]);
             }
 
             arg.PVList = arg.pv;
@@ -176,6 +172,10 @@ var SizeRate = 10;
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isReflection = (!!(self.arg.LogoAnimeList) ? self.arg.LogoAnimeList[0] : '0');
             dataObj.isTurn = (!!(self.arg.LogoAnimeList) ? self.arg.LogoAnimeList[1] : '0');
+
+            window.alert(dataObj.isLogo);
+            window.alert(dataObj.isReflection);
+            window.alert(dataObj.isTurn);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
