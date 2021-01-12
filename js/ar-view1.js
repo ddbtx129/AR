@@ -176,12 +176,9 @@ var SizeRate = 10;
             //}
             var j = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            window.alert('0'.repeat(j));
-            window.alert(j);
-            window.alert(i);
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
-            window.alert(defaultSize.w);
+
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
