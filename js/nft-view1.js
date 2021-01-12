@@ -20,32 +20,32 @@ var SizeRate = 20;
     var ar = {
 
         init: function () {
-            window.alert(0);
+
             this.setArg();
-            window.alert(1);
+
             videostate = 0;
-            window.alert(2);
+
             if (this.setArData()) {
-                window.alert(3);
+
                 this.setWrap();
-                window.alert(4);
+
                 this.createModel();
-                window.alert(5);
+
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-                window.alert(6);
+
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-                window.alert(7);
+
                 this.setScene();
             }
-            window.alert(8);
+
             //this.setSwitcher();
         },
 
@@ -177,7 +177,6 @@ var SizeRate = 20;
             n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
 
             var dataObj = { path: object + '.' + String(objecttype) };
-            window.alert(object + '.' + String(objecttype));
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -519,7 +518,6 @@ var SizeRate = 20;
             }
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
-            window.alert(rootPath + mk);
 
             mWrap.appendChild(self.wrap);
 
