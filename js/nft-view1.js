@@ -177,6 +177,7 @@ var SizeRate = 10;
             n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
 
             var dataObj = { path: object + '.' + String(objecttype) };
+            window.alert(object + '.' + String(objecttype));
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -519,6 +520,7 @@ var SizeRate = 10;
             }
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
+            window.alert(rootPath + mk);
 
             mWrap.appendChild(self.wrap);
             webArViewer.scene.appendChild(mWrap);
