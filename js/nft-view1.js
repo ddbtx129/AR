@@ -810,10 +810,10 @@ var SizeRate = 20;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: -(h1_2 - 5), z: -25 };
+                return { x: 0, y: -5, z: -25 };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -(h1_2 - 25), z: -5 };
+                    return { x: 0, y: -25, z: -5 };
                 } else {
                     return { x: 0, y: 0, z: 20 };
                 }
