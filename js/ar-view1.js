@@ -316,7 +316,7 @@ var SizeRate = 10;
             }
 
             var wh = { w: val.size.w, h: val.size.h };
-            window.alert(val.size.w);
+
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-entity');
@@ -746,7 +746,7 @@ var SizeRate = 10;
             var self = this;
             var oSize_2 = (self.arData.size.h / 2);
 
-            if (self.arDta.size.w > self.arData.size.h) {
+            if (self.arData.size.w > self.arData.size.h) {
                 oSize = (self.arData.size.w / 2);
             }
 
