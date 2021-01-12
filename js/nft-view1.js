@@ -413,24 +413,24 @@ var SizeRate = 20;
 
                 var logo = document.createElement('a-entity');
 
-                //var logopos = self.positionVec3Logo('a');
-                var logopos = self.positionVec3('main');
-                //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
-                var logoscale = (!val.isMp4) ? ((val.isPV) ? 16 : 50) : ((val.isPV) ? 32 : 100)
+                var logopos = self.positionVec3Logo('a');
+                //var logopos = self.positionVec3('main');
+                var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
+                //var logoscale = (!val.isMp4) ? ((val.isPV) ? 16 : 50) : ((val.isPV) ? 32 : 100)
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
-                AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
-                });
+                //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
+                //    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
+                //});
 
-                AFRAME.utils.entity.setComponentProperty(logo, 'material', {
-                    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
-                    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
-                });
+                //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
+                //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
+                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
+                //});
 
                 //// 弾む
                 //AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
@@ -810,10 +810,10 @@ var SizeRate = 20;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: -5, z: -25 };
+                return { x: 0, y: -(h1_2 - 5), z: -25 };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -25, z: -5 };
+                    return { x: 0, y: -(h1_2 - 25), z: -5 };
                 } else {
                     return { x: 0, y: 0, z: 20 };
                 }
