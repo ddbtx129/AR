@@ -197,7 +197,8 @@ var SizeRate = 20;
 
             dataObj.size = { w: (Number(wh[0]) * SizeRate), h: (Number(wh[1]) * SizeRate) };
             defaultSize = { w: (Number(wh[0]) * SizeRate), h: (Number(wh[1]) * SizeRate) };
-
+            window.alert((Number(wh[0]) * SizeRate));
+            window.alert((Number(wh[1]) * SizeRate));
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
