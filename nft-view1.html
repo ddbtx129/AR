@@ -1,0 +1,82 @@
+﻿<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="WebAR" />
+    <meta property="og:description" content="標準ブラウザからARが見られます。" />
+    <meta property="og:image" content="asset/share.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>ＡＲ</title>
+
+    <link rel="stylesheet" href="css/ar-view.css">
+
+    <script type="text/javascript" src="js/ar-index.js"></script>
+
+    <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+    <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
+    
+    <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
+    <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
+    <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
+    <script type="text/javascript" src="js/camera.swich.js"></script>
+    <script type="text/javascript" src="js/video.event.js"></script>
+
+</head>
+
+<body>
+    
+    <!--<script>LockScroll();</script>-->
+
+    <div class="arjs-loader" style="display: inline">
+        <div>データ読み込み中<br>しばらくお待ちください...</div>
+    </div>
+
+    <div id="modeSwitch" class="switch" style="display: none">
+        <a id="swMarker" class="swItem"><img src="asset/marker-t.png" width="30"></a><br>
+        <a id="swPreview" class="swItem"><img src="asset/preview-t.png" width="30"></a>
+    </div>
+
+    <img class="swichcamera" id="swCamera" src="asset/camera-w.png" style="display: inline" />
+
+    <div id="info1" class="info1" style="display: none">
+        <a id="swPlay" class="InfoItem">
+            <p id="p1">画面をタップすると、再生が開始されます。<br><br>音声が流れますのでご注意下さい。</p>
+        </a>
+    </div>
+
+    <img class="playbutton" id="player" src="asset/play.png" style="display: none" />
+
+    <a id="info"></a>
+
+    <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" style="display: none" />
+
+    <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: inline" />
+    <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: inline" />
+
+    <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
+    <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
+
+    <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+        <a-entity light="type: ambient; color: #BBB"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+
+        <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
+
+    </a-scene>
+
+    <script src="js/gifshader.js"></script>
+    <script src="js/chromakey.js"></script>
+    <script src="js/nft-view1.js"></script>
+
+    <p id="version">v1.0.12</p>
+
+</body>
+
+</html>
