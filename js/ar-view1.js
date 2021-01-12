@@ -483,7 +483,7 @@ var SizeRate = 10;
                 self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
 
                 if (!!val.isAnime) {
-                    logo.setAttribute('radius', logoscale);
+                    self.arData.logo.setAttribute('radius', 8);
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                             property: 'rotation',
@@ -504,7 +504,7 @@ var SizeRate = 10;
                             elasticity: 300
                         });
                     } else {
-                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        self.arData.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
                 }
 
