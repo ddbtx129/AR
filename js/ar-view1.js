@@ -417,31 +417,31 @@ var SizeRate = 10;
                     property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
                 });
 
-                if (!!val.isTurn) {
-                    logo.setAttribute('radius', logoscale);
-                    if (val.isTurn == 1) {
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'linear'
-                        });
-                    } else if (val.isTurn == 2) {
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'easeOutElastic',
-                            elasticity: 300
-                        });
-                    } else {
+                //if (!!val.isTurn) {
+                //    logo.setAttribute('radius', logoscale);
+                //    if (val.isTurn == 1) {
+                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                //            property: 'rotation',
+                //            from: String(objAngle) + ' 0 0',
+                //            to: String(objAngle) + ' 360 0',
+                //            dur: 3000,
+                //            loop: true,
+                //            easing: 'linear'
+                //        });
+                //    } else if (val.isTurn == 2) {
+                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                //            property: 'rotation',
+                //            from: String(objAngle) + ' 0 0',
+                //            to: String(objAngle) + ' 360 0',
+                //            dur: 3000,
+                //            loop: true,
+                //            easing: 'easeOutElastic',
+                //            elasticity: 300
+                //        });
+                //    } else {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    }
-                }
+                //    }
+                //}
 
                 self.arData.logo = logo;
             }
