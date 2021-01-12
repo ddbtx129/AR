@@ -200,10 +200,10 @@ var SizeRate = 10;
             defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
 
             if (dataObj.path) {
-
+                window.alert(dataObj.path);
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                window.alert(rootPath + 'article/' + folder + '/' + dataObj.path);
+                window.alert(dataObj.path);
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
