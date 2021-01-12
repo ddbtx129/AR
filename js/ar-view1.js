@@ -175,7 +175,7 @@ var SizeRate = 10;
             //    defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
             //}
             var j = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            var i = ('0'.repeat(j) + (parseInt(self.arg.sizeList).toString(10)));
+            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             window.alert('0'.repeat(j));
             window.alert(j);
             window.alert(i);
