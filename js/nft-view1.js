@@ -203,6 +203,7 @@ var SizeRate = 10;
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
+                window.alert(rootPath + 'article/' + folder + '/' + dataObj.path);
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
