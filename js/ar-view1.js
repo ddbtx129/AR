@@ -178,7 +178,7 @@ var SizeRate = 10;
             var i = ('0'.repeat(j) + (parseInt(self.arg.sizeList).toString(10))).slice(-j);
             dataObj.size = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1) };
             defaultSize = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1) };
-
+            window.alert(defaultSize.w);
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
