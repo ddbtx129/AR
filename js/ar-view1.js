@@ -562,8 +562,8 @@ var SizeRate = 10;
                             if (val.isAnime == 1) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
                                     property: 'rotation',
-                                    from: String(objAngle - 90) + ' 360 0',
-                                    to: String(objAngle - 90) + ' 0 0',
+                                    from: String(objAngle - 90) + ' 0 0',
+                                    to: String(objAngle - 90) + ' 360 0',
                                     dur: 3000,
                                     loop: true,
                                     easing: 'linear'
@@ -571,8 +571,8 @@ var SizeRate = 10;
                             } else if (val.isAnime == 2) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
                                     property: 'rotation',
-                                    from: String(objAngle - 90) + ' 360 0',
-                                    to: String(objAngle - 90) + ' 0 0',
+                                    from: String(objAngle - 90) + ' 0 0',
+                                    to: String(objAngle - 90) + ' 360 0',
                                     dur: 3000,
                                     loop: true,
                                     easing: 'easeOutElastic',
@@ -777,9 +777,9 @@ var SizeRate = 10;
             //var h1_2 = (self.arData.size.h / 2);
             var h1_2 = (self.arData.size.h / 2);
 
-            if (self.arData.size.w > self.arData.size.h) {
-                h1_2 = (self.arData.size.w / 2);
-            }
+            //if (self.arData.size.w > self.arData.size.h) {
+            //    h1_2 = (self.arData.size.w / 2);
+            //}
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
