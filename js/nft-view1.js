@@ -197,8 +197,7 @@ var SizeRate = 20;
 
             dataObj.size = { w: ((Number(wh[0]) / 10) * SizeRate), h: ((Number(wh[1]) / 10) * SizeRate) };
             defaultSize = { w: ((Number(wh[0]) / 10) * SizeRate), h: ((Number(wh[1]) / 10) * SizeRate) };
-            window.alert((Number(wh[0]) / 10 * SizeRate));
-            window.alert((Number(wh[1]) / 10 * SizeRate));
+
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
@@ -807,12 +806,12 @@ var SizeRate = 20;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: -0.5, z: -2.5 };
+                return { x: 0, y: -5, z: -25 };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -2.5, z: -0.5 };
+                    return { x: 0, y: -25, z: -5 };
                 } else {
-                    return { x: 0, y: 0, z: 2 };
+                    return { x: 0, y: 0, z: 20 };
                 }
             }
         },
