@@ -9,7 +9,7 @@ var objAngle = -5;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
-var dec = 2;
+
 var SizeRate = 10;
 
 (function (global) {
@@ -64,38 +64,28 @@ var SizeRate = 10;
             // 影
             arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
 
+            var dec = 10;
+
             // サイズ
             if (!!arg.wh) {
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
                     case 2:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        //dec = 1;
-                        //SizeRate = 1;
                         break;
                     case 4:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-                        //dec = 1;
-                        //SizeRate = 10;
                         break;
                     case 6:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
-                        //dec = 2;
-                        //SizeRate = 100;
                         break;
                     case 8:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
-                        //dec = 3;
-                        //SizeRate = 1000;
                         break;
                     case 10:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
-                        //dec = 4;
-                        //SizeRate = 10000;
                         break;
                     default:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        //dec = 1;
-                        //SizeRate = 1;
                         break;
                 }
             };
@@ -124,8 +114,7 @@ var SizeRate = 10;
             if (!!(logo)){ 
                 logo = (logo.match(/.{2}/g));
                 arg.LogoList = (logo).toString().split(',');
-                var anime = (arg.LogoList[1] && ('00' + (parseInt(arg.LogoList[1]).toString(10))).slice(-2));
-                arg.LogoAnimeList = anime.split('');
+                arg.LogoAnimeList = (arg.LogoList[1] && parseInt(arg.LogoList[1]));
             }
 
             arg.PVList = arg.pv;
@@ -170,21 +159,25 @@ var SizeRate = 10;
             dataObj.isPV = !!(self.arg.PVList);
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
-            dataObj.isReflection = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[0]) : 0);
-            dataObj.isTurn = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[1]) : 0);
+            //dataObj.isReflection = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[0]) : 0);
+            dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 
-            if (dataObj.isMp4) {
-                dataObj.size = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
-                defaultSize = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
-            } else {
-                dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
-                defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
-            }
+            //if (dataObj.isMp4) {
+            //    dataObj.size = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
+            //    defaultSize = { w: (Number(wh[0]) / 10).toFixed(2), h: (Number(wh[1]) / 10).toFixed(2) };
+            //} else {
+            //    dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
+            //    defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
+            //}
+            var j = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+            var i = ('0'.repeat(j) + (parseInt(self.arg.sizeList).toString(10))).slice(-j);
+            dataObj.size = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1) };
+            defaultSize = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1) };
 
             if (dataObj.path) {
 
@@ -417,9 +410,9 @@ var SizeRate = 10;
                 //    property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
                 //});
 
-                if (!!val.isTurn) {
+                if (!!val.isAnime) {
                     logo.setAttribute('radius', logoscale);
-                    if (val.isTurn == 1) {
+                    if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
@@ -428,7 +421,7 @@ var SizeRate = 10;
                             loop: true,
                             easing: 'linear'
                         });
-                    } else if (val.isTurn == 2) {
+                    } else if (val.isAnime == 2) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
@@ -528,7 +521,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
-                            if (val.isTurn == 1) {
+                            if (val.isAnime == 1) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                     property: 'rotation',
                                     from: String(objAngle) + ' 0 0',
@@ -537,7 +530,7 @@ var SizeRate = 10;
                                     loop: true,
                                     easing: 'linear'
                                 });
-                            } else if (val.isTurn == 2) {
+                            } else if (val.isAnime == 2) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                     property: 'rotation',
                                     from: String(objAngle) + ' 0 0',
@@ -547,7 +540,7 @@ var SizeRate = 10;
                                     easing: 'easeOutElastic',
                                     elasticity: 300
                                 });
-                            } else {
+                            } else if (val.isAnime == 0) {
                                 self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                             } 
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
@@ -563,7 +556,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
-                            if (val.isTurn == 1) {
+                            if (val.isAnime == 1) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
                                     property: 'rotation',
                                     from: String(objAngle - 90) + ' 360 0',
@@ -572,7 +565,7 @@ var SizeRate = 10;
                                     loop: true,
                                     easing: 'linear'
                                 });
-                            } else if (val.isTurn == 2) {
+                            } else if (val.isAnime == 2) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
                                     property: 'rotation',
                                     from: String(objAngle - 90) + ' 360 0',
@@ -582,7 +575,7 @@ var SizeRate = 10;
                                     easing: 'easeOutElastic',
                                     elasticity: 300
                                 });
-                            } else {
+                            } else if (val.isAnime == 0) {
                                 self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
                             }
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
@@ -749,7 +742,7 @@ var SizeRate = 10;
 
         positionVec3Logo: function (angle) {
             var self = this;
-            var h1_2 = (self.arData.size.h / 2);
+            var h1 = (self.arData.size.h);
 
             //if (self.arData.isPV) {
             //    return { x: 0, y: -0.5, z: -2.5 };
@@ -762,12 +755,12 @@ var SizeRate = 10;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: -0.5, z: -2.5 };
+                return { x: 0, y: 0, z: -(h1 + 0.5) };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -2.5, z: -0.5 };
+                    return { x: 0, y: -(h1 + 0.5), z: 0 };
                 } else {
-                    return { x: 0, y: 0, z: 2 };
+                    return { x: 0, y: 0, z: -(h1 + 0.5) };
                 }
             }
         },
