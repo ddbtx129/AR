@@ -791,7 +791,7 @@ var SizeRate = 10;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: h1_2, z: -(h1_2) };
+                return { x: 0, y: ((self.arData.isMp4) ?  h1_2 + 0.25 : 0), z: -(h1_2) };
             } else {
                 if (angle == 'a') {
                     return { x: 0, y: -(h1_2), z: 0 };
