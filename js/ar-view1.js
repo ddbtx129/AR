@@ -396,7 +396,7 @@ var SizeRate = 10;
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
-                logo.setAttribute('gltf-model', '#logosource');
+                //logo.setAttribute('gltf-model', '#logosource');
 
                 AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
                     primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
