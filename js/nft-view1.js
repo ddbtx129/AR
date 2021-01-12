@@ -429,10 +429,19 @@ var SizeRate = 20;
                     side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
                 });
 
+                //// 弾む
+                //AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
+                //    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos + ' ' + (logopos + logoscale / 3) + ' ' + logopos
+                //});
+
+                //AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
+                //    property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
+                //});
+
                 if (!!val.isTurn) {
                     logo.setAttribute('radius', logoscale);
                     if (val.isTurn == 1) {
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
@@ -441,7 +450,7 @@ var SizeRate = 20;
                             easing: 'linear'
                         });
                     } else if (val.isTurn == 2) {
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
@@ -563,7 +572,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     if (!!(val.isLogo)) {
                         if (val.isTurn == 1) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
                                 from: String(objAngle) + ' 0 0',
                                 to: String(objAngle) + ' 360 0',
@@ -572,7 +581,7 @@ var SizeRate = 20;
                                 easing: 'linear'
                             });
                         } else if (val.isTurn == 2) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
                                 from: String(objAngle) + ' 0 0',
                                 to: String(objAngle) + ' 360 0',
@@ -608,7 +617,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     if (!!(val.isLogo)) {
                         if (val.isTurn == 1) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
                                 from: String(objAngle - 90) + ' 360 0',
                                 to: String(objAngle - 90) + ' 0 0',
@@ -617,7 +626,7 @@ var SizeRate = 20;
                                 easing: 'linear'
                             });
                         } else if (val.isTurn == 2) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
                                 from: String(objAngle - 90) + ' 360 0',
                                 to: String(objAngle - 90) + ' 0 0',

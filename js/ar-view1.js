@@ -412,7 +412,7 @@ var SizeRate = 10;
                 if (!!val.isTurn) {
                     logo.setAttribute('radius', logoscale);
                     if (val.isTurn == 1) {
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
@@ -421,7 +421,7 @@ var SizeRate = 10;
                             easing: 'linear'
                         });
                     } else if (val.isTurn == 2) {
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
@@ -521,7 +521,7 @@ var SizeRate = 10;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
                             if (val.isTurn == 1) {
-                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                     property: 'rotation',
                                     from: String(objAngle) + ' 0 0',
                                     to: String(objAngle) + ' 360 0',
@@ -530,7 +530,7 @@ var SizeRate = 10;
                                     easing: 'linear'
                                 });
                             } else if (val.isTurn == 2) {
-                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                     property: 'rotation',
                                     from: String(objAngle) + ' 0 0',
                                     to: String(objAngle) + ' 360 0',
