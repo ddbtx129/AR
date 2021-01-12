@@ -747,9 +747,9 @@ var SizeRate = 10;
             var self = this;
             var h1_2 = (self.arData.size.h / 2);
 
-            //if (self.arData.size.w > self.arData.size.h) {
-            //    h1_2 = (self.arData.size.w / 2);
-            //}
+            if (self.arData.size.w > self.arData.size.h) {
+                h1_2 = (self.arData.size.w / 2);
+            }
 
             //if (self.arData.isPV) {
             //    return { x: 0, y: -0.5, z: -2.5 };
@@ -761,15 +761,15 @@ var SizeRate = 10;
             //    }
             //}
 
-            if (self.arData.isPV) {
-                return { x: 0, y: 0, z: -(h1_2) };
-            } else {
+            //if (self.arData.isPV) {
+            //    return { x: 0, y: 0, z: -(h1_2) };
+            //} else {
                 if (angle == 'a') {
                     return { x: 0, y: -(h1_2), z: 0 };
                 } else {
                     return { x: 0, y: 0, z: (h1_2) };
                 }
-            }
+            //}
         },
 
         positionVec3: function (type) {
