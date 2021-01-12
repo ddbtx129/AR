@@ -742,7 +742,7 @@ var SizeRate = 10;
 
         positionVec3Logo: function (angle) {
             var self = this;
-            var h1 = (self.arData.size.h);
+            var h1_2 = (self.arData.size.h / 2);
 
             //if (self.arData.isPV) {
             //    return { x: 0, y: -0.5, z: -2.5 };
@@ -755,12 +755,12 @@ var SizeRate = 10;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: 0, z: -(h1 + 0.5) };
+                return { x: 0, y: 0, z: -(h1_2 + 0.5) };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -(h1 + 0.5), z: 0 };
+                    return { x: 0, y: -(h1_2 + 0.5), z: 0 };
                 } else {
-                    return { x: 0, y: 0, z: -(h1 + 0.5) };
+                    return { x: 0, y: 0, z: -(h1_2 + 0.5) };
                 }
             }
         },
