@@ -20,32 +20,32 @@ var SizeRate = 10;
     var ar = {
 
         init: function () {
-
+            window.alert(0);
             this.setArg();
-
+            window.alert(1);
             videostate = 0;
-
+            window.alert(2);
             if (this.setArData()) {
-
+                window.alert(3);
                 this.setWrap();
-
+                window.alert(4);
                 this.createModel();
-
+                window.alert(5);
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
                     Pointer: window.navigator.pointerEnabled,
                     MSPointer: window.navigator.msPointerEnabled
                 };
-
+                window.alert(6);
                 this.eventNames = {
                     start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
                     move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
                     end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
                 };
-
+                window.alert(7);
                 this.setScene();
             }
-
+            window.alert(8);
             //this.setSwitcher();
         },
 
@@ -826,5 +826,4 @@ var SizeRate = 10;
     }
 
     webArViewer.ar.setDiplayBtn(0);
-
 }());
