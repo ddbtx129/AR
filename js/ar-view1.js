@@ -400,14 +400,22 @@ var SizeRate = 10;
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
                 logo.setAttribute('gltf-model', '#logosource');
 
-                AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
-                });
+                //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
+                //    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
+                //});
 
-                AFRAME.utils.entity.setComponentProperty(logo, 'material', {
-                    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
-                    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
-                });
+                //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
+                //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
+                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
+                //});
+
+                //AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
+                //    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos + ' ' + (logopos + logoscale / 3) + ' ' + logopos
+                //});
+
+                //AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
+                //    property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
+                //});
 
                 if (!!val.isTurn) {
                     logo.setAttribute('radius', logoscale);
