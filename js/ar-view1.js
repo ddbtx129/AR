@@ -404,7 +404,7 @@ var SizeRate = 10;
 
                 AFRAME.utils.entity.setComponentProperty(logo, 'material', {
                     shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
-                    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 0.1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
+                    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
                 });
 
                 if (!!val.isTurn) {
