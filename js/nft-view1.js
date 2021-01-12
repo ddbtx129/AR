@@ -250,6 +250,7 @@ var SizeRate = 20;
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'source');
                     model.setAttribute('src', dataObj.path);
+
                     assets.appendChild(model);
                 }
 
@@ -261,6 +262,7 @@ var SizeRate = 20;
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'logosource');
                     model.setAttribute('src', dataObj.logopath);
+
                     assets.appendChild(model);
                 }
             }
@@ -411,8 +413,10 @@ var SizeRate = 20;
 
                 var logo = document.createElement('a-entity');
 
-                var logopos = self.positionVec3Logo('a');
-                var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
+                //var logopos = self.positionVec3Logo('a');
+                var logopos = self.positionVec3('main');
+                //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
+                var logoscale = (!val.isMp4) ? ((val.isPV) ? 16 : 50) : ((val.isPV) ? 32 : 100)
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
