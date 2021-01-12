@@ -10,7 +10,7 @@ var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
 var dec = 2;
-var SizeRate = 10;
+var SizeRate = 20;
 
 (function (global) {
 
@@ -69,33 +69,33 @@ var SizeRate = 10;
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
                     case 2:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        dec = 1;
-                        SizeRate = 1;
+                        //dec = 1;
+                        //SizeRate = 1;
                         break;
                     case 4:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-                        dec = 1;
-                        SizeRate = 10;
+                        //dec = 1;
+                        //SizeRate = 10;
                         break;
                     case 6:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
-                        dec = 2;
-                        SizeRate = 100;
+                        //dec = 2;
+                        //SizeRate = 100;
                         break;
                     case 8:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
-                        dec = 3;
-                        SizeRate = 1000;
+                        //dec = 3;
+                        //SizeRate = 1000;
                         break;
                     case 10:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
-                        dec = 4;
-                        SizeRate = 10000;
+                        //dec = 4;
+                        //SizeRate = 10000;
                         break;
                     default:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        dec = 1;
-                        SizeRate = 1;
+                        //dec = 1;
+                        //SizeRate = 1;
                         break;
                 }
             };
@@ -109,7 +109,7 @@ var SizeRate = 10;
             arg.markerList1 = arg.m1;
             arg.markerList2 = arg.m2;
 
-            // arGltf-main
+            // 対象オブジェクト
             arg.ObjectList = arg.o;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
@@ -196,14 +196,13 @@ var SizeRate = 10;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 
-            dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
-            defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
+            dataObj.size = { w: (Number(wh[0]) * SizeRate), h: (Number(wh[1]) * SizeRate) };
+            defaultSize = { w: (Number(wh[0]) * SizeRate), h: (Number(wh[1]) * SizeRate) };
 
             if (dataObj.path) {
-                window.alert(dataObj.path);
+
                 var folder = !!(dataObj.isMp4) ? 'video' : 'pic';
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                window.alert(dataObj.path);
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
@@ -472,7 +471,6 @@ var SizeRate = 10;
                 document.getElementById("player").style.display = 'none';
             }
 
-
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
@@ -524,8 +522,12 @@ var SizeRate = 10;
             window.alert(rootPath + mk);
 
             mWrap.appendChild(self.wrap);
-            webArViewer.scene.appendChild(mWrap);
 
+            if (val.isLogo) {
+                self.arData.logo && mWrap.appendChild(self.arData.logo);
+            }
+
+            webArViewer.scene.appendChild(mWrap);
             self.mWrap = mWrap;
 
             // ↓ rotation 切替

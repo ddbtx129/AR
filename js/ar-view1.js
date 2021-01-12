@@ -69,33 +69,33 @@ var SizeRate = 10;
                 switch ((parseInt(arg.wh, 16).toString(10)).length) {
                     case 2:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        dec = 1;
-                        SizeRate = 1;
+                        //dec = 1;
+                        //SizeRate = 1;
                         break;
                     case 4:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-                        dec = 1;
-                        SizeRate = 10;
+                        //dec = 1;
+                        //SizeRate = 10;
                         break;
                     case 6:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
-                        dec = 2;
-                        SizeRate = 100;
+                        //dec = 2;
+                        //SizeRate = 100;
                         break;
                     case 8:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
-                        dec = 3;
-                        SizeRate = 1000;
+                        //dec = 3;
+                        //SizeRate = 1000;
                         break;
                     case 10:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
-                        dec = 4;
-                        SizeRate = 10000;
+                        //dec = 4;
+                        //SizeRate = 10000;
                         break;
                     default:
                         arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        dec = 1;
-                        SizeRate = 1;
+                        //dec = 1;
+                        //SizeRate = 1;
                         break;
                 }
             };
