@@ -90,6 +90,8 @@ var SizeRate = 10;
                 }
             };
 
+            arg.whList = arg.wh && (parseInt(arg.wh, 16).toString(10));
+
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
 
             arg.typeList = arg.t;
@@ -174,10 +176,11 @@ var SizeRate = 10;
             //    dataObj.size = { w: Number(wh[0]), h: Number(wh[1]) };
             //    defaultSize = { w: Number(wh[0]), h: Number(wh[1]) };
             //}
-            var j = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+
+            var i = ((parseInt(self.arg.whList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.whList).toString(10)).length : (parseInt(self.arg.whList).toString(10)).length + 1;
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
+            window.alert(parseInt(self.arg.whList).toString(10).length);
             window.alert(i);
             if (dataObj.path) {
 
