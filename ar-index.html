@@ -69,17 +69,17 @@
             //        Err_Exit('パソコンで表示することはできません。');
             //}
 
-            var param = document.location.search.substring(1);
+            var paramfull = document.location.search.substring(1);
             var rootPath = "https://ddbtx129.github.io/AR/"
 
             if (param.ar) {
                 if (Number(param.ar) > 0) {
-                    location.href = rootPath + 'nft-view1.html' + '?' + param;
+                    location.href = rootPath + 'nft-view1.html' + '?' + paramfull;
                 } else {
-                    location.href = rootPath + 'ar-view1.html' + '?' + param;
+                    location.href = rootPath + 'ar-view1.html' + '?' + paramfull;
                 }
             } else {
-                location.href = rootPath + 'ar-view1.html' + '?' + param;
+                location.href = rootPath + 'ar-view1.html' + '?' + paramfull;
             }
 
             function iosVersion() {
@@ -125,7 +125,8 @@
 
     </head>
 
-<body>
+    <body>
 
-</body>
+    </body>
+
 </html>
