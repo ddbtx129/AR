@@ -755,12 +755,12 @@ var SizeRate = 10;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: 0, z: -(h1_2 + 0.5) };
+                return { x: 0, y: 0, z: -(h1_2) };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -(h1_2 + 0.5), z: 0 };
+                    return { x: 0, y: -(h1_2), z: 0 };
                 } else {
-                    return { x: 0, y: 0, z: -(h1_2 + 0.5) };
+                    return { x: 0, y: 0, z: (h1_2) };
                 }
             }
         },
