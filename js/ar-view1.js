@@ -176,8 +176,8 @@ var SizeRate = 10;
             //}
             var j = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             var i = ('0'.repeat(j) + (parseInt(self.arg.sizeList).toString(10))).slice(-j);
-            dataObj.size = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1) };
-            defaultSize = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).slice(-1) };
+            dataObj.size = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1) };
+            defaultSize = { w: ((Number(wh[0]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1), h: ((Number(wh[1]) * (10 ** -((i - 2) / 2))) * SizeRate).toFixed(1) };
 
             if (dataObj.path) {
 
