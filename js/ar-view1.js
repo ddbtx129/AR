@@ -180,8 +180,7 @@ var SizeRate = 10;
             var i = ((parseInt(self.arg.whList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.whList).toString(10)).length : (parseInt(self.arg.whList).toString(10)).length + 1;
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
-            window.alert(parseInt(self.arg.whList).toString(10).length);
-            window.alert(i);
+
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
@@ -745,7 +744,11 @@ var SizeRate = 10;
 
         positionVec3Logo: function (angle) {
             var self = this;
-            var h1_2 = (self.arData.size.h / 2);
+            var oSize_2 = (self.arData.size.h / 2);
+
+            if (self.arDta.size.w > self.arData.size.h) {
+                oSize = (self.arData.size.w / 2);
+            }
 
             //if (self.arData.isPV) {
             //    return { x: 0, y: -0.5, z: -2.5 };
@@ -758,12 +761,12 @@ var SizeRate = 10;
             //}
 
             if (self.arData.isPV) {
-                return { x: 0, y: 0, z: -(h1_2) };
+                return { x: 0, y: 0, z: -(oSize_2) };
             } else {
                 if (angle == 'a') {
-                    return { x: 0, y: -(h1_2), z: 0 };
+                    return { x: 0, y: -(oSize_2), z: 0 };
                 } else {
-                    return { x: 0, y: 0, z: (h1_2) };
+                    return { x: 0, y: 0, z: (oSize_2) };
                 }
             }
         },
