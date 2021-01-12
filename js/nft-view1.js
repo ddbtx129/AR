@@ -195,8 +195,10 @@ var SizeRate = 20;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 
-            dataObj.size = { w: ((Number(wh[0]) / 10) * SizeRate), h: ((Number(wh[1]) / 10) * SizeRate) };
-            defaultSize = { w: ((Number(wh[0]) / 10) * SizeRate), h: ((Number(wh[1]) / 10) * SizeRate) };
+            //dataObj.size = { w: ((Number(wh[0]) / 10) * SizeRate), h: ((Number(wh[1]) / 10) * SizeRate) };
+            //defaultSize = { w: ((Number(wh[0]) / 10) * SizeRate), h: ((Number(wh[1]) / 10) * SizeRate) };
+            dataObj.size = { w: ((Number(wh[0]) / (!!(dataObj.isMp4) ? 10 : 1)) * SizeRate), h: ((Number(wh[1]) / (!!(dataObj.isMp4) ? 10 : 1)) * SizeRate) };
+            defaultSize = { w: ((Number(wh[0]) / (!!(dataObj.isMp4) ? 10 : 1)) * SizeRate), h: ((Number(wh[1]) / (!!(dataObj.isMp4) ? 10 : 1)) * SizeRate) };
 
             if (dataObj.path) {
 
