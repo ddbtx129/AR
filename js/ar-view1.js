@@ -1,11 +1,11 @@
 var webArViewer = webArViewer || {};
 
-var defaultAngle = -5;
+var defaultAngle = 0;
 var defaultPos = { x: 0, y: 0, z: 0 };
 var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
-
+var objAngle = -5;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
@@ -174,7 +174,7 @@ var SizeRate = 10;
             dataObj.isTurn = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList[1]) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
 
             var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '10,10')).split(',');
 
@@ -357,7 +357,7 @@ var SizeRate = 10;
 
             if (!val.isGif) {
 
-                main.setAttribute('rotation', '-5 0 0');
+                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
 
                 if (!val.isGltf) {
 
@@ -396,7 +396,7 @@ var SizeRate = 10;
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
-                //logo.setAttribute('gltf-model', '#logosource');
+                logo.setAttribute('gltf-model', '#logosource');
 
                 AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
                     primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
@@ -411,14 +411,25 @@ var SizeRate = 10;
                     logo.setAttribute('radius', logoscale);
                     if (val.isTurn == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                            property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
+                            property: 'rotation',
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            dur: 3000,
+                            loop: true,
+                            easing: 'linear'
                         });
                     } else if (val.isTurn == 2) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation', {
-                            property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                            property: 'rotation',
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            dur: 3000,
+                            loop: true,
+                            easing: 'easeOutElastic',
+                            elasticity: 300
                         });
                     } else {
-                        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
                 }
 
@@ -448,10 +459,10 @@ var SizeRate = 10;
 
             bAngle.classList.add('current');
 
-            var arDefRotation = '0 0 0';
-            var arPicRotation = '-5 0 0';
+            //var arDefRotation = '0 0 0';
+            //var arPicRotation = '-5 0 0';
             var arGifRotation = '-30 0 0';
-            var arVRotation = '-90 0 0'
+            //var arVRotation = '-90 0 0'
 
             var prevPageY;
             var zoomRateH = 2;
@@ -465,7 +476,7 @@ var SizeRate = 10;
                 wrapPos.z -= 10;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arDefRotation));
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
 
                 webArViewer.scene.appendChild(self.wrap);
                 if (val.isLogo) {
@@ -507,21 +518,32 @@ var SizeRate = 10;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        var arRotation = arPicRotation;
+                        //var arRotation = arPicRotation;
                         wrapPos = self.positionVec3('main');
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
                             if (val.isTurn == 1) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'linear'
+                                    property: 'rotation',
+                                    from: String(objAngle) + ' 0 0',
+                                    to: String(objAngle) + ' 360 0',
+                                    dur: 3000,
+                                    loop: true,
+                                    easing: 'linear'
                                 });
                             } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation', from: '0 0 0', to: '0 360 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                                    property: 'rotation',
+                                    from: String(objAngle) + ' 0 0',
+                                    to: String(objAngle) + ' 360 0',
+                                    dur: 3000,
+                                    loop: true,
+                                    easing: 'easeOutElastic',
+                                    elasticity: 300
                                 });
                             } else {
-                                self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arDefRotation));
+                                self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                             } 
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
                         }
@@ -532,21 +554,32 @@ var SizeRate = 10;
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        var arRotation = arVRotation;
+                        //var arRotation = arVRotation;
                         wrapPos = self.positionVec3('main');
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         if (!!(val.isLogo)) {
                             if (val.isTurn == 1) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation', from: '-90 360 0', to: '-90 0 0', dur: 3000, loop: true, easing: 'linear'
+                                    property: 'rotation',
+                                    from: String(objAngle - 90) + ' 360 0',
+                                    to: String(objAngle - 90) + ' 0 0',
+                                    dur: 3000,
+                                    loop: true,
+                                    easing: 'linear'
                                 });
                             } else if (val.isTurn == 2) {
                                 AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation', from: '-90 360 0', to: '-90 0 0', dur: 3000, loop: true, easing: 'easeOutElastic', elasticity: 300
+                                    property: 'rotation',
+                                    from: String(objAngle - 90) + ' 360 0',
+                                    to: String(objAngle - 90) + ' 0 0',
+                                    dur: 3000,
+                                    loop: true,
+                                    easing: 'easeOutElastic',
+                                    elasticity: 300
                                 });
                             } else {
-                                self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(arRotation));
+                                self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
                             }
                             self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
                         }
@@ -750,10 +783,9 @@ var SizeRate = 10;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (defaultAngle != -5 && !(ar.arg.pv)) {
+    if (defaultAngle != 0 && !(ar.arg.pv)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
-        // イベントを発生させる
         bParalle.dispatchEvent(evant);
     }
 
