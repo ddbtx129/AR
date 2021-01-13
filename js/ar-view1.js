@@ -392,7 +392,7 @@ var SizeRate = 10;
                 //var logoscale = ((val.isPV) ? 8 : 25);
                 //var logoscale = 8;
                 var logoscale = { w: 8, h: 8, d: 2 };
-                var rete = (!val.isMp4) ? 1 : 3;
+                var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
