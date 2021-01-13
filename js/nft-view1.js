@@ -513,12 +513,12 @@ var SizeRate = 20;
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
 
-            mWrap.appendChild(self.wrap);
-
             if (val.isLogo) {
                 self.arData.logo && mWrap.appendChild(self.arData.logo);
                 //self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
             }
+
+            mWrap.appendChild(self.wrap);
 
             webArViewer.scene.appendChild(mWrap);
             self.mWrap = mWrap;
