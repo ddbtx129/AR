@@ -557,8 +557,7 @@ var SizeRate = 10;
                                 //from: logoscale.w * rete + ' ' + logoscale.h * rete + ' ' + logoscale.d * rete,
                                 //to: logoscale.w * rete * 0.94 + ' ' + logoscale.h * rete * 1.06 + ' '  + logoscale.d * rete * 1
                                 from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
-                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
-
+                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                             });
                         } else {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
@@ -835,7 +834,7 @@ var SizeRate = 10;
 
             switch (anime){
                 case 3:
-                    posy = 3 / 2;
+                    posy = -(3 / 2);
                     break;
                 default:
                     posy = 0;
