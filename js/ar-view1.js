@@ -451,6 +451,10 @@ var SizeRate = 10;
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
+            if (val.isLogo) {
+                self.arData.logo &&  self.wrap.appendChild(self.arData.logo);
+            }
+
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
             }
@@ -480,39 +484,40 @@ var SizeRate = 10;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
 
-                self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+                if(!!val.isLogo) {
 
-                if (!!val.isAnime) {
-                    self.arData.logo.setAttribute('radius', 8);
-                    if (val.isAnime == 1) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'linear'
-                        });
-                    } else if (val.isAnime == 2) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'easeOutElastic',
-                            elasticity: 300
-                        });
-                    } else {
-                        self.arData.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+
+                    if (!!val.isAnime) {
+                        self.arData.logo.setAttribute('radius', 8);
+                        if (val.isAnime == 1) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                dur: 3000,
+                                loop: true,
+                                easing: 'linear'
+                            });
+                        } else if (val.isAnime == 2) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                dur: 3000,
+                                loop: true,
+                                easing: 'easeOutElastic',
+                                elasticity: 300
+                            });
+                        } else {
+                            self.arData.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        }
                     }
+
+                    //self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
                 }
 
                 webArViewer.scene.appendChild(self.wrap);
-
-                if (val.isLogo) {
-                    self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
-                }
 
             } else {
 
@@ -537,9 +542,9 @@ var SizeRate = 10;
 
                 mWrap.appendChild(self.wrap);
 
-                if (val.isLogo) {
-                    self.arData.logo && mWrap.appendChild(self.arData.logo);
-                }
+                //if (val.isLogo) {
+                //    //self.arData.logo && mWrap.appendChild(self.arData.logo);
+                //}
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
@@ -552,31 +557,31 @@ var SizeRate = 10;
                         wrapPos = self.positionVec3('main');
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                        if (!!(val.isLogo)) {
-                            if (val.isAnime == 1) {
-                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                                    property: 'rotation',
-                                    from: String(objAngle) + ' 0 0',
-                                    to: String(objAngle) + ' 360 0',
-                                    dur: 3000,
-                                    loop: true,
-                                    easing: 'linear'
-                                });
-                            } else if (val.isAnime == 2) {
-                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                                    property: 'rotation',
-                                    from: String(objAngle) + ' 0 0',
-                                    to: String(objAngle) + ' 360 0',
-                                    dur: 3000,
-                                    loop: true,
-                                    easing: 'easeOutElastic',
-                                    elasticity: 300
-                                });
-                            } else if (val.isAnime == 0) {
-                                self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                            } 
-                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
-                        }
+                        //if (!!(val.isLogo)) {
+                        //    if (val.isAnime == 1) {
+                        //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                        //            property: 'rotation',
+                        //            from: String(objAngle) + ' 0 0',
+                        //            to: String(objAngle) + ' 360 0',
+                        //            dur: 3000,
+                        //            loop: true,
+                        //            easing: 'linear'
+                        //        });
+                        //    } else if (val.isAnime == 2) {
+                        //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                        //            property: 'rotation',
+                        //            from: String(objAngle) + ' 0 0',
+                        //            to: String(objAngle) + ' 360 0',
+                        //            dur: 3000,
+                        //            loop: true,
+                        //            easing: 'easeOutElastic',
+                        //            elasticity: 300
+                        //        });
+                        //    } else if (val.isAnime == 0) {
+                        //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        //    } 
+                        //    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+                        //}
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
                     }
@@ -587,31 +592,31 @@ var SizeRate = 10;
                         wrapPos = self.positionVec3('main');
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                        if (!!(val.isLogo)) {
-                            if (val.isAnime == 1) {
-                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation',
-                                    from: String(objAngle - 90) + ' 0 0',
-                                    to: String(objAngle - 90) + ' 360 0',
-                                    dur: 3000,
-                                    loop: true,
-                                    easing: 'linear'
-                                });
-                            } else if (val.isAnime == 2) {
-                                AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
-                                    property: 'rotation',
-                                    from: String(objAngle - 90) + ' 0 0',
-                                    to: String(objAngle - 90) + ' 360 0',
-                                    dur: 3000,
-                                    loop: true,
-                                    easing: 'easeOutElastic',
-                                    elasticity: 300
-                                });
-                            } else if (val.isAnime == 0) {
-                                self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
-                            }
-                            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
-                        }
+                        //if (!!(val.isLogo)) {
+                        //    if (val.isAnime == 1) {
+                        //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                        //            property: 'rotation',
+                        //            from: String(objAngle - 90) + ' 0 0',
+                        //            to: String(objAngle - 90) + ' 360 0',
+                        //            dur: 3000,
+                        //            loop: true,
+                        //            easing: 'linear'
+                        //        });
+                        //    } else if (val.isAnime == 2) {
+                        //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation', {
+                        //            property: 'rotation',
+                        //            from: String(objAngle - 90) + ' 0 0',
+                        //            to: String(objAngle - 90) + ' 360 0',
+                        //            dur: 3000,
+                        //            loop: true,
+                        //            easing: 'easeOutElastic',
+                        //            elasticity: 300
+                        //        });
+                        //    } else if (val.isAnime == 0) {
+                        //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
+                        //    }
+                        //    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('p')));
+                        //}
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                     }
@@ -790,15 +795,17 @@ var SizeRate = 10;
             //    }
             //}
 
-            if (self.arData.isPV) {
-                return { x: 0, y: ((self.arData.isMp4) ?  h1_2 - 0.5 : 0), z: -(h1_2) };
-            } else {
-                if (angle == 'a') {
-                    return { x: 0, y: -(h1_2), z: 0 };
-                } else {
-                    return { x: 0, y: 0, z: (h1_2) };
-                }
-            }
+            //if (self.arData.isPV) {
+            //    return { x: 0, y: ((self.arData.isMp4) ?  h1_2 - 0.5 : 0), z: -(h1_2) };
+            //} else {
+            //    if (angle == 'a') {
+            //        return { x: 0, y: -(h1_2), z: 0 };
+            //    } else {
+            //        return { x: 0, y: 0, z: (h1_2) };
+            //    }
+            //}
+
+            return { x: 0, y: -(h1_2) - 0.2, z: 0 };
         },
 
         positionVec3: function (type) {
