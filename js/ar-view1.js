@@ -409,15 +409,6 @@ var SizeRate = 10;
                 //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
                 //});
 
-                // 弾む
-                //AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
-                //    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos + ' ' + (logopos + logoscale / 3) + ' ' + logopos
-                //});
-
-                //AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
-                //    property: 'scale', dir: 'alternate', dur: 400, easing: 'easeOutQuad', loop: true, to: '0.94 1.06 1'
-                //});
-
                 if (!!val.isAnime) {
                     logo.setAttribute('radius', logoscale);
                     if (val.isAnime == 1) {
@@ -443,6 +434,7 @@ var SizeRate = 10;
                         });
                     } else if(val.isAnime == 3){
                         // 弾む
+                        window.alert(0);
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
                             property: 'position',
                             dir: 'alternate',
@@ -452,15 +444,17 @@ var SizeRate = 10;
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 3) + ' ' + logopos.z
                         });
-
+                        window.alert(1);
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
                             property: 'scale',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
+                            from: logoscale.w * rete + ' ' + logoscale.h * rete + ' ' + logoscale.d * rete,
                             to: logoscale.w * rete * 0.94 + ' ' + logoscale.h * rete * 1.06 + ' '  + logoscale.d * rete * 1
                         });
+                        window.alert(2);
                     } else {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
