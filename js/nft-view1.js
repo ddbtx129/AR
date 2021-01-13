@@ -44,6 +44,7 @@ var SizeRate = 20;
                 };
 
                 this.setScene();
+
             }
 
             //this.setSwitcher();
@@ -175,7 +176,7 @@ var SizeRate = 20;
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-
+                window.alert(dataObj.path);
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
                     var img = document.createElement('img');
@@ -235,6 +236,7 @@ var SizeRate = 20;
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'logosource');
                     model.setAttribute('src', dataObj.logopath);
+                    window.alert(dataObj.logopath);
 
                     assets.appendChild(model);
                 }
@@ -458,7 +460,7 @@ var SizeRate = 20;
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
             if (val.isLogo) {
-                self.arData.logo && mWrap.appendChild(self.arData.logo);
+                self.arData.logo && wrap.appendChild(self.arData.logo);
             }
 
             if (!val.isMp4) {
@@ -513,6 +515,7 @@ var SizeRate = 20;
             } else if ((self.arg.markerList)) {
                 mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
             }
+            window.alert(rootPath + mk);
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
 
