@@ -451,6 +451,10 @@ var SizeRate = 10;
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
+            if (val.isLogo) {
+                self.arData.logo &&  self.wrap.appendChild(self.arData.logo);
+            }
+
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
             }
@@ -537,9 +541,9 @@ var SizeRate = 10;
 
                 mWrap.appendChild(self.wrap);
 
-                if (val.isLogo) {
-                    self.arData.logo && mWrap.appendChild(self.arData.logo);
-                }
+                //if (val.isLogo) {
+                //    //self.arData.logo && mWrap.appendChild(self.arData.logo);
+                //}
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
