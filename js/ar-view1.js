@@ -432,7 +432,7 @@ var SizeRate = 10;
                             easing: 'easeOutElastic',
                             elasticity: 300
                         });
-                    } else if(val.isAnime == 3){
+                    } else if(val.isAnime == 3) {
                         // 弾む
                         window.alert(0);
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
@@ -507,7 +507,8 @@ var SizeRate = 10;
 
                 if(!!val.isLogo) {
 
-                    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+                    var logopos = self.positionVec3Logo('a');
+                    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
                         self.arData.logo.setAttribute('radius', 8);
@@ -530,6 +531,31 @@ var SizeRate = 10;
                                 easing: 'easeOutElastic',
                                 elasticity: 300
                             });
+                        } else if(val.isAnime == 3) {
+                            var logoscale = { w: 8, h: 8, d: 2 };
+                            var rete = (!val.isMp4) ? 1 : 2;
+                            // 弾む
+                            window.alert(0);
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
+                                property: 'position',
+                                dir: 'alternate',
+                                dur: 400, 
+                                easing: 'easeInOutQuart',
+                                loop: true,
+                                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 3) + ' ' + logopos.z
+                            });
+                            window.alert(1);
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
+                                property: 'scale',
+                                dir: 'alternate',
+                                dur: 400,
+                                easing: 'easeOutQuad',
+                                loop: true,
+                                from: logoscale.w * rete + ' ' + logoscale.h * rete + ' ' + logoscale.d * rete,
+                                to: logoscale.w * rete * 0.94 + ' ' + logoscale.h * rete * 1.06 + ' '  + logoscale.d * rete * 1
+                            });
+                            window.alert(2);
                         } else {
                             self.arData.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         }
