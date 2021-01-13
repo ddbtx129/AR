@@ -387,7 +387,7 @@ var SizeRate = 10;
 
                 var logo = document.createElement('a-entity');
 
-                var logopos = self.positionVec3Logo('a');
+                var logopos = self.positionVec3Logo(Number(val.isAnime));
                 //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
                 //var logoscale = ((val.isPV) ? 8 : 25);
                 //var logoscale = 8;
@@ -435,7 +435,6 @@ var SizeRate = 10;
                     } else if(val.isAnime == 3) {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 5) + ' 0 0'));
                         // 弾む
-                        window.alert(0);
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
                             property: 'position',
                             dir: 'alternate',
@@ -458,7 +457,6 @@ var SizeRate = 10;
                             from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
                             to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                         });
-                        window.alert(2);
                     } else {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
@@ -511,7 +509,7 @@ var SizeRate = 10;
 
                 if(!!val.isLogo) {
 
-                    var logopos = self.positionVec3Logo('a');
+                    var logopos = self.positionVec3Logo(Number(val.isAnime));
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
@@ -540,7 +538,6 @@ var SizeRate = 10;
                             var logoscale = { w: 8, h: 8, d: 2 };
                             var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
-                            window.alert(0);
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
                                 property: 'position',
                                 dir: 'alternate',
@@ -551,7 +548,6 @@ var SizeRate = 10;
                                 //to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 3) + ' ' + logopos.z
                                 to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                             });
-                            window.alert(1);
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                                 property: 'scale',
                                 dir: 'alternate',
@@ -564,7 +560,6 @@ var SizeRate = 10;
                             to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
 
                             });
-                            window.alert(2);
                         } else {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         }
@@ -636,7 +631,7 @@ var SizeRate = 10;
                         //    } else if (val.isAnime == 0) {
                         //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         //    } 
-                        //    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+                        //    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo(0)));
                         //}
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
@@ -833,35 +828,25 @@ var SizeRate = 10;
             }
         },
 
-        positionVec3Logo: function (angle) {
+        positionVec3Logo: function (anime) {
             var self = this;
             var h1_2 = (self.arData.size.h / 2);
+            var posy = 0;
+
+            switch (anime){
+                case 3:
+                    posy = 3 / 2;
+                    break;
+                default:
+                    posy = 0;
+                    break;
+            }
 
             if (self.arData.size.w > self.arData.size.h) {
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            //if (self.arData.isPV) {
-            //    return { x: 0, y: -0.5, z: -2.5 };
-            //} else {
-            //    if (angle == 'a') {
-            //        return { x: 0, y: -2.5, z: 0 };
-            //    } else {
-            //        return { x: 0, y: 0, z: 2 };
-            //    }
-            //}
-
-            //if (self.arData.isPV) {
-            //    return { x: 0, y: ((self.arData.isMp4) ?  h1_2 - 0.5 : 0), z: -(h1_2) };
-            //} else {
-            //    if (angle == 'a') {
-            //        return { x: 0, y: -(h1_2), z: 0 };
-            //    } else {
-            //        return { x: 0, y: 0, z: (h1_2) };
-            //    }
-            //}
-
-            return { x: 0, y: -(h1_2) + 0.75 , z: 0 };
+            return { x: 0, y: -(h1_2) + 0.75 + posy, z: 0 };
         },
 
         positionVec3: function (type) {
