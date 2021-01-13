@@ -391,7 +391,7 @@ var SizeRate = 10;
                 //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
                 //var logoscale = ((val.isPV) ? 8 : 25);
                 //var logoscale = 8;
-                var logoscale = { w: 8, h: 4, d: 2 };
+                var logoscale = { w: 6, h: 6, d: 2 };
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
@@ -809,7 +809,7 @@ var SizeRate = 10;
             //    }
             //}
 
-            return { x: 0, y: -(h1_2) - 0.2, z: 0 };
+            return { x: 0, y: -(h1_2), z: 0 };
         },
 
         positionVec3: function (type) {
