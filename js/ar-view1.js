@@ -480,37 +480,37 @@ var SizeRate = 10;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
 
-                self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
-
-                if (!!val.isAnime) {
-                    self.arData.logo.setAttribute('radius', 8);
-                    if (val.isAnime == 1) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'linear'
-                        });
-                    } else if (val.isAnime == 2) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'easeOutElastic',
-                            elasticity: 300
-                        });
-                    } else {
-                        self.arData.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    }
-                }
-
                 webArViewer.scene.appendChild(self.wrap);
 
-                if (val.isLogo) {
+                if(!!val.isLogo){
+                    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
+
+                    if (!!val.isAnime) {
+                        self.arData.logo.setAttribute('radius', 8);
+                        if (val.isAnime == 1) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                dur: 3000,
+                                loop: true,
+                                easing: 'linear'
+                            });
+                        } else if (val.isAnime == 2) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                dur: 3000,
+                                loop: true,
+                                easing: 'easeOutElastic',
+                                elasticity: 300
+                            });
+                        } else {
+                            self.arData.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        }
+                    }
+
                     self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
                 }
 
