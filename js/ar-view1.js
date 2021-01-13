@@ -390,13 +390,15 @@ var SizeRate = 10;
                 var logopos = self.positionVec3Logo('a');
                 //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
                 //var logoscale = ((val.isPV) ? 8 : 25);
-                var logoscale = 8;
+                //var logoscale = 8;
+                var logoscale = { w: 8, h: 4, d: 2 };
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(logoscale) + ' ' + String(logoscale) + ' ' + String(logoscale)));
+                logo.setAttribute('scale', (String(logoscale.w) + ' ' + String(logoscale.h) + ' ' + String(logoscale.d)));
                 logo.setAttribute('gltf-model', '#logosource');
 
+                // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
                 //    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
                 //});
@@ -406,6 +408,7 @@ var SizeRate = 10;
                 //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
                 //});
 
+                // 弾む
                 //AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
                 //    property: 'position', dir: 'alternate', dur: 400, easing: 'easeInOutQuart', loop: true, to: logopos + ' ' + (logopos + logoscale / 3) + ' ' + logopos
                 //});
