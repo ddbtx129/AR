@@ -379,17 +379,15 @@ var SizeRate = 20;
             if (val.isLogo) {
 
                 var logo = document.createElement('a-entity');
-                window.alert(0);
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = { w: 8, h: 8, d: 2 };
+                var logoscale = { w: 40, h: 40, d: 20 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
-                window.alert(1);
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
@@ -447,7 +445,6 @@ var SizeRate = 20;
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
                 }
-                window.alert(2);
 
                 self.arData.logo = logo;
             }
@@ -513,7 +510,6 @@ var SizeRate = 20;
             } else if ((self.arg.markerList)) {
                 mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
             }
-            window.alert(rootPath + mk);
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
 
@@ -726,7 +722,8 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            return { x: 0, y: -(h1_2) + 7.5 + posy, z: 0 };
+            //return { x: 0, y: -(h1_2) + 7.5 + posy, z: 0 };
+            return { x: 0, y: 0, z: 0 };
         },
 
         positionVec3: function (type) {
