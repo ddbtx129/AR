@@ -176,7 +176,7 @@ var SizeRate = 20;
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                window.alert(dataObj.path);
+
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
                     var img = document.createElement('img');
@@ -236,7 +236,6 @@ var SizeRate = 20;
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'logosource');
                     model.setAttribute('src', dataObj.logopath);
-                    window.alert(dataObj.logopath);
 
                     assets.appendChild(model);
                 }
@@ -380,6 +379,7 @@ var SizeRate = 20;
             if (val.isLogo) {
 
                 var logo = document.createElement('a-entity');
+                window.alert(0);
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 var logoscale = { w: 8, h: 8, d: 2 };
@@ -389,6 +389,7 @@ var SizeRate = 20;
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
+                window.alert(1);
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
@@ -446,6 +447,7 @@ var SizeRate = 20;
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
                 }
+                window.alert(2);
 
                 self.arData.logo = logo;
             }
@@ -458,10 +460,6 @@ var SizeRate = 20;
 
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
-
-            if (val.isLogo) {
-                self.arData.logo && wrap.appendChild(self.arData.logo);
-            }
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -521,6 +519,9 @@ var SizeRate = 20;
 
             mWrap.appendChild(self.wrap);
 
+            if (val.isLogo) {
+                self.arData.logo && mWrap.appendChild(self.arData.logo);
+            }
 
             webArViewer.scene.appendChild(mWrap);
             self.mWrap = mWrap;

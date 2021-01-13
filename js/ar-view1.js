@@ -399,7 +399,7 @@ var SizeRate = 10;
                 //});
 
                 if (!!val.isAnime) {
-                    logo.setAttribute('radius', logoscale);
+                    logo.setAttribute('radius', (logoscale.w / 2));
                     if (val.isAnime == 1) {
                         // 回転
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
@@ -499,7 +499,7 @@ var SizeRate = 10;
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
-                        self.arData.logo.setAttribute('radius', 8);
+                        self.arData.logo.setAttribute('radius', (8 / 2));
                         if (val.isAnime == 1) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
