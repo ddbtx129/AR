@@ -389,7 +389,8 @@ var SizeRate = 10;
 
                 var logopos = self.positionVec3Logo('a');
                 //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
-                var logoscale = ((val.isPV) ? 8 : 25);
+                //var logoscale = ((val.isPV) ? 8 : 25);
+                var logoscale = 8;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
