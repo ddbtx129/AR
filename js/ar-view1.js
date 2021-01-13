@@ -484,9 +484,8 @@ var SizeRate = 10;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
 
-                webArViewer.scene.appendChild(self.wrap);
 
-                if(!!val.isLogo){
+                if(!!val.isLogo) {
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3Logo('a')));
 
                     if (!!val.isAnime) {
@@ -515,8 +514,10 @@ var SizeRate = 10;
                         }
                     }
 
-                    self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
+                    //self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
                 }
+
+                webArViewer.scene.appendChild(self.wrap);
 
             } else {
 
