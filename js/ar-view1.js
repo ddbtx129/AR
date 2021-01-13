@@ -391,11 +391,12 @@ var SizeRate = 10;
                 //var logoscale = (!val.isMp4) ? ((val.isPV) ? 8 : 25) : ((val.isPV) ? 16 : 50)
                 //var logoscale = ((val.isPV) ? 8 : 25);
                 //var logoscale = 8;
-                var logoscale = { w: 6, h: 6, d: 2 };
+                var logoscale = { w: 8, h: 8, d: 2 };
+                var rete = (!val.isMp4) ? 1 : 3;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(logoscale.w) + ' ' + String(logoscale.h) + ' ' + String(logoscale.d)));
+                logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 // 反射
