@@ -516,8 +516,8 @@ var SizeRate = 20;
             mWrap.appendChild(self.wrap);
 
             if (val.isLogo) {
-                //self.arData.logo && mWrap.appendChild(self.arData.logo);
-                self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
+                self.arData.logo && mWrap.appendChild(self.arData.logo);
+                //self.arData.logo && webArViewer.scene.appendChild(self.arData.logo);
             }
 
             webArViewer.scene.appendChild(mWrap);
