@@ -809,7 +809,7 @@ var SizeRate = 10;
             //    }
             //}
 
-            return { x: 0, y: -(h1_2), z: 0 };
+            return { x: 0, y: -(h1_2) + 0.75 , z: 0 };
         },
 
         positionVec3: function (type) {
