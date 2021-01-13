@@ -421,6 +421,7 @@ var SizeRate = 10;
                 if (!!val.isAnime) {
                     logo.setAttribute('radius', logoscale);
                     if (val.isAnime == 1) {
+                        // 回転
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
@@ -430,6 +431,7 @@ var SizeRate = 10;
                             easing: 'linear'
                         });
                     } else if (val.isAnime == 2) {
+                        // 回転(弾性)
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
@@ -438,6 +440,26 @@ var SizeRate = 10;
                             loop: true,
                             easing: 'easeOutElastic',
                             elasticity: 300
+                        });
+                    } else if(val.isAnime == 3){
+                        // 弾む
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
+                            property: 'position',
+                            dir: 'alternate',
+                            dur: 400, 
+                            easing: 'easeInOutQuart',
+                            loop: true,
+                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 3) + ' ' + logopos.z
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
+                            property: 'scale',
+                            dir: 'alternate',
+                            dur: 400,
+                            easing: 'easeOutQuad',
+                            loop: true,
+                            to: logoscale.w * rete * 0.94 + ' ' + logoscale.h * rete * 1.06 + ' '  + logoscale.d * rete * 1
                         });
                     } else {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
