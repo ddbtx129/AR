@@ -536,6 +536,7 @@ var SizeRate = 10;
                                 elasticity: 300
                             });
                         } else if(val.isAnime == 3) {
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                             var logoscale = { w: 8, h: 8, d: 2 };
                             var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
@@ -547,7 +548,8 @@ var SizeRate = 10;
                                 easing: 'easeInOutQuart',
                                 loop: true,
                                 from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 3) + ' ' + logopos.z
+                                //to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 3) + ' ' + logopos.z
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                             });
                             window.alert(1);
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
@@ -556,8 +558,11 @@ var SizeRate = 10;
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: true,
-                                from: logoscale.w * rete + ' ' + logoscale.h * rete + ' ' + logoscale.d * rete,
-                                to: logoscale.w * rete * 0.94 + ' ' + logoscale.h * rete * 1.06 + ' '  + logoscale.d * rete * 1
+                                //from: logoscale.w * rete + ' ' + logoscale.h * rete + ' ' + logoscale.d * rete,
+                                //to: logoscale.w * rete * 0.94 + ' ' + logoscale.h * rete * 1.06 + ' '  + logoscale.d * rete * 1
+                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
+                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
+
                             });
                             window.alert(2);
                         } else {
