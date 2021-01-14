@@ -381,7 +381,8 @@ var SizeRate = 20;
 
             if (val.isLogo) {
 
-                var logo = document.createElement('a-entity');
+                //var logo = document.createElement('a-entity');
+                var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 var logoscale = { w: 8, h: 8, d: 2 };
@@ -390,8 +391,12 @@ var SizeRate = 20;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
-                logo.setAttribute('gltf-model', '#logosource');
+                //logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
+                //logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
+                logo.setAttribute('width', AFRAME.utils.coordinates.stringify(logoscale.w));
+                logo.setAttribute('height', AFRAME.utils.coordinates.stringify(logoscale.h));
+                //logo.setAttribute('gltf-model', '#logosource');
+                logo.setAttribute('src', '#logosource');
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
