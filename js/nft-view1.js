@@ -385,7 +385,7 @@ var SizeRate = 20;
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 //var logoscale = { w: 8, h: 8, d: 2 };
-                var logoscale = { w: 500, h: 500, d: 200 };
+                var logoscale = { w: 256, h: 256, d: 128 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
@@ -729,9 +729,8 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            //return { x: 0, y: -(h1_2) + 7.5 + posy, z: 0 };
-            //return { x: 0, y: 0, z: 0 };
-            return { x: 0, y: h1_2, z: 0 };
+            return { x: 0, y: -(h1_2) + 7.5 + posy, z: 0 };
+            //return { x: 0, y: h1_2, z: 0 };
         },
 
         positionVec3: function (type) {
