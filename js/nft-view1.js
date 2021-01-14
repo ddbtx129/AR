@@ -389,7 +389,7 @@ var SizeRate = 20;
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
                 //logo.setAttribute('gltf-model', '#logosource');
-                logo.setAttribute('gltf-model', self.arData, logopath);
+                logo.setAttribute('gltf-model', self.arData.logopath);
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
