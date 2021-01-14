@@ -232,12 +232,12 @@ var SizeRate = 20;
 
                     dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
 
-                    //var model = document.createElement('a-asset-item');
-                    //model.setAttribute('crossorigin', 'anonymous');
-                    //model.setAttribute('id', 'logosource');
-                    //model.setAttribute('src', dataObj.logopath);
+                    var model = document.createElement('a-asset-item');
+                    model.setAttribute('crossorigin', 'anonymous');
+                    model.setAttribute('id', 'logosource');
+                    model.setAttribute('src', dataObj.logopath);
 
-                    //assets.appendChild(model);
+                    assets.appendChild(model);
                 }
             }
 
@@ -381,15 +381,14 @@ var SizeRate = 20;
                 var logo = document.createElement('a-entity');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                //var logoscale = { w: 8, h: 8, d: 2 };
-                var logoscale = { w: 10, h: 10, d: 10 };
+                var logoscale = { w: 8, h: 8, d: 2 };
+                //var logoscale = { w: 10, h: 10, d: 10 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
-                //logo.setAttribute('gltf-model', '#logosource');
-                logo.setAttribute('gltf-model', self.arData.logopath);
+                logo.setAttribute('gltf-model', '#logosource');
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
@@ -457,8 +456,8 @@ var SizeRate = 20;
             var self = this;
             var val = self.arData;
 
-            //self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
-            //self.arData.main && self.wrap.appendChild(self.arData.main);
+            self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
+            self.arData.main && self.wrap.appendChild(self.arData.main);
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -515,7 +514,8 @@ var SizeRate = 20;
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
             
-            //mWrap.appendChild(self.wrap);
+            mWrap.appendChild(self.wrap);
+
             if (val.isLogo) {
                 self.arData.logo && mWrap.appendChild(self.arData.logo);
             }
@@ -723,8 +723,8 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            //return { x: 0, y: -(h1_2) + 7.5 + posy, z: 0 };
-            return { x: 0, y: 0, z: 0 };
+            return { x: 0, y: -(h1_2) + 7.5 + posy, z: 0 };
+            //return { x: 0, y: 0, z: 0 };
         },
 
         positionVec3: function (type) {
