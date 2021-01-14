@@ -385,7 +385,7 @@ var SizeRate = 20;
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 //var logoscale = { w: 8, h: 8, d: 2 };
-                var logoscale = { w: 10, h: 10, d: 10 };
+                var logoscale = { w: 20, h: 20, d: 10 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
