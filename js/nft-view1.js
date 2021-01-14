@@ -230,12 +230,11 @@ var SizeRate = 20;
 
                 if (dataObj.isLogo) {
 
-                    //dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
-                    dataObj.logopath = rootPath + 'article/pic/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.png';
+                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
+                    //dataObj.logopath = rootPath + 'article/pic/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.png';
 
-                    //var model = document.createElement('a-asset-item');
-
-                    var model = document.createElement('img');
+                    var model = document.createElement('a-asset-item');
+                    //var model = document.createElement('img');
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'logosource');
                     model.setAttribute('src', dataObj.logopath);
@@ -293,7 +292,7 @@ var SizeRate = 20;
             var self = this;
             var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
 
-            self.wrap = document.createElement('a-plane');
+            self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', '4 4 4');
             self.wrap.setAttribute('position', base);
@@ -381,22 +380,21 @@ var SizeRate = 20;
 
             if (val.isLogo) {
 
-                //var logo = document.createElement('a-entity');
-                var logo = document.createElement('a-image');
+                var logo = document.createElement('a-entity');
+                //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = { w: 8, h: 8, d: 2 };
-                //var logoscale = { w: 10, h: 10, d: 10 };
+                //var logoscale = { w: 8, h: 8, d: 2 };
+                var logoscale = { w: 10, h: 10, d: 10 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                //logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
-                //logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
-                logo.setAttribute('width', AFRAME.utils.coordinates.stringify(logoscale.w));
-                logo.setAttribute('height', AFRAME.utils.coordinates.stringify(logoscale.h));
-                //logo.setAttribute('gltf-model', '#logosource');
-                logo.setAttribute('src', '#logosource');
+                logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
+                //logo.setAttribute('width', AFRAME.utils.coordinates.stringify(logoscale.w));
+                //logo.setAttribute('height', AFRAME.utils.coordinates.stringify(logoscale.h));
+                logo.setAttribute('gltf-model', '#logosource');
+                //logo.setAttribute('src', '#logosource');
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
