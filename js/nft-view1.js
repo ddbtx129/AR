@@ -713,7 +713,7 @@ var SizeRate = 20;
 
         positionVec3Logo: function (anime) {
             var self = this;
-            var h1_2 = (self.arData.size.h / 4);
+            var h1_2 = (self.arData.size.h / 3);
             var posy = 0;
 
             switch (anime) {
