@@ -455,8 +455,8 @@ var SizeRate = 20;
             var self = this;
             var val = self.arData;
 
-            self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
-            self.arData.main && self.wrap.appendChild(self.arData.main);
+            //self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
+            //self.arData.main && self.wrap.appendChild(self.arData.main);
 
             if (val.isLogo) {
                 self.arData.logo && self.wrap.appendChild(self.arData.logo);
