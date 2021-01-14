@@ -718,7 +718,7 @@ var SizeRate = 20;
 
             switch (anime) {
                 case 3:
-                    posy = -(30 / 2);
+                    posy = -(60 / 2);
                     break;
                 default:
                     posy = 0;
@@ -729,7 +729,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            return { x: 0, y: -(h1_2) + posy, z: 0 };
+            return { x: 0, y: -(h1_2) + 10 + posy, z: 0 };
         },
 
         positionVec3: function (type) {
