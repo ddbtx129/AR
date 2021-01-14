@@ -230,9 +230,12 @@ var SizeRate = 20;
 
                 if (dataObj.isLogo) {
 
-                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
+                    //dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
+                    dataObj.logopath = rootPath + 'article/pic/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.png';
 
-                    var model = document.createElement('a-asset-item');
+                    //var model = document.createElement('a-asset-item');
+
+                    var model = document.createElement('img');
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('id', 'logosource');
                     model.setAttribute('src', dataObj.logopath);
