@@ -232,12 +232,12 @@ var SizeRate = 20;
 
                     dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
 
-                    var model = document.createElement('a-asset-item');
-                    model.setAttribute('crossorigin', 'anonymous');
-                    model.setAttribute('id', 'logosource');
-                    model.setAttribute('src', dataObj.logopath);
+                    //var model = document.createElement('a-asset-item');
+                    //model.setAttribute('crossorigin', 'anonymous');
+                    //model.setAttribute('id', 'logosource');
+                    //model.setAttribute('src', dataObj.logopath);
 
-                    assets.appendChild(model);
+                    //assets.appendChild(model);
                 }
             }
 
@@ -388,7 +388,8 @@ var SizeRate = 20;
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
-                logo.setAttribute('gltf-model', '#logosource');
+                //logo.setAttribute('gltf-model', '#logosource');
+                logo.setAttribute('gltf-model', self.arData, logopath);
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
