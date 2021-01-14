@@ -729,7 +729,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            return { x: 0, y: -(h1_2) + 3.5 + posy, z: 0 };
+            return { x: 0, y: -(h1_2) + posy, z: 0 };
         },
 
         positionVec3: function (type) {
