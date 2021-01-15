@@ -122,7 +122,7 @@ var SizeRate = 20;
 
             arg.PVList = arg.pv;
 
-            arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString(2));
+            arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString());
 
             self.arg = arg;
         },
@@ -163,6 +163,7 @@ var SizeRate = 20;
 
             dataObj.isPV = !!(self.arg.PVList);
             dataObj.isNFT = !!(self.arg.ARList);
+            dataObj.isMarkerType = Number(self.arg.ARList)); 
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
@@ -553,28 +554,54 @@ var SizeRate = 20;
             var zoomRateH = (defaultSize.h / 10);
 
             var wrapPos = self.positionVec3('main');
+            var mk = '';
 
             // NFTマーカー
             var mWrap = document.createElement('a-nft');
-            mWrap.setAttribute('markerhandler', ''); 
-            mWrap.setAttribute('preset', 'custom');
-            mWrap.setAttribute('type', 'nft');
-            mWrap.setAttribute('id', 'arMarker');
-            mWrap.setAttribute('smooth', 'true');
-            mWrap.setAttribute('smoothCount', '10');
-            mWrap.setAttribute('smoothTolerance', '0.01');
-            mWrap.setAttribute('smoothThreshold', '5');
 
-            var mk = '';
+            if (val.isMarkerType == 1) {
 
-            if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-            } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-            } else if ((self.arg.markerList) && (self.arg.markerList2)) {
-                mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-            } else if ((self.arg.markerList)) {
-                mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+                mWrap.setAttribute('markerhandler', '');
+                mWrap.setAttribute('preset', 'custom');
+                mWrap.setAttribute('type', 'nft');
+                mWrap.setAttribute('id', 'arMarker');
+                mWrap.setAttribute('smooth', 'true');
+                mWrap.setAttribute('smoothCount', '10');
+                mWrap.setAttribute('smoothTolerance', '0.01');
+                mWrap.setAttribute('smoothThreshold', '5');
+                
+                if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                    mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                    mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                } else if ((self.arg.markerList) && (self.arg.markerList2)) {
+                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                } else if ((self.arg.markerList)) {
+                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+                }
+
+            } else {
+
+                mWrap = null;
+
+                // ARマーカー
+                mWrap = document.createElement('a-marker');
+                mWrap.setAttribute('markerhandler', '');
+                mWrap.setAttribute('preset', 'custom');
+                mWrap.setAttribute('type', 'pattern');
+                mWrap.setAttribute('id', 'arMarker');
+
+                mk = 'pattern/p-def.patt';
+
+                if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                    mk = 'pattern/' + self.arg.markerList1 + '/p-' + self.arg.markerList2 + '.patt';
+                } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                    mk = 'pattern/' + self.arg.MkObjList + '/p-' + self.arg.markerList2 + '.patt';
+                } else if ((self.arg.markerList) && (self.arg.markerList2)) {
+                    mk = 'pattern/' + self.arg.markerList + '/p-' + self.arg.markerList2 + '.patt';
+                } else if ((self.arg.markerList)) {
+                    mk = 'pattern/p-' + self.arg.markerList + '.patt';
+                }
             }
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));        
