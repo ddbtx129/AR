@@ -297,6 +297,7 @@ var SizeRate = 20;
                     if (!self.arData.isNFT) {
                         location.replace(location.search + '&pv=1')
                     } else {
+                        window.alert((location.replace('ngt-view1.html', 'ar-view1.html').replace(location.search + '&pv=1')).toString());
                         location.replace('ngt-view1.html', 'ar-view1.html').replace(location.search + '&pv=1');
                     }
                     videostate = 0;
