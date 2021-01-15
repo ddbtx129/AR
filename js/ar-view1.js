@@ -460,18 +460,18 @@ var SizeRate = 10;
                             from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
                             to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                         });
-                    } else {
-                        //logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
-                            property: 'rotation',
-                            dur: 3000, 
-                            easing: 'easeOutElastic', 
-                            elasticity: 300, 
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
-                            startEvents: 'turn'
-                        });
                     }
+                } else {
+                    //logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                    AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                        property: 'rotation',
+                        dur: 3000, 
+                        easing: 'easeOutElastic', 
+                        elasticity: 300, 
+                        from: String(objAngle) + ' 0 0',
+                        to: String(objAngle) + ' 360 0',
+                        startEvents: 'turn'
+                    });
                 }
 
                 self.arData.logo = logo;
@@ -568,18 +568,18 @@ var SizeRate = 10;
                                 from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
                                 to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                             });
-                        } else {
-                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                                property: 'rotation',
-                                dur: 3000, 
-                                easing: 'easeOutElastic', 
-                                elasticity: 300, 
-                                from: String(objAngle) + ' 0 0',
-                                to: String(objAngle) + ' 360 0',
-                                startEvents: 'turn'
-                            });
-                        }
+                        } 
+                    }else {
+                        //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                            property: 'rotation',
+                            dur: 3000, 
+                            easing: 'easeOutElastic', 
+                            elasticity: 300, 
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            startEvents: 'turn'
+                        });
                     }
                 }
 
