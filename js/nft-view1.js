@@ -163,7 +163,7 @@ var SizeRate = 20;
 
             dataObj.isPV = !!(self.arg.PVList);
             dataObj.isNFT = !!(self.arg.ARList);
-            dataObj.isMarkerType = Number(self.arg.ARList)); 
+            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1; 
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
