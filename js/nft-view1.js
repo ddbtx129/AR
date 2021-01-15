@@ -165,10 +165,6 @@ var SizeRate = 20;
             dataObj.isNFT = !!(self.arg.ARList);
             dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1; 
 
-            if (dataObj.isMarkerType != 1) {
-                document.getElementById("loader").style.display = 'none';
-            }
-
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
@@ -830,6 +826,10 @@ var SizeRate = 20;
 
                     document.getElementById("player").style.display = 'none';
                 }
+            }
+
+            if (dataObj.isMarkerType != 1) {
+                document.getElementById("loader").style.display = 'none';
             }
         },
 
