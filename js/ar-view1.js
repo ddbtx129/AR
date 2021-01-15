@@ -569,7 +569,7 @@ var SizeRate = 10;
                                 to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                             });
                         } 
-                    }else {
+                    } else {
                         //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                             property: 'rotation',
@@ -578,7 +578,7 @@ var SizeRate = 10;
                             elasticity: 300, 
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
-                            startEvents: 'turn'
+                            startEvents: 'turn0'
                         });
                     }
                 }
@@ -746,7 +746,7 @@ var SizeRate = 10;
                 
                 webArViewer.scene.addEventListener('click', function(e) {
                     if (val.path) {
-                        self.wrap.emit('turn1');
+                        self.wrap.emit('turn0');
                     }
                 }); 
 
