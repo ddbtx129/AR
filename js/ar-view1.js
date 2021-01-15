@@ -287,11 +287,7 @@ var SizeRate = 10;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    if (!self.arData.isNFT) {
-                        location.replace(location.search.replace('&pv=1', ''));
-                    } else {
-                        location.replace(location.search.replace('ar-view1.html', 'nft-view1.html').replace('&pv=1', ''));
-                    }
+                    location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
                     this.setDiplayBtn(0);
                 }
@@ -299,11 +295,7 @@ var SizeRate = 10;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    if (!self.arData.isNFT) {
-                        location.replace(location.search + '&pv=1');
-                    } else {
-                        location.replace(location.search + '&pv=1')
-                    }
+                    location.replace(location.search + '&pv=1')
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
