@@ -296,7 +296,7 @@ var SizeRate = 20;
                 if (!this.classList.contains('current')) {
                     if (self.arData.isNFT) {
                         var urlParam = location.search.substring(1);
-                        rootPath + 'ar-view1.html' + urlParam + '&pv=1';
+                        location.href = rootPath + 'ar-view1.html' + urlParam + '&pv=1';
                     }
                     //location.replace(location.search + '&pv=1')
                     videostate = 0;

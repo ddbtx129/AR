@@ -287,7 +287,13 @@ var SizeRate = 10;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search.replace('&pv=1', ''));
+                    
+                    if (self.arData.isNFT) {
+                        var urlParam = location.search.substring(1);
+                        location.href = rootPath + 'ar-view1.html' + urlParam.replace('&pv=1', '');
+                    } else {
+                        location.replace(location.search.replace('&pv=1', ''));
+                    }
                     videostate = 0;
                     this.setDiplayBtn(0);
                 }
