@@ -92,7 +92,7 @@ var SizeRate = 10;
 
             arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10));
             //arg.whList = arg.sizeList.toString();
-            window.alert(arg.sizeList);
+
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
 
             arg.typeList = arg.t;
@@ -168,7 +168,7 @@ var SizeRate = 10;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
-
+            window.alert(SizeSplit(self.arg.sizeList));
             //var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '20,20')).split(',');
             var wh = (String(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? SizeSplit(self.arg.sizeList) : SizeSplit(DefaultSize(self.arg.ar, objecttype))).split(',');
 
