@@ -451,7 +451,6 @@ var SizeRate = 10;
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                         });
-
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
                             property: 'scale',
                             dir: 'alternate',
@@ -460,6 +459,48 @@ var SizeRate = 10;
                             loop: true,
                             from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
                             to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
+                        });
+                    } else if(val.isAnime == 11) {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn1', {
+                            property: 'rotation',
+                            dur: 3000, 
+                            easing: 'linear', 
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            startEvents: 'turn1'
+                        });
+                    } else if(val.isAnime == 12) {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn2', {
+                            property: 'rotation',
+                            dur: 3000, 
+                            easing: 'easeOutElastic', 
+                            elasticity: 300, 
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            startEvents: 'turn2'
+                        });
+                    } else if(val.isAnime == 13) {
+                        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 5) + ' 0 0'));
+                        // 弾む
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos3', {
+                            property: 'position',
+                            dir: 'alternate',
+                            dur: 400, 
+                            easing: 'easeInOutQuart',
+                            loop: false,
+                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z, 
+                            startEvents: 'pos3'
+                        });
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale3', {
+                            property: 'scale',
+                            dir: 'alternate',
+                            dur: 400,
+                            easing: 'easeOutQuad',
+                            loop: false,
+                            from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
+                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1,
+                            startEvents: 'scale3'
                         });
                     }
                 } else {
@@ -528,7 +569,7 @@ var SizeRate = 10;
                     if (!!val.isAnime) {
                         self.arData.logo.setAttribute('radius', (8 / 2));
                         if (val.isAnime == 1) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
                                 from: String(objAngle) + ' 0 0',
                                 to: String(objAngle) + ' 360 0',
@@ -537,7 +578,7 @@ var SizeRate = 10;
                                 easing: 'linear'
                             });
                         } else if (val.isAnime == 2) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
                                 from: String(objAngle) + ' 0 0',
                                 to: String(objAngle) + ' 360 0',
@@ -551,7 +592,7 @@ var SizeRate = 10;
                             var logoscale = { w: 8, h: 8, d: 2 };
                             var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
                                 property: 'position',
                                 dir: 'alternate',
                                 dur: 400, 
@@ -560,7 +601,7 @@ var SizeRate = 10;
                                 from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                                 to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                             });
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                                 property: 'scale',
                                 dir: 'alternate',
                                 dur: 400,
@@ -569,7 +610,51 @@ var SizeRate = 10;
                                 from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
                                 to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                             });
-                        } 
+                        } else if(val.isAnime == 11) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
+                                property: 'rotation',
+                                dur: 3000, 
+                                easing: 'linear', 
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                startEvents: 'turn1'
+                            });
+                        } else if(val.isAnime == 12) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
+                                property: 'rotation',
+                                dur: 3000, 
+                                easing: 'easeOutElastic', 
+                                elasticity: 300, 
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                startEvents: 'turn2'
+                            });
+                        } else if(val.isAnime == 13) {
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                            var logoscale = { w: 8, h: 8, d: 2 };
+                            var rete = (!val.isMp4) ? 1 : 2;
+                            // 弾む
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
+                                property: 'position',
+                                dir: 'alternate',
+                                dur: 400, 
+                                easing: 'easeInOutQuart',
+                                loop: false,
+                                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z, 
+                                startEvents: 'pos3'
+                            });
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
+                                property: 'scale',
+                                dir: 'alternate',
+                                dur: 400,
+                                easing: 'easeOutQuad',
+                                loop: false,
+                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8  + ' ' + logoscale.d * rete,
+                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1,
+                                startEvents: 'scale3'
+                            });
+                        }
                     } else {
                         //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
@@ -756,7 +841,7 @@ var SizeRate = 10;
                 if (val.isAnime == 11) {
                     webArViewer.scene.addEventListener('click', function(e) {
                         if (val.path && val.isAnime == 11) {
-                            self.wrap.emit('turn1');
+                            self.arData.logo.emit('turn1');
                         }
                     });             
                 }
@@ -764,7 +849,7 @@ var SizeRate = 10;
                 if (val.isAnime == 12) {
                     webArViewer.scene.addEventListener('click', function(e) {
                         if (val.path && val.isAnime == 12) {
-                            self.wrap.emit('turn2');
+                            self.arData.logo.emit('turn2');
                         }
                     });  
                 }
@@ -772,122 +857,12 @@ var SizeRate = 10;
                 if (val.isAnime == 13) {
                     webArViewer.scene.addEventListener('click', function(e) {
                         if (val.path && val.isAnime == 13) {
-                            self.wrap.emit('pos3');
-                            self.wrap.emit('scale3');
+                            self.arData.logo.emit('pos3');
+                            self.arData.logo.emit('scale3');
                         }
                     });  
                 }
             }
-
-            //if (!self.arg.xt && !self.arg.xe && !self.tap) {
-            //    return;
-            //} else {
-            //    var touchAt = document.getElementById('touch');
-            //    var touchImg = new Image(54, 40);
-            //    touchImg.src = 'asset/touch.png';
-            //    touchImg.onload = function () {
-            //        touchAt.appendChild(touchImg);
-            //        touchAt.classList.add('attention');
-            //    };
-            //}
-
-            //if (self.arg.xt) {
-            //    webArViewer.scene.addEventListener('click', function(e) {
-            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
-            //            if (self.arData[idx].path && self.arData[idx].isTurn) {
-            //                self.arData[idx].main.emit('turn');
-            //                self.arData[idx].isShadow && self.arData[idx].shadow.emit('turn');
-            //            }
-            //        }
-            //    });
-            //}
-
-            //if (self.arg.xe) {
-            //    webArViewer.scene.addEventListener(self.eventNames.start, function(e) {
-            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
-            //            if (self.arData[idx].path && self.arData[idx].isElastic) {
-            //                self.arData[idx].main.emit('guni');
-            //                self.arData[idx].isShadow && self.arData[idx].shadow.emit('guni');
-            //            }
-            //        }
-            //    });
-
-            //    webArViewer.scene.addEventListener(self.eventNames.end, function(e) {
-            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
-            //            if (self.arData[idx].path && self.arData[idx].isElastic) {
-            //                self.arData[idx].main.emit('guniback');
-            //                self.arData[idx].isShadow && self.arData[idx].shadow.emit('guniback');
-            //            }
-            //        }
-            //    });
-            //}
-
-            //if (self.tap) {
-            //    for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
-
-            //        var val = self.arData[idx];
-
-            //        if (!val.tap) {
-            //            continue;
-            //        }
-
-            //        val.mainTap = document.createElement('a-plane');
-            //        AFRAME.utils.entity.setComponentProperty(val.mainTap, 'material', {
-            //            shader: val.hasMp4 ? 'chromakey' : val.tap.match(/\.gif$/i) ? 'gif' : 'standard', npot: true, src: '#tap' + idx, displacementMap: val.map ? '#map' + idx : null, displacementBias: -0.5,
-            //            side: 'double', transparent: true, alphaTest: 0.1, metalness: val.isReflect ? 0.1 : 0, roughness: val.isReflect ? 0.3 : 0.5, keyColor: val.hasMp4 ? val.keyColor: null
-            //        });
-
-            //        val.mainTap.setAttribute('visible', false);
-            //        webArViewer.scene.appendChild(val.mainTap);
-
-            //        if (val.isShadow) {
-            //            val.shadowTap = document.createElement('a-plane');
-            //            AFRAME.utils.entity.setComponentProperty(val.shadowTap, 'material', {
-            //                shader: val.hasMp4 ? 'chromakey' : val.tap.match(/\.gif$/i) ? 'gif' : 'flat', npot: true, src: '#tap' + idx, transparent: true, alphaTest: 0.1,
-            //                color: 'black', opacity: 0.3, depthTest: false, keyColor: val.hasMp4 ? val.keyColor: null
-            //            });
-
-            //            val.shadowTap.setAttribute('visible', false);
-            //            webArViewer.scene.appendChild(val.shadowTap);
-            //        }
-            //    }
-
-            //    webArViewer.scene.addEventListener('click', function(e) {
-            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
-            //            var val = self.arData[idx];
-
-            //            if (!val.tap) {
-            //                continue;
-            //            }
-
-            //            if (val.tapVisible) {
-            //                val.tapVisible = false;
-            //                val.main.object3DMap.mesh.material = val.mainDefaultMaterial;
-            //                val.isShadow && (val.shadow.object3DMap.mesh.material = val.shadowDefaultMaterial);
-            //                if (val.hasMp4) {
-            //                    val.tapEl.pause();
-            //                }
-            //            } else {
-            //                val.tapVisible = true;
-            //                if (!val.mainDefaultMaterial) {
-            //                    val.mainDefaultMaterial = val.main.object3DMap.mesh.material;
-            //                    val.mainTapMaterial = val.mainTap.object3DMap.mesh.material;
-
-            //                    if (val.isShadow) {
-            //                        val.shadowDefaultMaterial = val.shadow.object3DMap.mesh.material;
-            //                        val.shadowTapMaterial = val.shadowTap.object3DMap.mesh.material;
-            //                    }
-            //                }
-            //                val.main.object3DMap.mesh.material = val.mainTapMaterial;
-            //                val.isShadow && (val.shadow.object3DMap.mesh.material = val.shadowTapMaterial);
-            //                if (val.hasMp4) {
-            //                    val.tapEl.currentTime = 0;
-            //                    val.tapEl.play();
-            //                }
-            //            }
-            //        }
-            //    }, true);
-            //}
         },
 
         setDiplayBtn: function (mode) {
