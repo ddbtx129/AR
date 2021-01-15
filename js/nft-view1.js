@@ -294,12 +294,7 @@ var SizeRate = 20;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    if (!self.arData.isNFT) {
-                        location.replace(location.search + '&pv=1')
-                    } else {
-                        window.alert((location.replace('ngt-view1.html', 'ar-view1.html').replace(location.search + '&pv=1')).toString());
-                        location.replace('ngt-view1.html', 'ar-view1.html').replace(location.search + '&pv=1');
-                    }
+                    location.replace(location.search + '&pv=1')
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
@@ -579,9 +574,11 @@ var SizeRate = 20;
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
             
-            mWrap.appendChild(self.wrap);
+            //mWrap.appendChild(self.wrap);
 
-            webArViewer.scene.appendChild(mWrap);
+            //webArViewer.scene.appendChild(mWrap);
+
+            webArViewer.scene.appendChild(self.wrap);
             self.mWrap = mWrap;
 
             // ↓ rotation 切替
