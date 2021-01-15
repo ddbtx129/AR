@@ -661,7 +661,7 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClockRate = val.arData.isMarkerType == 1 ? 5 : 0.2;
+            var yClockRate = val.isMarkerType == 1 ? 5 : 0.2;
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
@@ -682,7 +682,7 @@ var SizeRate = 20;
             });
             // ↑ 
 
-            var yTouchRate = val.arData.isMarkerType == 1 ? 2 : 0.02;
+            var yTouchRate = val.isMarkerType == 1 ? 2 : 0.02;
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -690,9 +690,9 @@ var SizeRate = 20;
                 bUP.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y += 2;
+                        wrapPos.y += yTouchRate;
                     } else {
-                        wrapPos.z -= 2;
+                        wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -717,9 +717,9 @@ var SizeRate = 20;
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y -= 2;
+                        wrapPos.y -= yTouchRate;
                     } else {
-                        wrapPos.z += 2;
+                        wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -844,7 +844,7 @@ var SizeRate = 20;
 
             switch (anime) {
                 case 3:
-                    posy = -(110 / 2);
+                    posy = -((self.arData.isMarkerType == 1 ? 110 : 3) / 2);
                     break;
                 default:
                     posy = 0;
@@ -854,8 +854,8 @@ var SizeRate = 20;
             if (self.arData.size.w > self.arData.size.h) {
                 h1_2 = (self.arData.size.w / 2);
             }
-
-            return { x: 0, y: -(h1_2) + 10 + posy, z: 0 };
+            
+            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 10 : 0.75) + posy, z: 0 };
         },
 
         positionVec3: function (type) {
