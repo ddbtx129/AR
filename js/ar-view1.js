@@ -170,7 +170,7 @@ var SizeRate = 10;
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
             
-            self.arg.sizeList = (String(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize(self.arg.ar, objecttype));
+            self.arg.sizeList = String((!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize(self.arg.ar, objecttype));
             window.alert(self.arg.sizeList);
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
@@ -290,7 +290,7 @@ var SizeRate = 10;
                 if (!this.classList.contains('current')) {
                     
                     if (self.arData.isNFT) {
-                        var urlParam = location.search.substring(1);
+                        var urlParam = location.search.substring(0);
                         location.href = rootPath + 'ar-view1.html' + urlParam.replace('&pv=1', '');
                     } else {
                         location.replace(location.search.replace('&pv=1', ''));
