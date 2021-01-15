@@ -307,7 +307,8 @@ var SizeRate = 10;
             var self = this;
             var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
 
-            self.wrap = document.createElement('a-plane');
+            //self.wrap = document.createElement('a-plane');
+            self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', '2 2 2');
             self.wrap.setAttribute('position', base);
