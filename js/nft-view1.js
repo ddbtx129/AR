@@ -170,7 +170,7 @@ var SizeRate = 20;
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
             
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize(self.arg.ar, objecttype));
+            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize(0, objecttype));
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
 
