@@ -747,7 +747,7 @@ var SizeRate = 10;
                 
                 webArViewer.scene.addEventListener('click', function(e) {
                     if (val.path) {
-                        self.wrap.emit('turn0');
+                        self.arData.logo.emit('turn0');
                     }
                 }); 
 
