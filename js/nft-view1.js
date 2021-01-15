@@ -788,7 +788,7 @@ var SizeRate = 20;
 
             switch (anime) {
                 case 3:
-                    posy = -(100 / 2);
+                    posy = -(110 / 2);
                     break;
                 default:
                     posy = 0;
