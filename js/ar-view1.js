@@ -66,31 +66,32 @@ var SizeRate = 10;
 
             var dec = 10;
 
-            // サイズ
-            if (!!arg.wh) {
-                switch ((parseInt(arg.wh, 16).toString(10)).length) {
-                    case 2:
-                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        break;
-                    case 4:
-                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-                        break;
-                    case 6:
-                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
-                        break;
-                    case 8:
-                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
-                        break;
-                    case 10:
-                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
-                        break;
-                    default:
-                        arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-                        break;
-                }
-            };
+            //// サイズ
+            //if (!!arg.wh) {
+            //    switch ((parseInt(arg.wh, 16).toString(10)).length) {
+            //        case 2:
+            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+            //            break;
+            //        case 4:
+            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
+            //            break;
+            //        case 6:
+            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
+            //            break;
+            //        case 8:
+            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
+            //            break;
+            //        case 10:
+            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
+            //            break;
+            //        default:
+            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
+            //            break;
+            //    }
+            //};
 
-            arg.whList = arg.wh && (parseInt(arg.wh, 16).toString(10));
+            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10));
+            //arg.whList = arg.sizeList.toString();
 
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
 
@@ -120,6 +121,8 @@ var SizeRate = 10;
             }
 
             arg.PVList = arg.pv;
+
+            arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString(2));
 
             self.arg = arg;
         },
@@ -166,9 +169,10 @@ var SizeRate = 10;
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
 
-            var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '20,20')).split(',');
+            //var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '20,20')).split(',');
+            var wh = (String(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? SizeSplit(self.arg.sizeList) : SizeSplit(DefaultSize(self.arg.ar, objecttype))).split(',');
 
-            var i = ((parseInt(self.arg.whList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.whList).toString(10)).length : (parseInt(self.arg.whList).toString(10)).length + 1;
+            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
 
@@ -402,7 +406,7 @@ var SizeRate = 10;
                     logo.setAttribute('radius', (logoscale.w / 2));
                     if (val.isAnime == 1) {
                         // 回転
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn1', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
@@ -412,7 +416,7 @@ var SizeRate = 10;
                         });
                     } else if (val.isAnime == 2) {
                         // 回転(弾性)
-                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn2', {
                             property: 'rotation',
                             from: String(objAngle) + ' 0 0',
                             to: String(objAngle) + ' 360 0',
@@ -501,7 +505,7 @@ var SizeRate = 10;
                     if (!!val.isAnime) {
                         self.arData.logo.setAttribute('radius', (8 / 2));
                         if (val.isAnime == 1) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
                                 property: 'rotation',
                                 from: String(objAngle) + ' 0 0',
                                 to: String(objAngle) + ' 360 0',
@@ -510,7 +514,7 @@ var SizeRate = 10;
                                 easing: 'linear'
                             });
                         } else if (val.isAnime == 2) {
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
                                 property: 'rotation',
                                 from: String(objAngle) + ' 0 0',
                                 to: String(objAngle) + ' 360 0',
@@ -524,7 +528,7 @@ var SizeRate = 10;
                             var logoscale = { w: 8, h: 8, d: 2 };
                             var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
                                 property: 'position',
                                 dir: 'alternate',
                                 dur: 400, 
@@ -533,7 +537,7 @@ var SizeRate = 10;
                                 from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                                 to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                             });
-                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
                                 property: 'scale',
                                 dir: 'alternate',
                                 dur: 400,
@@ -700,6 +704,154 @@ var SizeRate = 10;
                 clearInterval(timer);
             });
             // ↑
+        },
+
+        setTapEvents: function () {
+
+            var self = this;
+            var val = self.arData;
+
+            if(!(val.isAnime)) {
+                
+                return;
+
+            } else {
+
+                if (val.isAnime == 11) {
+                    webArViewer.scene.addEventListener('click', function(e) {
+                        if (val.path && val.isAnime == 11) {
+                            self.wrap.emit('turn1');
+                        }
+                    });             
+                }
+
+                if (val.isAnime == 12) {
+                    webArViewer.scene.addEventListener('click', function(e) {
+                        if (val.path && val.isAnime == 12) {
+                            self.wrap.emit('turn2');
+                        }
+                    });  
+                }
+
+                if (val.isAnime == 13) {
+                    webArViewer.scene.addEventListener('click', function(e) {
+                        if (val.path && val.isAnime == 13) {
+                            self.wrap.emit('pos3');
+                            self.wrap.emit('scale3');
+                        }
+                    });  
+                }
+            }
+
+            //if (!self.arg.xt && !self.arg.xe && !self.tap) {
+            //    return;
+            //} else {
+            //    var touchAt = document.getElementById('touch');
+            //    var touchImg = new Image(54, 40);
+            //    touchImg.src = 'asset/touch.png';
+            //    touchImg.onload = function () {
+            //        touchAt.appendChild(touchImg);
+            //        touchAt.classList.add('attention');
+            //    };
+            //}
+
+            //if (self.arg.xt) {
+            //    webArViewer.scene.addEventListener('click', function(e) {
+            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
+            //            if (self.arData[idx].path && self.arData[idx].isTurn) {
+            //                self.arData[idx].main.emit('turn');
+            //                self.arData[idx].isShadow && self.arData[idx].shadow.emit('turn');
+            //            }
+            //        }
+            //    });
+            //}
+
+            //if (self.arg.xe) {
+            //    webArViewer.scene.addEventListener(self.eventNames.start, function(e) {
+            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
+            //            if (self.arData[idx].path && self.arData[idx].isElastic) {
+            //                self.arData[idx].main.emit('guni');
+            //                self.arData[idx].isShadow && self.arData[idx].shadow.emit('guni');
+            //            }
+            //        }
+            //    });
+
+            //    webArViewer.scene.addEventListener(self.eventNames.end, function(e) {
+            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
+            //            if (self.arData[idx].path && self.arData[idx].isElastic) {
+            //                self.arData[idx].main.emit('guniback');
+            //                self.arData[idx].isShadow && self.arData[idx].shadow.emit('guniback');
+            //            }
+            //        }
+            //    });
+            //}
+
+            //if (self.tap) {
+            //    for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
+
+            //        var val = self.arData[idx];
+
+            //        if (!val.tap) {
+            //            continue;
+            //        }
+
+            //        val.mainTap = document.createElement('a-plane');
+            //        AFRAME.utils.entity.setComponentProperty(val.mainTap, 'material', {
+            //            shader: val.hasMp4 ? 'chromakey' : val.tap.match(/\.gif$/i) ? 'gif' : 'standard', npot: true, src: '#tap' + idx, displacementMap: val.map ? '#map' + idx : null, displacementBias: -0.5,
+            //            side: 'double', transparent: true, alphaTest: 0.1, metalness: val.isReflect ? 0.1 : 0, roughness: val.isReflect ? 0.3 : 0.5, keyColor: val.hasMp4 ? val.keyColor: null
+            //        });
+
+            //        val.mainTap.setAttribute('visible', false);
+            //        webArViewer.scene.appendChild(val.mainTap);
+
+            //        if (val.isShadow) {
+            //            val.shadowTap = document.createElement('a-plane');
+            //            AFRAME.utils.entity.setComponentProperty(val.shadowTap, 'material', {
+            //                shader: val.hasMp4 ? 'chromakey' : val.tap.match(/\.gif$/i) ? 'gif' : 'flat', npot: true, src: '#tap' + idx, transparent: true, alphaTest: 0.1,
+            //                color: 'black', opacity: 0.3, depthTest: false, keyColor: val.hasMp4 ? val.keyColor: null
+            //            });
+
+            //            val.shadowTap.setAttribute('visible', false);
+            //            webArViewer.scene.appendChild(val.shadowTap);
+            //        }
+            //    }
+
+            //    webArViewer.scene.addEventListener('click', function(e) {
+            //        for (var idx = 0; idx < self.C.arNum; idx=(idx+1)|0) {
+            //            var val = self.arData[idx];
+
+            //            if (!val.tap) {
+            //                continue;
+            //            }
+
+            //            if (val.tapVisible) {
+            //                val.tapVisible = false;
+            //                val.main.object3DMap.mesh.material = val.mainDefaultMaterial;
+            //                val.isShadow && (val.shadow.object3DMap.mesh.material = val.shadowDefaultMaterial);
+            //                if (val.hasMp4) {
+            //                    val.tapEl.pause();
+            //                }
+            //            } else {
+            //                val.tapVisible = true;
+            //                if (!val.mainDefaultMaterial) {
+            //                    val.mainDefaultMaterial = val.main.object3DMap.mesh.material;
+            //                    val.mainTapMaterial = val.mainTap.object3DMap.mesh.material;
+
+            //                    if (val.isShadow) {
+            //                        val.shadowDefaultMaterial = val.shadow.object3DMap.mesh.material;
+            //                        val.shadowTapMaterial = val.shadowTap.object3DMap.mesh.material;
+            //                    }
+            //                }
+            //                val.main.object3DMap.mesh.material = val.mainTapMaterial;
+            //                val.isShadow && (val.shadow.object3DMap.mesh.material = val.shadowTapMaterial);
+            //                if (val.hasMp4) {
+            //                    val.tapEl.currentTime = 0;
+            //                    val.tapEl.play();
+            //                }
+            //            }
+            //        }
+            //    }, true);
+            //}
         },
 
         setDiplayBtn: function (mode) {

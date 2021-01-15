@@ -194,6 +194,58 @@ function GetFileType (arg) {
     return exct;
 }
 
+function DefaultSize(arType, oType) {
+    
+    var wh = '2020';
+
+    if (!arType) {
+        if (oType != 'mp4') {
+            // 7E4
+            wh = '2020';    
+        } else {
+            // 7DB
+            wh = '2011';
+        }
+    } else {
+        if (oType != 'mp4') {
+            // 17AC
+            wh = '6060';
+        } else {
+            // 1924
+            wh = '6436';
+        }
+    }
+
+    return wh;
+}
+
+function SizeSplit(size10) {
+    var wh = '20,20';
+
+    switch ((parseInt(size10).toString(10)).length) {
+        case 2:
+            wh = size10 && (parseInt(size10).toString(10)).match(/.{1}/g);
+            break;
+        case 4:
+            wh = size10 && (parseInt(size10).toString(10)).match(/.{2}/g);
+            break;
+        case 6:
+            wh = size10 && (parseInt(size10).toString(10)).match(/.{3}/g);
+            break;
+        case 8:
+            wh = size10 && (parseInt(size10).toString(10)).match(/.{4}/g);
+            break;
+        case 10:
+            wh = size10 && (parseInt(size10).toString(10)).match(/.{5}/g);
+            break;
+        default:
+            wh = size10 && (parseInt(size10).toString(10)).match(/.{1}/g);
+            break;
+    }
+
+    return wh;
+};
+
 function loadscriptheader(src) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
