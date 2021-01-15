@@ -17,10 +17,12 @@
 
         <script id="ar-index-js" type="text/javascript" src="js/ar-index.js"></script>
 
-        <script type="text/javascript" src="js/ar/aframe.min.js"></script>
-        <script type="text/javascript" src="js/ar/aframe-ar.js"></script>
+        <!--<script type="text/javascript" src="js/ar/aframe.min.js"></script>-->
+        <!--<script type="text/javascript" src="js/ar/aframe-ar.js"></script>-->
+        <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
+        <script type="text/javascript" src='js/nft/aframe-ar-nft.js'></script>
 
-        <script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>
+        <!--<script type="text/javascript" src="js/ar/aframe-animation-component.min.js"></script>-->
         <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
         <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
         <script type="text/javascript" src="js/camera.swich.js"></script>
@@ -29,8 +31,9 @@
     </head>
 
     <body>
+
         <!--<script>LockScroll();</script>-->
-    
+
         <div class="arjs-loader" style="display: none">
             <div>データ読み込み中<br>しばらくお待ちください...</div>
         </div>
@@ -53,14 +56,14 @@
 
         <a id="info"></a>
 
-        <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" style="display: none"  />
+        <img class="scrshot" id="scrshot" src="asset/scrshot-w.png" style="display: none" />
 
         <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: inline" />
         <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: inline" />
 
         <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
-    
+
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
@@ -73,7 +76,7 @@
         </a-scene>
 
         <script id='gifshader-js' src="js/gifshader.js"></script>
-        <script id='chromakey-js'  src="js/chromakey.js"></script>
+        <script id='chromakey-js' src="js/chromakey.js"></script>
         <script id='ar-view-js' src="js/ar-view1.js"></script>
 
         <p id="version">v1.0.0</p>
