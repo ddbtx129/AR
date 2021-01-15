@@ -290,7 +290,7 @@ var SizeRate = 10;
                     
                     if (self.arData.isNFT) {
                         var urlParam = location.search.substring(0);
-                        location.href = rootPath + 'ar-view1.html' + urlParam.replace('&pv=1', '');
+                        location.href = rootPath + 'nft-view1.html' + urlParam.replace('&pv=1', '');
                     } else {
                         location.replace(location.search.replace('&pv=1', ''));
                     }
