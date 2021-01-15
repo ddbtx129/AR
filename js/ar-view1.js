@@ -572,7 +572,7 @@ var SizeRate = 10;
                         } 
                     } else {
                         //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
                             property: 'rotation',
                             dur: 3000, 
                             easing: 'easeOutElastic', 
