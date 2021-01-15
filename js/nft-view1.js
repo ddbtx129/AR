@@ -661,25 +661,28 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
+            var yClockRate = val.arData.isMarkerType == 1 ? 5 : 0.2;
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += 5;
+                    wrapPos.y += yClockRate;
                 } else {
-                    wrapPos.z -= 5;
+                    wrapPos.z -= yClockRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y -= 5;
+                    wrapPos.y -= yClockRate;
                 } else {
-                    wrapPos.z += 5;
+                    wrapPos.z += yClockRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
+
+            var yTouchRate = val.arData.isMarkerType == 1 ? 2 : 0.02;
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
