@@ -827,6 +827,10 @@ var SizeRate = 20;
             var self = this;
             var h1_2 = self.arData.size.h / 2;
 
+            if (self.arData.size.w > self.arData.size.h) {
+                h1_2 = (self.arData.size.w / 2);
+            }
+
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
             } else {
