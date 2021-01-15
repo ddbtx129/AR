@@ -28,7 +28,6 @@ var SizeRate = 10;
             if (this.setArData()) {
 
                 this.setWrap();
-
                 this.createModel();
 
                 var deviceEvents = {
@@ -103,7 +102,7 @@ var SizeRate = 10;
             arg.markerList1 = arg.m1;
             arg.markerList2 = arg.m2;
 
-            // オブジェクト
+            // 対象オブジェクト
             arg.ObjectList = arg.o;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
@@ -115,7 +114,7 @@ var SizeRate = 10;
             arg.LogoList = {};
             arg.LogoAnimeList = {};
 
-            if (!!(logo)){ 
+            if (!!(logo)) { 
                 logo = (logo.match(/.{2}/g));
                 arg.LogoList = (logo).toString().split(',');
                 arg.LogoAnimeList = (arg.LogoList[1] && parseInt(arg.LogoList[1]));
@@ -176,7 +175,6 @@ var SizeRate = 10;
             
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
-
 
             if (dataObj.path) {
 
