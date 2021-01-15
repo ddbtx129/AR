@@ -162,6 +162,7 @@ var SizeRate = 10;
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
 
             dataObj.isPV = !!(self.arg.PVList);
+            dataObj.isNFT = !!(self.arg.ARList);
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
@@ -286,7 +287,11 @@ var SizeRate = 10;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search.replace('&pv=1', ''));
+                    if (!self.arData.isNFT) {
+                        location.replace(location.search.replace('&pv=1', ''));
+                    } else {
+                        location.replace(location.search.replace('ar-view1.html', 'nft-view1.html').replace('&pv=1', ''));
+                    }
                     videostate = 0;
                     this.setDiplayBtn(0);
                 }
@@ -294,7 +299,11 @@ var SizeRate = 10;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search + '&pv=1');
+                    if (!self.arData.isNFT) {
+                        location.replace(location.search + '&pv=1');
+                    } else {
+                        location.replace(location.search + '&pv=1')
+                    }
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }

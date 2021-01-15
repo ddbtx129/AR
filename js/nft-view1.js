@@ -46,7 +46,7 @@ var SizeRate = 20;
                 this.setTapEvents();
             }
 
-            //this.setSwitcher();
+            this.setSwitcher();
         },
 
         setArg: function () {
@@ -161,15 +161,13 @@ var SizeRate = 20;
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
 
             dataObj.isPV = !!(self.arg.PVList);
+            dataObj.isNFT = !!(self.arg.ARList);
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
-
-            //var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '60,60')).split(',');
-            //var i = ((parseInt(self.arg.whList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.whList).toString(10)).length : (parseInt(self.arg.whList).toString(10)).length + 1;
             
             self.arg.sizeList = (String(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize(self.arg.ar, objecttype));
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
@@ -296,7 +294,11 @@ var SizeRate = 20;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    location.replace(location.search + '&pv=1');
+                    if (!self.arData.isNFT) {
+                        location.replace(location.search + '&pv=1')
+                    } else {
+                        location.replace('ngt-view1.html', 'ar-view1.html').replace(location.search + '&pv=1');
+                    }
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
@@ -753,7 +755,7 @@ var SizeRate = 20;
             var self = this;
             var val = self.arData;
 
-            document.getElementById("modeSwitch").style.display = "none";
+            document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
@@ -776,8 +778,27 @@ var SizeRate = 20;
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
 
-                document.getElementById("swAngle").style.display = 'none';
-                document.getElementById("swParallel").style.display = 'none';
+                //document.getElementById("swAngle").style.display = 'none';
+                //document.getElementById("swParallel").style.display = 'none';
+
+                if (mode) {
+
+                    document.getElementById("swAngle").style.display = 'none';
+                    document.getElementById("swParallel").style.display = 'none';
+
+                    var video = document.querySelector('#source');
+
+                    if (videostate == 0) {
+                        document.getElementById("player").style.display = 'inline';
+                        videostate = 1
+                    }
+
+                } else {
+                    document.getElementById("swAngle").style.display = 'inline';
+                    document.getElementById("swParallel").style.display = 'inline';
+
+                    document.getElementById("player").style.display = 'none';
+                }
             }
         },
 
@@ -823,5 +844,6 @@ var SizeRate = 20;
         bParalle.dispatchEvent(evant);
     }
 
-    webArViewer.ar.setDiplayBtn(0);
+    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
+
 }());
