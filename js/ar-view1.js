@@ -44,6 +44,7 @@ var SizeRate = 10;
                 };
 
                 this.setScene();
+                this.setTapEvents();
             }
 
             this.setSwitcher();
