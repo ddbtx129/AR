@@ -169,13 +169,14 @@ var SizeRate = 10;
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
             
-            //var wh = (String(!!(self.arg.sizeList) ? self.arg.sizeList : '20,20')).split(',');
             self.arg.sizeList = (String(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize(self.arg.ar, objecttype));
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+            
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - 2) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - 2) / 2))).toFixed(1) };
-            window.alert(dataObj.size.w);
+
+
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
@@ -200,7 +201,7 @@ var SizeRate = 10;
                     video.setAttribute('loop', 'true');
                     video.setAttribute('crossorigin', 'anonymous');
                     video.setAttribute('webkit-playsinline', 'webkit-playsinline');
-                    video.setAttribute("playsinline", "");
+                    video.setAttribute("playsinline", "true");
                     video.setAttribute("controls", "");
                     video.setAttribute("autoplay", "");
 
@@ -212,7 +213,7 @@ var SizeRate = 10;
                     audio.setAttribute('loop', 'true');
                     audio.setAttribute('crossorigin', 'anonymous');
                     audio.setAttribute('webkit-playsinline', 'webkit-playsinline');
-                    audio.setAttribute("playsinline", "");
+                    audio.setAttribute("playsinline", "true");
                     audio.setAttribute("controls", "");
                     audio.setAttribute("autoplay", "");
 
@@ -242,6 +243,18 @@ var SizeRate = 10;
                     model.setAttribute('src', dataObj.logopath);
 
                     assets.appendChild(model);
+                }
+
+                if (dataObj.tap) {
+
+                    self.tap = true;
+                    var bTap = document.createElement('img');
+
+                    bTap.setAttribute('crossorigin', 'anonymous');
+                    bTap.setAttribute('id', 'swDown');
+                    bTap.setAttribute('src', 'asset/touch_w.png');
+
+                    document.body.appendChild(bTap);
                 }
             }
 
@@ -448,7 +461,16 @@ var SizeRate = 10;
                             to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                         });
                     } else {
-                        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        //logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
+                            property: 'rotation',
+                            dur: 3000, 
+                            easing: 'easeOutElastic', 
+                            elasticity: 300, 
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            startEvents: 'turn'
+                        });
                     }
                 }
 
@@ -547,7 +569,16 @@ var SizeRate = 10;
                                 to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' '  + logoscale.d * rete * 1
                             });
                         } else {
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                            //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                dur: 3000, 
+                                easing: 'easeOutElastic', 
+                                elasticity: 300, 
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                startEvents: 'turn'
+                            });
                         }
                     }
                 }
@@ -713,7 +744,11 @@ var SizeRate = 10;
 
             if(!(val.isAnime)) {
                 
-                return;
+                webArViewer.scene.addEventListener('click', function(e) {
+                    if (val.path) {
+                        self.wrap.emit('turn1');
+                    }
+                }); 
 
             } else {
 
