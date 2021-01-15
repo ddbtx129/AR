@@ -952,16 +952,16 @@ var SizeRate = 10;
                 h1_2 = (self.arData.size.w / 2);
             }
 
-            //if (type === 'shadow') {
-            //    return { x: 0, y: 0, z: -h1_2 };
-            //} else {
-            //    return { x: 0, y: h1_2, z: 0 };
-            //}
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
             } else {
-                return { x: 0, y: -h1_2, z: 0 };
+                return { x: 0, y: h1_2, z: 0 };
             }
+            //if (type === 'shadow') {
+            //    return { x: 0, y: 0, z: -h1_2 };
+            //} else {
+            //    return { x: 0, y: -h1_2, z: 0 };
+            //}
         }
     };
 
