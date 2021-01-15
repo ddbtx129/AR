@@ -92,7 +92,7 @@ var SizeRate = 10;
 
             arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10));
             //arg.whList = arg.sizeList.toString();
-            Window.alert(String(arg.sizeList));
+            window.alert(arg.sizeList);
             arg.angleList = arg.an && (parseInt(arg.an, 16).toString(2));
 
             arg.typeList = arg.t;
