@@ -602,6 +602,7 @@ var SizeRate = 20;
                 } else if ((self.arg.markerList)) {
                     mk = 'pattern/p-' + self.arg.markerList + '.patt';
                 }
+                window.alert(mk);
             }
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));        
