@@ -576,13 +576,10 @@ var SizeRate = 20;
                 mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
             }
 
-            mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
-            
-            //mWrap.appendChild(self.wrap);
+            mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));        
+            mWrap.appendChild(self.wrap);
 
-            //webArViewer.scene.appendChild(mWrap);
-
-            webArViewer.scene.appendChild(self.wrap);
+            webArViewer.scene.appendChild(mWrap);
             self.mWrap = mWrap;
 
             // ↓ rotation 切替
