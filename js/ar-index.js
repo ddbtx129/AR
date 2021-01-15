@@ -197,6 +197,8 @@ function GetFileType (arg) {
 function DefaultSize(arType, oType) {
     
     var wh = '2020';
+    window.alert(arType);
+    window.alert(oType);
 
     if (!arType) {
         if (oType != 'mp4') {
