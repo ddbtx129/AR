@@ -847,12 +847,12 @@ var SizeRate = 20;
             if (self.arData.size.w > self.arData.size.h) {
                 h1_2 = (self.arData.size.w / 2);
             }
-
+                
+            window.alert(h1_2);
             if (type === 'shadow') {
-                return { x: 0, y: 0, z: -h1_2 };
+                return { x: 0, y: -(self.arData.size.h), z: -h1_2 };
             } else {
-                window.alert(h1_2);
-                return { x: 0, y: -h1_2, z: 0 };
+                return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? 1 : -1), z: 0 };
             }
         }
     };
