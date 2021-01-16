@@ -876,7 +876,7 @@ var SizeRate = 20;
 
     webArViewer.ar = ar;
     webArViewer.ar.init();
-
+    window.alert(defaultAngle);
     if (!!(ar.arData.isMarkerType == 1)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
