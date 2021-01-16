@@ -177,7 +177,7 @@ var SizeRate = 20;
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            var j = (dataObj.isMarkerType == 1 ? 4 : 4);
+            var j = (dataObj.isMarkerType == 1 ? 4 : 2);
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
 
