@@ -851,6 +851,7 @@ var SizeRate = 20;
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
             } else {
+                window.alert(h1_2);
                 return { x: 0, y: h1_2, z: 0 };
             }
         }
