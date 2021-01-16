@@ -317,7 +317,7 @@ var SizeRate = 20;
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '4 4 4' : '2 2 2'));
+            self.wrap.setAttribute('scale', '4 4 4');
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
