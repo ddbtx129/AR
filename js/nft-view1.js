@@ -880,6 +880,10 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
+    if (!!(ar.arData.isMarkerType == 2) && !!(ar.setArData.isPV)) {
+        location.href = rootPath + 'ar-view1.html' + urlParam;
+    }
+
     if (!!(ar.arData.isMarkerType == 1)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
@@ -887,9 +891,5 @@ var SizeRate = 20;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-
-    if (!!(ar.arData.isMarkerType == 2) && !!(ar.setArData.isPV)){
-        location.href = rootPath + 'ar-view1.html' + urlParam;
-    }
 
 }());
