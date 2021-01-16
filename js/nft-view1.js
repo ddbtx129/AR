@@ -136,7 +136,7 @@ var SizeRate = 20;
 
             dataObj.isPV = !!(self.arg.PVList);
             dataObj.isNFT = !!(self.arg.ARList);
-            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1; 
+            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 2; 
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
@@ -145,12 +145,12 @@ var SizeRate = 20;
             defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
             objAngle = defaultAngle;
 
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
+            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
 
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            var j = (dataObj.isMarkerType == 1 ? 4 : 2);
+            var j = (dataObj.isMarkerType == 1 ? 2 : 4);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
@@ -291,7 +291,7 @@ var SizeRate = 20;
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '4 4 4' : '2 2 2'));
+            self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '2 2 2' : '4 4 4'));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
@@ -381,7 +381,7 @@ var SizeRate = 20;
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = (!!(val.isMarkerType == 1) ? { w: 256, h: 256, d: 128 } : { w: 8, h: 8, d: 2 });
+                var logoscale = (!!(val.isMarkerType == 1) ? { w: 8, h: 8, d: 2 } : { w: 256, h: 256, d: 128 });
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
@@ -528,7 +528,7 @@ var SizeRate = 20;
             var arGifRotation = '-30 0 0';
 
             var prevPageY;
-            var zoomRateH = (val.isMarkerType == 1) ? (defaultSize.h / 10) : 2;
+            var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
 
             var wrapPos = self.positionVec3('main');
             var mk = '';
@@ -537,27 +537,6 @@ var SizeRate = 20;
             var mWrap = document.createElement('a-nft');
 
             if (val.isMarkerType == 1) {
-
-                mWrap.setAttribute('markerhandler', '');
-                mWrap.setAttribute('preset', 'custom');
-                mWrap.setAttribute('type', 'nft');
-                mWrap.setAttribute('id', 'arMarker');
-                mWrap.setAttribute('smooth', 'true');
-                mWrap.setAttribute('smoothCount', '10');
-                mWrap.setAttribute('smoothTolerance', '0.01');
-                mWrap.setAttribute('smoothThreshold', '5');
-                
-                if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                    mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                    mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                } else if ((self.arg.markerList) && (self.arg.markerList2)) {
-                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                } else if ((self.arg.markerList)) {
-                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
-                }
-
-            } else {
 
                 mWrap = null;
 
@@ -579,7 +558,26 @@ var SizeRate = 20;
                 } else if ((self.arg.markerList)) {
                     mk = 'pattern/p-' + self.arg.markerList + '.patt';
                 }
+            } else {
 
+                mWrap.setAttribute('markerhandler', '');
+                mWrap.setAttribute('preset', 'custom');
+                mWrap.setAttribute('type', 'nft');
+                mWrap.setAttribute('id', 'arMarker');
+                mWrap.setAttribute('smooth', 'true');
+                mWrap.setAttribute('smoothCount', '10');
+                mWrap.setAttribute('smoothTolerance', '0.01');
+                mWrap.setAttribute('smoothThreshold', '5');
+
+                if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                    mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                    mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                } else if ((self.arg.markerList) && (self.arg.markerList2)) {
+                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                } else if ((self.arg.markerList)) {
+                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+                }
             }
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));        
@@ -595,9 +593,9 @@ var SizeRate = 20;
                 if (!bAngle.classList.contains('current')) {
                     wrapPos = self.positionVec3('main');
                     if (val.isMarkerType == 1) {
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    } else {
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle) + ' 0'));
+                    } else {
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
@@ -609,7 +607,6 @@ var SizeRate = 20;
                 if (!bParalle.classList.contains('current')) {
                     wrapPos = self.positionVec3('main');
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
-                    //self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle - 90) + ' 0'));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
@@ -643,28 +640,37 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClockRate = val.isMarkerType == 1 ? 5 : 0.2;
+            var yClickRate = val.isMarkerType == 1 ? 0.2 : 5;
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y += yClockRate;
                 } else {
-                    wrapPos.z -= yClockRate;
+                    if (val.isMarkerType == 1) {
+                        wrapPos.y += yClickRate;
+                    } else {
+                        wrapPos.z -= yClickRate;
+                    }
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y -= yClockRate;
+                    wrapPos.y -= yClickRate;
                 } else {
-                    wrapPos.z += yClockRate;
+                    wrapPos.z += yClickRate;
+                    if (val.isMarkerType == 1) {
+                        wrapPos.y -= yClickRate;
+                    } else {
+                        wrapPos.z += yClickRate;
+                    }
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
 
-            var yTouchRate = val.isMarkerType == 1 ? 2 : 0.02;
+            var yTouchRate = val.isMarkerType == 1 ? 0.02 : 2 ;
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -674,7 +680,11 @@ var SizeRate = 20;
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y += yTouchRate;
                     } else {
-                        wrapPos.z -= yTouchRate;
+                        if (val.isMarkerType == 1) {
+                            wrapPos.y += yTouchRate;
+                        } else {
+                            wrapPos.z -= yTouchRate;
+                        }
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -701,7 +711,11 @@ var SizeRate = 20;
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y -= yTouchRate;
                     } else {
-                        wrapPos.z += yTouchRate;
+                        if (val.isMarkerType == 1) {
+                            wrapPos.y -= yTouchRate;
+                        } else {
+                            wrapPos.z += yTouchRate;
+                        }
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -826,7 +840,7 @@ var SizeRate = 20;
 
             switch (anime) {
                 case 3:
-                    posy = -((self.arData.isMarkerType == 1 ? 110 : 3) / 2);
+                    posy = -((self.arData.isMarkerType == 1 ? 3 : 110) / 2);
                     break;
                 default:
                     posy = 0;
@@ -837,7 +851,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
             
-            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 10 : 0.75) + posy, z: 0 };
+            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) + posy, z: 0 };
         },
 
         positionVec3: function (type, angle) {
@@ -852,9 +866,9 @@ var SizeRate = 20;
                 return { x: 0, y: -(self.arData.size.h), z: -h1_2 };
             } else {
                 if (angle == 1) {
-                    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? 1 : -1) };
+                    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
                 } else {
-                    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? 1 : -1), z: 0 };
+                    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
                 }
             }
         }
@@ -863,12 +877,7 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    //if (!!(ar.arData.isMarkerType == 2) && !(ar.setArData.isPV)) {
-    //    var urlParam = location.search.substring(0);
-    //    location.href = rootPath + 'ar-view1.html' + urlParam;
-    //}
-
-    if (!!(ar.arData.isMarkerType == 1)) {
+    if (!(ar.arData.isMarkerType == 1)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
         bParalle.dispatchEvent(evant);
