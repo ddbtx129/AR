@@ -828,7 +828,7 @@ var SizeRate = 20;
                 }
             }
 
-            if (val.isMarkerType != 1) {
+            if (val.isMarkerType == 1) {
                 document.getElementById("loader").style.display = 'none';
             }
         },
