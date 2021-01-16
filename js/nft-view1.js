@@ -655,6 +655,7 @@ var SizeRate = 20;
                 //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'position', dur: 5, easing: 'linear', loop: false, to: wrapPos.x + ' ' + wrapPos.y + ' ' + wrapPos.z
+                });
             });
 
             bDOWN.addEventListener('click', function () {
@@ -671,6 +672,7 @@ var SizeRate = 20;
                 //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'position', dur: 5, easing: 'linear', loop: false, to: wrapPos.x + ' ' + wrapPos.y + ' ' + wrapPos.z
+                });
             });
             // ↑ 
 
@@ -693,6 +695,7 @@ var SizeRate = 20;
                     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'position', dur: 5, easing: 'linear', loop: false, to: wrapPos.x + ' ' + wrapPos.y + ' ' + wrapPos.z
+                    });
                 }, 10);
             })
 
@@ -726,6 +729,7 @@ var SizeRate = 20;
                     //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'position', dur: 5, easing: 'linear', loop: false, to: wrapPos.x + ' ' + wrapPos.y + ' ' + wrapPos.z
+                    });
                 }, 10);
             })
 
