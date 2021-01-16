@@ -528,7 +528,7 @@ var SizeRate = 20;
             var arGifRotation = '-30 0 0';
 
             var prevPageY;
-            var zoomRateH = (defaultSize.h / 10);
+            var zoomRateH = (val.isMarkerType == 1) ? (defaultSize.h / 10) : 2;
 
             var wrapPos = self.positionVec3('main');
             var mk = '';
