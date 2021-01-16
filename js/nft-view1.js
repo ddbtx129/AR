@@ -594,8 +594,11 @@ var SizeRate = 20;
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     wrapPos = self.positionVec3('main');
-                    //self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle) + ' 0'));
+                    if (val.isMarkerType == 1) {
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                    } else {
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle) + ' 0'));
+                    }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
@@ -605,8 +608,8 @@ var SizeRate = 20;
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     wrapPos = self.positionVec3('main');
-                    //self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle - 90) + ' 0'));
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
+                    //self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle - 90) + ' 0'));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
