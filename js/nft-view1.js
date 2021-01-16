@@ -1,11 +1,11 @@
 var webArViewer = webArViewer || {};
 
-var defaultAngle = -5;
+var defaultAngle = -35;
 var defaultPos = { x: 0, y: 0, z: 0 };
 var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
-var objAngle = -40;
+var objAngle = -35;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
@@ -142,8 +142,7 @@ var SizeRate = 20;
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -40;
-            objAngle = defaultAngle;
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 35;
 
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
@@ -647,7 +646,7 @@ var SizeRate = 20;
                     wrapPos.y += yClockRate;
                 } else {
                     if (val.isMarkerType == 1) {
-                        wrapPos.y += yClickRate;
+                        wrapPos.y -= yClickRate;
                     } else {
                         wrapPos.z -= yClickRate;
                     }
@@ -661,7 +660,7 @@ var SizeRate = 20;
                 } else {
                     wrapPos.z += yClickRate;
                     if (val.isMarkerType == 1) {
-                        wrapPos.y -= yClickRate;
+                        wrapPos.y += yClickRate;
                     } else {
                         wrapPos.z += yClickRate;
                     }
@@ -681,7 +680,7 @@ var SizeRate = 20;
                         wrapPos.y += yTouchRate;
                     } else {
                         if (val.isMarkerType == 1) {
-                            wrapPos.y += yTouchRate;
+                            wrapPos.y -= yTouchRate;
                         } else {
                             wrapPos.z -= yTouchRate;
                         }
@@ -712,7 +711,7 @@ var SizeRate = 20;
                         wrapPos.y -= yTouchRate;
                     } else {
                         if (val.isMarkerType == 1) {
-                            wrapPos.y -= yTouchRate;
+                            wrapPos.y += yTouchRate;
                         } else {
                             wrapPos.z += yTouchRate;
                         }
