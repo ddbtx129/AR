@@ -142,15 +142,16 @@ var SizeRate = 20;
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
-            //defaultAngle = (self.arg.ARList && Number(self.arg.ARList) == 1) ? -90 : -5;
-            defaultAngle = (self.arg.ARList && Number(self.arg.ARList) == 1) ? -5 : -5;
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
             objAngle = defaultAngle;
 
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
+
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
+
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             var j = (dataObj.isMarkerType == 1 ? 4 : 2);
+
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
 
@@ -290,7 +291,7 @@ var SizeRate = 20;
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '4 4 4' : '4 4 4'));
+            self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '4 4 4' : '2 2 2'));
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
