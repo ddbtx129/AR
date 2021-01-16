@@ -888,4 +888,8 @@ var SizeRate = 20;
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
+    if (!!(ar.arData.isMarkerType == 2) && !!(ar.setArData.isPV)){
+        location.href = rootPath + 'ar-view1.html' + urlParam;
+    }
+
 }());
