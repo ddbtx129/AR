@@ -169,7 +169,7 @@ var SizeRate = 20;
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : (!!(dataObj.isMarkerType == 1) ? -5 : 90);
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
             objAngle = defaultAngle;
 
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
@@ -405,7 +405,7 @@ var SizeRate = 20;
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = { w: 256, h: 256, d: 128 };
+                var logoscale = (!!(val.isMarkerType == 1) ? { w: 256, h: 256, d: 128 } : { w: 8, h: 8, d: 2 });
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
@@ -870,7 +870,8 @@ var SizeRate = 20;
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
             } else {
-                return { x: 0, y: h1_2, z: 0 };
+                //return { x: 0, y: h1_2, z: 0 };
+                return { x: 0, y: 0, z: 0 };
             }
         }
     };
