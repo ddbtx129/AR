@@ -880,7 +880,7 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (!!(ar.arData.isMarkerType == 2) && !!(ar.setArData.isPV)) {
+    if (!!(ar.arData.isMarkerType == 2) && !(ar.setArData.isPV)) {
         location.href = rootPath + 'ar-view1.html' + urlParam;
     }
 
