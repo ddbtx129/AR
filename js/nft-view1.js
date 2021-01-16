@@ -9,7 +9,6 @@ var objAngle = -5;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
-var dec = 2;
 var SizeRate = 20;
 
 (function (global) {
@@ -63,32 +62,6 @@ var SizeRate = 20;
 
             // 影
             arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-
-            var dec = 10;
-
-            // サイズ
-            //if (!!arg.wh) {
-            //    switch ((parseInt(arg.wh, 16).toString(10)).length) {
-            //        case 2:
-            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-            //            break;
-            //        case 4:
-            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{2}/g);
-            //            break;
-            //        case 6:
-            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{3}/g);
-            //            break;
-            //        case 8:
-            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{4}/g);
-            //            break;
-            //        case 10:
-            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{5}/g);
-            //            break;
-            //        default:
-            //            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10)).match(/.{1}/g);
-            //            break;
-            //    }
-            //};
 
             arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10));
             //arg.whList = arg.wh && (parseInt(arg.wh, 16).toString(10));
@@ -170,8 +143,7 @@ var SizeRate = 20;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
-            defaultAngle = (self.arg.ARList && (Number(self.arg.ARList) - 1) == 1) ? -90 : -5;
-
+            defaultAngle = (self.arg.ARList && Number(self.arg.ARList) == 1) ? -90 : -5;
             objAngle = defaultAngle;
 
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
@@ -880,10 +852,10 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (!!(ar.arData.isMarkerType == 2) && !(ar.setArData.isPV)) {
-        var urlParam = location.search.substring(0);
-        location.href = rootPath + 'ar-view1.html' + urlParam;
-    }
+    //if (!!(ar.arData.isMarkerType == 2) && !(ar.setArData.isPV)) {
+    //    var urlParam = location.search.substring(0);
+    //    location.href = rootPath + 'ar-view1.html' + urlParam;
+    //}
 
     if (!!(ar.arData.isMarkerType == 1)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
