@@ -1,11 +1,11 @@
 var webArViewer = webArViewer || {};
 
-//var defaultAngle = -35;
+//var defaultAngle = -5;
 var defaultPos = { x: 0, y: 0, z: 0 };
 var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
-var objAngle = -35;
+var objAngle = -5;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
@@ -591,11 +591,6 @@ var SizeRate = 20;
             bAngle.addEventListener('click', function () {
                 if (!bAngle.classList.contains('current')) {
                     wrapPos = self.positionVec3('main');
-                    //if (val.isMarkerType == 1) {
-                    //    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 ' + String(objAngle) + ' 0'));
-                    //} else {
-                    //    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    //}
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
@@ -846,7 +841,7 @@ var SizeRate = 20;
             }
                 
             if (type === 'shadow') {
-                return { x: 0, y: -(self.arData.size.h), z: -h1_2 };
+                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? -1 : 1), z: -h1_2 };
             } else {
                 //if (angle == 1) {
                 //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
@@ -861,11 +856,11 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (!(ar.arData.isMarkerType == 1)) {
-        var evant = new Event("click", { "bubbles": true, "cancelable": true });
-        var bParalle = document.getElementById('swParallel');
-        bParalle.dispatchEvent(evant);
-    }
+    //if (!(ar.arData.isMarkerType == 1)) {
+    //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
+    //    var bParalle = document.getElementById('swParallel');
+    //    bParalle.dispatchEvent(evant);
+    //}
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
