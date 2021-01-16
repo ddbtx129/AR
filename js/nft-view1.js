@@ -169,7 +169,7 @@ var SizeRate = 20;
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 0;
+            defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
             
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
@@ -602,7 +602,7 @@ var SizeRate = 20;
                 } else if ((self.arg.markerList)) {
                     mk = 'pattern/p-' + self.arg.markerList + '.patt';
                 }
-                window.alert(mk);
+
             }
 
             mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));        
@@ -877,7 +877,7 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    if (defaultAngle != -5) {
+    if (!!(defaultAngle != -5 && ar.arData.isMarkerType == 1)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
         bParalle.dispatchEvent(evant);
