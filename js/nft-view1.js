@@ -143,7 +143,8 @@ var SizeRate = 20;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
-            defaultAngle = (self.arg.ARList && Number(self.arg.ARList) == 1) ? -90 : -5;
+            //defaultAngle = (self.arg.ARList && Number(self.arg.ARList) == 1) ? -90 : -5;
+            defaultAngle = (self.arg.ARList && Number(self.arg.ARList) == 1) ? -5 : -5;
             objAngle = defaultAngle;
 
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 1 : 0), objecttype));
