@@ -20,13 +20,13 @@ var SizeRate = 20;
 
         init: function () {
 
-            this.setArg();
-
             videostate = 0;
+
+            this.setWrap();
+            this.setArg();
 
             if (this.setArData()) {
 
-                this.setWrap();
                 this.createModel();
 
                 var deviceEvents = {
@@ -142,17 +142,18 @@ var SizeRate = 20;
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
+            //self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
-            var wh = SizeSplit(self.arg.sizeList).toString().split(',');
+            //var wh = SizeSplit(self.arg.sizeList).toString().split(',');
 
-            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            var j = (dataObj.isMarkerType == 1 ? 2 : 4);
+            //var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+            //var j = (dataObj.isMarkerType == 1 ? 2 : 4);
 
-            dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            //dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+
+            dataObj.size = this.setObjectSize(dataObj.isMarkerType);
 
             if (dataObj.path) {
 
@@ -249,6 +250,23 @@ var SizeRate = 20;
             return true;
         },
 
+        setObjectSize: function (markerType) {
+
+            var self = this;
+
+            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
+
+            var wh = SizeSplit(self.arg.sizeList).toString().split(',');
+
+            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+            var j = (markerType == 1 ? 2 : 4);
+
+            dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+
+            return defaultSize;
+        },
+
         setSwitcher: function () {
 
             var self = this;
@@ -283,8 +301,8 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-
+            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            defaultSize = { w: 4, h: 4, d: 4 };
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
 
             self.wrap = document.createElement('a-box');
@@ -541,8 +559,10 @@ var SizeRate = 20;
                 wrapPos.z -= val.size.h * 4; // (!!(val.isMarkerType == 1) ? 4 : 8);
 
                 var pvAngle = 0;
+
+                zoomRateH = defaultSize.h / 2;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: (defaultSize.w / 2) + ' ' + (defaultSize.h / 2) + ' ' + (defaultSize.d / 2)
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
@@ -977,10 +997,6 @@ var SizeRate = 20;
             var h1_2 = self.arData.size.h / 2;
 
             var i = ((!!(self.arData.isMarkerType == 1) && !!(self.arg.pv)) ? -h1_2 : h1_2);
-
-            //if (self.arData.size.w > self.arData.size.h) {
-            //    h1_2 = (self.arData.size.w / 2);
-            //}
                 
             //if (type === 'shadow') {
             //    return { x: 0, y: 0, z: -h1_2 };
