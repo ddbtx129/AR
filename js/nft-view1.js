@@ -544,17 +544,9 @@ var SizeRate = 20;
 
                 var pvAngle = 0;
 
-                //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                //    property: 'scale',
-                //    dir: 'alternate',
-                //    dur: 1,
-                //    easing: 'linear',
-                //    loop: false,
-                //    to: (wh.w / 2) + ' ' + (wh.h / 2) + ' ' + 1
-                //});
-
-                window.alert((wh.w / 100).toFixed(1));
-                self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify((wh.w / 100).toFixed(1) + ' ' + (wh.h / 100).toFixed(1) + ' ' + (wh.d / 100).toFixed(1)));
+                window.alert((defaultSize.w / 100).toFixed(1));
+                self.wrap.setAttribute('scale',
+                    AFRAME.utils.coordinates.stringify((defaultSize.w / 100).toFixed(1) + ' ' + (defaultSize.h / 100).toFixed(1) + ' ' + (defaultSize.d / 100).toFixed(1)));
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
@@ -670,7 +662,8 @@ var SizeRate = 20;
 
             } else {
 
-                self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify((wh.w).toFixed(1) + ' ' + (wh.h).toFixed(1) + ' ' + (wh.d).toFixed(1)));
+                self.wrap.setAttribute('scale',
+                    AFRAME.utils.coordinates.stringify((defaultSize.w).toFixed(1) + ' ' + (defaultSize.h).toFixed(1) + ' ' + (defaultSize.d).toFixed(1)));
 
                 var mk = '';
 
