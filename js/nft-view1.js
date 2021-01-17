@@ -753,11 +753,12 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        if (!(self.arg.pv)) {
-                            wrapPos.y += rate * 1.5;
-                        } else {
-                            wrapPos.z -= rate * 1.5;
-                        }
+                        //if (!(self.arg.pv)) {
+                        //    wrapPos.y += rate * 1.5;
+                        //} else {
+                        //    wrapPos.z -= rate * 1.5;
+                        //}
+                        wrapPos = { x: wrapPos.x, y: wrapPos.y + rate * 1.5, z: wrapPos.z - rate * 1.5 };
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }
                 }
