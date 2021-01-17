@@ -283,8 +283,8 @@ var SizeRate = 20;
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            //var base = AFRAME.utils.coordinates.stringify('0 0 0');
-            var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
+            var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            //var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
@@ -754,13 +754,6 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        //if (!(self.arg.pv)) {
-                        //    wrapPos.y += rate * 1.5;
-                        //} else {
-                        //    wrapPos.z -= rate * 1.5;
-                        //}
-                        //wrapPos = { x: wrapPos.x, y: wrapPos.y + rate * 1.5, z: wrapPos.z - rate * 1.5 };
-                        //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }
                 }
             });
