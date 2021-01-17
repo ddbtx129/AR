@@ -531,6 +531,7 @@ var SizeRate = 20;
             var prevPageY;
             //var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
             var zoomRateH = defaultSize.h;
+            var zoomRate = defaultSize.h;
 
             var wh = { w: val.size.w, h: val.size.h };
             var wrapPos = self.positionVec3('main');
@@ -551,10 +552,9 @@ var SizeRate = 20;
                 //    loop: false,
                 //    to: (wh.w / 2) + ' ' + (wh.h / 2) + ' ' + 1
                 //});
-                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: (wh.w / 100).toFixed(1) + ' ' + (wh.h / 100).toFixed(1) + ' ' + (wh.w / 100).toFixed(1)
-                });
 
+                window.alert((wh.w / 100).toFixed(1));
+                self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify((wh.w / 100).toFixed(1) + ' ' + (wh.h / 100).toFixed(1) + ' ' + (wh.d / 100).toFixed(1)));
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
@@ -670,9 +670,7 @@ var SizeRate = 20;
 
             } else {
 
-                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                });
+                self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify((wh.w).toFixed(1) + ' ' + (wh.h).toFixed(1) + ' ' + (wh.d).toFixed(1)));
 
                 var mk = '';
 
@@ -766,7 +764,7 @@ var SizeRate = 20;
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRate
                         });
                     }
                 }
