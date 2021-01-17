@@ -754,7 +754,7 @@ var SizeRate = 20;
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                         if (!(self.arg.pv)) {
-                            wrapPos.y -= rate;
+                            wrapPos.z += rate;
                         } else {
                             wrapPos.z -= rate;
                         }
