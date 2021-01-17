@@ -538,7 +538,7 @@ var SizeRate = 20;
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= 8;
+                wrapPos.z -= 8 * 10;
 
 
                 var pvAngle = 0;
