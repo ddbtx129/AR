@@ -552,7 +552,7 @@ var SizeRate = 20;
                 //    to: (wh.w / 2) + ' ' + (wh.h / 2) + ' ' + 1
                 //});
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: '0.5 0.5  0.5'
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: '0.1 0.1 0.1'
                 });
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
@@ -994,7 +994,11 @@ var SizeRate = 20;
                 //} else {
                 //    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
                 //}
-                return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 + (!!(self.arg.pv) ? defaultSize.h : 0) };
+                if (!(self.arg.pv)) {
+                    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
+                } else {
+                    return { x: 0, y: 0, z: 0 + (!!(self.arg.pv) ? defaultSize.h : 0) };
+                }
             }
         }
     };
