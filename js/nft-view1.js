@@ -531,7 +531,8 @@ var SizeRate = 20;
             var zoomRate = defaultSize.h;
 
             var wh = { w: val.size.w, h: val.size.h };
-            var wrapPos = self.positionVec3('main');
+            //var wrapPos = self.positionVec3('main');
+            var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
 
