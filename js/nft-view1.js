@@ -535,11 +535,11 @@ var SizeRate = 20;
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= val.size.h * (!!(val.isMarkerType == 1) ? 1 : 3);
+                wrapPos.z -= val.size.h;
 
                 var pvAngle = 0;
 
-                zoomRateH = defaultSize.h / (!!(val.isMarkerType == 1) ? 2 : 4);
+                zoomRateH = defaultSize.h / (!!(val.isMarkerType == 1) ? 2 : 8);
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
