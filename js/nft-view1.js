@@ -282,6 +282,7 @@ var SizeRate = 20;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
+                    self.arData.size = this.setObjectSize(self.arData.isMarkerType);
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
                     this.setDiplayBtn(0);
@@ -290,6 +291,7 @@ var SizeRate = 20;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
+                    self.arData.size = this.setObjectSize(0);
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
                     this.setDiplayBtn(1);
