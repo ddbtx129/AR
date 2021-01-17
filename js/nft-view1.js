@@ -765,7 +765,7 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClickRate = (val.isMarkerType == 1 ? 0.2 : 5) / (!(self.arg.pv) ? 1 : 100);
+            var yClickRate = (val.isMarkerType == 1 ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
@@ -786,7 +786,7 @@ var SizeRate = 20;
             });
             // ↑ 
 
-            var yTouchRate = ((val.isMarkerType == 1) ? 0.02 : 2) / (!(self.arg.pv) ? 1 : 100) ;
+            var yTouchRate = ((val.isMarkerType == 1) ? 0.02 : 2);
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -971,16 +971,15 @@ var SizeRate = 20;
             //    h1_2 = (self.arData.size.w / 2);
             //}
                 
+            //if (type === 'shadow') {
+            //    return { x: 0, y: 0, z: -h1_2 };
+            //} else {
+            //    return { x: 0, y: h1_2, z: 0 };
+            //}
             if (type === 'shadow') {
-                //return { x: 0, y: -(self.arData.size.h), z: -h1_2 };
-                return { x: 0, y: 0, z: -h1_2 };
+                return { x: 0, y: -h1_2, z: -h1_2 };
             } else {
-                //if (angle == 1) {
-                //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
-                //} else {
-                //    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
-                //}
-                return { x: 0, y: h1_2, z: 0 };
+                return { x: 0, y: 0, z: 0 };
             }
         }
     };
