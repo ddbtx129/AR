@@ -541,6 +541,9 @@ var SizeRate = 20;
                 wrapPos.z -= val.size.h * 4; // (!!(val.isMarkerType == 1) ? 4 : 8);
 
                 var pvAngle = 0;
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: (defaultSize.w / 2) + ' ' + (defaultSize.h / 2) + ' ' + (defaultSize.d / 2)
+                });
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
