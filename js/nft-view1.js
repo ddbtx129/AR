@@ -773,7 +773,7 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClickRate = (!!(val.isMarkerType == 1) ? 0.2 : (!!(self.arg.pv) ? 2.5 : 5));
+            var yClickRate = (!!(val.isMarkerType == 1) ? 0.2 : (!!(self.arg.pv) ? 1 : 5));
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
@@ -794,7 +794,7 @@ var SizeRate = 20;
             });
             // ↑ 
 
-            var yTouchRate = (!!(val.isMarkerType == 1) ? 0.02 : (!!(self.arg.pv) ? 1 : 2));
+            var yTouchRate = (!!(val.isMarkerType == 1) ? 0.02 : (!!(self.arg.pv) ? 0.4 : 2));
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
