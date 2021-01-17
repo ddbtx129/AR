@@ -298,9 +298,9 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            defaultSize = (!!(self.arData.isMarkerType == 1) ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            //var base = AFRAME.utils.coordinates.stringify('0 0 0');
-            var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
+            defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            //var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
