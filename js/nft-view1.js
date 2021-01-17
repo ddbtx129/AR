@@ -142,7 +142,7 @@ var SizeRate = 20;
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : 35;
+            //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
@@ -595,6 +595,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bAngle.classList.add('current');
                     bParalle.classList.remove('current');
+                    window.alert('A：' + String(objAngle));
                 }
             });
 
@@ -605,6 +606,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
+                    window.alert('P：' + String(objAngle - 90));
                 }
             });
             // ↑
@@ -829,7 +831,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
             
-            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) + posy, z: 0 };
+            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? -1 : 1) + posy, z: 0 };
         },
 
         positionVec3: function (type, angle) {
@@ -841,7 +843,7 @@ var SizeRate = 20;
             }
                 
             if (type === 'shadow') {
-                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? -1 : 1), z: -h1_2 };
+                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? 1 : -1), z: -h1_2 };
             } else {
                 //if (angle == 1) {
                 //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
