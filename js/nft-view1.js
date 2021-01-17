@@ -1,11 +1,11 @@
 var webArViewer = webArViewer || {};
 
-var defaultAngle = -5;
+var defaultAngle = 0;
 var defaultPos = { x: 0, y: 0, z: 0 };
 var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
 var zoomH = 0;
-var objAngle = -5;
+var objAngle = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
@@ -272,10 +272,6 @@ var SizeRate = 20;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    //if (self.arData.isNFT) {
-                    //    var urlParam = location.search.substring(0);
-                    //    location.href = rootPath + 'ar-view1.html' + urlParam + '&pv=1';
-                    //}
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
                     this.setDiplayBtn(1);
@@ -348,7 +344,7 @@ var SizeRate = 20;
 
             if (!val.isGif) {
 
-                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-5 0 0'));
+                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                 
                 if (!val.isGltf) {
 
@@ -541,7 +537,8 @@ var SizeRate = 20;
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= 10;
+                //wrapPos.z -= 10;
+                wrapPos.z -= 8;
 
                 var pvAngle = 0;
 
@@ -966,7 +963,8 @@ var SizeRate = 20;
         positionVec3: function (type, angle) {
             var self = this;
             var h1_2 = self.arData.size.h / 2;
-            //var h1_2 = defaultSize.h / 2;
+
+            var i = 2;
 
             //if (self.arData.size.w > self.arData.size.h) {
             //    h1_2 = (self.arData.size.w / 2);
@@ -978,9 +976,9 @@ var SizeRate = 20;
             //    return { x: 0, y: h1_2, z: 0 };
             //}
             if (type === 'shadow') {
-                return { x: 0, y: -h1_2, z: -h1_2 };
+                return { x: 0, y: -h1_2 - i, z: -h1_2 };
             } else {
-                return { x: 0, y: 0, z: 0 };
+                return { x: 0, y: 0 - i, z: 0 };
             }
         }
     };
