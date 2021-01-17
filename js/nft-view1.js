@@ -254,7 +254,7 @@ var SizeRate = 20;
 
             var self = this;
 
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
+            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((markerType == 1 ? 0 : 1), objecttype));
 
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
 
