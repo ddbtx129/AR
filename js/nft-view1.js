@@ -1,6 +1,6 @@
 var webArViewer = webArViewer || {};
 
-//var defaultAngle = -5;
+var defaultAngle = -5;
 var defaultPos = { x: 0, y: 0, z: 0 };
 var defaultSize = { w: 10, h: 10 };
 var zoomW = 0;
@@ -602,7 +602,7 @@ var SizeRate = 20;
             bParalle.addEventListener('click', function () {
                 if (!bParalle.classList.contains('current')) {
                     wrapPos = self.positionVec3('main');
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90) + ' 0 0'));
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90 - defaultAngle) + ' 0 0'));
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     bParalle.classList.add('current');
                     bAngle.classList.remove('current');
@@ -831,7 +831,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
             
-            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? -1 : 1) + posy, z: 0 };
+            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
         },
 
         positionVec3: function (type, angle) {
