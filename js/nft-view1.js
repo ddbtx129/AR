@@ -283,14 +283,12 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            defaultSize = { w: 2, h: 2, d: 2 };
+            defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
 
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
-            //self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '2 2 2' : '4 4 4'));
             self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.w);
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
