@@ -209,7 +209,7 @@ function GetDefaultSize(arType, oType) {
     } else {
         if (oType != 'mp4') {
             // 17AC
-            wh = '6060';
+            wh = '100100';
         } else {
             // 1924
             wh = '6436';
