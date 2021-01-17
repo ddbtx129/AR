@@ -144,7 +144,7 @@ var SizeRate = 20;
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
             //defaultAngle = (self.arg.angleList && Number(self.arg.angleList) == 1) ? -90 : -5;
 
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : DefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
+            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
 
@@ -287,10 +287,12 @@ var SizeRate = 20;
 
             var self = this;
             var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
+            defaultSize = (self.arData.isMarkerType == 1 ? { w: 4, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '2 2 2' : '4 4 4'));
+            //self.wrap.setAttribute('scale', (self.arData.isMarkerType == 1 ? '2 2 2' : '4 4 4'));
+            self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.w);
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
@@ -527,8 +529,10 @@ var SizeRate = 20;
             var arGifRotation = '-30 0 0';
 
             var prevPageY;
-            var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
+            //var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
+            var zoomRateH = defaultSize.h;
 
+            var wh = { w: val.size.w, h: val.size.h };
             var wrapPos = self.positionVec3('main');
 
             if (self.arg.pv) {
@@ -537,7 +541,16 @@ var SizeRate = 20;
                 //wrapPos.y -= ((val.isMp4) ? 0 : 2);
                 //wrapPos.z -= 10;
 
-                var pvAngle = -90;
+                var pvAngle = 0;
+
+                //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                //    property: 'scale',
+                //    dir: 'alternate',
+                //    dur: 1,
+                //    easing: 'linear',
+                //    loop: false,
+                //    to: (wh.w / 2) + ' ' + (wh.h / 2) + ' ' + 1
+                //});
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
@@ -653,6 +666,15 @@ var SizeRate = 20;
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
+
+                AFRAME.utils.entity.setComponentProperty(self.arData.main, 'animation', {
+                    property: 'scale',
+                    dir: 'alternate',
+                    dur: 1,
+                    easing: 'linear',
+                    loop: false,
+                    to: wh.w + ' ' + wh.h + ' ' + 1
+                });
 
                 var mk = '';
 
