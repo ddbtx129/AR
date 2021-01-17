@@ -956,7 +956,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
             
-            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
+            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 + ((ar.arg.pv) ? 10 : 0) };
         },
 
         positionVec3: function (type, angle) {
@@ -968,14 +968,14 @@ var SizeRate = 20;
             }
                 
             if (type === 'shadow') {
-                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? 1 : -1), z: -h1_2 };
+                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? 1 : -1), z: -h1_2 + ((ar.arg.pv) ? 10 : 0)};
             } else {
                 //if (angle == 1) {
                 //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
                 //} else {
                 //    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
                 //}
-                return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
+                return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 + ((ar.arg.pv) ? 10 : 0) };
             }
         }
     };
