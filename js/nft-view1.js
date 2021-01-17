@@ -540,7 +540,6 @@ var SizeRate = 20;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
                 wrapPos.z -= 8 * (!!(val.isMarkerType == 1) ? 1 : 50);
 
-
                 var pvAngle = 0;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
