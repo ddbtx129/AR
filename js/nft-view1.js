@@ -754,9 +754,9 @@ var SizeRate = 20;
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                         if (!(self.arg.pv)) {
-                            wrapPos.y += rate;
+                            wrapPos.y += rate * 1.5;
                         } else {
-                            wrapPos.z -= rate;
+                            wrapPos.z -= rate * 1.5;
                         }
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }
