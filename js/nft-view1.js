@@ -282,7 +282,6 @@ var SizeRate = 20;
 
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    self.arData.size = this.setObjectSize(self.arData.isMarkerType);
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
                     this.setDiplayBtn(0);
@@ -291,7 +290,6 @@ var SizeRate = 20;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    self.arData.size = this.setObjectSize(0);
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
                     this.setDiplayBtn(1);
@@ -303,8 +301,8 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            defaultSize = { w: 4, h: 4, d: 4 };
+            defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            //defaultSize = { w: 4, h: 4, d: 4 };
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
 
             self.wrap = document.createElement('a-box');
@@ -550,14 +548,13 @@ var SizeRate = 20;
             var zoomRateH = defaultSize.h;
 
             var wh = { w: val.size.w, h: val.size.h };
-            //var wrapPos = self.positionVec3('main');
             var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= val.size.h * 4; // (!!(val.isMarkerType == 1) ? 4 : 8);
+                wrapPos.z -= val.size.h * (!!(val.isMarkerType == 1) ? 4 : 8);
 
                 var pvAngle = 0;
 
@@ -687,11 +684,6 @@ var SizeRate = 20;
                 var mWrap = document.createElement('a-nft');
 
                 if (val.isMarkerType == 1) {
-
-                    zoomRateH = defaultSize.h / 2;
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    });
 
                     mWrap = null;
 
