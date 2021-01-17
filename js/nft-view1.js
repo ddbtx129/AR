@@ -533,9 +533,9 @@ var SizeRate = 20;
 
             if (self.isPV) {
 
-                wrapPos.x -= 0;
-                wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= 10;
+                //wrapPos.x -= 0;
+                //wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                //wrapPos.z -= 10;
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
