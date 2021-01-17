@@ -538,9 +538,9 @@ var SizeRate = 20;
 
             if (self.arg.pv) {
 
-                //wrapPos.x -= 0;
-                //wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                //wrapPos.z -= 10;
+                wrapPos.x -= 0;
+                wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                wrapPos.z -= 10;
 
                 var pvAngle = 0;
 
@@ -973,14 +973,14 @@ var SizeRate = 20;
                 
             if (type === 'shadow') {
                 //return { x: 0, y: -(self.arData.size.h), z: -h1_2 };
-                return { x: 0, y: (!!(self.arg.pv) ? -10 : 0), z: -h1_2 };
+                return { x: 0, y: 0, z: -h1_2 };
             } else {
                 //if (angle == 1) {
                 //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
                 //} else {
                 //    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
                 //}
-                return { x: 0, y: (!!(self.arg.pv) ? 0 : h1_2), z: (!!(self.arg.pv) ? -10 : 0) };
+                return { x: 0, y: h1_2, z: 0 };
             }
         }
     };
