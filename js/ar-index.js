@@ -194,7 +194,7 @@ function GetFileType (arg) {
     return exct;
 }
 
-function DefaultSize(arType, oType) {
+function GetDefaultSize(arType, oType) {
     
     var wh = '2020';
 
