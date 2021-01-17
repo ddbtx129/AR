@@ -544,9 +544,9 @@ var SizeRate = 20;
 
                 var pvAngle = 0;
 
-                window.alert((defaultSize.w / 100).toFixed(1));
+                window.alert((defaultSize.w / 100).toFixed(2));
                 self.wrap.setAttribute('scale',
-                    AFRAME.utils.coordinates.stringify((defaultSize.w / 100).toFixed(1) + ' ' + (defaultSize.h / 100).toFixed(1) + ' ' + (defaultSize.d / 100).toFixed(1)));
+                    AFRAME.utils.coordinates.stringify((defaultSize.w / 100).toFixed(2) + ' ' + (defaultSize.h / 100).toFixed(2) + ' ' + (defaultSize.d / 100).toFixed(2)));
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
