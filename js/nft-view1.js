@@ -534,10 +534,15 @@ var SizeRate = 20;
             var wrapPos = self.positionVec3('main');
 
             if (self.arg.pv) {
-
-                wrapPos.x -= 0;
-                wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= 8;
+                if (val.isMarkerType == 1) {
+                    wrapPos.x -= 0;
+                    wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                    wrapPos.z -= 8;
+                } else {
+                    wrapPos.x -= 0;
+                    wrapPos.y -= 8;
+                    wrapPos.z -= ((val.isMp4) ? 0 : 2);
+                }
 
                 var pvAngle = 0;
 
