@@ -537,7 +537,6 @@ var SizeRate = 20;
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                //wrapPos.z -= 10;
                 wrapPos.z -= 8;
 
                 var pvAngle = 0;
@@ -717,9 +716,9 @@ var SizeRate = 20;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        //wrapPos = self.positionVec3('main');
+                        wrapPos = { x: 0, y: 0, z: 0 };
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
                     }
@@ -727,9 +726,9 @@ var SizeRate = 20;
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        //wrapPos = self.positionVec3('main');
+                        wrapPos = {x: 0, y: 0, z: 0 };
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                     }
@@ -769,7 +768,7 @@ var SizeRate = 20;
                 if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y += yClockRate;
                 } else {
-                    wrapPos.y -= yClickRate;
+                    wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
@@ -778,7 +777,7 @@ var SizeRate = 20;
                 if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y -= yClickRate;
                 } else {
-                    wrapPos.y += yClickRate;
+                    wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
             });
@@ -794,7 +793,7 @@ var SizeRate = 20;
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y += yTouchRate;
                     } else {
-                        wrapPos.y -= yTouchRate;
+                        wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
@@ -821,7 +820,7 @@ var SizeRate = 20;
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y -= yTouchRate;
                     } else {
-                        wrapPos.y += yTouchRate;
+                        wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
