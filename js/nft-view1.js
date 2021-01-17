@@ -964,7 +964,7 @@ var SizeRate = 20;
             var self = this;
             var h1_2 = self.arData.size.h / 2;
 
-            var i = 2;
+            var i = 0;
 
             //if (self.arData.size.w > self.arData.size.h) {
             //    h1_2 = (self.arData.size.w / 2);
