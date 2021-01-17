@@ -283,7 +283,9 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            defaultSize = { w: 2, h: 2, d: 2 };
+
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
 
             self.wrap = document.createElement('a-box');
@@ -538,7 +540,7 @@ var SizeRate = 20;
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= val.size.h * (!!(val.isMarkerType == 1) ? 4 : 8);
+                wrapPos.z -= val.size.h * 4; //(!!(val.isMarkerType == 1) ? 4 : 8);
 
                 var pvAngle = 0;
 
