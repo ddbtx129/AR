@@ -973,14 +973,14 @@ var SizeRate = 20;
                 
             if (type === 'shadow') {
                 //return { x: 0, y: -(self.arData.size.h), z: -h1_2 };
-                return { x: 0, y: (!!(self.arg.pv) ? -h1_2 : 0), z: -h1_2 };
+                return { x: 0, y: (!!(self.arg.pv) ? -10 : 0), z: -h1_2 };
             } else {
                 //if (angle == 1) {
                 //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
                 //} else {
                 //    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
                 //}
-                return { x: 0, y: h1_2, z: (!!(self.arg.pv) ? h1_2 : 0) };
+                return { x: 0, y: (!!(self.arg.pv) ? 0 : h1_2), z: (!!(self.arg.pv) ? -10 : 0) };
             }
         }
     };
