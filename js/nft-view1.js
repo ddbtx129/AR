@@ -973,7 +973,7 @@ var SizeRate = 20;
             var h1 = self.arData.size.h;
             var h1_2 = self.arData.size.h / 2;
 
-            var i = (!!(self.arg.pv) ? 0 : h1);
+            var i = ((!!(self.ar.isMarkerType == 1) && !!(self.arg.pv)) ? 0 : h1);
 
             //if (self.arData.size.w > self.arData.size.h) {
             //    h1_2 = (self.arData.size.w / 2);
