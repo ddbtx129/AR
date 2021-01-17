@@ -724,11 +724,11 @@ var SizeRate = 20;
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
                         wrapPos = self.positionVec3('main');
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90 - defaultAngle) + ' 0 0'));
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(-90) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        window.alert('P：' + String(objAngle - 90));
+                        window.alert('P：' + String(-90));
                     }
                 });
                 // ↑
@@ -931,7 +931,7 @@ var SizeRate = 20;
                 }
             }
 
-            if (val.isMarkerType == 1) {
+            if (val.isMarkerType == 1 || !!(val.isPV)) {
                 document.getElementById("loader").style.display = 'none';
             }
         },
