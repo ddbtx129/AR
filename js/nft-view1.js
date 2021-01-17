@@ -534,15 +534,11 @@ var SizeRate = 20;
             var wrapPos = self.positionVec3('main');
 
             if (self.arg.pv) {
-                if (val.isMarkerType == 1) {
-                    wrapPos.x -= 0;
-                    wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                    wrapPos.z -= 8;
-                } else {
-                    wrapPos.x -= 0;
-                    wrapPos.y -= 8;
-                    wrapPos.z -= ((val.isMp4) ? 0 : 2);
-                }
+
+                wrapPos.x -= 0;
+                wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                wrapPos.z -= 8 * (!!(val.isMarkerType == 1) ? 1 : -1);
+
 
                 var pvAngle = 0;
 
@@ -767,7 +763,7 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClickRate = (val.isMarkerType == 1 ? 0.2 : 5);
+            var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
@@ -788,7 +784,7 @@ var SizeRate = 20;
             });
             // ↑ 
 
-            var yTouchRate = ((val.isMarkerType == 1) ? 0.02 : 2);
+            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.02 : 2);
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
