@@ -981,21 +981,22 @@ var SizeRate = 20;
 
         positionVec3: function (type, angle) {
             var self = this;
-            var h1_2 = self.arData.size.h / 2;
+            //var h1_2 = self.arData.size.h / 2;
+            var h1_2 = defaultSize.h / 2;
 
-            if (self.arData.size.w > self.arData.size.h) {
-                h1_2 = (self.arData.size.w / 2);
-            }
+            //if (self.arData.size.w > self.arData.size.h) {
+            //    h1_2 = (self.arData.size.w / 2);
+            //}
                 
             if (type === 'shadow') {
-                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? 1 : -1), z: -h1_2};
+                return { x: 0, y: -(self.arData.size.h) * ((self.arData.isMarkerType == 1) ? 1 : -1), z: -h1_2 + (!!(self.arg.pv) ? defaultSize.h : 0) };
             } else {
                 //if (angle == 1) {
                 //    return { x: 0, y: 0, z: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1) };
                 //} else {
                 //    return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 };
                 //}
-                return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0};
+                return { x: 0, y: h1_2 * ((self.arData.isMarkerType == 1) ? -1 : 1), z: 0 + (!!(self.arg.pv) ? defaultSize.h : 0) };
             }
         }
     };
