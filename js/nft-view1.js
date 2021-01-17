@@ -531,7 +531,7 @@ var SizeRate = 20;
 
             var wrapPos = self.positionVec3('main');
 
-            if (self.isPV) {
+            if (self.arg.pv) {
 
                 //wrapPos.x -= 0;
                 //wrapPos.y -= ((val.isMp4) ? 0 : 2);
