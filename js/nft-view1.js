@@ -752,7 +752,7 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        wrapPos.z += ret;
+                        wrapPos.z += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'position', dur: 5, easing: 'linear', loop: false, to: wrapPos.x + ' ' + wrapPos.y + ' ' + wrapPos.z
                         });
