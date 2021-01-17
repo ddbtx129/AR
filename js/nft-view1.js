@@ -670,14 +670,9 @@ var SizeRate = 20;
 
             } else {
 
-                //AFRAME.utils.entity.setComponentProperty(self.arData.main, 'animation', {
-                //    property: 'scale',
-                //    dir: 'alternate',
-                //    dur: 1,
-                //    easing: 'linear',
-                //    loop: false,
-                //    to: wh.w + ' ' + wh.h + ' ' + 1
-                //});
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                });
 
                 var mk = '';
 
