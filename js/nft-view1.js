@@ -303,7 +303,8 @@ var SizeRate = 20;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
             //defaultSize = { w: 4, h: 4, d: 4 };
-            var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            //var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            var base = AFRAME.utils.coordinates.stringify(String(-(defaultSize.w / 2)) + ' ' + String(-(defaultSize.h / 2)) + ' ' + String(-(defaultSize.d / 2)));
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
