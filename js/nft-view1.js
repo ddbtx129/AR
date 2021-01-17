@@ -720,9 +720,9 @@ var SizeRate = 20;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = self.positionVec3('main');
+                        //wrapPos = self.positionVec3('main');
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify('0 0 0'));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
                     }
@@ -730,9 +730,9 @@ var SizeRate = 20;
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = self.positionVec3('main');
+                        //wrapPos = self.positionVec3('main');
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify('0 0 0'));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                     }
@@ -965,8 +965,8 @@ var SizeRate = 20;
 
         positionVec3: function (type, angle) {
             var self = this;
-            //var h1_2 = self.arData.size.h / 2;
-            var h1_2 = defaultSize.h / 2;
+            var h1_2 = self.arData.size.h / 2;
+            //var h1_2 = defaultSize.h / 2;
 
             //if (self.arData.size.w > self.arData.size.h) {
             //    h1_2 = (self.arData.size.w / 2);
