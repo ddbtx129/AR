@@ -753,7 +753,11 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        wrapPos.z -= rate;
+                        if (!(self.arg.pv)) {
+                            wrapPos.y += rate;
+                        } else {
+                            wrapPos.z -= rate;
+                        }
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }
                 }
