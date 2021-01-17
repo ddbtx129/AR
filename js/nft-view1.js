@@ -539,7 +539,7 @@ var SizeRate = 20;
 
                 var pvAngle = 0;
 
-                zoomRateH = defaultSize.h / (!!(val.isMarkerType == 1) ? 2 : 8);
+                zoomRateH = defaultSize.h / (!!(val.isMarkerType == 1) ? 2 : 6);
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
