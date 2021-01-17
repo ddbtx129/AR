@@ -272,11 +272,11 @@ var SizeRate = 20;
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
-                    if (self.arData.isNFT) {
-                        var urlParam = location.search.substring(0);
-                        location.href = rootPath + 'ar-view1.html' + urlParam + '&pv=1';
-                    }
-                    //location.replace(location.search + '&pv=1')
+                    //if (self.arData.isNFT) {
+                    //    var urlParam = location.search.substring(0);
+                    //    location.href = rootPath + 'ar-view1.html' + urlParam + '&pv=1';
+                    //}
+                    location.replace(location.search + '&pv=1')
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
@@ -530,86 +530,209 @@ var SizeRate = 20;
             var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
 
             var wrapPos = self.positionVec3('main');
-            var mk = '';
 
-            // NFTマーカー
-            var mWrap = document.createElement('a-nft');
+            if (self.isPV) {
 
-            if (val.isMarkerType == 1) {
+                wrapPos.x -= 0;
+                wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                wrapPos.z -= 10;
 
-                mWrap = null;
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
 
-                // ARマーカー
-                mWrap = document.createElement('a-marker');
-                mWrap.setAttribute('markerhandler', '');
-                mWrap.setAttribute('preset', 'custom');
-                mWrap.setAttribute('type', 'pattern');
-                mWrap.setAttribute('id', 'arMarker');
+                if (!!val.isLogo) {
 
-                mk = 'pattern/p-def.patt';
+                    var logopos = self.positionVec3Logo(Number(val.isAnime));
+                    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
-                if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                    mk = 'pattern/' + self.arg.markerList1 + '/p-' + self.arg.markerList2 + '.patt';
-                } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                    mk = 'pattern/' + self.arg.MkObjList + '/p-' + self.arg.markerList2 + '.patt';
-                } else if ((self.arg.markerList) && (self.arg.markerList2)) {
-                    mk = 'pattern/' + self.arg.markerList + '/p-' + self.arg.markerList2 + '.patt';
-                } else if ((self.arg.markerList)) {
-                    mk = 'pattern/p-' + self.arg.markerList + '.patt';
+                    if (!!val.isAnime) {
+                        self.arData.logo.setAttribute('radius', (8 / 2));
+                        if (val.isAnime == 1) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                dur: 3000,
+                                loop: true,
+                                easing: 'linear'
+                            });
+                        } else if (val.isAnime == 2) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                                property: 'rotation',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                dur: 3000,
+                                loop: true,
+                                easing: 'easeOutElastic',
+                                elasticity: 300
+                            });
+                        } else if (val.isAnime == 3) {
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                            var logoscale = { w: 8, h: 8, d: 2 };
+                            var rete = (!val.isMp4) ? 1 : 2;
+                            // 弾む
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
+                                property: 'position',
+                                dir: 'alternate',
+                                dur: 400,
+                                easing: 'easeInOutQuart',
+                                loop: true,
+                                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
+                            });
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
+                                property: 'scale',
+                                dir: 'alternate',
+                                dur: 400,
+                                easing: 'easeOutQuad',
+                                loop: true,
+                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
+                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1
+                            });
+                        } else if (val.isAnime == 11) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
+                                property: 'rotation',
+                                dur: 3000,
+                                easing: 'linear',
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                startEvents: 'turn1'
+                            });
+                        } else if (val.isAnime == 12) {
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
+                                property: 'rotation',
+                                dur: 3000,
+                                easing: 'easeOutElastic',
+                                elasticity: 300,
+                                from: String(objAngle) + ' 0 0',
+                                to: String(objAngle) + ' 360 0',
+                                startEvents: 'turn2'
+                            });
+                        } else if (val.isAnime == 13) {
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                            var logoscale = { w: 8, h: 8, d: 2 };
+                            var rete = (!val.isMp4) ? 1 : 2;
+                            // 弾む
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
+                                property: 'position',
+                                dir: 'alternate',
+                                dur: 400,
+                                easing: 'easeInOutQuart',
+                                loop: false,
+                                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                                startEvents: 'pos3'
+                            });
+                            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
+                                property: 'scale',
+                                dir: 'alternate',
+                                dur: 400,
+                                easing: 'easeOutQuad',
+                                loop: false,
+                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
+                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1,
+                                startEvents: 'scale3'
+                            });
+                        }
+                    } else {
+                        //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
+                            property: 'rotation',
+                            dur: 3000,
+                            easing: 'easeOutElastic',
+                            elasticity: 300,
+                            from: String(objAngle) + ' 0 0',
+                            to: String(objAngle) + ' 360 0',
+                            startEvents: 'turn0'
+                        });
+                    }
                 }
+
+                webArViewer.scene.appendChild(self.wrap);
+
             } else {
 
-                mWrap.setAttribute('markerhandler', '');
-                mWrap.setAttribute('preset', 'custom');
-                mWrap.setAttribute('type', 'nft');
-                mWrap.setAttribute('id', 'arMarker');
-                mWrap.setAttribute('smooth', 'true');
-                mWrap.setAttribute('smoothCount', '10');
-                mWrap.setAttribute('smoothTolerance', '0.01');
-                mWrap.setAttribute('smoothThreshold', '5');
+                var mk = '';
 
-                if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                    mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                    mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                } else if ((self.arg.markerList) && (self.arg.markerList2)) {
-                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                } else if ((self.arg.markerList)) {
-                    mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+                // NFTマーカー
+                var mWrap = document.createElement('a-nft');
+
+                if (val.isMarkerType == 1) {
+
+                    mWrap = null;
+
+                    // ARマーカー
+                    mWrap = document.createElement('a-marker');
+                    mWrap.setAttribute('markerhandler', '');
+                    mWrap.setAttribute('preset', 'custom');
+                    mWrap.setAttribute('type', 'pattern');
+                    mWrap.setAttribute('id', 'arMarker');
+
+                    mk = 'pattern/p-def.patt';
+
+                    if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                        mk = 'pattern/' + self.arg.markerList1 + '/p-' + self.arg.markerList2 + '.patt';
+                    } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                        mk = 'pattern/' + self.arg.MkObjList + '/p-' + self.arg.markerList2 + '.patt';
+                    } else if ((self.arg.markerList) && (self.arg.markerList2)) {
+                        mk = 'pattern/' + self.arg.markerList + '/p-' + self.arg.markerList2 + '.patt';
+                    } else if ((self.arg.markerList)) {
+                        mk = 'pattern/p-' + self.arg.markerList + '.patt';
+                    }
+                } else {
+
+                    mWrap.setAttribute('markerhandler', '');
+                    mWrap.setAttribute('preset', 'custom');
+                    mWrap.setAttribute('type', 'nft');
+                    mWrap.setAttribute('id', 'arMarker');
+                    mWrap.setAttribute('smooth', 'true');
+                    mWrap.setAttribute('smoothCount', '10');
+                    mWrap.setAttribute('smoothTolerance', '0.01');
+                    mWrap.setAttribute('smoothThreshold', '5');
+
+                    if ((self.arg.markerList1) && (self.arg.markerList2)) {
+                        mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                    } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
+                        mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                    } else if ((self.arg.markerList) && (self.arg.markerList2)) {
+                        mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
+                    } else if ((self.arg.markerList)) {
+                        mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+                    }
                 }
+
+                mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
+                mWrap.appendChild(self.wrap);
+
+                webArViewer.scene.appendChild(mWrap);
+                self.mWrap = mWrap;
+
+                // ↓ rotation 切替
+                bAngle.classList.add('current');
+
+                bAngle.addEventListener('click', function () {
+                    if (!bAngle.classList.contains('current')) {
+                        wrapPos = self.positionVec3('main');
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        bAngle.classList.add('current');
+                        bParalle.classList.remove('current');
+                        window.alert('A：' + String(objAngle));
+                    }
+                });
+
+                bParalle.addEventListener('click', function () {
+                    if (!bParalle.classList.contains('current')) {
+                        wrapPos = self.positionVec3('main');
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90 - defaultAngle) + ' 0 0'));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        bParalle.classList.add('current');
+                        bAngle.classList.remove('current');
+                        window.alert('P：' + String(objAngle - 90));
+                    }
+                });
+                // ↑
             }
-
-            mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));        
-            mWrap.appendChild(self.wrap);
-
-            webArViewer.scene.appendChild(mWrap);
-            self.mWrap = mWrap;
-
-            // ↓ rotation 切替
-            bAngle.classList.add('current');
-
-            bAngle.addEventListener('click', function () {
-                if (!bAngle.classList.contains('current')) {
-                    wrapPos = self.positionVec3('main');
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    bAngle.classList.add('current');
-                    bParalle.classList.remove('current');
-                    window.alert('A：' + String(objAngle));
-                }
-            });
-
-            bParalle.addEventListener('click', function () {
-                if (!bParalle.classList.contains('current')) {
-                    wrapPos = self.positionVec3('main');
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 90 - defaultAngle) + ' 0 0'));
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    bParalle.classList.add('current');
-                    bAngle.classList.remove('current');
-                    window.alert('P：' + String(objAngle - 90));
-                }
-            });
-            // ↑
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
