@@ -537,8 +537,10 @@ var SizeRate = 20;
                 //wrapPos.y -= ((val.isMp4) ? 0 : 2);
                 //wrapPos.z -= 10;
 
+                var pvAngle = -90;
+
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
                 if (!!val.isLogo) {
 
@@ -550,8 +552,8 @@ var SizeRate = 20;
                         if (val.isAnime == 1) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
-                                from: String(objAngle) + ' 0 0',
-                                to: String(objAngle) + ' 360 0',
+                                from: String(pvAngle) + ' 0 0',
+                                to: String(pvAngle) + ' 360 0',
                                 dur: 3000,
                                 loop: true,
                                 easing: 'linear'
@@ -559,8 +561,8 @@ var SizeRate = 20;
                         } else if (val.isAnime == 2) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
-                                from: String(objAngle) + ' 0 0',
-                                to: String(objAngle) + ' 360 0',
+                                from: String(pvAngle) + ' 0 0',
+                                to: String(pvAngle) + ' 360 0',
                                 dur: 3000,
                                 loop: true,
                                 easing: 'easeOutElastic',
@@ -594,8 +596,8 @@ var SizeRate = 20;
                                 property: 'rotation',
                                 dur: 3000,
                                 easing: 'linear',
-                                from: String(objAngle) + ' 0 0',
-                                to: String(objAngle) + ' 360 0',
+                                from: String(pvAngle) + ' 0 0',
+                                to: String(pvAngle) + ' 360 0',
                                 startEvents: 'turn1'
                             });
                         } else if (val.isAnime == 12) {
@@ -604,12 +606,12 @@ var SizeRate = 20;
                                 dur: 3000,
                                 easing: 'easeOutElastic',
                                 elasticity: 300,
-                                from: String(objAngle) + ' 0 0',
-                                to: String(objAngle) + ' 360 0',
+                                from: String(pvAngle) + ' 0 0',
+                                to: String(pvAngle) + ' 360 0',
                                 startEvents: 'turn2'
                             });
                         } else if (val.isAnime == 13) {
-                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
                             var logoscale = { w: 8, h: 8, d: 2 };
                             var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
@@ -641,8 +643,8 @@ var SizeRate = 20;
                             dur: 3000,
                             easing: 'easeOutElastic',
                             elasticity: 300,
-                            from: String(objAngle) + ' 0 0',
-                            to: String(objAngle) + ' 360 0',
+                            from: String(pvAngle) + ' 0 0',
+                            to: String(pvAngle) + ' 360 0',
                             startEvents: 'turn0'
                         });
                     }
@@ -981,11 +983,11 @@ var SizeRate = 20;
     webArViewer.ar = ar;
     webArViewer.ar.init();
 
-    //if (!(ar.arData.isMarkerType == 1)) {
-    //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
-    //    var bParalle = document.getElementById('swParallel');
-    //    bParalle.dispatchEvent(evant);
-    //}
+    if (!(ar.arData.isMarkerType == 1)) {
+        var evant = new Event("click", { "bubbles": true, "cancelable": true });
+        var bParalle = document.getElementById('swParallel');
+        bParalle.dispatchEvent(evant);
+    }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
