@@ -538,15 +538,12 @@ var SizeRate = 20;
 
             if (self.arg.pv) {
 
-                //wrapPos.x -= 0;
-                //wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                //wrapPos.z -= 10;
+                wrapPos.x -= 0;
+                wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                wrapPos.z -= 10;
 
                 var pvAngle = 0;
 
-                window.alert((defaultSize.w / 100).toFixed(2));
-                self.wrap.setAttribute('scale',
-                    AFRAME.utils.coordinates.stringify((defaultSize.w / 100).toFixed(2) + ' ' + (defaultSize.h / 100).toFixed(2) + ' ' + (defaultSize.d / 100).toFixed(2)));
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
@@ -661,9 +658,6 @@ var SizeRate = 20;
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
-
-                self.wrap.setAttribute('scale',
-                    AFRAME.utils.coordinates.stringify((defaultSize.w).toFixed(1) + ' ' + (defaultSize.h).toFixed(1) + ' ' + (defaultSize.d).toFixed(1)));
 
                 var mk = '';
 
