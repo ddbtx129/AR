@@ -143,17 +143,15 @@ var SizeRate = 20;
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
-            //self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
+            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
-            //var wh = SizeSplit(self.arg.sizeList).toString().split(',');
+            var wh = SizeSplit(self.arg.sizeList).toString().split(',');
 
-            //var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            //var j = (dataObj.isMarkerType == 1 ? 2 : 4);
+            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+            var j = (dataObj.isMarkerType == 1 ? 2 : 4);
 
-            //dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-
-            dataObj.size = this.setObjectSize(dataObj.isMarkerType);
+            dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
 
             if (dataObj.path) {
 
@@ -261,8 +259,6 @@ var SizeRate = 20;
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             var j = (markerType != 1 ? 4 : 2);
 
-            //dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             var size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };;
 
             return size;
@@ -303,9 +299,8 @@ var SizeRate = 20;
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             defaultSize = (!!(self.arData.isMarkerType == 1) ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            //defaultSize = { w: 4, h: 4, d: 4 };
             //var base = AFRAME.utils.coordinates.stringify('0 0 0');
-            var base = AFRAME.utils.coordinates.stringify(String(-(defaultSize.w / 2)) + ' ' + String(-(defaultSize.h / 2)) + ' ' + String(-(defaultSize.d / 2)));
+            var base = AFRAME.utils.coordinates.stringify(String(-(Number(defaultSize.w) / 2)) + ' ' + String(-Number((defaultSize.h) / 2)) + ' ' + String(-Number(defaultSize.d) / 2)));
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
