@@ -778,8 +778,8 @@ var SizeRate = 20;
                         //} else {
                         //    wrapPos.z -= rate * 1.5;
                         //}
-                        wrapPos = { x: wrapPos.x, y: wrapPos.y + rate * 1.5, z: wrapPos.z - rate * 1.5 };
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        //wrapPos = { x: wrapPos.x, y: wrapPos.y + rate * 1.5, z: wrapPos.z - rate * 1.5 };
+                        //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     }
                 }
             });
