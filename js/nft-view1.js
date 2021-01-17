@@ -753,7 +753,7 @@ var SizeRate = 20;
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRate
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                     }
                 }
