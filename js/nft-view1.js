@@ -523,7 +523,8 @@ var SizeRate = 20;
             if (!!bParalle.classList.remove('current')) {
                 bParalle.classList.remove('current');
             }
-
+window.alert(defaultSize.w);
+            window.alert(defaultSize.h);
             bAngle.classList.add('current');
 
             var arGifRotation = '-30 0 0';
