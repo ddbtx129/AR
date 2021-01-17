@@ -973,7 +973,7 @@ var SizeRate = 20;
             var h1 = self.arData.size.h;
             var h1_2 = self.arData.size.h / 2;
 
-            var i = ((!!(self.arData.isMarkerType == 1) && !!(self.arg.pv)) ? 0 : h1);
+            var i = ((!!(self.arData.isMarkerType == 1) && !!(self.arg.pv)) ? -h1_2 : h1);
 
             //if (self.arData.size.w > self.arData.size.h) {
             //    h1_2 = (self.arData.size.w / 2);
@@ -985,9 +985,9 @@ var SizeRate = 20;
             //    return { x: 0, y: h1_2, z: 0 };
             //}
             if (type === 'shadow') {
-                return { x: 0, y: -h1_2 - i, z: -h1_2 };
+                return { x: 0, y: i - h1_2, z: -h1_2 };
             } else {
-                return { x: 0, y: 0 - i, z: 0 };
+                return { x: 0, y: i, z: 0 };
             }
         }
     };
