@@ -151,7 +151,7 @@ var SizeRate = 20;
             var j = (dataObj.isMarkerType == 1 ? 2 : 4);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
 
             if (dataObj.path) {
 
@@ -246,22 +246,6 @@ var SizeRate = 20;
             self.arData = arData;
 
             return true;
-        },
-
-        setObjectSize: function (markerType) {
-
-            var self = this;
-
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((markerType != 1 ? 1 : 0), objecttype));
-
-            var wh = SizeSplit(self.arg.sizeList).toString().split(',');
-
-            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            var j = (markerType != 1 ? 4 : 2);
-
-            var size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };;
-
-            return size;
         },
 
         setSwitcher: function () {
