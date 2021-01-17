@@ -2,7 +2,7 @@ var webArViewer = webArViewer || {};
 
 var defaultAngle = 0;
 var defaultPos = { x: 0, y: 0, z: 0 };
-var defaultSize = { w: 10, h: 10 };
+var defaultSize = { w: 10, h: 10, d: 10 };
 var zoomW = 0;
 var zoomH = 0;
 var objAngle = 0;
@@ -262,9 +262,10 @@ var SizeRate = 20;
             var j = (markerType != 1 ? 4 : 2);
 
             //dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            var size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };;
 
-            return defaultSize;
+            return size;
         },
 
         setSwitcher: function () {
