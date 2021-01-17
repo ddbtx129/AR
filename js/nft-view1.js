@@ -523,8 +523,7 @@ var SizeRate = 20;
             if (!!bParalle.classList.remove('current')) {
                 bParalle.classList.remove('current');
             }
-window.alert(defaultSize.w);
-            window.alert(defaultSize.h);
+
             bAngle.classList.add('current');
 
             var arGifRotation = '-30 0 0';
@@ -552,6 +551,9 @@ window.alert(defaultSize.w);
                 //    loop: false,
                 //    to: (wh.w / 2) + ' ' + (wh.h / 2) + ' ' + 1
                 //});
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: '0.5 0.5  0.5'
+                });
 
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
