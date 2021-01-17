@@ -546,7 +546,6 @@ var SizeRate = 20;
             var prevPageY;
             //var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
             var zoomRateH = defaultSize.h;
-            var zoomRate = defaultSize.h;
 
             var wh = { w: val.size.w, h: val.size.h };
             //var wrapPos = self.positionVec3('main');
@@ -686,6 +685,11 @@ var SizeRate = 20;
                 var mWrap = document.createElement('a-nft');
 
                 if (val.isMarkerType == 1) {
+
+                    zoomRateH = defaultSize.h / 2;
+                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
 
                     mWrap = null;
 
