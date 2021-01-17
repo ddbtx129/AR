@@ -747,9 +747,14 @@ var SizeRate = 20;
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        zoomRateH += (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        zoomRateH += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                        });
+                        wrapPos.z += ret;
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                            property: 'position', dur: 5, easing: 'linear', loop: false, to: wrapPos.x + ' ' + wrapPos.y + ' ' + wrapPos.z
                         });
                     }
                 }
