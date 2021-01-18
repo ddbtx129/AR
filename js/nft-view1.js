@@ -293,9 +293,9 @@ var SizeRate = 20;
             self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
-            //self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-            self.wrap.setAttribute('color', '#00f');
-            self.wrap.setAttribute('material', 'transparent: false');
+            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+            //self.wrap.setAttribute('color', '#00f');
+            //self.wrap.setAttribute('material', 'transparent: false');
         },
 
         createModel: function () {
@@ -381,7 +381,8 @@ var SizeRate = 20;
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = (!!(val.isMarkerType == 1) ? { w: 8, h: 8, d: 2 } : { w: 256, h: 256, d: 128 });
+                //var logoscale = (!!(val.isMarkerType == 1) ? { w: 8, h: 8, d: 2 } : { w: 256, h: 256, d: 128 });
+                var logoscale = { w: 8, h: 8, d: 2 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
@@ -692,6 +693,10 @@ var SizeRate = 20;
                     }
                 } else {
 
+                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
+
                     mWrap.setAttribute('markerhandler', '');
                     mWrap.setAttribute('preset', 'custom');
                     mWrap.setAttribute('type', 'nft');
@@ -948,6 +953,7 @@ var SizeRate = 20;
 
         positionVec3Logo: function (anime) {
             var self = this;
+            var h1 = self.arData.size.h;
             var h1_2 = (self.arData.size.h / 5);
             var posy = 0;
 
