@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.141';
+            elem.innerHTML = '1.0.142';
         },
 
         setArg: function () {
@@ -674,9 +674,13 @@ var SizeRate = 20;
 
                 if (val.isMarkerType == 1) {
 
-                    zoomRateH = 3;
+                    zoomRateH = 2.5;
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
+                    
+                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                        property: 'position', dur: 5, easing: 'linear', loop: false, to: 0 + ' ' + -5 + ' ' + 0
                     });
 
                     mWrap = null;
@@ -774,7 +778,7 @@ var SizeRate = 20;
                         });
 
                         var elem = document.getElementById("debug2");
-                        elem.innerHTML = "H: " + (zoomRateH).toFixed(2) + ' D: ' + (zoomRateH).toFixed(2);
+                        elem.innerHTML = "H: " + (zoomRateH).toFixed(1) + ' D: ' + (zoomRateH).toFixed(1);
                     }
                 }
             });
@@ -798,7 +802,7 @@ var SizeRate = 20;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 var elem = document.getElementById("debug1");
-                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
+                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
 
             });
 
@@ -811,7 +815,7 @@ var SizeRate = 20;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 var elem = document.getElementById("debug1");
-                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
+                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
 
             });
             // ↑ 
@@ -831,7 +835,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     var elem = document.getElementById("debug1");
-                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
+                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
 
                 }, 10);
             })
@@ -862,7 +866,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     var elem = document.getElementById("debug1");
-                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
+                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
 
                 }, 10);
             })
