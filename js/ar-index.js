@@ -209,10 +209,14 @@ function GetDefaultSize(arType, oType) {
     } else {
         if (oType != 'mp4') {
             // 17AC
-            wh = '6060';
+            //wh = '6060';
+            // 7E4
+            wh = '2020';
         } else {
             // 1924
-            wh = '6436';
+            //wh = '6436';
+            // 7DB
+            wh = '2011';
         }
     }
 
