@@ -792,7 +792,7 @@ var SizeRate = 20;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 var elem = document.getElementById("debug");
-                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
 
             });
 
@@ -805,7 +805,7 @@ var SizeRate = 20;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 var elem = document.getElementById("debug");
-                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
 
             });
             // ↑ 
@@ -825,7 +825,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     var elem = document.getElementById("debug");
-                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
 
                 }, 10);
             })
@@ -856,7 +856,7 @@ var SizeRate = 20;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     var elem = document.getElementById("debug");
-                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
 
                 }, 10);
             })
@@ -1001,7 +1001,7 @@ var SizeRate = 20;
             var h1_2 = self.arData.size.h / 2;
 
             //var i = (!!(self.arg.isMarkerType == 1) ? (!!(self.arg.pv) ? 0 : 0) : (!!(self.arg.pv) ? -h1_2 : h1_2));
-            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 2 : 0));
+            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 3 : 0));
 
             //if (type === 'shadow') {
             //    return { x: 0, y: 0, z: -h1_2 };
@@ -1026,5 +1026,8 @@ var SizeRate = 20;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
+
+    var elem = document.getElementById("version1");
+    elem.innerHTML = '1.0.13';
 
 }());
