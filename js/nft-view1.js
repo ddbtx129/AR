@@ -985,7 +985,7 @@ var SizeRate = 20;
             var h1_2 = self.arData.size.h / 2;
 
             //var i = (!!(self.arg.isMarkerType == 1) ? (!!(self.arg.pv) ? 0 : 0) : (!!(self.arg.pv) ? -h1_2 : h1_2));
-            var i = (!!(self.arg.isMarkerType == 1) || !!(self.arg.pv) ? 0 : h1_2);
+            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? h1 : 0));
 
             //if (type === 'shadow') {
             //    return { x: 0, y: 0, z: -h1_2 };
