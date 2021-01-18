@@ -289,7 +289,6 @@ var SizeRate = 20;
             //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
             defaultSize = { w: 4, h: 4, d: 4 };
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
-            //var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
@@ -772,7 +771,6 @@ var SizeRate = 20;
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         zoomRateH += rate;
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -781,6 +779,7 @@ var SizeRate = 20;
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
                 prevPageY = null;
             });
 
