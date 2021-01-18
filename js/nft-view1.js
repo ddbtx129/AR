@@ -1003,14 +1003,14 @@ var SizeRate = 20;
             var h1 = self.arData.size.h;
             var h1_2 = self.arData.size.h / 2;
 
-            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 4 : 0));
+            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 5 : 0));
 
             if (type === 'shadow') {
-            //    return { x: 0, y: 0, z: -h1_2 };
-                return { x: 0, y: i - h1_2, z: -h1_2 };
+                return { x: 0, y: 0, z: -h1_2 };
+            //    return { x: 0, y: i - h1_2, z: -h1_2 };
             } else {
-            //    return { x: 0, y: h1_2, z: 0 };
-                return { x: 0, y: i, z: 0 };
+                return { x: 0, y: h1_2, z: 0 };
+             //   return { x: 0, y: i, z: 0 };
             }
         }
     };
