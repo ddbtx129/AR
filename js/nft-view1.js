@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.13';
+            elem.innerHTML = '1.0.14';
         },
 
         setArg: function () {
@@ -995,7 +995,8 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
             
-            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
+            //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
+            return { x: 0, y: -h1, z: 0 };
         },
 
         positionVec3: function (type, angle) {
