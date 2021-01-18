@@ -383,7 +383,6 @@ var SizeRate = 20;
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                //var logoscale = (!!(val.isMarkerType == 1) ? { w: 8, h: 8, d: 2 } : { w: 256, h: 256, d: 128 });
                 var logoscale = { w: 8, h: 8, d: 2 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
@@ -471,8 +470,8 @@ var SizeRate = 20;
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                            from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             startEvents: 'pos3'
                         });
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale3', {
@@ -555,10 +554,13 @@ var SizeRate = 20;
                 if (!!val.isLogo) {
 
                     var logopos = self.positionVec3Logo(Number(val.isAnime));
+                    var logoscale = { w: 8, h: 8, d: 2 };
+                    var rete = (!val.isMp4) ? 1 : 2;
+
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
-                        self.arData.logo.setAttribute('radius', (8 / 2));
+                        self.arData.logo.setAttribute('radius', (logoscale.w / 2));
                         if (val.isAnime == 1) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
@@ -580,8 +582,6 @@ var SizeRate = 20;
                             });
                         } else if (val.isAnime == 3) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                            var logoscale = { w: 8, h: 8, d: 2 };
-                            var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
                                 property: 'position',
@@ -622,8 +622,6 @@ var SizeRate = 20;
                             });
                         } else if (val.isAnime == 13) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                            var logoscale = { w: 8, h: 8, d: 2 };
-                            var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
                                 property: 'position',
@@ -631,8 +629,8 @@ var SizeRate = 20;
                                 dur: 400,
                                 easing: 'easeInOutQuart',
                                 loop: false,
-                                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                                from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                                to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                                 startEvents: 'pos3'
                             });
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
@@ -1010,7 +1008,7 @@ var SizeRate = 20;
             }
             
             //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
-            return { x: 0, y: -h1, z: 0 };
+            return { x: 0, y: -h1_2 - 0.75, z: 0 };
         },
 
         positionVec3: function (type, angle) {
