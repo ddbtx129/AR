@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.14';
+            elem.innerHTML = '1.0.141';
         },
 
         setArg: function () {
