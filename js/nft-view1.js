@@ -671,6 +671,11 @@ var SizeRate = 20;
 
                 if (val.isMarkerType == 1) {
 
+                    zoomRateH = 3;
+                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
+
                     mWrap = null;
 
                     // ARマーカー
