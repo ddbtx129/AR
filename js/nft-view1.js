@@ -532,7 +532,7 @@ var SizeRate = 20;
             //var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
             var zoomRateH = defaultSize.h;
 
-            var wh = { w: val.size.w, h: val.size.h };
+            //var wh = { w: val.size.w, h: val.size.h };
             var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
@@ -693,6 +693,7 @@ var SizeRate = 20;
                     }
                 } else {
 
+                    zoomRateH = zoomRateH * 3;
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     });
