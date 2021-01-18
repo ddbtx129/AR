@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.145';
+            elem.innerHTML = '1.0.146';
         },
 
         setArg: function () {
@@ -725,13 +725,6 @@ var SizeRate = 20;
                     }
                 }
 
-                var elem = document.getElementById("debug1");
-                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
-
-                var elem = document.getElementById("debug2");
-                elem.innerHTML = "H: " + (zoomRateH).toFixed(1) + ' D: ' + (zoomRateH).toFixed(1);
-
-
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
                 mWrap.appendChild(self.wrap);
 
@@ -762,6 +755,12 @@ var SizeRate = 20;
                 });
                 // ↑
             }
+
+            var elem = document.getElementById("debug1");
+            elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
+
+            var elem = document.getElementById("debug2");
+            elem.innerHTML = "H: " + (zoomRateH).toFixed(1) + ' D: ' + (zoomRateH).toFixed(1);
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
@@ -1008,7 +1007,7 @@ var SizeRate = 20;
             }
             
             //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
-            return { x: 0, y: -h1_2 - 0.75, z: 0 };
+            return { x: 0, y: -h1_2, z: 0 };
         },
 
         positionVec3: function (type, angle) {
