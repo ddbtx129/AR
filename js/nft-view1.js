@@ -763,6 +763,7 @@ var SizeRate = 20;
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
+                window.alert(0);
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
@@ -779,8 +780,9 @@ var SizeRate = 20;
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
                 prevPageY = null;
+                window.alert(1);
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             // ↓ 上下移動ボタン押下
