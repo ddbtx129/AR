@@ -772,6 +772,9 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
+
+                        var elem = document.getElementById("debug2");
+                        elem.innerHTML = "H: " + (zoomRateH).toFixed(2) + ' D: ' + (zoomRateH).toFixed(2);
                     }
                 }
             });
@@ -794,8 +797,8 @@ var SizeRate = 20;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
-                var elem = document.getElementById("debug");
-                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
+                var elem = document.getElementById("debug1");
+                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
 
             });
 
@@ -807,8 +810,8 @@ var SizeRate = 20;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
-                var elem = document.getElementById("debug");
-                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
+                var elem = document.getElementById("debug1");
+                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
 
             });
             // ↑ 
@@ -827,8 +830,8 @@ var SizeRate = 20;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
-                    var elem = document.getElementById("debug");
-                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
+                    var elem = document.getElementById("debug1");
+                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
 
                 }, 10);
             })
@@ -858,8 +861,8 @@ var SizeRate = 20;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
-                    var elem = document.getElementById("debug");
-                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' + wrapPos.z;
+                    var elem = document.getElementById("debug1");
+                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(2) + ' Z: ' + (wrapPos.z).toFixed(2);
 
                 }, 10);
             })
