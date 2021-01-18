@@ -790,6 +790,10 @@ var SizeRate = 20;
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                var elem = document.getElementById("debug");
+                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+
             });
 
             bDOWN.addEventListener('click', function () {
@@ -799,6 +803,10 @@ var SizeRate = 20;
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                var elem = document.getElementById("debug");
+                elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+
             });
             // ↑ 
 
@@ -815,6 +823,10 @@ var SizeRate = 20;
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                    var elem = document.getElementById("debug");
+                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+
                 }, 10);
             })
 
@@ -842,6 +854,10 @@ var SizeRate = 20;
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                    var elem = document.getElementById("debug");
+                    elem.innerHTML = "Y: " + wrapPos.y + ' Z: ' * wrapPos.z;
+
                 }, 10);
             })
 
