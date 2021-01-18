@@ -693,7 +693,7 @@ var SizeRate = 20;
                     }
                 } else {
 
-                    zoomRateH = zoomRateH * 3;
+                    zoomRateH = zoomRateH * 50;
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     });
