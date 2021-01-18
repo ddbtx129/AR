@@ -972,13 +972,11 @@ var SizeRate = 20;
         },
 
         objectDatainnerHTML: function (oScale, oPosition) {
-
-            var elem = document.getElementById("debug2");
-            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + "Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
-
             var elem = document.getElementById("debug1");
             elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
 
+            var elem = document.getElementById("debug2");
+            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + "Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
         },
 
         positionVec3Logo: function (anime) {
