@@ -25,15 +25,23 @@ a {
 #version1 {
     position: absolute;
     bottom: 0%;
-    left: 58px;
+    left: 60px;
     font-size: x-small;
     color: silver
 }
 
-#debug {
+#debug1 {
     position: absolute;
     bottom: 0%;
-    left: 128px;
+    left: 120px;
+    font-size: x-small;
+    color: silver
+}
+
+#debug2 {
+    position: absolute;
+    bottom: 0%;
+    left: 180px;
     font-size: x-small;
     color: silver
 }
