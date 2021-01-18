@@ -17,7 +17,23 @@ a {
 #version {
     position: absolute;
     bottom: 0%;
-    left: 50px;
+    left: 58px;
+    font-size: x-small;
+    color: silver
+}
+
+#version1 {
+    position: absolute;
+    bottom: 0%;
+    left: 58px;
+    font-size: x-small;
+    color: silver
+}
+
+#debug {
+    position: absolute;
+    bottom: 0%;
+    left: 128px;
     font-size: x-small;
     color: silver
 }
