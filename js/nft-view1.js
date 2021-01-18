@@ -671,7 +671,7 @@ var SizeRate = 20;
 
                 if (val.isMarkerType == 1) {
 
-                    zoomRateH = 2;
+                    zoomRateH = 3;
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     });
@@ -1001,7 +1001,7 @@ var SizeRate = 20;
             var h1_2 = self.arData.size.h / 2;
 
             //var i = (!!(self.arg.isMarkerType == 1) ? (!!(self.arg.pv) ? 0 : 0) : (!!(self.arg.pv) ? -h1_2 : h1_2));
-            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 : 0));
+            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 2 : 0));
 
             //if (type === 'shadow') {
             //    return { x: 0, y: 0, z: -h1_2 };
