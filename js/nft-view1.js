@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.146';
+            elem.innerHTML = '1.0.121';
         },
 
         setArg: function () {
@@ -741,6 +741,7 @@ var SizeRate = 20;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 });
 
@@ -751,16 +752,13 @@ var SizeRate = 20;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 });
                 // ↑
             }
 
-            var elem = document.getElementById("debug1");
-            elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
-
-            var elem = document.getElementById("debug2");
-            elem.innerHTML = "H: " + (zoomRateH).toFixed(1) + ' D: ' + (zoomRateH).toFixed(1);
+            this.objectDatainnerHTML(zoomRateH, wrapPos);
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
@@ -777,9 +775,7 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-
-                        var elem = document.getElementById("debug2");
-                        elem.innerHTML = "H: " + (zoomRateH).toFixed(1) + ' D: ' + (zoomRateH).toFixed(1);
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 }
             });
@@ -801,10 +797,7 @@ var SizeRate = 20;
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                var elem = document.getElementById("debug1");
-                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
-
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
@@ -814,10 +807,7 @@ var SizeRate = 20;
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                var elem = document.getElementById("debug1");
-                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
-
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
             // ↑ 
 
@@ -834,10 +824,7 @@ var SizeRate = 20;
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                    var elem = document.getElementById("debug1");
-                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
-
+                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
             })
 
@@ -865,10 +852,7 @@ var SizeRate = 20;
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                    var elem = document.getElementById("debug1");
-                    elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
-
+                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
             })
 
@@ -985,6 +969,16 @@ var SizeRate = 20;
             if (val.isMarkerType == 1 || !!(val.isPV)) {
                 document.getElementById("loader").style.display = 'none';
             }
+        },
+
+        objectDatainnerHTML: function (oScale, oPosition) {
+
+            var elem = document.getElementById("debug1");
+            elem.innerHTML = "X: " + (oScale.x).toFixed(1) + "Y: " + (oScale.y).toFixed(1) + ' Z: ' + (oScale.z).toFixed(1);
+
+            var elem = document.getElementById("debug2");
+            elem.innerHTML = "W: " + (oPosition).toFixed(1) + "H: " + (oPosition).toFixed(1) + ' D: ' + (oPosition).toFixed(1);
+
         },
 
         positionVec3Logo: function (anime) {
