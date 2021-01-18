@@ -775,13 +775,13 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 }
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             // ↓ 上下移動ボタン押下
@@ -976,7 +976,7 @@ var SizeRate = 20;
             elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
 
             var elem = document.getElementById("debug2");
-            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + "Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
+            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
         },
 
         positionVec3Logo: function (anime) {
