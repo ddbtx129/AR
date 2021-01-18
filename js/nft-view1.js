@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.144';
+            elem.innerHTML = '1.0.145';
         },
 
         setArg: function () {
@@ -531,10 +531,8 @@ var SizeRate = 20;
             var arGifRotation = '-30 0 0';
 
             var prevPageY;
-            //var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
             var zoomRateH = defaultSize.h;
 
-            //var wh = { w: val.size.w, h: val.size.h };
             var defaultwrapPos = { x: 0, y: 0, z: 0 };
             var wrapPos = { x: 0, y: 0, z: 0 };
 
@@ -546,7 +544,6 @@ var SizeRate = 20;
 
                 var pvAngle = 0;
 
-                //zoomRateH = defaultSize.h / (!!(val.isMarkerType == 1) ? 2 : 3);
                 zoomRateH = defaultSize.h / 2;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
@@ -729,6 +726,13 @@ var SizeRate = 20;
                         mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
                     }
                 }
+
+                var elem = document.getElementById("debug1");
+                elem.innerHTML = "Y: " + (wrapPos.y).toFixed(1) + ' Z: ' + (wrapPos.z).toFixed(1);
+
+                var elem = document.getElementById("debug2");
+                elem.innerHTML = "H: " + (zoomRateH).toFixed(1) + ' D: ' + (zoomRateH).toFixed(1);
+
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
                 mWrap.appendChild(self.wrap);
