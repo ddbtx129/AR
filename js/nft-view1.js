@@ -46,6 +46,9 @@ var SizeRate = 20;
             }
 
             this.setSwitcher();
+
+            var elem = document.getElementById("version1");
+            elem.innerHTML = '1.0.13';
         },
 
         setArg: function () {
@@ -1026,8 +1029,5 @@ var SizeRate = 20;
     }
 
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
-
-    var elem = document.getElementById("version1");
-    elem.innerHTML = '1.0.13';
 
 }());
