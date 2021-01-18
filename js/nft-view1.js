@@ -48,7 +48,7 @@ var SizeRate = 20;
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.142';
+            elem.innerHTML = '1.0.144';
         },
 
         setArg: function () {
@@ -535,13 +535,13 @@ var SizeRate = 20;
             var zoomRateH = defaultSize.h;
 
             //var wh = { w: val.size.w, h: val.size.h };
+            var defaultwrapPos = { x: 0, y: 0, z: 0 };
             var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                //wrapPos.z -= val.size.h * (!!(val.isMarkerType == 1) ? 1 : 2);
                 wrapPos.z -=  defaultSize.h;
 
                 var pvAngle = 0;
@@ -678,10 +678,10 @@ var SizeRate = 20;
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     });
-                    
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'position', dur: 5, easing: 'linear', loop: false, to: 0 + ' ' + -5 + ' ' + 0
-                    });
+
+                    defaultwrapPos.y = -5;
+                    wrapPos = defaultwrapPos;
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     mWrap = null;
 
@@ -741,7 +741,7 @@ var SizeRate = 20;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = { x: 0, y: 0, z: 0 };
+                        wrapPos = defaultwrapPos;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
@@ -751,7 +751,7 @@ var SizeRate = 20;
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = {x: 0, y: 0, z: 0 };
+                        wrapPos = defaultwrapPos;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
@@ -931,6 +931,9 @@ var SizeRate = 20;
 
             var self = this;
             var val = self.arData;
+
+            document.getElementById("debug1").style.display = "inline";
+            document.getElementById("debug2").style.display = "inline";
 
             document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
