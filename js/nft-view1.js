@@ -1,25 +1,26 @@
 var webArViewer = webArViewer || {};
 
-var defaultAngle = 0;
-var defaultPos = { x: 0, y: 0, z: 0 };
-var defaultScale = { w: 4, h: 4, d: 4 };
-var defaultwrapPos = { x: 0, y: 0, z: 0 };
-var defaultwrapScale = { w: 4, h: 4, d: 4 };
-var defaultlogoScale = { w: 4, h: 4, d: 2 };
-var zoomW = 0;
-var zoomH = 0;
-var objAngle = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
-var SizeRate = 20;
 
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
     webArViewer.scene = document.querySelector('a-scene');
 
+    var defaultAngle = 0;
+    var defaultPos = { x: 0, y: 0, z: 0 };
+    var defaultScale = { w: 4, h: 4, d: 4 };
+    var defaultwrapPos = { x: 0, y: 0, z: 0 };
+    var defaultwrapScale = { w: 4, h: 4, d: 4 };
+    var defaultlogoScale = { w: 4, h: 4, d: 2 };
+
+    var objAngle = 0;
+    var SizeRate = 20;
+
     var ar = {
+
 
         init: function () {
 
