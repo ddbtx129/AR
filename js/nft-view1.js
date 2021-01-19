@@ -758,7 +758,7 @@ var SizeRate = 20;
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                     }
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
+                    //this.objectDatainnerHTML(zoomRateH, wrapPos);
                 });
                 // ↑
             }
