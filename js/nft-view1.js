@@ -780,6 +780,7 @@ var SizeRate = 20;
                         });
                     }
                 }
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
