@@ -1,32 +1,33 @@
 var webArViewer = webArViewer || {};
 
-var defaultAngle = 0;
-var defaultPos = { x: 0, y: 0, z: 0 };
-var defaultScale = { w: 4, h: 4, d: 4 };
-var defaultwrapPos = { x: 0, y: 0, z: 0 };
-var defaultwrapScale = { w: 4, h: 4, d: 4 };
-var defaultlogoScale = { w: 4, h: 4, d: 2 };
-var zoomW = 0;
-var zoomH = 0;
-var objAngle = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
-var SizeRate = 20;
 
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
     webArViewer.scene = document.querySelector('a-scene');
 
+    var defaultAngle = 0;
+    var defaultPos = { x: 0, y: 0, z: 0 };
+    var defaultScale = { w: 4, h: 4, d: 4 };
+    var defaultwrapPos = { x: 0, y: 0, z: 0 };
+    var defaultwrapScale = { w: 4, h: 4, d: 4 };
+    var defaultlogoScale = { w: 4, h: 4, d: 2 };
+
+    var objAngle = 0;
+    var SizeRate = 20;
+
     var ar = {
+
 
         init: function () {
 
             videostate = 0;
 
             this.setArg();
-
+            
             if (this.setArData()) {
 
                 this.setWrap();
@@ -292,12 +293,12 @@ var SizeRate = 20;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             //defaultScale = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
             var basePos = AFRAME.utils.coordinates.stringify(defaultwrapPos);
-            var baseScale = defaultwrapScale;
+            var baseScale = AFRAME.utils.coordinates.stringify(defaultwrapScale);
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-            self.wrap.setAttribute('position', basePos);
+            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -527,14 +528,14 @@ var SizeRate = 20;
             var prevPageY;
             var zoomRateH = defaultwrapScale.h;
 
-            var wrapPos = defaultwrapPos;
+            var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
 
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
                 wrapPos.z -= defaultwrapScale.h * 1.5;
-
+                
                 var pvAngle = 0;
 
                 zoomRateH = defaultwrapScale.h / 2;
@@ -668,7 +669,7 @@ var SizeRate = 20;
                     });
 
                     defaultwrapPos.y = -5;
-                    wrapPos = defaultwrapPos;
+                    wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos);
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     mWrap = null;
@@ -741,24 +742,24 @@ var SizeRate = 20;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = defaultwrapPos;
+                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
                     }
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
+                    this.objectDatainnerHTML(zoomRateH, AFRAME.utils.coordinates.stringify(wrapPos));
                 });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = defaultwrapPos;
+                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                     }
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
+                    this.objectDatainnerHTML(zoomRateH, AFRAME.utils.coordinates.stringify(wrapPos));
                 });
                 // ↑
             }
@@ -778,6 +779,9 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
+
+                        var elem = document.getElementById("debug1");
+                        elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
                     }
                 }
             });
@@ -799,7 +803,7 @@ var SizeRate = 20;
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
+                this.objectDatainnerHTML(zoomRateH, AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener('click', function () {
@@ -809,7 +813,7 @@ var SizeRate = 20;
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
+                this.objectDatainnerHTML(zoomRateH, AFRAME.utils.coordinates.stringify(wrapPos));
             });
             // ↑ 
 
@@ -827,7 +831,7 @@ var SizeRate = 20;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
+                this.objectDatainnerHTML(zoomRateH, AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bUP.addEventListener(self.eventNames.end, e => {
@@ -855,7 +859,7 @@ var SizeRate = 20;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 }, 10);
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
+                this.objectDatainnerHTML(zoomRateH, AFRAME.utils.coordinates.stringify(wrapPos));
             });
 
             bDOWN.addEventListener(self.eventNames.end, e => {
@@ -979,7 +983,8 @@ var SizeRate = 20;
             elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
 
             var elem = document.getElementById("debug2");
-            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
+            var pos = AFRAME.utils.coordinates.stringify(oPosition);
+            elem.innerHTML = "X: " + Number(pos.x).toFixed(1) + " Y: " + Number(pos.y).toFixed(1) + ' Z: ' + Number(pos.z).toFixed(1);
         },
 
         positionVec3Logo: function (anime) {
