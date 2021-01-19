@@ -792,7 +792,7 @@ var SizeRate = 20;
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += yClockRate;
+                    wrapPos.y += yClickRate;
                 } else {
                     wrapPos.z -= yClickRate;
                 }
