@@ -387,13 +387,13 @@ var SizeRate = 20;
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultlogoScale));
-                logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                //    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
+                //    primitive: 'box', height: defaultlogoScale, width: defaultlogoScale, depth: defaultlogoScale, segmentsHeight: 1, segmentsWidth: 1
                 //});
                 //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
                 //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
@@ -401,7 +401,7 @@ var SizeRate = 20;
                 //});
 
                 if (!!val.isAnime) {
-                    logo.setAttribute('radius', (logoscale.w / 2));
+                    logo.setAttribute('radius', (defaultlogoScale.w / 2));
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
@@ -431,7 +431,7 @@ var SizeRate = 20;
                             easing: 'easeInOutQuart',
                             loop: true,
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
+                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
                         }),
                             AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
                                 property: 'scale',
@@ -439,8 +439,8 @@ var SizeRate = 20;
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: true,
-                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
-                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1
+                                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
                             })
                     } else if (val.isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn1', {
@@ -470,7 +470,7 @@ var SizeRate = 20;
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
                             to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             startEvents: 'pos3'
                         }),
@@ -480,8 +480,8 @@ var SizeRate = 20;
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: false,
-                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
-                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1,
+                                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
                                 startEvents: 'scale3'
                             })
                     }
