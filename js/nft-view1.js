@@ -159,7 +159,7 @@ var SizeRate = 20;
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defaultScale = { w: dataObj.w, h: dataObj.h, d: dataObj.h };
+            defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
 
             if (dataObj.path) {
 
