@@ -763,7 +763,6 @@ var SizeRate = 20;
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
-                window.alert(0);
             }),
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
@@ -775,13 +774,13 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
+                        window.alert(2);
                     }
                 }
             }),
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
-                window.alert(1);
                 this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
