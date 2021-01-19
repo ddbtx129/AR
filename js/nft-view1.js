@@ -775,7 +775,7 @@ var SizeRate = 20;
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                         var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
+                        elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
                     }
                 }
             }),
