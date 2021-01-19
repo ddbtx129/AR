@@ -514,6 +514,10 @@ var objecttype = "png";
                 self.arData.logo && self.wrap.appendChild(self.arData.logo);
             }
 
+            if (!val.isMp4) {
+                document.getElementById("player").style.display = 'none';
+            }
+
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
@@ -716,14 +720,6 @@ var objecttype = "png";
                     } else if ((self.arg.markerList)) {
                         mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
                     }
-                }
-
-                if (!val.isMp4) {
-                    zoomRateH = 3;
-                    document.getElementById("player").style.display = 'none';
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    });
                 }
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
