@@ -746,8 +746,8 @@ var SizeRate = 20;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
+                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 });
 
                 bParalle.addEventListener('click', function () {
@@ -757,8 +757,8 @@ var SizeRate = 20;
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
+                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 });
                 // ↑
             }
@@ -778,8 +778,6 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
                     }
                 }
             });
@@ -828,8 +826,8 @@ var SizeRate = 20;
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             bUP.addEventListener(self.eventNames.end, e => {
@@ -856,8 +854,8 @@ var SizeRate = 20;
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener(self.eventNames.end, e => {
