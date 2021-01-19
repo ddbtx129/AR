@@ -287,8 +287,8 @@ var SizeRate = 20;
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            defaultSize = { w: 4, h: 4, d: 4 };
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            defaultSize = { w: 4, h: 4, d: 4 };
 
             self.wrap = document.createElement('a-box'),
             self.wrap.setAttribute('id', 'base'),
@@ -506,6 +506,16 @@ var SizeRate = 20;
             var self = this;
             var val = self.arData;
 
+            var prevPageY;
+            var zoomRateH = defaultSize.h;
+
+            var defaultwrapPos = { x: 0, y: 0, z: 0 };
+            var wrapPos = { x: 0, y: 0, z: 0 };
+            var arGifRotation = '-30 0 0';
+
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+
             self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             self.arData.main && self.wrap.appendChild(self.arData.main);
 
@@ -515,24 +525,18 @@ var SizeRate = 20;
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
-            }
 
-            var bAngle = document.getElementById('swAngle');
-            var bParalle = document.getElementById('swParallel');
+                zoomRateH = 3;
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                })
+            }
 
             if (!!bParalle.classList.remove('current')) {
                 bParalle.classList.remove('current');
             }
 
             bAngle.classList.add('current');
-
-            var arGifRotation = '-30 0 0';
-
-            var prevPageY;
-            var zoomRateH = defaultSize.h;
-
-            var defaultwrapPos = { x: 0, y: 0, z: 0 };
-            var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
 
@@ -553,7 +557,7 @@ var SizeRate = 20;
                 if (!!val.isLogo) {
 
                     var logopos = self.positionVec3Logo(Number(val.isAnime));
-                    var logoscale = { w: 8, h: 8, d: 2 };
+                    var logoscale = { w: 4, h: 4, d: 2 };
                     var rete = (!val.isMp4) ? 1 : 2;
 
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
