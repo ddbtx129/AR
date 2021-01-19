@@ -774,14 +774,14 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-                        window.alert(2);
+                        window.alert(zoomRateH);
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 }
             }),
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             // ↓ 上下移動ボタン押下
