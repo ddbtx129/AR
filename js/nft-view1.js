@@ -1,29 +1,33 @@
 var webArViewer = webArViewer || {};
 
-var defaultAngle = 0;
-var defaultPos = { x: 0, y: 0, z: 0 };
-var defaultSize = { w: 10, h: 10, d: 10 };
-var zoomW = 0;
-var zoomH = 0;
-var objAngle = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
-var SizeRate = 20;
 
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
     webArViewer.scene = document.querySelector('a-scene');
 
+    var defaultAngle = 0;
+    var defaultPos = { x: 0, y: 0, z: 0 };
+    var defaultScale = { w: 4, h: 4, d: 4 };
+    var defaultwrapPos = { x: 0, y: 0, z: 0 };
+    var defaultwrapScale = { w: 4, h: 4, d: 4 };
+    var defaultlogoScale = { w: 4, h: 4, d: 2 };
+
+    var objAngle = 0;
+    var SizeRate = 20;
+
     var ar = {
+
 
         init: function () {
 
             videostate = 0;
 
             this.setArg();
-
+            
             if (this.setArData()) {
 
                 this.setWrap();
@@ -123,7 +127,6 @@ var SizeRate = 20;
                     (self.arg.MkObjList + '/' + self.arg.ObjectList2)
                     :
                     (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
-
             } else {
                 object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
@@ -139,7 +142,7 @@ var SizeRate = 20;
 
             dataObj.isPV = !!(self.arg.PVList);
             dataObj.isNFT = !!(self.arg.ARList);
-            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 2; 
+            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 2;
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
@@ -155,7 +158,8 @@ var SizeRate = 20;
             var j = (dataObj.isMarkerType == 1 ? 2 : 2);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+            defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
 
             if (dataObj.path) {
 
@@ -165,8 +169,8 @@ var SizeRate = 20;
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
                     var img = document.createElement('img');
-                    img.setAttribute('crossorigin', 'anonymous'),
-                    img.setAttribute('id', 'source'),
+                    img.setAttribute('crossorigin', 'anonymous');
+                    img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
 
                     assets.appendChild(img);
@@ -174,27 +178,27 @@ var SizeRate = 20;
                 } else if (!!(dataObj.isMp4)) {
 
                     var video = document.createElement("video");
-                    video.setAttribute("src", dataObj.path),
-                    video.setAttribute('id', 'source'),
-                    video.setAttribute('preload', 'auto'),
-                    video.setAttribute('response-type', 'arraybuffer'),
-                    video.setAttribute('loop', 'true'),
-                    video.setAttribute('crossorigin', 'anonymous'),
-                    video.setAttribute('webkit-playsinline', 'webkit-playsinline'),
-                    video.setAttribute("playsinline", ""),
-                    video.setAttribute("controls", ""),
+                    video.setAttribute("src", dataObj.path);
+                    video.setAttribute('id', 'source');
+                    video.setAttribute('preload', 'auto');
+                    video.setAttribute('response-type', 'arraybuffer');
+                    video.setAttribute('loop', 'true');
+                    video.setAttribute('crossorigin', 'anonymous');
+                    video.setAttribute('webkit-playsinline', 'webkit-playsinline');
+                    video.setAttribute("playsinline", "");
+                    video.setAttribute("controls", "");
                     video.setAttribute("autoplay", "");
 
                     var audio = document.createElement("audio");
-                    audio.setAttribute("src", dataObj.path),
-                    audio.setAttribute('id', 'source2'),
-                    audio.setAttribute('preload', 'auto'),
-                    audio.setAttribute('response-type', 'arraybuffer'),
-                    audio.setAttribute('loop', 'true'),
-                    audio.setAttribute('crossorigin', 'anonymous'),
-                    audio.setAttribute('webkit-playsinline', 'webkit-playsinline'),
-                    audio.setAttribute("playsinline", ""),
-                    audio.setAttribute("controls", ""),
+                    audio.setAttribute("src", dataObj.path);
+                    audio.setAttribute('id', 'source2');
+                    audio.setAttribute('preload', 'auto');
+                    audio.setAttribute('response-type', 'arraybuffer');
+                    audio.setAttribute('loop', 'true');
+                    audio.setAttribute('crossorigin', 'anonymous');
+                    audio.setAttribute('webkit-playsinline', 'webkit-playsinline');
+                    audio.setAttribute("playsinline", "");
+                    audio.setAttribute("controls", "");
                     audio.setAttribute("autoplay", "");
 
                     dataObj.video = video;
@@ -206,8 +210,8 @@ var SizeRate = 20;
                 } else if (dataObj.isGltf) {
 
                     var model = document.createElement('a-asset-item');
-                    model.setAttribute('crossorigin', 'anonymous'),
-                    model.setAttribute('id', 'source'),
+                    model.setAttribute('crossorigin', 'anonymous');
+                    model.setAttribute('id', 'source');
                     model.setAttribute('src', dataObj.path);
 
                     assets.appendChild(model);
@@ -218,8 +222,8 @@ var SizeRate = 20;
                     dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
 
                     var model = document.createElement('a-asset-item');
-                    model.setAttribute('crossorigin', 'anonymous'),
-                    model.setAttribute('id', 'logosource'),
+                    model.setAttribute('crossorigin', 'anonymous');
+                    model.setAttribute('id', 'logosource');
                     model.setAttribute('src', dataObj.logopath);
 
                     assets.appendChild(model);
@@ -230,8 +234,8 @@ var SizeRate = 20;
                     self.tap = true;
                     var bTap = document.createElement('img');
 
-                    bTap.setAttribute('crossorigin', 'anonymous'),
-                    bTap.setAttribute('id', 'swDown'),
+                    bTap.setAttribute('crossorigin', 'anonymous');
+                    bTap.setAttribute('id', 'swDown');
                     bTap.setAttribute('src', 'asset/touch_w.png');
 
                     document.body.appendChild(bTap);
@@ -286,17 +290,17 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            defaultSize = { w: 4, h: 4, d: 4 };
-            var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            //defaultScale = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+            var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
-            self.wrap = document.createElement('a-box'),
-            self.wrap.setAttribute('id', 'base'),
-            self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.w),
-            self.wrap.setAttribute('position', base),
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png'),
-            self.wrap.setAttribute('rotation', '0 0 0')
-            self.wrap.setAttribute('material', 'transparent: true, opacity: 0')
+            self.wrap = document.createElement('a-box');
+            self.wrap.setAttribute('id', 'base');
+            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
+            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
         },
 
         createModel: function () {
@@ -308,24 +312,22 @@ var SizeRate = 20;
                 return;
             }
 
-            var wh = { w: val.size.w, h: val.size.h };
-
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-image');
 
-                shadow.setAttribute('id', 'shadow')
-                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')))
-                shadow.setAttribute('rotation', '-90 0 0')
+                shadow.setAttribute('id', 'shadow');
+                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+                shadow.setAttribute('rotation', '-90 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                    primitive: 'plane', height: wh.h, width: wh.w
-                }),
+                    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
+                });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
-                })
+                });
 
                 self.arData.shadow = shadow;
             }
@@ -342,32 +344,32 @@ var SizeRate = 20;
             var posVec3 = self.positionVec3('main');
             defaultPos = posVec3;
 
-            main.setAttribute('id', 'main')
-            main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3))
+            main.setAttribute('id', 'main');
+            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
 
             if (!val.isGif) {
 
-                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'))
-                
+                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
                 if (!val.isGltf) {
 
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(wh.w))
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(wh.h))
+                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
+                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
 
                     if (val.isMp4) {
-                        main.setAttribute('play', 'true')
+                        main.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                        primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
-                    }),
+                        primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
+                    });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
                         shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                    })
+                    });
                 } else {
-                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(wh.w + ' ' + wh.h + '' + wh.h));
+                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
                 }
 
             } else {
@@ -382,17 +384,16 @@ var SizeRate = 20;
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = { w: 8, h: 8, d: 2 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
+                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                //    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
+                //    primitive: 'box', height: defaultlogoScale, width: defaultlogoScale, depth: defaultlogoScale, segmentsHeight: 1, segmentsWidth: 1
                 //});
                 //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
                 //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
@@ -400,7 +401,7 @@ var SizeRate = 20;
                 //});
 
                 if (!!val.isAnime) {
-                    logo.setAttribute('radius', (logoscale.w / 2));
+                    logo.setAttribute('radius', (defaultlogoScale.w / 2));
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
@@ -409,7 +410,7 @@ var SizeRate = 20;
                             dur: 3000,
                             loop: true,
                             easing: 'linear'
-                        })
+                        });
                     } else if (val.isAnime == 2) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
@@ -419,7 +420,7 @@ var SizeRate = 20;
                             loop: true,
                             easing: 'easeOutElastic',
                             elasticity: 300
-                        })
+                        });
                     } else if (val.isAnime == 3) {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 5) + ' 0 0'));
                         // 弾む
@@ -430,17 +431,17 @@ var SizeRate = 20;
                             easing: 'easeInOutQuart',
                             loop: true,
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
-                        }),
+                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                        });
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
                             property: 'scale',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
-                            from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
-                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1
-                        })
+                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                        });
                     } else if (val.isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn1', {
                             property: 'rotation',
@@ -449,7 +450,7 @@ var SizeRate = 20;
                             from: '0 0 0',
                             to: '0 360 0',
                             startEvents: 'turn1'
-                        })
+                        });
                     } else if (val.isAnime == 12) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn2', {
                             property: 'rotation',
@@ -459,7 +460,7 @@ var SizeRate = 20;
                             from: '0 0 0',
                             to: '0 360 0',
                             startEvents: 'turn2'
-                        })
+                        });
                     } else if (val.isAnime == 13) {
                         logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 5) + ' 0 0'));
                         // 弾む
@@ -469,20 +470,20 @@ var SizeRate = 20;
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
                             to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             startEvents: 'pos3'
-                        }),
+                        });
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale3', {
                             property: 'scale',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: false,
-                            from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
-                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1,
+                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
                             startEvents: 'scale3'
-                        })
+                        });
                     }
                 } else {
                     //logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
@@ -494,7 +495,7 @@ var SizeRate = 20;
                         from: '0 0 0',
                         to: '0 360 0',
                         startEvents: 'turn'
-                    })
+                    });
                 }
 
                 self.arData.logo = logo;
@@ -513,10 +514,6 @@ var SizeRate = 20;
                 self.arData.logo && self.wrap.appendChild(self.arData.logo);
             }
 
-            if (!val.isMp4) {
-                document.getElementById("player").style.display = 'none';
-            }
-
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
@@ -527,39 +524,36 @@ var SizeRate = 20;
             bAngle.classList.add('current');
 
             var arGifRotation = '-30 0 0';
-
             var prevPageY;
-            var zoomRateH = defaultSize.h;
+            var zoomRateH = defaultwrapScale.h;
 
-            var defaultwrapPos = { x: 0, y: 0, z: 0 };
-            var wrapPos = { x: 0, y: 0, z: 0 };
+            var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
 
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -=  defaultSize.h;
-
+                wrapPos.z -= defaultwrapScale.h * 1.5;
+                
                 var pvAngle = 0;
 
-                zoomRateH = defaultSize.h / 2;
+                zoomRateH = defaultwrapScale.h / 2;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                })
+                });
 
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos))
-                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'))
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
                 if (!!val.isLogo) {
 
                     var logopos = self.positionVec3Logo(Number(val.isAnime));
-                    var logoscale = { w: 8, h: 8, d: 2 };
                     var rete = (!val.isMp4) ? 1 : 2;
 
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
-                        self.arData.logo.setAttribute('radius', (logoscale.w / 2));
+                        self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
                         if (val.isAnime == 1) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
@@ -568,7 +562,7 @@ var SizeRate = 20;
                                 dur: 3000,
                                 loop: true,
                                 easing: 'linear'
-                            })
+                            });
                         } else if (val.isAnime == 2) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
@@ -578,7 +572,7 @@ var SizeRate = 20;
                                 loop: true,
                                 easing: 'easeOutElastic',
                                 elasticity: 300
-                            })
+                            });
                         } else if (val.isAnime == 3) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                             // 弾む
@@ -589,17 +583,17 @@ var SizeRate = 20;
                                 easing: 'easeInOutQuart',
                                 loop: true,
                                 from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
-                            })
+                                to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                            });
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                                 property: 'scale',
                                 dir: 'alternate',
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: true,
-                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
-                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1
-                            })
+                                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                            });
                         } else if (val.isAnime == 11) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
                                 property: 'rotation',
@@ -608,7 +602,7 @@ var SizeRate = 20;
                                 from: '0 0 0',
                                 to: '0 360 0',
                                 startEvents: 'turn1'
-                            })
+                            });
                         } else if (val.isAnime == 12) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
                                 property: 'rotation',
@@ -618,7 +612,7 @@ var SizeRate = 20;
                                 from: '0 0 0',
                                 to: '0 360 0',
                                 startEvents: 'turn2'
-                            })
+                            });
                         } else if (val.isAnime == 13) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                             // 弾む
@@ -628,20 +622,20 @@ var SizeRate = 20;
                                 dur: 400,
                                 easing: 'easeInOutQuart',
                                 loop: false,
-                                from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
+                                from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
                                 to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                                 startEvents: 'pos3'
-                            }),
+                            });
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
                                 property: 'scale',
                                 dir: 'alternate',
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: false,
-                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
-                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1,
+                                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
                                 startEvents: 'scale3'
-                            })
+                            });
                         }
                     } else {
                         //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
@@ -653,7 +647,7 @@ var SizeRate = 20;
                             from: '0 0 0',
                             to: '0 360 0',
                             startEvents: 'turn0'
-                        })
+                        });
                     }
                 }
 
@@ -674,7 +668,7 @@ var SizeRate = 20;
                     });
 
                     defaultwrapPos.y = -5;
-                    wrapPos = defaultwrapPos;
+                    wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     mWrap = null;
@@ -702,7 +696,7 @@ var SizeRate = 20;
                     zoomRateH = zoomRateH * 30;
                     AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    }),
+                    });
 
                     mWrap.setAttribute('markerhandler', '');
                     mWrap.setAttribute('preset', 'custom');
@@ -724,46 +718,54 @@ var SizeRate = 20;
                     }
                 }
 
+                if (!val.isMp4) {
+                    zoomRateH = 3;
+                    document.getElementById("player").style.display = 'none';
+                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
+                }
+
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
                 mWrap.appendChild(self.wrap);
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
 
+                // Event
+                
                 // ↓ rotation 切替
                 bAngle.classList.add('current');
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = defaultwrapPos;
+                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
-                }),
+                    this.objectDataVal(zoomRateH, wrapPos);
+                });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = defaultwrapPos;
+                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
+                    this.objectDataVal(zoomRateH, wrapPos);
                 });
                 // ↑
             }
-
-            this.objectDatainnerHTML(zoomRateH, wrapPos);
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
-            }),
+            });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
@@ -774,11 +776,12 @@ var SizeRate = 20;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
+
                         var elem = document.getElementById("debug1");
                         elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
                     }
                 }
-            }),
+            });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 prevPageY = null;
@@ -797,8 +800,8 @@ var SizeRate = 20;
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
-            }),
+                this.objectDataVal(zoomRateH, wrapPos);
+            });
 
             bDOWN.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
@@ -807,11 +810,11 @@ var SizeRate = 20;
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
+                this.objectDataVal(zoomRateH, wrapPos);
             });
             // ↑ 
 
-            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ?  0.02 : 2);
+            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.02 : 2);
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -824,15 +827,15 @@ var SizeRate = 20;
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
+                    this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
-            }),
+            });
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
-            }),
+            });
 
             bUP.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
@@ -852,15 +855,15 @@ var SizeRate = 20;
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
+                    this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
-            }),
+            });
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
                 bDOWN.classList.remove('active');
                 clearInterval(timer);
-            }),
+            });
 
             bUP.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
@@ -868,6 +871,8 @@ var SizeRate = 20;
                 clearInterval(timer);
             });
             // ↑
+
+            this.objectDataVal(zoomRateH, wrapPos);
         },
 
         setTapEvents: function () {
@@ -971,7 +976,8 @@ var SizeRate = 20;
             }
         },
 
-        objectDatainnerHTML: function (oScale, oPosition) {
+        objectDataVal: function (oScale, oPosition) {
+
             var elem = document.getElementById("debug1");
             elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
 
@@ -981,23 +987,23 @@ var SizeRate = 20;
 
         positionVec3Logo: function (anime) {
             var self = this;
-            var h1 = self.arData.size.h;
+            //var h1 = self.arData.size.h;
             var h1_2 = (self.arData.size.h / 5);
-            var posy = 0;
+            //var posy = 0;
 
-            switch (anime) {
-                case 3:
-                    posy = -((self.arData.isMarkerType == 1 ? 3 : 110) / 2);
-                    break;
-                default:
-                    posy = 0;
-                    break;
-            }
+            //switch (anime) {
+            //    case 3:
+            //        posy = -((self.arData.isMarkerType == 1 ? 3 : 110) / 2);
+            //        break;
+            //    default:
+            //        posy = 0;
+            //        break;
+            //}
 
-            if (self.arData.size.w > self.arData.size.h) {
-                h1_2 = (self.arData.size.w / 2);
-            }
-            
+            //if (self.arData.size.w > self.arData.size.h) {
+            //    h1_2 = (self.arData.size.w / 2);
+            //}
+
             //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
             return { x: 0, y: -h1_2, z: 0 };
         },
@@ -1011,10 +1017,10 @@ var SizeRate = 20;
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
-            //    return { x: 0, y: i - h1_2, z: -h1_2 };
+                //    return { x: 0, y: i - h1_2, z: -h1_2 };
             } else {
                 return { x: 0, y: h1_2, z: 0 };
-             //   return { x: 0, y: i, z: 0 };
+                //   return { x: 0, y: i, z: 0 };
             }
         }
     };
