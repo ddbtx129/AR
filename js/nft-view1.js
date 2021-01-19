@@ -757,7 +757,7 @@ var SizeRate = 20;
                         bAngle.classList.remove('current');
                         this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
-                });
+                })
                 // ↑
             }
 
@@ -976,6 +976,7 @@ var SizeRate = 20;
         },
 
         objectDatainnerHTML: function (oScale, oPosition) {
+
             var elem = document.getElementById("debug1");
             elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
 
