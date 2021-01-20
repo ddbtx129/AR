@@ -543,6 +543,9 @@ var objecttype = "png";
 
             if (self.arg.pv) {
 
+                document.getElementById("swAngle").style.display = 'none';
+                document.getElementById("swParallel").style.display = 'none';
+
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
                 wrapPos.z -= defaultwrapScale.h * 1.5;
@@ -667,7 +670,10 @@ var objecttype = "png";
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
-                
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
+
                 var mk = '';
 
                 // NFTマーカー
@@ -747,6 +753,7 @@ var objecttype = "png";
                 // ↓ rotation 切替 Event
                 if (!(self.arData.isMarkerType == 1)) {
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     if (!bParalle.classList.contains('current')) {
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');   
