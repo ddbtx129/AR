@@ -916,21 +916,23 @@ var objecttype = "png";
             var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
-                if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += yClickRate;
-                } else {
-                    wrapPos.z -= yClickRate;
-                }
+                //if (!!(bAngle.classList.contains('current'))) {
+                //    wrapPos.y += yClickRate;
+                //} else {
+                //    wrapPos.z -= yClickRate;
+                //}
+                wrapPos.y += yClickRate;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 this.objectDataVal(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
-                if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y -= yClickRate;
-                } else {
-                    wrapPos.z += yClickRate;
-                }
+                //if (!!(bAngle.classList.contains('current'))) {
+                //    wrapPos.y -= yClickRate;
+                //} else {
+                //    wrapPos.z += yClickRate;
+                //}
+                wrapPos.y -= yClickRate;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 this.objectDataVal(zoomRateH, wrapPos);
             });
@@ -943,11 +945,12 @@ var objecttype = "png";
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y += yTouchRate;
-                    } else {
-                        wrapPos.z -= yTouchRate;
-                    }
+                    //if (!!(bAngle.classList.contains('current'))) {
+                    //    wrapPos.y += yTouchRate;
+                    //} else {
+                    //    wrapPos.z -= yTouchRate;
+                    //}
+                    wrapPos.y += yTouchRate;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
@@ -971,11 +974,12 @@ var objecttype = "png";
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y -= yTouchRate;
-                    } else {
-                        wrapPos.z += yTouchRate;
-                    }
+                    //if (!!(bAngle.classList.contains('current'))) {
+                    //    wrapPos.y -= yTouchRate;
+                    //} else {
+                    //    wrapPos.z += yTouchRate;
+                    //}
+                    wrapPos.y -= yTouchRate;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
