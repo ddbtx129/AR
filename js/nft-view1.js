@@ -1002,9 +1002,9 @@ var objecttype = "png";
                 var obj = Number(self.arg.ObjectList2);
                 obj += 1;
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                var arobjpath = rootPath + 'article/' + folder + '/' + path;
+                //var arobjpath = rootPath + 'article/' + folder + '/' + path;
 
-                self.arData.img.setAttribute('src', arobjpath);
+                self.arData.img.setAttribute('src', path);
 
             });
 
