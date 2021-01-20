@@ -14,7 +14,7 @@ var objecttype = "png";
     var defaultScale = { w: 4, h: 4, d: 4 };
     var defaultwrapPos = { x: 0, y: 0, z: 0 };
     var defaultwrapScale = { w: 4, h: 4, d: 4 };
-    var defaultlogoScale = { w: 4, h: 4, d: 2 };
+    var defaultlogoScale = { w: 10, h: 5, d: 5 };
 
     var objAngle = 0;
     var SizeRate = 20;
