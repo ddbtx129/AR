@@ -525,7 +525,7 @@ var objecttype = "png";
                 bParalle.classList.remove('current');
             }
 
-            bAngle.classList.add('current');
+            //bAngle.classList.add('current');
 
             var arGifRotation = '-30 0 0';
             var prevPageY;
