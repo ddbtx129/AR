@@ -60,6 +60,9 @@
         <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
 
+        <img class="ar-prev" id="swPrev" src="asset/prev.png" style="display: inline" />
+        <img class="ar-next" id="swNext" src="asset/next.png" style="display: inline" />
+
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
@@ -71,8 +74,8 @@
         </a-scene>
         
         <p id="version1">v1.0.12</p>
-        <p id="debug1">Scale: 0.0</p>
-        <p id="debug2">X: 0.0 Y: 0.0 Z: 0.0</p>
+        <p id="debug1" style="display: inline">Scale: 0.0</p>
+        <p id="debug2" style="display: inline">X: 0.0 Y: 0.0 Z: 0.0</p>
 
         <script src="js/gifshader.js"></script>
         <script src="js/chromakey.js"></script>
