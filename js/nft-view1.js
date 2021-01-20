@@ -747,9 +747,9 @@ var objecttype = "png";
                 // ↓ rotation 切替 Event
                 if (!(self.arData.isMarkerType == 1)) {
                     self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                    bParalle.classList.add('current');
                     if (!bParalle.classList.contains('current')) {
-                        bParalle.classList.remove('current');   
+                        bParalle.classList.add('current');
+                        bAngle.classList.remove('current');   
                     }
                 }
 
