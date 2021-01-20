@@ -957,10 +957,10 @@ var objecttype = "png";
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y -= yTouchRate;
-                        window.alert(wrapPos.y);
+                        window.alert('Y:' + wrapPos.y);
                     } else {
                         wrapPos.z += yTouchRate;
-                        window.alert(wrapPos.z);
+                        window.alert('Z:' + wrapPos.z);
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     this.objectDataVal(zoomRateH, wrapPos);
