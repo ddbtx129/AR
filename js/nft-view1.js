@@ -994,19 +994,21 @@ var objecttype = "png";
             });
             // ↑
 
-            //var bNext = document.getElementById('swNext');
-            //var bPrev = document.getElementById('swPrev');
+            var bNext = document.getElementById('swNext');
+            var bPrev = document.getElementById('swPrev');
 
-            //bNext.addEventListener('click', function () {
-            //    var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
-            //    var obj = Number(self.arg.ObjectList2);
-            //    obj += 1;
-            //    var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-            //    //var arobjpath = rootPath + 'article/' + folder + '/' + path;
+            bNext.addEventListener('click', function () {
+                self.wrapsetAttribute('visible', false);
+                var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
+                var obj = Number(self.arg.ObjectList2);
+                obj += 1;
+                var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                //var arobjpath = rootPath + 'article/' + folder + '/' + path;
 
-            //    self.arData.img.setAttribute('src', path);
+                self.arData.img.setAttribute('src', path);
 
-            //});
+                self.wrapsetAttribute('visible', true);
+            });
 
             this.objectDataVal(zoomRateH, wrapPos);
         },
