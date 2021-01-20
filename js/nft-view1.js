@@ -54,11 +54,11 @@ var objecttype = "png";
             var elem = document.getElementById("version1");
             elem.innerHTML = '1.0.121';
 
-            if (!(this.arData.isMarkerType == 1)) {
-                var evant = new Event("click", { "bubbles": true, "cancelable": true });
-                var bParalle = document.getElementById('swParallel');
-                bParalle.dispatchEvent(evant);
-            }
+            //if (!(this.arData.isMarkerType == 1)) {
+            //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
+            //    var bParalle = document.getElementById('swParallel');
+            //    bParalle.dispatchEvent(evant);
+            //}
         },
 
         setArg: function () {
