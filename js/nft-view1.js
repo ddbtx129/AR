@@ -53,12 +53,6 @@ var objecttype = "png";
 
             var elem = document.getElementById("version1");
             elem.innerHTML = '1.0.121';
-
-            //if (!(this.arData.isMarkerType == 1)) {
-            //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
-            //    var bParalle = document.getElementById('swParallel');
-            //    bParalle.dispatchEvent(evant);
-            //}
         },
 
         setArg: function () {
@@ -666,7 +660,7 @@ var objecttype = "png";
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
-
+                
                 var mk = '';
 
                 // NFTマーカー
@@ -676,13 +670,11 @@ var objecttype = "png";
 
                     wrapZoom = 2.5;
                     zoomRateH = wrapZoom;
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    });
+                    //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    //});
 
                     defaultwrapPos.y = -5;
-                    wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     mWrap = null;
 
@@ -708,9 +700,9 @@ var objecttype = "png";
 
                     wrapZoom = 30;
                     zoomRateH = zoomRateH * wrapZoom;
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    });
+                    //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    //});
 
                     mWrap.setAttribute('markerhandler', '');
                     mWrap.setAttribute('preset', 'custom');
@@ -732,15 +724,20 @@ var objecttype = "png";
                     }
                 }
 
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                });
+
+                wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
                 mWrap.appendChild(self.wrap);
 
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
 
-                // Event
-                
-                // ↓ rotation 切替
+                // ↓ rotation 切替 Event
                 bAngle.classList.add('current');
 
                 bAngle.addEventListener('click', function () {
@@ -1141,5 +1138,11 @@ var objecttype = "png";
     webArViewer.ar = ar;
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
+
+    if (!(this.arData.isMarkerType == 1)) {
+        var evant = new Event("click", { "bubbles": true, "cancelable": true });
+        var bParalle = document.getElementById('swParallel');
+        bParalle.dispatchEvent(evant);
+    }
 
 }());
