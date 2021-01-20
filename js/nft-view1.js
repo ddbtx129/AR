@@ -746,9 +746,9 @@ var objecttype = "png";
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
-                        bParalle.classList.remove('current');
+                        bParalle.classList.remove('current');   
+                        this.objectDataVal(zoomRateH, wrapPos);
                     }
-                    this.objectDataVal(zoomRateH, wrapPos);
                 });
 
                 bParalle.addEventListener('click', function () {
@@ -758,8 +758,8 @@ var objecttype = "png";
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
+                        this.objectDataVal(zoomRateH, wrapPos);
                     }
-                    this.objectDataVal(zoomRateH, wrapPos);
                 });
                 // ↑
             }
