@@ -532,12 +532,17 @@ var objecttype = "png";
                 bParalle.classList.remove('current');
             }
 
-            //bAngle.classList.add('current');
-
             var arGifRotation = '-30 0 0';
             var prevPageY;
             var zoomRateH = defaultwrapScale.h;
             var wrapZoom = 1;
+
+            if (!(self.arData.isMarkerType == 1)) {
+                bParalle.classList.add('current');
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+            } else {
+                bAngle.classList.add('current');
+            }
 
             var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
 
@@ -745,14 +750,6 @@ var objecttype = "png";
                 self.mWrap = mWrap;
 
                 // ↓ rotation 切替 Event
-                if (!(self.arData.isMarkerType == 1)) {
-                    bParalle.classList.add('current');
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-
-                } else {
-                    bAngle.classList.add('current');
-                }
-
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
                         wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
