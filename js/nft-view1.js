@@ -537,7 +537,7 @@ var objecttype = "png";
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
-                wrapPos.y -= ((val.isMp4) ? 0 : 2);
+                wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
                 wrapPos.z -= defaultwrapScale.h * 1.5;
                 
                 var pvAngle = 0;
@@ -957,8 +957,10 @@ var objecttype = "png";
                 timer = setInterval(() => {
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y -= yTouchRate;
+                        window.alert(wrapPos.y);
                     } else {
                         wrapPos.z += yTouchRate;
+                        window.alert(wrapPos.z);
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     this.objectDataVal(zoomRateH, wrapPos);
