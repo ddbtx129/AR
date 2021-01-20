@@ -998,7 +998,7 @@ var objecttype = "png";
             var bPrev = document.getElementById('swPrev');
 
             bNext.addEventListener('click', function () {
-                self.wrapsetAttribute('visible', false);
+                self.wrap.setAttribute('visible', false);
                 var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
                 var obj = Number(self.arg.ObjectList2);
                 obj += 1;
@@ -1007,7 +1007,7 @@ var objecttype = "png";
 
                 self.arData.img.setAttribute('src', path);
 
-                self.wrapsetAttribute('visible', true);
+                self.wrap.setAttribute('visible', true);
             });
 
             this.objectDataVal(zoomRateH, wrapPos);
