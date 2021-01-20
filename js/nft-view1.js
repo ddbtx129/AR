@@ -738,7 +738,13 @@ var objecttype = "png";
                 self.mWrap = mWrap;
 
                 // ↓ rotation 切替 Event
-                bAngle.classList.add('current');
+                if (!(self.arData.isMarkerType == 1)) {
+                    bParalle.classList.add('current');
+                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+
+                } else {
+                    bAngle.classList.add('current');
+                }
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
@@ -1138,10 +1144,10 @@ var objecttype = "png";
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
-    if (!(webArViewer.ar.arData.isMarkerType == 1)) {
-        var evant = new Event("click", { "bubbles": true, "cancelable": true });
-        var bParalle = document.getElementById('swParallel');
-        bParalle.dispatchEvent(evant);
-    }
+    //if (!(webArViewer.ar.arData.isMarkerType == 1)) {
+    //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
+    //    var bParalle = document.getElementById('swParallel');
+    //    bParalle.dispatchEvent(evant);
+    //}
 
 }());
