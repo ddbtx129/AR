@@ -966,7 +966,6 @@ var objecttype = "png";
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                     this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
-                window.alert(wrapPos.y);
             });
 
             bDOWN.addEventListener(self.eventNames.end, e => {
@@ -1139,7 +1138,7 @@ var objecttype = "png";
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
-    if (!(this.arData.isMarkerType == 1)) {
+    if (!(webArViewer.ar.arData.isMarkerType == 1)) {
         var evant = new Event("click", { "bubbles": true, "cancelable": true });
         var bParalle = document.getElementById('swParallel');
         bParalle.dispatchEvent(evant);
