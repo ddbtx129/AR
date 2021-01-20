@@ -77,6 +77,8 @@ var objecttype = "png";
 
             arg.typeList = arg.t;
 
+            arg.pmList = arg.pmList && (parseInt(arg.pmList, 10).toString());
+
             // マーカー
             arg.markerList = arg.m;
             arg.markerList1 = arg.m1;
@@ -149,6 +151,8 @@ var objecttype = "png";
 
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
 
+            dataObj.isPm = !!(self.arg.pmList);
+
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
@@ -165,6 +169,7 @@ var objecttype = "png";
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
+                dataObj.img  = null;
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
@@ -172,6 +177,8 @@ var objecttype = "png";
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
+
+                    dataObj.img = img;
 
                     assets.appendChild(img);
 
@@ -986,6 +993,20 @@ var objecttype = "png";
                 clearInterval(timer);
             });
             // ↑
+
+            var bNext = document.getElementById('swNext');
+            var bPrev = document.getElementById('swPrev');
+
+            bNext.addEventListener('click', function () {
+                var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
+                var obj = Number(self.arg.ObjectList2);
+                obj += 1;
+                var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                var arobjpath = rootPath + 'article/' + folder + '/' + path;
+
+                self.arData.img.setAttribute('src', arobjpath);
+
+            });
 
             this.objectDataVal(zoomRateH, wrapPos);
         },
