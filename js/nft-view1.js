@@ -537,8 +537,7 @@ var objecttype = "png";
             }
         },
 
-        setScene: function () {
-
+        addScene: function() {
             var self = this;
             var val = self.arData;
 
@@ -548,6 +547,19 @@ var objecttype = "png";
             if (val.isLogo) {
                 self.arData.logo && self.wrap.appendChild(self.arData.logo);
             }
+        },
+
+        setScene: function () {
+
+            var self = this;
+            var val = self.arData;
+
+            //self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
+            //self.arData.main && self.wrap.appendChild(self.arData.main);
+
+            //if (val.isLogo) {
+            //    self.arData.logo && self.wrap.appendChild(self.arData.logo);
+            //}
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -635,9 +647,6 @@ var objecttype = "png";
 
                     wrapZoom = 30;
                     zoomRateH = zoomRateH * wrapZoom;
-                    //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    //});
 
                     mWrap.setAttribute('markerhandler', '');
                     mWrap.setAttribute('preset', 'custom');
@@ -898,7 +907,16 @@ var objecttype = "png";
         swichScene: function () {
             var self = this;
             var val = self.arData;
+        },
 
+        setWrapElement: function(){
+
+            self.wrap.setAttribute('id', 'base');
+            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapScale));
+            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapPos));
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
 
         },
 
