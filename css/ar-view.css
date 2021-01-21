@@ -42,7 +42,7 @@ a {
 #debug2 {
     position: absolute;
     top: 0%;
-    left: 92px;
+    right: 10px;
     font-size: x-small;
     color: silver
 }
@@ -203,10 +203,10 @@ a-camera {
 
 .ar-next {
     position: absolute;
-    bottom: 0%;
+    bottom: 2px;
     left: 60%;
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -214,10 +214,10 @@ a-camera {
 
 .ar-prev {
     position: absolute;
-    bottom: 0%;
+    bottom: 2px;
     left: 40%;
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
