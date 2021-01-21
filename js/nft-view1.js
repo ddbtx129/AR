@@ -420,22 +420,22 @@ var objecttype = "png";
 
                 var shadow = document.createElement('a-image');
 
-                //shadow.setAttribute('id', 'shadow');
-                //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-                //shadow.setAttribute('rotation', '-90 0 0');
+                shadow.setAttribute('id', 'shadow');
+                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+                shadow.setAttribute('rotation', '-90 0 0');
 
-                //AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                //    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
-                //});
+                AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
+                });
 
-                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
-                //    color: 'black', opacity: 0.3, depthTest: false
-                //});
+                AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+                    color: 'black', opacity: 0.3, depthTest: false
+                });
 
                 self.arData.shadow = shadow;
 
-                this.setModelShadow();
+                //this.setModelShadow();
             }
 
             var elname = '';
@@ -450,59 +450,57 @@ var objecttype = "png";
             var posVec3 = self.positionVec3('main');
             webArViewer.defaultPos = posVec3;
 
+            main.setAttribute('id', 'main');
+            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
+
+            if (!val.isGif) {
+
+                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                if (!val.isGltf) {
+
+                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
+                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
+
+                    if (val.isMp4) {
+                        main.setAttribute('play', 'true');
+                    }
+
+                    AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+                        primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
+                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                    });
+                } else {
+                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
+                }
+
+            } else {
+                main.setAttribute('rotation', '-30 0 0');
+            }
+
             self.arData.main = main;
 
-            //main.setAttribute('id', 'main');
-            //main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
-
-            //if (!val.isGif) {
-
-            //    main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-
-            //    if (!val.isGltf) {
-
-            //        main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
-            //        main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
-
-            //        if (val.isMp4) {
-            //            main.setAttribute('play', 'true');
-            //        }
-
-            //        AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-            //            primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
-            //        });
-
-            //        AFRAME.utils.entity.setComponentProperty(main, 'material', {
-            //            shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
-            //            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-            //        });
-            //    } else {
-            //        main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
-            //    }
-
-            //} else {
-            //    main.setAttribute('rotation', '-30 0 0');
-            //}
-
-            //self.arData.main = main;
-
-            this.setModelMain();
+            //this.setModelMain();
 
             if (val.isLogo) {
 
                 var logo = document.createElement('a-entity');
-                //var logo = document.createElement('a-image');
 
-                //var logopos = self.positionVec3Logo(Number(val.isAnime));
-                //var rete = (!val.isMp4) ? 1 : 2;
+                var logopos = self.positionVec3Logo(Number(val.isAnime));
+                var rete = (!val.isMp4) ? 1 : 2;
 
-                //logo.setAttribute('id', 'logo');
-                //logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                //logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
-                //logo.setAttribute('gltf-model', '#logosource');
+                logo.setAttribute('id', 'logo');
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
+                logo.setAttribute('gltf-model', '#logosource');
 
                 self.arData.logo = logo;
 
+                //this.setModelLogo();
             }
         },
 
