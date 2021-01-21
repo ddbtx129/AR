@@ -171,6 +171,7 @@ var objecttype = "png";
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
+            webArViewer.defaultScale = defaultScale;
 
             if (dataObj.path) {
 
@@ -357,9 +358,6 @@ var objecttype = "png";
             var self = this;
             var val = self.arData;
 
-            var posVec3 = self.positionVec3('main');
-            webArViewer.defaultPos = posVec3;
-
             self.arData.main.setAttribute('id', 'main');
             self.arData.main.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.defaultPos));
 
@@ -433,8 +431,8 @@ var objecttype = "png";
             }
 
             var main = document.createElement(elname);
-            //var posVec3 = self.positionVec3('main');
-            //webArViewer.defaultPos = posVec3;
+            var posVec3 = self.positionVec3('main');
+            webArViewer.defaultPos = posVec3;
 
             self.arData.main = main;
 
