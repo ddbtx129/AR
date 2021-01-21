@@ -398,8 +398,6 @@ var objecttype = "png";
                 logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
-
-
                 self.arData.logo = logo;
             }
         },
@@ -682,7 +680,7 @@ var objecttype = "png";
 
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
-                        this.objectDataVal(null, wrapPos);
+                        this.objectDataVal(zoomRateH, wrapPos);
                     }
                 });
 
@@ -697,7 +695,7 @@ var objecttype = "png";
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        this.objectDataVal(null, wrapPos);
+                        this.objectDataVal(zoomRateH, wrapPos);
                     }
                 });
                 // ↑
@@ -747,7 +745,7 @@ var objecttype = "png";
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(null, wrapPos);
+                this.objectDataVal(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
@@ -758,7 +756,7 @@ var objecttype = "png";
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(null, wrapPos);
+                this.objectDataVal(zoomRateH, wrapPos);
             });
             // ↑ 
 
@@ -776,7 +774,7 @@ var objecttype = "png";
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(null, wrapPos);
+                    this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
             });
 
@@ -805,7 +803,7 @@ var objecttype = "png";
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(null, wrapPos);
+                    this.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
             });
 
@@ -881,6 +879,13 @@ var objecttype = "png";
                     });
                 }
             }
+        },
+
+        swichScene: function () {
+            var self = this;
+            var val = self.arData;
+
+
         },
 
         setDiplayBtn: function (mode) {
