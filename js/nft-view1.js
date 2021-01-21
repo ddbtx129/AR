@@ -509,6 +509,118 @@ var objecttype = "png";
             }
         },
 
+        createAnimation: function (){
+
+            var self = this;
+            var val = self.arData;
+
+            if (!!val.isLogo) {
+
+                var logopos = self.positionVec3Logo(Number(val.isAnime));
+                var rete = (!val.isMp4) ? 1 : 2;
+
+                self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+
+                if (!!val.isAnime) {
+                    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
+                    if (val.isAnime == 1) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                            property: 'rotation',
+                            from: '0 0 0',
+                            to: '0 360 0',
+                            dur: 3000,
+                            loop: true,
+                            easing: 'linear'
+                        });
+                    } else if (val.isAnime == 2) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                            property: 'rotation',
+                            from: '0 0 0',
+                            to: '0 360 0',
+                            dur: 3000,
+                            loop: true,
+                            easing: 'easeOutElastic',
+                            elasticity: 300
+                        });
+                    } else if (val.isAnime == 3) {
+                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        // 弾む
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
+                            property: 'position',
+                            dir: 'alternate',
+                            dur: 400,
+                            easing: 'easeInOutQuart',
+                            loop: true,
+                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                        });
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
+                            property: 'scale',
+                            dir: 'alternate',
+                            dur: 400,
+                            easing: 'easeOutQuad',
+                            loop: true,
+                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                        });
+                    } else if (val.isAnime == 11) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
+                            property: 'rotation',
+                            dur: 3000,
+                            easing: 'linear',
+                            from: '0 0 0',
+                            to: '0 360 0',
+                            startEvents: 'turn1'
+                        });
+                    } else if (val.isAnime == 12) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
+                            property: 'rotation',
+                            dur: 3000,
+                            easing: 'easeOutElastic',
+                            elasticity: 300,
+                            from: '0 0 0',
+                            to: '0 360 0',
+                            startEvents: 'turn2'
+                        });
+                    } else if (val.isAnime == 13) {
+                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        // 弾む
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
+                            property: 'position',
+                            dir: 'alternate',
+                            dur: 400,
+                            easing: 'easeInOutQuart',
+                            loop: false,
+                            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
+                            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            startEvents: 'pos3'
+                        });
+                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
+                            property: 'scale',
+                            dir: 'alternate',
+                            dur: 400,
+                            easing: 'easeOutQuad',
+                            loop: false,
+                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
+                            startEvents: 'scale3'
+                        });
+                    }
+                } else {
+                    //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
+                        property: 'rotation',
+                        dur: 3000,
+                        easing: 'easeOutElastic',
+                        elasticity: 300,
+                        from: '0 0 0',
+                        to: '0 360 0',
+                        startEvents: 'turn0'
+                    });
+                }
+            }
+        },
+
         setScene: function () {
 
             var self = this;
@@ -786,108 +898,110 @@ var objecttype = "png";
 
             if (!!val.isLogo) {
 
-                var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var rete = (!val.isMp4) ? 1 : 2;
+                //var logopos = self.positionVec3Logo(Number(val.isAnime));
+                //var rete = (!val.isMp4) ? 1 : 2;
 
-                self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+                //self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
-                if (!!val.isAnime) {
-                    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
-                    if (val.isAnime == 1) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: '0 0 0',
-                            to: '0 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'linear'
-                        });
-                    } else if (val.isAnime == 2) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                            property: 'rotation',
-                            from: '0 0 0',
-                            to: '0 360 0',
-                            dur: 3000,
-                            loop: true,
-                            easing: 'easeOutElastic',
-                            elasticity: 300
-                        });
-                    } else if (val.isAnime == 3) {
-                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                        // 弾む
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
-                            property: 'position',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeInOutQuart',
-                            loop: true,
-                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
-                        });
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
-                            property: 'scale',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeOutQuad',
-                            loop: true,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
-                        });
-                    } else if (val.isAnime == 11) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
-                            property: 'rotation',
-                            dur: 3000,
-                            easing: 'linear',
-                            from: '0 0 0',
-                            to: '0 360 0',
-                            startEvents: 'turn1'
-                        });
-                    } else if (val.isAnime == 12) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
-                            property: 'rotation',
-                            dur: 3000,
-                            easing: 'easeOutElastic',
-                            elasticity: 300,
-                            from: '0 0 0',
-                            to: '0 360 0',
-                            startEvents: 'turn2'
-                        });
-                    } else if (val.isAnime == 13) {
-                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                        // 弾む
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
-                            property: 'position',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeInOutQuart',
-                            loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
-                            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            startEvents: 'pos3'
-                        });
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
-                            property: 'scale',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeOutQuad',
-                            loop: false,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
-                            startEvents: 'scale3'
-                        });
-                    }
-                } else {
-                    //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
-                        property: 'rotation',
-                        dur: 3000,
-                        easing: 'easeOutElastic',
-                        elasticity: 300,
-                        from: '0 0 0',
-                        to: '0 360 0',
-                        startEvents: 'turn0'
-                    });
-                }
+                //if (!!val.isAnime) {
+                //    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
+                //    if (val.isAnime == 1) {
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                //            property: 'rotation',
+                //            from: '0 0 0',
+                //            to: '0 360 0',
+                //            dur: 3000,
+                //            loop: true,
+                //            easing: 'linear'
+                //        });
+                //    } else if (val.isAnime == 2) {
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                //            property: 'rotation',
+                //            from: '0 0 0',
+                //            to: '0 360 0',
+                //            dur: 3000,
+                //            loop: true,
+                //            easing: 'easeOutElastic',
+                //            elasticity: 300
+                //        });
+                //    } else if (val.isAnime == 3) {
+                //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                //        // 弾む
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
+                //            property: 'position',
+                //            dir: 'alternate',
+                //            dur: 400,
+                //            easing: 'easeInOutQuart',
+                //            loop: true,
+                //            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                //            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                //        });
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
+                //            property: 'scale',
+                //            dir: 'alternate',
+                //            dur: 400,
+                //            easing: 'easeOutQuad',
+                //            loop: true,
+                //            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                //            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                //        });
+                //    } else if (val.isAnime == 11) {
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
+                //            property: 'rotation',
+                //            dur: 3000,
+                //            easing: 'linear',
+                //            from: '0 0 0',
+                //            to: '0 360 0',
+                //            startEvents: 'turn1'
+                //        });
+                //    } else if (val.isAnime == 12) {
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
+                //            property: 'rotation',
+                //            dur: 3000,
+                //            easing: 'easeOutElastic',
+                //            elasticity: 300,
+                //            from: '0 0 0',
+                //            to: '0 360 0',
+                //            startEvents: 'turn2'
+                //        });
+                //    } else if (val.isAnime == 13) {
+                //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                //        // 弾む
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
+                //            property: 'position',
+                //            dir: 'alternate',
+                //            dur: 400,
+                //            easing: 'easeInOutQuart',
+                //            loop: false,
+                //            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
+                //            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                //            startEvents: 'pos3'
+                //        });
+                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
+                //            property: 'scale',
+                //            dir: 'alternate',
+                //            dur: 400,
+                //            easing: 'easeOutQuad',
+                //            loop: false,
+                //            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                //            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
+                //            startEvents: 'scale3'
+                //        });
+                //    }
+                //} else {
+                //    //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                //    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
+                //        property: 'rotation',
+                //        dur: 3000,
+                //        easing: 'easeOutElastic',
+                //        elasticity: 300,
+                //        from: '0 0 0',
+                //        to: '0 360 0',
+                //        startEvents: 'turn0'
+                //    });
+                //}
+
+                this.createAnimation();
             }
 
             // 拡大・縮小
@@ -1123,11 +1237,15 @@ var objecttype = "png";
 
         objectDataVal: function (oScale, oPosition) {
 
-            var elem = document.getElementById("debug1");
-            elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
+            if(oScale != null){
+                var elem = document.getElementById("debug1");
+                elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
+            }
 
-            var elem = document.getElementById("debug2");
-            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
+            if(oPosition != null){
+                var elem = document.getElementById("debug2");
+                elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
+            }
         },
 
         positionVec3Logo: function (anime) {
