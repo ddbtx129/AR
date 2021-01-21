@@ -301,18 +301,15 @@ var objecttype = "png";
             var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
-            self.wrap.basePos = basePos;
-            self.wrap.baseScale = baseScale;
-
             self.wrap = document.createElement('a-box');
-            //self.wrap.setAttribute('id', 'base');
-            //self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-            //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            //self.wrap.setAttribute('rotation', '0 0 0');
-            //self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+            self.wrap.setAttribute('id', 'base');
+            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
+            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
 
-            this.setWeapAttribute();
+            //this.setWeapAttribute();
         },
 
         setWeapAttribute: function () {
