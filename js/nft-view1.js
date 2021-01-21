@@ -298,8 +298,8 @@ var objecttype = "png";
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             //defaultScale = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-            var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
+            var basePos = AFRAME.utils.coordinates.parse(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
+            var baseScale = AFRAME.utils.coordinates.parse(self.defaultwrapScale.w + ' ' + self.defaultwrapScale.h + ' ' + self.defaultwrapScale.d);
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
@@ -395,7 +395,7 @@ var objecttype = "png";
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
+                logo.setAttribute('scale', (String(this.defaultlogoScale.w * rete) + ' ' + String(this.defaultlogoScale.h * rete) + ' ' + String(this.defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 self.arData.logo = logo;
@@ -424,7 +424,7 @@ var objecttype = "png";
                 //});
 
                 if (!!val.isAnime) {
-                    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
+                    self.arData.logo.setAttribute('radius', (this.defaultlogoScale.w / 2));
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                             property: 'rotation',
@@ -454,7 +454,7 @@ var objecttype = "png";
                             easing: 'easeInOutQuart',
                             loop: true,
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                            to: logopos.x + ' ' + (logopos.y + (this.defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
                         });
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                             property: 'scale',
@@ -462,8 +462,8 @@ var objecttype = "png";
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                            from: this.defaultlogoScale.w * rete * 1.2 + ' ' + this.defaultlogoScale.h * rete * 0.8 + ' ' + this.defaultlogoScale.d * rete,
+                            to: this.defaultlogoScale.w * rete * 0.8 + ' ' + this.defaultlogoScale.h * rete * 1.2 + ' ' + this.defaultlogoScale.d * rete * 1
                         });
                     } else if (val.isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
@@ -562,12 +562,12 @@ var objecttype = "png";
 
             var arGifRotation = '-30 0 0';
             var prevPageY;
-            var zoomRateH = defaultwrapScale.h;
+            var zoomRateH = self.defaultwrapScale.h;
             var wrapZoom = 1;
 
             bAngle.classList.add('current');
 
-            var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+            var wrapPos = AFRAME.utils.coordinates.parse(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
 
             if (self.arg.pv) {
 
@@ -576,12 +576,12 @@ var objecttype = "png";
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                wrapPos.z -= defaultwrapScale.h * 1.5;
+                wrapPos.z -= self.defaultwrapScale.h * 1.5;
                 
                 var pvAngle = 0;
                 
                 wrapZoom = 0.5;
-                zoomRateH = defaultwrapScale.h * wrapZoom;
+                zoomRateH = self.defaultwrapScale.h * wrapZoom;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
@@ -609,7 +609,7 @@ var objecttype = "png";
                     //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     //});
 
-                    defaultwrapPos.y = -5;
+                    self.defaultwrapPos.y = -5;
 
                     mWrap = null;
 
@@ -663,7 +663,7 @@ var objecttype = "png";
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
 
-                wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                wrapPos = AFRAME.utils.coordinates.parse(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
@@ -684,14 +684,13 @@ var objecttype = "png";
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-                        zoomRateH = defaultwrapScale.h;
+                        wrapPos = AFRAME.utils.coordinates.stringify(this.defaultwrapPos.x + ' ' + this.defaultwrapPos.y + ' ' + this.defaultwrapPos.z);
+                        zoomRateH = self.defaultwrapScale.h;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
                         this.objectDataVal(zoomRateH, wrapPos);
@@ -700,8 +699,8 @@ var objecttype = "png";
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-                        zoomRateH = defaultwrapScale.h;
+                        wrapPos = AFRAME.utils.coordinates.stringify(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
+                        zoomRateH = self.defaultwrapScale.h;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -709,6 +708,7 @@ var objecttype = "png";
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
+                        
                         this.objectDataVal(zoomRateH, wrapPos);
                     }
                 });
@@ -734,7 +734,6 @@ var objecttype = "png";
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-
                         var elem = document.getElementById("debug1");
                         elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
                     }
