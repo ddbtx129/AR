@@ -1038,6 +1038,7 @@ var objecttype = "png";
             var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
+                wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                 if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y += yClickRate;
                 } else {
@@ -1048,6 +1049,7 @@ var objecttype = "png";
             });
 
             bDOWN.addEventListener('click', function () {
+                wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                 if (!!(bAngle.classList.contains('current'))) {
                     wrapPos.y -= yClickRate;
                 } else {
@@ -1065,6 +1067,7 @@ var objecttype = "png";
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
+                    wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y += yTouchRate;
                     } else {
@@ -1093,6 +1096,7 @@ var objecttype = "png";
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
+                    wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
                         wrapPos.y -= yTouchRate;
                     } else {
