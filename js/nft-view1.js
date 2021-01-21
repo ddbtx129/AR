@@ -676,9 +676,10 @@ var objecttype = "png";
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
+                
                 mWrap.appendChild(self.wrap);
-
                 webArViewer.scene.appendChild(mWrap);
+
                 self.mWrap = mWrap;
 
                 // ↓ rotation 切替 Event
@@ -842,22 +843,22 @@ var objecttype = "png";
             });
             // ↑
 
-            //var bNext = document.getElementById('swNext');
-            //var bPrev = document.getElementById('swPrev');
+            var bNext = document.getElementById('swNext');
+            var bPrev = document.getElementById('swPrev');
 
-            //bNext.addEventListener('click', function () {
-            //    window.alert(0);
-            //    self.wrap.setAttribute('visible', false);
-            //    var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
-            //    var obj = Number(self.arg.ObjectList2);
-            //    obj += 1;
-            //    var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-            //    //var arobjpath = rootPath + 'article/' + folder + '/' + path;
+            bNext.addEventListener('click', function () {
+                window.alert(0);
+                self.wrap.setAttribute('visible', false);
+                var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
+                var obj = Number(self.arg.ObjectList2);
+                obj += 1;
+                var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                //var arobjpath = rootPath + 'article/' + folder + '/' + path;
 
-            //    self.arData.img.setAttribute('src', path);
+                self.arData.img.setAttribute('src', path);
 
-            //    self.wrap.setAttribute('visible', true);
-            //});
+                //self.wrap.setAttribute('visible', true);
+            });
 
             this.objectDataVal(zoomRateH, wrapPos);
         },
@@ -907,17 +908,6 @@ var objecttype = "png";
         swichScene: function () {
             var self = this;
             var val = self.arData;
-        },
-
-        setWrapElement: function(){
-
-            self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapScale));
-            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapPos));
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('rotation', '0 0 0');
-            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-
         },
 
         setDiplayBtn: function (mode) {
