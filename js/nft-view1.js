@@ -1,4 +1,4 @@
-var webArViewer = webArViewer || {};
+webArViewer = webArViewer || {};
 
 var videoInfo = {};
 var videoState = 0;
@@ -25,13 +25,6 @@ var objecttype = "png";
         init: function () {
 
             videostate = 0;
-
-            webArViewer.defaultAngle = defaultAngle;
-            webArViewer.defaultPos = defaultPos;
-            webArViewer.defaultScale = defaultScale;
-            webArViewer.defaultwrapPos = defaultwrapPos;
-            webArViewer.defaultwrapScale = defaultwrapScale;
-            webArViewer.defaultlogoScale = defaultlogoScale;
 
             this.setArg();
             
@@ -171,7 +164,7 @@ var objecttype = "png";
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
-            webArViewer.defaultScale = defaultScale;
+            //webArViewer.defaultScale = defaultScale;
 
             if (dataObj.path) {
 
@@ -1088,12 +1081,12 @@ var objecttype = "png";
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
-    //webArViewer.defaultAngle = defaultAngle;
-    //webArViewer.defaultPos = defaultPos;
-    //webArViewer.defaultScale = defaultScale;
-    //webArViewer.defaultwrapPos = defaultwrapPos;
-    //webArViewer.defaultwrapScale = defaultwrapScale;
-    //webArViewer.defaultlogoScale = defaultlogoScale;
+    webArViewer.defaultAngle = defaultAngle;
+    webArViewer.defaultPos = defaultPos;
+    webArViewer.defaultScale = defaultScale;
+    webArViewer.defaultwrapPos = defaultwrapPos;
+    webArViewer.defaultwrapScale = defaultwrapScale;
+    webArViewer.defaultlogoScale = defaultlogoScale;
 
     //if (!(webArViewer.ar.arData.isMarkerType == 1)) {
     //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
