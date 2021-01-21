@@ -874,8 +874,7 @@ var objecttype = "png";
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        //wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-                        wrapPos = AFRAME.utils.coordinates.stringify({x: 0, y: 0, z:0});
+                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
@@ -886,10 +885,10 @@ var objecttype = "png";
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        //wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-                        wrapPos = AFRAME.utils.coordinates.stringify({x: 0, y: 0, z:0});
+                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        window.alert(defaultwrapPos.x);
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                         this.objectDataVal(null, wrapPos);
