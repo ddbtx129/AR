@@ -298,8 +298,8 @@ var objecttype = "png";
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
             //defaultScale = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            var basePos = AFRAME.utils.coordinates.parse(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
-            var baseScale = AFRAME.utils.coordinates.parse(self.defaultwrapScale.w + ' ' + self.defaultwrapScale.h + ' ' + self.defaultwrapScale.d);
+            var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+            var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
@@ -562,12 +562,12 @@ var objecttype = "png";
 
             var arGifRotation = '-30 0 0';
             var prevPageY;
-            var zoomRateH = self.defaultwrapScale.h;
+            var zoomRateH = defaultwrapScale.h;
             var wrapZoom = 1;
 
             bAngle.classList.add('current');
 
-            var wrapPos = AFRAME.utils.coordinates.parse(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
+            var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
 
             if (self.arg.pv) {
 
@@ -576,12 +576,12 @@ var objecttype = "png";
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                wrapPos.z -= self.defaultwrapScale.h * 1.5;
+                wrapPos.z -= defaultwrapScale.h * 1.5;
                 
                 var pvAngle = 0;
                 
                 wrapZoom = 0.5;
-                zoomRateH = self.defaultwrapScale.h * wrapZoom;
+                zoomRateH = defaultwrapScale.h * wrapZoom;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
@@ -609,7 +609,7 @@ var objecttype = "png";
                     //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     //});
 
-                    self.defaultwrapPos.y = -5;
+                    defaultwrapPos.y = -5;
 
                     mWrap = null;
 
@@ -663,7 +663,7 @@ var objecttype = "png";
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
 
-                wrapPos = AFRAME.utils.coordinates.parse(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
+                wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
@@ -684,8 +684,8 @@ var objecttype = "png";
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(this.defaultwrapPos.x + ' ' + this.defaultwrapPos.y + ' ' + this.defaultwrapPos.z);
-                        zoomRateH = self.defaultwrapScale.h;
+                        wrapPos = AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        zoomRateH = webArViewer.defaultwrapScale.h;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -699,8 +699,8 @@ var objecttype = "png";
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(self.defaultwrapPos.x + ' ' + self.defaultwrapPos.y + ' ' + self.defaultwrapPos.z);
-                        zoomRateH = self.defaultwrapScale.h;
+                        wrapPos = AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
+                        zoomRateH = webArViewer.defaultwrapScale.h;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -985,6 +985,13 @@ var objecttype = "png";
     webArViewer.ar = ar;
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
+
+    webArViewer.defaultAngle = defaultAngle;
+    webArViewer.defaultPos = defaultPos;
+    webArViewer.defaultScale = defaultScale;
+    webArViewer.defaultwrapPos = defaultwrapPos;
+    webArViewer.defaultwrapScale = defaultwrapScale;
+    webArViewer.defaultlogoScale = defaultlogoScale;
 
     //if (!(webArViewer.ar.arData.isMarkerType == 1)) {
     //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
