@@ -26,6 +26,13 @@ var objecttype = "png";
 
             videostate = 0;
 
+            webArViewer.defaultAngle = defaultAngle;
+            webArViewer.defaultPos = defaultPos;
+            webArViewer.defaultScale = defaultScale;
+            webArViewer.defaultwrapPos = defaultwrapPos;
+            webArViewer.defaultwrapScale = defaultwrapScale;
+            webArViewer.defaultlogoScale = defaultlogoScale;
+
             this.setArg();
             
             if (this.setArData()) {
@@ -328,6 +335,61 @@ var objecttype = "png";
 
         },
 
+        setModelShadow: function () {
+            var self = this;
+            var val = self.arData;
+
+            self.arData.shadow.setAttribute('id', 'shadow');
+            self.arData.shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+            self.arData.shadow.setAttribute('rotation', '-90 0 0');
+
+            AFRAME.utils.entity.setComponentProperty(self.arData.shadow, 'geometry', {
+                primitive: 'plane', height: webArViewerdefaultScale.h, width: webArViewerdefaultScale.w
+            });
+
+            AFRAME.utils.entity.setComponentProperty(self.arData.shadow, 'material', {
+                shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+                color: 'black', opacity: 0.3, depthTest: false
+            });
+        },
+
+        setModelMain: function () {
+            var self = this;
+            var val = self.arData;
+
+            self.arData.main.setAttribute('id', 'main');
+            self.arData.main.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.defaultPos));
+
+            if (!val.isGif) {
+
+                self.arData.main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                if (!val.isGltf) {
+
+                    self.arData.main.setAttribute('width', AFRAME.utils.coordinates.stringify(webArViewer.defaultScale.w));
+                    self.arData.main.setAttribute('height', AFRAME.utils.coordinates.stringify(webArViewer.defaultScale.h));
+
+                    if (val.isMp4) {
+                        self.arData.main.setAttribute('play', 'true');
+                    }
+
+                    AFRAME.utils.entity.setComponentProperty(self.arData.main, 'geometry', {
+                        primitive: 'plane', height: webArViewer.defaultScale.h, width: webArViewer.defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(self.arData.main, 'material', {
+                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
+                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                    });
+                } else {
+                    self.arData.main.setAttribute('scale', AFRAME.utils.coordinates.stringify(webArViewer.defaultScale));
+                }
+
+            } else {
+                self.arData.main.setAttribute('rotation', '-30 0 0');
+            }
+        },
+
         createModel: function () {
 
             var self = this;
@@ -341,20 +403,22 @@ var objecttype = "png";
 
                 var shadow = document.createElement('a-image');
 
-                shadow.setAttribute('id', 'shadow');
-                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-                shadow.setAttribute('rotation', '-90 0 0');
+                //shadow.setAttribute('id', 'shadow');
+                //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+                //shadow.setAttribute('rotation', '-90 0 0');
 
-                AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
-                });
+                //AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                //    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
+                //});
 
-                AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
-                    color: 'black', opacity: 0.3, depthTest: false
-                });
+                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+                //    color: 'black', opacity: 0.3, depthTest: false
+                //});
 
                 self.arData.shadow = shadow;
+
+                this.setModelShadow();
             }
 
             var elname = '';
@@ -367,41 +431,43 @@ var objecttype = "png";
 
             var main = document.createElement(elname);
             var posVec3 = self.positionVec3('main');
-            defaultPos = posVec3;
-
-            main.setAttribute('id', 'main');
-            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
-
-            if (!val.isGif) {
-
-                main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-
-                if (!val.isGltf) {
-
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
-
-                    if (val.isMp4) {
-                        main.setAttribute('play', 'true');
-                    }
-
-                    AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                        primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
-                    });
-
-                    AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
-                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                    });
-                } else {
-                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
-                }
-
-            } else {
-                main.setAttribute('rotation', '-30 0 0');
-            }
+            webArViewer.defaultPos = posVec3;
 
             self.arData.main = main;
+
+            //main.setAttribute('id', 'main');
+            //main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
+
+            //if (!val.isGif) {
+
+            //    main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+            //    if (!val.isGltf) {
+
+            //        main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
+            //        main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
+
+            //        if (val.isMp4) {
+            //            main.setAttribute('play', 'true');
+            //        }
+
+            //        AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+            //            primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
+            //        });
+
+            //        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+            //            shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
+            //            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+            //        });
+            //    } else {
+            //        main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
+            //    }
+
+            //} else {
+            //    main.setAttribute('rotation', '-30 0 0');
+            //}
+
+            //self.arData.main = main;
 
             if (val.isLogo) {
 
@@ -1005,12 +1071,12 @@ var objecttype = "png";
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
 
-    webArViewer.defaultAngle = defaultAngle;
-    webArViewer.defaultPos = defaultPos;
-    webArViewer.defaultScale = defaultScale;
-    webArViewer.defaultwrapPos = defaultwrapPos;
-    webArViewer.defaultwrapScale = defaultwrapScale;
-    webArViewer.defaultlogoScale = defaultlogoScale;
+    //webArViewer.defaultAngle = defaultAngle;
+    //webArViewer.defaultPos = defaultPos;
+    //webArViewer.defaultScale = defaultScale;
+    //webArViewer.defaultwrapPos = defaultwrapPos;
+    //webArViewer.defaultwrapScale = defaultwrapScale;
+    //webArViewer.defaultlogoScale = defaultlogoScale;
 
     //if (!(webArViewer.ar.arData.isMarkerType == 1)) {
     //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
