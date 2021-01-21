@@ -538,6 +538,7 @@ var objecttype = "png";
         },
 
         addScene: function() {
+
             var self = this;
             var val = self.arData;
 
@@ -554,6 +555,7 @@ var objecttype = "png";
             var self = this;
             var val = self.arData;
 
+            this.addScene();
             //self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
             //self.arData.main && self.wrap.appendChild(self.arData.main);
 
