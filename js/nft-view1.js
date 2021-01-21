@@ -301,10 +301,10 @@ var objecttype = "png";
             //var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             //var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
+            self.wrap = document.createElement('a-box');
+
             self.wrap.basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             self.wrap.baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
-
-            self.wrap = document.createElement('a-box');
 
             //self.wrap.setAttribute('id', 'base');
             //self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
