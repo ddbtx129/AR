@@ -603,8 +603,8 @@ var objecttype = "png";
 
                 if (val.isMarkerType == 1) {
 
-                    wrapZoom = 2.5;
-                    zoomRateH = wrapZoom;
+                    wrapZoom = 0.625;
+                    zoomRateH = zoomRateH * wrapZoom;
                     //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     //});
@@ -685,7 +685,7 @@ var objecttype = "png";
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
                         wrapPos = webArViewer.defaultwrapPos;
-                        zoomRateH = webArViewer.defaultwrapScale.h;
+                        zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -700,7 +700,7 @@ var objecttype = "png";
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
                         wrapPos = webArViewer.defaultwrapPos;
-                        zoomRateH = webArViewer.defaultwrapScale.h;
+                        zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -837,6 +837,7 @@ var objecttype = "png";
             var bPrev = document.getElementById('swPrev');
 
             bNext.addEventListener('click', function () {
+                window.alert(0);
                 self.wrap.setAttribute('visible', false);
                 var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
                 var obj = Number(self.arg.ObjectList2);
