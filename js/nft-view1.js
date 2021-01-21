@@ -398,112 +398,7 @@ var objecttype = "png";
                 logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
-                // 反射
-                //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                //    primitive: 'box', height: defaultlogoScale, width: defaultlogoScale, depth: defaultlogoScale, segmentsHeight: 1, segmentsWidth: 1
-                //});
-                //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
-                //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
-                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
-                //});
 
-                //if (!!val.isAnime) {
-                //    logo.setAttribute('radius', (defaultlogoScale.w / 2));
-                //    if (val.isAnime == 1) {
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
-                //            property: 'rotation',
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            dur: 3000,
-                //            loop: true,
-                //            easing: 'linear'
-                //        });
-                //    } else if (val.isAnime == 2) {
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
-                //            property: 'rotation',
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            dur: 3000,
-                //            loop: true,
-                //            easing: 'easeOutElastic',
-                //            elasticity: 300
-                //        });
-                //    } else if (val.isAnime == 3) {
-                //        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 5) + ' 0 0'));
-                //        // 弾む
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos', {
-                //            property: 'position',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeInOutQuart',
-                //            loop: true,
-                //            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                //            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
-                //        });
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
-                //            property: 'scale',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeOutQuad',
-                //            loop: true,
-                //            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                //            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
-                //        });
-                //    } else if (val.isAnime == 11) {
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn1', {
-                //            property: 'rotation',
-                //            dur: 3000,
-                //            easing: 'linear',
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            startEvents: 'turn1'
-                //        });
-                //    } else if (val.isAnime == 12) {
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn2', {
-                //            property: 'rotation',
-                //            dur: 3000,
-                //            easing: 'easeOutElastic',
-                //            elasticity: 300,
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            startEvents: 'turn2'
-                //        });
-                //    } else if (val.isAnime == 13) {
-                //        logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle - 5) + ' 0 0'));
-                //        // 弾む
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__pos3', {
-                //            property: 'position',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeInOutQuart',
-                //            loop: false,
-                //            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
-                //            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                //            startEvents: 'pos3'
-                //        });
-                //        AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale3', {
-                //            property: 'scale',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeOutQuad',
-                //            loop: false,
-                //            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                //            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
-                //            startEvents: 'scale3'
-                //        });
-                //    }
-                //} else {
-                //    //logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                //    AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
-                //        property: 'rotation',
-                //        dur: 3000,
-                //        easing: 'easeOutElastic',
-                //        elasticity: 300,
-                //        from: '0 0 0',
-                //        to: '0 360 0',
-                //        startEvents: 'turn'
-                //    });
-                //}
 
                 self.arData.logo = logo;
             }
@@ -520,6 +415,15 @@ var objecttype = "png";
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+
+                // 反射
+                //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
+                //    primitive: 'box', height: defaultlogoScale, width: defaultlogoScale, depth: defaultlogoScale, segmentsHeight: 1, segmentsWidth: 1
+                //});
+                //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
+                //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
+                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
+                //});
 
                 if (!!val.isAnime) {
                     self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
@@ -673,112 +577,6 @@ var objecttype = "png";
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
-                //if (!!val.isLogo) {
-
-                //    var logopos = self.positionVec3Logo(Number(val.isAnime));
-                //    var rete = (!val.isMp4) ? 1 : 2;
-
-                //    self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-
-                //    if (!!val.isAnime) {
-                //        self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
-                //        if (val.isAnime == 1) {
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                //                property: 'rotation',
-                //                from: '0 0 0',
-                //                to: '0 360 0',
-                //                dur: 3000,
-                //                loop: true,
-                //                easing: 'linear'
-                //            });
-                //        } else if (val.isAnime == 2) {
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                //                property: 'rotation',
-                //                from: '0 0 0',
-                //                to: '0 360 0',
-                //                dur: 3000,
-                //                loop: true,
-                //                easing: 'easeOutElastic',
-                //                elasticity: 300
-                //            });
-                //        } else if (val.isAnime == 3) {
-                //            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                //            // 弾む
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
-                //                property: 'position',
-                //                dir: 'alternate',
-                //                dur: 400,
-                //                easing: 'easeInOutQuart',
-                //                loop: true,
-                //                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                //                to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
-                //            });
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
-                //                property: 'scale',
-                //                dir: 'alternate',
-                //                dur: 400,
-                //                easing: 'easeOutQuad',
-                //                loop: true,
-                //                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                //                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
-                //            });
-                //        } else if (val.isAnime == 11) {
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
-                //                property: 'rotation',
-                //                dur: 3000,
-                //                easing: 'linear',
-                //                from: '0 0 0',
-                //                to: '0 360 0',
-                //                startEvents: 'turn1'
-                //            });
-                //        } else if (val.isAnime == 12) {
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
-                //                property: 'rotation',
-                //                dur: 3000,
-                //                easing: 'easeOutElastic',
-                //                elasticity: 300,
-                //                from: '0 0 0',
-                //                to: '0 360 0',
-                //                startEvents: 'turn2'
-                //            });
-                //        } else if (val.isAnime == 13) {
-                //            self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                //            // 弾む
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
-                //                property: 'position',
-                //                dir: 'alternate',
-                //                dur: 400,
-                //                easing: 'easeInOutQuart',
-                //                loop: false,
-                //                from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
-                //                to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                //                startEvents: 'pos3'
-                //            });
-                //            AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
-                //                property: 'scale',
-                //                dir: 'alternate',
-                //                dur: 400,
-                //                easing: 'easeOutQuad',
-                //                loop: false,
-                //                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                //                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
-                //                startEvents: 'scale3'
-                //            });
-                //        }
-                //    } else {
-                //        //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
-                //            property: 'rotation',
-                //            dur: 3000,
-                //            easing: 'easeOutElastic',
-                //            elasticity: 300,
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            startEvents: 'turn0'
-                //        });
-                //    }
-                //}
-
                 webArViewer.scene.appendChild(self.wrap);
 
             } else {
@@ -875,8 +673,13 @@ var objecttype = "png";
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
                         wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        zoomRateH = defaultwrapScale.h;
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                        });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
                         this.objectDataVal(null, wrapPos);
@@ -886,9 +689,12 @@ var objecttype = "png";
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
                         wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        zoomRateH = defaultwrapScale.h;
+                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                        });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                        window.alert(defaultwrapPos.x);
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                         this.objectDataVal(null, wrapPos);
@@ -898,110 +704,6 @@ var objecttype = "png";
             }
 
             if (!!val.isLogo) {
-
-                //var logopos = self.positionVec3Logo(Number(val.isAnime));
-                //var rete = (!val.isMp4) ? 1 : 2;
-
-                //self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-
-                //if (!!val.isAnime) {
-                //    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
-                //    if (val.isAnime == 1) {
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                //            property: 'rotation',
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            dur: 3000,
-                //            loop: true,
-                //            easing: 'linear'
-                //        });
-                //    } else if (val.isAnime == 2) {
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
-                //            property: 'rotation',
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            dur: 3000,
-                //            loop: true,
-                //            easing: 'easeOutElastic',
-                //            elasticity: 300
-                //        });
-                //    } else if (val.isAnime == 3) {
-                //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                //        // 弾む
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
-                //            property: 'position',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeInOutQuart',
-                //            loop: true,
-                //            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                //            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
-                //        });
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
-                //            property: 'scale',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeOutQuad',
-                //            loop: true,
-                //            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                //            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
-                //        });
-                //    } else if (val.isAnime == 11) {
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
-                //            property: 'rotation',
-                //            dur: 3000,
-                //            easing: 'linear',
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            startEvents: 'turn1'
-                //        });
-                //    } else if (val.isAnime == 12) {
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
-                //            property: 'rotation',
-                //            dur: 3000,
-                //            easing: 'easeOutElastic',
-                //            elasticity: 300,
-                //            from: '0 0 0',
-                //            to: '0 360 0',
-                //            startEvents: 'turn2'
-                //        });
-                //    } else if (val.isAnime == 13) {
-                //        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                //        // 弾む
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
-                //            property: 'position',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeInOutQuart',
-                //            loop: false,
-                //            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
-                //            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                //            startEvents: 'pos3'
-                //        });
-                //        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
-                //            property: 'scale',
-                //            dir: 'alternate',
-                //            dur: 400,
-                //            easing: 'easeOutQuad',
-                //            loop: false,
-                //            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                //            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
-                //            startEvents: 'scale3'
-                //        });
-                //    }
-                //} else {
-                //    //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                //    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
-                //        property: 'rotation',
-                //        dur: 3000,
-                //        easing: 'easeOutElastic',
-                //        elasticity: 300,
-                //        from: '0 0 0',
-                //        to: '0 360 0',
-                //        startEvents: 'turn0'
-                //    });
-                //}
-
                 this.createAnimation();
             }
 
