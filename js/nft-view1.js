@@ -523,6 +523,20 @@ var objecttype = "png";
             }
         },
 
+
+        objectDataVal: function (oScale, oPosition) {
+
+            if (oScale != null) {
+                var elem = document.getElementById("debug1");
+                elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
+            }
+
+            if (oPosition != null) {
+                var elem = document.getElementById("debug2");
+                elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
+            }
+        },
+
         setScene: function () {
 
             var self = this;
@@ -944,19 +958,6 @@ var objecttype = "png";
 
             if (val.isMarkerType == 1 || !!(val.isPV)) {
                 document.getElementById("loader").style.display = 'none';
-            }
-        },
-
-        objectDataVal: function (oScale, oPosition) {
-
-            if(oScale != null){
-                var elem = document.getElementById("debug1");
-                elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
-            }
-
-            if(oPosition != null){
-                var elem = document.getElementById("debug2");
-                elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
             }
         },
 
