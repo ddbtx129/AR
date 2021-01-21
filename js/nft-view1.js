@@ -325,6 +325,7 @@ var objecttype = "png";
         },
 
         setWeapAttribute: function () {
+
             var self = this;
 
             self.wrap.setAttribute('id', 'base');
@@ -333,10 +334,10 @@ var objecttype = "png";
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-
         },
 
         setModelShadow: function () {
+
             var self = this;
             var val = self.arData;
 
@@ -355,6 +356,7 @@ var objecttype = "png";
         },
 
         setModelMain: function () {
+
             var self = this;
             var val = self.arData;
 
@@ -389,6 +391,20 @@ var objecttype = "png";
             } else {
                 self.arData.main.setAttribute('rotation', '-30 0 0');
             }
+        },
+
+        setModelLogo: function () {
+
+            var self = this;
+            var val = self.arData;
+
+            var logopos = self.positionVec3Logo(Number(val.isAnime));
+            var rete = (!val.isMp4) ? 1 : 2;
+
+            self.arData.logo.setAttribute('id', 'logo');
+            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+            self.arData.logo.setAttribute('scale', (webArViewer.defaultlogoScale.w * rete) + ' ' + (webArViewer.defaultlogoScale.h * rete) + ' ' + (webArViewer.defaultlogoScale.d * rete));
+            self.arData.logo.setAttribute('gltf-model', '#logosource');
         },
 
         createModel: function () {
@@ -477,15 +493,16 @@ var objecttype = "png";
                 var logo = document.createElement('a-entity');
                 //var logo = document.createElement('a-image');
 
-                var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var rete = (!val.isMp4) ? 1 : 2;
+                //var logopos = self.positionVec3Logo(Number(val.isAnime));
+                //var rete = (!val.isMp4) ? 1 : 2;
 
-                logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
-                logo.setAttribute('gltf-model', '#logosource');
+                //logo.setAttribute('id', 'logo');
+                //logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+                //logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
+                //logo.setAttribute('gltf-model', '#logosource');
 
                 self.arData.logo = logo;
+
             }
         },
 
@@ -609,7 +626,6 @@ var objecttype = "png";
                 }
             }
         },
-
 
         objectDataVal: function (oScale, oPosition) {
 
