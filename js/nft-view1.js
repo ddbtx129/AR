@@ -1,4 +1,4 @@
-webArViewer = webArViewer || {};
+var webArViewer = webArViewer || {};
 
 var videoInfo = {};
 var videoState = 0;
