@@ -693,7 +693,7 @@ var objecttype = "png";
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
-                        this.objectDataVal(zoomRateH, wrapPos);
+                        webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
                     }
                 });
 
@@ -709,7 +709,7 @@ var objecttype = "png";
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
                         
-                        this.objectDataVal(zoomRateH, wrapPos);
+                        webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
                     }
                 });
                 // ↑
