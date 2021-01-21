@@ -357,6 +357,9 @@ var objecttype = "png";
             var self = this;
             var val = self.arData;
 
+            var posVec3 = self.positionVec3('main');
+            webArViewer.defaultPos = posVec3;
+
             self.arData.main.setAttribute('id', 'main');
             self.arData.main.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.defaultPos));
 
@@ -430,8 +433,8 @@ var objecttype = "png";
             }
 
             var main = document.createElement(elname);
-            var posVec3 = self.positionVec3('main');
-            webArViewer.defaultPos = posVec3;
+            //var posVec3 = self.positionVec3('main');
+            //webArViewer.defaultPos = posVec3;
 
             self.arData.main = main;
 
