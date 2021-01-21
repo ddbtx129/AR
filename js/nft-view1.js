@@ -874,23 +874,25 @@ var objecttype = "png";
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        //wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        wrapPos = AFRAME.utils.coordinates.stringify({x: 0, y: 0, z:0});
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
-                        this.objectDataVal(zoomRateH, wrapPos);
+                        this.objectDataVal(null, wrapPos);
                     }
                 });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        //wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        wrapPos = AFRAME.utils.coordinates.stringify({x: 0, y: 0, z:0});
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        this.objectDataVal(zoomRateH, wrapPos);
+                        this.objectDataVal(null, wrapPos);
                     }
                 });
                 // ↑
@@ -1043,7 +1045,7 @@ var objecttype = "png";
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(zoomRateH, wrapPos);
+                this.objectDataVal(null, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
@@ -1053,7 +1055,7 @@ var objecttype = "png";
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(zoomRateH, wrapPos);
+                this.objectDataVal(null, wrapPos);
             });
             // ↑ 
 
@@ -1070,7 +1072,7 @@ var objecttype = "png";
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(zoomRateH, wrapPos);
+                    this.objectDataVal(null, wrapPos);
                 }, 10);
             });
 
@@ -1098,7 +1100,7 @@ var objecttype = "png";
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(zoomRateH, wrapPos);
+                    this.objectDataVal(null, wrapPos);
                 }, 10);
             });
 
@@ -1250,24 +1252,8 @@ var objecttype = "png";
 
         positionVec3Logo: function (anime) {
             var self = this;
-            //var h1 = self.arData.size.h;
             var h1_2 = (self.arData.size.h / 5);
-            //var posy = 0;
 
-            //switch (anime) {
-            //    case 3:
-            //        posy = -((self.arData.isMarkerType == 1 ? 3 : 110) / 2);
-            //        break;
-            //    default:
-            //        posy = 0;
-            //        break;
-            //}
-
-            //if (self.arData.size.w > self.arData.size.h) {
-            //    h1_2 = (self.arData.size.w / 2);
-            //}
-
-            //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
             return { x: 0, y: -h1_2, z: 0 };
         },
 
@@ -1280,10 +1266,8 @@ var objecttype = "png";
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
-                //    return { x: 0, y: i - h1_2, z: -h1_2 };
             } else {
                 return { x: 0, y: h1_2, z: 0 };
-                //   return { x: 0, y: i, z: 0 };
             }
         }
     };
