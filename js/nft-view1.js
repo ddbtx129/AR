@@ -663,7 +663,7 @@ var objecttype = "png";
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
 
-                wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                wrapPos = webArViewer.defaultwrapPos;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
@@ -684,7 +684,7 @@ var objecttype = "png";
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        wrapPos = webArViewer.defaultwrapPos;
                         zoomRateH = webArViewer.defaultwrapScale.h;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
@@ -699,7 +699,7 @@ var objecttype = "png";
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
+                        wrapPos = webArViewer.defaultwrapPos;
                         zoomRateH = webArViewer.defaultwrapScale.h;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
@@ -758,7 +758,7 @@ var objecttype = "png";
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(zoomRateH, wrapPos);
+                webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
@@ -769,7 +769,7 @@ var objecttype = "png";
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(zoomRateH, wrapPos);
+                webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
             });
             // ↑ 
 
@@ -787,7 +787,7 @@ var objecttype = "png";
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(zoomRateH, wrapPos);
+                    webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
             });
 
@@ -816,7 +816,7 @@ var objecttype = "png";
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(zoomRateH, wrapPos);
+                    webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
                 }, 10);
             });
 
