@@ -60,20 +60,20 @@
         <img class="ar-angle" id="swAngle" src="asset/angle-w.png" style="display: inline" />
         <img class="ar-parallel" id="swParallel" src="asset/parallel-w.png" style="display: inline" />
 
-        <img class="ar-prev" id="swPrev" src="asset/prev.png" style="display: inline" />
-        <img class="ar-next" id="swNext" src="asset/next.png" style="display: inline" />
+        <img class="ar-prev" id="swPrev" src="asset/prev.png" style="display: none" />
+        <img class="ar-next" id="swNext" src="asset/next.png" style="display: none" />
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
+<!--            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+            <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
+-->
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
             <a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>
-
-            <!--<a-entity light="type: ambient; color: #BBB"></a-entity>-->
-            <!--<a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>-->
-            <!--<a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>-->
-            <!--<a-camera-static/>-->
         
         </a-scene>
         
