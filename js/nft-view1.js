@@ -395,7 +395,7 @@ var objecttype = "png";
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(this.defaultlogoScale.w * rete) + ' ' + String(this.defaultlogoScale.h * rete) + ' ' + String(this.defaultlogoScale.d * rete)));
+                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 self.arData.logo = logo;
@@ -424,7 +424,7 @@ var objecttype = "png";
                 //});
 
                 if (!!val.isAnime) {
-                    self.arData.logo.setAttribute('radius', (this.defaultlogoScale.w / 2));
+                    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                             property: 'rotation',
@@ -454,7 +454,7 @@ var objecttype = "png";
                             easing: 'easeInOutQuart',
                             loop: true,
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (this.defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
                         });
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                             property: 'scale',
@@ -462,8 +462,8 @@ var objecttype = "png";
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
-                            from: this.defaultlogoScale.w * rete * 1.2 + ' ' + this.defaultlogoScale.h * rete * 0.8 + ' ' + this.defaultlogoScale.d * rete,
-                            to: this.defaultlogoScale.w * rete * 0.8 + ' ' + this.defaultlogoScale.h * rete * 1.2 + ' ' + this.defaultlogoScale.d * rete * 1
+                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
+                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
                         });
                     } else if (val.isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
