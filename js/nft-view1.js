@@ -164,7 +164,6 @@ var objecttype = "png";
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
-            //webArViewer.defaultScale = defaultScale;
 
             if (dataObj.path) {
 
@@ -302,23 +301,21 @@ var objecttype = "png";
             var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
+            self.wrap.basePos = basePos;
+            self.wrap.baseScale = baseScale;
+
             self.wrap = document.createElement('a-box');
+            //self.wrap.setAttribute('id', 'base');
+            //self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
+            //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
+            //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            //self.wrap.setAttribute('rotation', '0 0 0');
+            //self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
 
-            //self.wrap.basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-            //self.wrap.baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
-
-            self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('rotation', '0 0 0');
-            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-
-            //this.setWeapAttribute();
+            this.setWeapAttribute();
         },
 
         setWeapAttribute: function () {
-
             var self = this;
 
             self.wrap.setAttribute('id', 'base');
@@ -327,77 +324,7 @@ var objecttype = "png";
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-        },
 
-        setModelShadow: function () {
-
-            var self = this;
-            var val = self.arData;
-
-            self.arData.shadow.setAttribute('id', 'shadow');
-            self.arData.shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
-            self.arData.shadow.setAttribute('rotation', '-90 0 0');
-
-            AFRAME.utils.entity.setComponentProperty(self.arData.shadow, 'geometry', {
-                primitive: 'plane', height: webArViewer.defaultScale.h, width: webArViewer.defaultScale.w
-            });
-
-            AFRAME.utils.entity.setComponentProperty(self.arData.shadow, 'material', {
-                shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
-                color: 'black', opacity: 0.3, depthTest: false
-            });
-        },
-
-        setModelMain: function () {
-
-            var self = this;
-            var val = self.arData;
-
-            self.arData.main.setAttribute('id', 'main');
-            self.arData.main.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.defaultPos));
-
-            if (!val.isGif) {
-
-                self.arData.main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-
-                if (!val.isGltf) {
-
-                    self.arData.main.setAttribute('width', AFRAME.utils.coordinates.stringify(webArViewer.defaultScale.w));
-                    self.arData.main.setAttribute('height', AFRAME.utils.coordinates.stringify(webArViewer.defaultScale.h));
-
-                    if (val.isMp4) {
-                        self.arData.main.setAttribute('play', 'true');
-                    }
-
-                    AFRAME.utils.entity.setComponentProperty(self.arData.main, 'geometry', {
-                        primitive: 'plane', height: webArViewer.defaultScale.h, width: webArViewer.defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
-                    });
-
-                    AFRAME.utils.entity.setComponentProperty(self.arData.main, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
-                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                    });
-                } else {
-                    self.arData.main.setAttribute('scale', AFRAME.utils.coordinates.stringify(webArViewer.defaultScale));
-                }
-
-            } else {
-                self.arData.main.setAttribute('rotation', '-30 0 0');
-            }
-        },
-
-        setModelLogo: function () {
-
-            var self = this;
-            var val = self.arData;
-
-            var logopos = self.positionVec3Logo(Number(val.isAnime));
-            var rete = (!val.isMp4) ? 1 : 2;
-
-            self.arData.logo.setAttribute('id', 'logo');
-            self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-            self.arData.logo.setAttribute('scale', (webArViewer.defaultlogoScale.w * rete) + ' ' + (webArViewer.defaultlogoScale.h * rete) + ' ' + (webArViewer.defaultlogoScale.d * rete));
-            self.arData.logo.setAttribute('gltf-model', '#logosource');
         },
 
         createModel: function () {
@@ -427,8 +354,6 @@ var objecttype = "png";
                 });
 
                 self.arData.shadow = shadow;
-
-                //this.setModelShadow();
             }
 
             var elname = '';
@@ -441,7 +366,7 @@ var objecttype = "png";
 
             var main = document.createElement(elname);
             var posVec3 = self.positionVec3('main');
-            webArViewer.defaultPos = posVec3;
+            defaultPos = posVec3;
 
             main.setAttribute('id', 'main');
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
@@ -477,11 +402,10 @@ var objecttype = "png";
 
             self.arData.main = main;
 
-            //this.setModelMain();
-
             if (val.isLogo) {
 
                 var logo = document.createElement('a-entity');
+                //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 var rete = (!val.isMp4) ? 1 : 2;
@@ -492,8 +416,6 @@ var objecttype = "png";
                 logo.setAttribute('gltf-model', '#logosource');
 
                 self.arData.logo = logo;
-
-                //this.setModelLogo();
             }
         },
 
@@ -617,6 +539,7 @@ var objecttype = "png";
                 }
             }
         },
+
 
         objectDataVal: function (oScale, oPosition) {
 
