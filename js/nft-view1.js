@@ -344,7 +344,7 @@ var objecttype = "png";
             self.arData.shadow.setAttribute('rotation', '-90 0 0');
 
             AFRAME.utils.entity.setComponentProperty(self.arData.shadow, 'geometry', {
-                primitive: 'plane', height: webArViewerdefaultScale.h, width: webArViewerdefaultScale.w
+                primitive: 'plane', height: webArViewer.defaultScale.h, width: webArViewer.defaultScale.w
             });
 
             AFRAME.utils.entity.setComponentProperty(self.arData.shadow, 'material', {
