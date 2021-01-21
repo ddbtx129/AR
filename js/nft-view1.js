@@ -469,6 +469,8 @@ var objecttype = "png";
 
             //self.arData.main = main;
 
+            this.setModelMain();
+
             if (val.isLogo) {
 
                 var logo = document.createElement('a-entity');
