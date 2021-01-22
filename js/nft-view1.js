@@ -876,7 +876,7 @@ var objecttype = "png";
                 obj += 1;
 
                 var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                var objsrc = document.querySelector('#source');
+                var objsrc = document.querySelector('#source1');
                 objsrc.setAttribute('src', path);
 
                 webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
@@ -922,7 +922,7 @@ var objecttype = "png";
                 obj -= 1;
 
                 var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                var objsrc = document.querySelector('#source');
+                var objsrc = document.querySelector('#source1');
                 objsrc.setAttribute('src', path);
 
                 webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
