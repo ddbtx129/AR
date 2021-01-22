@@ -855,14 +855,21 @@ var objecttype = "png";
 
             bNext.addEventListener('click', function () {
                 
+                window.alert(0);
+
                 self.wrap.setAttribute('visible', false);
                 
+                window.alert(1);
+
                 var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
                 var obj = Number(self.arg.ObjectList2);
-                
+                window.alert(2);
+
                 obj += 1;
 
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                window.alert(3);
+
                 window.alert(path);
 
                 var objsrc = document.querySelector('#arObjectSrc1');
