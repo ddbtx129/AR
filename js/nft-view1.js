@@ -873,7 +873,7 @@ var objecttype = "png";
 
                 window.alert(path);
 
-                var objsrc = document.querySelector('#arObjectSrc1');
+                var objsrc = document.querySelector('#source');
                 window.alert(4);
 
                 objsrc.setAttribute('src', path);
