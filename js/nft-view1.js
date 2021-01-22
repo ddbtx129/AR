@@ -132,8 +132,9 @@ var objecttype = "png";
 
             if (!(self.arg.ObjectList)) {
                 seq = (Number(self.arg.ObjectList3) - Number(self.arg.ObjectList2));
+                var no = Number(self.arg.ObjectList2);
                 for (var i = 0; i <= seq; i++) {
-                    var obj = (('0').repeat((self.arg.ObjectList2).length) + (parseInt(i, 10).toString())).slice(-((self.arg.ObjectList2).length));
+                    var obj = (('0').repeat((self.arg.ObjectList2).length) + (parseInt(no + i, 10).toString())).slice(-((self.arg.ObjectList2).length));
                     //object[0] = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
                     //    (self.arg.MkObjList + '/' + self.arg.ObjectList2)
                     //    :
