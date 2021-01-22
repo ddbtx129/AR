@@ -151,11 +151,11 @@ var objecttype = "png";
 
             var dataObj = { path: object[0] + '.' + String(objecttype) };
 
-            dataObj.path = {};
+            dataObj.paths = {};
 
             if (seq > 1) {
                 for (var i = 0; i <= seq; i++) {
-                    dataObj.path[i] = object[i] + '.' + String(objecttype);
+                    dataObj.paths[i] = object[i] + '.' + String(objecttype);
                 }
             }
 
@@ -212,7 +212,7 @@ var objecttype = "png";
                             img.setAttribute('crossorigin', 'anonymous');
                             img.setAttribute('class', 'arObjectSrc1');
                             img.setAttribute('id', 'source' + (i + 1).toString());
-                            img.setAttribute('src', dataObj.path[i]);
+                            img.setAttribute('src', dataObj.paths[i]);
 
                             dataObj.arObj[i] = { obj: img[i] };
 
@@ -257,7 +257,7 @@ var objecttype = "png";
 
                     for (var i = 0; i <= seq; i++) {
                         video[i] = document.createElement("video");
-                        video[i].setAttribute("src", dataObj.path[i]);
+                        video[i].setAttribute("src", dataObj.paths[i]);
                         video[i].setAttribute('class', 'arObjectSrc1');
                         video[i].setAttribute('id', 'source' + (i + 1).toString());
                         video[i].setAttribute('preload', 'auto');
@@ -270,7 +270,7 @@ var objecttype = "png";
                         video[i].setAttribute("autoplay", "");
 
                         audio[i] = document.createElement("audio");
-                        audio[i].setAttribute("src", dataObj.path[i]);
+                        audio[i].setAttribute("src", dataObj.paths[i]);
                         audio[i].setAttribute('class', 'arObjectSrc2');
                         audio[i].setAttribute('id', 'a-source' + (i + 1).toString());
                         audio[i].setAttribute('preload', 'auto');
@@ -299,12 +299,13 @@ var objecttype = "png";
                     //model.setAttribute('src', dataObj.path);
 
                     //assets.appendChild(model);
+
                     for (var i = 0; i <= seq; i++) {
                         model[i] = document.createElement('a-asset-item');
                         model[i].setAttribute('crossorigin', 'anonymous');
                         model[i].setAttribute('class', 'arObjectSrc1');
                         model[i].setAttribute('id', 'source' + (i + 1).toString());
-                        model[i].setAttribute('src', dataObj.path[i]); 
+                        model[i].setAttribute('src', dataObj.paths[i]); 
 
                         dataObj.arObj[i] = { obj: model[i] };
 
