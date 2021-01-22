@@ -31,7 +31,7 @@ var objecttype = "png";
             if (this.setArData()) {
 
                 this.setWrap();
-                this.createModel();
+                this.createModel(1);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -180,7 +180,7 @@ var objecttype = "png";
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
                     img.setAttribute('class', 'arObjectSrc1');
-                    img.setAttribute('id', 'source');
+                    img.setAttribute('id', 'source1');
                     img.setAttribute('src', dataObj.path);
 
                     dataObj.img = img;
@@ -192,7 +192,7 @@ var objecttype = "png";
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
                     video.setAttribute('class', 'arObjectSrc1');
-                    video.setAttribute('id', 'source');
+                    video.setAttribute('id', 'source1');
                     video.setAttribute('preload', 'auto');
                     video.setAttribute('response-type', 'arraybuffer');
                     video.setAttribute('loop', 'true');
@@ -226,7 +226,7 @@ var objecttype = "png";
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
                     model.setAttribute('class', 'arObjectSrc1');
-                    model.setAttribute('id', 'source');
+                    model.setAttribute('id', 'source1');
                     model.setAttribute('src', dataObj.path);
 
                     assets.appendChild(model);
@@ -238,7 +238,7 @@ var objecttype = "png";
 
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
-                    model.setAttribute('id', 'logosource');
+                    model.setAttribute('id', 'logosource1');
                     model.setAttribute('src', dataObj.logopath);
 
                     assets.appendChild(model);
@@ -319,7 +319,7 @@ var objecttype = "png";
             self.wrap.setAttribute('visible', false)
         },
 
-        createModel: function () {
+        createModel: function (arrobj) {
 
             var self = this;
             var val = self.arData;
@@ -341,7 +341,7 @@ var objecttype = "png";
                 });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source', transparent: true, alphaTest: 0.1,
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + arrobj, transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
                 });
 
@@ -381,7 +381,7 @@ var objecttype = "png";
                     });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source', displacementMap: null, displacementBias: -0.5,
+                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + arrobj, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
@@ -405,7 +405,7 @@ var objecttype = "png";
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
-                logo.setAttribute('gltf-model', '#logosource');
+                logo.setAttribute('gltf-model', '#logosource1');
 
                 self.arData.logo = logo;
             }
@@ -885,7 +885,7 @@ var objecttype = "png";
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel();
+                webArViewer.ar.createModel(1);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -931,7 +931,7 @@ var objecttype = "png";
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel();
+                webArViewer.ar.createModel(1);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
