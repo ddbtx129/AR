@@ -47,6 +47,7 @@ var objecttype = "png";
 
                 this.setScene();
                 this.setTapEvents();
+                this.switchObject();
             }
 
             this.setSwitcher();
