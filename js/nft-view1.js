@@ -46,6 +46,9 @@ var objecttype = "png";
                 };
 
                 this.setScene();
+
+                this.wrap.setAttribute('visible', true);
+
                 this.setTapEvents();
                 this.switchObject();
             }
@@ -54,8 +57,6 @@ var objecttype = "png";
 
             var elem = document.getElementById("version1");
             elem.innerHTML = '1.0.121';
-
-            this.wrap.setAttribute('visible', true)
         },
 
         setArg: function () {
@@ -312,7 +313,7 @@ var objecttype = "png";
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
             self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
             self.wrap.setAttribute('visible', false)
@@ -901,21 +902,6 @@ var objecttype = "png";
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
-
-                //objsrc.setAttribute('id', 'source' + (obj).toString());
-                //window.alert(6);
-
-                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
-                //    color: 'black', opacity: 0.3, depthTest: false
-                //});
-
-                //AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                //    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
-                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                //});
-                
-                //self.wrap.setAttribute('visible', true);
             });
 
             bPrev.addEventListener('click', function () {
