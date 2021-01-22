@@ -175,6 +175,7 @@ var objecttype = "png";
 
                     var img = document.createElement('img');
                     img.setAttribute('crossorigin', 'anonymous');
+                    img.setAttribute('class', 'arObjectSrc1');
                     img.setAttribute('id', 'source');
                     img.setAttribute('src', dataObj.path);
 
@@ -186,6 +187,7 @@ var objecttype = "png";
 
                     var video = document.createElement("video");
                     video.setAttribute("src", dataObj.path);
+                    video.setAttribute('class', 'arObjectSrc1');
                     video.setAttribute('id', 'source');
                     video.setAttribute('preload', 'auto');
                     video.setAttribute('response-type', 'arraybuffer');
@@ -198,6 +200,7 @@ var objecttype = "png";
 
                     var audio = document.createElement("audio");
                     audio.setAttribute("src", dataObj.path);
+                    audio.setAttribute('class', 'arObjectSrc2');
                     audio.setAttribute('id', 'source2');
                     audio.setAttribute('preload', 'auto');
                     audio.setAttribute('response-type', 'arraybuffer');
@@ -218,6 +221,7 @@ var objecttype = "png";
 
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
+                    model.setAttribute('class', 'arObjectSrc1');
                     model.setAttribute('id', 'source');
                     model.setAttribute('src', dataObj.path);
 
@@ -522,7 +526,6 @@ var objecttype = "png";
                 }
             }
         },
-
 
         objectDataVal: function (oScale, oPosition) {
 
@@ -861,11 +864,19 @@ var objecttype = "png";
 
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
 
-                self.arData.img.setAttribute('src', path);
-                self.arData.img.setAttribute('id', 'source' + (obj).toString());
+                var objsrc = document.querySelector('#arObjectSrc1');
+                objsrc.setAttribute('src', path);
+                objsrc.setAttribute('id', 'source' + (obj).toString());
 
-                self.ardata.shadow.setAttribute('src', '#source' + (obj).toString());
-                self.ardata.main.setAttribute('src', '#source' + (obj).toString());
+                AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
+                    color: 'black', opacity: 0.3, depthTest: false
+                });
+
+                AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
+                    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                });
 
                 self.wrap.setAttribute('visible', true);
             });
