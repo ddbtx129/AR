@@ -142,6 +142,8 @@ var objecttype = "png";
                         (self.arg.MkObjList + '/' + obj)
                         :
                         (self.arg.ObjectList1 + '/' + obj));
+
+                    window.alert(object[i]); 
                 }
             } else {
                 object[0] = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
