@@ -92,6 +92,7 @@ var objecttype = "png";
             arg.ObjectList = arg.o;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
+            arg.ObjectList3 = arg.o3;
 
             arg.MkObjList = arg.mo;
 
@@ -125,21 +126,21 @@ var objecttype = "png";
             objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
 
             // データの準備
-            var object = '';
+            var object = {};
             var n_object = '';
 
             if (!(self.arg.ObjectList)) {
-                object = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
+                object[0] = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
                     (self.arg.MkObjList + '/' + self.arg.ObjectList2)
                     :
                     (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
             } else {
-                object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
+                object[0] = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
 
             n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
 
-            var dataObj = { path: object + '.' + String(objecttype) };
+            var dataObj = { path: object[0] + '.' + String(objecttype) };
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -173,7 +174,7 @@ var objecttype = "png";
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
                 dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                dataObj.img  = null;
+                dataObj.arObj = {};
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
 
