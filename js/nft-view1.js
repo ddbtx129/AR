@@ -863,6 +863,7 @@ var objecttype = "png";
                 obj += 1;
 
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                window.alert(path);
 
                 var objsrc = document.querySelector('#arObjectSrc1');
                 objsrc.setAttribute('src', path);
