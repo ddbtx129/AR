@@ -556,12 +556,6 @@ var objecttype = "png";
             var val = self.arData;
 
             this.addScene();
-            //self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
-            //self.arData.main && self.wrap.appendChild(self.arData.main);
-
-            //if (val.isLogo) {
-            //    self.arData.logo && self.wrap.appendChild(self.arData.logo);
-            //}
 
             if (!val.isMp4) {
                 document.getElementById("player").style.display = 'none';
@@ -845,24 +839,36 @@ var objecttype = "png";
             });
             // ↑
 
+            this.objectDataVal(zoomRateH, wrapPos);
+        },
+
+        switchObject: function(){
+
+            var self = this;
+            var val = self.arData;
+
             var bNext = document.getElementById('swNext');
             var bPrev = document.getElementById('swPrev');
 
             bNext.addEventListener('click', function () {
-                window.alert(0);
+                
                 self.wrap.setAttribute('visible', false);
+                
                 var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
                 var obj = Number(self.arg.ObjectList2);
+                
                 obj += 1;
+
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                //var arobjpath = rootPath + 'article/' + folder + '/' + path;
 
                 self.arData.img.setAttribute('src', path);
+                self.arData.img.setAttribute('id', 'source' + (obj).toString());
 
-                //self.wrap.setAttribute('visible', true);
+                self.ardata.shadow.setAttribute('src', '#source' + (obj).toString());
+                self.ardata.main.setAttribute('src', '#source' + (obj).toString());
+
+                self.wrap.setAttribute('visible', true);
             });
-
-            this.objectDataVal(zoomRateH, wrapPos);
         },
 
         setTapEvents: function () {
