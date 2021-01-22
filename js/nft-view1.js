@@ -911,6 +911,64 @@ var objecttype = "png";
                 
                 //self.wrap.setAttribute('visible', true);
             });
+
+            bPrev.addEventListener('click', function () {
+
+                //self.wrap.setAttribute('visible', false);
+
+                var wrap = document.getElementById('base');
+                wrap.remove();
+
+                if(!(webArViewer.ar.arData.isPV)){
+                    var mr = document.getElementById('arMarker');
+                    mr.remove();
+                }
+
+                var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
+                var obj = Number(webArViewer.ar.arg.ObjectList2);
+
+                obj -= 1;
+
+                var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                var objsrc = document.querySelector('#source');
+                objsrc.setAttribute('src', path);
+                webArViewer.ar.arData.path = path;
+
+                webArViewer.ar.setWrap();
+                webArViewer.ar.createModel();
+
+                var deviceEvents = {
+                    Touch: typeof document.ontouchstart !== 'undefined',
+                    Pointer: window.navigator.pointerEnabled,
+                    MSPointer: window.navigator.msPointerEnabled
+                };
+
+                webArViewer.ar.eventNames = {
+                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
+                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
+                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
+                };
+
+                webArViewer.ar.setScene();
+                webArViewer.ar.setTapEvents();
+                webArViewer.ar.switchObject();
+                webArViewer.ar.setSwitcher();
+
+                //objsrc.setAttribute('id', 'source' + (obj).toString());
+                //window.alert(6);
+
+                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
+                //    color: 'black', opacity: 0.3, depthTest: false
+                //});
+
+                //AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                //    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
+                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                //});
+                
+                //self.wrap.setAttribute('visible', true);
+            });
         },
 
         setTapEvents: function () {
