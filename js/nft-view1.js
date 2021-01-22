@@ -856,7 +856,7 @@ var objecttype = "png";
 
             bNext.addEventListener('click', function () {
 
-                //self.wrap.setAttribute('visible', false);
+                self.wrap.setAttribute('visible', false);
 
                 var wrap = document.getElementById('base');
                 wrap.remove();
@@ -877,6 +877,8 @@ var objecttype = "png";
                 self.arData.path = path;
 
                 webArViewer.ar.setWrap();
+                webArViewer.ar.wrap.setAttribute('visible', false);
+
                 webArViewer.ar.createModel();
 
                 var deviceEvents = {
@@ -896,6 +898,8 @@ var objecttype = "png";
                 webArViewer.ar.switchObject();
                 webArViewer.ar.setSwitcher();
 
+                webArViewer.ar.wrap.setAttribute('visible', true);
+
                 //objsrc.setAttribute('id', 'source' + (obj).toString());
                 //window.alert(6);
 
@@ -914,7 +918,7 @@ var objecttype = "png";
 
             bPrev.addEventListener('click', function () {
 
-                //self.wrap.setAttribute('visible', false);
+                self.wrap.setAttribute('visible', false);
 
                 var wrap = document.getElementById('base');
                 wrap.remove();
@@ -935,6 +939,8 @@ var objecttype = "png";
                 webArViewer.ar.arData.path = path;
 
                 webArViewer.ar.setWrap();
+                webArViewer.ar.wrap.setAttribute('visible', false);
+
                 webArViewer.ar.createModel();
 
                 var deviceEvents = {
@@ -953,6 +959,8 @@ var objecttype = "png";
                 webArViewer.ar.setTapEvents();
                 webArViewer.ar.switchObject();
                 webArViewer.ar.setSwitcher();
+
+                webArViewer.ar.wrap.setAttribute('visible', true);
 
                 //objsrc.setAttribute('id', 'source' + (obj).toString());
                 //window.alert(6);
