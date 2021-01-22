@@ -92,7 +92,7 @@ var objecttype = "png";
             arg.ObjectList = arg.o;
             arg.ObjectList1 = arg.o1;
             arg.ObjectList2 = arg.o2;
-            arg.ObjectList3 = arg.o3;
+            arg.ObjectList3 = !!(arg.o3) ? arg.o3 : arg.o2;
 
             arg.MkObjList = arg.mo;
 
@@ -128,12 +128,21 @@ var objecttype = "png";
             // データの準備
             var object = {};
             var n_object = '';
+            var seq = 1;
 
             if (!(self.arg.ObjectList)) {
-                object[0] = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
-                    (self.arg.MkObjList + '/' + self.arg.ObjectList2)
-                    :
-                    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
+                seq = (Number(self.arg.ObjectList3) - Number(self.arg.ObjectList2));
+                for (var i = 0; i <= seq; i++) {
+                    var obj = (('0').repeat((self.arg.ObjectList2).length) + (parseInt(i, 10).toString())).slice(-((self.arg.ObjectList2).length));
+                    //object[0] = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
+                    //    (self.arg.MkObjList + '/' + self.arg.ObjectList2)
+                    //    :
+                    //    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
+                    object[i] = ((self.arg.MkObjList) && (obj) ?
+                        (self.arg.MkObjList + '/' + obj)
+                        :
+                        (self.arg.ObjectList1 + '/' + obj));
+                }
             } else {
                 object[0] = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
@@ -141,6 +150,14 @@ var objecttype = "png";
             n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
 
             var dataObj = { path: object[0] + '.' + String(objecttype) };
+
+            dataObj.path = {};
+
+            if (seq > 1) {
+                for (var i = 0; i <= seq; i++) {
+                    dataObj.path[i] = object[i] + '.' + String(objecttype);
+                }
+            }
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
@@ -177,60 +194,122 @@ var objecttype = "png";
                 dataObj.arObj = {};
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
+                    var img = {};
 
-                    var img = document.createElement('img');
-                    img.setAttribute('crossorigin', 'anonymous');
-                    img.setAttribute('class', 'arObjectSrc1');
-                    img.setAttribute('id', 'source1');
-                    img.setAttribute('src', dataObj.path);
+                    //if (seq > 1) {
+                    //    var img = document.createElement('img');
+                    //    img.setAttribute('crossorigin', 'anonymous');
+                    //    img.setAttribute('class', 'arObjectSrc1');
+                    //    img.setAttribute('id', 'source1');
+                    //    img.setAttribute('src', dataObj.path);
 
-                    dataObj.img = img;
+                    //    dataObj.img = img;
 
-                    assets.appendChild(img);
+                    //    assets.appendChild(img);
+                    //} else {
+                        for (var i = 0; i <= seq; i++) {
+                            img[i] = document.createElement('img');
+                            img.setAttribute('crossorigin', 'anonymous');
+                            img.setAttribute('class', 'arObjectSrc1');
+                            img.setAttribute('id', 'source' + (i + 1).toString());
+                            img.setAttribute('src', dataObj.path[i]);
 
+                            dataObj.arObj[i] = { obj: img[i] };
+
+                            assets.appendChild(img[i]);
+                        }
+                    //}
                 } else if (!!(dataObj.isMp4)) {
+                    var video = {};
+                    var audio = {};
 
-                    var video = document.createElement("video");
-                    video.setAttribute("src", dataObj.path);
-                    video.setAttribute('class', 'arObjectSrc1');
-                    video.setAttribute('id', 'source1');
-                    video.setAttribute('preload', 'auto');
-                    video.setAttribute('response-type', 'arraybuffer');
-                    video.setAttribute('loop', 'true');
-                    video.setAttribute('crossorigin', 'anonymous');
-                    video.setAttribute('webkit-playsinline', 'webkit-playsinline');
-                    video.setAttribute("playsinline", "");
-                    video.setAttribute("controls", "");
-                    video.setAttribute("autoplay", "");
+                    //var video = document.createElement("video");
+                    //video.setAttribute("src", dataObj.path);
+                    //video.setAttribute('class', 'arObjectSrc1');
+                    //video.setAttribute('id', 'source1');
+                    //video.setAttribute('preload', 'auto');
+                    //video.setAttribute('response-type', 'arraybuffer');
+                    //video.setAttribute('loop', 'true');
+                    //video.setAttribute('crossorigin', 'anonymous');
+                    //video.setAttribute('webkit-playsinline', 'webkit-playsinline');
+                    //video.setAttribute("playsinline", "");
+                    //video.setAttribute("controls", "");
+                    //video.setAttribute("autoplay", "");
 
-                    var audio = document.createElement("audio");
-                    audio.setAttribute("src", dataObj.path);
-                    audio.setAttribute('class', 'arObjectSrc2');
-                    audio.setAttribute('id', 'source2');
-                    audio.setAttribute('preload', 'auto');
-                    audio.setAttribute('response-type', 'arraybuffer');
-                    audio.setAttribute('loop', 'true');
-                    audio.setAttribute('crossorigin', 'anonymous');
-                    audio.setAttribute('webkit-playsinline', 'webkit-playsinline');
-                    audio.setAttribute("playsinline", "");
-                    audio.setAttribute("controls", "");
-                    audio.setAttribute("autoplay", "");
+                    //var audio = document.createElement("audio");
+                    //audio.setAttribute("src", dataObj.path);
+                    //audio.setAttribute('class', 'arObjectSrc2');
+                    //audio.setAttribute('id', 'source2');
+                    //audio.setAttribute('preload', 'auto');
+                    //audio.setAttribute('response-type', 'arraybuffer');
+                    //audio.setAttribute('loop', 'true');
+                    //audio.setAttribute('crossorigin', 'anonymous');
+                    //audio.setAttribute('webkit-playsinline', 'webkit-playsinline');
+                    //audio.setAttribute("playsinline", "");
+                    //audio.setAttribute("controls", "");
+                    //audio.setAttribute("autoplay", "");
 
-                    dataObj.video = video;
-                    dataObj.audio = audio;
+                    //dataObj.video = video;
+                    //dataObj.audio = audio;
 
-                    assets.appendChild(video);
-                    assets.appendChild(audio);
+                    //assets.appendChild(video);
+                    //assets.appendChild(audio);
+
+                    for (var i = 0; i <= seq; i++) {
+                        video[i] = document.createElement("video");
+                        video[i].setAttribute("src", dataObj.path[i]);
+                        video[i].setAttribute('class', 'arObjectSrc1');
+                        video[i].setAttribute('id', 'source' + (i + 1).toString());
+                        video[i].setAttribute('preload', 'auto');
+                        video[i].setAttribute('response-type', 'arraybuffer');
+                        video[i].setAttribute('loop', 'true');
+                        video[i].setAttribute('crossorigin', 'anonymous');
+                        video[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
+                        video[i].setAttribute("playsinline", "");
+                        video[i].setAttribute("controls", "");
+                        video[i].setAttribute("autoplay", "");
+
+                        audio[i] = document.createElement("audio");
+                        audio[i].setAttribute("src", dataObj.path[i]);
+                        audio[i].setAttribute('class', 'arObjectSrc2');
+                        audio[i].setAttribute('id', 'a-source' + (i + 1).toString());
+                        audio[i].setAttribute('preload', 'auto');
+                        audio[i].setAttribute('response-type', 'arraybuffer');
+                        audio[i].setAttribute('loop', 'true');
+                        audio[i].setAttribute('crossorigin', 'anonymous');
+                        audio[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
+                        audio[i].setAttribute("playsinline", "");
+                        audio[i].setAttribute("controls", "");
+                        audio[i].setAttribute("autoplay", "");
+
+                        //dataObj.video = video[i];
+                        //dataObj.audio = audio[i];
+                        dataObj.arObj[i] = { obj: video[i], obj2: audio[i] };
+
+                        assets.appendChild(video[i]);
+                        assets.appendChild(audio[i]);
+                    }
 
                 } else if (dataObj.isGltf) {
+                    var model = {};
+                    //var model = document.createElement('a-asset-item');
+                    //model.setAttribute('crossorigin', 'anonymous');
+                    //model.setAttribute('class', 'arObjectSrc1');
+                    //model.setAttribute('id', 'source1');
+                    //model.setAttribute('src', dataObj.path);
 
-                    var model = document.createElement('a-asset-item');
-                    model.setAttribute('crossorigin', 'anonymous');
-                    model.setAttribute('class', 'arObjectSrc1');
-                    model.setAttribute('id', 'source1');
-                    model.setAttribute('src', dataObj.path);
+                    //assets.appendChild(model);
+                    for (var i = 0; i <= seq; i++) {
+                        model[i] = document.createElement('a-asset-item');
+                        model[i].setAttribute('crossorigin', 'anonymous');
+                        model[i].setAttribute('class', 'arObjectSrc1');
+                        model[i].setAttribute('id', 'source' + (i + 1).toString());
+                        model[i].setAttribute('src', dataObj.path[i]); 
 
-                    assets.appendChild(model);
+                        dataObj.arObj[i] = { obj: model[i] };
+
+                        assets.appendChild(model[i]);
+                    }
                 }
 
                 if (dataObj.isLogo) {
