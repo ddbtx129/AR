@@ -874,8 +874,13 @@ var objecttype = "png";
                 window.alert(path);
 
                 var objsrc = document.querySelector('#arObjectSrc1');
+                window.alert(4);
+
                 objsrc.setAttribute('src', path);
+                window.alert(5);
+
                 objsrc.setAttribute('id', 'source' + (obj).toString());
+                window.alert(6);
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
