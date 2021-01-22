@@ -891,9 +891,8 @@ var objecttype = "png";
                     shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
                     side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                 });
-
-
-                window.alert(1);
+                
+                window.alert((main.getAttribute(material)).toString());
                 self.wrap.setAttribute('visible', true);
             });
         },
