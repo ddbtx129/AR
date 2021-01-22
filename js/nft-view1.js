@@ -54,6 +54,8 @@ var objecttype = "png";
 
             var elem = document.getElementById("version1");
             elem.innerHTML = '1.0.121';
+
+            this.wrap.setAttribute('visible', true)
         },
 
         setArg: function () {
@@ -313,6 +315,8 @@ var objecttype = "png";
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+
+            self.wrap.setAttribute('visible', false)
         },
 
         createModel: function () {
@@ -870,8 +874,6 @@ var objecttype = "png";
                 var obj = Number(webArViewer.ar.arg.ObjectList2);
 
                 obj += 1;
-                window.alert(webArViewer.ar.arg.ObjectList2 + '.png');
-                window.alert(('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
 
                 var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
                 var objsrc = document.querySelector('#source');
@@ -933,12 +935,12 @@ var objecttype = "png";
                 var obj = Number(webArViewer.ar.arg.ObjectList2);
 
                 obj -= 1;
-                webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
 
                 var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
                 var objsrc = document.querySelector('#source');
                 objsrc.setAttribute('src', path);
 
+                webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
                 webArViewer.ar.arData.path = path;
 
                 webArViewer.ar.setWrap();
@@ -961,21 +963,6 @@ var objecttype = "png";
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
-
-                //objsrc.setAttribute('id', 'source' + (obj).toString());
-                //window.alert(6);
-
-                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
-                //    color: 'black', opacity: 0.3, depthTest: false
-                //});
-
-                //AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                //    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
-                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                //});
-                
-                //self.wrap.setAttribute('visible', true);
             });
         },
 
