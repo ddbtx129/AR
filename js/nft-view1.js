@@ -870,6 +870,8 @@ var objecttype = "png";
                 var obj = Number(webArViewer.ar.arg.ObjectList2);
 
                 obj += 1;
+                window.alert(webArViewer.ar.arg.ObjectList2 + '.png');
+                window.alert(('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
 
                 var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
                 var objsrc = document.querySelector('#source');
