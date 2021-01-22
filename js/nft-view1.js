@@ -892,6 +892,8 @@ var objecttype = "png";
                     side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                 });
 
+
+                window.alert(1);
                 self.wrap.setAttribute('visible', true);
             });
         },
