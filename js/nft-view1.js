@@ -856,7 +856,7 @@ var objecttype = "png";
 
             bNext.addEventListener('click', function () {
 
-                self.wrap.setAttribute('visible', false);
+                webArViewer.ar.wrap.setAttribute('visible', false);
 
                 var wrap = document.getElementById('base');
                 wrap.remove();
@@ -866,10 +866,11 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                var folder = !!(self.arData.isMp4) ? 'video' : (!!(self.arData.isGltf) ? 'gltf' : 'pic');
-                var obj = Number(self.arg.ObjectList2);
+                var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
+                var obj = Number(webArViewer.ar.arg.ObjectList2);
 
                 obj += 1;
+                webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
 
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
                 var objsrc = document.querySelector('#source');
@@ -918,7 +919,7 @@ var objecttype = "png";
 
             bPrev.addEventListener('click', function () {
 
-                self.wrap.setAttribute('visible', false);
+                webArViewer.ar.wrap.setAttribute('visible', false);
 
                 var wrap = document.getElementById('base');
                 wrap.remove();
