@@ -209,10 +209,10 @@ var objecttype = "png";
                     //} else {
                         for (var i = 0; i <= seq; i++) {
                             img[i] = document.createElement('img');
-                            img.setAttribute('crossorigin', 'anonymous');
-                            img.setAttribute('class', 'arObjectSrc1');
-                            img.setAttribute('id', 'source' + (i + 1).toString());
-                            img.setAttribute('src', dataObj.paths[i]);
+                            img[i].setAttribute('crossorigin', 'anonymous');
+                            img[i].setAttribute('class', 'arObjectSrc1');
+                            img[i].setAttribute('id', 'source' + (i + 1).toString());
+                            img[i].setAttribute('src', dataObj.paths[i]);
 
                             dataObj.arObj[i] = { obj: img[i] };
 
