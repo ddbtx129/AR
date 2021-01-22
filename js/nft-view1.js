@@ -858,7 +858,7 @@ var objecttype = "png";
                 
                 window.alert(0);
 
-                self.wrap.setAttribute('visible', false);
+                //self.wrap.setAttribute('visible', false);
                 
                 window.alert(1);
 
@@ -867,6 +867,9 @@ var objecttype = "png";
                 window.alert(2);
 
                 obj += 1;
+
+                var wrap = document.getElementById('base');
+                wrap.remove();
 
                 var path = self.arData.path.replace(self.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
                 window.alert(3);
@@ -879,21 +882,20 @@ var objecttype = "png";
                 objsrc.setAttribute('src', path);
                 window.alert(5);
 
-                objsrc.setAttribute('id', 'source' + (obj).toString());
-                window.alert(6);
+                //objsrc.setAttribute('id', 'source' + (obj).toString());
+                //window.alert(6);
 
-                AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
-                    color: 'black', opacity: 0.3, depthTest: false
-                });
+                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (obj).toString(), transparent: true, alphaTest: 0.1,
+                //    color: 'black', opacity: 0.3, depthTest: false
+                //});
 
-                AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
-                    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                });
+                //AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                //    shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (obj).toString(), displacementMap: null, displacementBias: -0.5,
+                //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                //});
                 
-                window.alert((main.getAttribute('material')).toString());
-                self.wrap.setAttribute('visible', true);
+                //self.wrap.setAttribute('visible', true);
             });
         },
 
