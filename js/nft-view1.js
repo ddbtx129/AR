@@ -898,9 +898,6 @@ var objecttype = "png";
                 };
 
                 webArViewer.ar.setScene();
-                webArViewer.ar.setTapEvents();
-                webArViewer.ar.switchObject();
-                webArViewer.ar.setSwitcher();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
 
@@ -962,9 +959,6 @@ var objecttype = "png";
                 };
 
                 webArViewer.ar.setScene();
-                webArViewer.ar.setTapEvents();
-                webArViewer.ar.switchObject();
-                webArViewer.ar.setSwitcher();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
 
