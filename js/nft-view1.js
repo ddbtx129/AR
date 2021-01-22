@@ -882,6 +882,26 @@ var objecttype = "png";
                 objsrc.setAttribute('src', path);
                 window.alert(5);
 
+                this.setWrap();
+                this.createModel();
+
+                var deviceEvents = {
+                    Touch: typeof document.ontouchstart !== 'undefined',
+                    Pointer: window.navigator.pointerEnabled,
+                    MSPointer: window.navigator.msPointerEnabled
+                };
+
+                this.eventNames = {
+                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
+                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
+                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
+                };
+
+                this.setScene();
+                this.setTapEvents();
+                this.switchObject();
+                this.setSwitcher();
+
                 //objsrc.setAttribute('id', 'source' + (obj).toString());
                 //window.alert(6);
 
