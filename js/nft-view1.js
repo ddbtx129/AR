@@ -996,7 +996,7 @@ var tapCount = 0;
                             logo.remove();
                         }
 
-                        //webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                        webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
                         //webArViewer.ar.setWrap();
                         //webArViewer.ar.wrap.setAttribute('visible', false);
@@ -1004,7 +1004,10 @@ var tapCount = 0;
                         //webArViewer.ar.createModel(webArViewer.srcno.obj);
                         //webArViewer.ar.setScene();
 
-                        //webArViewer.ar.wrap.setAttribute('visible', true);
+                        webArViewer.ar.createModel(webArViewer.srcno.obj);
+                        webArViewer.ar.addScene();
+
+                        webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     } else if (tapCount == 2) {
