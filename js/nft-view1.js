@@ -1159,6 +1159,8 @@ var objecttype = "png";
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), ar.srcno);
 
+    webArViewer.ar.srcno = ar.srcno;
+
     webArViewer.defaultAngle = defaultAngle;
     webArViewer.defaultPos = defaultPos;
     webArViewer.defaultScale = defaultScale;
