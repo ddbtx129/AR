@@ -731,7 +731,7 @@ var tapclicked = false;
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
 
-                wrapPos = webArViewer.defaultwrapPos;
+                wrapPos = defaultwrapPos;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
