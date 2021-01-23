@@ -403,7 +403,7 @@ var tapCount = 0;
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
             self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
             self.wrap.setAttribute('visible', false)
@@ -960,29 +960,18 @@ var tapCount = 0;
 
                     // シングルタップの場合
                     if (!tapCount) {
-                        // タップ回数を増加
                         ++tapCount;
-
                         // 350ミリ秒だけ、タップ回数を維持
                         setTimeout(function () {
                             tapCount = 0;
                         }, 350);
 
-                        // ダブルタップの場合
                     } else if (tapCount == 1) {
 
                         // ビューポートの変更(ズーム)を防止
                         e.preventDefault();
 
                         webArViewer.ar.wrap.setAttribute('visible', false);
-
-                        //var wrap = document.getElementById('base');
-                        //wrap.remove();
-
-                        //if (!(webArViewer.ar.arData.isPV)) {
-                        //    var mr = document.getElementById('arMarker');
-                        //    mr.remove();
-                        //}
 
                         var shadow = document.getElementById('shadow');
                         if (shadow != null) {
@@ -1004,12 +993,6 @@ var tapCount = 0;
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
-                        //webArViewer.ar.setWrap();
-                        //webArViewer.ar.wrap.setAttribute('visible', false);
-
-                        //webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        //webArViewer.ar.setScene();
-
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         webArViewer.ar.addScene();
 
@@ -1026,14 +1009,6 @@ var tapCount = 0;
                         e.preventDefault();
 
                         webArViewer.ar.wrap.setAttribute('visible', false);
-
-                        //var wrap = document.getElementById('base');
-                        //wrap.remove();
-
-                        //if (!(webArViewer.ar.arData.isPV)) {
-                        //    var mr = document.getElementById('arMarker');
-                        //    mr.remove();
-                        //}
 
                         var shadow = document.getElementById('shadow');
                         if (shadow != null) {
@@ -1054,12 +1029,6 @@ var tapCount = 0;
                         wrap.style.zIndex = 1;
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
-
-                        //webArViewer.ar.setWrap();
-                        //webArViewer.ar.wrap.setAttribute('visible', false);
-
-                        //webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        //webArViewer.ar.setScene();
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         webArViewer.ar.addScene();
