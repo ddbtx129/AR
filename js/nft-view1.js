@@ -406,6 +406,7 @@ var tapCount = 0;
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+            self.wrap.setAttribute('style', 'z-index: 5');
             self.wrap.setAttribute('visible', false);
         },
 
@@ -979,15 +980,15 @@ var tapCount = 0;
 
                         //wrap.setAttribute('visible', false);
 
-                        //var shadow = document.getElementById('shadow');
-                        //if (shadow != null) {
-                        //    shadow.remove();
-                        //}
+                        var shadow = document.getElementById('shadow');
+                        if (shadow != null) {
+                            shadow.remove();
+                        }
 
-                        //var main = document.getElementById('main');
-                        //if (main != null) {
-                        //    main.remove();
-                        //}
+                        var main = document.getElementById('main');
+                        if (main != null) {
+                            main.remove();
+                        }
 
                         //var logo = document.getElementById('logo');
                         //if (logo != null) {
@@ -1000,6 +1001,7 @@ var tapCount = 0;
                         ////wrap.setAttribute('visible', false);
                         ////wrap.setAttribute('style', 'z-index: 1');
                         //webArViewer.ar.setWrap();
+
                         var basePos = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
                         var baseScale = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapScale.w + ' ' + webArViewer.defaultwrapScale.h + ' ' + webArViewer.defaultwrapScale.d);
 
@@ -1017,9 +1019,9 @@ var tapCount = 0;
                         }
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        //webArViewer.ar.addScene();
-                        webArViewer.ar.arData.shadow && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.shadow);
-                        webArViewer.ar.arData.main && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.main);
+                        webArViewer.ar.addScene();
+                        //webArViewer.ar.arData.shadow && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.shadow);
+                        //webArViewer.ar.arData.main && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.main);
                         //webArViewer.ar.setScene();
                         //webArViewer.ar.setTapEvents();
 
