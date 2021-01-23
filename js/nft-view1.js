@@ -974,13 +974,14 @@ var objecttype = "png";
 
                 if ((webArViewer.ar.srcno + 1) < webArViewer.ar.arData.paths.length) {
                     webArViewer.ar.srcno += 1;
+                    window.alert(webArViewer.ar.srcno);
+
                 } else {
                     webArViewer.ar.srcno = 1;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-                window.alert(webArViewer.ar.srcno);
 
                 webArViewer.ar.createModel(webArViewer.ar.srcno);
 
@@ -1030,6 +1031,7 @@ var objecttype = "png";
                 } else {
                     webArViewer.ar.srcno = (webArViewer.ar.arData.paths).length;
                 }
+
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
                 window.alert(webArViewer.ar.srcno);
