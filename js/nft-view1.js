@@ -950,6 +950,11 @@ var tapCount = 0;
                 var val = self.arData;
 
                 webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+
+                    if (webArViewer.srcno.length == 1) {
+                        return;
+                    }
+
                     // シングルタップの場合
                     if (!tapCount) {
                         // タップ回数を増加
@@ -962,6 +967,7 @@ var tapCount = 0;
 
                         // ダブルタップの場合
                     } else if (tapCount == 1) {
+
                         // ビューポートの変更(ズーム)を防止
                         e.preventDefault();
 
@@ -975,7 +981,7 @@ var tapCount = 0;
                             mr.remove();
                         }
 
-                        webArViewer.srcno.obj = ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) ? webArViewer.srcno.obj + 1 : 1;
+                        webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
                         webArViewer.ar.setWrap();
                         webArViewer.ar.wrap.setAttribute('visible', false);
@@ -1000,10 +1006,10 @@ var tapCount = 0;
                             mr.remove();
                         }
 
-                        if ((Number(webArViewer.srcno.obj) - 1) > 0) {
+                        if (webArViewer.srcno.obj - 1) > 0) {
                             webArViewer.srcno.obj -= 1;
                         } else {
-                            webArViewer.srcno.obj = Number(webArViewer.srcno.length);
+                            webArViewer.srcno.obj = webArViewer.srcno.length;
                         }
 
                         webArViewer.ar.setWrap();
@@ -1018,56 +1024,6 @@ var tapCount = 0;
                     }
                 });
             }
-
-            //bNext.addEventListener('click', function () {
-
-            //    webArViewer.ar.wrap.setAttribute('visible', false);
-
-            //    var wrap = document.getElementById('base');
-            //    wrap.remove();
-
-            //    if(!(webArViewer.ar.arData.isPV)){
-            //        var mr = document.getElementById('arMarker');
-            //        mr.remove();
-            //    }
-                
-            //    webArViewer.srcno.obj = ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) ? webArViewer.srcno.obj + 1 : 1;
-
-            //    webArViewer.ar.setWrap();
-            //    webArViewer.ar.wrap.setAttribute('visible', false);
-
-            //    webArViewer.ar.createModel(webArViewer.srcno.obj);
-            //    webArViewer.ar.setScene();
-
-            //    webArViewer.ar.wrap.setAttribute('visible', true);
-            //});
-
-            //bPrev.addEventListener('click', function () {
-
-            //    webArViewer.ar.wrap.setAttribute('visible', false);
-
-            //    var wrap = document.getElementById('base');
-            //    wrap.remove();
-
-            //    if(!(webArViewer.ar.arData.isPV)){
-            //        var mr = document.getElementById('arMarker');
-            //        mr.remove();
-            //    }
-
-            //    if ((Number(webArViewer.srcno.obj) - 1) > 0) {
-            //        webArViewer.srcno.obj -= 1;
-            //    } else {
-            //        webArViewer.srcno.obj = Number(webArViewer.srcno.length);
-            //    }
-
-            //    webArViewer.ar.setWrap();
-            //    webArViewer.ar.wrap.setAttribute('visible', false);
-
-            //    webArViewer.ar.createModel(webArViewer.srcno.obj);
-            //    webArViewer.ar.setScene();
-
-            //    webArViewer.ar.wrap.setAttribute('visible', true);
-            //});
         },
 
         setTapEvents: function () {
