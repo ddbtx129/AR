@@ -403,7 +403,7 @@ var tapCount = 0;
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
             self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+            //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
             self.wrap.setAttribute('visible', false)
@@ -1000,7 +1000,6 @@ var tapCount = 0;
                         }
 
                         var wrap = document.getElementById('base');
-                        wrap.setAttribute('src', rootPath + 'asset/plane.png');
                         wrap.style.zIndex = 1;
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
@@ -1052,7 +1051,6 @@ var tapCount = 0;
                         }
 
                         var wrap = document.getElementById('base');
-                        wrap.setAttribute('src', rootPath + 'asset/plane.png');
                         wrap.style.zIndex = 1;
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
