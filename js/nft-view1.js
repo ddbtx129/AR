@@ -972,7 +972,7 @@ var tapCount = 0;
                         // ビューポートの変更(ズーム)を防止
                         e.preventDefault();
 
-                        //webArViewer.ar.wrap.setAttribute('visible', false);
+                        webArViewer.ar.wrap.setAttribute('visible', false);
 
                         //var shadow = document.getElementById('shadow');
                         //if (shadow != null) {
@@ -1014,7 +1014,7 @@ var tapCount = 0;
                         //    webArViewer.ar.createAnimation();
                         //}
 
-                        wrap.setAttribute('visible', true);
+                        webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     }
