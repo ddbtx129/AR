@@ -949,9 +949,7 @@ var tapCount = 0;
                 var self = this;
                 var val = self.arData;
 
-                //var bNext = document.getElementById('swNext');
-                //var bPrev = document.getElementById('swPrev');
-                webArViewer.scene.addEventListener("touchstart", function (e) {
+                webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                     // シングルタップの場合
                     if (!tapCount) {
                         // タップ回数を増加
@@ -1077,41 +1075,35 @@ var tapCount = 0;
             var self = this;
             var val = self.arData;
 
-            if (!(val.isAnime)) {
-
-                webArViewer.scene.addEventListener('click', function (e) {
+            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+                if (!(val.isAnime)) {
                     if (val.path) {
                         self.arData.logo.emit('turn0');
                     }
-                });
 
-            } else {
+                } else {
 
-                if (val.isAnime == 11) {
-                    webArViewer.scene.addEventListener('click', function (e) {
+                    if (val.isAnime == 11) {
                         if (val.path && val.isAnime == 11) {
                             self.arData.logo.emit('turn1');
                         }
-                    });
-                }
+                    }
 
-                if (val.isAnime == 12) {
-                    webArViewer.scene.addEventListener('click', function (e) {
+                    if (val.isAnime == 12) {
                         if (val.path && val.isAnime == 12) {
                             self.arData.logo.emit('turn2');
                         }
-                    });
-                }
+                    }
 
-                if (val.isAnime == 13) {
-                    webArViewer.scene.addEventListener('click', function (e) {
+                    if (val.isAnime == 13) {
                         if (val.path && val.isAnime == 13) {
                             self.arData.logo.emit('pos3');
                             self.arData.logo.emit('scale3');
                         }
-                    });
+                    }
                 }
             }
+
 
 
         },
