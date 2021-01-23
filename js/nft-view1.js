@@ -991,10 +991,10 @@ var tapCount = 0;
                             main.remove();
                         }
 
-                        //var logo = document.getElementById('logo');
-                        //if (logo != null) {
-                        //    logo.remove();
-                        //}
+                        var logo = document.getElementById('logo');
+                        if (logo != null) {
+                            logo.remove();
+                        }
 
                         //wrap.remove();
                         ////wrap.setAttribute('src', rootPath + 'asset/plane.png');
@@ -1003,14 +1003,14 @@ var tapCount = 0;
                         ////wrap.setAttribute('style', 'z-index: 1');
                         //webArViewer.ar.setWrap();
 
-                        var basePos = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
-                        var baseScale = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapScale.w + ' ' + webArViewer.defaultwrapScale.h + ' ' + webArViewer.defaultwrapScale.d);
+                        //var basePos = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
+                        //var baseScale = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapScale.w + ' ' + webArViewer.defaultwrapScale.h + ' ' + webArViewer.defaultwrapScale.d);
 
-                        webArViewer.ar.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-                        webArViewer.ar.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-                        webArViewer.ar.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-                        webArViewer.ar.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-                        webArViewer.ar.wrap.setAttribute('style', 'z-index: 1');
+                        //webArViewer.ar.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
+                        //webArViewer.ar.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
+                        //webArViewer.ar.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                        //webArViewer.ar.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                        //webArViewer.ar.wrap.setAttribute('style', 'z-index: 1');
                         //webArViewer.ar.wrap.setAttribute('visible', true);
 
                         if (tapCount == 1) {
