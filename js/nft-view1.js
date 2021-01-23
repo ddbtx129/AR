@@ -974,28 +974,35 @@ var tapCount = 0;
 
                         webArViewer.ar.wrap.setAttribute('visible', false);
 
-                        //var shadow = document.getElementById('shadow');
-                        //if (shadow != null) {
-                        //    shadow.remove();
-                        //}
+                        var shadow = document.getElementById('shadow');
+                        if (shadow != null) {
+                            shadow.remove();
+                        }
 
-                        //var main = document.getElementById('main');
-                        //if (main != null) {
-                        //    main.remove();
-                        //}
+                        var main = document.getElementById('main');
+                        if (main != null) {
+                            main.remove();
+                        }
 
-                        //var logo = document.getElementById('logo');
-                        //if (logo != null) {
-                        //    logo.remove();
-                        //}
+                        var logo = document.getElementById('logo');
+                        if (logo != null) {
+                            logo.remove();
+                        }
 
-                        var wrap = document.getElementById('base');
-                        wrap.remove();
-                        //wrap.setAttribute('src', rootPath + 'asset/plane.png');
-                        //wrap.setAttribute('material', 'transparent: true, opacity: 0');
-                        //wrap.setAttribute('visible', false);
-                        //wrap.setAttribute('style', 'z-index: 1');
-                        webArViewer.ar.setWrap();
+                        //var wrap = document.getElementById('base');
+                        //wrap.remove();
+                        ////wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                        ////wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                        ////wrap.setAttribute('visible', false);
+                        ////wrap.setAttribute('style', 'z-index: 1');
+                        //webArViewer.ar.setWrap();
+
+                        webArViewer.ar.wrap.removeAttribute('src');
+                        webArViewer.ar.wrap.removeAttribute('material');
+
+                        webArViewer.ar.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                        webArViewer.ar.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                        webArViewer.ar.wrap.setAttribute('visible', false);
 
                         if (tapCount == 1) {
                             webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
@@ -1004,11 +1011,11 @@ var tapCount = 0;
                         }
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        //webArViewer.ar.addScene();
-                        //webArViewer.ar.arData.shadow && wrap.appendChild(webArViewer.ar.arData.shadow);
-                        //webArViewer.ar.arData.main && wrap.appendChild(webArViewer.ar.arData.main);
-                        webArViewer.ar.setScene();
-                        webArViewer.ar.setTapEvents();
+                        webArViewer.ar.addScene();
+                        webArViewer.ar.arData.shadow && wrap.appendChild(webArViewer.ar.arData.shadow);
+                        webArViewer.ar.arData.main && wrap.appendChild(webArViewer.ar.arData.main);
+                        //webArViewer.ar.setScene();
+                        //webArViewer.ar.setTapEvents();
 
                         //if (!!webArViewer.ar.arData.isLogo) {
                         //    webArViewer.ar.createAnimation();
