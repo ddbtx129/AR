@@ -959,9 +959,10 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                window.alert(webArViewer.srcno);
-                if ((webArViewer.srcno + 1) < webArViewer.ar.arData.paths.length) {
+                if ((Number(webArViewer.srcno) + 1) < webArViewer.ar.arData.paths.length) {
+                    window.alert(webArViewer.srcno);
                     webArViewer.srcno += 1;
+                    window.alert(webArViewer.srcno);
                 } else {
                     webArViewer.srcno = 1;
                 }
@@ -987,7 +988,7 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                if ((webArViewer.srcno - 1) > 0) {
+                if ((Number(webArViewer.srcno) - 1) > 0) {
                     webArViewer.srcno -= 1;
                 } else {
                     webArViewer.srcno = (webArViewer.ar.arData.paths).length;
