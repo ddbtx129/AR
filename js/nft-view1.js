@@ -143,8 +143,6 @@ var objecttype = "png";
                         (self.arg.MkObjList + '/' + obj)
                         :
                         (self.arg.ObjectList1 + '/' + obj));
-
- 
                 }
             } else {
                 object[0] = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
@@ -159,7 +157,6 @@ var objecttype = "png";
             if (seq > 1) {
                 for (var i = 1; i <= seq; i++) {
                     dataObj.paths[i] = object[i] + '.' + String(objecttype);
-                    window.alert(dataObj.paths[i]);
                 }
             } else {
                 dataObj.paths[0] = object[0] + '.' + String(objecttype);
@@ -213,17 +210,19 @@ var objecttype = "png";
 
                     //    assets.appendChild(img);
                     //} else {
-                        for (var i = 0; i <= seq; i++) {
-                            img[i] = document.createElement('img');
-                            img[i].setAttribute('crossorigin', 'anonymous');
-                            img[i].setAttribute('class', 'arObjectSrc1');
-                            img[i].setAttribute('id', 'source' + (i + 1).toString());
-                            img[i].setAttribute('src', dataObj.paths[i]);
+                    for (var i = 0; i <= seq; i++) {
+                        dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
 
-                            dataObj.arObj[i] = { obj: img[i] };
+                        img[i] = document.createElement('img');
+                        img[i].setAttribute('crossorigin', 'anonymous');
+                        img[i].setAttribute('class', 'arObjectSrc1');
+                        img[i].setAttribute('id', 'source' + (i + 1).toString());
+                        img[i].setAttribute('src', dataObj.paths[i]);
 
-                            assets.appendChild(img[i]);
-                        }
+                        dataObj.arObj[i] = { obj: img[i] };
+
+                        assets.appendChild(img[i]);
+                    }
                     //}
                 } else if (!!(dataObj.isMp4)) {
                     var video = {};
@@ -262,6 +261,8 @@ var objecttype = "png";
                     //assets.appendChild(audio);
 
                     for (var i = 0; i <= seq; i++) {
+                        dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
+
                         video[i] = document.createElement("video");
                         video[i].setAttribute("src", dataObj.paths[i]);
                         video[i].setAttribute('class', 'arObjectSrc1');
@@ -307,6 +308,8 @@ var objecttype = "png";
                     //assets.appendChild(model);
 
                     for (var i = 0; i <= seq; i++) {
+                        dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
+
                         model[i] = document.createElement('a-asset-item');
                         model[i].setAttribute('crossorigin', 'anonymous');
                         model[i].setAttribute('class', 'arObjectSrc1');
