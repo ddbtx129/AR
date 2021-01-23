@@ -19,19 +19,21 @@ var objecttype = "png";
     var objAngle = 0;
     var SizeRate = 20;
 
-    var ar = {
+    var srcno = 1;
 
+    var ar = {
 
         init: function () {
 
             videostate = 0;
+            srcno = 1;
 
             this.setArg();
             
             if (this.setArData()) {
 
                 this.setWrap();
-                this.createModel(1);
+                this.createModel(srcno);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -374,7 +376,7 @@ var objecttype = "png";
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
-                    this.setDiplayBtn(0);
+                    this.setDiplayBtn(0, srcno);
                 }
             })
 
@@ -382,7 +384,7 @@ var objecttype = "png";
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
-                    this.setDiplayBtn(1);
+                    this.setDiplayBtn(1, srcno);
                 }
             })
         },
@@ -405,7 +407,7 @@ var objecttype = "png";
             self.wrap.setAttribute('visible', false)
         },
 
-        createModel: function (arrobj) {
+        createModel: function (objno) {
 
             var self = this;
             var val = self.arData;
@@ -414,7 +416,7 @@ var objecttype = "png";
                 return;
             }
 
-            var srcname = '#source' + (arrobj).toString();
+            var srcname = '#source' + (objno).toString();
 
             if (val.isShadow) {
 
@@ -432,7 +434,6 @@ var objecttype = "png";
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
                 });
-                window.alert(srcname);
 
                 self.arData.shadow = shadow;
             }
@@ -473,8 +474,6 @@ var objecttype = "png";
                         shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
-                    window.alert(srcname);
-
                 } else {
                     main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
                 }
@@ -1089,7 +1088,7 @@ var objecttype = "png";
             var val = self.arData;
         },
 
-        setDiplayBtn: function (mode) {
+        setDiplayBtn: function (mode, objno) {
 
             var self = this;
             var val = self.arData;
@@ -1128,7 +1127,7 @@ var objecttype = "png";
                     document.getElementById("swAngle").style.display = 'none';
                     document.getElementById("swParallel").style.display = 'none';
 
-                    var video = document.querySelector('#source');
+                    var video = document.querySelector('#source' + (objno).toString());
 
                     if (videostate == 0) {
                         document.getElementById("player").style.display = 'inline';
@@ -1172,7 +1171,7 @@ var objecttype = "png";
 
     webArViewer.ar = ar;
     webArViewer.ar.init();
-    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv));
+    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), srcno);
 
     webArViewer.defaultAngle = defaultAngle;
     webArViewer.defaultPos = defaultPos;
