@@ -155,7 +155,7 @@ var objecttype = "png";
             dataObj.paths = {};
 
             if (seq > 1) {
-                for (var i = 1; i <= seq; i++) {
+                for (var i = 0; i <= seq; i++) {
                     dataObj.paths[i] = object[i] + '.' + String(objecttype);
                 }
             } else {
@@ -217,7 +217,7 @@ var objecttype = "png";
                         img[i].setAttribute('crossorigin', 'anonymous');
                         img[i].setAttribute('id', 'source' + (i + 1).toString());
                         img[i].setAttribute('src', dataObj.paths[i]);
-
+                        window.alert()
                         dataObj.arObj[i] = { obj: img[i] };
 
                         assets.appendChild(img[i]);
@@ -276,7 +276,6 @@ var objecttype = "png";
 
                         audio[i] = document.createElement("audio");
                         audio[i].setAttribute("src", dataObj.paths[i]);
-                        audio[i].setAttribute('class', 'arObjectSrc2');
                         audio[i].setAttribute('id', 'a-source' + (i + 1).toString());
                         audio[i].setAttribute('preload', 'auto');
                         audio[i].setAttribute('response-type', 'arraybuffer');
