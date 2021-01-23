@@ -1,11 +1,10 @@
-import { wrap } from "module";
-
 var webArViewer = webArViewer || {};
 
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
 var tapCount = 0;
+var tapped = "";
 
 (function (global) {
 
@@ -205,17 +204,6 @@ var tapCount = 0;
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
                     var img = {};
 
-                    //if (seq > 1) {
-                    //    var img = document.createElement('img');
-                    //    img.setAttribute('crossorigin', 'anonymous');
-                    //    img.setAttribute('class', 'arObjectSrc1');
-                    //    img.setAttribute('id', 'source1');
-                    //    img.setAttribute('src', dataObj.path);
-
-                    //    dataObj.img = img;
-
-                    //    assets.appendChild(img);
-                    //} else {
                     for (var i = 0; i <= seq; i++) {
                         dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
 
@@ -228,42 +216,10 @@ var tapCount = 0;
 
                         assets.appendChild(img[i]);
                     }
-                    //}
+
                 } else if (!!(dataObj.isMp4)) {
                     var video = {};
                     var audio = {};
-
-                    //var video = document.createElement("video");
-                    //video.setAttribute("src", dataObj.path);
-                    //video.setAttribute('class', 'arObjectSrc1');
-                    //video.setAttribute('id', 'source1');
-                    //video.setAttribute('preload', 'auto');
-                    //video.setAttribute('response-type', 'arraybuffer');
-                    //video.setAttribute('loop', 'true');
-                    //video.setAttribute('crossorigin', 'anonymous');
-                    //video.setAttribute('webkit-playsinline', 'webkit-playsinline');
-                    //video.setAttribute("playsinline", "");
-                    //video.setAttribute("controls", "");
-                    //video.setAttribute("autoplay", "");
-
-                    //var audio = document.createElement("audio");
-                    //audio.setAttribute("src", dataObj.path);
-                    //audio.setAttribute('class', 'arObjectSrc2');
-                    //audio.setAttribute('id', 'source2');
-                    //audio.setAttribute('preload', 'auto');
-                    //audio.setAttribute('response-type', 'arraybuffer');
-                    //audio.setAttribute('loop', 'true');
-                    //audio.setAttribute('crossorigin', 'anonymous');
-                    //audio.setAttribute('webkit-playsinline', 'webkit-playsinline');
-                    //audio.setAttribute("playsinline", "");
-                    //audio.setAttribute("controls", "");
-                    //audio.setAttribute("autoplay", "");
-
-                    //dataObj.video = video;
-                    //dataObj.audio = audio;
-
-                    //assets.appendChild(video);
-                    //assets.appendChild(audio);
 
                     for (var i = 0; i <= seq; i++) {
                         dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
@@ -292,8 +248,6 @@ var tapCount = 0;
                         audio[i].setAttribute("controls", "");
                         audio[i].setAttribute("autoplay", "");
 
-                        //dataObj.video = video[i];
-                        //dataObj.audio = audio[i];
                         dataObj.arObj[i] = { obj: video[i], obj2: audio[i] };
 
                         assets.appendChild(video[i]);
@@ -302,13 +256,6 @@ var tapCount = 0;
 
                 } else if (dataObj.isGltf) {
                     var model = {};
-                    //var model = document.createElement('a-asset-item');
-                    //model.setAttribute('crossorigin', 'anonymous');
-                    //model.setAttribute('class', 'arObjectSrc1');
-                    //model.setAttribute('id', 'source1');
-                    //model.setAttribute('src', dataObj.path);
-
-                    //assets.appendChild(model);
 
                     for (var i = 0; i <= seq; i++) {
                         dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
@@ -401,7 +348,8 @@ var tapCount = 0;
             var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
-            self.wrap = document.createElement('a-box');
+            //self.wrap = document.createElement('a-box');
+            self.wrap = document.createElement('a-entity');
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
             self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
@@ -411,7 +359,7 @@ var tapCount = 0;
             self.wrap.setAttribute('style', 'z-index: 5');
             self.wrap.setAttribute('visible', false);
 
-            self.arData.wrap = wrap;
+            self.arData.wrap = self.wrap;
         },
 
         createModel: function (objno) {
@@ -660,88 +608,6 @@ var tapCount = 0;
             if (val.isLogo) {
                 self.arData.logo && self.wrap.appendChild(self.arData.logo);
             }
-        },
-
-        resetScene: function () {
-
-            var self = this;
-            var val = self.arData;
-
-            this.addScene();
-
-            if (!val.isMp4) {
-                document.getElementById("player").style.display = 'none';
-            }
-
-            var bAngle = document.getElementById('swAngle');
-            var bParalle = document.getElementById('swParallel');
-
-            //if (!!bParalle.classList.remove('current')) {
-            //    bParalle.classList.remove('current');
-            //}
-
-            //var arGifRotation = '-30 0 0';
-            //var prevPageY;
-            var zoomRateH = webArViewer.ar.arData.zoomRateH;
-            //var wrapZoom = 1;
-
-            //bAngle.classList.add('current');
-
-            //var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-            var wrapPos = AFRAME.utils.coordinates.parse(webArViewer.ar.arData.wrapPos.x + ' ' + webArViewer.ar.arData.wrapPos.y + ' ' + webArViewer.ar.arData.wrapPos.z);
-
-            if (self.arg.pv) {
-
-                document.getElementById("swAngle").style.display = 'none';
-                document.getElementById("swParallel").style.display = 'none';
-
-                //wrapPos.x -= 0;
-                //wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                //wrapPos.z -= defaultwrapScale.h * 1.5;
-
-                var pvAngle = 0;
-
-                //wrapZoom = 0.5;
-                //zoomRateH = defaultwrapScale.h * wrapZoom;
-                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                });
-
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
-
-            } else {
-
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
-
-                //if (val.isMarkerType == 1) {
-
-                //    //wrapZoom = 0.625;
-                //    //zoomRateH = zoomRateH * wrapZoom;
-
-                //    defaultwrapPos.y = -5;
-
-                //} else {
-
-                //    wrapZoom = 30;
-                //    zoomRateH = zoomRateH * wrapZoom;
-
-                //}
-
-                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                });
-
-                //wrapPos = webArViewer.defaultwrapPos;
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-            }
-
-            if (!!val.isLogo) {
-                this.createAnimation();
-            }
-
-            this.objectDataVal(zoomRateH, wrapPos);
         },
 
         setScene: function () {
@@ -1038,19 +904,62 @@ var tapCount = 0;
             webArViewer.ar.arData.zoomRateH = zoomRateH;
         },
 
+        resetScene: function () {
+
+            var self = this;
+            var val = self.arData;
+
+            this.addScene();
+
+            if (!val.isMp4) {
+                document.getElementById("player").style.display = 'none';
+            }
+
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+
+            if (self.arg.pv) {
+
+                document.getElementById("swAngle").style.display = 'none';
+                document.getElementById("swParallel").style.display = 'none';
+
+                var pvAngle = 0;
+
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
+
+            } else {
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
+
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+            }
+
+            AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
+            });
+
+            if (!!val.isLogo) {
+                this.createAnimation();
+            }
+
+            this.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+        },
+
         switchObject: function(){
 
             if (!(webArViewer.ar.arData.isMp4)) {
 
                 var self = this;
                 var val = self.arData;
+                var obj = self.arData.main;
 
                 webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
 
                     if (webArViewer.srcno.length == 1) {
                         return;
                     }
-
 
                     // シングルタップの場合
                     if (!tapCount) {
@@ -1084,23 +993,6 @@ var tapCount = 0;
                             logo.remove();
                         }
 
-                        //wrap.remove();
-                        ////wrap.setAttribute('src', rootPath + 'asset/plane.png');
-                        ////wrap.setAttribute('material', 'transparent: true, opacity: 0');
-                        ////wrap.setAttribute('visible', false);
-                        ////wrap.setAttribute('style', 'z-index: 1');
-                        //webArViewer.ar.setWrap();
-
-                        //var basePos = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
-                        //var baseScale = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapScale.w + ' ' + webArViewer.defaultwrapScale.h + ' ' + webArViewer.defaultwrapScale.d);
-
-                        //webArViewer.ar.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-                        //webArViewer.ar.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-                        //webArViewer.ar.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-                        //webArViewer.ar.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-                        //webArViewer.ar.wrap.setAttribute('style', 'z-index: 1');
-                        //webArViewer.ar.wrap.setAttribute('visible', true);
-
                         if (tapCount == 1) {
                             webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
                         } else if (tapCount == 2) {
@@ -1109,16 +1001,6 @@ var tapCount = 0;
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         webArViewer.ar.resetScene();
-                        //webArViewer.ar.arData.shadow && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.shadow);
-                        //webArViewer.ar.arData.main && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.main);
-                        //webArViewer.ar.setScene();
-                        //webArViewer.ar.setTapEvents();
-
-                        //if (!!webArViewer.ar.arData.isLogo) {
-                        //    webArViewer.ar.createAnimation();
-                        //}
-
-                        //wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     }
@@ -1131,34 +1013,103 @@ var tapCount = 0;
             var self = this;
             var val = self.arData;
 
-            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-                if (!(val.isAnime)) {
+            if (!(val.isAnime)) {
+
+                webArViewer.scene.addEventListener('click', function (e) {
                     if (val.path) {
                         self.arData.logo.emit('turn0');
                     }
+                });
 
-                } else {
+            } else {
 
-                    if (val.isAnime == 11) {
+                if (val.isAnime == 11) {
+                    webArViewer.scene.addEventListener('click', function (e) {
                         if (val.path && val.isAnime == 11) {
                             self.arData.logo.emit('turn1');
                         }
-                    }
+                    });
+                }
 
-                    if (val.isAnime == 12) {
+                if (val.isAnime == 12) {
+                    webArViewer.scene.addEventListener('click', function (e) {
                         if (val.path && val.isAnime == 12) {
                             self.arData.logo.emit('turn2');
                         }
-                    }
+                    });
+                }
 
-                    if (val.isAnime == 13) {
+                if (val.isAnime == 13) {
+                    webArViewer.scene.addEventListener('click', function (e) {
                         if (val.path && val.isAnime == 13) {
                             self.arData.logo.emit('pos3');
                             self.arData.logo.emit('scale3');
                         }
-                    }
+                    });
                 }
-            });
+            }
+
+            //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+
+            //    if (!(val.isAnime)) {
+
+            //        if (val.path) {
+            //            self.arData.logo.emit('turn0');
+            //        }
+
+            //    } else {
+
+            //        if (val.isAnime == 11) {
+            //            if (val.path && val.isAnime == 11) {
+            //                self.arData.logo.emit('turn1');
+            //            }
+            //        }
+
+            //        if (val.isAnime == 12) {
+            //            if (val.path && val.isAnime == 12) {
+            //                self.arData.logo.emit('turn2');
+            //            }
+            //        }
+
+            //        if (val.isAnime == 13) {
+            //            if (val.path && val.isAnime == 13) {
+            //                self.arData.logo.emit('pos3');
+            //                self.arData.logo.emit('scale3');
+            //            }
+            //        }
+            //    }
+            //});
+
+            //webArViewer.ar.arData.logo.addEventListener(self.eventNames.start, function (e) {
+            //    window.alert(0);
+            //    if (!(webArViewer.ar.arData.isAnime)) {
+                    
+            //        if (webArViewer.ar.arData.path) {
+            //            webArViewer.ar.arData.emit('turn0');
+            //        }
+
+            //    } else {
+
+            //        if (webArViewer.ar.arData.isAnime == 11) {
+            //            if (webArViewer.ar.arData.path && webArViewer.ar.arData.isAnime == 11) {
+            //                webArViewer.ar.arData.logo.emit('turn1');
+            //            }
+            //        }
+
+            //        if (webArViewer.ar.arData.isAnime == 12) {
+            //            if (webArViewer.ar.arData.path && webArViewer.ar.arData.isAnime == 12) {
+            //                webArViewer.ar.arData.logo.emit('turn2');
+            //            }
+            //        }
+
+            //        if (webArViewer.ar.arData.isAnime == 13) {
+            //            if (webArViewer.ar.arData.path && webArViewer.ar.arData.isAnime == 13) {
+            //                webArViewer.ar.arData.logo.emit('pos3');
+            //                webArViewer.ar.arData.logo.emit('scale3');
+            //            }
+            //        }
+            //    }
+            //});
         },
 
         swichScene: function () {
