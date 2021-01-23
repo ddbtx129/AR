@@ -427,6 +427,7 @@ var tapCount = 0;
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
                 shadow.setAttribute('rotation', '-90 0 0');
+                shadow.setAttribute('style', 'z-index: 2');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
                     primitive: 'plane', height: defaultScale.h, width: defaultScale.w
@@ -463,6 +464,7 @@ var tapCount = 0;
 
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
+                    main.setAttribute('style', 'z-index: 3');
 
                     if (val.isMp4) {
                         main.setAttribute('play', 'true');
@@ -498,6 +500,7 @@ var tapCount = 0;
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
                 logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource1');
+                main.setAttribute('style', 'z-index: 4');
 
                 self.arData.logo = logo;
             }
@@ -998,6 +1001,7 @@ var tapCount = 0;
 
                         var wrap = document.getElementById('base');
                         wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                        wrap.style.zIndex = 1;
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
@@ -1049,6 +1053,7 @@ var tapCount = 0;
 
                         var wrap = document.getElementById('base');
                         wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                        wrap.style.zIndex = 1;
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
 
