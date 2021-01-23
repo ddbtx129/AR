@@ -18,8 +18,8 @@ var objecttype = "png";
 
     var objAngle = 0;
     var SizeRate = 20;
-    var srcno = 1;
-
+    var srcno = { obj: 1, from: 1, to: 1, length: 1 };
+    
     var ar = {
 
         init: function () {
@@ -32,7 +32,7 @@ var objecttype = "png";
             if (this.setArData()) {
 
                 this.setWrap();
-                this.createModel(srcno);
+                this.createModel(srcno.obj);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -107,7 +107,7 @@ var objecttype = "png";
                 arg.LogoList = (logo).toString().split(',');
                 arg.LogoAnimeList = (arg.LogoList[1] && parseInt(arg.LogoList[1]));
             }
-
+            
             arg.PVList = arg.pv;
 
             arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString());
@@ -156,8 +156,10 @@ var objecttype = "png";
             dataObj.paths = {};
 
             if (seq > 1) {
+                srcno.length = 0;
                 for (var i = 0; i <= seq; i++) {
                     dataObj.paths[i] = object[i] + '.' + String(objecttype);
+                    srcno.length += 1;
                 }
             } else {
                 dataObj.paths[0] = object[0] + '.' + String(objecttype);
@@ -375,7 +377,7 @@ var objecttype = "png";
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
-                    this.setDiplayBtn(0, webArViewer.ar.srcno);
+                    this.setDiplayBtn(0, webArViewer.srcno.obj);
                 }
             })
 
@@ -383,7 +385,7 @@ var objecttype = "png";
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
-                    this.setDiplayBtn(1, webArViewer.ar.srcno);
+                    this.setDiplayBtn(1, webArViewer.srcno.obj);
                 }
             })
         },
@@ -959,18 +961,18 @@ var objecttype = "png";
                     mr.remove();
                 }
                 window.alert(webArViewer.ar.arData.paths.length);
-                if ((Number(webArViewer.srcno) + 1) < Number(webArViewer.ar.arData.paths.length)) {
-                    window.alert(webArViewer.srcno);
-                    webArViewer.srcno += 1;
-                    window.alert(webArViewer.srcno);
+                if ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.obj.to)) {
+                    window.alert(webArViewer.srcno.obj);
+                    webArViewer.srcno.obj += 1;
+                    window.alert(webArViewer.srcno.obj);
                 } else {
-                    webArViewer.srcno = 1;
+                    webArViewer.srcno.obj = 1;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(webArViewer.srcno);
+                webArViewer.ar.createModel(webArViewer.srcno.obj);
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
@@ -988,16 +990,16 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                if ((Number(webArViewer.srcno) - 1) > 0) {
-                    webArViewer.srcno -= 1;
+                if ((Number(webArViewer.srcno.obj) - 1) > 0) {
+                    webArViewer.srcno.obj -= 1;
                 } else {
-                    webArViewer.srcno = (webArViewer.ar.arData.paths).length;
+                    webArViewer.srcno.obj = webArViewer.srcno.obj.to;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-                window.alert(webArViewer.srcno);
-                webArViewer.ar.createModel(webArViewer.ar.srcno);
+                window.alert(webArViewer.srcno.obj);
+                webArViewer.ar.createModel(webArViewer.ar.srcno.obj);
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
