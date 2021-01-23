@@ -1,3 +1,5 @@
+import { wrap } from "module";
+
 var webArViewer = webArViewer || {};
 
 var videoInfo = {};
@@ -408,6 +410,8 @@ var tapCount = 0;
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
             self.wrap.setAttribute('style', 'z-index: 5');
             self.wrap.setAttribute('visible', false);
+
+            self.arData.wrap = wrap;
         },
 
         createModel: function (objno) {
@@ -658,6 +662,88 @@ var tapCount = 0;
             }
         },
 
+        resetScene: function () {
+
+            var self = this;
+            var val = self.arData;
+
+            this.addScene();
+
+            if (!val.isMp4) {
+                document.getElementById("player").style.display = 'none';
+            }
+
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+
+            //if (!!bParalle.classList.remove('current')) {
+            //    bParalle.classList.remove('current');
+            //}
+
+            //var arGifRotation = '-30 0 0';
+            //var prevPageY;
+            var zoomRateH = webArViewer.ar.arData.zoomRateH;
+            //var wrapZoom = 1;
+
+            //bAngle.classList.add('current');
+
+            //var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+            var wrapPos = AFRAME.utils.coordinates.parse(webArViewer.ar.arData.wrapPos.x + ' ' + webArViewer.ar.arData.wrapPos.y + ' ' + webArViewer.ar.arData.wrapPos.z);
+
+            if (self.arg.pv) {
+
+                document.getElementById("swAngle").style.display = 'none';
+                document.getElementById("swParallel").style.display = 'none';
+
+                //wrapPos.x -= 0;
+                //wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
+                //wrapPos.z -= defaultwrapScale.h * 1.5;
+
+                var pvAngle = 0;
+
+                //wrapZoom = 0.5;
+                //zoomRateH = defaultwrapScale.h * wrapZoom;
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                });
+
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
+
+            } else {
+
+                document.getElementById("swAngle").style.display = 'inline';
+                document.getElementById("swParallel").style.display = 'inline';
+
+                //if (val.isMarkerType == 1) {
+
+                //    //wrapZoom = 0.625;
+                //    //zoomRateH = zoomRateH * wrapZoom;
+
+                //    defaultwrapPos.y = -5;
+
+                //} else {
+
+                //    wrapZoom = 30;
+                //    zoomRateH = zoomRateH * wrapZoom;
+
+                //}
+
+                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
+                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                });
+
+                //wrapPos = webArViewer.defaultwrapPos;
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+            }
+
+            if (!!val.isLogo) {
+                this.createAnimation();
+            }
+
+            this.objectDataVal(zoomRateH, wrapPos);
+        },
+
         setScene: function () {
 
             var self = this;
@@ -798,32 +884,31 @@ var tapCount = 0;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = webArViewer.defaultwrapPos;
-                        zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
+                        webArViewer.ar.arData.wrapPos = webArViewer.defaultwrapPos;
+                        webArViewer.ar.arData.zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
                         });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
-                        webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
+                        webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
                     }
                 });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = webArViewer.defaultwrapPos;
-                        zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
+                        webArViewer.ar.arData.wrapPos = webArViewer.defaultwrapPos;
+                        webArViewer.ar.arData.zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
                         });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        
-                        webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
+                        webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
                     }
                 });
                 // ↑
@@ -842,14 +927,14 @@ var tapCount = 0;
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-                    if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                    if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
-                        zoomRateH += rate;
+                        webArViewer.ar.arData.zoomRateH += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
                         });
                         var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
+                        elem.innerHTML = "Scale: " + Number(webArViewer.ar.arData.zoomRateH).toFixed(1);
                     }
                 }
             });
@@ -865,25 +950,25 @@ var tapCount = 0;
             var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
-                wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += yClickRate;
+                    webArViewer.ar.arData.wrapPos.y += yClickRate;
                 } else {
-                    wrapPos.z -= yClickRate;
+                    webArViewer.ar.arData.wrapPos.z -= yClickRate;
                 }
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
-                wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y -= yClickRate;
+                    webArViewer.ar.arData.wrapPos.y -= yClickRate;
                 } else {
-                    wrapPos.z += yClickRate;
+                    webArViewer.ar.arData.wrapPos.z += yClickRate;
                 }
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
             });
             // ↑ 
 
@@ -894,14 +979,14 @@ var tapCount = 0;
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                    webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y += yTouchRate;
+                        webArViewer.ar.arData.wrapPos.y += yTouchRate;
                     } else {
-                        wrapPos.z -= yTouchRate;
+                        webArViewer.ar.arData.wrapPos.z -= yTouchRate;
                     }
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                    webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
                 }, 10);
             });
 
@@ -923,14 +1008,14 @@ var tapCount = 0;
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                    webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
-                        wrapPos.y -= yTouchRate;
+                        webArViewer.ar.arData.wrapPos.y -= yTouchRate;
                     } else {
-                        wrapPos.z += yTouchRate;
+                        webArViewer.ar.arData.wrapPos.z += yTouchRate;
                     }
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    webArViewer.ar.objectDataVal(zoomRateH, wrapPos);
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                    webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
                 }, 10);
             });
 
@@ -948,6 +1033,9 @@ var tapCount = 0;
             // ↑
 
             this.objectDataVal(zoomRateH, wrapPos);
+
+            webArViewer.ar.arData.wrapPos = wrapPos;
+            webArViewer.ar.arData.zoomRateH = zoomRateH;
         },
 
         switchObject: function(){
@@ -1020,15 +1108,15 @@ var tapCount = 0;
                         }
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        webArViewer.ar.addScene();
+                        webArViewer.ar.resetScene();
                         //webArViewer.ar.arData.shadow && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.shadow);
                         //webArViewer.ar.arData.main && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.main);
                         //webArViewer.ar.setScene();
                         //webArViewer.ar.setTapEvents();
 
-                        if (!!webArViewer.ar.arData.isLogo) {
-                            webArViewer.ar.createAnimation();
-                        }
+                        //if (!!webArViewer.ar.arData.isLogo) {
+                        //    webArViewer.ar.createAnimation();
+                        //}
 
                         //wrap.setAttribute('visible', true);
 
