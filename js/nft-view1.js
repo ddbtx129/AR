@@ -414,7 +414,7 @@ var objecttype = "png";
                 return;
             }
 
-            var srcname = '#source' + (arrobj).toString;
+            var srcname = '#source' + (arrobj).toString();
 
             if (val.isShadow) {
 
