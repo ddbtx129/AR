@@ -217,7 +217,7 @@ var objecttype = "png";
                         img[i].setAttribute('crossorigin', 'anonymous');
                         img[i].setAttribute('id', 'source' + (i + 1).toString());
                         img[i].setAttribute('src', dataObj.paths[i]);
-                        window.alert()
+
                         dataObj.arObj[i] = { obj: img[i] };
 
                         assets.appendChild(img[i]);
@@ -430,6 +430,7 @@ var objecttype = "png";
                     shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (arrobj).toString, transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
                 });
+                window.alert('#source' + (arrobj).toString);
 
                 self.arData.shadow = shadow;
             }
@@ -470,6 +471,8 @@ var objecttype = "png";
                         shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (arrobj).toString, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
+                    window.alert('#source' + (arrobj).toString);
+
                 } else {
                     main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
                 }
