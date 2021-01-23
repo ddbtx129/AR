@@ -999,8 +999,8 @@ var objecttype = "png";
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-                
-                webArViewer.ar.createModel(webArViewer.ar.srcno.obj);
+
+                webArViewer.ar.createModel(webArViewer.srcno.obj);
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
