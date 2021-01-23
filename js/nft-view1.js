@@ -423,7 +423,8 @@ var tapCount = 0;
 
             if (val.isShadow) {
 
-                var shadow = (self.arData.shadow != null) ? self.arData.shadow : document.createElement('a-image');
+                var shadow = document.createElement('a-image');
+                //var shadow = (self.arData.shadow != null) ? self.arData.shadow : document.createElement('a-image');
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
@@ -450,8 +451,8 @@ var tapCount = 0;
                 elname = 'a-video'
             }
 
-            //var main = document.createElement(elname);
-            var main = (self.arData.main != null) ? self.arData.main : document.createElement(elname);
+            var main = document.createElement(elname);
+            //var main = (self.arData.main != null) ? self.arData.main : document.createElement(elname);
 
             var posVec3 = self.positionVec3('main');
             defaultPos = posVec3;
@@ -493,9 +494,9 @@ var tapCount = 0;
 
             if (val.isLogo) {
 
-                //var logo = document.createElement('a-entity');
+                var logo = document.createElement('a-entity');
                 //var logo = document.createElement('a-image');
-                var logo = (self.arData.logo != null) ? self.arData.logo : document.createElement(elname);
+                //var logo = (self.arData.logo != null) ? self.arData.logo : document.createElement(elname);
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 var rete = (!val.isMp4) ? 1 : 2;
