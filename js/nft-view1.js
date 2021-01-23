@@ -697,7 +697,7 @@ var tapCount = 0;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
-                webArViewer.scene.appendChild(self.wrap);
+                //webArViewer.scene.appendChild(self.wrap);
 
             } else {
 
@@ -973,23 +973,38 @@ var tapCount = 0;
 
                         webArViewer.ar.wrap.setAttribute('visible', false);
 
-                        var wrap = document.getElementById('base');
-                        wrap.remove();
+                        //var wrap = document.getElementById('base');
+                        //wrap.remove();
 
-                        if (!(webArViewer.ar.arData.isPV)) {
-                            var mr = document.getElementById('arMarker');
-                            mr.remove();
+                        //if (!(webArViewer.ar.arData.isPV)) {
+                        //    var mr = document.getElementById('arMarker');
+                        //    mr.remove();
+                        //}
+
+                        var shadow = document.getElementById('shadow');
+                        if (shadow != null) {
+                            shadow.remove();
                         }
 
-                        webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                        var main = document.getElementById('main');
+                        if (main != null) {
+                            main.remove();
+                        }
 
-                        webArViewer.ar.setWrap();
-                        webArViewer.ar.wrap.setAttribute('visible', false);
+                        var logo = document.getElementById('logo');
+                        if (logo != null) {
+                            logo.remove();
+                        }
 
-                        webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        webArViewer.ar.setScene();
+                        //webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
-                        webArViewer.ar.wrap.setAttribute('visible', true);
+                        //webArViewer.ar.setWrap();
+                        //webArViewer.ar.wrap.setAttribute('visible', false);
+
+                        //webArViewer.ar.createModel(webArViewer.srcno.obj);
+                        //webArViewer.ar.setScene();
+
+                        //webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     } else if (tapCount == 2) {
@@ -1006,7 +1021,7 @@ var tapCount = 0;
                             mr.remove();
                         }
 
-                        if (webArViewer.srcno.obj - 1) > 0) {
+                        if ((webArViewer.srcno.obj - 1) > 0) {
                             webArViewer.srcno.obj -= 1;
                         } else {
                             webArViewer.srcno.obj = webArViewer.srcno.length;
