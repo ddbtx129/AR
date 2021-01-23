@@ -1194,7 +1194,7 @@ var tapCount = 0;
 
     webArViewer.ar = ar;
     webArViewer.ar.init();
-    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), srcno);
+    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), srcno.obj);
 
     webArViewer.srcno = srcno;
 
