@@ -1026,9 +1026,9 @@ var tapCount = 0;
                         //webArViewer.ar.setScene();
                         //webArViewer.ar.setTapEvents();
 
-                        //if (!!webArViewer.ar.arData.isLogo) {
-                        //    webArViewer.ar.createAnimation();
-                        //}
+                        if (!!webArViewer.ar.arData.isLogo) {
+                            webArViewer.ar.createAnimation();
+                        }
 
                         //wrap.setAttribute('visible', true);
 
