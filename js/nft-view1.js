@@ -3,6 +3,7 @@ var webArViewer = webArViewer || {};
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
+var tapCount = 0;
 
 (function (global) {
 
@@ -943,61 +944,132 @@ var objecttype = "png";
 
         switchObject: function(){
 
-            var self = this;
-            var val = self.arData;
+            if (!(webArViewer.ar.arData.isMp4)) {
 
-            var bNext = document.getElementById('swNext');
-            var bPrev = document.getElementById('swPrev');
+                var self = this;
+                var val = self.arData;
 
-            bNext.addEventListener('click', function () {
+                //var bNext = document.getElementById('swNext');
+                //var bPrev = document.getElementById('swPrev');
+                webArViewer.scene.addEventListener("touchstart", function (e) {
+                    // シングルタップの場合
+                    if (!tapCount) {
+                        // タップ回数を増加
+                        ++tapCount;
 
-                webArViewer.ar.wrap.setAttribute('visible', false);
+                        // 350ミリ秒だけ、タップ回数を維持
+                        setTimeout(function () {
+                            tapCount = 0;
+                        }, 350);
 
-                var wrap = document.getElementById('base');
-                wrap.remove();
+                        // ダブルタップの場合
+                    } else if (tapCount == 1) {
+                        // ビューポートの変更(ズーム)を防止
+                        e.preventDefault();
 
-                if(!(webArViewer.ar.arData.isPV)){
-                    var mr = document.getElementById('arMarker');
-                    mr.remove();
-                }
+                        webArViewer.ar.wrap.setAttribute('visible', false);
+
+                        var wrap = document.getElementById('base');
+                        wrap.remove();
+
+                        if (!(webArViewer.ar.arData.isPV)) {
+                            var mr = document.getElementById('arMarker');
+                            mr.remove();
+                        }
+
+                        webArViewer.srcno.obj = ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) ? webArViewer.srcno.obj + 1 : 1;
+
+                        webArViewer.ar.setWrap();
+                        webArViewer.ar.wrap.setAttribute('visible', false);
+
+                        webArViewer.ar.createModel(webArViewer.srcno.obj);
+                        webArViewer.ar.setScene();
+
+                        webArViewer.ar.wrap.setAttribute('visible', true);
+
+                        tapCount = 0;
+                    } else if (tapCount == 2) {
+                        // ビューポートの変更(ズーム)を防止
+                        e.preventDefault();
+
+                        webArViewer.ar.wrap.setAttribute('visible', false);
+
+                        var wrap = document.getElementById('base');
+                        wrap.remove();
+
+                        if (!(webArViewer.ar.arData.isPV)) {
+                            var mr = document.getElementById('arMarker');
+                            mr.remove();
+                        }
+
+                        if ((Number(webArViewer.srcno.obj) - 1) > 0) {
+                            webArViewer.srcno.obj -= 1;
+                        } else {
+                            webArViewer.srcno.obj = Number(webArViewer.srcno.length);
+                        }
+
+                        webArViewer.ar.setWrap();
+                        webArViewer.ar.wrap.setAttribute('visible', false);
+
+                        webArViewer.ar.createModel(webArViewer.srcno.obj);
+                        webArViewer.ar.setScene();
+
+                        webArViewer.ar.wrap.setAttribute('visible', true);
+
+                        tapCount = 0;
+                    }
+                });
+            }
+
+            //bNext.addEventListener('click', function () {
+
+            //    webArViewer.ar.wrap.setAttribute('visible', false);
+
+            //    var wrap = document.getElementById('base');
+            //    wrap.remove();
+
+            //    if(!(webArViewer.ar.arData.isPV)){
+            //        var mr = document.getElementById('arMarker');
+            //        mr.remove();
+            //    }
                 
-                webArViewer.srcno.obj = ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) ? webArViewer.srcno.obj + 1 : 1;
+            //    webArViewer.srcno.obj = ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) ? webArViewer.srcno.obj + 1 : 1;
 
-                webArViewer.ar.setWrap();
-                webArViewer.ar.wrap.setAttribute('visible', false);
+            //    webArViewer.ar.setWrap();
+            //    webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(webArViewer.srcno.obj);
-                webArViewer.ar.setScene();
+            //    webArViewer.ar.createModel(webArViewer.srcno.obj);
+            //    webArViewer.ar.setScene();
 
-                webArViewer.ar.wrap.setAttribute('visible', true);
-            });
+            //    webArViewer.ar.wrap.setAttribute('visible', true);
+            //});
 
-            bPrev.addEventListener('click', function () {
+            //bPrev.addEventListener('click', function () {
 
-                webArViewer.ar.wrap.setAttribute('visible', false);
+            //    webArViewer.ar.wrap.setAttribute('visible', false);
 
-                var wrap = document.getElementById('base');
-                wrap.remove();
+            //    var wrap = document.getElementById('base');
+            //    wrap.remove();
 
-                if(!(webArViewer.ar.arData.isPV)){
-                    var mr = document.getElementById('arMarker');
-                    mr.remove();
-                }
+            //    if(!(webArViewer.ar.arData.isPV)){
+            //        var mr = document.getElementById('arMarker');
+            //        mr.remove();
+            //    }
 
-                if ((Number(webArViewer.srcno.obj) - 1) > 0) {
-                    webArViewer.srcno.obj -= 1;
-                } else {
-                    webArViewer.srcno.obj = Number(webArViewer.srcno.length);
-                }
+            //    if ((Number(webArViewer.srcno.obj) - 1) > 0) {
+            //        webArViewer.srcno.obj -= 1;
+            //    } else {
+            //        webArViewer.srcno.obj = Number(webArViewer.srcno.length);
+            //    }
 
-                webArViewer.ar.setWrap();
-                webArViewer.ar.wrap.setAttribute('visible', false);
+            //    webArViewer.ar.setWrap();
+            //    webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(webArViewer.srcno.obj);
-                webArViewer.ar.setScene();
+            //    webArViewer.ar.createModel(webArViewer.srcno.obj);
+            //    webArViewer.ar.setScene();
 
-                webArViewer.ar.wrap.setAttribute('visible', true);
-            });
+            //    webArViewer.ar.wrap.setAttribute('visible', true);
+            //});
         },
 
         setTapEvents: function () {
@@ -1040,6 +1112,8 @@ var objecttype = "png";
                     });
                 }
             }
+
+
         },
 
         swichScene: function () {
