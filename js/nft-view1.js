@@ -1002,6 +1002,7 @@ var tapCount = 0;
 
                         webArViewer.ar.wrap.setAttribute('src', rootPath + 'asset/plane.png');
                         webArViewer.ar.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                        webArViewer.ar.wrap.setAttribute('style', 'z-index: 1');
                         //webArViewer.ar.wrap.setAttribute('visible', true);
 
                         if (tapCount == 1) {
@@ -1011,9 +1012,9 @@ var tapCount = 0;
                         }
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        webArViewer.ar.addScene();
-                        webArViewer.ar.arData.shadow && wrap.appendChild(webArViewer.ar.arData.shadow);
-                        webArViewer.ar.arData.main && wrap.appendChild(webArViewer.ar.arData.main);
+                        //webArViewer.ar.addScene();
+                        webArViewer.ar.arData.shadow && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.shadow);
+                        webArViewer.ar.arData.main && webArViewer.ar.wrap.appendChild(webArViewer.ar.arData.main);
                         //webArViewer.ar.setScene();
                         //webArViewer.ar.setTapEvents();
 
