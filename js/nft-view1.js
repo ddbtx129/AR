@@ -157,11 +157,12 @@ var objecttype = "png";
             dataObj.paths = {};
 
             if (seq > 1) {
-                window.alert(1);
-                for (var i = 0; i <= seq; i++) {
+                for (var i = 1; i <= seq; i++) {
                     dataObj.paths[i] = object[i] + '.' + String(objecttype);
                     window.alert(dataObj.paths[i]);
                 }
+            } else {
+                dataObj.paths[0] = object[0] + '.' + String(objecttype);
             }
 
             dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
