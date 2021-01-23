@@ -374,7 +374,7 @@ var objecttype = "png";
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
-                    this.setDiplayBtn(0, srcno);
+                    this.setDiplayBtn(0, webArViewer.ar.srcno);
                 }
             })
 
@@ -382,7 +382,7 @@ var objecttype = "png";
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
-                    this.setDiplayBtn(1, srcno);
+                    this.setDiplayBtn(1, webArViewer.ar.srcno);
                 }
             })
         },
@@ -1157,7 +1157,7 @@ var objecttype = "png";
 
     webArViewer.ar = ar;
     webArViewer.ar.init();
-    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), srcno);
+    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), ar.srcno);
 
     webArViewer.defaultAngle = defaultAngle;
     webArViewer.defaultPos = defaultPos;
