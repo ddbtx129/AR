@@ -1149,8 +1149,8 @@ var tapCount = 0;
                     document.getElementById("swAngle").style.display = 'none';
                     document.getElementById("swParallel").style.display = 'none';
 
-                    var src = '#source' + (objno).toString();
-                    var video = document.querySelector(src);
+                    var srcname = '#source' + (objno).toString();
+                    var video = document.querySelector(srcname);
 
                     if (videostate == 0) {
                         document.getElementById("player").style.display = 'inline';
