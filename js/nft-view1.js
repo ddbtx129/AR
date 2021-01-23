@@ -155,9 +155,9 @@ var objecttype = "png";
             var dataObj = { path: object[0] + '.' + String(objecttype) };
 
             dataObj.paths = {};
-            window.alert(dataObj.path);
 
             if (seq > 1) {
+                window.alert(1);
                 for (var i = 0; i <= seq; i++) {
                     dataObj.paths[i] = object[i] + '.' + String(objecttype);
                     window.alert(dataObj.paths[i]);
