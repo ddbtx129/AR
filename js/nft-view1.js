@@ -960,8 +960,8 @@ var objecttype = "png";
                     var mr = document.getElementById('arMarker');
                     mr.remove();
                 }
-                window.alert(webArViewer.ar.arData.paths.length);
-                if ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.obj.to)) {
+                window.alert(webArViewer.srcno.length);
+                if ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) {
                     window.alert(webArViewer.srcno.obj);
                     webArViewer.srcno.obj += 1;
                     window.alert(webArViewer.srcno.obj);
