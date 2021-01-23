@@ -1102,10 +1102,7 @@ var tapCount = 0;
                         }
                     }
                 }
-            }
-
-
-
+            });
         },
 
         swichScene: function () {
