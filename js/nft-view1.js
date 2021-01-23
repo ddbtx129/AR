@@ -403,10 +403,10 @@ var tapCount = 0;
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
             self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
+            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-            self.wrap.setAttribute('visible', false)
+            self.wrap.setAttribute('visible', false);
         },
 
         createModel: function (objno) {
@@ -958,6 +958,7 @@ var tapCount = 0;
                         return;
                     }
 
+
                     // シングルタップの場合
                     if (!tapCount) {
                         ++tapCount;
@@ -966,7 +967,7 @@ var tapCount = 0;
                             tapCount = 0;
                         }, 350);
 
-                    } else if (tapCount == 1) {
+                    } else {
 
                         // ビューポートの変更(ズーム)を防止
                         e.preventDefault();
@@ -989,9 +990,20 @@ var tapCount = 0;
                         //}
 
                         var wrap = document.getElementById('base');
-                        wrap.style.zIndex = 1;
+                        wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                        wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                        wrap.setAttribute('visible', false);
+                        wrap.setAttribute('style', 'z-index: 1');
 
-                        webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                        if (tapCount == 1) {
+
+                            webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+
+
+                        } else if (tapCount == 2) {
+
+                            webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
+                        }
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         //webArViewer.ar.addScene();
@@ -1002,46 +1014,7 @@ var tapCount = 0;
                         //    webArViewer.ar.createAnimation();
                         //}
 
-                        //webArViewer.ar.wrap.setAttribute('visible', true);
-
-                        tapCount = 0;
-
-                    } else if (tapCount == 2) {
-                        // ビューポートの変更(ズーム)を防止
-                        e.preventDefault();
-
-                        //webArViewer.ar.wrap.setAttribute('visible', false);
-
-                        var shadow = document.getElementById('shadow');
-                        if (shadow != null) {
-                            shadow.remove();
-                        }
-
-                        var main = document.getElementById('main');
-                        if (main != null) {
-                            main.remove();
-                        }
-
-                        //var logo = document.getElementById('logo');
-                        //if (logo != null) {
-                        //    logo.remove();
-                        //}
-
-                        var wrap = document.getElementById('base');
-                        wrap.style.zIndex = 1;
-
-                        webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
-
-                        webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        //webArViewer.ar.addScene();
-                        webArViewer.ar.arData.shadow && wrap.appendChild(webArViewer.ar.arData.shadow);
-                        webArViewer.ar.arData.main && wrap.appendChild(webArViewer.ar.arData.main);
-
-                        //if (!!webArViewer.ar.arData.isLogo) {
-                        //    webArViewer.ar.createAnimation();
-                        //}
-
-                        //webArViewer.ar.wrap.setAttribute('visible', true);
+                        wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     }
