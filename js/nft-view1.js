@@ -960,11 +960,9 @@ var objecttype = "png";
                     var mr = document.getElementById('arMarker');
                     mr.remove();
                 }
-                window.alert(webArViewer.srcno.length);
+                
                 if ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) {
-                    window.alert(webArViewer.srcno.obj);
                     webArViewer.srcno.obj += 1;
-                    window.alert(webArViewer.srcno.obj);
                 } else {
                     webArViewer.srcno.obj = 1;
                 }
@@ -990,15 +988,18 @@ var objecttype = "png";
                     mr.remove();
                 }
 
+                window.alert(webArViewer.srcno.obj);
                 if ((Number(webArViewer.srcno.obj) - 1) > 0) {
+                    window.alert(0);
                     webArViewer.srcno.obj -= 1;
                 } else {
-                    webArViewer.srcno.obj = webArViewer.srcno.obj.to;
+                    window.alert(1);
+                    webArViewer.srcno.obj = webArViewer.srcno.obj.length;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-                window.alert(webArViewer.srcno.obj);
+                
                 webArViewer.ar.createModel(webArViewer.ar.srcno.obj);
                 webArViewer.ar.setScene();
 
