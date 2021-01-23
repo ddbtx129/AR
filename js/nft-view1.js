@@ -961,11 +961,7 @@ var objecttype = "png";
                     mr.remove();
                 }
                 
-                if ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) {
-                    webArViewer.srcno.obj += 1;
-                } else {
-                    webArViewer.srcno.obj = 1;
-                }
+                webArViewer.srcno.obj = ((Number(webArViewer.srcno.obj) + 1) < Number(webArViewer.srcno.length)) ? webArViewer.srcno.obj + 1 : 1;
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
@@ -996,6 +992,7 @@ var objecttype = "png";
                     window.alert(1);
                     webArViewer.srcno.obj = Number(webArViewer.srcno.obj.length);
                 }
+                window.alert(webArViewer.srcno.obj);
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
