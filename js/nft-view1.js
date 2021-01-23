@@ -5,6 +5,7 @@ var videoState = 0;
 var objecttype = "png";
 var tapCount = 0;
 var tapped = "";
+var tapclicked = false;
 
 (function (global) {
 
@@ -940,9 +941,9 @@ var tapped = "";
                 property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
             });
 
-            if (!!val.isLogo) {
-                this.createAnimation();
-            }
+            //if (!!val.isLogo) {
+            //    this.createAnimation();
+            //}
 
             this.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
         },
@@ -962,7 +963,7 @@ var tapped = "";
                     }
 
                     // シングルタップの場合
-                    if (!tapCount) {
+                    if (tapCount == 0) {
                         ++tapCount;
                         // 350ミリ秒だけ、タップ回数を維持
                         setTimeout(function () {
@@ -1002,6 +1003,10 @@ var tapped = "";
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         webArViewer.ar.resetScene();
 
+                        if (!!webArViewer.ar.arData.isLogo) {
+                            this.createAnimation();
+                        }
+
                         tapCount = 0;
                     }
                 });
@@ -1013,72 +1018,150 @@ var tapped = "";
             var self = this;
             var val = self.arData;
 
-            if (!(val.isAnime)) {
+            //if (!(val.isAnime)) {
 
-                webArViewer.scene.addEventListener('click', function (e) {
-                    if (val.path) {
-                        self.arData.logo.emit('turn0');
-                    }
-                });
-
-            } else {
-
-                if (val.isAnime == 11) {
-                    webArViewer.scene.addEventListener('click', function (e) {
-                        if (val.path && val.isAnime == 11) {
-                            self.arData.logo.emit('turn1');
-                        }
-                    });
-                }
-
-                if (val.isAnime == 12) {
-                    webArViewer.scene.addEventListener('click', function (e) {
-                        if (val.path && val.isAnime == 12) {
-                            self.arData.logo.emit('turn2');
-                        }
-                    });
-                }
-
-                if (val.isAnime == 13) {
-                    webArViewer.scene.addEventListener('click', function (e) {
-                        if (val.path && val.isAnime == 13) {
-                            self.arData.logo.emit('pos3');
-                            self.arData.logo.emit('scale3');
-                        }
-                    });
-                }
-            }
-
-            //webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
-
-            //    if (!(val.isAnime)) {
-
+            //    webArViewer.scene.addEventListener('click', function (e) {
             //        if (val.path) {
             //            self.arData.logo.emit('turn0');
             //        }
+            //    });
 
-            //    } else {
+            //} else {
 
-            //        if (val.isAnime == 11) {
+            //    if (val.isAnime == 11) {
+            //        webArViewer.scene.addEventListener('click', function (e) {
             //            if (val.path && val.isAnime == 11) {
             //                self.arData.logo.emit('turn1');
             //            }
-            //        }
+            //        });
+            //    }
 
-            //        if (val.isAnime == 12) {
+            //    if (val.isAnime == 12) {
+            //        webArViewer.scene.addEventListener('click', function (e) {
             //            if (val.path && val.isAnime == 12) {
             //                self.arData.logo.emit('turn2');
             //            }
-            //        }
+            //        });
+            //    }
 
-            //        if (val.isAnime == 13) {
+            //    if (val.isAnime == 13) {
+            //        webArViewer.scene.addEventListener('click', function (e) {
             //            if (val.path && val.isAnime == 13) {
             //                self.arData.logo.emit('pos3');
             //                self.arData.logo.emit('scale3');
             //            }
-            //        }
+            //        });
             //    }
-            //});
+            //}
+
+            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+
+                //if (!(val.isAnime)) {
+
+                //    if (val.path) {
+                //        self.arData.logo.emit('turn0');
+                //    }
+
+                //} else {
+
+                //    if (val.isAnime == 11) {
+                //        if (val.path && val.isAnime == 11) {
+                //            self.arData.logo.emit('turn1');
+                //        }
+                //    }
+
+                //    if (val.isAnime == 12) {
+                //        if (val.path && val.isAnime == 12) {
+                //            self.arData.logo.emit('turn2');
+                //        }
+                //    }
+
+                //    if (val.isAnime == 13) {
+                //        if (val.path && val.isAnime == 13) {
+                //            self.arData.logo.emit('pos3');
+                //            self.arData.logo.emit('scale3');
+                //        }
+                //    }
+                //}
+
+                if (tapclicked) {
+
+                    // ビューポートの変更(ズーム)を防止
+                    e.preventDefault();
+
+                    var wrap = document.getElementById('base');
+
+                    //wrap.setAttribute('visible', false);
+
+                    var shadow = document.getElementById('shadow');
+                    if (shadow != null) {
+                        shadow.remove();
+                    }
+
+                    var main = document.getElementById('main');
+                    if (main != null) {
+                        main.remove();
+                    }
+
+                    var logo = document.getElementById('logo');
+                    if (logo != null) {
+                        logo.remove();
+                    }
+
+                    if (tapCount == 1) {
+                        webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                    } else if (tapCount == 2) {
+                        webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
+                    }
+
+                    webArViewer.ar.createModel(webArViewer.srcno.obj);
+                    webArViewer.ar.resetScene();
+
+                    tapclicked = false;
+                    return;
+                }
+
+                // シングルクリックを受理、300ms間だけダブルクリック判定を残す
+                tapclicked = true;
+
+                setTimeout(function () {
+                    // ダブルクリックによりclickedフラグがリセットされていない
+                    //     -> シングルクリックだった
+                    if (tapclicked) {
+
+                        if (!(val.isAnime)) {
+
+                            if (val.path) {
+                                self.arData.logo.emit('turn0');
+                            }
+
+                        } else {
+
+                            if (val.isAnime == 11) {
+                                if (val.path && val.isAnime == 11) {
+                                    self.arData.logo.emit('turn1');
+                                }
+                            }
+
+                            if (val.isAnime == 12) {
+                                if (val.path && val.isAnime == 12) {
+                                    self.arData.logo.emit('turn2');
+                                }
+                            }
+
+                            if (val.isAnime == 13) {
+                                if (val.path && val.isAnime == 13) {
+                                    self.arData.logo.emit('pos3');
+                                    self.arData.logo.emit('scale3');
+                                }
+                            }
+                        }
+                    }
+
+                    tapclicked = false;
+
+                }, 300);
+            });
 
             //webArViewer.ar.arData.logo.addEventListener(self.eventNames.start, function (e) {
             //    window.alert(0);
