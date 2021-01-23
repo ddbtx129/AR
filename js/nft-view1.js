@@ -995,8 +995,8 @@ var tapCount = 0;
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         //webArViewer.ar.addScene();
-                        webArViewer.ar.arData.shadow && wrap.appendChild(self.wrap.appendChild(self.arData.shadow));
-                        webArViewer.ar.arData.main && wrap.appendChild(self.wrap.appendChild(self.arData.main));
+                        webArViewer.ar.arData.shadow && wrap.appendChild(webArViewer.ar.arData.shadow);
+                        webArViewer.ar.arData.main && wrap.appendChild(webArViewer.ar.arData.main);
 
                         //if (!!webArViewer.ar.arData.isLogo) {
                         //    webArViewer.ar.createAnimation();
@@ -1034,8 +1034,8 @@ var tapCount = 0;
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         //webArViewer.ar.addScene();
-                        webArViewer.ar.arData.shadow && wrap.appendChild(self.wrap.appendChild(self.arData.shadow));
-                        webArViewer.ar.arData.main && wrap.appendChild(self.wrap.appendChild(self.arData.main));
+                        webArViewer.ar.arData.shadow && wrap.appendChild(webArViewer.ar.arData.shadow);
+                        webArViewer.ar.arData.main && wrap.appendChild(webArViewer.ar.arData.main);
 
                         //if (!!webArViewer.ar.arData.isLogo) {
                         //    webArViewer.ar.createAnimation();
