@@ -991,7 +991,7 @@ var tapclicked = false;
                         logo.remove();
                     }
 
-                    var objNo = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                    var objNo = ((webArViewer.srcno.obj + 1) <= webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
                     //setTimeout(function () {
                     //    ++tapCount;
