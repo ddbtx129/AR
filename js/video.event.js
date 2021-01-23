@@ -4,7 +4,7 @@ AFRAME.registerComponent('markerhandler', {
     init: function () {
 
         // ビデオ格納用の変数定義を追加
-        var video = document.querySelector('#source');
+        var video = document.querySelector('#source1');
         var marker = this.el;
 
         // マーカーを検出したイベントの登録
