@@ -697,7 +697,7 @@ var tapCount = 0;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
-                //webArViewer.scene.appendChild(self.wrap);
+                webArViewer.scene.appendChild(self.wrap);
 
             } else {
 
