@@ -1007,6 +1007,10 @@ var tapCount = 0;
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
                         webArViewer.ar.addScene();
 
+                        if (!!webArViewer.ar.arData.isLogo) {
+                            webArViewer.ar.createAnimation();
+                        }
+
                         webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
@@ -1016,25 +1020,43 @@ var tapCount = 0;
 
                         webArViewer.ar.wrap.setAttribute('visible', false);
 
-                        var wrap = document.getElementById('base');
-                        wrap.remove();
+                        //var wrap = document.getElementById('base');
+                        //wrap.remove();
 
-                        if (!(webArViewer.ar.arData.isPV)) {
-                            var mr = document.getElementById('arMarker');
-                            mr.remove();
+                        //if (!(webArViewer.ar.arData.isPV)) {
+                        //    var mr = document.getElementById('arMarker');
+                        //    mr.remove();
+                        //}
+
+                        var shadow = document.getElementById('shadow');
+                        if (shadow != null) {
+                            shadow.remove();
                         }
 
-                        if ((webArViewer.srcno.obj - 1) > 0) {
-                            webArViewer.srcno.obj -= 1;
-                        } else {
-                            webArViewer.srcno.obj = webArViewer.srcno.length;
+                        var main = document.getElementById('main');
+                        if (main != null) {
+                            main.remove();
                         }
 
-                        webArViewer.ar.setWrap();
-                        webArViewer.ar.wrap.setAttribute('visible', false);
+                        var logo = document.getElementById('logo');
+                        if (logo != null) {
+                            logo.remove();
+                        }
+
+                        webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
+
+                        //webArViewer.ar.setWrap();
+                        //webArViewer.ar.wrap.setAttribute('visible', false);
+
+                        //webArViewer.ar.createModel(webArViewer.srcno.obj);
+                        //webArViewer.ar.setScene();
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        webArViewer.ar.setScene();
+                        webArViewer.ar.addScene();
+
+                        if (!!webArViewer.ar.arData.isLogo) {
+                            webArViewer.ar.createAnimation();
+                        }
 
                         webArViewer.ar.wrap.setAttribute('visible', true);
 
