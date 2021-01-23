@@ -996,6 +996,9 @@ var tapCount = 0;
                             logo.remove();
                         }
 
+                        var wrap = document.getElementById('base');
+                        wrap.setAttribute('src', rootPath + 'asset/plane.png');
+
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
                         //webArViewer.ar.setWrap();
@@ -1014,6 +1017,7 @@ var tapCount = 0;
                         webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
+
                     } else if (tapCount == 2) {
                         // ビューポートの変更(ズーム)を防止
                         e.preventDefault();
@@ -1042,6 +1046,9 @@ var tapCount = 0;
                         if (logo != null) {
                             logo.remove();
                         }
+
+                        var wrap = document.getElementById('base');
+                        wrap.setAttribute('src', rootPath + 'asset/plane.png');
 
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
 
