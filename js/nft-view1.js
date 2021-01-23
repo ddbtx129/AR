@@ -977,7 +977,7 @@ var tapCount = 0;
 
                         var wrap = document.getElementById('base');
 
-                        wrap.setAttribute('visible', false);
+                        //wrap.setAttribute('visible', false);
 
                         //var shadow = document.getElementById('shadow');
                         //if (shadow != null) {
@@ -1027,7 +1027,7 @@ var tapCount = 0;
                         //    webArViewer.ar.createAnimation();
                         //}
 
-                        wrap.setAttribute('visible', true);
+                        //wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     }
