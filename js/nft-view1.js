@@ -958,8 +958,8 @@ var objecttype = "png";
                     var mr = document.getElementById('arMarker');
                     mr.remove();
                 }
-
-                if ((Number(webArViewer.srcno) + 1) < webArViewer.ar.arData.paths.length) {
+                window.alert(webArViewer.ar.arData.paths.length);
+                if ((Number(webArViewer.srcno) + 1) < Number(webArViewer.ar.arData.paths.length)) {
                     window.alert(webArViewer.srcno);
                     webArViewer.srcno += 1;
                     window.alert(webArViewer.srcno);
