@@ -994,13 +994,15 @@ var tapCount = 0;
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        webArViewer.ar.addScene();
+                        //webArViewer.ar.addScene();
+                        webArViewer.ar.arData.shadow && wrap.appendChild(self.wrap.appendChild(self.arData.shadow));
+                        webArViewer.ar.arData.main && wrap.appendChild(self.wrap.appendChild(self.arData.main));
 
                         //if (!!webArViewer.ar.arData.isLogo) {
                         //    webArViewer.ar.createAnimation();
                         //}
 
-                        webArViewer.ar.wrap.setAttribute('visible', true);
+                        //webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
 
@@ -1031,13 +1033,15 @@ var tapCount = 0;
                         webArViewer.srcno.obj = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
 
                         webArViewer.ar.createModel(webArViewer.srcno.obj);
-                        webArViewer.ar.addScene();
+                        //webArViewer.ar.addScene();
+                        webArViewer.ar.arData.shadow && wrap.appendChild(self.wrap.appendChild(self.arData.shadow));
+                        webArViewer.ar.arData.main && wrap.appendChild(self.wrap.appendChild(self.arData.main));
 
                         //if (!!webArViewer.ar.arData.isLogo) {
                         //    webArViewer.ar.createAnimation();
                         //}
 
-                        webArViewer.ar.wrap.setAttribute('visible', true);
+                        //webArViewer.ar.wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     }
