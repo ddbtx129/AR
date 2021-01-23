@@ -215,7 +215,6 @@ var objecttype = "png";
 
                         img[i] = document.createElement('img');
                         img[i].setAttribute('crossorigin', 'anonymous');
-                        img[i].setAttribute('class', 'arObjectSrc1');
                         img[i].setAttribute('id', 'source' + (i + 1).toString());
                         img[i].setAttribute('src', dataObj.paths[i]);
 
@@ -265,7 +264,6 @@ var objecttype = "png";
 
                         video[i] = document.createElement("video");
                         video[i].setAttribute("src", dataObj.paths[i]);
-                        video[i].setAttribute('class', 'arObjectSrc1');
                         video[i].setAttribute('id', 'source' + (i + 1).toString());
                         video[i].setAttribute('preload', 'auto');
                         video[i].setAttribute('response-type', 'arraybuffer');
@@ -312,7 +310,6 @@ var objecttype = "png";
 
                         model[i] = document.createElement('a-asset-item');
                         model[i].setAttribute('crossorigin', 'anonymous');
-                        model[i].setAttribute('class', 'arObjectSrc1');
                         model[i].setAttribute('id', 'source' + (i + 1).toString());
                         model[i].setAttribute('src', dataObj.paths[i]); 
 
@@ -431,7 +428,7 @@ var objecttype = "png";
                 });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + arrobj, transparent: true, alphaTest: 0.1,
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (arrobj).toString, transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
                 });
 
@@ -471,7 +468,7 @@ var objecttype = "png";
                     });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + arrobj, displacementMap: null, displacementBias: -0.5,
+                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (arrobj).toString, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
