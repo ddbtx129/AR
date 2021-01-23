@@ -422,7 +422,7 @@ var tapCount = 0;
 
             if (val.isShadow) {
 
-                var shadow = document.createElement('a-image');
+                var shadow = (self.arData.shadow != null) ? self.arData.shadow : document.createElement('a-image');
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
@@ -449,7 +449,9 @@ var tapCount = 0;
                 elname = 'a-video'
             }
 
-            var main = document.createElement(elname);
+            //var main = document.createElement(elname);
+            var main = (self.arData.main != null) ? self.arData.main : document.createElement(elname);
+
             var posVec3 = self.positionVec3('main');
             defaultPos = posVec3;
 
@@ -490,8 +492,9 @@ var tapCount = 0;
 
             if (val.isLogo) {
 
-                var logo = document.createElement('a-entity');
+                //var logo = document.createElement('a-entity');
                 //var logo = document.createElement('a-image');
+                var logo = (self.arData.logo != null) ? self.arData.logo : document.createElement(elname);
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 var rete = (!val.isMp4) ? 1 : 2;
@@ -972,34 +975,36 @@ var tapCount = 0;
                         // ビューポートの変更(ズーム)を防止
                         e.preventDefault();
 
-                        //webArViewer.ar.wrap.setAttribute('visible', false);
+                        var wrap = document.getElementById('base');
 
-                        var shadow = document.getElementById('shadow');
-                        if (shadow != null) {
-                            shadow.remove();
-                        }
+                        wrap.setAttribute('visible', false);
 
-                        var main = document.getElementById('main');
-                        if (main != null) {
-                            main.remove();
-                        }
+                        //var shadow = document.getElementById('shadow');
+                        //if (shadow != null) {
+                        //    shadow.remove();
+                        //}
+
+                        //var main = document.getElementById('main');
+                        //if (main != null) {
+                        //    main.remove();
+                        //}
 
                         //var logo = document.getElementById('logo');
                         //if (logo != null) {
                         //    logo.remove();
                         //}
 
-                        //var wrap = document.getElementById('base');
                         //wrap.remove();
                         ////wrap.setAttribute('src', rootPath + 'asset/plane.png');
                         ////wrap.setAttribute('material', 'transparent: true, opacity: 0');
                         ////wrap.setAttribute('visible', false);
                         ////wrap.setAttribute('style', 'z-index: 1');
                         //webArViewer.ar.setWrap();
+                        var basePos = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapPos.x + ' ' + webArViewer.defaultwrapPos.y + ' ' + webArViewer.defaultwrapPos.z);
+                        var baseScale = AFRAME.utils.coordinates.parse(webArViewer.defaultwrapScale.w + ' ' + webArViewer.defaultwrapScale.h + ' ' + webArViewer.defaultwrapScale.d);
 
-                        webArViewer.ar.wrap.removeAttribute('src');
-                        webArViewer.ar.wrap.removeAttribute('material');
-
+                        webArViewer.ar.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
+                        webArViewer.ar.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
                         webArViewer.ar.wrap.setAttribute('src', rootPath + 'asset/plane.png');
                         webArViewer.ar.wrap.setAttribute('material', 'transparent: true, opacity: 0');
                         webArViewer.ar.wrap.setAttribute('style', 'z-index: 1');
@@ -1022,7 +1027,7 @@ var tapCount = 0;
                         //    webArViewer.ar.createAnimation();
                         //}
 
-                        //webArViewer.ar.wrap.setAttribute('visible', true);
+                        wrap.setAttribute('visible', true);
 
                         tapCount = 0;
                     }
