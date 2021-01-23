@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
             if (videostate >= 1 && videostate < 2) {
 
-                var video = document.querySelector('#source');
+                var video = document.querySelector('#source1');
                 video.play();
 
                 videostate = 1;
@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-    var v = document.querySelector('#source');
+    var v = document.querySelector('#source1');
 
     //ロード開始
     v.addEventListener('loadedmetadata', function () {
