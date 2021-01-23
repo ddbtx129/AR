@@ -971,31 +971,19 @@ var objecttype = "png";
 
                 //webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
                 //webArViewer.ar.arData.path = path;
-
-                if ((webArViewer.ar.srcno + 1) < webArViewer.ar.arData.paths.length) {
-                    webArViewer.ar.srcno += 1;
-                    window.alert(webArViewer.ar.srcno);
+                window.alert(webArViewer.srcno);
+                if ((webArViewer.srcno + 1) < webArViewer.ar.arData.paths.length) {
+                    webArViewer.srcno += 1;
+                    
 
                 } else {
-                    webArViewer.ar.srcno = 1;
+                    webArViewer.srcno = 1;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(webArViewer.ar.srcno);
-
-                var deviceEvents = {
-                    Touch: typeof document.ontouchstart !== 'undefined',
-                    Pointer: window.navigator.pointerEnabled,
-                    MSPointer: window.navigator.msPointerEnabled
-                };
-
-                webArViewer.ar.eventNames = {
-                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
-                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
-                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
-                };
+                webArViewer.ar.createModel(webArViewer.srcno);
 
                 webArViewer.ar.setScene();
 
@@ -1026,28 +1014,16 @@ var objecttype = "png";
                 //webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
                 //webArViewer.ar.arData.path = path;
 
-                if ((webArViewer.ar.srcno - 1) > 0) {
-                    webArViewer.ar.srcno -= 1;
+                if ((webArViewer.srcno - 1) > 0) {
+                    webArViewer.srcno -= 1;
                 } else {
-                    webArViewer.ar.srcno = (webArViewer.ar.arData.paths).length;
+                    webArViewer.srcno = (webArViewer.ar.arData.paths).length;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-                window.alert(webArViewer.ar.srcno);
-                webArViewer.ar.createModel(webArViewer.ar.srcno);
-
-                var deviceEvents = {
-                    Touch: typeof document.ontouchstart !== 'undefined',
-                    Pointer: window.navigator.pointerEnabled,
-                    MSPointer: window.navigator.msPointerEnabled
-                };
-
-                webArViewer.ar.eventNames = {
-                    start: deviceEvents.Pointer ? 'pointerdown' : deviceEvents.MSPointer ? 'MSPointerDown' : deviceEvents.Touch ? 'touchstart' : 'mousedown',
-                    move: deviceEvents.Pointer ? 'pointermove' : deviceEvents.MSPointer ? 'MSPointerMove' : deviceEvents.Touch ? 'touchmove' : 'mousemove',
-                    end: deviceEvents.Pointer ? 'pointerup' : deviceEvents.MSPointer ? 'MSPointerUp' : deviceEvents.Touch ? 'touchend' : 'mouseup'
-                };
+                window.alert(webArViewer.srcno);
+                webArViewer.ar.createModel(webArViewer.srcno);
 
                 webArViewer.ar.setScene();
 
