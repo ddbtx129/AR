@@ -980,6 +980,7 @@ var objecttype = "png";
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
+                window.alert(webArViewer.ar.srcno);
 
                 webArViewer.ar.createModel(webArViewer.ar.srcno);
 
@@ -1031,7 +1032,7 @@ var objecttype = "png";
                 }
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-
+                window.alert(webArViewer.ar.srcno);
                 webArViewer.ar.createModel(webArViewer.ar.srcno);
 
                 var deviceEvents = {
