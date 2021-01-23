@@ -18,13 +18,14 @@ var objecttype = "png";
 
     var objAngle = 0;
     var SizeRate = 20;
+    var srcno = 1;
 
     var ar = {
 
         init: function () {
 
             videostate = 0;
-            var srcno = 1;
+
 
             this.setArg();
             
@@ -958,29 +959,17 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                //var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
-                //var obj = Number(webArViewer.ar.arg.ObjectList2);
-
-                //obj += 1;
-
-                //var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                //var objsrc = document.querySelector('#source1');
-                //objsrc.setAttribute('src', path);
-
-                //webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
-                //webArViewer.ar.arData.path = path;
-                window.alert(webArViewer.ar.srcno);
-                if ((webArViewer.ar.srcno + 1) < webArViewer.ar.arData.paths.length) {
-                    webArViewer.ar.srcno += 1;
+                window.alert(webArViewer.srcno);
+                if ((webArViewer.srcno + 1) < webArViewer.ar.arData.paths.length) {
+                    webArViewer.srcno += 1;
                 } else {
-                    webArViewer.ar.srcno = 1;
+                    webArViewer.srcno = 1;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(webArViewer.ar.srcno);
-
+                webArViewer.ar.createModel(webArViewer.srcno);
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
@@ -998,29 +987,16 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                //var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
-                //var obj = Number(webArViewer.ar.arg.ObjectList2);
-
-                //obj -= 1;
-
-                //var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                //var objsrc = document.querySelector('#source1');
-                //objsrc.setAttribute('src', path);
-
-                //webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
-                //webArViewer.ar.arData.path = path;
-
-                if ((webArViewer.ar.srcno - 1) > 0) {
-                    webArViewer.ar.srcno -= 1;
+                if ((webArViewer.srcno - 1) > 0) {
+                    webArViewer.srcno -= 1;
                 } else {
-                    webArViewer.ar.srcno = (webArViewer.ar.arData.paths).length;
+                    webArViewer.srcno = (webArViewer.ar.arData.paths).length;
                 }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
-                window.alert(webArViewer.ar.srcno);
+                window.alert(webArViewer.srcno);
                 webArViewer.ar.createModel(webArViewer.ar.srcno);
-
                 webArViewer.ar.setScene();
 
                 webArViewer.ar.wrap.setAttribute('visible', true);
@@ -1159,7 +1135,7 @@ var objecttype = "png";
     webArViewer.ar.init();
     webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), ar.srcno);
 
-    webArViewer.ar.srcno = ar.srcno;
+    webArViewer.srcno = srcno;
 
     webArViewer.defaultAngle = defaultAngle;
     webArViewer.defaultPos = defaultPos;
