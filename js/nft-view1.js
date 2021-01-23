@@ -414,6 +414,8 @@ var objecttype = "png";
                 return;
             }
 
+            var srcname = '#source' + (arrobj).toString;
+
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-image');
@@ -427,10 +429,10 @@ var objecttype = "png";
                 });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: '#source' + (arrobj).toString, transparent: true, alphaTest: 0.1,
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, alphaTest: 0.1,
                     color: 'black', opacity: 0.3, depthTest: false
                 });
-                window.alert('#source' + (arrobj).toString);
+                window.alert(srcname);
 
                 self.arData.shadow = shadow;
             }
@@ -468,10 +470,10 @@ var objecttype = "png";
                     });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: '#source' + (arrobj).toString, displacementMap: null, displacementBias: -0.5,
+                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
-                    window.alert('#source' + (arrobj).toString);
+                    window.alert(srcname);
 
                 } else {
                     main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
