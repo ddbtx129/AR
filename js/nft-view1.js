@@ -984,15 +984,11 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                window.alert(webArViewer.srcno.length);
                 if ((Number(webArViewer.srcno.obj) - 1) > 0) {
-                    window.alert(0);
                     webArViewer.srcno.obj -= 1;
                 } else {
-                    window.alert(1);
-                    webArViewer.srcno.obj = Number(webArViewer.srcno.obj.length);
+                    webArViewer.srcno.obj = Number(webArViewer.srcno.length);
                 }
-                window.alert(webArViewer.srcno.obj);
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
