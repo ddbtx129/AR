@@ -960,22 +960,28 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
-                var obj = Number(webArViewer.ar.arg.ObjectList2);
+                //var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
+                //var obj = Number(webArViewer.ar.arg.ObjectList2);
 
-                obj += 1;
+                //obj += 1;
 
-                var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                var objsrc = document.querySelector('#source1');
-                objsrc.setAttribute('src', path);
+                //var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                //var objsrc = document.querySelector('#source1');
+                //objsrc.setAttribute('src', path);
 
-                webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
-                webArViewer.ar.arData.path = path;
+                //webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
+                //webArViewer.ar.arData.path = path;
+
+                if (!!((webArViewer.ar.srcno + 1) > webArViewer.ar.arObj.paths.length)) {
+                    webArViewer.ar.srcno += 1;
+                } else {
+                    webArViewer.ar.srcno = 1;
+                }
 
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(1);
+                webArViewer.ar.createModel(webArViewer.ar.srcno);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -1006,22 +1012,27 @@ var objecttype = "png";
                     mr.remove();
                 }
 
-                var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
-                var obj = Number(webArViewer.ar.arg.ObjectList2);
+                //var folder = !!(webArViewer.ar.arData.isMp4) ? 'video' : (!!(webArViewer.ar.arData.isGltf) ? 'gltf' : 'pic');
+                //var obj = Number(webArViewer.ar.arg.ObjectList2);
 
-                obj -= 1;
+                //obj -= 1;
 
-                var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
-                var objsrc = document.querySelector('#source1');
-                objsrc.setAttribute('src', path);
+                //var path = webArViewer.ar.arData.path.replace(webArViewer.ar.arg.ObjectList2 + '.png', ('00' + (parseInt(obj, 10).toString())).slice(-2) + '.png');
+                //var objsrc = document.querySelector('#source1');
+                //objsrc.setAttribute('src', path);
 
-                webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
-                webArViewer.ar.arData.path = path;
+                //webArViewer.ar.arg.ObjectList2 = ('00' + (parseInt(obj, 10).toString())).slice(-2);
+                //webArViewer.ar.arData.path = path;
 
+                if (!!((webArViewer.ar.srcno - 1) < 0)) {
+                    webArViewer.ar.srcno -= 1;
+                } else {
+                    webArViewer.ar.srcno = webArViewer.ar.arObj.paths.length;
+                }
                 webArViewer.ar.setWrap();
                 webArViewer.ar.wrap.setAttribute('visible', false);
 
-                webArViewer.ar.createModel(1);
+                webArViewer.ar.createModel(webArViewer.ar.srcno);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
