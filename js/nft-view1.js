@@ -20,7 +20,7 @@ var tapclicked = false;
 
     var objAngle = -10;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
-    var scalechange = false;
+    var scalechange = 0;
 
     var ar = {
 
@@ -779,13 +779,15 @@ var tapclicked = false;
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
-                scalechange = true;
+                scalechange = 0;
                 prevPageY = event.pageY;    // 縦軸
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
+                    tapCount = scalechange;
+                    scalechange = 1;
                     if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         webArViewer.ar.arData.zoomRateH += rate;
@@ -799,7 +801,7 @@ var tapclicked = false;
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
-                scalechange = false;
+                scalechange = 0;
                 prevPageY = null;
             });
 
@@ -922,9 +924,6 @@ var tapclicked = false;
             var val = self.arData;
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 350) {
-                if (scalechange) {
-                    return;
-                }
                 
                 ++tapCount;
                 
@@ -933,18 +932,14 @@ var tapclicked = false;
                     var objNo = '';
 
                     setTimeout(function () {
-                        if (tapCount == 0) {
+                        if (tapCount == 0 && !(scalechange)) {
                             objNo = ((webArViewer.srcno.obj + 1) <= webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
                             switchObject(e, objNo);
-                            tapCount = 0;
-                            tapclicked = false;
                             return;
                         }
-                        if (tapCount >= 1) {
+                        if (tapCount >= 1 && !(scalechange)) {
                             objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
                             switchObject(e, objNo);
-                            tapCount = 0;
-                            tapclicked = false;
                             return;
                         }
                     }, 350);
@@ -954,7 +949,7 @@ var tapclicked = false;
 
                 setTimeout(function () {
 
-                    if (tapclicked) {
+                    if (tapclicked && !(scalechange)) {
 
                         e.preventDefault();
 
@@ -1005,24 +1000,20 @@ var tapclicked = false;
                 e.preventDefault();
 
                 var wrap = document.getElementById('base');
-
                 var shadow = document.getElementById('shadow');
                 if (shadow != null) {
                     shadow.remove();
                 }
-
                 var main = document.getElementById('main');
                 if (main != null) {
                     main.remove();
                 }
-
                 var logo = document.getElementById('logo');
                 if (logo != null) {
                     logo.remove();
                 }
 
                 webArViewer.srcno.obj = fileno;
-
                 webArViewer.ar.createModel(webArViewer.srcno.obj);
                 webArViewer.ar.resetScene();
 
