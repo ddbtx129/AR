@@ -952,7 +952,7 @@ var tapclicked = false;
 
                 setTimeout(function () {
 
-                    if (tapclicked && !(scalechange)) {
+                    if (tapclicked && tapCount == 1 && !(scalechange)) {
 
                         e.preventDefault();
 
