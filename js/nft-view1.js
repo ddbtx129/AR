@@ -20,7 +20,8 @@ var tapclicked = false;
 
     var objAngle = -10;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
-    
+    var scalechange = false;
+
     var ar = {
 
         init: function () {
@@ -778,8 +779,8 @@ var tapclicked = false;
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
+                scalechange = true;
                 prevPageY = event.pageY;    // 縦軸
-                window.alert('拡大・縮小');
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
@@ -798,6 +799,7 @@ var tapclicked = false;
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+                scalechange = false;
                 prevPageY = null;
             });
 
@@ -920,8 +922,12 @@ var tapclicked = false;
             var val = self.arData;
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 350) {
+                if (scalechange) {
+                    return;
+                }
+                
                 ++tapCount;
-                window.alert('TapEvent');
+                
                 if (tapclicked && tapCount > 0) {
 
                     var objNo = '';
