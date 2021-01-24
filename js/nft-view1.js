@@ -924,7 +924,7 @@ var tapclicked = false;
             var val = self.arData;
             var elem = document.getElementById("version1");
 
-            webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 500) {
+            webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 400) {
                 
                 ++tapCount;
                 
@@ -983,7 +983,7 @@ var tapclicked = false;
                     }
                     tapCount = 0;
                     tapclicked = false;
-                }, 1000);
+                }, 800);
 
             });
 
