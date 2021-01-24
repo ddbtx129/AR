@@ -954,13 +954,14 @@ var tapclicked = false;
                 setTimeout(function () {
 
                     if (tapclicked) {
-
                         e.preventDefault();
 
                         if (!(val.isAnime)) {
 
-                            if (val.path) {
-                                self.arData.logo.emit('turn0');
+                                if (!!(val.isLogo)) {
+                                    if (val.path) {
+                                        self.arData.logo.emit('turn0');
+                                    }
                             }
 
                         } else {
