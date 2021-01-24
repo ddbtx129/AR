@@ -948,14 +948,13 @@ var tapclicked = false;
                             return;
                         }
                     }, 350);
-                    tapCount = 0;
                 }
 
                 tapclicked = true;
 
                 setTimeout(function () {
 
-                    if (tapclicked && tapCount == 0) {
+                    if (tapclicked) {
 
                         e.preventDefault();
 
