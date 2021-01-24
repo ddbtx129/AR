@@ -929,17 +929,18 @@ var tapclicked = false;
                 ++tapCount;
                 
                 if (tapclicked && tapCount > 0) {
-                    elem.innerHTML = tapCount;
 
                     var objNo = '';
 
                     setTimeout(function () {
-                        if (tapclicked && tapCount == 0 && !(scalechange)) {
+                        if (tapclicked && tapCount == 2 && !(scalechange)) {
+                            tapclicked = false;
                             objNo = ((webArViewer.srcno.obj + 1) <= webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
                             switchObject(e, objNo);
                             return;
                         }
-                        if (tapclicked && tapCount >= 1 && !(scalechange)) {
+                        if (tapclicked && tapCount >= 3 && !(scalechange)) {
+                            tapclicked = false;
                             objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
                             switchObject(e, objNo);
                             return;
