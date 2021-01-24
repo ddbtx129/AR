@@ -4,7 +4,6 @@ var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
 var tapCount = 0;
-var tapped = "";
 var tapclicked = false;
 
 (function (global) {
@@ -19,8 +18,7 @@ var tapclicked = false;
     var defaultwrapScale = { w: 4, h: 4, d: 4 };
     var defaultlogoScale = { w: 8, h: 6, d: 6 };
 
-    var objAngle = 0;
-    var SizeRate = 20;
+    var objAngle = -5;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
     
     var ar = {
@@ -641,8 +639,9 @@ var tapclicked = false;
                 wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
                 wrapPos.z -= defaultwrapScale.h * 1.5;
                 
-                var pvAngle = 0;
-                
+                //var pvAngle = 0;
+                var pvAngle = -5;
+
                 wrapZoom = 0.5;
                 zoomRateH = defaultwrapScale.h * wrapZoom;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
@@ -921,9 +920,7 @@ var tapclicked = false;
             var elem = document.getElementById("version1");
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 350) {
-
                 ++tapCount;
-
                 if (tapclicked && tapCount > 0) {
 
                     var objNo = '';
@@ -934,19 +931,15 @@ var tapclicked = false;
                             switchObject(e, objNo);
                             tapCount = 0;
                             tapclicked = false;
-
                             return;
                         }
-
                         if (tapCount >= 1) {
                             objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
                             switchObject(e, objNo);
                             tapCount = 0;
                             tapclicked = false;
-
                             return;
                         }
-
                     }, 350);
                 }
 
@@ -958,27 +951,22 @@ var tapclicked = false;
                         e.preventDefault();
 
                         if (!(val.isAnime)) {
-
                                 if (!!(val.isLogo)) {
                                     if (val.path) {
                                         self.arData.logo.emit('turn0');
                                     }
                             }
-
                         } else {
-
                             if (val.isAnime == 11) {
                                 if (val.path && val.isAnime == 11) {
                                     self.arData.logo.emit('turn1');
                                 }
                             }
-
                             if (val.isAnime == 12) {
                                 if (val.path && val.isAnime == 12) {
                                     self.arData.logo.emit('turn2');
                                 }
                             }
-
                             if (val.isAnime == 13) {
                                 if (val.path && val.isAnime == 13) {
                                     self.arData.logo.emit('pos3');
@@ -987,10 +975,8 @@ var tapclicked = false;
                             }
                         }
                     }
-
                     tapCount = 0;
                     tapclicked = false;
-
                 }, 350);
 
             });
