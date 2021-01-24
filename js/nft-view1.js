@@ -18,7 +18,7 @@ var tapclicked = false;
     var defaultwrapScale = { w: 4, h: 4, d: 4 };
     var defaultlogoScale = { w: 8, h: 6, d: 6 };
 
-    var objAngle = -5;
+    var objAngle = -10;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
     
     var ar = {
@@ -746,7 +746,7 @@ var tapclicked = false;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
                         });
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
+                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
@@ -779,6 +779,7 @@ var tapclicked = false;
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 prevPageY = event.pageY;    // 縦軸
+                window.alert('拡大・縮小');
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
@@ -917,10 +918,10 @@ var tapclicked = false;
 
             var self = this;
             var val = self.arData;
-            var elem = document.getElementById("version1");
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 350) {
                 ++tapCount;
+                window.alert('TapEvent');
                 if (tapclicked && tapCount > 0) {
 
                     var objNo = '';
@@ -941,13 +942,15 @@ var tapclicked = false;
                             return;
                         }
                     }, 350);
+                    tapCount = 0;
                 }
 
                 tapclicked = true;
 
                 setTimeout(function () {
 
-                    if (tapclicked) {
+                    if (tapclicked && tapCount == 0) {
+
                         e.preventDefault();
 
                         if (!(val.isAnime)) {
