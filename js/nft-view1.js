@@ -922,12 +922,14 @@ var tapclicked = false;
 
             var self = this;
             var val = self.arData;
+            var elem = document.getElementById("version1");
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 500) {
                 
                 ++tapCount;
                 
                 if (tapclicked && tapCount > 0) {
+                    elem.innerHTML = tapCount;
 
                     var objNo = '';
 
