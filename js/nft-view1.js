@@ -933,11 +933,13 @@ var tapclicked = false;
 
                     setTimeout(function () {
                         if (tapCount == 0 && !(scalechange)) {
+                            tapclicked = false;
                             objNo = ((webArViewer.srcno.obj + 1) <= webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
                             switchObject(e, objNo);
                             return;
                         }
                         if (tapCount >= 1 && !(scalechange)) {
+                            tapclicked = false;
                             objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
                             switchObject(e, objNo);
                             return;
