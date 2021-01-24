@@ -1195,6 +1195,7 @@ var tapclicked = false;
                 }
 
                 tapclicked = true;
+                ++tapCount;
 
                 setTimeout(function () {
 
