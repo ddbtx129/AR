@@ -944,7 +944,7 @@ var tapclicked = false;
                             switchObject(e, objNo);
                             return;
                         }
-                    }, 500);
+                    }, timer);
                 }
 
                 tapclicked = true;
