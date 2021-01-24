@@ -54,7 +54,6 @@ var tapclicked = false;
                 this.wrap.setAttribute('visible', true);
 
                 this.setTapEvents();
-                this.switchObject();
             }
 
             this.setSwitcher();
@@ -77,14 +76,13 @@ var tapclicked = false;
 
             // 影
             arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-
+            // サイズ
             arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10));
-            //arg.whList = arg.wh && (parseInt(arg.wh, 16).toString(10));
-
+            // 角度
             arg.angleList = arg.an && (parseInt(arg.an, 10).toString(2));
-
+            // オブジェクトタイプ
             arg.typeList = arg.t;
-
+            // 
             arg.pmList = arg.pmList && (parseInt(arg.pmList, 10).toString());
 
             // マーカー
@@ -98,8 +96,10 @@ var tapclicked = false;
             arg.ObjectList2 = arg.o2;
             arg.ObjectList3 = !!(arg.o3) ? arg.o3 : arg.o2;
 
+            // マーカー＆オブジェクト
             arg.MkObjList = arg.mo;
 
+            // ロゴ表示
             var logo = arg.l && ('0000' + (parseInt(arg.l, 16).toString(10))).slice(-4);
 
             arg.LogoList = {};
@@ -110,9 +110,11 @@ var tapclicked = false;
                 arg.LogoList = (logo).toString().split(',');
                 arg.LogoAnimeList = (arg.LogoList[1] && parseInt(arg.LogoList[1]));
             }
-            
+
+            // プレビューモード
             arg.PVList = arg.pv;
 
+            //
             arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString());
 
             self.arg = arg;
@@ -139,10 +141,6 @@ var tapclicked = false;
                 var no = Number(self.arg.ObjectList2);
                 for (var i = 0; i <= seq; i++) {
                     var obj = (('0').repeat((self.arg.ObjectList2).length) + (parseInt(no + i, 10).toString())).slice(-((self.arg.ObjectList2).length));
-                    //object[0] = ((self.arg.MkObjList) && (self.arg.ObjectList2) ?
-                    //    (self.arg.MkObjList + '/' + self.arg.ObjectList2)
-                    //    :
-                    //    (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
                     object[i] = ((self.arg.MkObjList) && (obj) ?
                         (self.arg.MkObjList + '/' + obj)
                         :
@@ -172,30 +170,26 @@ var tapclicked = false;
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
-
             dataObj.isPV = !!(self.arg.PVList);
             dataObj.isNFT = !!(self.arg.ARList);
-            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 2;
-
+            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1;
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
-
             dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-
             dataObj.isPm = !!(self.arg.pmList);
 
+            // サイズ
             self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
-
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
             //var j = (dataObj.isMarkerType == 1 ? 2 : 4);
             var j = (dataObj.isMarkerType == 1 ? 2 : 2);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
 
+            // オブジェクトソース
             if (dataObj.path) {
 
                 var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
@@ -203,6 +197,7 @@ var tapclicked = false;
                 dataObj.arObj = {};
 
                 if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
+
                     var img = {};
 
                     for (var i = 0; i <= seq; i++) {
@@ -219,6 +214,7 @@ var tapclicked = false;
                     }
 
                 } else if (!!(dataObj.isMp4)) {
+
                     var video = {};
                     var audio = {};
 
@@ -256,6 +252,7 @@ var tapclicked = false;
                     }
 
                 } else if (dataObj.isGltf) {
+
                     var model = {};
 
                     for (var i = 0; i <= seq; i++) {
@@ -344,8 +341,6 @@ var tapclicked = false;
         setWrap: function () {
 
             var self = this;
-            //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            //defaultScale = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
             var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
@@ -377,7 +372,6 @@ var tapclicked = false;
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-image');
-                //var shadow = (self.arData.shadow != null) ? self.arData.shadow : document.createElement('a-image');
 
                 shadow.setAttribute('id', 'shadow');
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
@@ -405,7 +399,6 @@ var tapclicked = false;
             }
 
             var main = document.createElement(elname);
-            //var main = (self.arData.main != null) ? self.arData.main : document.createElement(elname);
 
             var posVec3 = self.positionVec3('main');
             defaultPos = posVec3;
@@ -448,8 +441,6 @@ var tapclicked = false;
             if (val.isLogo) {
 
                 var logo = document.createElement('a-entity');
-                //var logo = document.createElement('a-image');
-                //var logo = (self.arData.logo != null) ? self.arData.logo : document.createElement(elname);
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
                 var rete = (!val.isMp4) ? 1 : 2;
@@ -676,9 +667,6 @@ var tapclicked = false;
 
                     wrapZoom = 0.625;
                     zoomRateH = zoomRateH * wrapZoom;
-                    //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    //});
 
                     defaultwrapPos.y = -5;
 
@@ -918,31 +906,6 @@ var tapclicked = false;
                 document.getElementById("player").style.display = 'none';
             }
 
-            //var bAngle = document.getElementById('swAngle');
-            //var bParalle = document.getElementById('swParallel');
-
-            //if (self.arg.pv) {
-
-            //    document.getElementById("swAngle").style.display = 'none';
-            //    document.getElementById("swParallel").style.display = 'none';
-
-            //    var pvAngle = 0;
-
-            //    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
-            //    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
-
-            //} else {
-
-            //    document.getElementById("swAngle").style.display = 'inline';
-            //    document.getElementById("swParallel").style.display = 'inline';
-
-            //    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
-            //}
-
-            //AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-            //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
-            //});
-
             if (!!val.isLogo) {
                 this.createAnimation();
             }
@@ -1166,51 +1129,113 @@ var tapclicked = false;
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
 
-                //setTimeout(function () {
+                if (tapclicked) {
 
-                //    if (tapCount == 0) {
+                    e.preventDefault();
 
-                //        e.preventDefault();
+                    if (webArViewer.srcno.length == 1) {
+                        return;
+                    }
 
-                //        if (!(val.isAnime)) {
+                    if (!!(webArViewer.ar.arData.isMp4)) {
+                        return;
+                    }
 
-                //            if (val.path) {
-                //                self.arData.logo.emit('turn0');
-                //            }
+                    // ビューポートの変更(ズーム)を防止
+                    e.preventDefault();
 
-                //        } else {
+                    var wrap = document.getElementById('base');
 
-                //            if (val.isAnime == 11) {
-                //                if (val.path && val.isAnime == 11) {
-                //                    self.arData.logo.emit('turn1');
-                //                }
-                //            }
+                    //wrap.setAttribute('visible', false);
 
-                //            if (val.isAnime == 12) {
-                //                if (val.path && val.isAnime == 12) {
-                //                    self.arData.logo.emit('turn2');
-                //                }
-                //            }
+                    var shadow = document.getElementById('shadow');
+                    if (shadow != null) {
+                        shadow.remove();
+                    }
 
-                //            if (val.isAnime == 13) {
-                //                if (val.path && val.isAnime == 13) {
-                //                    self.arData.logo.emit('pos3');
-                //                    self.arData.logo.emit('scale3');
-                //                }
-                //            }
-                //        }
-                //    }
+                    var main = document.getElementById('main');
+                    if (main != null) {
+                        main.remove();
+                    }
 
-                //    tapCount = 0;
+                    var logo = document.getElementById('logo');
+                    if (logo != null) {
+                        logo.remove();
+                    }
 
-                //}, 350);
+                    var objNo = ((webArViewer.srcno.obj + 1) <= webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
 
+                    ++tapCount;
+
+                    setTimeout(function () {
+                        if (tapCount == 2) {
+                            objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
+                        }
+                        tapCount = 1;
+                    }, 350);
+                    
+                    //if (tapCount == 1) {
+                    //    objNo = ((webArViewer.srcno.obj + 1) < webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                    //} else {
+                    //    objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
+                    //}
+
+                    var elem = document.getElementById("version1");
+                    elem.innerHTML = (objNo).toString();
+
+                    webArViewer.srcno.obj = objNo;
+
+                    webArViewer.ar.createModel(webArViewer.srcno.obj);
+                    webArViewer.ar.resetScene();
+
+                    tapCount = 0;
+                    tapclicked = false;
+
+                    return;
+                }
+
+                tapclicked = true;
+
+                setTimeout(function () {
+
+                    if (tapclicked) {
+
+                        e.preventDefault();
+
+                        if (!(val.isAnime)) {
+
+                            if (val.path) {
+                                self.arData.logo.emit('turn0');
+                            }
+
+                        } else {
+
+                            if (val.isAnime == 11) {
+                                if (val.path && val.isAnime == 11) {
+                                    self.arData.logo.emit('turn1');
+                                }
+                            }
+
+                            if (val.isAnime == 12) {
+                                if (val.path && val.isAnime == 12) {
+                                    self.arData.logo.emit('turn2');
+                                }
+                            }
+
+                            if (val.isAnime == 13) {
+                                if (val.path && val.isAnime == 13) {
+                                    self.arData.logo.emit('pos3');
+                                    self.arData.logo.emit('scale3');
+                                }
+                            }
+                        }
+                    }
+
+                    tapCount = 0;
+                    tapclicked = false;
+
+                }, 350);
             });
-        },
-
-        swichScene: function () {
-            var self = this;
-            var val = self.arData;
         },
 
         setDiplayBtn: function (mode, objno) {
@@ -1307,11 +1332,5 @@ var tapclicked = false;
     webArViewer.defaultwrapPos = defaultwrapPos;
     webArViewer.defaultwrapScale = defaultwrapScale;
     webArViewer.defaultlogoScale = defaultlogoScale;
-
-    //if (!(webArViewer.ar.arData.isMarkerType == 1)) {
-    //    var evant = new Event("click", { "bubbles": true, "cancelable": true });
-    //    var bParalle = document.getElementById('swParallel');
-    //    bParalle.dispatchEvent(evant);
-    //}
 
 }());
