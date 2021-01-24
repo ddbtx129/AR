@@ -54,13 +54,12 @@ var tapclicked = false;
                 this.wrap.setAttribute('visible', true);
 
                 this.setTapEvents();
-                //this.switchObject();
             }
 
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.121';
+            elem.innerHTML = '1.0.130';
         },
 
         setArg: function () {
@@ -914,49 +913,6 @@ var tapclicked = false;
             this.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
         },
 
-        switchObject: function(){
-
-            var self = this;
-            var val = self.arData;
-
-            webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 350) {
-                var elem = document.getElementById("version1");
-
-                if (tapped == "") {
-                    elem.innerHTML = 0;
-                    tapped = setTimeout(function () { tapclean() }, timer)
-                } else {
-                    if (tapped == "") {
-                        elem.innerHTML = 2;
-                        tapclean();
-                    } else {
-                        elem.innerHTML = 1;
-                    }
-                    ++tapCount;
-
-                    tapped = setTimeout(function () {
-                        if (tapCount == 1)
-                        elem.innerHTML = 1;
-                        tapCount = 0;
-                        tapclean()
-                    }, timer)
-
-                    //Here is double tap, if you want more (triple&beyond),
-                    //add doubletap/tripletap checker variable into tapclean().
-                    //and set it to true here!, example included.
-                    //doubletapped=true;
-                    tapclean();
-                }
-
-                function tapclean() {
-                    clearTimeout(tapped);
-                    tapped = "";
-                    //doubletapper=false;
-                }
-
-            });
-        },
-
         setTapEvents: function () {
 
             var self = this;
@@ -964,22 +920,6 @@ var tapclicked = false;
             var elem = document.getElementById("version1");
 
             webArViewer.scene.addEventListener(self.eventNames.start, function (e, timer = 350) {
-
-                //if (tapclicked && tapCount >= 2) {
-                //    elem.innerHTML = 2;
-                //    var objNo = '';
-
-                //    setTimeout(function () {
-                //        if (tapCount >= 2) {
-                //            objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
-                //            switchObject(e, objNo);
-                //            tapCount = 0;
-                //            tapclicked = false;
-
-                //            return;
-                //        }
-                //    }, 350);
-                //}
 
                 ++tapCount;
 
