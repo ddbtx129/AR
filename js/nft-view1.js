@@ -786,7 +786,7 @@ var tapclicked = false;
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
-                    tapCount = scalechange;
+                    tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
                     if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
