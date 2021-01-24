@@ -140,8 +140,8 @@ var tapclicked = false;
                 seq = (Number(self.arg.ObjectList3) - Number(self.arg.ObjectList2));
                 var no = Number(self.arg.ObjectList2);
                 for (var i = 0; i <= seq; i++) {
-                    var j = (no + i) < 100 ? 2 : ((no + i).toString()).length:
-                    var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-((j));
+                    var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
+                    var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
                     object[i] = ((self.arg.MkObjList) && (obj) ?
                         (self.arg.MkObjList + '/' + obj)
                         :
