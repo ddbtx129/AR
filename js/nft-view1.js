@@ -982,7 +982,7 @@ var tapclicked = false;
                     }
                     tapCount = 0;
                     tapclicked = false;
-                }, 350);
+                }, 1000);
 
             });
 
