@@ -6,6 +6,8 @@ var objecttype = "png";
 var tapCount = 0;
 var tapclicked = false;
 
+var viewmode = 'marker';
+
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
@@ -632,6 +634,8 @@ var tapclicked = false;
             var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
 
             if (self.arg.pv) {
+                
+                viewmode = 'pv';
 
                 document.getElementById("swAngle").style.display = 'none';
                 document.getElementById("swParallel").style.display = 'none';
@@ -666,6 +670,8 @@ var tapclicked = false;
 
                 if (val.isMarkerType == 1) {
 
+                    viewmode = 'marker';
+
                     wrapZoom = 0.625;
                     zoomRateH = zoomRateH * wrapZoom;
 
@@ -692,6 +698,8 @@ var tapclicked = false;
                         mk = 'pattern/p-' + self.arg.markerList + '.patt';
                     }
                 } else {
+
+                    viewmode = 'nft';
 
                     wrapZoom = 30;
                     zoomRateH = zoomRateH * wrapZoom;
