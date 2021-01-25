@@ -47,6 +47,14 @@ a {
     color: silver
 }
 
+#debug3 {
+    position: absolute;
+    top: 0%;
+    left: 45%;
+    font-size: x-small;
+    color: silver
+}
+
 canvas {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
