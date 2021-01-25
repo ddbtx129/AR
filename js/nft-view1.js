@@ -61,6 +61,17 @@ var viewmode = 'marker';
 
             var elem = document.getElementById("version1");
             elem.innerHTML = '1.0.130';
+
+            // デバイスの方向の変化を検出したとき
+            window.addEventListener('deviceorientation', function (e) {
+                console.log(e.alpha) // z軸 0 ～ 360
+                console.log(e.beta)  // x軸 -180 ～ 180
+                console.log(e.gamma) // y軸 -90 ～ 90
+
+                var elem = document.getElementById("debug2");
+                elem.innerHTML = "X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
+
+            });
         },
 
         setArg: function () {
@@ -581,6 +592,7 @@ var viewmode = 'marker';
         },
 
         objectDataVal: function (oScale, oPosition) {
+            return;
 
             if (oScale != null) {
                 var elem = document.getElementById("debug1");
@@ -697,6 +709,7 @@ var viewmode = 'marker';
                     } else if ((self.arg.markerList)) {
                         mk = 'pattern/p-' + self.arg.markerList + '.patt';
                     }
+
                 } else {
 
                     viewmode = 'nft';
@@ -1032,6 +1045,11 @@ var viewmode = 'marker';
                 tapCount = 0;
                 tapclicked = false;
             };
+        },
+
+        setCameraEvents: function (){
+
+
         },
 
         setDiplayBtn: function (mode, objno) {
