@@ -803,11 +803,13 @@ var viewmode = 'marker';
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 scalechange = 0;
                 prevPage = ((val.isMarkerType == 1 || val.isPV) ? event.pageY : event.pageZ);    // 縦軸 or 前後軸
+                window.alert('Z' + (!!event.pageZ));
+                window.alert('Y' + (!!event.pageY));
+                window.alert('X' + (!!event.pageX));
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
-                window.alert(!!prevPage);
 
                 if (prevPage) {
                     tapclicked = !!(tapCount = scalechange);
