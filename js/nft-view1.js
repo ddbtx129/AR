@@ -636,7 +636,7 @@ var viewmode = 'marker';
             }
 
             var arGifRotation = '-30 0 0';
-            var prevPageY;
+            var prevPage;
             var zoomRateH = defaultwrapScale.h;
             var wrapZoom = 1;
 
@@ -802,16 +802,17 @@ var viewmode = 'marker';
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 scalechange = 0;
-                prevPageY = event.pageY;    // 縦軸
+                prevPage = ((val.isMarkerType == 1 || val.isPV) ? event.pageY : event.pageZ);    // 縦軸 or 前後軸
             });
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
-                if (prevPageY) {
+                if (prevPage) {
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
-                    if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                    var page = ((val.isMarkerType == 1 || val.isPV) ? event.pageY : event.pageZ); 
+                    if ((webArViewer.ar.arData.zoomRateH + (prevPage - page) / webArViewer.scene.clientHeight / 5) > 0.1) {
+                        var rate = (prevPage - page) / webArViewer.scene.clientHeight / 5;
                         webArViewer.ar.arData.zoomRateH += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
@@ -819,12 +820,12 @@ var viewmode = 'marker';
                         var elem = document.getElementById("debug1");
                         elem.innerHTML = "Scale: " + Number(webArViewer.ar.arData.zoomRateH).toFixed(1);
                     }
-                }
+                } 
             });
 
             webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
                 scalechange = 0;
-                prevPageY = null;
+                prevPage = null;
             });
 
             // ↓ 上下移動ボタン押下
