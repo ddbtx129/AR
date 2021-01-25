@@ -817,10 +817,8 @@ var viewmode = 'marker';
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
                         });
-                        //var elem = document.getElementById("debug1");
-                        //elem.innerHTML = "Scale: " + Number(webArViewer.ar.arData.zoomRateH).toFixed(5);
                         var elem = document.getElementById("debug1");
-                        elem.innerHTML = "拡大: " + Number(webArViewer.ar.arData.zoomRateH).toFixed(5);
+                        elem.innerHTML = "Scale: " + Number(webArViewer.ar.arData.zoomRateH).toFixed(5);
                     }
                 } 
             });
