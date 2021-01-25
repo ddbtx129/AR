@@ -1117,7 +1117,7 @@ var viewmode = 'marker';
         positionVec3Logo: function (anime) {
             var self = this;
             var h1_2 = (self.arData.size.h / 5);
-            var margin = ((self.arData.isMp4) ? 0.5 : 0);
+            var margin = ((self.arData.isMp4) ? 0.25 : 0);
 
             return { x: 0, y: -h1_2 - margin, z: 0 };
         },
