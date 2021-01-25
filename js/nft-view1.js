@@ -807,6 +807,8 @@ var viewmode = 'marker';
 
             webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
+                window.alert(!!prevPage);
+
                 if (prevPage) {
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
