@@ -1119,7 +1119,7 @@ var viewmode = 'marker';
             var h1_2 = (self.arData.size.h / 5);
             var margin = ((self.arData.isMp4) ? 1 : 0);
 
-            return { x: 0, y: -h1_2 + margin, z: 0 };
+            return { x: 0, y: -h1_2 - margin, z: 0 };
         },
 
         positionVec3: function (type, angle) {
