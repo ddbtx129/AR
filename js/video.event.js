@@ -62,29 +62,27 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
 
+
     if (objecttype == "mp4") {
         var v = document.querySelector('#source1');
         var text = document.querySelector('#version1');
         ////ロード開始
         //v.addEventListener('loadedmetadata', function () {
-        //    text.innerHTML = 'ロード開始';
-        //    window.alert('ロード開始');
         //})
         ////読み込み完了
         //v.addEventListener('loadeddata', function () {
-        //    text.innerHTML = '読み込み完了';
-        //    window.alert('読み込み完了');
         //})
-        //再生可能
-        v.addEventListener('canplay', function () {
 
-            text.innerHTML = '再生可能';
-            window.alert('再生可能');
+        ////再生可能
+        //v.addEventListener('canplay', function () {
 
-            videocanplayInvalid(e);
-        })
+        //    text.innerHTML = '再生可能';
+        //    window.alert('再生可能');
 
-        v.load();
+        //    videocanplayInvalid(e);
+        //})
+
+        //v.load();
 
         ////再生中
         //v.addEventListener('playing', function () {
@@ -96,6 +94,12 @@ window.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
         }
     }
+});
+
+window.addEventListener('load', (event) => {
+    var text = document.querySelector('#version1');
+    text.innerHTML = 'ページが完全に読み込まれました';
+    window.alert('ページが完全に読み込まれました');
 });
 
 
