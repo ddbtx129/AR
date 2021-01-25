@@ -60,13 +60,11 @@ var viewmode = 'marker';
             this.setSwitcher();
 
             var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.130';
+            elem.innerHTML = 'v1.0.130';
 
             // デバイスの方向の変化を検出したとき
             window.addEventListener('deviceorientation', function (e) {
-                //console.log(e.alpha) // z軸 0 ～ 360
-                //console.log(e.beta)  // x軸 -180 ～ 180
-                //console.log(e.gamma) // y軸 -90 ～ 90
+                // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
                 var elem = document.getElementById("debug3");
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
 
