@@ -64,11 +64,10 @@ var viewmode = 'marker';
 
             // デバイスの方向の変化を検出したとき
             window.addEventListener('deviceorientation', function (e) {
-                console.log(e.alpha) // z軸 0 ～ 360
-                console.log(e.beta)  // x軸 -180 ～ 180
-                console.log(e.gamma) // y軸 -90 ～ 90
-
-                var elem = document.getElementById("debug2");
+                //console.log(e.alpha) // z軸 0 ～ 360
+                //console.log(e.beta)  // x軸 -180 ～ 180
+                //console.log(e.gamma) // y軸 -90 ～ 90
+                var elem = document.getElementById("debug3");
                 elem.innerHTML = "X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
 
             });
@@ -592,8 +591,6 @@ var viewmode = 'marker';
         },
 
         objectDataVal: function (oScale, oPosition) {
-            return;
-
             if (oScale != null) {
                 var elem = document.getElementById("debug1");
                 elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
