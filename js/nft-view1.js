@@ -68,7 +68,7 @@ var viewmode = 'marker';
                 //console.log(e.beta)  // x軸 -180 ～ 180
                 //console.log(e.gamma) // y軸 -90 ～ 90
                 var elem = document.getElementById("debug3");
-                elem.innerHTML = "X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
+                elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
 
             });
         },
@@ -593,12 +593,12 @@ var viewmode = 'marker';
         objectDataVal: function (oScale, oPosition) {
             if (oScale != null) {
                 var elem = document.getElementById("debug1");
-                elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
+                elem.innerHTML = "scale: " + Number(oScale).toFixed(1);
             }
 
             if (oPosition != null) {
                 var elem = document.getElementById("debug2");
-                elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
+                elem.innerHTML = "pos X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
             }
         },
 
