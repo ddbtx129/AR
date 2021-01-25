@@ -46,9 +46,6 @@ var SizeRate = 20;
             }
 
             this.setSwitcher();
-
-            var elem = document.getElementById("version1");
-            elem.innerHTML = '1.0.121';
         },
 
         setArg: function () {
@@ -151,8 +148,7 @@ var SizeRate = 20;
             var wh = SizeSplit(self.arg.sizeList).toString().split(',');
 
             var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
-            //var j = (dataObj.isMarkerType == 1 ? 2 : 4);
-            var j = (dataObj.isMarkerType == 1 ? 2 : 2);
+            var j = (dataObj.isMarkerType == 1 ? 2 : 4);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
             //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
@@ -286,8 +282,7 @@ var SizeRate = 20;
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            defaultSize = { w: 4, h: 4, d: 4 };
+            defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
             var base = AFRAME.utils.coordinates.stringify('0 0 0');
             //var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
 
@@ -383,7 +378,7 @@ var SizeRate = 20;
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var logoscale = { w: 8, h: 8, d: 2 };
+                var logoscale = (!!(val.isMarkerType == 1) ? { w: 8, h: 8, d: 2 } : { w: 256, h: 256, d: 128 });
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
@@ -470,8 +465,8 @@ var SizeRate = 20;
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
-                            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z,
                             startEvents: 'pos3'
                         });
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale3', {
@@ -530,20 +525,21 @@ var SizeRate = 20;
             var arGifRotation = '-30 0 0';
 
             var prevPageY;
+            //var zoomRateH = (val.isMarkerType == 1) ? 2 : (defaultSize.h / 10);
             var zoomRateH = defaultSize.h;
 
-            var defaultwrapPos = { x: 0, y: 0, z: 0 };
+            var wh = { w: val.size.w, h: val.size.h };
             var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -=  defaultSize.h;
+                wrapPos.z -= val.size.h * (!!(val.isMarkerType == 1) ? 1 : 2);
 
                 var pvAngle = 0;
 
-                zoomRateH = defaultSize.h / 2;
+                zoomRateH = defaultSize.h / (!!(val.isMarkerType == 1) ? 2 : 6);
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
@@ -554,13 +550,10 @@ var SizeRate = 20;
                 if (!!val.isLogo) {
 
                     var logopos = self.positionVec3Logo(Number(val.isAnime));
-                    var logoscale = { w: 8, h: 8, d: 2 };
-                    var rete = (!val.isMp4) ? 1 : 2;
-
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
-                        self.arData.logo.setAttribute('radius', (logoscale.w / 2));
+                        self.arData.logo.setAttribute('radius', (8 / 2));
                         if (val.isAnime == 1) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
@@ -582,6 +575,8 @@ var SizeRate = 20;
                             });
                         } else if (val.isAnime == 3) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                            var logoscale = { w: 8, h: 8, d: 2 };
+                            var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
                                 property: 'position',
@@ -622,6 +617,8 @@ var SizeRate = 20;
                             });
                         } else if (val.isAnime == 13) {
                             self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                            var logoscale = { w: 8, h: 8, d: 2 };
+                            var rete = (!val.isMp4) ? 1 : 2;
                             // 弾む
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
                                 property: 'position',
@@ -629,8 +626,8 @@ var SizeRate = 20;
                                 dur: 400,
                                 easing: 'easeInOutQuart',
                                 loop: false,
-                                from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
-                                to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                                from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z,
                                 startEvents: 'pos3'
                             });
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
@@ -669,15 +666,6 @@ var SizeRate = 20;
 
                 if (val.isMarkerType == 1) {
 
-                    zoomRateH = 2.5;
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    });
-
-                    defaultwrapPos.y = -5;
-                    wrapPos = defaultwrapPos;
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
                     mWrap = null;
 
                     // ARマーカー
@@ -699,11 +687,6 @@ var SizeRate = 20;
                         mk = 'pattern/p-' + self.arg.markerList + '.patt';
                     }
                 } else {
-
-                    zoomRateH = zoomRateH * 30;
-                    AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                    });
 
                     mWrap.setAttribute('markerhandler', '');
                     mWrap.setAttribute('preset', 'custom');
@@ -736,29 +719,25 @@ var SizeRate = 20;
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = defaultwrapPos;
+                        wrapPos = { x: 0, y: 0, z: 0 };
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = defaultwrapPos;
+                        wrapPos = {x: 0, y: 0, z: 0 };
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
                 });
                 // ↑
             }
-
-            this.objectDatainnerHTML(zoomRateH, wrapPos);
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
@@ -772,7 +751,6 @@ var SizeRate = 20;
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         zoomRateH += rate;
-                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
@@ -788,7 +766,7 @@ var SizeRate = 20;
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.2 : 5);
+            var yClickRate = (!!(val.isMarkerType == 1) ? 0.2 : (!!(self.arg.pv) ? 1 : 5));
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
@@ -797,7 +775,6 @@ var SizeRate = 20;
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
@@ -807,11 +784,10 @@ var SizeRate = 20;
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
             // ↑ 
 
-            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ?  0.02 : 2);
+            var yTouchRate = (!!(val.isMarkerType == 1) ? 0.02 : (!!(self.arg.pv) ? 0.4 : 2));
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -824,7 +800,6 @@ var SizeRate = 20;
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
             })
 
@@ -852,7 +827,6 @@ var SizeRate = 20;
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
             })
 
@@ -917,9 +891,6 @@ var SizeRate = 20;
             var self = this;
             var val = self.arData;
 
-            document.getElementById("debug1").style.display = "inline";
-            document.getElementById("debug2").style.display = "inline";
-
             document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
@@ -971,17 +942,8 @@ var SizeRate = 20;
             }
         },
 
-        objectDatainnerHTML: function (oScale, oPosition) {
-            var elem = document.getElementById("debug1");
-            elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
-
-            var elem = document.getElementById("debug2");
-            elem.innerHTML = "X: " + Number(oPosition.x).toFixed(1) + " Y: " + Number(oPosition.y).toFixed(1) + ' Z: ' + Number(oPosition.z).toFixed(1);
-        },
-
         positionVec3Logo: function (anime) {
             var self = this;
-            var h1 = self.arData.size.h;
             var h1_2 = (self.arData.size.h / 5);
             var posy = 0;
 
@@ -998,8 +960,7 @@ var SizeRate = 20;
                 h1_2 = (self.arData.size.w / 2);
             }
             
-            //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
-            return { x: 0, y: -h1_2, z: 0 };
+            return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
         },
 
         positionVec3: function (type, angle) {
@@ -1007,14 +968,17 @@ var SizeRate = 20;
             var h1 = self.arData.size.h;
             var h1_2 = self.arData.size.h / 2;
 
-            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 5 : 0));
-
+            var i = (!!(self.arg.isMarkerType == 1) ? (!!(self.arg.pv) ? 0 : 0) : (!!(self.arg.pv) ? -h1_2 : h1_2));
+                
+            //if (type === 'shadow') {
+            //    return { x: 0, y: 0, z: -h1_2 };
+            //} else {
+            //    return { x: 0, y: h1_2, z: 0 };
+            //}
             if (type === 'shadow') {
-                return { x: 0, y: 0, z: -h1_2 };
-            //    return { x: 0, y: i - h1_2, z: -h1_2 };
+                return { x: 0, y: i - h1_2, z: -h1_2 };
             } else {
-                return { x: 0, y: h1_2, z: 0 };
-             //   return { x: 0, y: i, z: 0 };
+                return { x: 0, y: i, z: 0 };
             }
         }
     };
