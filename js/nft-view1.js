@@ -811,7 +811,7 @@ var viewmode = 'marker';
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
 
-                    if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * > 0.1) {
+                    if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         webArViewer.ar.arData.zoomRateH += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
