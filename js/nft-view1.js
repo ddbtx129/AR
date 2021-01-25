@@ -734,7 +734,7 @@ var viewmode = 'marker';
                     } else if ((self.arg.markerList)) {
                         mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
                     } else if ((self.arg.MkObjList)) {
-                        mk = 'ImageDescriptors/' + self.arg.MkObjList + '/01/01';
+                        mk = 'ImageDescriptors/' + self.arg.MkObjList + '/01';
                     }
                 }
 
