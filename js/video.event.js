@@ -67,6 +67,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //ロード開始
     v.addEventListener('loadedmetadata', function () {
         text.innerHTML = 'ロード開始';
+        window.alert('ロード開始');
     })
     //読み込み完了
     v.addEventListener('loadeddata', function () {
@@ -81,6 +82,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //再生中
     v.addEventListener('playing', function () {
         text.innerHTML = '再生中';
+        window.alert('再生中');
     })
 });
 
