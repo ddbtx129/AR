@@ -76,6 +76,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //再生可能
     v.addEventListener('canplay', function () {
         text.innerHTML = '再生可能';
+        window.alert('再生可能');
     })
     //再生中
     v.addEventListener('playing', function () {
