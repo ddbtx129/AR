@@ -733,6 +733,8 @@ var viewmode = 'marker';
                         mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
                     } else if ((self.arg.markerList)) {
                         mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
+                    } else if ((self.arg.MkObjList)) {
+                        mk = 'ImageDescriptors/' + self.arg.MkObjList + '/01/01';
                     }
                 }
 
