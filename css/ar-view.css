@@ -25,34 +25,35 @@ a {
 
 #version1 {
     position: absolute;
-    top: 0%;
-    right: 6px;
+    bottom: 0%;
+    left: 68px;
     font-size: x-small;
-    color: darkgray;
+    color: silver
 }
 
 #debug1 {
     position: absolute;
-    bottom: 0%;
-    left: 4px;
+    top: 0%;
+    left: 48%;
     font-size: x-small;
-    color: darkgray;
+    color: silver
 }
 
 #debug2 {
     position: absolute;
-    bottom: 0%;
-    left: 98px;
+    top: 0%;
+    right: 10px;
     font-size: x-small;
-    color: darkgray;
+    color: silver
 }
 
 #debug3 {
     position: absolute;
     top: 0%;
-    left: 4px;
+    left: 10px;
+
     font-size: x-small;
-    color: darkgray;
+    color: silver
 }
 
 canvas {
@@ -68,7 +69,7 @@ a-camera {
 .playbutton {
     position: absolute;
     top: 45%;
-    left: 43%;
+    left: 42%;
     width: 72px;
     height: 72px;
     z-index: 10;
@@ -135,10 +136,21 @@ a-camera {
 
 .scrshot {
     position: absolute;
-    bottom: 35%;
+    bottom: 50%;
     right: 0%;
-    width: 30px;
-    height: 30px;
+    width: 48px;
+    height: 48px;
+    z-index: 5;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.swichcamera {
+    position: absolute;
+    bottom: 0%;
+    left: 4px;
+    width: 40px;
+    height: 40px;
     z-index: 5;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -146,8 +158,8 @@ a-camera {
 
 .ar-up {
     position: absolute;
-    bottom: 28%;
-    right: 1%;
+    bottom: 38%;
+    right: 2%;
     width: 30px;
     height: 30px;
     z-index: 6;
@@ -157,8 +169,8 @@ a-camera {
 
 .ar-down {
     position: absolute;
-    bottom: 20%;
-    right: 1%;
+    bottom: 30%;
+    right: 2%;
     width: 30px;
     height: 30px;
     z-index: 7;
@@ -166,21 +178,10 @@ a-camera {
     -webkit-touch-callout: none;
 }
 
-.swichcamera {
-    position: absolute;
-    bottom: 35%;
-    left: 4px;
-    width: 30px;
-    height: 30px;
-    z-index: 5;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
 .ar-angle {
     position: absolute;
     opacity: 0.5;
-    bottom: 28%;
+    bottom: 38%;
     left: 4px;
     width: 30px;
     height: 30px;
@@ -192,7 +193,7 @@ a-camera {
 .ar-parallel {
     position: absolute;
     opacity: 0.5;
-    bottom: 20%;
+    bottom: 30%;
     left: 4px;
     width: 30px;
     height: 30px;
@@ -226,6 +227,17 @@ a-camera {
     left: 40%;
     width: 26px;
     height: 26px;
+    z-index: 7;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.ar-down {
+    position: absolute;
+    bottom: 30%;
+    right: 2%;
+    width: 30px;
+    height: 30px;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
