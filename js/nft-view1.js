@@ -354,8 +354,11 @@ var viewmode = 'marker';
             var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
             var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
 
-            //self.wrap = document.createElement('a-box');
-            self.wrap = document.createElement('a-entity');
+            if (self.arData.isMarkerType == 1) {
+                self.wrap = document.createElement('a-entity');
+            } else {
+                self.wrap = document.createElement('a-box');
+            }
             self.wrap.setAttribute('id', 'base');
             self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
             self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
