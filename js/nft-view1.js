@@ -812,7 +812,7 @@ var viewmode = 'marker';
                     scalechange = 1;
 
                     if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
+                        var rate = ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * wrapZoom;
                         webArViewer.ar.arData.zoomRateH += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
