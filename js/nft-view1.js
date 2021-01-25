@@ -1073,13 +1073,13 @@ var viewmode = 'marker';
                     document.getElementById("swAngle").style.display = 'none';
                     document.getElementById("swParallel").style.display = 'none';
 
-                    var srcname = '#source' + (objno).toString();
-                    var video = document.querySelector(srcname);
+                    //var srcname = '#source' + (objno).toString();
+                    //var video = document.querySelector(srcname);
 
-                    if (videostate == 0) {
-                        document.getElementById("player").style.display = 'inline';
-                        videostate = 1
-                    }
+                    //if (videostate == 0) {
+                    //    document.getElementById("player").style.display = 'inline';
+                    //    videostate = 1
+                    //}
 
                 } else {
                     document.getElementById("swAngle").style.display = 'inline';
@@ -1090,7 +1090,7 @@ var viewmode = 'marker';
             }
 
             if (val.isMarkerType == 1 || !!(val.isPV)) {
-                document.getElementById("loader").style.display = 'none';
+                document.getElementById("arloader").style.display = 'none';
             }
         },
 

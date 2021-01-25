@@ -62,32 +62,36 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-
     if (objecttype == "mp4") {
+
         var v = document.querySelector('#source1');
         var text = document.querySelector('#version1');
-        ////ロード開始
+
+        //ロード開始
         //v.addEventListener('loadedmetadata', function () {
         //})
-        ////読み込み完了
+
+        //読み込み完了
         //v.addEventListener('loadeddata', function () {
         //})
 
-        ////再生可能
-        //v.addEventListener('canplay', function (e) {
+        //再生可能
+        v.addEventListener('canplay', function (e) {
 
-        //    text.innerHTML = '再生可能';
-        //    window.alert('再生可能');
+            if (viewmode == 'pv') {
+                var video = document.querySelector('#source1');
+                document.getElementById("player").style.display = 'inline';
 
-        //    videocanplayInvalid(e);
-        //})
+                videostate = 1;
+            }
 
-        //v.load();
+            videocanplayInvalid(e);
+        })
 
-        ////再生中
+        v.load();
+
+        //再生中
         //v.addEventListener('playing', function () {
-        //    text.innerHTML = '再生中';
-        //    window.alert('再生中');
         //})
         
         function videocanplayInvalid(e) {
@@ -96,12 +100,16 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-window.addEventListener('load', (event) => {
-    var text = document.querySelector('#version1');
-    text.innerHTML = 'ページが完全に読み込まれました';
-    window.alert('ページが完全に読み込まれました');
-});
+// デバイスの方向の変化を検出したとき
+//window.addEventListener('deviceorientation', function (e) {
+//    console.log(e.alpha) // z軸 0 〜 360
+//    console.log(e.beta)  // x軸 -180 〜 180
+//    console.log(e.gamma) // y軸 -90 〜 90
+//});
 
-
-
-
+// デバイスの加速度の変化を検出したとき
+//window.addEventListener('devicemotion', function (e) {
+//    console.log(e.acceleration.x) // x軸
+//    console.log(e.acceleration.y) // y軸
+//    console.log(e.acceleration.z) // z軸
+//});
