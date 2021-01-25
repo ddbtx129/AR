@@ -1,33 +1,29 @@
 var webArViewer = webArViewer || {};
 
+var defaultAngle = 0;
+var defaultPos = { x: 0, y: 0, z: 0 };
+var defaultSize = { w: 10, h: 10, d: 10 };
+var zoomW = 0;
+var zoomH = 0;
+var objAngle = 0;
 var videoInfo = {};
 var videoState = 0;
 var objecttype = "png";
+var SizeRate = 20;
 
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
     webArViewer.scene = document.querySelector('a-scene');
 
-    var defaultAngle = 0;
-    var defaultPos = { x: 0, y: 0, z: 0 };
-    var defaultScale = { w: 4, h: 4, d: 4 };
-    var defaultwrapPos = { x: 0, y: 0, z: 0 };
-    var defaultwrapScale = { w: 4, h: 4, d: 4 };
-    var defaultlogoScale = { w: 4, h: 4, d: 2 };
-
-    var objAngle = 0;
-    var SizeRate = 20;
-
     var ar = {
-
 
         init: function () {
 
             videostate = 0;
 
             this.setArg();
-            
+
             if (this.setArData()) {
 
                 this.setWrap();
@@ -127,6 +123,7 @@ var objecttype = "png";
                     (self.arg.MkObjList + '/' + self.arg.ObjectList2)
                     :
                     (self.arg.ObjectList1 + '/' + self.arg.ObjectList2));
+
             } else {
                 object = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
             }
@@ -142,7 +139,7 @@ var objecttype = "png";
 
             dataObj.isPV = !!(self.arg.PVList);
             dataObj.isNFT = !!(self.arg.ARList);
-            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 2;
+            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 2; 
 
             dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
             dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
@@ -158,8 +155,7 @@ var objecttype = "png";
             var j = (dataObj.isMarkerType == 1 ? 2 : 2);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            //defaultScale = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
+            //defaultSize = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
 
             if (dataObj.path) {
 
@@ -275,7 +271,7 @@ var objecttype = "png";
                     videostate = 0;
                     this.setDiplayBtn(0);
                 }
-            })
+            });
 
             swPreview.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
@@ -283,21 +279,22 @@ var objecttype = "png";
                     videostate = 0;
                     this.setDiplayBtn(1);
                 }
-            })
+            });
         },
 
         setWrap: function () {
 
             var self = this;
             //var base = self.arg.base ? decodeURI(self.arg.base) : AFRAME.utils.coordinates.stringify(self.positionVec3('main'));
-            //defaultScale = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
-            var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-            var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
+            //defaultSize = (self.arData.isMarkerType == 1 ? { w: 2, h: 2, d: 2 } : { w: 4, h: 4, d: 4 });
+            defaultSize = { w: 4, h: 4, d: 4 };
+            var base = AFRAME.utils.coordinates.stringify('0 0 0');
+            //var base = AFRAME.utils.coordinates.stringify(String(((defaultSize.w / 2) * -1) + ' ' + String((defaultSize.h / 2) * -1) + ' ' + String((defaultSize.d / 2) * -1)));
 
             self.wrap = document.createElement('a-box');
             self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
+            self.wrap.setAttribute('scale', defaultSize.w + ' ' + defaultSize.h + ' ' + defaultSize.w);
+            self.wrap.setAttribute('position', base);
             self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
             self.wrap.setAttribute('rotation', '0 0 0');
             self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
@@ -312,6 +309,8 @@ var objecttype = "png";
                 return;
             }
 
+            var wh = { w: val.size.w, h: val.size.h };
+
             if (val.isShadow) {
 
                 var shadow = document.createElement('a-image');
@@ -321,7 +320,7 @@ var objecttype = "png";
                 shadow.setAttribute('rotation', '-90 0 0');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
+                    primitive: 'plane', height: wh.h, width: wh.w
                 });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
@@ -345,23 +344,23 @@ var objecttype = "png";
             defaultPos = posVec3;
 
             main.setAttribute('id', 'main');
-            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
+            main.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3));
 
             if (!val.isGif) {
 
                 main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-
+                
                 if (!val.isGltf) {
 
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
+                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(wh.w));
+                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(wh.h));
 
                     if (val.isMp4) {
                         main.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                        primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: val.size.h, width: val.size.w, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
@@ -369,7 +368,7 @@ var objecttype = "png";
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
-                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
+                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(wh.w + ' ' + wh.h + '' + wh.h));
                 }
 
             } else {
@@ -384,16 +383,17 @@ var objecttype = "png";
                 //var logo = document.createElement('a-image');
 
                 var logopos = self.positionVec3Logo(Number(val.isAnime));
+                var logoscale = { w: 8, h: 8, d: 2 };
                 var rete = (!val.isMp4) ? 1 : 2;
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
+                logo.setAttribute('scale', (String(logoscale.w * rete) + ' ' + String(logoscale.h * rete) + ' ' + String(logoscale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource');
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                //    primitive: 'box', height: defaultlogoScale, width: defaultlogoScale, depth: defaultlogoScale, segmentsHeight: 1, segmentsWidth: 1
+                //    primitive: 'box', height: logoscale, width: logoscale, depth: logoscale, segmentsHeight: 1, segmentsWidth: 1
                 //});
                 //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
                 //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
@@ -401,7 +401,7 @@ var objecttype = "png";
                 //});
 
                 if (!!val.isAnime) {
-                    logo.setAttribute('radius', (defaultlogoScale.w / 2));
+                    logo.setAttribute('radius', (logoscale.w / 2));
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn', {
                             property: 'rotation',
@@ -431,7 +431,7 @@ var objecttype = "png";
                             easing: 'easeInOutQuart',
                             loop: true,
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                            to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                         });
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__scale', {
                             property: 'scale',
@@ -439,8 +439,8 @@ var objecttype = "png";
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                            from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
+                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1
                         });
                     } else if (val.isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(logo, 'animation__turn1', {
@@ -470,7 +470,7 @@ var objecttype = "png";
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
+                            from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
                             to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             startEvents: 'pos3'
                         });
@@ -480,8 +480,8 @@ var objecttype = "png";
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: false,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
+                            from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
+                            to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1,
                             startEvents: 'scale3'
                         });
                     }
@@ -528,20 +528,22 @@ var objecttype = "png";
             bAngle.classList.add('current');
 
             var arGifRotation = '-30 0 0';
-            var prevPageY;
-            var zoomRateH = defaultwrapScale.h;
 
-            var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+            var prevPageY;
+            var zoomRateH = defaultSize.h;
+
+            var defaultwrapPos = { x: 0, y: 0, z: 0 };
+            var wrapPos = { x: 0, y: 0, z: 0 };
 
             if (self.arg.pv) {
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 2);
-                wrapPos.z -= defaultwrapScale.h * 1.5;
-                
+                wrapPos.z -=  defaultSize.h;
+
                 var pvAngle = 0;
 
-                zoomRateH = defaultwrapScale.h / 2;
+                zoomRateH = defaultSize.h / 2;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
@@ -552,12 +554,13 @@ var objecttype = "png";
                 if (!!val.isLogo) {
 
                     var logopos = self.positionVec3Logo(Number(val.isAnime));
+                    var logoscale = { w: 8, h: 8, d: 2 };
                     var rete = (!val.isMp4) ? 1 : 2;
 
                     self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
 
                     if (!!val.isAnime) {
-                        self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
+                        self.arData.logo.setAttribute('radius', (logoscale.w / 2));
                         if (val.isAnime == 1) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
                                 property: 'rotation',
@@ -587,7 +590,7 @@ var objecttype = "png";
                                 easing: 'easeInOutQuart',
                                 loop: true,
                                 from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                                to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                                to: logopos.x + ' ' + (logopos.y + (logoscale.h * rete) / 5) + ' ' + logopos.z
                             });
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                                 property: 'scale',
@@ -595,8 +598,8 @@ var objecttype = "png";
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: true,
-                                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
+                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1
                             });
                         } else if (val.isAnime == 11) {
                             AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
@@ -626,7 +629,7 @@ var objecttype = "png";
                                 dur: 400,
                                 easing: 'easeInOutQuart',
                                 loop: false,
-                                from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
+                                from: logopos.x + ' ' + (logopos.y - + (logoscale.h * rete) / 5) + ' ' + logopos.z,
                                 to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                                 startEvents: 'pos3'
                             });
@@ -636,8 +639,8 @@ var objecttype = "png";
                                 dur: 400,
                                 easing: 'easeOutQuad',
                                 loop: false,
-                                from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                                to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
+                                from: logoscale.w * rete * 1.2 + ' ' + logoscale.h * rete * 0.8 + ' ' + logoscale.d * rete,
+                                to: logoscale.w * rete * 0.8 + ' ' + logoscale.h * rete * 1.2 + ' ' + logoscale.d * rete * 1,
                                 startEvents: 'scale3'
                             });
                         }
@@ -672,7 +675,7 @@ var objecttype = "png";
                     });
 
                     defaultwrapPos.y = -5;
-                    wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                    wrapPos = defaultwrapPos;
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     mWrap = null;
@@ -728,34 +731,34 @@ var objecttype = "png";
                 webArViewer.scene.appendChild(mWrap);
                 self.mWrap = mWrap;
 
-                // Event
-                
                 // ↓ rotation 切替
                 bAngle.classList.add('current');
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        wrapPos = defaultwrapPos;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
-                    this.objectDataVal(zoomRateH, wrapPos);
                 });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        wrapPos = AFRAME.utils.coordinates.stringify(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+                        wrapPos = defaultwrapPos;
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
                         self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                     }
-                    this.objectDataVal(zoomRateH, wrapPos);
                 });
                 // ↑
             }
+
+            this.objectDatainnerHTML(zoomRateH, wrapPos);
 
             // 拡大・縮小
             webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
@@ -769,12 +772,10 @@ var objecttype = "png";
                     if ((zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
                         var rate = (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5;
                         zoomRateH += rate;
+                        this.objectDatainnerHTML(zoomRateH, wrapPos);
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                         });
-
-                        var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(zoomRateH).toFixed(1);
                     }
                 }
             });
@@ -791,12 +792,12 @@ var objecttype = "png";
 
             bUP.addEventListener('click', function () {
                 if (!!(bAngle.classList.contains('current'))) {
-                    wrapPos.y += yClickRate;
+                    wrapPos.y += yClockRate;
                 } else {
                     wrapPos.z -= yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(zoomRateH, wrapPos);
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
@@ -806,11 +807,11 @@ var objecttype = "png";
                     wrapPos.z += yClickRate;
                 }
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                this.objectDataVal(zoomRateH, wrapPos);
+                this.objectDatainnerHTML(zoomRateH, wrapPos);
             });
             // ↑ 
 
-            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.02 : 2);
+            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ?  0.02 : 2);
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -823,9 +824,9 @@ var objecttype = "png";
                         wrapPos.z -= yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(zoomRateH, wrapPos);
+                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
-            });
+            })
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
@@ -851,9 +852,9 @@ var objecttype = "png";
                         wrapPos.z += yTouchRate;
                     }
                     self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    this.objectDataVal(zoomRateH, wrapPos);
+                    this.objectDatainnerHTML(zoomRateH, wrapPos);
                 }, 10);
-            });
+            })
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
@@ -867,8 +868,6 @@ var objecttype = "png";
                 clearInterval(timer);
             });
             // ↑
-
-            this.objectDataVal(zoomRateH, wrapPos);
         },
 
         setTapEvents: function () {
@@ -972,8 +971,7 @@ var objecttype = "png";
             }
         },
 
-        objectDataVal: function (oScale, oPosition) {
-
+        objectDatainnerHTML: function (oScale, oPosition) {
             var elem = document.getElementById("debug1");
             elem.innerHTML = "Scale: " + Number(oScale).toFixed(1);
 
@@ -983,23 +981,23 @@ var objecttype = "png";
 
         positionVec3Logo: function (anime) {
             var self = this;
-            //var h1 = self.arData.size.h;
+            var h1 = self.arData.size.h;
             var h1_2 = (self.arData.size.h / 5);
-            //var posy = 0;
+            var posy = 0;
 
-            //switch (anime) {
-            //    case 3:
-            //        posy = -((self.arData.isMarkerType == 1 ? 3 : 110) / 2);
-            //        break;
-            //    default:
-            //        posy = 0;
-            //        break;
-            //}
+            switch (anime) {
+                case 3:
+                    posy = -((self.arData.isMarkerType == 1 ? 3 : 110) / 2);
+                    break;
+                default:
+                    posy = 0;
+                    break;
+            }
 
-            //if (self.arData.size.w > self.arData.size.h) {
-            //    h1_2 = (self.arData.size.w / 2);
-            //}
-
+            if (self.arData.size.w > self.arData.size.h) {
+                h1_2 = (self.arData.size.w / 2);
+            }
+            
             //return { x: 0, y: -(h1_2) + (self.arData.isMarkerType == 1 ? 0.75 : 10) * ((self.arData.isMarkerType == 1) ? 1 : -1) + posy, z: 0 };
             return { x: 0, y: -h1_2, z: 0 };
         },
@@ -1013,10 +1011,10 @@ var objecttype = "png";
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
-                //    return { x: 0, y: i - h1_2, z: -h1_2 };
+            //    return { x: 0, y: i - h1_2, z: -h1_2 };
             } else {
                 return { x: 0, y: h1_2, z: 0 };
-                //   return { x: 0, y: i, z: 0 };
+             //   return { x: 0, y: i, z: 0 };
             }
         }
     };
