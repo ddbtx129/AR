@@ -74,7 +74,6 @@ var viewmode = 'marker';
                 // ロード完了
                 if (webArViewer.srcno.length > 1) {
                     var msg = document.querySelector('slideshow');
-                    msg.setAttribute
 
                     document.getElementById("slideshow").style.display = 'inline';
 
