@@ -30,14 +30,6 @@ var viewmode = 'marker';
 
             videostate = 0;
 
-            //var event = new Event('styleChange');
-            //var loader = document.getElementById('arloader');
-            //loader.addEventListener('styleChange', function (e) {
-            //    var displaystyle = loader.getAttribute('style');
-            //    window.alert((displaystyle).toString());
-            //});
-            //loader.dispatchEvent(event);
-
             this.setArg();
             
             if (this.setArData()) {
@@ -1160,14 +1152,4 @@ var viewmode = 'marker';
     if(webArViewer.srcno.length > 1){
         window.alert('ダブルタップで表示が切り替わります。');
     }
-
-    var loader = document.getElementById('arloader');
-    var displaystyle = loader.getAttribute('style');
-
-    while ((displaystyle).toString().indexOf('inline') > 0) {
-        displaystyle = loader.getAttribute('style');
-    };
-
-    window.alert('開始');
-
 }());
