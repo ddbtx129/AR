@@ -69,6 +69,13 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
 
             });
+
+            var loader = document.getElementById('arloader');
+            loader.addEventListener('change', function (e) {
+                var displaystyle = loader.getAttribute('style').display;
+                window.alert((displaystyle).toString());
+            });
+
         },
 
         setArg: function () {
