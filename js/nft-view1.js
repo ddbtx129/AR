@@ -68,6 +68,11 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
 
             });
+
+            var loader = document.querySelector('a-assets').fileLoader;
+            loader.addEventListener('loaded', function (e) {
+                window.alert('ロード完了');
+            });
         },
 
         setArg: function () {
