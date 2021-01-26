@@ -112,7 +112,7 @@ a-camera {
     background-color: rgba(235, 235, 235, 0.6);
     padding: 5px 3px 5px 5px;
     border-radius: 10px 0 0 10px;
-    z-index: 11;
+    z-index: 995;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
