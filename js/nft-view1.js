@@ -69,7 +69,7 @@ var viewmode = 'marker';
 
             });
 
-            var loader = document.querySelector('a-assets').fileLoader;
+            var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
                 window.alert('ロード完了');
             });
