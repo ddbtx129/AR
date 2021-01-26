@@ -259,6 +259,34 @@ a-camera {
         color: white;
     }
 
+.slide-show {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+    .slide-show div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        margin-top: 50%;
+        margin-bottom: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+    }
+
 @-webkit-keyframes attention {
     0% {
     opacity: 0
