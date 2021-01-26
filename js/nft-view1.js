@@ -994,14 +994,6 @@ var viewmode = 'marker';
 
                 tapclicked = true;
 
-                if (document.getElementById("slideshow").style.display == 'inline') {
-                    setTimeout(function () {
-                        document.getElementById("slideshow").style.display = 'none';
-                        tapCount = 0;
-                        tapclicked = false;
-                    }, 350);
-                }
-
                 setTimeout(function () {
 
                     if (tapclicked && tapCount == 1 && !(scalechange)) {
@@ -1037,6 +1029,11 @@ var viewmode = 'marker';
                     tapclicked = false;
                 }, 750);
 
+            });
+
+            var slideinfo = getElementById("slideshow");
+            slideinfo.scene.addEventListener(self.eventNames.start, function (e) {
+                document.getElementById("slideshow").style.display = 'none';
             });
 
             function switchObject(e, fileno) {
