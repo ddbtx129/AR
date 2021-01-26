@@ -70,12 +70,13 @@ var viewmode = 'marker';
 
             });
 
+            var event = new Event('styleChange');
             var loader = document.getElementById('arloader');
-            loader.addEventListener('change', function (e) {
+            loader.addEventListener('styleChange', function (e) {
                 var displaystyle = loader.getAttribute('style').display;
                 window.alert((displaystyle).toString());
             });
-
+            loader.dispatchEvent(event);
         },
 
         setArg: function () {
