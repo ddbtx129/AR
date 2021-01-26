@@ -73,7 +73,7 @@ var viewmode = 'marker';
             var event = new Event('styleChange');
             var loader = document.getElementById('arloader');
             loader.addEventListener('styleChange', function (e) {
-                var displaystyle = loader.getAttribute('style').display;
+                var displaystyle = loader.getAttribute('style');
                 window.alert((displaystyle).toString());
             });
             loader.dispatchEvent(event);
