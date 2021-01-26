@@ -71,7 +71,17 @@ var viewmode = 'marker';
 
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
-                window.alert('ロード完了');
+                // ロード完了
+                if (webArViewer.srcno.length > 1) {
+                    var msg = document.querySelector('slideshow');
+                    msg.setAttribute
+
+                    document.getElementById("slideshow").style.display = 'inline';
+
+                    setTimeout(function () {
+                        document.getElementById("slideshow").style.display = 'none';
+                    }, 3000);
+                }
             });
         },
 
@@ -1153,8 +1163,4 @@ var viewmode = 'marker';
     webArViewer.defaultwrapPos = defaultwrapPos;
     webArViewer.defaultwrapScale = defaultwrapScale;
     webArViewer.defaultlogoScale = defaultlogoScale;
-
-    if(webArViewer.srcno.length > 1){
-        window.alert('ダブルタップで表示が切り替わります。');
-    }
 }());
