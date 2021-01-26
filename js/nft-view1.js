@@ -1161,7 +1161,7 @@ var viewmode = 'marker';
         window.alert('ダブルタップで表示が切り替わります。');
     }
 
-    var loader = document.querySelector('arjs-loader');
+    var loader = document.getElementById('arloader');
     var displaystyle = loader.getAttribute('style');
 
     while ((loader.getAttribute('style')).toString().indexOf('inline') > 0) {
