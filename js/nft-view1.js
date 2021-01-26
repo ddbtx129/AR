@@ -1162,10 +1162,9 @@ var viewmode = 'marker';
     }
 
     var loader = document.querySelector('arjs-loader');
-    window.alert((displaystyle).toString());
-    var displaystyle = (displaystyle).toString();
+    var displaystyle = loader.getAttribute('style');
 
-    while ((displaystyle).toString().indexOf('inline') > 0) {
+    while ((loader.getAttribute('style')).toString().indexOf('inline') > 0) {
         loader = document.querySelector('arjs-loader');
     };
 
