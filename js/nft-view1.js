@@ -77,9 +77,9 @@ var viewmode = 'marker';
 
                     document.getElementById("slideshow").style.display = 'inline';
 
-                    setTimeout(function () {
-                        document.getElementById("slideshow").style.display = 'none';
-                    }, 7500);
+                    //setTimeout(function () {
+                    //    document.getElementById("slideshow").style.display = 'none';
+                    //}, 6000);
                 }
 
                 if (webArViewer.ar.arData.isPV && webArViewer.ar.arData.isMp4) {
@@ -993,6 +993,14 @@ var viewmode = 'marker';
                 }
 
                 tapclicked = true;
+
+                if (document.getElementById("slideshow").style.display == 'inline') {
+                    setTimeout(function () {
+                        document.getElementById("slideshow").style.display = 'none';
+                        tapCount = 0;
+                        tapclicked = false;
+                    }, 350);
+                }
 
                 setTimeout(function () {
 
