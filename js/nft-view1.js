@@ -1164,8 +1164,8 @@ var viewmode = 'marker';
     var loader = document.getElementById('arloader');
     var displaystyle = loader.getAttribute('style');
 
-    while ((loader.getAttribute('style')).toString().indexOf('inline') > 0) {
-        loader = document.querySelector('arjs-loader');
+    while ((displaystyle).toString().indexOf('inline') > 0) {
+        displaystyle = loader.getAttribute('style');
     };
 
     window.alert('開始');
