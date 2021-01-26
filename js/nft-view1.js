@@ -76,8 +76,6 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
 
             });
-
-            loader.setAttribute()
         },
 
         setArg: function () {
