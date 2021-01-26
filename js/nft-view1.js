@@ -1117,7 +1117,7 @@ var viewmode = 'marker';
         positionVec3Logo: function (anime) {
             var self = this;
             var h1_2 = (self.arData.size.h / 5);
-            var margin = ((self.arData.isMp4) ? 0.25 : 0);
+            var margin = ((self.arData.isMp4) ? 1 : 0);
 
             return { x: 0, y: -h1_2 - margin, z: 0 };
         },
@@ -1149,5 +1149,9 @@ var viewmode = 'marker';
     webArViewer.defaultwrapPos = defaultwrapPos;
     webArViewer.defaultwrapScale = defaultwrapScale;
     webArViewer.defaultlogoScale = defaultlogoScale;
+
+    if(webArViewer.srcno.length > 1){
+        window.alert('ダブルタップで表示が切り替わります。');
+    }
 
 }());
