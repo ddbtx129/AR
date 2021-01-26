@@ -1031,7 +1031,7 @@ var viewmode = 'marker';
 
             });
 
-            var slideinfo = getElementById("slideshow");
+            var slideinfo = document.getElementById("slideshow");
             slideinfo.scene.addEventListener(self.eventNames.start, function (e) {
                 document.getElementById("slideshow").style.display = 'none';
             });
