@@ -31,7 +31,6 @@ AFRAME.registerComponent('markerhandler', {
     }
 });
 
-
 AFRAME.registerComponent('videohandler', {
     init: function () {
 
@@ -65,51 +64,24 @@ window.addEventListener('DOMContentLoaded', function () {
     if (objecttype == "mp4") {
 
         var v = document.querySelector('#source1');
-        var text = document.querySelector('#version1');
-
-        //ロード開始
-        //v.addEventListener('loadedmetadata', function () {
-        //})
-
-        //読み込み完了
-        //v.addEventListener('loadeddata', function () {
-        //})
 
         //再生可能
         v.addEventListener('canplay', function (e) {
 
-            if (viewmode == 'pv') {
-                var video = document.querySelector('#source1');
-                document.getElementById("player").style.display = 'inline';
+            //if (viewmode == 'pv') {
+            //    var video = document.querySelector('#source1');
+            //    document.getElementById("player").style.display = 'inline';
 
-                videostate = 1;
-            }
+            //    videostate = 1;
+            //}
 
-            videocanplayInvalid(e);
+            //videocanplayInvalid(e);
         })
 
         v.load();
 
-        //再生中
-        //v.addEventListener('playing', function () {
-        //})
-        
         function videocanplayInvalid(e) {
             e.preventDefault();
         }
     }
 });
-
-// デバイスの方向の変化を検出したとき
-//window.addEventListener('deviceorientation', function (e) {
-//    console.log(e.alpha) // z軸 0 〜 360
-//    console.log(e.beta)  // x軸 -180 〜 180
-//    console.log(e.gamma) // y軸 -90 〜 90
-//});
-
-// デバイスの加速度の変化を検出したとき
-//window.addEventListener('devicemotion', function (e) {
-//    console.log(e.acceleration.x) // x軸
-//    console.log(e.acceleration.y) // y軸
-//    console.log(e.acceleration.z) // z軸
-//});

@@ -79,7 +79,14 @@ var viewmode = 'marker';
 
                     setTimeout(function () {
                         document.getElementById("slideshow").style.display = 'none';
-                    }, 3000);
+                    }, 7500);
+                }
+
+                if (webArViewer.ar.arData.isPV && webArViewer.ar.arData.isMp4) {
+                    var video = document.querySelector('#source1');
+                    document.getElementById("player").style.display = 'inline';
+
+                    videostate = 1;
                 }
             });
         },
