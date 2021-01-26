@@ -30,6 +30,13 @@ var viewmode = 'marker';
 
             videostate = 0;
 
+            var event = new Event('styleChange');
+            var loader = document.getElementById('arloader');
+            loader.addEventListener('styleChange', function (e) {
+                var displaystyle = loader.getAttribute('style');
+                window.alert((displaystyle).toString());
+            });
+            loader.dispatchEvent(event);
 
             this.setArg();
             
@@ -70,13 +77,7 @@ var viewmode = 'marker';
 
             });
 
-            var event = new Event('styleChange');
-            var loader = document.getElementById('arloader');
-            loader.addEventListener('styleChange', function (e) {
-                var displaystyle = loader.getAttribute('style');
-                window.alert((displaystyle).toString());
-            });
-            loader.dispatchEvent(event);
+            loader.setAttribute()
         },
 
         setArg: function () {
@@ -1160,6 +1161,12 @@ var viewmode = 'marker';
 
     if(webArViewer.srcno.length > 1){
         window.alert('ダブルタップで表示が切り替わります。');
+    }
+
+    var loader = document.querySelector('arjs-loader');
+    while (loader != null) {
+        window.alert('開始');
+        loader = document.querySelector('arjs-loader');
     }
 
 }());
