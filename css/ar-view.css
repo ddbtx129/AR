@@ -275,14 +275,16 @@ a-camera {
 }
 
     .slide-show div {
-        position: absolute;
+        top: 75%;
+        left: 50%;
         height: 100%;
-        width: 100%;
+        width: 70%;
         margin-top: 50%;
         margin-bottom: 50%;
         margin-left: auto;
         margin-right: auto;
-        text-align: center;
+        align-items: center;
+        text-align: left;
         font-size: 1.25em;
         color: white;
     }
