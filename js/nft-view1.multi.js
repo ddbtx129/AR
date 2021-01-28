@@ -24,8 +24,9 @@ var viewmode = 'marker';
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
     var scalechange = 0;
 
+    var getType = '';
     var objLen = 1;
-
+    
     var ar = {
 
         init: function () {
@@ -97,7 +98,6 @@ var viewmode = 'marker';
 
             var self = this;
             var arg = new Array;
-            arg[0] = {};
 
             var pair = location.search.substring(1).split('&');
 
@@ -106,6 +106,9 @@ var viewmode = 'marker';
                 arg[0][kv[0]] = decodeURIComponent(kv[1]);
             }
 
+            var base = this.readXml('data/ren_nagase/01.xml', 'setXmlbasedata');
+
+            arg[0] = {};
             // プレビューモード
             arg[0].PVList = arg[0].pv;
 
@@ -1157,18 +1160,20 @@ var viewmode = 'marker';
         },
 
         readXml: function (filenm, fncnm) {
+            var xmldata;
             var XMLHR = new XMLHttpRequest();
             XMLHR.onreadystatechange = function () {
                 if (ＸＭＬＨＲ.readyState == 4 && ＸＭＬＨＲ.status == 200) {
                     var reader = XMLHR.responseXML;
                     // ＸＭＬファイルではresponseTextではなくresponseXML
-                    var fnc
-                        = new Function("arg", "return " + fncnm + "(arg)");
-                    fnc(reader);
+                    var fnc = new Function("arg", "return " + fncnm + "(arg)");
+                    xmldata = fnc(reader);
                 }
             }
             XMLHR.open("GET", filenm, true);
             XMLHR.send(null);
+
+            return xmldata; 
         },
 
         setXmlbasedata: function (tabelnm) {
