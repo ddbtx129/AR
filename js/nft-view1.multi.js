@@ -99,8 +99,6 @@ var viewmode = 'marker';
             var self = this;
             var arg = new Array;
             
-            var base = this.readXml('data/ren_nagase/01.xml', 'setXmlbasedata');
-
             var pair = location.search.substring(1).split('&');
 
             for (var i = 0; pair[i]; i++) {
@@ -153,6 +151,8 @@ var viewmode = 'marker';
             }
 
             self.arg = arg;
+
+            var base = this.readXml('data/ren_nagase/01.xml', 'setXmlbasedata');
         },
 
         setArData: function () {
