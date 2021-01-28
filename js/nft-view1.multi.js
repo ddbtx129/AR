@@ -98,7 +98,8 @@ var viewmode = 'marker';
 
             var self = this;
             var arg = new Array;
-            
+            arg[0] = {};
+
             var pair = location.search.substring(1).split('&');
 
             for (var i = 0; pair[i]; i++) {
@@ -106,7 +107,6 @@ var viewmode = 'marker';
                 arg[0][kv[0]] = decodeURIComponent(kv[1]);
             }
 
-            arg[0] = {};
             // プレビューモード
             arg[0].PVList = arg[0].pv;
 
