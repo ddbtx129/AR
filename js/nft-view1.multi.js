@@ -98,6 +98,8 @@ var viewmode = 'marker';
 
             var self = this;
             var arg = new Array;
+            
+            var base = this.readXml('data/ren_nagase/01.xml', 'setXmlbasedata');
 
             var pair = location.search.substring(1).split('&');
 
@@ -105,8 +107,6 @@ var viewmode = 'marker';
                 var kv = pair[i].split('=');
                 arg[0][kv[0]] = decodeURIComponent(kv[1]);
             }
-
-            var base = this.readXml('data/ren_nagase/01.xml', 'setXmlbasedata');
 
             arg[0] = {};
             // プレビューモード
