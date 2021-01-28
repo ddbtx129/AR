@@ -24,6 +24,8 @@ var viewmode = 'marker';
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
     var scalechange = 0;
 
+    var objLen = 1;
+
     var ar = {
 
         init: function () {
@@ -94,57 +96,58 @@ var viewmode = 'marker';
         setArg: function () {
 
             var self = this;
+            var arg = new Array;
+            arg[0] = {};
 
-            var arg = {};
             var pair = location.search.substring(1).split('&');
 
             for (var i = 0; pair[i]; i++) {
                 var kv = pair[i].split('=');
-                arg[kv[0]] = decodeURIComponent(kv[1]);
-            }
-
-            // 影
-            arg.shodowList = arg.xs && (parseInt(arg.xs, 16).toString(2));
-            // サイズ
-            arg.sizeList = arg.wh && (parseInt(arg.wh, 16).toString(10));
-            // 角度
-            arg.angleList = arg.an && (parseInt(arg.an, 10).toString(2));
-            // オブジェクトタイプ
-            arg.typeList = arg.t;
-            // 
-            arg.pmList = arg.pmList && (parseInt(arg.pmList, 10).toString());
-
-            // マーカー
-            arg.markerList = arg.m;
-            arg.markerList1 = arg.m1;
-            arg.markerList2 = arg.m2;
-
-            // 対象オブジェクト
-            arg.ObjectList = arg.o;
-            arg.ObjectList1 = arg.o1;
-            arg.ObjectList2 = arg.o2;
-            arg.ObjectList3 = !!(arg.o3) ? arg.o3 : arg.o2;
-
-            // マーカー＆オブジェクト
-            arg.MkObjList = arg.mo;
-
-            // ロゴ表示
-            var logo = arg.l && ('0000' + (parseInt(arg.l, 16).toString(10))).slice(-4);
-
-            arg.LogoList = {};
-            arg.LogoAnimeList = {};
-
-            if (!!(logo)) {
-                logo = (logo.match(/.{2}/g));
-                arg.LogoList = (logo).toString().split(',');
-                arg.LogoAnimeList = (arg.LogoList[1] && parseInt(arg.LogoList[1]));
+                arg[0][kv[0]] = decodeURIComponent(kv[1]);
             }
 
             // プレビューモード
-            arg.PVList = arg.pv;
+            arg[0].PVList = arg[0].pv;
 
-            //
-            arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString());
+            // マーカー OR NFT
+            arg[0].ARList = arg[0].ar && (parseInt(arg[0].ar, 10).toString());
+
+            // 影
+            arg[0].shodowList = arg[0].xs && (parseInt(arg[0].xs, 16).toString(2));
+            // サイズ
+            arg[0].sizeList = arg[0].wh && (parseInt(arg[0].wh, 16).toString(10));
+            // 角度
+            arg[0].angleList = arg[0].an && (parseInt(arg[0].an, 10).toString(2));
+            // オブジェクトタイプ
+            arg[0].typeList = arg[0].t;
+            //// 
+            //arg[0].pmList = arg[0].pmList && (parseInt(arg[0].pmList, 10).toString());
+
+            // マーカー
+            arg[0].markerList = arg[0].m;
+            arg[0].markerList1 = arg[0].m1;
+            arg[0].markerList2 = arg[0].m2;
+
+            // 対象オブジェクト
+            arg[0].ObjectList = arg[0].o;
+            arg[0].ObjectList1 = arg[0].o1;
+            arg[0].ObjectList2 = arg[0].o2;
+            arg[0].ObjectList3 = !!(arg[0].o3) ? arg[0].o3 : arg[0].o2;
+
+            // マーカー＆オブジェクト
+            arg[0].MkObjList = arg[0].mo;
+
+            // ロゴ表示
+            var logo = arg[0].l && ('0000' + (parseInt(arg[0].l, 16).toString(10))).slice(-4);
+
+            arg[0].LogoList = {};
+            arg[0].LogoAnimeList = {};
+
+            if (!!(logo)) {
+                logo = (logo.match(/.{2}/g));
+                arg[0].LogoList = (logo).toString().split(',');
+                arg[0].LogoAnimeList = (arg[0].LogoList[1] && parseInt(arg[0].LogoList[1]));
+            }
 
             self.arg = arg;
         },
@@ -157,30 +160,31 @@ var viewmode = 'marker';
             assets.setAttribute('timeout', '9000');
 
             var arData = null;
+            //var dataObj = new Array;
 
-            objecttype = (!(self.arg.typeList) ? GetFileType('') : GetFileType(String(self.arg.typeList)));
+            objecttype = (!(self.arg[0].typeList) ? GetFileType('') : GetFileType(String(self.arg[0].typeList)));
 
             // データの準備
             var object = {};
             var n_object = '';
             var seq = 1;
 
-            if (!(self.arg.ObjectList)) {
-                seq = (Number(self.arg.ObjectList3) - Number(self.arg.ObjectList2));
-                var no = Number(self.arg.ObjectList2);
+            if (!(self.arg[0].ObjectList)) {
+                seq = (Number(self.arg[0].ObjectList3) - Number(self.arg[0].ObjectList2));
+                var no = Number(self.arg[0].ObjectList2);
                 for (var i = 0; i <= seq; i++) {
                     var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
                     var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
-                    object[i] = ((self.arg.MkObjList) && (obj) ?
-                        (self.arg.MkObjList + '/' + obj)
+                    object[i] = ((self.arg[0].MkObjList) && (obj) ?
+                        (self.arg[0].MkObjList + '/' + obj)
                         :
-                        (self.arg.ObjectList1 + '/' + obj));
+                        (self.arg[0].ObjectList1 + '/' + obj));
                 }
             } else {
-                object[0] = (!(self.arg.ObjectList) ? '' : self.arg.ObjectList);
+                object[0] = (!(self.arg[0].ObjectList) ? '' : self.arg[0].ObjectList);
             }
 
-            n_object = ((self.arg.MkObjList) ? (self.arg.MkObjList) : ((self.arg.ObjectList1) ? (self.arg.ObjectList1) : (self.arg.ObjectList)));
+            n_object = ((self.arg[0].MkObjList) ? (self.arg[0].MkObjList) : ((self.arg[0].ObjectList1) ? (self.arg[0].ObjectList1) : (self.arg[0].ObjectList)));
 
             var dataObj = { path: object[0] + '.' + String(objecttype) };
 
@@ -200,19 +204,19 @@ var viewmode = 'marker';
             dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
             dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
             dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
-            dataObj.isPV = !!(self.arg.PVList);
-            dataObj.isNFT = !!(self.arg.ARList);
-            dataObj.isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1;
-            dataObj.isLogo = (!!(self.arg.LogoList) ? self.arg.LogoList[0] : '0');
-            dataObj.isAnime = (!!(self.arg.LogoAnimeList) ? Number(self.arg.LogoAnimeList) : 0);
-            dataObj.isShadow = self.arg.shodowList && !!Number(self.arg.shodowList);
-            dataObj.isPm = !!(self.arg.pmList);
+            dataObj.isPV = !!(self.arg[0].PVList);
+            dataObj.isNFT = !!(self.arg[0].ARList);
+            dataObj.isMarkerType = !!(self.arg[0].ARList) ? Number(self.arg[0].ARList) : 1;
+            dataObj.isLogo = (!!(self.arg[0].LogoList) ? self.arg[0].LogoList[0] : '0');
+            dataObj.isAnime = (!!(self.arg[0].LogoAnimeList) ? Number(self.arg[0].LogoAnimeList) : 0);
+            dataObj.isShadow = self.arg[0].shodowList && !!Number(self.arg[0].shodowList);
+            //dataObj.isPm = !!(self.arg[0].pmList);
 
             // サイズ
-            self.arg.sizeList = String(!!(!!(self.arg.sizeList) && Number(self.arg.ar) == 0) ? self.arg.sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
+            self.arg[0].sizeList = String(!!(!!(self.arg[0].sizeList) && Number(self.arg[0].ar) == 0) ? self.arg[0].sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
 
-            var wh = SizeSplit(self.arg.sizeList).toString().split(',');
-            var i = ((parseInt(self.arg.sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg.sizeList).toString(10)).length : (parseInt(self.arg.sizeList).toString(10)).length + 1;
+            var wh = SizeSplit(self.arg[0].sizeList).toString().split(',');
+            var i = ((parseInt(self.arg[0].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg[0].sizeList).toString(10)).length : (parseInt(self.arg[0].sizeList).toString(10)).length + 1;
             //var j = (dataObj.isMarkerType == 1 ? 2 : 4);
             var j = (dataObj.isMarkerType == 1 ? 2 : 2);
 
@@ -301,7 +305,7 @@ var viewmode = 'marker';
 
                 if (dataObj.isLogo) {
 
-                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg.LogoList[0] + '.gltf';
+                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg[0].LogoList[0] + '.gltf';
 
                     var model = document.createElement('a-asset-item');
                     model.setAttribute('crossorigin', 'anonymous');
@@ -345,7 +349,7 @@ var viewmode = 'marker';
             var swMarker = document.getElementById('swMarker');
             var swPreview = document.getElementById('swPreview');
 
-            if (self.arg.pv) {
+            if (self.arg[0].pv) {
                 swPreview.classList.add('current');
             } else {
                 swMarker.classList.add('current');
@@ -665,7 +669,7 @@ var viewmode = 'marker';
 
             var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
 
-            if (self.arg.pv) {
+            if (self.arg[0].pv) {
                 
                 viewmode = 'pv';
 
@@ -720,14 +724,14 @@ var viewmode = 'marker';
 
                     mk = 'pattern/p-def.patt';
 
-                    if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                        mk = 'pattern/' + self.arg.markerList1 + '/p-' + self.arg.markerList2 + '.patt';
-                    } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                        mk = 'pattern/' + self.arg.MkObjList + '/p-' + self.arg.markerList2 + '.patt';
-                    } else if ((self.arg.markerList) && (self.arg.markerList2)) {
-                        mk = 'pattern/' + self.arg.markerList + '/p-' + self.arg.markerList2 + '.patt';
-                    } else if ((self.arg.markerList)) {
-                        mk = 'pattern/p-' + self.arg.markerList + '.patt';
+                    if ((self.arg[0].markerList1) && (self.arg[0].markerList2)) {
+                        mk = 'pattern/' + self.arg[0].markerList1 + '/p-' + self.arg[0].markerList2 + '.patt';
+                    } else if ((self.arg[0].MkObjList) && (self.arg[0].markerList2)) {
+                        mk = 'pattern/' + self.arg[0].MkObjList + '/p-' + self.arg[0].markerList2 + '.patt';
+                    } else if ((self.arg[0].markerList) && (self.arg[0].markerList2)) {
+                        mk = 'pattern/' + self.arg[0].markerList + '/p-' + self.arg[0].markerList2 + '.patt';
+                    } else if ((self.arg[0].markerList)) {
+                        mk = 'pattern/p-' + self.arg[0].markerList + '.patt';
                     }
 
                 } else {
@@ -746,16 +750,16 @@ var viewmode = 'marker';
                     mWrap.setAttribute('smoothTolerance', '0.01');
                     mWrap.setAttribute('smoothThreshold', '5');
 
-                    if ((self.arg.markerList1) && (self.arg.markerList2)) {
-                        mk = 'ImageDescriptors/' + self.arg.markerList1 + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                    } else if ((self.arg.MkObjList) && (self.arg.markerList2)) {
-                        mk = 'ImageDescriptors/' + self.arg.MkObjList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                    } else if ((self.arg.markerList) && (self.arg.markerList2)) {
-                        mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList2 + '/' + self.arg.markerList2;
-                    } else if ((self.arg.markerList)) {
-                        mk = 'ImageDescriptors/' + self.arg.markerList + '/' + self.arg.markerList;
-                    } else if ((self.arg.MkObjList)) {
-                        mk = 'ImageDescriptors/' + self.arg.MkObjList + '/01';
+                    if ((self.arg[0].markerList1) && (self.arg[0].markerList2)) {
+                        mk = 'ImageDescriptors/' + self.arg[0].markerList1 + '/' + self.arg[0].markerList2 + '/' + self.arg[0].markerList2;
+                    } else if ((self.arg[0].MkObjList) && (self.arg[0].markerList2)) {
+                        mk = 'ImageDescriptors/' + self.arg[0].MkObjList + '/' + self.arg[0].markerList2 + '/' + self.arg[0].markerList2;
+                    } else if ((self.arg[0].markerList) && (self.arg[0].markerList2)) {
+                        mk = 'ImageDescriptors/' + self.arg[0].markerList + '/' + self.arg[0].markerList2 + '/' + self.arg[0].markerList2;
+                    } else if ((self.arg[0].markerList)) {
+                        mk = 'ImageDescriptors/' + self.arg[0].markerList + '/' + self.arg[0].markerList;
+                    } else if ((self.arg[0].MkObjList)) {
+                        mk = 'ImageDescriptors/' + self.arg[0].MkObjList + '/01';
                     }
                 }
 
@@ -853,7 +857,7 @@ var viewmode = 'marker';
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
             var timer;
-            var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.2 : 5);
+            var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg[0].pv)) ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
                 webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
@@ -878,7 +882,7 @@ var viewmode = 'marker';
             });
             // ↑ 
 
-            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg.pv)) ? 0.02 : 2);
+            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg[0].pv)) ? 0.02 : 2);
 
             // ↓ UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
@@ -1143,7 +1147,7 @@ var viewmode = 'marker';
             var h1 = self.arData.size.h;
             var h1_2 = self.arData.size.h / 2;
 
-            var i = (!!(self.arg.pv) ? h1_2 : (!!(self.arg.isMarkerType == 1) ? -h1 * 5 : 0));
+            var i = (!!(self.arg[0].pv) ? h1_2 : (!!(self.arg[0].isMarkerType == 1) ? -h1 * 5 : 0));
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
@@ -1261,7 +1265,7 @@ var viewmode = 'marker';
 
     webArViewer.ar = ar;
     webArViewer.ar.init();
-    webArViewer.ar.setDiplayBtn(!!(ar.arg.pv), srcno.obj);
+    webArViewer.ar.setDiplayBtn(!!(ar.arg[0].pv), srcno.obj);
 
     webArViewer.srcno = srcno;
 
