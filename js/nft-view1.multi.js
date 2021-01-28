@@ -1170,102 +1170,194 @@ var viewmode = 'marker';
                     xmldata = fnc(reader);
                 }
             }
+
+            function setXmlbasedata(tabelnm) {
+                var base = {};
+
+                var ed = new Array();
+                var ar = new Array();
+                var pv = new Array();
+
+                var baseD = tabelnm.getElementsByTagName("basedata");
+                var cEd = tabelnm.getElementsByTagName("ed");
+                var cAr = tabelnm.getElementsByTagName("ar");
+                var cPv = tabelnm.getElementsByTagName("pv");
+
+                var rows = baseD.length;
+                for (var i = 0; i < rows; i++) {
+                    ed[i] = ed[i].childNodes[0].nodeValue;
+                    ar[i] = ar[i].childNodes[0].nodeValue;
+                    pv[i] = pv[i].childNodes[0].nodeValue;
+                }
+
+                base.rows = rows;
+                base.ed = ed;
+                base.ar = ar;
+                base.pv = pv;
+
+                return base;
+            };
+
+            function setXmlpcsdata(tabelnm) {
+                var pcs = {};
+
+                var m = new Array();
+                var m1 = new Array();
+                var m2 = new Array();
+                var mo = new Array();
+                var t = new Array();
+                var xs = new Array();
+                var an = new Array();
+                var wh = new Array();
+                var o = new Array();
+                var o1 = new Array();
+                var o2 = new Array();
+                var o3 = new Array();
+                var l = new Array();
+
+                var pcsD = tabelnm.getElementsByTagName("pcsdata");
+                var cM = tabelnm.getElementsByTagName("m");
+                var cM1 = tabelnm.getElementsByTagName("m1");
+                var cM2 = tabelnm.getElementsByTagName("m2");
+                var cMo = tabelnm.getElementsByTagName("mo");
+                var cXs = tabelnm.getElementsByTagName("xs");
+                var cWh = tabelnm.getElementsByTagName("wh");
+                var cO = tabelnm.getElementsByTagName("o");
+                var cO1 = tabelnm.getElementsByTagName("o1");
+                var cO2 = tabelnm.getElementsByTagName("o2");
+                var cO3 = tabelnm.getElementsByTagName("o3");
+                var cO3 = tabelnm.getElementsByTagName("l");
+
+                var rows = pcsD.length;
+                for (var i = 0; i < rows; i++) {
+                    m[i] = m[i].childNodes[0].nodeValue;
+                    m1[i] = m1[i].childNodes[0].nodeValue;
+                    m2[i] = m2[i].childNodes[0].nodeValue;
+                    mo[i] = mo[i].childNodes[0].nodeValue;
+                    t[i] = t[i].childNodes[0].nodeValue;
+                    an[i] = an[i].childNodes[0].nodeValue;
+                    wh[i] = wh[i].childNodes[0].nodeValue;
+                    o[i] = o[i].childNodes[0].nodeValue;
+                    o1[i] = o1[i].childNodes[0].nodeValue;
+                    o2[i] = o2[i].childNodes[0].nodeValue;
+                    o3[i] = o3[i].childNodes[0].nodeValue;
+                    l[i] = l[i].childNodes[0].nodeValue;
+                }
+
+                pcs.rows = rows;
+                pcs.m = m;
+                pcs.m1 = m1;
+                pcs.m2 = m2;
+                pcs.mo = m0;
+                pcs.t = t;
+                pcs.xs = xs;
+                pcs.an = an;
+                pcs.wh = wh;
+                pcs.o = o;
+                pcs.o1 = o1;
+                pcs.o2 = o2;
+                pcs.o3 = o3;
+                pcs.l = l;
+
+                return pcs;
+            };
+
             XMLHR.open("GET", filenm, true);
             XMLHR.send(null);
 
             return xmldata; 
-        },
-
-        setXmlbasedata: function (tabelnm) {
-            var base = {};
-
-            var ed = new Array();
-            var ar = new Array();
-            var pv = new Array();
-
-            var baseD = tabelnm.getElementsByTagName("basedata");
-            var cEd = tabelnm.getElementsByTagName("ed");
-            var cAr = tabelnm.getElementsByTagName("ar");
-            var cPv = tabelnm.getElementsByTagName("pv");
-
-            var rows = baseD.length;
-            for (var i = 0; i < rows; i++) {
-                ed[i] = ed[i].childNodes[0].nodeValue;
-                ar[i] = ar[i].childNodes[0].nodeValue;
-                pv[i] = pv[i].childNodes[0].nodeValue;
-            }
-
-            base.rows = rows;
-            base.ed = ed;
-            base.ar = ar;
-            base.pv = pv;
-
-            return base;
-        },
-
-        setXmlpcsdata: function (tabelnm) {
-            var pcs = {};
-
-            var m = new Array();
-            var m1 = new Array();
-            var m2 = new Array();
-            var mo = new Array();
-            var t = new Array();
-            var xs = new Array();
-            var an = new Array();
-            var wh = new Array();
-            var o = new Array();
-            var o1 = new Array();
-            var o2 = new Array();
-            var o3 = new Array();
-            var l = new Array();
-
-            var pcsD = tabelnm.getElementsByTagName("pcsdata");
-            var cM = tabelnm.getElementsByTagName("m");
-            var cM1 = tabelnm.getElementsByTagName("m1");
-            var cM2 = tabelnm.getElementsByTagName("m2");
-            var cMo = tabelnm.getElementsByTagName("mo");
-            var cXs = tabelnm.getElementsByTagName("xs");
-            var cWh = tabelnm.getElementsByTagName("wh");
-            var cO = tabelnm.getElementsByTagName("o");
-            var cO1 = tabelnm.getElementsByTagName("o1");
-            var cO2 = tabelnm.getElementsByTagName("o2");
-            var cO3 = tabelnm.getElementsByTagName("o3");
-            var cO3 = tabelnm.getElementsByTagName("l");
-
-            var rows = pcsD.length;
-            for (var i = 0; i < rows; i++) {
-                m[i] = m[i].childNodes[0].nodeValue;
-                m1[i] = m1[i].childNodes[0].nodeValue;
-                m2[i] = m2[i].childNodes[0].nodeValue;
-                mo[i] = mo[i].childNodes[0].nodeValue;
-                t[i] = t[i].childNodes[0].nodeValue;
-                an[i] = an[i].childNodes[0].nodeValue;
-                wh[i] = wh[i].childNodes[0].nodeValue;
-                o[i] = o[i].childNodes[0].nodeValue;
-                o1[i] = o1[i].childNodes[0].nodeValue;
-                o2[i] = o2[i].childNodes[0].nodeValue;
-                o3[i] = o3[i].childNodes[0].nodeValue;
-                l[i] = l[i].childNodes[0].nodeValue;
-            }
-
-            pcs.rows = rows;
-            pcs.m = m;
-            pcs.m1 = m1;
-            pcs.m2 = m2;
-            pcs.mo = m0;
-            pcs.t = t;
-            pcs.xs = xs;
-            pcs.an = an;
-            pcs.wh = wh;
-            pcs.o = o;
-            pcs.o1 = o1;
-            pcs.o2 = o2;
-            pcs.o3 = o3;
-            pcs.l = l;
-
-            return pcs;
         }
+
+        //setXmlbasedata: function (tabelnm) {
+        //    var base = {};
+
+        //    var ed = new Array();
+        //    var ar = new Array();
+        //    var pv = new Array();
+
+        //    var baseD = tabelnm.getElementsByTagName("basedata");
+        //    var cEd = tabelnm.getElementsByTagName("ed");
+        //    var cAr = tabelnm.getElementsByTagName("ar");
+        //    var cPv = tabelnm.getElementsByTagName("pv");
+
+        //    var rows = baseD.length;
+        //    for (var i = 0; i < rows; i++) {
+        //        ed[i] = ed[i].childNodes[0].nodeValue;
+        //        ar[i] = ar[i].childNodes[0].nodeValue;
+        //        pv[i] = pv[i].childNodes[0].nodeValue;
+        //    }
+
+        //    base.rows = rows;
+        //    base.ed = ed;
+        //    base.ar = ar;
+        //    base.pv = pv;
+
+        //    return base;
+        //},
+
+        //setXmlpcsdata: function (tabelnm) {
+        //    var pcs = {};
+
+        //    var m = new Array();
+        //    var m1 = new Array();
+        //    var m2 = new Array();
+        //    var mo = new Array();
+        //    var t = new Array();
+        //    var xs = new Array();
+        //    var an = new Array();
+        //    var wh = new Array();
+        //    var o = new Array();
+        //    var o1 = new Array();
+        //    var o2 = new Array();
+        //    var o3 = new Array();
+        //    var l = new Array();
+
+        //    var pcsD = tabelnm.getElementsByTagName("pcsdata");
+        //    var cM = tabelnm.getElementsByTagName("m");
+        //    var cM1 = tabelnm.getElementsByTagName("m1");
+        //    var cM2 = tabelnm.getElementsByTagName("m2");
+        //    var cMo = tabelnm.getElementsByTagName("mo");
+        //    var cXs = tabelnm.getElementsByTagName("xs");
+        //    var cWh = tabelnm.getElementsByTagName("wh");
+        //    var cO = tabelnm.getElementsByTagName("o");
+        //    var cO1 = tabelnm.getElementsByTagName("o1");
+        //    var cO2 = tabelnm.getElementsByTagName("o2");
+        //    var cO3 = tabelnm.getElementsByTagName("o3");
+        //    var cO3 = tabelnm.getElementsByTagName("l");
+
+        //    var rows = pcsD.length;
+        //    for (var i = 0; i < rows; i++) {
+        //        m[i] = m[i].childNodes[0].nodeValue;
+        //        m1[i] = m1[i].childNodes[0].nodeValue;
+        //        m2[i] = m2[i].childNodes[0].nodeValue;
+        //        mo[i] = mo[i].childNodes[0].nodeValue;
+        //        t[i] = t[i].childNodes[0].nodeValue;
+        //        an[i] = an[i].childNodes[0].nodeValue;
+        //        wh[i] = wh[i].childNodes[0].nodeValue;
+        //        o[i] = o[i].childNodes[0].nodeValue;
+        //        o1[i] = o1[i].childNodes[0].nodeValue;
+        //        o2[i] = o2[i].childNodes[0].nodeValue;
+        //        o3[i] = o3[i].childNodes[0].nodeValue;
+        //        l[i] = l[i].childNodes[0].nodeValue;
+        //    }
+
+        //    pcs.rows = rows;
+        //    pcs.m = m;
+        //    pcs.m1 = m1;
+        //    pcs.m2 = m2;
+        //    pcs.mo = m0;
+        //    pcs.t = t;
+        //    pcs.xs = xs;
+        //    pcs.an = an;
+        //    pcs.wh = wh;
+        //    pcs.o = o;
+        //    pcs.o1 = o1;
+        //    pcs.o2 = o2;
+        //    pcs.o3 = o3;
+        //    pcs.l = l;
+
+        //    return pcs;
+        //}
 };
 
     webArViewer.ar = ar;
