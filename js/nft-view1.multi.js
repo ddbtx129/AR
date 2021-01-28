@@ -1163,7 +1163,7 @@ var viewmode = 'marker';
             var xmldata;
             var XMLHR = new XMLHttpRequest();
             XMLHR.onreadystatechange = function () {
-                if (ＸＭＬＨＲ.readyState == 4 && ＸＭＬＨＲ.status == 200) {
+                if (XMLHR.readyState == 4 && XMLHR.status == 200) {
                     var reader = XMLHR.responseXML;
                     // ＸＭＬファイルではresponseTextではなくresponseXML
                     var fnc = new Function("arg", "return " + fncnm + "(arg)");
