@@ -1,4 +1,4 @@
-var webArViewer = webArViewer || {};
+var webAr = webAr || {};
 
 var videoInfo = {};
 var videoState = 0;
@@ -11,14 +11,14 @@ var viewmode = 'marker';
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
-    webArViewer.scene = document.querySelector('a-scene');
+    webAr.scene = document.querySelector('a-scene');
 
-    var defaultAngle = 0;
-    var defaultPos = { x: 0, y: 0, z: 0 };
-    var defaultScale = { w: 4, h: 4, d: 4 };
-    var defaultwrapPos = { x: 0, y: 0, z: 0 };
-    var defaultwrapScale = { w: 4, h: 4, d: 4 };
-    var defaultlogoScale = { w: 8, h: 6, d: 6 };
+    var defAngle = 0;
+    var defPos = { x: 0, y: 0, z: 0 };
+    var defScale = { w: 4, h: 4, d: 4 };
+    var defwrapPos = { x: 0, y: 0, z: 0 };
+    var defwrapScale = { w: 4, h: 4, d: 4 };
+    var deflogoScale = { w: 8, h: 6, d: 6 };
 
     var objAngle = -10;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
@@ -75,7 +75,7 @@ var viewmode = 'marker';
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
                 // ロード完了
-                if (webArViewer.srcno.length > 1) {
+                if (webAr.srcno.length > 1) {
                     var msg = document.querySelector('slideshow');
 
                     document.getElementById("slideshow").style.display = 'inline';
@@ -85,7 +85,7 @@ var viewmode = 'marker';
                     //}, 6000);
                 }
 
-                if (webArViewer.ar.arData.isPV && webArViewer.ar.arData.isMp4) {
+                if (webAr.ar.arData.isPV && webAr.ar.arData.isMp4) {
                     var video = document.querySelector('#source1');
                     document.getElementById("player").style.display = 'inline';
 
@@ -224,7 +224,7 @@ var viewmode = 'marker';
             var j = (dataObj.isMarkerType == 1 ? 2 : 2);
 
             dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defaultScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
+            defScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
 
             // オブジェクトソース
             if (dataObj.path) {
@@ -339,7 +339,7 @@ var viewmode = 'marker';
                 return false;
             }
 
-            webArViewer.scene.appendChild(assets);
+            webAr.scene.appendChild(assets);
             self.arData = arData;
 
             return true;
@@ -362,7 +362,7 @@ var viewmode = 'marker';
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
-                    this.setDiplayBtn(0, webArViewer.srcno.obj);
+                    this.setDiplayBtn(0, webAr.srcno.obj);
                 }
             })
 
@@ -370,7 +370,7 @@ var viewmode = 'marker';
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
-                    this.setDiplayBtn(1, webArViewer.srcno.obj);
+                    this.setDiplayBtn(1, webAr.srcno.obj);
                 }
             })
         },
@@ -378,8 +378,8 @@ var viewmode = 'marker';
         setWrap: function () {
 
             var self = this;
-            var basePos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
-            var baseScale = AFRAME.utils.coordinates.parse(defaultwrapScale.w + ' ' + defaultwrapScale.h + ' ' + defaultwrapScale.d);
+            var basePos = AFRAME.utils.coordinates.parse(defwrapPos.x + ' ' + defwrapPos.y + ' ' + defwrapPos.z);
+            var baseScale = AFRAME.utils.coordinates.parse(defwrapScale.w + ' ' + defwrapScale.h + ' ' + defwrapScale.d);
 
             //if (self.arData.isMarkerType == 1) {
             //    self.wrap = document.createElement('a-entity');
@@ -420,7 +420,7 @@ var viewmode = 'marker';
                 shadow.setAttribute('style', 'z-index: 2');
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                    primitive: 'plane', height: defaultScale.h, width: defaultScale.w
+                    primitive: 'plane', height: defScale.h, width: defScale.w
                 });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
@@ -442,10 +442,10 @@ var viewmode = 'marker';
             var main = document.createElement(elname);
 
             var posVec3 = self.positionVec3('main');
-            defaultPos = posVec3;
+            defPos = posVec3;
 
             main.setAttribute('id', 'main');
-            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defaultPos));
+            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defPos));
 
             if (!val.isGif) {
 
@@ -453,8 +453,8 @@ var viewmode = 'marker';
 
                 if (!val.isGltf) {
 
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defaultScale.w));
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defaultScale.h));
+                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defScale.w));
+                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defScale.h));
                     main.setAttribute('style', 'z-index: 3');
 
                     if (val.isMp4) {
@@ -462,7 +462,7 @@ var viewmode = 'marker';
                     }
 
                     AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                        primitive: 'plane', height: defaultScale.h, width: defaultScale.w, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defScale.h, width: defScale.w, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
@@ -470,7 +470,7 @@ var viewmode = 'marker';
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
-                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defaultScale));
+                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defScale));
                 }
 
             } else {
@@ -488,7 +488,7 @@ var viewmode = 'marker';
 
                 logo.setAttribute('id', 'logo');
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(defaultlogoScale.w * rete) + ' ' + String(defaultlogoScale.h * rete) + ' ' + String(defaultlogoScale.d * rete)));
+                logo.setAttribute('scale', (String(deflogoScale.w * rete) + ' ' + String(deflogoScale.h * rete) + ' ' + String(deflogoScale.d * rete)));
                 logo.setAttribute('gltf-model', '#logosource1');
                 main.setAttribute('style', 'z-index: 4');
 
@@ -510,7 +510,7 @@ var viewmode = 'marker';
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
-                //    primitive: 'box', height: defaultlogoScale, width: defaultlogoScale, depth: defaultlogoScale, segmentsHeight: 1, segmentsWidth: 1
+                //    primitive: 'box', height: deflogoScale, width: deflogoScale, depth: deflogoScale, segmentsHeight: 1, segmentsWidth: 1
                 //});
                 //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
                 //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
@@ -519,7 +519,7 @@ var viewmode = 'marker';
 
                 if (!!val.isAnime) {
 
-                    self.arData.logo.setAttribute('radius', (defaultlogoScale.w / 2));
+                    self.arData.logo.setAttribute('radius', (deflogoScale.w / 2));
 
                     if (val.isAnime == 1) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
@@ -550,7 +550,7 @@ var viewmode = 'marker';
                             easing: 'easeInOutQuart',
                             loop: true,
                             from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z
+                            to: logopos.x + ' ' + (logopos.y + (deflogoScale.h * rete) / 5) + ' ' + logopos.z
                         });
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
                             property: 'scale',
@@ -558,8 +558,8 @@ var viewmode = 'marker';
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1
+                            from: deflogoScale.w * rete * 1.2 + ' ' + deflogoScale.h * rete * 0.8 + ' ' + deflogoScale.d * rete,
+                            to: deflogoScale.w * rete * 0.8 + ' ' + deflogoScale.h * rete * 1.2 + ' ' + deflogoScale.d * rete * 1
                         });
                     } else if (val.isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
@@ -589,7 +589,7 @@ var viewmode = 'marker';
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (defaultlogoScale.h * rete) / 5) + ' ' + logopos.z,
+                            from: logopos.x + ' ' + (logopos.y - + (deflogoScale.h * rete) / 5) + ' ' + logopos.z,
                             to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
                             startEvents: 'pos3'
                         });
@@ -599,8 +599,8 @@ var viewmode = 'marker';
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: false,
-                            from: defaultlogoScale.w * rete * 1.2 + ' ' + defaultlogoScale.h * rete * 0.8 + ' ' + defaultlogoScale.d * rete,
-                            to: defaultlogoScale.w * rete * 0.8 + ' ' + defaultlogoScale.h * rete * 1.2 + ' ' + defaultlogoScale.d * rete * 1,
+                            from: deflogoScale.w * rete * 1.2 + ' ' + deflogoScale.h * rete * 0.8 + ' ' + deflogoScale.d * rete,
+                            to: deflogoScale.w * rete * 0.8 + ' ' + deflogoScale.h * rete * 1.2 + ' ' + deflogoScale.d * rete * 1,
                             startEvents: 'scale3'
                         });
                     }
@@ -665,12 +665,12 @@ var viewmode = 'marker';
 
             var arGifRotation = '-30 0 0';
             var prevPageY;
-            var zoomRateH = defaultwrapScale.h;
+            var zoomRateH = defwrapScale.h;
             var wrapZoom = 1;
 
             bAngle.classList.add('current');
 
-            var wrapPos = AFRAME.utils.coordinates.parse(defaultwrapPos.x + ' ' + defaultwrapPos.y + ' ' + defaultwrapPos.z);
+            var wrapPos = AFRAME.utils.coordinates.parse(defwrapPos.x + ' ' + defwrapPos.y + ' ' + defwrapPos.z);
 
             if (self.arg[0].pv) {
                 
@@ -681,13 +681,13 @@ var viewmode = 'marker';
 
                 wrapPos.x -= 0;
                 wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                wrapPos.z -= defaultwrapScale.h * 1.5;
+                wrapPos.z -= defwrapScale.h * 1.5;
                 
                 //var pvAngle = 0;
                 var pvAngle = -5;
 
                 wrapZoom = 0.5;
-                zoomRateH = defaultwrapScale.h * wrapZoom;
+                zoomRateH = defwrapScale.h * wrapZoom;
                 AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
@@ -695,7 +695,7 @@ var viewmode = 'marker';
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
                 self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
-                webArViewer.scene.appendChild(self.wrap);
+                webAr.scene.appendChild(self.wrap);
 
             } else {
 
@@ -714,7 +714,7 @@ var viewmode = 'marker';
                     wrapZoom = 0.625;
                     zoomRateH = zoomRateH * wrapZoom;
 
-                    defaultwrapPos.y = -5;
+                    defwrapPos.y = -5;
 
                     mWrap = null;
 
@@ -770,13 +770,13 @@ var viewmode = 'marker';
                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                 });
 
-                wrapPos = defaultwrapPos;
+                wrapPos = defwrapPos;
                 self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                 mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
                 
                 mWrap.appendChild(self.wrap);
-                webArViewer.scene.appendChild(mWrap);
+                webAr.scene.appendChild(mWrap);
 
                 self.mWrap = mWrap;
 
@@ -792,31 +792,31 @@ var viewmode = 'marker';
 
                 bAngle.addEventListener('click', function () {
                     if (!bAngle.classList.contains('current')) {
-                        webArViewer.ar.arData.wrapPos = webArViewer.defaultwrapPos;
-                        webArViewer.ar.arData.zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
+                        webAr.ar.arData.wrapPos = webAr.defwrapPos;
+                        webAr.ar.arData.zoomRateH = webAr.defwrapScale.h * wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH
                         });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
                         bAngle.classList.add('current');
                         bParalle.classList.remove('current');   
-                        webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+                        webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
                     }
                 });
 
                 bParalle.addEventListener('click', function () {
                     if (!bParalle.classList.contains('current')) {
-                        webArViewer.ar.arData.wrapPos = webArViewer.defaultwrapPos;
-                        webArViewer.ar.arData.zoomRateH = webArViewer.defaultwrapScale.h * wrapZoom;
+                        webAr.ar.arData.wrapPos = webAr.defwrapPos;
+                        webAr.ar.arData.zoomRateH = webAr.defwrapScale.h * wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH
                         });
                         self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
+                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
                         bParalle.classList.add('current');
                         bAngle.classList.remove('current');
-                        webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+                        webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
                     }
                 });
                 // ↑
@@ -827,31 +827,31 @@ var viewmode = 'marker';
             }
 
             // 拡大・縮小
-            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+            webAr.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 scalechange = 0;
                 prevPageY = event.pageY;    // 縦軸 or 前後軸
             });
 
-            webArViewer.scene.addEventListener(self.eventNames.move, function (e) {
+            webAr.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
 
-                    if ((webArViewer.ar.arData.zoomRateH + (prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) > 0.1) {
-                        var rate = ((prevPageY - event.pageY) / webArViewer.scene.clientHeight / 5) * wrapZoom;
-                        webArViewer.ar.arData.zoomRateH += rate;
+                    if ((webAr.ar.arData.zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
+                        var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * wrapZoom;
+                        webAr.ar.arData.zoomRateH += rate;
                         AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH + ' ' + webArViewer.ar.arData.zoomRateH
+                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH
                         });
                         var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(webArViewer.ar.arData.zoomRateH).toFixed(5);
+                        elem.innerHTML = "Scale: " + Number(webAr.ar.arData.zoomRateH).toFixed(5);
                     }
                 } 
             });
 
-            webArViewer.scene.addEventListener(self.eventNames.end, function (e) {
+            webAr.scene.addEventListener(self.eventNames.end, function (e) {
                 scalechange = 0;
                 prevPageY= null;
             });
@@ -863,25 +863,25 @@ var viewmode = 'marker';
             var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg[0].pv)) ? 0.2 : 5);
 
             bUP.addEventListener('click', function () {
-                webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                 if (!!(bAngle.classList.contains('current'))) {
-                    webArViewer.ar.arData.wrapPos.y += yClickRate;
+                    webAr.ar.arData.wrapPos.y += yClickRate;
                 } else {
-                    webArViewer.ar.arData.wrapPos.z -= yClickRate;
+                    webAr.ar.arData.wrapPos.z -= yClickRate;
                 }
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
-                webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
+                webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
-                webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                 if (!!(bAngle.classList.contains('current'))) {
-                    webArViewer.ar.arData.wrapPos.y -= yClickRate;
+                    webAr.ar.arData.wrapPos.y -= yClickRate;
                 } else {
-                    webArViewer.ar.arData.wrapPos.z += yClickRate;
+                    webAr.ar.arData.wrapPos.z += yClickRate;
                 }
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
-                webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
+                webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
             });
             // ↑ 
 
@@ -892,14 +892,14 @@ var viewmode = 'marker';
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
-                    webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                    webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
-                        webArViewer.ar.arData.wrapPos.y += yTouchRate;
+                        webAr.ar.arData.wrapPos.y += yTouchRate;
                     } else {
-                        webArViewer.ar.arData.wrapPos.z -= yTouchRate;
+                        webAr.ar.arData.wrapPos.z -= yTouchRate;
                     }
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
-                    webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
+                    webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
                 }, 10);
             });
 
@@ -921,14 +921,14 @@ var viewmode = 'marker';
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
-                    webArViewer.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                    webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
-                        webArViewer.ar.arData.wrapPos.y -= yTouchRate;
+                        webAr.ar.arData.wrapPos.y -= yTouchRate;
                     } else {
-                        webArViewer.ar.arData.wrapPos.z += yTouchRate;
+                        webAr.ar.arData.wrapPos.z += yTouchRate;
                     }
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webArViewer.ar.arData.wrapPos));
-                    webArViewer.ar.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
+                    webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
                 }, 10);
             });
 
@@ -947,8 +947,8 @@ var viewmode = 'marker';
 
             this.objectDataVal(zoomRateH, wrapPos);
 
-            webArViewer.ar.arData.wrapPos = wrapPos;
-            webArViewer.ar.arData.zoomRateH = zoomRateH;
+            webAr.ar.arData.wrapPos = wrapPos;
+            webAr.ar.arData.zoomRateH = zoomRateH;
         },
 
         resetScene: function () {
@@ -966,7 +966,7 @@ var viewmode = 'marker';
                 this.createAnimation();
             }
 
-            this.objectDataVal(webArViewer.ar.arData.zoomRateH, webArViewer.ar.arData.wrapPos);
+            this.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
         },
 
         setTapEvents: function () {
@@ -976,7 +976,7 @@ var viewmode = 'marker';
             var elem = document.getElementById("version1");
             var timer = 350;
 
-            webArViewer.scene.addEventListener(self.eventNames.start, function (e) {
+            webAr.scene.addEventListener(self.eventNames.start, function (e) {
                 
                 ++tapCount;
                 
@@ -987,13 +987,13 @@ var viewmode = 'marker';
                     setTimeout(function () {
                         if (tapclicked && tapCount == 2 && !(scalechange)) {
                             tapclicked = false;
-                            objNo = ((webArViewer.srcno.obj + 1) <= webArViewer.srcno.length) ? webArViewer.srcno.obj + 1 : 1;
+                            objNo = ((webAr.srcno.obj + 1) <= webAr.srcno.length) ? webAr.srcno.obj + 1 : 1;
                             switchObject(e, objNo);
                             return;
                         }
                         if (tapclicked && tapCount >= 3 && !(scalechange)) {
                             tapclicked = false;
-                            objNo = ((webArViewer.srcno.obj - 1) > 0) ? webArViewer.srcno.obj - 1 : webArViewer.srcno.length;
+                            objNo = ((webAr.srcno.obj - 1) > 0) ? webAr.srcno.obj - 1 : webAr.srcno.length;
                             switchObject(e, objNo);
                             return;
                         }
@@ -1048,11 +1048,11 @@ var viewmode = 'marker';
 
                 e.preventDefault();
 
-                if (webArViewer.srcno.length == 1) {
+                if (webAr.srcno.length == 1) {
                     return;
                 }
 
-                if (!!(webArViewer.ar.arData.isMp4)) {
+                if (!!(webAr.ar.arData.isMp4)) {
                     return;
                 }
 
@@ -1073,9 +1073,9 @@ var viewmode = 'marker';
                     logo.remove();
                 }
 
-                webArViewer.srcno.obj = fileno;
-                webArViewer.ar.createModel(webArViewer.srcno.obj);
-                webArViewer.ar.resetScene();
+                webAr.srcno.obj = fileno;
+                webAr.ar.createModel(webAr.srcno.obj);
+                webAr.ar.resetScene();
 
                 tapCount = 0;
                 tapclicked = false;
@@ -1183,12 +1183,11 @@ var viewmode = 'marker';
                 var ar = new Array();
                 var pv = new Array();
 
-                var baseD = tabelnm.getElementsByTagName("basedata");
                 var cEd = tabelnm.getElementsByTagName("ed");
                 var cAr = tabelnm.getElementsByTagName("ar");
                 var cPv = tabelnm.getElementsByTagName("pv");
 
-                var rows = baseD.length;
+                var rows = cEd.length;
                 for (var i = 0; i < rows; i++) {
                     ed[i] = ed[i].childNodes[0].nodeValue;
                     ar[i] = ar[i].childNodes[0].nodeValue;
@@ -1220,7 +1219,6 @@ var viewmode = 'marker';
                 var o3 = new Array();
                 var l = new Array();
 
-                var pcsD = tabelnm.getElementsByTagName("pcsdata");
                 var cM = tabelnm.getElementsByTagName("m");
                 var cM1 = tabelnm.getElementsByTagName("m1");
                 var cM2 = tabelnm.getElementsByTagName("m2");
@@ -1233,7 +1231,7 @@ var viewmode = 'marker';
                 var cO3 = tabelnm.getElementsByTagName("o3");
                 var cO3 = tabelnm.getElementsByTagName("l");
 
-                var rows = pcsD.length;
+                var rows = cM.length;
                 for (var i = 0; i < rows; i++) {
                     m[i] = m[i].childNodes[0].nodeValue;
                     m1[i] = m1[i].childNodes[0].nodeValue;
@@ -1363,17 +1361,17 @@ var viewmode = 'marker';
         //}
 };
 
-    webArViewer.ar = ar;
-    webArViewer.ar.init();
-    webArViewer.ar.setDiplayBtn(!!(ar.arg[0].pv), srcno.obj);
+    webAr.ar = ar;
+    webAr.ar.init();
+    webAr.ar.setDiplayBtn(!!(ar.arg[0].pv), srcno.obj);
 
-    webArViewer.srcno = srcno;
+    webAr.srcno = srcno;
 
-    webArViewer.defaultAngle = defaultAngle;
-    webArViewer.defaultPos = defaultPos;
-    webArViewer.defaultScale = defaultScale;
-    webArViewer.defaultwrapPos = defaultwrapPos;
-    webArViewer.defaultwrapScale = defaultwrapScale;
-    webArViewer.defaultlogoScale = defaultlogoScale;
+    webAr.defAngle = defAngle;
+    webAr.defPos = defPos;
+    webAr.defScale = defScale;
+    webAr.defwrapPos = defwrapPos;
+    webAr.defwrapScale = defwrapScale;
+    webAr.deflogoScale = deflogoScale;
 
 }());
