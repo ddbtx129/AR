@@ -152,7 +152,7 @@ var viewmode = 'marker';
 
             self.arg = arg;
 
-            var base = this.readXml('data/ren_nagase/01.xml', 'basedata');
+            var base = this.readXml('../data/ren_nagase/01.xml', 'basedata');
         },
 
         setArData: function () {
@@ -1163,7 +1163,7 @@ var viewmode = 'marker';
             var xmldata;
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4 && XMLHR.status == 200) {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var reader = xmlhttp.responseXML.documentElement;
                     // ＸＭＬファイルではresponseTextではなくresponseXML
                     var fnc = {};
@@ -1191,9 +1191,9 @@ var viewmode = 'marker';
 
                 var rows = dData.length;
                 for (var i = 0; i < rows; i++) {
-                    ed[i] = ed[i].childNodes[0].nodeValue;
-                    ar[i] = ar[i].childNodes[0].nodeValue;
-                    pv[i] = pv[i].childNodes[0].nodeValue;
+                    ed[i] = cEd[i].textContent;
+                    ar[i] = cAr[i].textContent;
+                    pv[i] = cPv[i].textContent;
                 }
 
                 base.rows = rows;
@@ -1227,28 +1227,31 @@ var viewmode = 'marker';
                 var cM1 = tabelnm.getElementsByTagName("m1");
                 var cM2 = tabelnm.getElementsByTagName("m2");
                 var cMo = tabelnm.getElementsByTagName("mo");
+                var cT = tabelnm.getElementsByTagName("t");
                 var cXs = tabelnm.getElementsByTagName("xs");
+                var cAn = tabelnm.getElementsByTagName("an");
                 var cWh = tabelnm.getElementsByTagName("wh");
                 var cO = tabelnm.getElementsByTagName("o");
                 var cO1 = tabelnm.getElementsByTagName("o1");
                 var cO2 = tabelnm.getElementsByTagName("o2");
                 var cO3 = tabelnm.getElementsByTagName("o3");
-                var cO3 = tabelnm.getElementsByTagName("l");
+                var cL = tabelnm.getElementsByTagName("l");
 
                 var rows = dData.length;
                 for (var i = 0; i < rows; i++) {
-                    m[i] = m[i].childNodes[0].nodeValue;
-                    m1[i] = m1[i].childNodes[0].nodeValue;
-                    m2[i] = m2[i].childNodes[0].nodeValue;
-                    mo[i] = mo[i].childNodes[0].nodeValue;
-                    t[i] = t[i].childNodes[0].nodeValue;
-                    an[i] = an[i].childNodes[0].nodeValue;
-                    wh[i] = wh[i].childNodes[0].nodeValue;
-                    o[i] = o[i].childNodes[0].nodeValue;
-                    o1[i] = o1[i].childNodes[0].nodeValue;
-                    o2[i] = o2[i].childNodes[0].nodeValue;
-                    o3[i] = o3[i].childNodes[0].nodeValue;
-                    l[i] = l[i].childNodes[0].nodeValue;
+                    m[i] = cM[i].textContent ;
+                    m1[i] = cM1[i].textContent;
+                    m2[i] = cM2[i].textContent;
+                    mo[i] = cMo[i].textContent;
+                    t[i] = cT[i].textContent;
+                    xs[i] = cXs[i].textContent;
+                    an[i] = cAn[i].textContent;
+                    wh[i] = cWh[i].textContent;
+                    o[i] = cO[i].textContent;
+                    o1[i] = cO1[i].textContent;
+                    o2[i] = cO2[i].textContent;
+                    o3[i] = cO3[i].textContent;
+                    l[i] = cL[i].textContent;
                 }
 
                 pcs.rows = rows;
@@ -1269,8 +1272,8 @@ var viewmode = 'marker';
                 return pcs;
             };
 
-            XMLHR.open("GET", filenm, true);
-            XMLHR.send(null);
+            xmlhttp.open("GET", filenm, true);
+            xmlhttp.send();
         }
 
         //setXmlbasedata: function (tabelnm) {
