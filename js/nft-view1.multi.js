@@ -152,7 +152,7 @@ var viewmode = 'marker';
 
             self.arg = arg;
 
-            var base = this.readXml('data/ren_nagase/01.xml', 'setXmlbasedata');
+            var base = this.readXml('data/ren_nagase/01.xml', 'basedata');
         },
 
         setArData: function () {
