@@ -1166,8 +1166,13 @@ var viewmode = 'marker';
                 if (XMLHR.readyState == 4 && XMLHR.status == 200) {
                     var reader = XMLHR.responseXML;
                     // ＸＭＬファイルではresponseTextではなくresponseXML
-                    var fnc = new Function("arg", "return " + fncnm + "(arg)");
-                    xmldata = fnc(reader);
+                    var fnc = {};
+                    if (fncnm == 'base') {
+                        fnc = setXmlbasedata('basedata');
+                    } else {
+                        fnc = setXmlbasedata('basedata');
+                    }
+                    return fnc;
                 }
             }
 
@@ -1264,8 +1269,6 @@ var viewmode = 'marker';
 
             XMLHR.open("GET", filenm, true);
             XMLHR.send(null);
-
-            return xmldata; 
         }
 
         //setXmlbasedata: function (tabelnm) {
