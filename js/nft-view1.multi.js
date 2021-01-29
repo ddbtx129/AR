@@ -1161,16 +1161,16 @@ var viewmode = 'marker';
 
         readXml: function (filenm, fncnm) {
             var xmldata;
-            var XMLHR = new XMLHttpRequest();
-            XMLHR.onreadystatechange = function () {
-                if (XMLHR.readyState == 4 && XMLHR.status == 200) {
-                    var reader = XMLHR.responseXML;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && XMLHR.status == 200) {
+                    var reader = xmlhttp.responseXML.documentElement;
                     // ＸＭＬファイルではresponseTextではなくresponseXML
                     var fnc = {};
                     if (fncnm == 'base') {
-                        fnc = setXmlbasedata('basedata');
+                        fnc = setXmlbasedata(reader);
                     } else {
-                        fnc = setXmlbasedata('basedata');
+                        fnc = setXmlbasedata(reader);
                     }
                     return fnc;
                 }
@@ -1183,11 +1183,13 @@ var viewmode = 'marker';
                 var ar = new Array();
                 var pv = new Array();
 
+                var dData = tabelnm.getElementsByTagName("basedata");
+
                 var cEd = tabelnm.getElementsByTagName("ed");
                 var cAr = tabelnm.getElementsByTagName("ar");
                 var cPv = tabelnm.getElementsByTagName("pv");
 
-                var rows = cEd.length;
+                var rows = dData.length;
                 for (var i = 0; i < rows; i++) {
                     ed[i] = ed[i].childNodes[0].nodeValue;
                     ar[i] = ar[i].childNodes[0].nodeValue;
@@ -1219,6 +1221,8 @@ var viewmode = 'marker';
                 var o3 = new Array();
                 var l = new Array();
 
+                var dData = tabelnm.getElementsByTagName("pcsdata");
+
                 var cM = tabelnm.getElementsByTagName("m");
                 var cM1 = tabelnm.getElementsByTagName("m1");
                 var cM2 = tabelnm.getElementsByTagName("m2");
@@ -1231,7 +1235,7 @@ var viewmode = 'marker';
                 var cO3 = tabelnm.getElementsByTagName("o3");
                 var cO3 = tabelnm.getElementsByTagName("l");
 
-                var rows = cM.length;
+                var rows = dData.length;
                 for (var i = 0; i < rows; i++) {
                     m[i] = m[i].childNodes[0].nodeValue;
                     m1[i] = m1[i].childNodes[0].nodeValue;
