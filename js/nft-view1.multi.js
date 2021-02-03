@@ -1130,15 +1130,14 @@ var viewmode = 'marker';
 
                 var timer = {};
 
+                self.arData[idx].yClickRate = yClickRate[idx];
+                self.arData[idx].yTouchRate = yTouchRate[idx];
+
                 webAr.ar.arData[idx].wrapPos = wrapPos;
                 webAr.ar.arData[idx].zoomRateH = zoomRateH;
 
                 this.objectDataVal(zoomRateH, wrapPos);
             }
-
-
-            self.arData[idx].yClickRate = yClickRate;
-            self.arData[idx].yTouchRate = yTouchRate;
 
             //bAngle.addEventListener('click', function () {
             //    if (!bAngle.classList.contains('current')) {
