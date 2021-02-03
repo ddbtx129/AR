@@ -530,7 +530,7 @@ var viewmode = 'marker';
                 }
 
                 var srcname = '#source' + (((idx + 1) * 100) + objno).toString();
-
+                window.alert(srcname);
                 if (val[idx].isShadow) {
                     var shadow = document.createElement('a-image');
 
@@ -1041,7 +1041,7 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
                         viewIdx[i] = 1;
 
-                        var multi = document.getElementById('ar-MultiText');
+                        var multi = document.getElementById('txtMultiNo');
                         
                         if(!!(chkVIew())){
                             multi.innerHTML = 'ALL';
