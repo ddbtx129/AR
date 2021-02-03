@@ -73,7 +73,7 @@
 
         <div class="ar-MultiNo" style="display: inline">
             <img class="ar-multi" id="swMulti" src="asset/marker-w.png" style="display: inline"/>
-            <span class="ar-MultiText">1</span>
+            <span class="ar-MultiText" id="txtMultiNo">1</span>
         </div>
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
@@ -83,10 +83,10 @@
             <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
             <!--<a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>-->
             <a-entity id="camera-wrapper">
-                <!--<a-entity camera id="camera" position="0 1.5 0" look-controls></a-entity>-->
-                <a-entity camera id="camera" position="0 1 4" look-controls></a-entity>
-            </a-scene>
-        
+                <a-entity camera id="camera" position="0 1.5 0" look-controls></a-entity>
+                <!--<a-entity camera id="camera" position="0 1 4" look-controls></a-entity>-->
+        </a-scene>
+
         <p id="version1">v1.0.12</p>
         <p id="debug1" style="display: inline">scale: 0.0</p>
         <p id="debug2" style="display: inline">pos X: 0.0 Y: 0.0 Z: 0.0</p>
