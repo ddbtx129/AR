@@ -1048,7 +1048,9 @@ var viewmode = 'marker';
                         } else {
                             multi.innerHTML = (i + 1).toString();
                         }
+
                         n_idx = i;
+
                         if (webAr.ar.arData[i].oType == "mp4") {
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
                             if (videostate == 0) {
@@ -1125,6 +1127,8 @@ var viewmode = 'marker';
 
                 yClickRate[idx] = ((!!(val[idx].isMarkerType == 1) || !!(self.args[idx].pv)) ? 0.2 : 5);
                 yTouchRate[idx] = ((!!(val[idx].isMarkerType == 1) || !!(self.args[idx].pv)) ? 0.02 : 2);
+
+                var timer = {};
 
                 webAr.ar.arData[idx].wrapPos = wrapPos;
                 webAr.ar.arData[idx].zoomRateH = zoomRateH;
