@@ -8,25 +8,35 @@ var tapclicked = false;
 
 var viewmode = 'marker';
 
+
 (function (global) {
 
     document.getElementById("info1").style.display = "inline";
     webAr.scene = document.querySelector('a-scene');
 
     var defAngle = 0;
+
     var defPos = { x: 0, y: 0, z: 0 };
-    var defScale = { w: 4, h: 4, d: 4 };
+    var defScale = { x: 4, y: 4, z: 4 };
     var defwrapPos = { x: 0, y: 0, z: 0 };
-    var defwrapScale = { w: 4, h: 4, d: 4 };
-    var deflogoScale = { w: 8, h: 6, d: 6 };
+    var defwrapScale = { x: 4, y: 4, z: 4 };
+    var deflogoScale = { x: 8, y: 6, z: 6 };
 
     var objAngle = -10;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
     var scalechange = 0;
 
     var getType = '';
-    var objLen = 1;
-    
+
+    var idx = 0;
+    var n_idx = 0;
+
+    var defwrap = {};
+    var defobj = {};
+    var deflogo = {};
+
+    var viewIdx = {};
+
     var ar = {
 
         init: function () {
@@ -34,11 +44,12 @@ var viewmode = 'marker';
             videostate = 0;
 
             this.setArg();
-            
+
             if (this.setArData()) {
 
                 this.setWrap();
-                this.createModel(srcno.obj);
+
+                this.createModel(1);
 
                 var deviceEvents = {
                     Touch: typeof document.ontouchstart !== 'undefined',
@@ -53,9 +64,6 @@ var viewmode = 'marker';
                 };
 
                 this.setScene();
-
-                this.wrap.setAttribute('visible', true);
-
                 this.setTapEvents();
             }
 
@@ -69,11 +77,11 @@ var viewmode = 'marker';
                 // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
                 var elem = document.getElementById("debug3");
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
-
             });
 
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
+
                 // ロード完了
                 if (webAr.srcno.length > 1) {
                     var msg = document.querySelector('slideshow');
@@ -97,246 +105,329 @@ var viewmode = 'marker';
         setArg: function () {
 
             var self = this;
-            var arg = new Array;
-            arg[0] = {};
+
+            var arg = {};
 
             var pair = location.search.substring(1).split('&');
 
             for (var i = 0; pair[i]; i++) {
                 var kv = pair[i].split('=');
-                arg[0][kv[0]] = decodeURIComponent(kv[1]);
+                arg[kv[0]] = decodeURIComponent(kv[1]);
             }
 
-            // プレビューモード
-            arg[0].PVList = arg[0].pv;
+            var args = new Array;
 
-            // マーカー OR NFT
-            arg[0].ARList = arg[0].ar && (parseInt(arg[0].ar, 10).toString());
+            if (!!(arg.xd)) {
+                
+                var base = {};
+                base = this.readBaseXml('../data/' + arg.mo + '/' + arg.x + '.xml');
 
-            // 影
-            arg[0].shodowList = arg[0].xs && (parseInt(arg[0].xs, 16).toString(2));
-            // サイズ
-            arg[0].sizeList = arg[0].wh && (parseInt(arg[0].wh, 16).toString(10));
-            // 角度
-            arg[0].angleList = arg[0].an && (parseInt(arg[0].an, 10).toString(2));
-            // オブジェクトタイプ
-            arg[0].typeList = arg[0].t;
-            //// 
-            //arg[0].pmList = arg[0].pmList && (parseInt(arg[0].pmList, 10).toString());
+                var pcs = {};
+                pcs = this.readPcsXml('../data/' + arg.mo + '/' + arg.x + '.xml');
 
-            // マーカー
-            arg[0].markerList = arg[0].m;
-            arg[0].markerList1 = arg[0].m1;
-            arg[0].markerList2 = arg[0].m2;
+                // プレビューモード
+                arg.PVList = base[0].pv;
+                // マーカー OR NFT
+                arg.ARList = base[0].ar && (parseInt(base[0].ar, 10).toString());
+                
+                arg.Multi = pcs.length;
 
-            // 対象オブジェクト
-            arg[0].ObjectList = arg[0].o;
-            arg[0].ObjectList1 = arg[0].o1;
-            arg[0].ObjectList2 = arg[0].o2;
-            arg[0].ObjectList3 = !!(arg[0].o3) ? arg[0].o3 : arg[0].o2;
+                for (idx = 0; idx < arg.Multi; idx++) {
 
-            // マーカー＆オブジェクト
-            arg[0].MkObjList = arg[0].mo;
+                    args[idx] = {};
 
-            // ロゴ表示
-            var logo = arg[0].l && ('0000' + (parseInt(arg[0].l, 16).toString(10))).slice(-4);
+                    // 影
+                    args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
+                    // サイズ
+                    args[idx].sizeList = pcs[idx].wh && (parseInt(pcs[idx].wh, 16).toString(10));
+                    // 角度
+                    args[idx].angleList = pcs[idx].an && (parseInt(pcs[idx].an, 10).toString(2));
+                    // オブジェクトタイプ
+                    args[idx].typeList = pcs[idx].t;
 
-            arg[0].LogoList = {};
-            arg[0].LogoAnimeList = {};
+                    // マーカー
+                    args[idx].markerList = pcs[idx].m;
+                    args[idx].markerList1 = pcs[idx].m1;
+                    args[idx].markerList2 = pcs[idx].m2;
 
-            if (!!(logo)) {
-                logo = (logo.match(/.{2}/g));
-                arg[0].LogoList = (logo).toString().split(',');
-                arg[0].LogoAnimeList = (arg[0].LogoList[1] && parseInt(arg[0].LogoList[1]));
+                    // 対象オブジェクト
+                    args[idx].ObjectList = pcs[idx].o;
+                    args[idx].ObjectList1 = pcs[idx].o1;
+                    args[idx].ObjectList2 = pcs[idx].o2;
+                    args[idx].ObjectList3 = !!(pcs[idx].o3) ? pcs[idx].o3 : pcs[idx].o2;
+
+                    // マーカー＆オブジェクト
+                    args[idx].MkObjList = pcs[idx].mo;
+
+                    viewIdx[idx] = 0;
+
+                    // ロゴ表示
+                    var logo = pcs[idx].l && ('0000' + (parseInt(pcs[idx].l, 16).toString(10))).slice(-4);
+                    
+                    args[idx].LogoList = {};
+                    args[idx].LogoAnimeList = {};
+
+                    if (!!(logo)) {
+                        logo = (logo.match(/.{2}/g));
+                        args[idx].LogoList = (logo).toString().split(',');
+                        args[idx].LogoAnimeList = (args[idx].LogoList[1] && parseInt(args[idx].LogoList[1]));
+                    }
+                }
+
+            } else {
+
+                arg.Multi = 1;
+
+                args[0] = {};
+                idx = 0;
+
+                args[idx] = arg;
+
+                // プレビューモード
+                arg.PVList = arg.pv;
+                // マーカー OR NFT
+                arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString());
+
+                // 影
+                args[idx].shodowList = args[idx].xs && (parseInt(args[idx].xs, 16).toString(2));
+                // サイズ
+                args[idx].sizeList = args[idx].wh && (parseInt(args[idx].wh, 16).toString(10));
+                // 角度
+                args[idx].angleList = args[idx].an && (parseInt(args[idx].an, 10).toString(2));
+                // オブジェクトタイプ
+                args[idx].typeList = args[idx].t;
+
+                // マーカー
+                args[idx].markerList = args[idx].m;
+                args[idx].markerList1 = args[idx].m1;
+                args[idx].markerList2 = args[idx].m2;
+
+                // 対象オブジェクト
+                args[idx].ObjectList = args[idx].o;
+                args[idx].ObjectList1 = args[idx].o1;
+                args[idx].ObjectList2 = args[idx].o2;
+                args[idx].ObjectList3 = !!(args[idx].o3) ? args[idx].o3 : args[idx].o2;
+
+                // マーカー＆オブジェクト
+                args[idx].MkObjList = args[idx].mo;
+
+                viewIdx[0] = 0;
+
+                // ロゴ表示
+                var logo = args[idx].l && ('0000' + (parseInt(args[idx].l, 16).toString(10))).slice(-4);
+
+                args[idx].LogoList = {};
+                args[idx].LogoAnimeList = {};
+
+                if (!!(logo)) {
+                    logo = (logo.match(/.{2}/g));
+                    args[idx].LogoList = (logo).toString().split(',');
+                    args[idx].LogoAnimeList = (args[idx].LogoList[1] && parseInt(args[idx].LogoList[1]));
+                }
             }
 
             self.arg = arg;
-
-            var base = this.readXml('../data/ren_nagase/01.xml', 'basedata');
+            self.args = args;
         },
 
         setArData: function () {
 
             var self = this;
+            
+            var arData = {};
+            var dataObj = {};
 
             var assets = document.createElement('a-assets');
+
+            assets.setAttribute('id', 'arAssets' + (idx + 1).toString());
             assets.setAttribute('timeout', '9000');
 
-            var arData = null;
-            //var dataObj = new Array;
+            for (idx = 0; idx < self.arg.Multi; idx++) {
 
-            objecttype = (!(self.arg[0].typeList) ? GetFileType('') : GetFileType(String(self.arg[0].typeList)));
+                arData[idx] = null;
+                dataObj[idx] = {};
+                //oType[idx] = "png";
 
-            // データの準備
-            var object = {};
-            var n_object = '';
-            var seq = 1;
+                defobj[idx] = {};
 
-            if (!(self.arg[0].ObjectList)) {
-                seq = (Number(self.arg[0].ObjectList3) - Number(self.arg[0].ObjectList2));
-                var no = Number(self.arg[0].ObjectList2);
-                for (var i = 0; i <= seq; i++) {
-                    var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
-                    var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
-                    object[i] = ((self.arg[0].MkObjList) && (obj) ?
-                        (self.arg[0].MkObjList + '/' + obj)
-                        :
-                        (self.arg[0].ObjectList1 + '/' + obj));
-                }
-            } else {
-                object[0] = (!(self.arg[0].ObjectList) ? '' : self.arg[0].ObjectList);
-            }
-
-            n_object = ((self.arg[0].MkObjList) ? (self.arg[0].MkObjList) : ((self.arg[0].ObjectList1) ? (self.arg[0].ObjectList1) : (self.arg[0].ObjectList)));
-
-            var dataObj = { path: object[0] + '.' + String(objecttype) };
-
-            dataObj.paths = {};
-
-            if (seq > 1) {
-                srcno.length = 0;
-                for (var i = 0; i <= seq; i++) {
-                    dataObj.paths[i] = object[i] + '.' + String(objecttype);
-                    srcno.length += 1;
-                }
-            } else {
-                dataObj.paths[0] = object[0] + '.' + String(objecttype);
-            }
-
-            dataObj.isPng = !!(dataObj.path || '').match(/\.png$/i);
-            dataObj.isGif = !!(dataObj.path || '').match(/\.gif$/i);
-            dataObj.isMp4 = !!(dataObj.path || '').match(/\.mp4$/i);
-            dataObj.isGltf = !!(dataObj.path || '').match(/\.gltf$/i);
-            dataObj.isPV = !!(self.arg[0].PVList);
-            dataObj.isNFT = !!(self.arg[0].ARList);
-            dataObj.isMarkerType = !!(self.arg[0].ARList) ? Number(self.arg[0].ARList) : 1;
-            dataObj.isLogo = (!!(self.arg[0].LogoList) ? self.arg[0].LogoList[0] : '0');
-            dataObj.isAnime = (!!(self.arg[0].LogoAnimeList) ? Number(self.arg[0].LogoAnimeList) : 0);
-            dataObj.isShadow = self.arg[0].shodowList && !!Number(self.arg[0].shodowList);
-            //dataObj.isPm = !!(self.arg[0].pmList);
-
-            // サイズ
-            self.arg[0].sizeList = String(!!(!!(self.arg[0].sizeList) && Number(self.arg[0].ar) == 0) ? self.arg[0].sizeList : GetDefaultSize((dataObj.isMarkerType == 1 ? 0 : 1), objecttype));
-
-            var wh = SizeSplit(self.arg[0].sizeList).toString().split(',');
-            var i = ((parseInt(self.arg[0].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.arg[0].sizeList).toString(10)).length : (parseInt(self.arg[0].sizeList).toString(10)).length + 1;
-            //var j = (dataObj.isMarkerType == 1 ? 2 : 4);
-            var j = (dataObj.isMarkerType == 1 ? 2 : 2);
-
-            dataObj.size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-            defScale = { w: dataObj.size.w, h: dataObj.size.h, d: dataObj.size.h };
-
-            // オブジェクトソース
-            if (dataObj.path) {
-
-                var folder = !!(dataObj.isMp4) ? 'video' : (!!(dataObj.isGltf) ? 'gltf' : 'pic');
-                dataObj.path = rootPath + 'article/' + folder + '/' + dataObj.path;
-                dataObj.arObj = {};
-
-                if (!!(dataObj.isPng) || !!(dataObj.isGif)) {
-
-                    var img = {};
-
+                objecttype = (!(self.args[idx].typeList) ? GetFileType('') : GetFileType(String(self.args[idx].typeList)));
+                //oType[idx] = (!(self.args[idx].typeList) ? GetFileType('') : GetFileType(String(self.args[idx].typeList)));
+                
+                // データの準備
+                var object = {};
+                var n_object = '';
+                var seq = 1;
+                
+                if (!(self.args[idx].ObjectList)) {
+                    seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
+                    var no = Number(self.args[idx].ObjectList2);
                     for (var i = 0; i <= seq; i++) {
-                        dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
-
-                        img[i] = document.createElement('img');
-                        img[i].setAttribute('crossorigin', 'anonymous');
-                        img[i].setAttribute('id', 'source' + (i + 1).toString());
-                        img[i].setAttribute('src', dataObj.paths[i]);
-
-                        dataObj.arObj[i] = { obj: img[i] };
-
-                        assets.appendChild(img[i]);
+                        var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
+                        var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
+                        object[i] = ((self.args[idx].MkObjList) && (obj) ?
+                            (self.args[idx].MkObjList + '/' + obj)
+                            :
+                            (self.args[idx].ObjectList1 + '/' + obj));
                     }
+                    
+                } else {
+                    object[0] = (!(self.args[idx].ObjectList) ? '' : self.args[idx].ObjectList);
+                }
+                
+                n_object = ((self.args[idx].MkObjList) ? (self.args[idx].MkObjList) : ((self.args[idx].ObjectList1) ? (self.args[idx].ObjectList1) : (self.args[idx].ObjectList)));
+                
+                dataObj[idx] = { path: object[0] + '.' + objecttype };
+                dataObj[idx].oType = (!(self.args[idx].typeList) ? GetFileType('') : GetFileType(String(self.args[idx].typeList)));
 
-                } else if (!!(dataObj.isMp4)) {
+                dataObj[idx].paths = {};
 
-                    var video = {};
-                    var audio = {};
+                dataObj[idx].srcno = { obj: 1, from: 1, to: 1, length: 1 };
 
+                if (seq > 1) {
+                    dataObj[idx].srcno.length = 0;
                     for (var i = 0; i <= seq; i++) {
-                        dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
-
-                        video[i] = document.createElement("video");
-                        video[i].setAttribute("src", dataObj.paths[i]);
-                        video[i].setAttribute('id', 'source' + (i + 1).toString());
-                        video[i].setAttribute('preload', 'auto');
-                        video[i].setAttribute('response-type', 'arraybuffer');
-                        video[i].setAttribute('loop', 'true');
-                        video[i].setAttribute('crossorigin', 'anonymous');
-                        video[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
-                        video[i].setAttribute("playsinline", "");
-                        video[i].setAttribute("controls", "");
-                        video[i].setAttribute("autoplay", "");
-
-                        audio[i] = document.createElement("audio");
-                        audio[i].setAttribute("src", dataObj.paths[i]);
-                        audio[i].setAttribute('id', 'a-source' + (i + 1).toString());
-                        audio[i].setAttribute('preload', 'auto');
-                        audio[i].setAttribute('response-type', 'arraybuffer');
-                        audio[i].setAttribute('loop', 'true');
-                        audio[i].setAttribute('crossorigin', 'anonymous');
-                        audio[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
-                        audio[i].setAttribute("playsinline", "");
-                        audio[i].setAttribute("controls", "");
-                        audio[i].setAttribute("autoplay", "");
-
-                        dataObj.arObj[i] = { obj: video[i], obj2: audio[i] };
-
-                        assets.appendChild(video[i]);
-                        assets.appendChild(audio[i]);
+                        dataObj[idx].paths[i] = object[i] + '.' + dataObj[idx].oType;
+                        dataObj[idx].srcno.length += 1;
                     }
+                } else {
+                    dataObj[idx].paths[0] = object[0] + '.' + dataObj[idx].oType;
+                }
+                
+                dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
+                dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
+                dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
+                dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
+                dataObj[idx].isPV = !!(self.arg.PVList);
+                dataObj[idx].isNFT = !!(self.arg.ARList);
+                dataObj[idx].isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1;
+                dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
+                dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
+                dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
+                
+                // サイズ
+                self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), objecttype));
+                
+                var wh = SizeSplit(self.args[idx].sizeList).toString().split(',');
+                var i = ((parseInt(self.args[idx].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeList).toString(10)).length : (parseInt(self.args[idx].sizeList).toString(10)).length + 1;
+                //var j = (dataObj[idx].isMarkerType == 1 ? 2 : 4);
+                var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
+                
+                dataObj[idx].size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+                //defScale = { w: dataObj[idx].size.w, h: dataObj[idx].size.h, d: dataObj[idx].size.h };
+                defobj[idx].Scale = { x: dataObj[idx].size.w, y: dataObj[idx].size.h, z: dataObj[idx].size.h };
 
-                } else if (dataObj.isGltf) {
+                // オブジェクトソース
+                if (dataObj[idx].path) {
 
-                    var model = {};
+                    var folder = !!(dataObj[idx].isMp4) ? 'video' : (!!(dataObj[idx].isGltf) ? 'gltf' : 'pic');
+                    dataObj[idx].path = rootPath + 'article/' + folder + '/' + dataObj[idx].path;
+                    dataObj[idx].arObj = {};
 
-                    for (var i = 0; i <= seq; i++) {
-                        dataObj.paths[i] = rootPath + 'article/' + folder + '/' + dataObj.paths[i];
+                    if (!!(dataObj[idx].isPng) || !!(dataObj[idx].isGif)) {
 
-                        model[i] = document.createElement('a-asset-item');
-                        model[i].setAttribute('crossorigin', 'anonymous');
-                        model[i].setAttribute('id', 'source' + (i + 1).toString());
-                        model[i].setAttribute('src', dataObj.paths[i]); 
+                        var img = {};
 
-                        dataObj.arObj[i] = { obj: model[i] };
+                        for (var i = 0; i <= seq; i++) {
+                            dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
 
-                        assets.appendChild(model[i]);
+                            img[i] = document.createElement('img');
+                            img[i].setAttribute('crossorigin', 'anonymous');
+                            img[i].setAttribute('id', 'source' + ((idx + 1) * 100 + (i + 1)).toString());
+                            img[i].setAttribute('src', dataObj[idx].paths[i]);
+
+                            dataObj[idx].arObj[i] = { obj: img[i] };
+
+                            assets.appendChild(img[i]);
+                        }
+
+                    } else if (!!(dataObj[idx].isMp4)) {
+
+                        var video = {};
+                        var audio = {};
+
+                        for (var i = 0; i <= seq; i++) {
+                            dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
+
+                            video[i] = document.createElement("video");
+                            video[i].setAttribute("src", dataObj[idx].paths[i]);
+                            video[i].setAttribute('id', 'source' + ((idx + 1) * 100 + (i + 1)).toString());
+                            video[i].setAttribute('preload', 'auto');
+                            video[i].setAttribute('response-type', 'arraybuffer');
+                            video[i].setAttribute('loop', 'true');
+                            video[i].setAttribute('crossorigin', 'anonymous');
+                            video[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
+                            video[i].setAttribute("playsinline", "");
+                            video[i].setAttribute("controls", "");
+                            video[i].setAttribute("autoplay", "");
+
+                            audio[i] = document.createElement("audio");
+                            audio[i].setAttribute("src", dataObj[idx].paths[i]);
+                            audio[i].setAttribute('id', 'a-source' + ((idx + 1) * 100 + (i + 1)).toString());
+                            audio[i].setAttribute('preload', 'auto');
+                            audio[i].setAttribute('response-type', 'arraybuffer');
+                            audio[i].setAttribute('loop', 'true');
+                            audio[i].setAttribute('crossorigin', 'anonymous');
+                            audio[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
+                            audio[i].setAttribute("playsinline", "");
+                            audio[i].setAttribute("controls", "");
+                            audio[i].setAttribute("autoplay", "");
+
+                            dataObj[idx].arObj[i] = { obj: video[i], obj2: audio[i] };
+
+                            assets.appendChild(video[i]);
+                            assets.appendChild(audio[i]);
+                        }
+
+                    } else if (dataObj[idx].isGltf) {
+
+                        var model = {};
+
+                        for (var i = 0; i <= seq; i++) {
+                            dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
+
+                            model[i] = document.createElement('a-asset-item');
+                            model[i].setAttribute('crossorigin', 'anonymous');
+                            model[i].setAttribute('id', 'source' + ((idx + 1) * 100 + (i + 1)).toString());
+                            model[i].setAttribute('src', dataObj[idx].paths[i]);
+
+                            dataObj[idx].arObj[i] = { obj: model[i] };
+
+                            assets.appendChild(model[i]);
+                        }
+                    }
+                    
+                    if (dataObj[idx].isLogo) {
+
+                        dataObj[idx].logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.args[idx].LogoList[0] + '.gltf';
+
+                        var model = document.createElement('a-asset-item');
+                        model.setAttribute('crossorigin', 'anonymous');
+                        model.setAttribute('id', 'logosource' + ((idx + 1) * 100 + 1).toString());
+                        model.setAttribute('src', dataObj[idx].logopath);
+
+                        assets.appendChild(model);
+                    }
+                    
+                    if (dataObj[idx].tap) {
+
+                        self.tap = true;
+                        var bTap = document.createElement('img');
+
+                        bTap.setAttribute('crossorigin', 'anonymous');
+                        bTap.setAttribute('id', 'swDown');
+                        bTap.setAttribute('src', 'asset/touch_w.png');
+
+                        document.body.appendChild(bTap);
                     }
                 }
 
-                if (dataObj.isLogo) {
+                arData[idx] = dataObj[idx];
 
-                    dataObj.logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.arg[0].LogoList[0] + '.gltf';
-
-                    var model = document.createElement('a-asset-item');
-                    model.setAttribute('crossorigin', 'anonymous');
-                    model.setAttribute('id', 'logosource1');
-                    model.setAttribute('src', dataObj.logopath);
-
-                    assets.appendChild(model);
+                if (!arData[idx].path) {
+                    // 画像なかった
+                    Err_Exit('画像情報が取得できませんでした。');
+                    return false;
                 }
-
-                if (dataObj.tap) {
-
-                    self.tap = true;
-                    var bTap = document.createElement('img');
-
-                    bTap.setAttribute('crossorigin', 'anonymous');
-                    bTap.setAttribute('id', 'swDown');
-                    bTap.setAttribute('src', 'asset/touch_w.png');
-
-                    document.body.appendChild(bTap);
-                }
-            }
-
-            arData = dataObj;
-
-            if (!arData.path) {
-                // 画像なかった
-                Err_Exit('画像情報が取得できませんでした。');
-                return false;
             }
 
             webAr.scene.appendChild(assets);
@@ -352,7 +443,7 @@ var viewmode = 'marker';
             var swMarker = document.getElementById('swMarker');
             var swPreview = document.getElementById('swPreview');
 
-            if (self.arg[0].pv) {
+            if (self.args[n_idx].pv) {
                 swPreview.classList.add('current');
             } else {
                 swMarker.classList.add('current');
@@ -362,7 +453,7 @@ var viewmode = 'marker';
                 if (!this.classList.contains('current')) {
                     location.replace(location.search.replace('&pv=1', ''));
                     videostate = 0;
-                    this.setDiplayBtn(0, webAr.srcno.obj);
+                    this.setDiplayBtn(0, webAr.ar.arData[n_idx].srcno.obj);
                 }
             })
 
@@ -370,7 +461,7 @@ var viewmode = 'marker';
                 if (!this.classList.contains('current')) {
                     location.replace(location.search + '&pv=1')
                     videostate = 0;
-                    this.setDiplayBtn(1, webAr.srcno.obj);
+                    this.setDiplayBtn(1, webAr.ar.arData[n_idx].srcno.obj);
                 }
             })
         },
@@ -378,49 +469,194 @@ var viewmode = 'marker';
         setWrap: function () {
 
             var self = this;
-            var basePos = AFRAME.utils.coordinates.parse(defwrapPos.x + ' ' + defwrapPos.y + ' ' + defwrapPos.z);
-            var baseScale = AFRAME.utils.coordinates.parse(defwrapScale.w + ' ' + defwrapScale.h + ' ' + defwrapScale.d);
+            self.wrap = new Array;
 
-            //if (self.arData.isMarkerType == 1) {
-            //    self.wrap = document.createElement('a-entity');
-            //} else {
-            //    self.wrap = document.createElement('a-box');
-            //}
-            self.wrap = document.createElement('a-entity');
-            self.wrap.setAttribute('id', 'base');
-            self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
-            self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
-            self.wrap.setAttribute('rotation', '0 0 0');
-            self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
-            self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
-            self.wrap.setAttribute('style', 'z-index: 5');
-            self.wrap.setAttribute('visible', false);
+            for (idx = 0; idx < self.arg.Multi; idx++) {
 
-            self.arData.wrap = self.wrap;
+                //var basePos = AFRAME.utils.coordinates.parse(defwrapPos.x + ' ' + defwrapPos.y + ' ' + defwrapPos.z);
+                //var baseScale = AFRAME.utils.coordinates.parse(defwrapScale.w + ' ' + defwrapScale.h + ' ' + defwrapScale.d);
+                //var basePos = AFRAME.utils.coordinates.parse(defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z);
+                //var baseScale = AFRAME.utils.coordinates.parse(defwrap[idx].Scale.w + ' ' + defwrap[idx].Scale.h + ' ' + defwrap[idx].Scale.d);
+
+                //if (self.arData.isMarkerType == 1) {
+                //    self.wrap = document.createElement('a-entity');
+                //} else {
+                //    self.wrap = document.createElement('a-box');
+                //}
+                //self.wrap = document.createElement('a-entity');
+                //self.wrap.setAttribute('id', 'base');
+                //self.wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(baseScale));
+                //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(basePos));
+                //self.wrap.setAttribute('rotation', '0 0 0');
+                //self.wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                //self.wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                //self.wrap.setAttribute('style', 'z-index: 5');
+                //self.wrap.setAttribute('visible', false);
+
+                defwrap[idx] = { Pos: defwrapPos, Scale: defwrapScale };
+
+                var wrap= document.createElement('a-entity');
+
+                wrap.setAttribute('id', 'base' + ((idx + 1)).toString());
+                wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(defwrap[idx].Scale));
+                wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(defwrap[idx].Pos));
+                wrap.setAttribute('rotation', '0 0 0');
+                wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                wrap.setAttribute('style', 'z-index: 5');
+                //if (self.arData.isPV && idx != 0) {
+                //    wrap.setAttribute('visible', false);
+                //} else {
+                    wrap.setAttribute('visible', true);
+                //}
+                self.wrap[idx] = wrap;
+                self.arData[idx].wrap = self.wrap[idx];
+            }
         },
 
         createModel: function (objno) {
 
             var self = this;
             var val = self.arData;
+            
+            for (idx = 0; idx < self.arg.Multi; idx++) {
 
-            if (!val.path) {
+                if (!val[idx].path) {
+                    continue;
+                }
+
+                var srcname = '#source' + (((idx + 1) * 100) + objno).toString();
+
+                if (val[idx].isShadow) {
+                    var shadow = document.createElement('a-image');
+
+                    shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
+                    shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
+                    shadow.setAttribute('rotation', '-90 0 0');
+                    shadow.setAttribute('style', 'z-index: 2');
+
+                    //AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                    //    primitive: 'plane', height: defScale.h, width: defScale.w
+                    //});
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                        primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, alphaTest: 0.1,
+                        color: 'black', opacity: 0.3, depthTest: false
+                    });
+
+                    self.arData[idx].shadow = shadow;
+                }
+
+                var elname = '';
+
+                if (!val[idx].isMp4) {
+                    elname = 'a-image'
+                } else if (val[idx].isMp4) {
+                    elname = 'a-video'
+                }
+
+                var main = document.createElement(elname);
+
+                var posVec3 = self.positionVec3('main', idx);
+                defPos = posVec3;
+                defobj[idx].Pos = posVec3;
+
+                main.setAttribute('id', 'main' + (idx + 1).toString());
+                //main.setAttribute('position', AFRAME.utils.coordinates.stringify(defPos));
+                main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
+
+                if (!val[idx].isGif) {
+
+                    main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                    if (!val[idx].isGltf) {
+
+                        //main.setAttribute('width', AFRAME.utils.coordinates.stringify(defScale.w));
+                        //main.setAttribute('height', AFRAME.utils.coordinates.stringify(defScale.h));
+
+                        main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
+                        main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+
+                        main.setAttribute('style', 'z-index: 3');
+
+                        if (val.isMp4) {
+                            main.setAttribute('play', 'true');
+                        }
+
+                        //AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+                        //    primitive: 'plane', height: defScale.h, width: defScale.w, segmentsHeight: 1, segmentsWidth: 1
+                        //});
+                        AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
+                            primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        //main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defScale));
+                        main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                    }
+
+                } else {
+                    main.setAttribute('rotation', '-30 0 0');
+                }
+
+                self.arData[idx].main = main;
+                
+                if (val[idx].isLogo) {
+
+                    var logo = document.createElement('a-entity');
+                    var rate = (!val[idx].isMp4) ? 1 : 2;
+
+                    deflogo[idx] = {
+                        Pos: self.positionVec3Logo(Number(val[idx].isAnime), idx),
+                        Scale: ((deflogoScale.x * rate) + ' ' + (deflogoScale.y * rate) + ' ' + (deflogoScale.z * rate))
+                    };
+
+                    //var logopos = self.positionVec3Logo(Number(val[idx].isAnime));
+                    //deflogo[idx].Pos = self.positionVec3Logo(Number(val[idx].isAnime), idx);
+                    //deflogo[idx].Scale = { w: (deflogoScale.w * rate), h: (deflogoScale.h * rate), d: (deflogoScale.d * rate) };
+
+                    logo.setAttribute('id', 'logo' + (idx + 1).toString());
+                    logo.setAttribute('position', AFRAME.utils.coordinates.stringify(deflogo[idx].Pos));
+                    logo.setAttribute('scale', AFRAME.utils.coordinates.stringify(deflogo[idx].Scale));
+                    logo.setAttribute('gltf-model', '#logosource' + ((idx + 1) * 100 + 1).toString());
+                    logo.setAttribute('style', 'z-index: 4');
+
+                    self.arData[idx].logo = logo;
+                }
+            }
+        },
+
+        resetModel: function (oidx, objno) {
+
+            var self = this;
+            var val = self.arData;
+
+            if (!val[oidx].path) {
                 return;
             }
 
-            var srcname = '#source' + (objno).toString();
+            var srcname = '#source' + (((Number(oidx) + 1) * 100) + objno).toString();
 
-            if (val.isShadow) {
-
+            if (val[oidx].isShadow) {
                 var shadow = document.createElement('a-image');
 
-                shadow.setAttribute('id', 'shadow');
-                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow')));
+                shadow.setAttribute('id', 'shadow' + ((oidx + 1)).toString());
+                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', oidx)));
                 shadow.setAttribute('rotation', '-90 0 0');
                 shadow.setAttribute('style', 'z-index: 2');
 
+                //AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
+                //    primitive: 'plane', height: defScale.h, width: defScale.w
+                //});
                 AFRAME.utils.entity.setComponentProperty(shadow, 'geometry', {
-                    primitive: 'plane', height: defScale.h, width: defScale.w
+                    primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x
                 });
 
                 AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
@@ -428,41 +664,42 @@ var viewmode = 'marker';
                     color: 'black', opacity: 0.3, depthTest: false
                 });
 
-                self.arData.shadow = shadow;
+                self.arData[oidx].shadow = shadow;
             }
 
             var elname = '';
 
-            if (!val.isMp4) {
+            if (!val[oidx].isMp4) {
                 elname = 'a-image'
-            } else if (val.isMp4) {
+            } else if (val[oidx].isMp4) {
                 elname = 'a-video'
             }
 
             var main = document.createElement(elname);
 
-            var posVec3 = self.positionVec3('main');
-            defPos = posVec3;
+            var posVec3 = self.positionVec3('main', oidx);
+            defobj[oidx].Pos = posVec3;
 
-            main.setAttribute('id', 'main');
-            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defPos));
+            main.setAttribute('id', 'main' + ((oidx + 1)).toString());
+            main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].Pos));
 
-            if (!val.isGif) {
+            if (!val[oidx].isGif) {
 
                 main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                if (!val.isGltf) {
+                if (!val[oidx].isGltf) {
 
-                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defScale.w));
-                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defScale.h));
+                    main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                    main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+
                     main.setAttribute('style', 'z-index: 3');
 
-                    if (val.isMp4) {
+                    if (val[oidx].isMp4) {
                         main.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
-                        primitive: 'plane', height: defScale.h, width: defScale.w, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
@@ -470,43 +707,51 @@ var viewmode = 'marker';
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
-                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defScale));
+                    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                 }
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
             }
 
-            self.arData.main = main;
+            self.arData[oidx].main = main;
 
-            if (val.isLogo) {
+            if (val[oidx].isLogo) {
 
                 var logo = document.createElement('a-entity');
+                var rate = (!val[oidx].isMp4) ? 1 : 2;
 
-                var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var rete = (!val.isMp4) ? 1 : 2;
+                deflogo[oidx] = {
+                    Pos: self.positionVec3Logo(Number(val[oidx].isAnime), oidx),
+                    Scale: ((deflogoScale.x * rate) + ' ' + (deflogoScale.y * rate) + ' ' + (deflogoScale.z * rate))
+                };
 
-                logo.setAttribute('id', 'logo');
-                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
-                logo.setAttribute('scale', (String(deflogoScale.w * rete) + ' ' + String(deflogoScale.h * rete) + ' ' + String(deflogoScale.d * rete)));
-                logo.setAttribute('gltf-model', '#logosource1');
-                main.setAttribute('style', 'z-index: 4');
+                //deflogo[oidx].Pos = self.positionVec3Logo(Number(val[oidx].isAnime), oidx);
+                //deflogo[oidx].Scale = { w: deflogo[oidx].Scale.w * rate, h: deflogo[oidx].Scale.h * rate, d: deflogo[oidx].Scale.wd * rate };
 
-                self.arData.logo = logo;
+                logo.setAttribute('id', 'logo' + (oidx + 1).toString());
+                logo.setAttribute('position', AFRAME.utils.coordinates.stringify(deflogo[oidx].Pos));
+                //logo.setAttribute('scale', String(dedeflogo[oidx].Scale.w + ' ' + deflogo[oidx].Scale.h + ' ' + deflogo[oidx].Scale.d));
+                logo.setAttribute('scale', AFRAME.utils.coordinates.stringify(deflogo[oidx].Scale));
+                logo.setAttribute('gltf-model', '#logosource' + ((oidx + 1) * 100 +1).toString());
+                logo.setAttribute('style', 'z-index: 4');
+
+                self.arData[oidx].logo = logo;
             }
         },
 
-        createAnimation: function (){
+        createAnimation: function (oidx){
 
             var self = this;
             var val = self.arData;
 
-            if (!!val.isLogo) {
+            if (!!val[oidx].isLogo) {
 
-                var logopos = self.positionVec3Logo(Number(val.isAnime));
-                var rete = (!val.isMp4) ? 1 : 2;
+                //var logopos = self.positionVec3Logo(Number(val[idx].isAnime));
+                var rate = (!val[oidx].isMp4) ? 1 : 2;
 
-                self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+                //self.arData.logo.setAttribute('position', AFRAME.utils.coordinates.stringify(logopos));
+                self.arData[oidx].logo.setAttribute('position', AFRAME.utils.coordinates.stringify(deflogo[oidx].Pos));
 
                 // 反射
                 //AFRAME.utils.entity.setComponentProperty(logo, 'geometry', {
@@ -517,12 +762,12 @@ var viewmode = 'marker';
                 //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
                 //});
 
-                if (!!val.isAnime) {
+                if (!!val[oidx].isAnime) {
 
-                    self.arData.logo.setAttribute('radius', (deflogoScale.w / 2));
+                    self.arData[oidx].logo.setAttribute('radius', (deflogo[oidx].Scale.x / 2));
 
-                    if (val.isAnime == 1) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                    if (val[oidx].isAnime == 1) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn', {
                             property: 'rotation',
                             from: '0 0 0',
                             to: '0 360 0',
@@ -530,8 +775,8 @@ var viewmode = 'marker';
                             loop: true,
                             easing: 'linear'
                         });
-                    } else if (val.isAnime == 2) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn', {
+                    } else if (val[oidx].isAnime == 2) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn', {
                             property: 'rotation',
                             from: '0 0 0',
                             to: '0 360 0',
@@ -540,29 +785,31 @@ var viewmode = 'marker';
                             easing: 'easeOutElastic',
                             elasticity: 300
                         });
-                    } else if (val.isAnime == 3) {
-                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                    } else if (val[idx].isAnime == 3) {
+                        self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                         // 弾む
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos', {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos', {
                             property: 'position',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: true,
-                            from: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
-                            to: logopos.x + ' ' + (logopos.y + (deflogoScale.h * rete) / 5) + ' ' + logopos.z
+                            from: logopos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                            to: logopos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
                         });
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale', {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale', {
                             property: 'scale',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: true,
-                            from: deflogoScale.w * rete * 1.2 + ' ' + deflogoScale.h * rete * 0.8 + ' ' + deflogoScale.d * rete,
-                            to: deflogoScale.w * rete * 0.8 + ' ' + deflogoScale.h * rete * 1.2 + ' ' + deflogoScale.d * rete * 1
+                            //from: deflogo[oidx].Scale.x * rate * 1.2 + ' ' + deflogo[oidx].Scale.y * rate * 0.8 + ' ' + deflogo[oidx].Scale.z * rate,
+                            //to: deflogo[oidx].Scale.x * rate * 0.8 + ' ' + deflogo[oidx].Scale.y * rate * 1.2 + ' ' + deflogo[oidx].Scale.z * rate * 1
+                            from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y* 0.8 + ' ' + deflogo[oidx].Scale.z,
+                            to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z
                         });
-                    } else if (val.isAnime == 11) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn1', {
+                    } else if (val[oidx].isAnime == 11) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn1', {
                             property: 'rotation',
                             dur: 3000,
                             easing: 'linear',
@@ -570,8 +817,8 @@ var viewmode = 'marker';
                             to: '0 360 0',
                             startEvents: 'turn1'
                         });
-                    } else if (val.isAnime == 12) {
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn2', {
+                    } else if (val[oidx].isAnime == 12) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn2', {
                             property: 'rotation',
                             dur: 3000,
                             easing: 'easeOutElastic',
@@ -580,33 +827,37 @@ var viewmode = 'marker';
                             to: '0 360 0',
                             startEvents: 'turn2'
                         });
-                    } else if (val.isAnime == 13) {
-                        self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                    } else if (val[idx].isAnime == 13) {
+                        self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                         // 弾む
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__pos3', {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
                             property: 'position',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: false,
-                            from: logopos.x + ' ' + (logopos.y - + (deflogoScale.h * rete) / 5) + ' ' + logopos.z,
-                            to: logopos.x + ' ' + logopos.y + ' ' + logopos.z,
+                            //from: logopos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.h * rate) / 5) + ' ' + deflogo[oidx].Pos.z,
+                            //to: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                            from: deflogo[oidx].x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.h * rate) / 5) + ' ' + deflogo[oidx].Pos.z,
+                            to: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
                             startEvents: 'pos3'
                         });
-                        AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__scale3', {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale3', {
                             property: 'scale',
                             dir: 'alternate',
                             dur: 400,
                             easing: 'easeOutQuad',
                             loop: false,
-                            from: deflogoScale.w * rete * 1.2 + ' ' + deflogoScale.h * rete * 0.8 + ' ' + deflogoScale.d * rete,
-                            to: deflogoScale.w * rete * 0.8 + ' ' + deflogoScale.h * rete * 1.2 + ' ' + deflogoScale.d * rete * 1,
+                            //from: deflogo[oidx].Scale.w * rate * 1.2 + ' ' + deflogo[oidx].Scale.h * rate * 0.8 + ' ' + deflogo[oidx].Scale.d * rate,
+                            //to: deflogo[oidx].Scale.w * rate * 0.8 + ' ' + deflogo[oidx].Scale.h * rate * 1.2 + ' ' + deflogo[oidx].Scale.d * rate * 1,
+                            from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y * 0.8 + ' ' + deflogo[oidx].Scale.z,
+                            to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z,
                             startEvents: 'scale3'
                         });
                     }
                 } else {
                     //self.arData.logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(objAngle) + ' 0 0'));
-                    AFRAME.utils.entity.setComponentProperty(self.arData.logo, 'animation__turn0', {
+                    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn0', {
                         property: 'rotation',
                         dur: 3000,
                         easing: 'easeOutElastic',
@@ -632,16 +883,16 @@ var viewmode = 'marker';
             }
         },
 
-        addScene: function() {
+        addScene: function(oidx) {
 
             var self = this;
             var val = self.arData;
 
-            self.arData.shadow && self.wrap.appendChild(self.arData.shadow);
-            self.arData.main && self.wrap.appendChild(self.arData.main);
+            self.arData[oidx].shadow && self.wrap[oidx].appendChild(self.arData[oidx].shadow);
+            self.arData[oidx].main && self.wrap[oidx].appendChild(self.arData[oidx].main);
 
-            if (val.isLogo) {
-                self.arData.logo && self.wrap.appendChild(self.arData.logo);
+            if (val[oidx].isLogo) {
+                self.arData[oidx].logo && self.wrap[oidx].appendChild(self.arData[oidx].logo);
             }
         },
 
@@ -650,12 +901,8 @@ var viewmode = 'marker';
             var self = this;
             var val = self.arData;
 
-            this.addScene();
-
-            if (!val.isMp4) {
-                document.getElementById("player").style.display = 'none';
-            }
-
+            var bUP = document.getElementById('swUp');
+            var bDOWN = document.getElementById('swDown');
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
 
@@ -663,168 +910,441 @@ var viewmode = 'marker';
                 bParalle.classList.remove('current');
             }
 
-            var arGifRotation = '-30 0 0';
-            var prevPageY;
-            var zoomRateH = defwrapScale.h;
-            var wrapZoom = 1;
-
             bAngle.classList.add('current');
 
-            var wrapPos = AFRAME.utils.coordinates.parse(defwrapPos.x + ' ' + defwrapPos.y + ' ' + defwrapPos.z);
+            var mWrap = {};
+            self.mWrap = {};
+            var yClickRate = {};
+            var yTouchRate = {};
 
-            if (self.arg[0].pv) {
-                
-                viewmode = 'pv';
+            for (idx = 0; idx < self.arg.Multi; idx++) {
 
-                document.getElementById("swAngle").style.display = 'none';
-                document.getElementById("swParallel").style.display = 'none';
+                this.addScene(idx);
 
-                wrapPos.x -= 0;
-                wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                wrapPos.z -= defwrapScale.h * 1.5;
-                
-                //var pvAngle = 0;
-                var pvAngle = -5;
+                //if (!val.isMp4) {
+                //    document.getElementById("player").style.display = 'none';
+                //}
 
-                wrapZoom = 0.5;
-                zoomRateH = defwrapScale.h * wrapZoom;
-                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                });
+                var arGifRotation = '-30 0 0';
+                var prevPageY;
+                var zoomRateH = defwrap[idx].Scale.y;
+                var wrapZoom = 1;
 
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
+                //var wrapPos = AFRAME.utils.coordinates.parse(defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z);
+                var wrapPos = defwrap[idx].Pos;
 
-                webAr.scene.appendChild(self.wrap);
+                if (self.args[idx].pv) {
 
-            } else {
+                    viewmode = 'pv';
 
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+                    //document.getElementById("swAngle").style.display = 'none';
+                    //document.getElementById("swParallel").style.display = 'none';
 
-                var mk = '';
+                    wrapPos.x -= 0;
+                    wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
+                    wrapPos.z -= defwrap[idx].Scale.y * 1.5;
 
-                // NFTマーカー
-                var mWrap = document.createElement('a-nft');
+                    //var pvAngle = 0;
+                    var pvAngle = -5;
 
-                if (val.isMarkerType == 1) {
+                    wrapZoom = 0.5;
+                    zoomRateH = defwrap[idx].Scale.y * wrapZoom;
+                    AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
+                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
 
-                    viewmode = 'marker';
+                    self.wrap[idx].setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
-                    wrapZoom = 0.625;
-                    zoomRateH = zoomRateH * wrapZoom;
-
-                    defwrapPos.y = -5;
-
-                    mWrap = null;
-
-                    // ARマーカー
-                    mWrap = document.createElement('a-marker');
-                    mWrap.setAttribute('markerhandler', '');
-                    mWrap.setAttribute('preset', 'custom');
-                    mWrap.setAttribute('type', 'pattern');
-                    mWrap.setAttribute('id', 'arMarker');
-
-                    mk = 'pattern/p-def.patt';
-
-                    if ((self.arg[0].markerList1) && (self.arg[0].markerList2)) {
-                        mk = 'pattern/' + self.arg[0].markerList1 + '/p-' + self.arg[0].markerList2 + '.patt';
-                    } else if ((self.arg[0].MkObjList) && (self.arg[0].markerList2)) {
-                        mk = 'pattern/' + self.arg[0].MkObjList + '/p-' + self.arg[0].markerList2 + '.patt';
-                    } else if ((self.arg[0].markerList) && (self.arg[0].markerList2)) {
-                        mk = 'pattern/' + self.arg[0].markerList + '/p-' + self.arg[0].markerList2 + '.patt';
-                    } else if ((self.arg[0].markerList)) {
-                        mk = 'pattern/p-' + self.arg[0].markerList + '.patt';
-                    }
+                    webAr.scene.appendChild(self.wrap[idx]);
 
                 } else {
 
-                    viewmode = 'nft';
+                    //document.getElementById("swAngle").style.display = 'inline';
+                    //document.getElementById("swParallel").style.display = 'inline';
 
-                    wrapZoom = 30;
-                    zoomRateH = zoomRateH * wrapZoom;
+                    var mk = '';
 
-                    mWrap.setAttribute('markerhandler', '');
-                    mWrap.setAttribute('preset', 'custom');
-                    mWrap.setAttribute('type', 'nft');
-                    mWrap.setAttribute('id', 'arMarker');
-                    mWrap.setAttribute('smooth', 'true');
-                    mWrap.setAttribute('smoothCount', '10');
-                    mWrap.setAttribute('smoothTolerance', '0.01');
-                    mWrap.setAttribute('smoothThreshold', '5');
+                    // NFTマーカー
+                    mWrap[idx] = document.createElement('a-nft');
 
-                    if ((self.arg[0].markerList1) && (self.arg[0].markerList2)) {
-                        mk = 'ImageDescriptors/' + self.arg[0].markerList1 + '/' + self.arg[0].markerList2 + '/' + self.arg[0].markerList2;
-                    } else if ((self.arg[0].MkObjList) && (self.arg[0].markerList2)) {
-                        mk = 'ImageDescriptors/' + self.arg[0].MkObjList + '/' + self.arg[0].markerList2 + '/' + self.arg[0].markerList2;
-                    } else if ((self.arg[0].markerList) && (self.arg[0].markerList2)) {
-                        mk = 'ImageDescriptors/' + self.arg[0].markerList + '/' + self.arg[0].markerList2 + '/' + self.arg[0].markerList2;
-                    } else if ((self.arg[0].markerList)) {
-                        mk = 'ImageDescriptors/' + self.arg[0].markerList + '/' + self.arg[0].markerList;
-                    } else if ((self.arg[0].MkObjList)) {
-                        mk = 'ImageDescriptors/' + self.arg[0].MkObjList + '/01';
+                    if (val[idx].isMarkerType == 1) {
+
+                        viewmode = 'marker';
+
+                        wrapZoom = 0.625;
+                        zoomRateH = zoomRateH * wrapZoom;
+
+                        //defwrapPos.y = -5;
+                        defwrap[idx].Pos.y = -5;
+
+                        mWrap[idx] = null;
+
+                        // ARマーカー
+                        mWrap[idx] = document.createElement('a-marker');
+                        mWrap[idx].setAttribute('markerhandler', '');
+                        mWrap[idx].setAttribute('preset', 'custom');
+                        mWrap[idx].setAttribute('type', 'pattern');
+                        mWrap[idx].setAttribute('id', 'arMarker' + (idx + 1).toString());
+                        mWrap[idx].setAttribute('data-index', idx);
+
+                        mk = 'pattern/p-def.patt';
+
+                        if ((self.args[idx].markerList1) && (self.args[idx].markerList2)) {
+                            mk = 'pattern/' + self.args[idx].markerList1 + '/p-' + self.args[idx].markerList2 + '.patt';
+                        } else if ((self.args[idx].MkObjList) && (self.args[idx].markerList2)) {
+                            mk = 'pattern/' + self.args[idx].MkObjList + '/p-' + self.args[idx].markerList2 + '.patt';
+                        } else if ((self.args[idx].markerList) && (self.args[idx].markerList2)) {
+                            mk = 'pattern/' + self.args[idx].markerList + '/p-' + self.args[idx].markerList2 + '.patt';
+                        } else if ((self.args[idx].markerList)) {
+                            mk = 'pattern/p-' + self.args[idx].markerList + '.patt';
+                        }
+
+                    } else {
+
+                        viewmode = 'nft';
+
+                        wrapZoom = 30;
+                        zoomRateH = zoomRateH * wrapZoom;
+
+                        mWrap[idx].setAttribute('markerhandler', '');
+                        mWrap[idx].setAttribute('preset', 'custom');
+                        mWrap[idx].setAttribute('type', 'nft');
+                        mWrap[idx].setAttribute('id', 'arMarker' + (idx + 1).toString());
+                        mWrap[idx].setAttribute('smooth', 'true');
+                        mWrap[idx].setAttribute('smoothCount', '10');
+                        mWrap[idx].setAttribute('smoothTolerance', '0.01');
+                        mWrap[idx].setAttribute('smoothThreshold', '5');
+                        mWrap[idx].setAttribute('data-index', idx);
+
+                        if ((self.args[idx].markerList1) && (self.args[idx].markerList2)) {
+                            mk = 'ImageDescriptors/' + self.args[idx].markerList1 + '/' + self.args[idx].markerList2 + '/' + self.args[idx].markerList2;
+                        } else if ((self.args[idx].MkObjList) && (self.args[idx].markerList2)) {
+                            mk = 'ImageDescriptors/' + self.args[idx].MkObjList + '/' + self.args[idx].markerList2 + '/' + self.args[idx].markerList2;
+                        } else if ((self.args[idx].markerList) && (self.args[idx].markerList2)) {
+                            mk = 'ImageDescriptors/' + self.args[idx].markerList + '/' + self.args[idx].markerList2 + '/' + self.args[idx].markerList2;
+                        } else if ((self.args[idx].markerList)) {
+                            mk = 'ImageDescriptors/' + self.args[idx].markerList + '/' + self.args[idx].markerList;
+                        } else if ((self.args[idx].MkObjList)) {
+                            mk = 'ImageDescriptors/' + self.args[idx].MkObjList + '/01';
+                        }
                     }
+
+                    mWrap[idx].addEventListener('markerFound', function (e) {
+                        var elem = e.target || e.srcElement;
+                        var elemId = elem.id;
+                        var targetmarker = document.getElementById(elemId.toString());
+                        var i = Number(targetmarker.getAttribute('data-index'));
+                        viewIdx[i] = 1;
+
+                        var multi = document.getElementById('ar-MultiText');
+
+                        if(!!(chkVIew())){
+                            multi.innerHTML = 'ALL';
+                        } else {
+                            multi.innerHTML = (i).toString();
+                        }
+
+                        if (webAr.ar.arData[i].oType == "mp4") {
+                            var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
+                            if (videostate == 0) {
+                                document.getElementById("player").style.display = 'inline';
+                            }
+                            // マーカー認識したら、ビデオ再生
+                            video.play();
+                            videostate = 1
+                        };
+
+                        function chkVIew(){
+                            for(var i = 0; i < webar.ar.arg.Multi; i++){
+                                if(viewIdx[i] == 0) {
+                                    return false;
+                                    break;
+                                }
+                            }
+                            return true;
+                        }
+                    });
+
+                    mWrap[idx].addEventListener('markerLost', function (e) {
+                        var elem = e.target || e.srcElement;
+                        var elemId = elem.id;
+                        var targetmarker = document.getElementById(elemId.toString());
+                        var i = Number(targetmarker.getAttribute('data-index'));
+                        viewIdx[i] = 0;
+
+                        if (webAr.ar.arData[i].oType == 'mp4') {
+                            var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
+                            // マーカー認識が外れたら、、ビデオ停止
+                            video.pause();
+                            videostate = 2;
+                        }
+
+                        var cameraWrapper = document.getElementById("camera-wrapper");
+                        var camera = document.getElementById("camera");
+
+                        var y = camera.getAttribute("rotation").y;
+                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
+                        property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
+                    });
+
+                    //wrapPos = defwrapPos;
+                    //self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                    wrapPos = defwrap[idx].Pos;
+                    self.wrap[idx].setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+
+                    mWrap[idx].setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
+
+                    mWrap[idx].appendChild(self.wrap[idx]);
+                    webAr.scene.appendChild(mWrap[idx]);
+
+                    self.mWrap[idx] = mWrap[idx];
+
+                    // ↓ rotation 切替 Event
+                    if (!(self.arData[idx].isMarkerType == 1)) {
+                        self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+                        self.wrap[idx].setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
+                        if (!bParalle.classList.contains('current')) {
+                            bParalle.classList.add('current');
+                            bAngle.classList.remove('current');
+                        }
+                    }
+                    // ↑
                 }
 
-                AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
-                });
-
-                wrapPos = defwrapPos;
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-
-                mWrap.setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
-                
-                mWrap.appendChild(self.wrap);
-                webAr.scene.appendChild(mWrap);
-
-                self.mWrap = mWrap;
-
-                // ↓ rotation 切替 Event
-                if (!(self.arData.isMarkerType == 1)) {
-                    self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    if (!bParalle.classList.contains('current')) {
-                        bParalle.classList.add('current');
-                        bAngle.classList.remove('current');   
-                    }
+                if (!!val[idx].isLogo) {
+                    this.createAnimation(idx);
                 }
 
-                bAngle.addEventListener('click', function () {
-                    if (!bAngle.classList.contains('current')) {
-                        webAr.ar.arData.wrapPos = webAr.defwrapPos;
-                        webAr.ar.arData.zoomRateH = webAr.defwrapScale.h * wrapZoom;
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH
-                        });
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
-                        bAngle.classList.add('current');
-                        bParalle.classList.remove('current');   
-                        webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
-                    }
-                });
+                yClickRate[idx] = ((!!(val[idx].isMarkerType == 1) || !!(self.args[idx].pv)) ? 0.2 : 5);
+                yTouchRate[idx] = ((!!(val[idx].isMarkerType == 1) || !!(self.args[idx].pv)) ? 0.02 : 2);
 
-                bParalle.addEventListener('click', function () {
-                    if (!bParalle.classList.contains('current')) {
-                        webAr.ar.arData.wrapPos = webAr.defwrapPos;
-                        webAr.ar.arData.zoomRateH = webAr.defwrapScale.h * wrapZoom;
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH
-                        });
-                        self.wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                        self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
-                        bParalle.classList.add('current');
-                        bAngle.classList.remove('current');
-                        webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
-                    }
-                });
-                // ↑
+                webAr.ar.arData[idx].wrapPos = wrapPos;
+                webAr.ar.arData[idx].zoomRateH = zoomRateH;
+
+                this.objectDataVal(zoomRateH, wrapPos);
             }
 
-            if (!!val.isLogo) {
-                this.createAnimation();
+            //bAngle.addEventListener('click', function () {
+            //    if (!bAngle.classList.contains('current')) {
+            //        for (n_idx = 0; n_idx < viewIdx.length; i++) {
+            //            if (viewIdx[n_idx] == 1) {
+            //                webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
+            //                webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
+            //                AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
+            //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+            //                });
+            //                self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
+            //                self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //                bAngle.classList.add('current');
+            //                bParalle.classList.remove('current');
+            //                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //            }
+            //        }
+            //    }
+            //});
+
+            //bParalle.addEventListener('click', function () {
+            //    if (!bParalle.classList.contains('current')) {
+            //        for (n_idx = 0; n_idx < viewIdx.length; n_idx++) {
+            //            if (viewIdx[n_idx] == 1) {
+            //                webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
+            //                webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
+            //                AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
+            //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+            //                });
+            //                self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+            //                self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //                bParalle.classList.add('current');
+            //                bAngle.classList.remove('current');
+            //                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //            }
+            //        }
+            //    }
+            //});
+
+            //// 拡大・縮小
+            //webAr.scene.addEventListener(self.eventNames.start, function (e) {
+            //    var event = e.changedTouches ? e.changedTouches[0] : e;
+            //    scalechange = 0;
+            //    prevPageY = event.pageY;    // 縦軸 or 前後軸
+            //});
+
+            //webAr.scene.addEventListener(self.eventNames.move, function (e) {
+            //    var event = e.changedTouches ? e.changedTouches[0] : e;
+            //    if (prevPageY) {
+            //        tapclicked = !!(tapCount = scalechange);
+            //        scalechange = 1;
+            //        if ((webAr.ar.arData[n_idx].zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
+            //            var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * wrapZoom;
+            //            webAr.ar.arData[n_idx].zoomRateH += rate;
+            //            AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
+            //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+            //            });
+            //            var elem = document.getElementById("debug1");
+            //            elem.innerHTML = "Scale: " + Number(webAr.ar.arData[n_idx].zoomRateH).toFixed(5);
+            //        }
+            //    }
+            //});
+
+            //webAr.scene.addEventListener(self.eventNames.end, function (e) {
+            //    scalechange = 0;
+            //    prevPageY = null;
+            //});
+
+            //// 上下移動ボタン押下
+            //bUP.addEventListener('click', function () {
+            //    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //    if (!!(bAngle.classList.contains('current'))) {
+            //        webAr.ar.arData[n_idx].wrapPos.y += yClickRate[n_idx];
+            //    } else {
+            //        webAr.ar.arData[n_idx].wrapPos.z -= yClickRate[n_idx];
+            //    }
+            //    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //});
+
+            //bDOWN.addEventListener('click', function () {
+            //    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //    if (!!(bAngle.classList.contains('current'))) {
+            //        webAr.ar.arData[n_idx].wrapPos.y -= yClickRate[n_idx];
+            //    } else {
+            //        webAr.ar.arData[n_idx].wrapPos.z += yClickRate[n_idx];
+            //    }
+            //    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //});
+            //// ↑ 
+
+            //// UPボタン長押し
+            //bUP.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bUP.classList.add('active');
+            //    timer[n_idx] = setInterval(() => {
+            //        webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //        if (!!(bAngle.classList.contains('current'))) {
+            //            webAr.ar.arData[n_idx].wrapPos.y += yTouchRate[n_idx];
+            //        } else {
+            //            webAr.ar.arData[n_idx].wrapPos.z -= yTouchRate[n_idx];
+            //        }
+            //        self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //        webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //    }, 10);
+            //});
+
+            //bUP.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
+
+            //bUP.addEventListener(self.eventNames.move, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
+
+            //// DOWNボタン長押し
+            //bDOWN.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.add('active');
+            //    timer[n_idx] = setInterval(() => {
+            //        webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //        if (!!(bAngle.classList.contains('current'))) {
+            //            webAr.ar.arData[n_idx].wrapPos.y -= yTouchRate[n_idx];
+            //        } else {
+            //            webAr.ar.arData[n_idx].wrapPos.z += yTouchRate[n_idx];
+            //        }
+            //        self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //        webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //    }, 10);
+            //});
+
+            //bDOWN.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
+
+            //bDOWN.addEventListener(self.eventNames.move, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
+        },
+
+        resetScene: function (oidx) {
+
+            var self = this;
+            var val = self.arData;
+
+            this.addScene(oidx);
+
+            if (!val[oidx].isMp4) {
+                document.getElementById("player").style.display = 'none';
             }
+
+            if (!!val[oidx].isLogo) {
+                this.createAnimation(oidx);
+            }
+
+            this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos);
+        },
+
+        setAngleEvents: function(){
+            
+            var self = this;
+
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+
+            bAngle.addEventListener('click', function () {
+                if (!bAngle.classList.contains('current')) {
+                    for (n_idx = 0; n_idx < viewIdx.length; i++) {
+                        if (viewIdx[n_idx] == 1) {
+                            webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
+                            webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
+                            AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+                            });
+                            self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
+                            self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+                            bAngle.classList.add('current');
+                            bParalle.classList.remove('current');
+                            webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+                        }
+                    }
+                }
+            });
+
+            bParalle.addEventListener('click', function () {
+                if (!bParalle.classList.contains('current')) {
+                    for (n_idx = 0; n_idx < viewIdx.length; n_idx++) {
+                        if (viewIdx[n_idx] == 1) {
+                            webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
+                            webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
+                            AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
+                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+                            });
+                            self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+                            self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+                            bParalle.classList.add('current');
+                            bAngle.classList.remove('current');
+                            webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+                        }
+                    }
+                }
+            });
+        },
+
+        setResizeEvents: function(){
+
+            var self = this;
+
+            var prevPageY;
 
             // 拡大・縮小
             webAr.scene.addEventListener(self.eventNames.start, function (e) {
@@ -838,135 +1358,176 @@ var viewmode = 'marker';
                 if (prevPageY) {
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
+                    var zoomRate = getSmall();
+                    //if ((webAr.ar.arData[n_idx].zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
+                    if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
 
-                    if ((webAr.ar.arData.zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
                         var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * wrapZoom;
-                        webAr.ar.arData.zoomRateH += rate;
-                        AFRAME.utils.entity.setComponentProperty(self.wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH + ' ' + webAr.ar.arData.zoomRateH
-                        });
+                        
+                        for(var i = 0; i < webAr.arg.multi; i++){
+                            if(webAr.viewIdx[i] == 1) {
+                                webAr.ar.arData[i].zoomRateH += rate;
+                                AFRAME.utils.entity.setComponentProperty(self.wrap[i], 'animation', {
+                                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[i].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+                                });
+                            }
+                        }
+
                         var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(webAr.ar.arData.zoomRateH).toFixed(5);
+                        elem.innerHTML = "Scale: " + Number(webAr.ar.arData[n_idx].zoomRateH).toFixed(5);
                     }
-                } 
+                }
             });
 
             webAr.scene.addEventListener(self.eventNames.end, function (e) {
                 scalechange = 0;
-                prevPageY= null;
+                prevPageY = null;
             });
 
-            // ↓ 上下移動ボタン押下
+            function getSmall() {
+                var i = 0;
+                var zoomRate =webAr.ar.arData[i].zoomRateH;
+
+                for(i + 1; i < webAr.ar.ar.multi; i++){
+                    if(webAr.ar.arData[i - 1].zoomRateH > webAr.ar.arData[i].zoomRateH){
+                        zoomRate = webAr.ar.arData[i].zoomRateH;
+                    }
+                }
+                return zoomRate;
+            }
+        },
+
+        setMoveEvents: function(){
+
+            var self = this;
+
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
-            var timer;
-            var yClickRate = ((!!(val.isMarkerType == 1) || !!(self.arg[0].pv)) ? 0.2 : 5);
+            var bAngle = document.getElementById('swAngle');
+            var bParalle = document.getElementById('swParallel');
+            var timers = {};
 
+            // 上下移動ボタン押下
             bUP.addEventListener('click', function () {
-                webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
-                if (!!(bAngle.classList.contains('current'))) {
-                    webAr.ar.arData.wrapPos.y += yClickRate;
-                } else {
-                    webAr.ar.arData.wrapPos.z -= yClickRate;
+                for (var i = 0; i < webAr.arg.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+                        webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+                    }
                 }
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
-                webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
+                for (var i = 0; i < webAr.arg.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+                        if (!!(bAngle.classList.contains('current'))) {
+                            webAr.ar.arData[n_idx].wrapPos.y += yClickRate[n_idx];
+                        } else {
+                            webAr.ar.arData[n_idx].wrapPos.z -= yClickRate[n_idx];
+                        }
+                    }
+                }
+                for (var i = 0; i < webAr.arg.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+
+                        self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+                    }
+                }
+                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
             });
 
             bDOWN.addEventListener('click', function () {
-                webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
-                if (!!(bAngle.classList.contains('current'))) {
-                    webAr.ar.arData.wrapPos.y -= yClickRate;
-                } else {
-                    webAr.ar.arData.wrapPos.z += yClickRate;
+                for (var i = 0; i < webAr.arg.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+
+                        webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+                    }
                 }
-                self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
-                webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
+                for (var i = 0; i < webAr.arg.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+
+                        if (!!(bAngle.classList.contains('current'))) {
+                            webAr.ar.arData[n_idx].wrapPos.y -= yClickRate[n_idx];
+                        } else {
+                            webAr.ar.arData[n_idx].wrapPos.z += yClickRate[n_idx];
+                        }
+                    }
+                }
+                for (var i = 0; i < webAr.arg.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+                        self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+                    }
+                }
+                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
             });
             // ↑ 
 
-            var yTouchRate = ((!!(val.isMarkerType == 1) || !!(self.arg[0].pv)) ? 0.02 : 2);
-
-            // ↓ UPボタン長押し
+            // UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
                 bUP.classList.add('active');
-                timer = setInterval(() => {
-                    webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                timers[n_idx] = setInterval(() => {
+                    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
-                        webAr.ar.arData.wrapPos.y += yTouchRate;
+                        webAr.ar.arData[n_idx].wrapPos.y += yTouchRate[n_idx];
                     } else {
-                        webAr.ar.arData.wrapPos.z -= yTouchRate;
+                        webAr.ar.arData[n_idx].wrapPos.z -= yTouchRate[n_idx];
                     }
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
-                    webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
+                    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+                    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
                 }, 10);
             });
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
                 bUP.classList.remove('active');
-                clearInterval(timer);
+                clearInterval(timers[n_idx]);
             });
 
             bUP.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
                 bUP.classList.remove('active');
-                clearInterval(timer);
+                clearInterval(timers[n_idx]);
             });
-            // ↑ 
 
-            // ↓ DOWNボタン長押し
+            // DOWNボタン長押し
             bDOWN.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
                 bDOWN.classList.add('active');
-                timer = setInterval(() => {
-                    webAr.ar.arData.wrapPos = AFRAME.utils.coordinates.parse(self.wrap.getAttribute('position'));
+                timers[n_idx] = setInterval(() => {
+                    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
                     if (!!(bAngle.classList.contains('current'))) {
-                        webAr.ar.arData.wrapPos.y -= yTouchRate;
+                        webAr.ar.arData[n_idx].wrapPos.y -= yTouchRate[n_idx];
                     } else {
-                        webAr.ar.arData.wrapPos.z += yTouchRate;
+                        webAr.ar.arData[n_idx].wrapPos.z += yTouchRate[n_idx];
                     }
-                    self.wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData.wrapPos));
-                    webAr.ar.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
+                    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+                    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
                 }, 10);
             });
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
                 bDOWN.classList.remove('active');
-                clearInterval(timer);
+                clearInterval(timers[n_idx]);
             });
 
-            bUP.addEventListener(self.eventNames.move, e => {
+            bDOWN.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
-                bUP.classList.remove('active');
-                clearInterval(timer);
+                bDOWN.classList.remove('active');
+                clearInterval(timers[n_idx]);
             });
-            // ↑
 
-            this.objectDataVal(zoomRateH, wrapPos);
+            function getOnMarkers() {
+                var j = 0;
+                var zoomRate = webAr.ar.arData[i].zoomRateH;
 
-            webAr.ar.arData.wrapPos = wrapPos;
-            webAr.ar.arData.zoomRateH = zoomRateH;
-        },
-
-        resetScene: function () {
-
-            var self = this;
-            var val = self.arData;
-
-            this.addScene();
-
-            if (!val.isMp4) {
-                document.getElementById("player").style.display = 'none';
+                for (var i = 0; i < webAr.ar.ar.multi; i++) {
+                    if (webAr.viewIdx[i] == 1) {
+                        j++;
+                        if (j > 1) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
-
-            if (!!val.isLogo) {
-                this.createAnimation();
-            }
-
-            this.objectDataVal(webAr.ar.arData.zoomRateH, webAr.ar.arData.wrapPos);
         },
 
         setTapEvents: function () {
@@ -987,13 +1548,13 @@ var viewmode = 'marker';
                     setTimeout(function () {
                         if (tapclicked && tapCount == 2 && !(scalechange)) {
                             tapclicked = false;
-                            objNo = ((webAr.srcno.obj + 1) <= webAr.srcno.length) ? webAr.srcno.obj + 1 : 1;
+                            objNo = ((webAr.ar.arData[n_idx].srcno.obj + 1) <= webAr.ar.arData[n_idx].srcno.length) ? webAr.ar.arData[n_idx].srcno.obj + 1 : 1;
                             switchObject(e, objNo);
                             return;
                         }
                         if (tapclicked && tapCount >= 3 && !(scalechange)) {
                             tapclicked = false;
-                            objNo = ((webAr.srcno.obj - 1) > 0) ? webAr.srcno.obj - 1 : webAr.srcno.length;
+                            objNo = ((webAr.ar.arData[n_idx].srcno.obj - 1) > 0) ? webAr.ar.arData[n_idx].srcno.obj - 1 : webAr.ar.arData[n_idx].srcno.length;
                             switchObject(e, objNo);
                             return;
                         }
@@ -1008,27 +1569,27 @@ var viewmode = 'marker';
 
                         e.preventDefault();
 
-                        if (!(val.isAnime)) {
-                                if (!!(val.isLogo)) {
-                                    if (val.path) {
-                                        self.arData.logo.emit('turn0');
-                                    }
+                        if (!(val[n_idx].isAnime)) {
+                            if (!!(val[n_idx].isLogo)) {
+                                if (val[n_idx].path) {
+                                    self.arData[n_idx].logo.emit('turn0');
+                                }
                             }
                         } else {
-                            if (val.isAnime == 11) {
-                                if (val.path && val.isAnime == 11) {
-                                    self.arData.logo.emit('turn1');
+                            if (val[n_idx].isAnime == 11) {
+                                if (val[n_idx].path && val[n_idx].isAnime == 11) {
+                                    self.arData[n_idx].logo.emit('turn1');
                                 }
                             }
-                            if (val.isAnime == 12) {
-                                if (val.path && val.isAnime == 12) {
-                                    self.arData.logo.emit('turn2');
+                            if (val[n_idx].isAnime == 12) {
+                                if (val[n_idx].path && val[n_idx].isAnime == 12) {
+                                    self.arData[n_idx].logo.emit('turn2');
                                 }
                             }
-                            if (val.isAnime == 13) {
-                                if (val.path && val.isAnime == 13) {
-                                    self.arData.logo.emit('pos3');
-                                    self.arData.logo.emit('scale3');
+                            if (val[n_idx].isAnime == 13) {
+                                if (val[n_idx].path && val[n_idx].isAnime == 13) {
+                                    self.arData[n_idx].logo.emit('pos3');
+                                    self.arData[n_idx].logo.emit('scale3');
                                 }
                             }
                         }
@@ -1048,43 +1609,38 @@ var viewmode = 'marker';
 
                 e.preventDefault();
 
-                if (webAr.srcno.length == 1) {
+                if (webAr.ar.arData[n_idx].srcno.length == 1) {
                     return;
                 }
 
-                if (!!(webAr.ar.arData.isMp4)) {
+                if (!!(webAr.ar.arData[n_idx].isMp4)) {
                     return;
                 }
 
                 // ビューポートの変更(ズーム)を防止
                 e.preventDefault();
 
-                var wrap = document.getElementById('base');
-                var shadow = document.getElementById('shadow');
+                var shadow = document.getElementById('shadow' + (n_idx + 1).toString());
                 if (shadow != null) {
                     shadow.remove();
                 }
-                var main = document.getElementById('main');
+                var main = document.getElementById('main' + (n_idx + 1).toString());
                 if (main != null) {
                     main.remove();
                 }
-                var logo = document.getElementById('logo');
+                var logo = document.getElementById('logo' + (n_idx + 1).toString());
                 if (logo != null) {
                     logo.remove();
                 }
 
-                webAr.srcno.obj = fileno;
-                webAr.ar.createModel(webAr.srcno.obj);
-                webAr.ar.resetScene();
+                webAr.ar.arData[n_idx].srcno.obj = fileno;
+                webAr.ar.resetModel(n_idx, webAr.ar.arData[n_idx].srcno.obj);
+                webAr.ar.resetScene(n_idx);
+                webAr.ar.arData[n_idx].wrap.setAttribute('visible', true);
 
                 tapCount = 0;
                 tapclicked = false;
             };
-        },
-
-        setCameraEvents: function (){
-
-
         },
 
         setDiplayBtn: function (mode, objno) {
@@ -1101,15 +1657,15 @@ var viewmode = 'marker';
 
             document.getElementById("player").style.display = 'none';
 
-            if (objecttype != 'mp4') {
+            if (webAr.ar.arData[n_idx].oType != 'mp4') {
 
                 document.getElementById("info1").style.display = "none";
 
                 document.getElementById("scrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
 
-                document.getElementById("swAngle").style.display = 'inline';
-                document.getElementById("swParallel").style.display = 'inline';
+                //document.getElementById("swAngle").style.display = 'inline';
+                //document.getElementById("swParallel").style.display = 'inline';
 
             } else {
 
@@ -1122,35 +1678,35 @@ var viewmode = 'marker';
                 //document.getElementById("swParallel").style.display = 'none';
 
                 if (mode) {
-                    document.getElementById("swAngle").style.display = 'none';
-                    document.getElementById("swParallel").style.display = 'none';
+                    //document.getElementById("swAngle").style.display = 'none';
+                    //document.getElementById("swParallel").style.display = 'none';
                 } else {
-                    document.getElementById("swAngle").style.display = 'inline';
-                    document.getElementById("swParallel").style.display = 'inline';
+                    //document.getElementById("swAngle").style.display = 'inline';
+                    //document.getElementById("swParallel").style.display = 'inline';
 
                     document.getElementById("player").style.display = 'none';
                 }
             }
 
-            if (val.isMarkerType == 1 || !!(val.isPV)) {
+            if (val[n_idx].isMarkerType == 1 || !!(val[n_idx].isPV)) {
                 document.getElementById("arloader").style.display = 'none';
             }
         },
 
-        positionVec3Logo: function (anime) {
+        positionVec3Logo: function (anime, oidx) {
             var self = this;
-            var h1_2 = (self.arData.size.h / 5);
-            var margin = ((self.arData.isMp4) ? 0.25 : 0);
+            var h1_2 = (self.arData[oidx].size.h / 5);
+            var margin = ((self.arData[oidx].isMp4) ? 0.25 : 0);
 
             return { x: 0, y: -h1_2 - margin, z: 0 };
         },
 
-        positionVec3: function (type, angle) {
+        positionVec3: function (type, oidx) {
             var self = this;
-            var h1 = self.arData.size.h;
-            var h1_2 = self.arData.size.h / 2;
+            var h1 = self.arData[oidx].size.h;
+            var h1_2 = self.arData[oidx].size.h / 2;
 
-            var i = (!!(self.arg[0].pv) ? h1_2 : (!!(self.arg[0].isMarkerType == 1) ? -h1 * 5 : 0));
+            var i = (!!(self.args[oidx].pv) ? h1_2 : (!!(self.args[oidx].isMarkerType == 1) ? -h1 * 5 : 0));
 
             if (type === 'shadow') {
                 return { x: 0, y: 0, z: -h1_2 };
@@ -1159,69 +1715,58 @@ var viewmode = 'marker';
             }
         },
 
-        readXml: function (filenm, fncnm) {
-            var xmldata;
+        readBaseXml: function (filenm) {
             var xmlhttp = new XMLHttpRequest();
+            var xml = new Array();
+
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    var reader = xmlhttp.responseXML.documentElement;
-                    // ＸＭＬファイルではresponseTextではなくresponseXML
-                    var fnc = {};
-                    if (fncnm == 'base') {
-                        fnc = setXmlbasedata(reader);
-                    } else {
-                        fnc = setXmlbasedata(reader);
-                    }
-                    return fnc;
+                    var xmlTb = xmlhttp.responseXML;
+                    xml = setXmldata(xmlTb);
                 }
             }
 
-            function setXmlbasedata(tabelnm) {
-                var base = {};
+            function setXmldata(xmldata) {
 
-                var ed = new Array();
-                var ar = new Array();
-                var pv = new Array();
+                var data = new Array();
 
-                var dData = tabelnm.getElementsByTagName("basedata");
+                var cEd = xmldata.getElementsByTagName("ed");
+                var cAr = xmldata.getElementsByTagName("ar");
+                var cPv = xmldata.getElementsByTagName("pv");
+                var cLen = xmldata.getElementsByTagName("len");
 
-                var cEd = tabelnm.getElementsByTagName("ed");
-                var cAr = tabelnm.getElementsByTagName("ar");
-                var cPv = tabelnm.getElementsByTagName("pv");
-
-                var rows = dData.length;
-                for (var i = 0; i < rows; i++) {
-                    ed[i] = cEd[i].textContent;
-                    ar[i] = cAr[i].textContent;
-                    pv[i] = cPv[i].textContent;
+                var len = cEd.length;
+                for (var i = 0; i < len; i++) {
+                    data[i] = {
+                        ed: cEd[i].textContent,
+                        ar: cAr[i].textContent,
+                        pv: cPv[i].textContent,
+                        len: cLen[i].textContent
+                    };
                 }
 
-                base.rows = rows;
-                base.ed = ed;
-                base.ar = ar;
-                base.pv = pv;
-
-                return base;
+                return data;
             };
 
-            function setXmlpcsdata(tabelnm) {
-                var pcs = {};
+            xmlhttp.open("GET", filenm, false);
+            xmlhttp.send(null);
 
-                var m = new Array();
-                var m1 = new Array();
-                var m2 = new Array();
-                var mo = new Array();
-                var t = new Array();
-                var xs = new Array();
-                var an = new Array();
-                var wh = new Array();
-                var o = new Array();
-                var o1 = new Array();
-                var o2 = new Array();
-                var o3 = new Array();
-                var l = new Array();
+            return xml;
+        },
 
-                var dData = tabelnm.getElementsByTagName("pcsdata");
+        readPcsXml: function (filenm) {
+            var xmlhttp = new XMLHttpRequest();
+            var xml = new Array();
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var xmlTb = xmlhttp.responseXML;
+                    xml = setXmldata(xmlTb);
+                }
+            }
+
+            function setXmldata(tabelnm) {
+                var data = new Array();
 
                 var cM = tabelnm.getElementsByTagName("m");
                 var cM1 = tabelnm.getElementsByTagName("m1");
@@ -1237,140 +1782,38 @@ var viewmode = 'marker';
                 var cO3 = tabelnm.getElementsByTagName("o3");
                 var cL = tabelnm.getElementsByTagName("l");
 
-                var rows = dData.length;
-                for (var i = 0; i < rows; i++) {
-                    m[i] = cM[i].textContent ;
-                    m1[i] = cM1[i].textContent;
-                    m2[i] = cM2[i].textContent;
-                    mo[i] = cMo[i].textContent;
-                    t[i] = cT[i].textContent;
-                    xs[i] = cXs[i].textContent;
-                    an[i] = cAn[i].textContent;
-                    wh[i] = cWh[i].textContent;
-                    o[i] = cO[i].textContent;
-                    o1[i] = cO1[i].textContent;
-                    o2[i] = cO2[i].textContent;
-                    o3[i] = cO3[i].textContent;
-                    l[i] = cL[i].textContent;
+                var len = cM.length;
+                for (var i = 0; i < len; i++) {
+                    data[i] = {
+                        m: cM[i].textContent,
+                        m1: cM1[i].textContent,
+                        m2: cM2[i].textContent,
+                        mo: cMo[i].textContent,
+                        t: cT[i].textContent,
+                        xs: cXs[i].textContent,
+                        an: cAn[i].textContent,
+                        wh: cWh[i].textContent,
+                        o: cO[i].textContent,
+                        o1: cO1[i].textContent,
+                        o2: cO2[i].textContent,
+                        o3: cO3[i].textContent,
+                        l: cL[i].textContent
+                    };
                 }
 
-                pcs.rows = rows;
-                pcs.m = m;
-                pcs.m1 = m1;
-                pcs.m2 = m2;
-                pcs.mo = m0;
-                pcs.t = t;
-                pcs.xs = xs;
-                pcs.an = an;
-                pcs.wh = wh;
-                pcs.o = o;
-                pcs.o1 = o1;
-                pcs.o2 = o2;
-                pcs.o3 = o3;
-                pcs.l = l;
-
-                return pcs;
+                return data;
             };
 
-            xmlhttp.open("GET", filenm, true);
-            xmlhttp.send();
+            xmlhttp.open("GET", filenm, false);
+            xmlhttp.send(null);
+
+            return xml;
         }
-
-        //setXmlbasedata: function (tabelnm) {
-        //    var base = {};
-
-        //    var ed = new Array();
-        //    var ar = new Array();
-        //    var pv = new Array();
-
-        //    var baseD = tabelnm.getElementsByTagName("basedata");
-        //    var cEd = tabelnm.getElementsByTagName("ed");
-        //    var cAr = tabelnm.getElementsByTagName("ar");
-        //    var cPv = tabelnm.getElementsByTagName("pv");
-
-        //    var rows = baseD.length;
-        //    for (var i = 0; i < rows; i++) {
-        //        ed[i] = ed[i].childNodes[0].nodeValue;
-        //        ar[i] = ar[i].childNodes[0].nodeValue;
-        //        pv[i] = pv[i].childNodes[0].nodeValue;
-        //    }
-
-        //    base.rows = rows;
-        //    base.ed = ed;
-        //    base.ar = ar;
-        //    base.pv = pv;
-
-        //    return base;
-        //},
-
-        //setXmlpcsdata: function (tabelnm) {
-        //    var pcs = {};
-
-        //    var m = new Array();
-        //    var m1 = new Array();
-        //    var m2 = new Array();
-        //    var mo = new Array();
-        //    var t = new Array();
-        //    var xs = new Array();
-        //    var an = new Array();
-        //    var wh = new Array();
-        //    var o = new Array();
-        //    var o1 = new Array();
-        //    var o2 = new Array();
-        //    var o3 = new Array();
-        //    var l = new Array();
-
-        //    var pcsD = tabelnm.getElementsByTagName("pcsdata");
-        //    var cM = tabelnm.getElementsByTagName("m");
-        //    var cM1 = tabelnm.getElementsByTagName("m1");
-        //    var cM2 = tabelnm.getElementsByTagName("m2");
-        //    var cMo = tabelnm.getElementsByTagName("mo");
-        //    var cXs = tabelnm.getElementsByTagName("xs");
-        //    var cWh = tabelnm.getElementsByTagName("wh");
-        //    var cO = tabelnm.getElementsByTagName("o");
-        //    var cO1 = tabelnm.getElementsByTagName("o1");
-        //    var cO2 = tabelnm.getElementsByTagName("o2");
-        //    var cO3 = tabelnm.getElementsByTagName("o3");
-        //    var cO3 = tabelnm.getElementsByTagName("l");
-
-        //    var rows = pcsD.length;
-        //    for (var i = 0; i < rows; i++) {
-        //        m[i] = m[i].childNodes[0].nodeValue;
-        //        m1[i] = m1[i].childNodes[0].nodeValue;
-        //        m2[i] = m2[i].childNodes[0].nodeValue;
-        //        mo[i] = mo[i].childNodes[0].nodeValue;
-        //        t[i] = t[i].childNodes[0].nodeValue;
-        //        an[i] = an[i].childNodes[0].nodeValue;
-        //        wh[i] = wh[i].childNodes[0].nodeValue;
-        //        o[i] = o[i].childNodes[0].nodeValue;
-        //        o1[i] = o1[i].childNodes[0].nodeValue;
-        //        o2[i] = o2[i].childNodes[0].nodeValue;
-        //        o3[i] = o3[i].childNodes[0].nodeValue;
-        //        l[i] = l[i].childNodes[0].nodeValue;
-        //    }
-
-        //    pcs.rows = rows;
-        //    pcs.m = m;
-        //    pcs.m1 = m1;
-        //    pcs.m2 = m2;
-        //    pcs.mo = m0;
-        //    pcs.t = t;
-        //    pcs.xs = xs;
-        //    pcs.an = an;
-        //    pcs.wh = wh;
-        //    pcs.o = o;
-        //    pcs.o1 = o1;
-        //    pcs.o2 = o2;
-        //    pcs.o3 = o3;
-        //    pcs.l = l;
-
-        //    return pcs;
-        //}
-};
+    };
 
     webAr.ar = ar;
     webAr.ar.init();
-    webAr.ar.setDiplayBtn(!!(ar.arg[0].pv), srcno.obj);
+    webAr.ar.setDiplayBtn(!!(ar.args[0].pv), ar.arData[0].srcno.obj);
 
     webAr.srcno = srcno;
 
@@ -1380,5 +1823,5 @@ var viewmode = 'marker';
     webAr.defwrapPos = defwrapPos;
     webAr.defwrapScale = defwrapScale;
     webAr.deflogoScale = deflogoScale;
-
+    webAr.viewIdx = viewIdx;
 }());
