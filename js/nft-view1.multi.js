@@ -1422,7 +1422,7 @@ var viewmode = 'marker';
                         webAr.ar.arData[i].wrapPos = AFRAME.utils.coordinates.parse(webAr.ar.arData[i].wrap.getAttribute('position'));
                     }
                 }
-                for (var i = 0; i < webAr.arg.multi; i++) {
+                for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         if (!!(bAngle.classList.contains('current'))) {
                             webAr.ar.arData[i].wrapPos.y += yClickRate[i];
@@ -1431,7 +1431,7 @@ var viewmode = 'marker';
                         }
                     }
                 }
-                for (var i = 0; i < webAr.arg.multi; i++) {
+                for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         webAr.ar.arData[i].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[i].wrapPos));
                     }
@@ -1440,12 +1440,12 @@ var viewmode = 'marker';
             });
 
             bDOWN.addEventListener('click', function () {
-                for (var i = 0; i < webAr.arg.multi; i++) {
+                for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         webAr.ar.arData[i].wrapPos = AFRAME.utils.coordinates.parse(webAr.ar.arData[i].wrap.getAttribute('position'));
                     }
                 }
-                for (var i = 0; i < webAr.arg.multi; i++) {
+                for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         if (!!(bAngle.classList.contains('current'))) {
                             webAr.ar.arData[i].wrapPos.y -= yClickRate[i];
@@ -1454,7 +1454,7 @@ var viewmode = 'marker';
                         }
                     }
                 }
-                for (var i = 0; i < webAr.arg.multi; i++) {
+                for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         webAr.ar.arData[i].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[i].wrapPos));
                     }
