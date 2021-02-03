@@ -64,6 +64,10 @@ var viewmode = 'marker';
                 };
 
                 this.setScene();
+
+                this.setAngleEvents();
+                this.setResizeEvents();
+                this.setMoveEvents();
                 this.setTapEvents();
             }
 
