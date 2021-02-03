@@ -120,10 +120,10 @@ var viewmode = 'marker';
             if (!!(arg.xd)) {
                 
                 var base = {};
-                base = this.readBaseXml('../data/' + arg.mo + '/' + arg.x + '.xml');
+                base = this.readBaseXml(rootPath + 'data/' + arg.mo + '/' + arg.x + '.xml');
 
                 var pcs = {};
-                pcs = this.readPcsXml('../data/' + arg.mo + '/' + arg.x + '.xml');
+                pcs = this.readPcsXml(rootPath + 'data/' + arg.mo + '/' + arg.x + '.xml');
 
                 // プレビューモード
                 arg.PVList = base[0].pv;
