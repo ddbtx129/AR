@@ -1136,6 +1136,10 @@ var viewmode = 'marker';
                 this.objectDataVal(zoomRateH, wrapPos);
             }
 
+
+            self.arData[idx].yClickRate = yClickRate;
+            self.arData[idx].yTouchRate = yTouchRate;
+
             //bAngle.addEventListener('click', function () {
             //    if (!bAngle.classList.contains('current')) {
             //        for (n_idx = 0; n_idx < viewIdx.length; i++) {
@@ -1428,9 +1432,9 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         if (!!(bAngle.classList.contains('current'))) {
-                            webAr.ar.arData[i].wrapPos.y += yClickRate[i];
+                            webAr.ar.arData[i].wrapPos.y += webAr.ar.arData[i].yClickRate[i];
                         } else {
-                            webAr.ar.arData[i].wrapPos.z -= yClickRate[i];
+                            webAr.ar.arData[i].wrapPos.z -= webAr.ar.arData[i].yClickRate[i];
                         }
                     }
                 }
@@ -1451,9 +1455,9 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         if (!!(bAngle.classList.contains('current'))) {
-                            webAr.ar.arData[i].wrapPos.y -= yClickRate[i];
+                            webAr.ar.arData[i].wrapPos.y -= webAr.ar.arData[i].yClickRate[i];
                         } else {
-                            webAr.ar.arData[i].wrapPos.z += yClickRate[i];
+                            webAr.ar.arData[i].wrapPos.z += webAr.ar.arData[i].yClickRate[i];
                         }
                     }
                 }
@@ -1480,9 +1484,9 @@ var viewmode = 'marker';
                         for (var i = 0; i < webAr.ar.arg.multi; i++) {
                             if (webAr.viewIdx[i] == 1) {
                                 if (!!(bAngle.classList.contains('current'))) {
-                                    webAr.ar.arData[i].wrapPos.y += yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.y += webAr.ar.arData[i].yTouchRate[i];
                                 } else {
-                                    webAr.ar.arData[i].wrapPos.z -= yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.z -= webAr.ar.arData[i].yTouchRate[i];
                                 }
                             }
                         }
@@ -1499,9 +1503,9 @@ var viewmode = 'marker';
                             timers[i] = setInterval(() => {
                                 webAr.ar.arData[i].wrapPos = AFRAME.utils.coordinates.parse(webAr.ar.arData[i].wrap.getAttribute('position'));
                                 if (!!(bAngle.classList.contains('current'))) {
-                                    webAr.ar.arData[i].wrapPos.y += yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.y += webAr.ar.arData[i].yTouchRate[i];
                                 } else {
-                                    webAr.ar.arData[i].wrapPos.z -= yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.z -= webAr.ar.arData[i].yTouchRate[i];
                                 }
                                 webAr.ar.arData[i].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[i].wrapPos));
                                 webAr.ar.objectDataVal(webAr.ar.arData[i].zoomRateH, webAr.ar.arData[i].wrapPos);
@@ -1517,6 +1521,7 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     clearInterval(timers[i]);
                 }
+                clearInterval(timer);
             });
 
             bUP.addEventListener(self.eventNames.move, e => {
@@ -1525,6 +1530,7 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     clearInterval(timers[i]);
                 }
+                clearInterval(timer);
             });
 
             // DOWNボタン長押し
@@ -1541,9 +1547,9 @@ var viewmode = 'marker';
                         for (var i = 0; i < webAr.ar.arg.multi; i++) {
                             if (webAr.viewIdx[i] == 1) {
                                 if (!!(bAngle.classList.contains('current'))) {
-                                    webAr.ar.arData[i].wrapPos.y -= yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.y -= webAr.ar.arData[i].yTouchRate[i];
                                 } else {
-                                    webAr.ar.arData[i].wrapPos.z += yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.z += webAr.ar.arData[i].yTouchRate[i];
                                 }
                             }
                         }
@@ -1561,9 +1567,9 @@ var viewmode = 'marker';
                             timers[i] = setInterval(() => {
                                 webAr.ar.arData[i].wrapPos = AFRAME.utils.coordinates.parse(webAr.ar.arData[i].wrap.getAttribute('position'));
                                 if (!!(bAngle.classList.contains('current'))) {
-                                    webAr.ar.arData[i].wrapPos.y -= yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.y -= webAr.ar.arData[i].yTouchRate[i];
                                 } else {
-                                    webAr.ar.arData[i].wrapPos.z += yTouchRate[i];
+                                    webAr.ar.arData[i].wrapPos.z += webAr.ar.arData[i].yTouchRate[i];
                                 }
                                 webAr.ar.arData[i].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[i].wrapPos));
                                 webAr.ar.objectDataVal(webAr.ar.arData[i].zoomRateH, webAr.ar.arData[i].wrapPos);
@@ -1579,6 +1585,7 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     clearInterval(timers[i]);
                 }
+                clearInterval(timer);
             });
 
             bDOWN.addEventListener(self.eventNames.move, e => {
@@ -1587,6 +1594,7 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     clearInterval(timers[i]);
                 }
+                clearInterval(timer);
             });
 
             function getOnMarkers() {
