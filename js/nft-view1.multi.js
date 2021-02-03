@@ -65,9 +65,9 @@ var viewmode = 'marker';
 
                 this.setScene();
 
-                //this.setAngleEvents();
-                //this.setResizeEvents();
-                //this.setMoveEvents();
+                this.setAngleEvents();
+                this.setResizeEvents();
+                this.setMoveEvents();
                 this.setTapEvents();
             }
 
@@ -1136,152 +1136,152 @@ var viewmode = 'marker';
                 this.objectDataVal(zoomRateH, wrapPos);
             }
 
-            bAngle.addEventListener('click', function () {
-                if (!bAngle.classList.contains('current')) {
-                    for (n_idx = 0; n_idx < viewIdx.length; i++) {
-                        if (viewIdx[n_idx] == 1) {
-                            webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
-                            webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
-                            AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
-                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
-                            });
-                            self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
-                            self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
-                            bAngle.classList.add('current');
-                            bParalle.classList.remove('current');
-                            webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
-                        }
-                    }
-                }
-            });
+            //bAngle.addEventListener('click', function () {
+            //    if (!bAngle.classList.contains('current')) {
+            //        for (n_idx = 0; n_idx < viewIdx.length; i++) {
+            //            if (viewIdx[n_idx] == 1) {
+            //                webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
+            //                webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
+            //                AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
+            //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+            //                });
+            //                self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
+            //                self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //                bAngle.classList.add('current');
+            //                bParalle.classList.remove('current');
+            //                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //            }
+            //        }
+            //    }
+            //});
 
-            bParalle.addEventListener('click', function () {
-                if (!bParalle.classList.contains('current')) {
-                    for (n_idx = 0; n_idx < viewIdx.length; n_idx++) {
-                        if (viewIdx[n_idx] == 1) {
-                            webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
-                            webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
-                            AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
-                                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
-                            });
-                            self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                            self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
-                            bParalle.classList.add('current');
-                            bAngle.classList.remove('current');
-                            webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
-                        }
-                    }
-                }
-            });
+            //bParalle.addEventListener('click', function () {
+            //    if (!bParalle.classList.contains('current')) {
+            //        for (n_idx = 0; n_idx < viewIdx.length; n_idx++) {
+            //            if (viewIdx[n_idx] == 1) {
+            //                webAr.ar.arData[n_idx].wrapPos = webAr.defwrap[n_idx].Pos;
+            //                webAr.ar.arData[n_idx].zoomRateH = webAr.defwrap[n_idx].Scale.y * wrapZoom;
+            //                AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
+            //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+            //                });
+            //                self.wrap[n_idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+            //                self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //                bParalle.classList.add('current');
+            //                bAngle.classList.remove('current');
+            //                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //            }
+            //        }
+            //    }
+            //});
 
-            // 拡大・縮小
-            webAr.scene.addEventListener(self.eventNames.start, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                scalechange = 0;
-                prevPageY = event.pageY;    // 縦軸 or 前後軸
-            });
+            //// 拡大・縮小
+            //webAr.scene.addEventListener(self.eventNames.start, function (e) {
+            //    var event = e.changedTouches ? e.changedTouches[0] : e;
+            //    scalechange = 0;
+            //    prevPageY = event.pageY;    // 縦軸 or 前後軸
+            //});
 
-            webAr.scene.addEventListener(self.eventNames.move, function (e) {
-                var event = e.changedTouches ? e.changedTouches[0] : e;
-                if (prevPageY) {
-                    tapclicked = !!(tapCount = scalechange);
-                    scalechange = 1;
-                    if ((webAr.ar.arData[n_idx].zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
-                        var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * wrapZoom;
-                        webAr.ar.arData[n_idx].zoomRateH += rate;
-                        AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
-                        });
-                        var elem = document.getElementById("debug1");
-                        elem.innerHTML = "Scale: " + Number(webAr.ar.arData[n_idx].zoomRateH).toFixed(5);
-                    }
-                }
-            });
+            //webAr.scene.addEventListener(self.eventNames.move, function (e) {
+            //    var event = e.changedTouches ? e.changedTouches[0] : e;
+            //    if (prevPageY) {
+            //        tapclicked = !!(tapCount = scalechange);
+            //        scalechange = 1;
+            //        if ((webAr.ar.arData[n_idx].zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
+            //            var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * wrapZoom;
+            //            webAr.ar.arData[n_idx].zoomRateH += rate;
+            //            AFRAME.utils.entity.setComponentProperty(self.wrap[n_idx], 'animation', {
+            //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH + ' ' + webAr.ar.arData[n_idx].zoomRateH
+            //            });
+            //            var elem = document.getElementById("debug1");
+            //            elem.innerHTML = "Scale: " + Number(webAr.ar.arData[n_idx].zoomRateH).toFixed(5);
+            //        }
+            //    }
+            //});
 
-            webAr.scene.addEventListener(self.eventNames.end, function (e) {
-                scalechange = 0;
-                prevPageY = null;
-            });
+            //webAr.scene.addEventListener(self.eventNames.end, function (e) {
+            //    scalechange = 0;
+            //    prevPageY = null;
+            //});
 
-            // 上下移動ボタン押下
-            bUP.addEventListener('click', function () {
-                webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
-                if (!!(bAngle.classList.contains('current'))) {
-                    webAr.ar.arData[n_idx].wrapPos.y += yClickRate[n_idx];
-                } else {
-                    webAr.ar.arData[n_idx].wrapPos.z -= yClickRate[n_idx];
-                }
-                self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
-                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
-            });
+            //// 上下移動ボタン押下
+            //bUP.addEventListener('click', function () {
+            //    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //    if (!!(bAngle.classList.contains('current'))) {
+            //        webAr.ar.arData[n_idx].wrapPos.y += yClickRate[n_idx];
+            //    } else {
+            //        webAr.ar.arData[n_idx].wrapPos.z -= yClickRate[n_idx];
+            //    }
+            //    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //});
 
-            bDOWN.addEventListener('click', function () {
-                webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
-                if (!!(bAngle.classList.contains('current'))) {
-                    webAr.ar.arData[n_idx].wrapPos.y -= yClickRate[n_idx];
-                } else {
-                    webAr.ar.arData[n_idx].wrapPos.z += yClickRate[n_idx];
-                }
-                self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
-                webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
-            });
-            // ↑ 
+            //bDOWN.addEventListener('click', function () {
+            //    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //    if (!!(bAngle.classList.contains('current'))) {
+            //        webAr.ar.arData[n_idx].wrapPos.y -= yClickRate[n_idx];
+            //    } else {
+            //        webAr.ar.arData[n_idx].wrapPos.z += yClickRate[n_idx];
+            //    }
+            //    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //});
+            //// ↑ 
 
-            // UPボタン長押し
-            bUP.addEventListener(self.eventNames.start, e => {
-                e.preventDefault();
-                bUP.classList.add('active');
-                timer[n_idx] = setInterval(() => {
-                    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
-                    if (!!(bAngle.classList.contains('current'))) {
-                        webAr.ar.arData[n_idx].wrapPos.y += yTouchRate[n_idx];
-                    } else {
-                        webAr.ar.arData[n_idx].wrapPos.z -= yTouchRate[n_idx];
-                    }
-                    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
-                    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
-                }, 10);
-            });
+            //// UPボタン長押し
+            //bUP.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bUP.classList.add('active');
+            //    timer[n_idx] = setInterval(() => {
+            //        webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //        if (!!(bAngle.classList.contains('current'))) {
+            //            webAr.ar.arData[n_idx].wrapPos.y += yTouchRate[n_idx];
+            //        } else {
+            //            webAr.ar.arData[n_idx].wrapPos.z -= yTouchRate[n_idx];
+            //        }
+            //        self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //        webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //    }, 10);
+            //});
 
-            bUP.addEventListener(self.eventNames.end, e => {
-                e.preventDefault();
-                bUP.classList.remove('active');
-                clearInterval(timer[n_idx]);
-            });
+            //bUP.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
 
-            bUP.addEventListener(self.eventNames.move, e => {
-                e.preventDefault();
-                bUP.classList.remove('active');
-                clearInterval(timer[n_idx]);
-            });
+            //bUP.addEventListener(self.eventNames.move, e => {
+            //    e.preventDefault();
+            //    bUP.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
 
-            // DOWNボタン長押し
-            bDOWN.addEventListener(self.eventNames.start, e => {
-                e.preventDefault();
-                bDOWN.classList.add('active');
-                timer[n_idx] = setInterval(() => {
-                    webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
-                    if (!!(bAngle.classList.contains('current'))) {
-                        webAr.ar.arData[n_idx].wrapPos.y -= yTouchRate[n_idx];
-                    } else {
-                        webAr.ar.arData[n_idx].wrapPos.z += yTouchRate[n_idx];
-                    }
-                    self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
-                    webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
-                }, 10);
-            });
+            //// DOWNボタン長押し
+            //bDOWN.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.add('active');
+            //    timer[n_idx] = setInterval(() => {
+            //        webAr.ar.arData[n_idx].wrapPos = AFRAME.utils.coordinates.parse(self.wrap[n_idx].getAttribute('position'));
+            //        if (!!(bAngle.classList.contains('current'))) {
+            //            webAr.ar.arData[n_idx].wrapPos.y -= yTouchRate[n_idx];
+            //        } else {
+            //            webAr.ar.arData[n_idx].wrapPos.z += yTouchRate[n_idx];
+            //        }
+            //        self.wrap[n_idx].setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[n_idx].wrapPos));
+            //        webAr.ar.objectDataVal(webAr.ar.arData[n_idx].zoomRateH, webAr.ar.arData[n_idx].wrapPos);
+            //    }, 10);
+            //});
 
-            bDOWN.addEventListener(self.eventNames.end, e => {
-                e.preventDefault();
-                bDOWN.classList.remove('active');
-                clearInterval(timer[n_idx]);
-            });
+            //bDOWN.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
 
-            bDOWN.addEventListener(self.eventNames.move, e => {
-                e.preventDefault();
-                bDOWN.classList.remove('active');
-                clearInterval(timer[n_idx]);
-            });
+            //bDOWN.addEventListener(self.eventNames.move, e => {
+            //    e.preventDefault();
+            //    bDOWN.classList.remove('active');
+            //    clearInterval(timer[n_idx]);
+            //});
         },
 
         resetScene: function (oidx) {
