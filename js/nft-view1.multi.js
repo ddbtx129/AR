@@ -1042,13 +1042,13 @@ var viewmode = 'marker';
                         viewIdx[i] = 1;
 
                         var multi = document.getElementById('ar-MultiText');
-
+                        
                         if(!!(chkVIew())){
                             multi.innerHTML = 'ALL';
                         } else {
                             multi.innerHTML = (i).toString();
                         }
-                        n_idx = 
+                        n_idx = i;
                         if (webAr.ar.arData[i].oType == "mp4") {
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
                             if (videostate == 0) {
