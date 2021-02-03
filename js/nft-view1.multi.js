@@ -1592,7 +1592,7 @@ var viewmode = 'marker';
             function getOnMarkers() {
                 var j = 0;
 
-                for (var i = 0; i < webAr.ar.ar.multi; i++) {
+                for (var i = 0; i < webAr.ar.arg.multi; i++) {
                     if (webAr.viewIdx[i] == 1) {
                         j++;
                         if (j > 1) {
