@@ -1048,7 +1048,7 @@ var viewmode = 'marker';
                         } else {
                             multi.innerHTML = (i).toString();
                         }
-
+                        n_idx = 
                         if (webAr.ar.arData[i].oType == "mp4") {
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
                             if (videostate == 0) {
@@ -1060,7 +1060,7 @@ var viewmode = 'marker';
                         };
 
                         function chkVIew(){
-                            for(var i = 0; i < webar.ar.arg.Multi; i++){
+                            for (var i = 0; i < webAr.ar.arg.Multi; i++){
                                 if(viewIdx[i] == 0) {
                                     return false;
                                     break;
@@ -1084,11 +1084,11 @@ var viewmode = 'marker';
                             videostate = 2;
                         }
 
-                        var cameraWrapper = document.getElementById("camera-wrapper");
-                        var camera = document.getElementById("camera");
+                        //var cameraWrapper = document.getElementById("camera-wrapper");
+                        //var camera = document.getElementById("camera");
 
-                        var y = camera.getAttribute("rotation").y;
-                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
+                        //var y = camera.getAttribute("rotation").y;
+                        //cameraWrapper.setAttribute("rotation", { y: -1 * y });
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
