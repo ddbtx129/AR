@@ -109,7 +109,8 @@ var viewmode = 'marker';
             var self = this;
 
             var arg = {};
-
+            var viewIdx = {};
+            var args = {};
             var pair = location.search.substring(1).split('&');
 
             for (var i = 0; pair[i]; i++) {
@@ -117,7 +118,6 @@ var viewmode = 'marker';
                 arg[kv[0]] = decodeURIComponent(kv[1]);
             }
 
-            var args = new Array;
 
             if (!!(arg.xd)) {
                 
@@ -230,6 +230,7 @@ var viewmode = 'marker';
 
             self.arg = arg;
             self.args = args;
+            self, viewIdx = viewIdx;
         },
 
         setArData: function () {
@@ -918,7 +919,6 @@ var viewmode = 'marker';
             self.mWrap = {};
             var yClickRate = {};
             var yTouchRate = {};
-            var viewIdx = {};
 
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
@@ -1139,8 +1139,8 @@ var viewmode = 'marker';
                 self.arData[idx].wrapPos = wrapPos;
                 self.arData[idx].zoomRateH = zoomRateH;
                 self.arData[idx].wrapZoom = wrapZoom;
-                self.arData[idx] = viewIdx;
-
+                window.alert(wrapZoom);
+                window.alert(self.arData[idx].wrapZoom);
                 //this.objectDataVal(zoomRateH, wrapPos);
             }
 
@@ -1377,11 +1377,11 @@ var viewmode = 'marker';
                     var zoomRate = getSmall();
                     //if ((webAr.ar.arData[n_idx].zoomRateH + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
                     if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
-
-                        var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
                         
                         for (var i = 0; i < webAr.ar.arg.multi; i++){
-                            window.alert(webAr.ar.arData[i].viewIdx);
+
+                            var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
+
                             if (webAr.ar.arData[i].viewIdx == 1) {
                                 window.alert(i + ' ' + zoomRateH)
                                 webAr.ar.arData[i].zoomRateH += rate;
@@ -1933,5 +1933,4 @@ var viewmode = 'marker';
     webAr.defwrapPos = defwrapPos;
     webAr.defwrapScale = defwrapScale;
     webAr.deflogoScale = deflogoScale;
-    webAr.viewIdx = viewIdx;
 }());
