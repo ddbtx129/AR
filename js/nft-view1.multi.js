@@ -893,7 +893,7 @@ var viewmode = 'marker';
                     //wrapPos.z -= defwrap[idx].Scale.y * 1.5;
                     wrapPos.z -= defwrap[idx].Scale.y * 2.5;
 
-                    var pvAngle = -5;
+                    var pvAngle = -5 + (-40);
 
                     wrapZoom = 0.5;
                     zoomRateH = defwrap[idx].Scale.y * wrapZoom;
