@@ -44,47 +44,47 @@ window.addEventListener('DOMContentLoaded', function () {
 
     btn.addEventListener('click', function () {
 
-        if (objecttype == "mp4") {
+        //if (objecttype == "mp4") {
 
-            if (videostate >= 1 && videostate < 2) {
+        //    if (videostate >= 1 && videostate < 2) {
 
-                var video = document.querySelectorAll('#source');
-                for (var i = 0; i < video.length; i++) {
-                    video[i].play();
-                }
+        //        var video = document.querySelectorAll('#source');
+        //        for (var i = 0; i < video.length; i++) {
+        //            video[i].play();
+        //        }
 
-                videostate = 1;
+        //        videostate = 1;
 
-                // プレインボタン 非表示
-                document.getElementById("player").style.display = 'none';
+        //        // プレインボタン 非表示
+        //        document.getElementById("player").style.display = 'none';
 
-                p1.style.display = "none";
-                info1.style.display = "none";
-            }
-        }
+        //        p1.style.display = "none";
+        //        info1.style.display = "none";
+        //    }
+        //}
     })
 
-    if (objecttype == "mp4") {
+    //if (objecttype == "mp4") {
 
-        var v = document.querySelector('#source1');
+    //    var v = document.querySelector('#source1');
 
-        //再生可能
-        v.addEventListener('canplay', function (e) {
+    //    //再生可能
+    //    v.addEventListener('canplay', function (e) {
 
-            //if (viewmode == 'pv') {
-            //    var video = document.querySelector('#source1');
-            //    document.getElementById("player").style.display = 'inline';
+    //        //if (viewmode == 'pv') {
+    //        //    var video = document.querySelector('#source1');
+    //        //    document.getElementById("player").style.display = 'inline';
 
-            //    videostate = 1;
-            //}
+    //        //    videostate = 1;
+    //        //}
 
-            //videocanplayInvalid(e);
-        })
+    //        //videocanplayInvalid(e);
+    //    })
 
-        v.load();
+    //    v.load();
 
-        function videocanplayInvalid(e) {
-            e.preventDefault();
-        }
-    }
+    //    function videocanplayInvalid(e) {
+    //        e.preventDefault();
+    //    }
+    //}
 });
