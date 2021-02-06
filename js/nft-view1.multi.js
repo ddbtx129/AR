@@ -1496,7 +1496,7 @@ var viewmode = 'marker';
                     var j = Number(marker[0]) - 1;
 
                     if (webAr.ar.arData[j].isMp4) {
-                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.pause();
                         document.getElementById('player').style.display = 'inline';
                         document.getElementById("info1").style.display = "none";
