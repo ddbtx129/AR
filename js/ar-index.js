@@ -159,6 +159,8 @@ var arType = 1;
         const width = window.innerWidth;
         const height = window.innerHeight;
 
+        var renderer = new THREE.WebGLRenderer({ antialias: true });
+
         // レンダラーのサイズを調整する
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(width, height);
@@ -174,6 +176,79 @@ var arType = 1;
     }
 
 }());
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateOrientation();
+});
+
+window.addEventListener('orientationchange', updateOrientation, false);
+
+function updateOrientation() {
+
+    switch (window.orientation) {
+        case 0:
+            //disp += "縦向き";
+            break;
+
+        case -90:
+            //disp += "横向き：右回転";
+            break;
+
+        case 90:
+            //disp += "横向き：左回転";
+            break;
+
+        case 180:
+            //disp += "縦向き：上下逆向きに回転";
+            break;
+    }
+}
+
+function requestFullScreen(elem) {
+    if (elem.requestFullScreen) {
+        elem.requestFullScreen();
+    }
+    else if (elem.webkitRequestFullScreen) {
+        elem.webkitRequestFullScreen();
+    }
+    else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+    }
+    else if (elem.msRequestFullScreen) {
+        elem.msRequestFullScreen();
+    }
+}
+
+function lockOrientation(mode) {
+    if (screen.orientation.lock) {
+        screen.orientation.lock(mode);
+    }
+    else if (screen.lockOrientation) {
+        screen.lockOrientation(mode);
+    }
+    else if (screen.webkitLockOrientation) {
+        screen.webkitLockOrientation(mode);
+    }
+    else if (screen.mozLockOrientation) {
+        screen.mozLockOrientation(mode);
+    }
+    else if (screen.msLockOrientation) {
+        screen.msLockOrientation(mode);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // html全体をフルスクリーン化します
+    requestFullScreen(document.documentElement);
+    // 縦画面に固定します
+    // screen.orientation.lockは即座に効くようですが、
+    // screen.lockOrientation系は少し間を開けないと有効にならないようです
+    setTimeout(function () {
+        lockOrientation("portrait");
+    }, 1);
+
+}, false);
 
 function GetFileType (arg) {
     var exct = 'png';

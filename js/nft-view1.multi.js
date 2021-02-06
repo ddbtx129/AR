@@ -105,14 +105,6 @@ var viewmode = 'marker';
             });
         },
 
-        resetGyro: function () {
-            var cameraWrapper = document.getElementById("camera-wrapper");
-            var camera = document.getElementById("camera");
-
-            var y = camera.getAttribute("rotation").y;
-            cameraWrapper.setAttribute("rotation", { y: -1 * y });
-        },
-
         setArg: function () {
 
             var self = this;
@@ -1060,7 +1052,9 @@ var viewmode = 'marker';
                             webAr.ar.videoState[i] = 2;
                         }
 
-                        this.resetGyro();
+                        if (webAr.markerIdx == '') {
+                            webAr.ar.resetGyro();
+                        }
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
@@ -1618,6 +1612,13 @@ var viewmode = 'marker';
             }
 
             this.resetGyro();
+        },
+
+        resetGyro: function () {
+            var cameraWrapper = document.getElementById("camera-wrapper");
+            var camera = document.getElementById("camera");
+            var y = camera.getAttribute("rotation").y;
+            cameraWrapper.setAttribute("rotation", { y: -1 * y });
         },
 
         positionVec3Logo: function (anime, oidx) {
