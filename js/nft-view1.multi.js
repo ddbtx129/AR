@@ -1089,11 +1089,11 @@ var viewmode = 'marker';
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
 
-                        //var cameraWrapper = document.getElementById("camera-wrapper");
-                        //var camera = document.getElementById("camera");
+                        var cameraWrapper = document.getElementById("camera-wrapper");
+                        var camera = document.getElementById("camera");
 
-                        //var y = camera.getAttribute("rotation").y;
-                        //cameraWrapper.setAttribute("rotation", { y: -1 * y });
+                        var y = camera.getAttribute("rotation").y;
+                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
 
                         if (webAr.ar.arData[i].oType == 'mp4') {
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
