@@ -366,7 +366,7 @@ var viewmode = 'marker';
 
                             audio[i] = document.createElement("audio");
                             audio[i].setAttribute("src", dataObj[idx].paths[i]);
-                            audio[i].setAttribute('id', 'a-source' + ((idx + 1) * 100 + (i + 1)).toString());
+                            audio[i].setAttribute('id', 'asource' + ((idx + 1) * 100 + (i + 1)).toString());
                             audio[i].setAttribute('preload', 'auto');
                             audio[i].setAttribute('response-type', 'arraybuffer');
                             audio[i].setAttribute('loop', 'true');
@@ -985,7 +985,6 @@ var viewmode = 'marker';
                     self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
                     mWrap[idx].addEventListener('markerFound', function (e) {
-
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
@@ -1013,7 +1012,6 @@ var viewmode = 'marker';
                             if (videoState == 0) {
                                 document.getElementById("player").style.display = 'inline';
                             }
-                            // マーカー認識したら、ビデオ再生
                             video.play();
                             videoState = 1
                         };
@@ -1040,14 +1038,13 @@ var viewmode = 'marker';
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
 
-                        this.resetGyro();
-
                         if (webAr.ar.arData[i].isMp4) {
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
-                            // マーカー認識が外れたら、、ビデオ停止
                             video.pause();
                             videoState = 2;
                         }
+
+                        this.resetGyro();
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
