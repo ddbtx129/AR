@@ -1495,6 +1495,14 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     var j = Number(marker[0]) - 1;
 
+                    if (webAr.ar.arData[j].isMp4) {
+                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                        video.pause();
+                        document.getElementById('player').style.display = 'inline';
+                        document.getElementById("info1").style.display = "none";
+                        videoState = 0;
+                    }
+
                     webAr.ar.arData[j].wrap.setAttribute('visible', false);
 
                     j = ((j + 1) < webAr.ar.arg.Multi) ? j + 1 : 0;
@@ -1525,8 +1533,7 @@ var viewmode = 'marker';
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
                     if (webAr.ar.arData[j].isMp4) {
-                        var srcname = '#source' + (((j + 1) * 100) + 1).toString();
-                        var video = document.querySelectorAll(srcname);
+                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         for (var i = 0; i < video.length; i++) {
                             video[i].play();
                         }
