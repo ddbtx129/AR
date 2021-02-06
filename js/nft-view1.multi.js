@@ -1080,6 +1080,9 @@ var viewmode = 'marker';
 
                         webAr.ar.arData[i].viewIdx = 0;
 
+                        var multi = document.getElementById('txtMultiNo');
+                        multi.innerHTML = '';
+
                         //var cameraWrapper = document.getElementById("camera-wrapper");
                         //var camera = document.getElementById("camera");
 
@@ -1139,8 +1142,7 @@ var viewmode = 'marker';
                 self.arData[idx].wrapPos = wrapPos;
                 self.arData[idx].zoomRateH = zoomRateH;
                 self.arData[idx].wrapZoom = wrapZoom;
-                window.alert(wrapZoom);
-                window.alert(self.arData[idx].wrapZoom);
+
                 //this.objectDataVal(zoomRateH, wrapPos);
             }
 
@@ -1383,7 +1385,7 @@ var viewmode = 'marker';
                             var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
 
                             if (webAr.ar.arData[i].viewIdx == 1) {
-                                window.alert(i + ' ' + zoomRateH)
+                               
                                 webAr.ar.arData[i].zoomRateH += rate;
                                 AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[i].wrap, 'animation', {
                                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[i].zoomRateH + ' ' + webAr.ar.arData[i].zoomRateH + ' ' + webAr.ar.arData[i].zoomRateH
