@@ -1066,7 +1066,6 @@ var viewmode = 'marker';
                             for (var i = 0; i < webAr.ar.arg.Multi; i++){
                                 if(viewIdx[i] == 0) {
                                     return false;
-                                    break;
                                 }
                             }
                             return true;
@@ -1380,7 +1379,8 @@ var viewmode = 'marker';
                         var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
                         
                         for(var i = 0; i < webAr.ar.arg.multi; i++){
-                            if(webAr.viewIdx[i] == 1) {
+                            if (webAr.viewIdx[i] == 1) {
+                                window.alert(i + ' ' + zoomRateH)
                                 webAr.ar.arData[i].zoomRateH += rate;
                                 AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[i].wrap, 'animation', {
                                     property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[i].zoomRateH + ' ' + webAr.ar.arData[i].zoomRateH + ' ' + webAr.ar.arData[i].zoomRateH
