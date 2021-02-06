@@ -1064,6 +1064,7 @@ var viewmode = 'marker';
 
                         function chkView(){
                             for (var i = 0; i < webAr.ar.arg.Multi; i++){
+                                window.alert(webAr.ar.arData[n_idx].viewIdx);
                                 if (webAr.ar.arData[n_idx].viewIdx == 0) {
                                     return false;
                                 }
