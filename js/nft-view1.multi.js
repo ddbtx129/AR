@@ -880,6 +880,7 @@ var viewmode = 'marker';
                 //var prevPageY;
                 var zoomRateH = defwrap[idx].Scale.y;
                 var wrapZoom = 1;
+                var pvAngle = -5;
 
                 var wrapPos = { x: defwrap[idx].Pos.x, y: defwrap[idx].Pos.y, z: defwrap[idx].Pos.z };
 
@@ -892,8 +893,6 @@ var viewmode = 'marker';
                     wrapPos.y -= ((val[idx].isMp4) ? -0.5 : 1);
                     //wrapPos.z -= defwrap[idx].Scale.y * 1.5;
                     wrapPos.z -= defwrap[idx].Scale.y * 2.5;
-
-                    var pvAngle = -5 + (-40);
 
                     wrapZoom = 0.5;
                     zoomRateH = defwrap[idx].Scale.y * wrapZoom;
@@ -925,7 +924,7 @@ var viewmode = 'marker';
                     if (val[idx].isMarkerType == 1) {
 
                         viewmode = 'marker';
-
+                        pvAngle = -30;
                         wrapZoom = 0.625;
                         zoomRateH = zoomRateH * wrapZoom;
 
@@ -982,6 +981,8 @@ var viewmode = 'marker';
                             mk = 'ImageDescriptors/' + self.args[idx].MkObjList + '/01';
                         }
                     }
+
+                    self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
                     mWrap[idx].addEventListener('markerFound', function (e) {
 
