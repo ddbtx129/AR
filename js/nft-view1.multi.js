@@ -38,7 +38,7 @@ var viewmode = 'marker';
 
         init: function () {
 
-            videostate = 0;
+            videoState = 0;
 
             this.setArg();
 
@@ -66,7 +66,8 @@ var viewmode = 'marker';
                 this.setResizeEvents();
                 this.setMoveEvents();
                 this.setTapEvents();
-                this.setPreviewSwitch();
+                this.setPreviewEvents();
+                this.setMovieEvents();
             }
 
             this.setSwitcher();
@@ -96,8 +97,8 @@ var viewmode = 'marker';
                 }
 
                 if (webAr.ar.arData[0].isPV) {
-                    if (webAr.ar.arData.isMp4) {
-                        var video = document.querySelector('#source1');
+                    if (webAr.ar.arData[0].isMp4) {
+                        var video = document.querySelector('#source101');
                         document.getElementById("player").style.display = 'inline';
                         videostate = 1;
                     }
@@ -318,7 +319,7 @@ var viewmode = 'marker';
                 dataObj[idx].size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
                 //defScale = { w: dataObj[idx].size.w, h: dataObj[idx].size.h, d: dataObj[idx].size.h };
                 defobj[idx].Scale = { x: dataObj[idx].size.w, y: dataObj[idx].size.h, z: dataObj[idx].size.h };
-
+                
                 // オブジェクトソース
                 if (dataObj[idx].path) {
 
@@ -456,7 +457,7 @@ var viewmode = 'marker';
                 if (!this.classList.contains('current')) {
                     webAr.markerIdx = '';
                     location.replace(location.search.replace('&pv=1', ''));
-                    videostate = 0;
+                    videoState = 0;
                     this.setDiplayBtn(0);
                 }
             });
@@ -465,7 +466,7 @@ var viewmode = 'marker';
                 if (!this.classList.contains('current')) {
                     webAr.markerIdx = '1';
                     location.replace(location.search + '&pv=1');
-                    videostate = 0;
+                    videoState = 0;
                     this.setDiplayBtn(1);
                 }
             });
@@ -490,7 +491,7 @@ var viewmode = 'marker';
                 wrap.setAttribute('material', 'transparent: true, opacity: 0');
                 wrap.setAttribute('style', 'z-index: 5');
                 wrap.setAttribute('visible', true);
-
+                
                 self.wrap[idx] = wrap;
                 self.arData[idx].wrap = self.wrap[idx];
             }
@@ -557,7 +558,7 @@ var viewmode = 'marker';
 
                         main.setAttribute('style', 'z-index: 3');
 
-                        if (val.isMp4) {
+                        if (val[idx].isMp4) {
                             main.setAttribute('play', 'true');
                         }
 
@@ -887,8 +888,10 @@ var viewmode = 'marker';
                     viewmode = 'pv';
 
                     wrapPos.x -= 0;
-                    wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                    wrapPos.z -= defwrap[idx].Scale.y * 1.5;
+                    //wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
+                    wrapPos.y -= ((val[idx].isMp4) ? -0.5 : 1);
+                    //wrapPos.z -= defwrap[idx].Scale.y * 1.5;
+                    wrapPos.z -= defwrap[idx].Scale.y * 2.5;
 
                     var pvAngle = -5;
 
@@ -1004,14 +1007,14 @@ var viewmode = 'marker';
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
 
-                        if (webAr.ar.arData[i].oType == "mp4") {
-                            var video = document.querySelector('#source' + (((Number(n_idx) + 1) * 100) + objno).toString());
-                            if (videostate == 0) {
+                        if (webAr.ar.arData[i].isMp4) {
+                            var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                            if (videoState == 0) {
                                 document.getElementById("player").style.display = 'inline';
                             }
                             // マーカー認識したら、ビデオ再生
                             video.play();
-                            videostate = 1
+                            videoState = 1
                         };
                     });
 
@@ -1038,11 +1041,11 @@ var viewmode = 'marker';
 
                         this.resetGyro();
 
-                        if (webAr.ar.arData[i].oType == 'mp4') {
-                            var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + objno).toString());
+                        if (webAr.ar.arData[i].isMp4) {
+                            var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             // マーカー認識が外れたら、、ビデオ停止
                             video.pause();
-                            videostate = 2;
+                            videoState = 2;
                         }
                     });
 
@@ -1484,7 +1487,7 @@ var viewmode = 'marker';
             };
         },
 
-        setPreviewSwitch: function () {
+        setPreviewEvents: function () {
             var self = this;
 
             var bMarker = document.getElementById('swMulti');
@@ -1493,20 +1496,47 @@ var viewmode = 'marker';
                 if (webAr.ar.arData[0].isPV) {
                     var marker = webAr.markerIdx.split(',');
                     var j = Number(marker[0]) - 1;
-                    webAr.ar.arData[j].wrap.setAttribute('visible', false);
-                    if ((j + 1) < webAr.ar.arg.Multi) {
-                        j++;
-                    } else {
-                        j = 0;
-                    }
-                    webAr.ar.arData[j].wrap.setAttribute('visible', true);
 
+                    webAr.ar.arData[j].wrap.setAttribute('visible', false);
+
+                    j = ((j + 1) < webAr.ar.arg.Multi) ? j + 1 : 0;
+
+                    webAr.ar.arData[j].wrap.setAttribute('visible', true);
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
-                    webAr.markerIdx = (j + 1).toString();
+
                     var multi = document.getElementById('txtMultiNo');
+                    webAr.markerIdx = (j + 1).toString();
                     multi.innerHTML = webAr.markerIdx;
 
+                    if (webAr.ar.arData[j].isMp4) {
+                        document.getElementById('player').style.display = 'inline';
+                        document.getElementById("info1").style.display = "none";
+                        videoState = 0;
+                    }
                 }
+            });
+        },
+
+        setMovieEvents: function () {
+            var self = this;
+
+            var bPlay = document.getElementById('player');
+
+            bPlay.addEventListener('click', function () {
+                var marker = webAr.markerIdx.split(',');
+                for (var i = 0; i < marker.length; i++) {
+                    var j = Number(marker[i]) - 1;
+                    if (webAr.ar.arData[j].isMp4) {
+                        var srcname = '#source' + (((j + 1) * 100) + 1).toString();
+                        var video = document.querySelectorAll(srcname);
+                        for (var i = 0; i < video.length; i++) {
+                            video[i].play();
+                        }
+                    }
+                }
+                videoState = 1;
+                document.getElementById("player").style.display = 'none';
+                document.getElementById("info1").style.display = "none";
             });
         },
 
