@@ -1534,9 +1534,7 @@ var viewmode = 'marker';
                     var j = Number(marker[i]) - 1;
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                        for (var i = 0; i < video.length; i++) {
-                            video[i].play();
-                        }
+                        video.play();
                     }
                 }
                 videoState = 1;
