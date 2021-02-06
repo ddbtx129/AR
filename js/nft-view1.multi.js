@@ -106,6 +106,14 @@ var viewmode = 'marker';
             });
         },
 
+        resetGyro: function () {
+            var cameraWrapper = document.getElementById("camera-wrapper");
+            var camera = document.getElementById("camera");
+
+            var y = camera.getAttribute("rotation").y;
+            cameraWrapper.setAttribute("rotation", { y: -1 * y });
+        },
+
         setArg: function () {
 
             var self = this;
@@ -1008,6 +1016,7 @@ var viewmode = 'marker';
                         multi.innerHTML = webAr.markerIdx;
 
                         if (webAr.ar.arData[i].isMp4) {
+                            window.alert('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             if (videoState == 0) {
                                 document.getElementById("player").style.display = 'inline';
@@ -1615,14 +1624,6 @@ var viewmode = 'marker';
             } else {
                 return { x: 0, y: h1_2, z: 0 };
             }
-        },
-
-        resetGyro: function () {
-            var cameraWrapper = document.getElementById("camera-wrapper");
-            var camera = document.getElementById("camera");
-
-            var y = camera.getAttribute("rotation").y;
-            cameraWrapper.setAttribute("rotation", { y: -1 * y });
         },
 
         readBaseXml: function (filenm) {
