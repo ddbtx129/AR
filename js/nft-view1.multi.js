@@ -896,12 +896,13 @@ var viewmode = 'marker';
                     viewmode = 'pv';
 
                     wrapPos.x -= 0;
-                    //wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
-                    wrapPos.y -= ((val[idx].isMp4) ? -0.5 : 1);
-                    //wrapPos.z -= defwrap[idx].Scale.y * 1.5;
-                    wrapPos.z -= defwrap[idx].Scale.y * 2.5;
+                    wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
+                    //wrapPos.y -= ((val[idx].isMp4) ? -0.5 : 1);
+                    wrapPos.z -= defwrap[idx].Scale.y * 1.5;
+                    //wrapPos.z -= defwrap[idx].Scale.y * 2.5;
 
-                    wrapZoom = 0.5;
+                    //wrapZoom = 0.5;
+                    wrapZoom = 0.3;
                     zoomRateH = defwrap[idx].Scale.y * wrapZoom;
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
@@ -932,7 +933,8 @@ var viewmode = 'marker';
 
                         viewmode = 'marker';
                         pvAngle = -30;
-                        wrapZoom = 0.625;
+                        //wrapZoom = 0.625;
+                        wrapZoom = 0.4;
                         zoomRateH = zoomRateH * wrapZoom;
 
                         defwrap[idx].Pos.y = -5;
@@ -1062,7 +1064,8 @@ var viewmode = 'marker';
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
                     });
 
-                    wrapPos = defwrap[idx].Pos;
+                    //wrapPos = defwrap[idx].Pos;
+                    wrapPos = { x: defwrap[idx].Pos.x, y: defwrap[idx].Pos.y, z: defwrap[idx].Pos.z };
                     self.wrap[idx].setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
 
                     mWrap[idx].setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
