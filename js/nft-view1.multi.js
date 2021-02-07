@@ -1006,11 +1006,13 @@ var viewmode = 'marker';
                                 webAr.ar.arData[i].viewIdx = 1;
                                 webAr.markerIdx += (i + 1).toString();
                                 var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
-                                if (webAr.ar.videoState[i] == 0) {
+                                if (webAr.ar.videoState[i] < 2) {
                                     document.getElementById("player").style.display = 'inline';
+                                    webAr.ar.videoState[i] = 1;
+                                } else {
+                                    webAr.ar.videoState[i] = 3;
                                 }
                                 video.play();
-                                webAr.ar.videoState[i] = 1;
                             }
                         } else {
                             n_idx = i;
@@ -1038,7 +1040,7 @@ var viewmode = 'marker';
                         if (webAr.ar.arData[i].isMp4) {
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
-                            if (webAr.ar.videoState[i] == 0) {
+                            if (webAr.ar.videoState[i] < 2) {
                                 document.getElementById("player").style.display = 'none';
                             } else {
                                 video.pause();
@@ -1515,7 +1517,7 @@ var viewmode = 'marker';
                     var j = Number(marker[0]) - 1;
 
                     if (webAr.ar.arData[j].isMp4) {
-                        if (webAr.ar.videoState[j] != 0) {
+                        if (webAr.ar.videoState[j] > 1) {
                             var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                             video.pause();
                             webAr.ar.videoState[j] = 2;
@@ -1536,14 +1538,14 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[k].isMp4) {
                         var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
 
-                        if (webAr.ar.videoState[k] == 0) {
+                        if (webAr.ar.videoState[k] < 2) {
                             document.getElementById('player').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
+                            webAr.ar.videoState[k] = 1;
                         } else {
                             video.play();
+                            webAr.ar.videoState[k] = 3;
                         }
-
-                        webAr.ar.videoState[k] = 1;
                     }
                 }
             });
@@ -1561,7 +1563,7 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.play();
-                        webAr.ar.videoState[j] = 1;
+                        webAr.ar.videoState[j] = 3;
                     }
                 }
                 document.getElementById("player").style.display = 'none';
