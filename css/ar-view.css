@@ -136,8 +136,8 @@ a-camera {
 
 .scrshot {
     position: absolute;
-    top: 60%;
-    right: 8px;
+    top: 50%;
+    right: 4px;
     width: 30px;
     height: 30px;
     z-index: 5;
