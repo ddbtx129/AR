@@ -68,10 +68,10 @@ a-camera {
 
 .playbutton {
     position: absolute;
-    top: 45%;
-    left: 43%;
-    width: 72px;
-    height: 72px;
+    top: 42%;
+    left: 42%;
+    width: 82px;
+    height: 82px;
     z-index: 10;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
