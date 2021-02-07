@@ -83,22 +83,33 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
             });
 
+            var mloader = document.getElementById('mloader');
+            mloader.innerHTML = '';
+
+            if(n_idx <= 1) {
+                var msg1 = document.querySelector('mloader1');
+                var msg2 = document.querySelector('mloader2');
+
+                if (this.arData[0].isMarkerType == 1) {
+                    msg1.innerHTML = "対象マーカーを検出し表示します。";
+                    msg2.innerHTML = "マーカーに垂直にしてください。";
+                } else {
+                    msg1.innerHTML = "対象イメージを追跡し表示します。";
+                    msg2.innerHTML = "対象イメージに水平にしてください。";
+                }
+            }
+
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
-                var mloader = document.getElementById('mloader');
-                mloader.innerHTML = '';
-
                 webAr.loaderEnd = 1;
                 // ロード完了
-                if (webAr.srcno.length > 1) {
-                    var msg = document.querySelector('slideshow');
-
-                    document.getElementById("slideshow").style.display = 'inline';
-
-                    //setTimeout(function () {
-                    //    document.getElementById("slideshow").style.display = 'none';
-                    //}, 6000);
-                }
+                //if (webAr.srcno.length > 1) {
+                //    var msg = document.querySelector('slideshow');
+                //    document.getElementById("slideshow").style.display = 'inline';
+                //    setTimeout(function () {
+                //        document.getElementById("slideshow").style.display = 'none';
+                //    }, 6000);
+                //}
                 if (webAr.ar.arData[0].isPV) {
                     if (webAr.ar.arData[0].isMp4) {
                         var video = document.querySelector('#source101');
@@ -308,7 +319,11 @@ var viewmode = 'marker';
                 } else {
                     dataObj[idx].paths[0] = object[0] + '.' + dataObj[idx].oType;
                 }
-                
+
+                if (n_idx < dataObj[idx].srcno.length) {
+                    n_idx = dataObj[idx].srcno.length
+                }
+
                 dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
                 dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
                 dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
@@ -1024,7 +1039,6 @@ var viewmode = 'marker';
                                 video.play();
                             }
                         } else {
-                            n_idx = i;
                             webAr.ar.arData[i].viewIdx = 1;
                             webAr.markerIdx = '';
                             for (var j = 0; j < webAr.ar.arg.Multi; j++) {
