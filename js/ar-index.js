@@ -11,32 +11,35 @@ var arType = 1;
 
         var windowWidth = document.documentElement.clientWidth;
         var windowHeight = document.documentElement.clientHeight;
+        scrInfo.style.width = "100%";
 
         switch (window.orientation) {
             case 0:
                 // 縦向き
                 scrInfo.style.display = 'none';
+                scrInfo.style.height = "100%";
                 break;
 
             case -90:
                 // 横向き：右回転
 
                 scrInfo.style.display = 'inline';
+                scrInfo.style.height = "120%";
                 break;
 
             case 90:
                 // 横向き：左回転
                 scrInfo.style.display = 'inline';
+                scrInfo.style.height = "120%";
                 break;
 
             case 180:
                 // 縦向き：上下逆向きに回転
                 scrInfo.style.display = 'none';
+                scrInfo.style.height = "100%";
                 break;
         }
 
-        scrInfo.style.width = "100%";
-        scrInfo.style.height = "100%";
     }
 
     document.addEventListener("touchmove",
