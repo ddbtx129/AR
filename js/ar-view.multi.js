@@ -85,6 +85,9 @@ var viewmode = 'marker';
 
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
+                var mloader = document.getElementById('mloader');
+                mloader.innerHTML = '';
+
                 webAr.loaderEnd = 1;
                 // ロード完了
                 if (webAr.srcno.length > 1) {
