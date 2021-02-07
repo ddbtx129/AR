@@ -9,6 +9,9 @@ var arType = 1;
 
         var scrInfo = document.getElementById('scrOrientation');
 
+        var windowWidth = document.documentElement.clientWidth;
+        var windowHeight = document.documentElement.clientHeight;
+
         switch (window.orientation) {
             case 0:
                 // 縦向き
@@ -17,6 +20,7 @@ var arType = 1;
 
             case -90:
                 // 横向き：右回転
+
                 scrInfo.style.display = 'inline';
                 break;
 
@@ -30,6 +34,9 @@ var arType = 1;
                 scrInfo.style.display = 'none';
                 break;
         }
+
+        scrInfo.style.width = "100%";
+        scrInfo.style.height = "100%";
     }
 
     document.addEventListener("touchmove",
