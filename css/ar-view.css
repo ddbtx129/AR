@@ -136,7 +136,7 @@ a-camera {
 
 .scrshot {
     position: absolute;
-    bottom: 36%;
+    top: 60%;
     right: 8px;
     width: 30px;
     height: 30px;
@@ -147,7 +147,7 @@ a-camera {
 
 .ar-up {
     position: absolute;
-    bottom: 28%;
+    bottom: 30%;
     right: 1%;
     width: 30px;
     height: 30px;
@@ -158,7 +158,7 @@ a-camera {
 
 .ar-down {
     position: absolute;
-    bottom: 20%;
+    bottom: 24%;
     right: 1%;
     width: 30px;
     height: 30px;
