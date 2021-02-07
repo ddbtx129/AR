@@ -873,8 +873,8 @@ var viewmode = 'marker';
 
             var mWrap = {};
             self.mWrap = {};
-            var yClickRate = {};
-            var yTouchRate = {};
+            //var yClickRate;
+            //var yTouchRate;
 
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
@@ -897,13 +897,13 @@ var viewmode = 'marker';
                     viewmode = 'pv';
 
                     wrapPos.x -= 0;
-                    wrapPos.y -= ((val.isMp4) ? 0 : 1.5);
+                    wrapPos.y -= ((val[idx].isMp4) ? 0 : 1.5);
                     //wrapPos.y -= ((val[idx].isMp4) ? -0.5 : 1);
                     wrapPos.z -= defwrap[idx].Scale.y * 1.5;
                     //wrapPos.z -= defwrap[idx].Scale.y * 2.5;
 
                     //wrapZoom = 0.5;
-                    wrapZoom = 0.3;
+                    wrapZoom = 0.25;
                     zoomRateH = defwrap[idx].Scale.y * wrapZoom;
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
                         property: 'scale', dur: 5, easing: 'linear', loop: false, to: zoomRateH + ' ' + zoomRateH + ' ' + zoomRateH
@@ -1100,11 +1100,8 @@ var viewmode = 'marker';
                     this.createAnimation(idx);
                 }
                 
-                yClickRate[idx] = ((!!(val[idx].isMarkerType == 1) || !!(self.args[idx].pv)) ? 0.2 : 5);
-                yTouchRate[idx] = ((!!(val[idx].isMarkerType == 1) || !!(self.args[idx].pv)) ? 0.02 : 2);
-
-                self.arData[idx].yClickRate = yClickRate[idx];
-                self.arData[idx].yTouchRate = yTouchRate[idx];
+                self.arData[idx].yClickRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.2 : 5);
+                self.arData[idx].yTouchRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.02 : 2);
 
                 self.arData[idx].wrapPos = wrapPos;
                 self.arData[idx].zoomRateH = zoomRateH;
@@ -1244,8 +1241,6 @@ var viewmode = 'marker';
             var bAngle = document.getElementById('swAngle');
             var bParalle = document.getElementById('swParallel');
             var timer;
-
-            //var multiview = getOnMarkers();
 
             // 上下移動ボタン押下
             bUP.addEventListener('click', function () {
