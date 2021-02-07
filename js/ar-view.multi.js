@@ -83,8 +83,8 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
             });
 
-            var mloader = document.getElementById('mloader3');
-            mloader.innerHTML = '';
+            var msg3 = document.getElementById('mloader3');
+            msg3.innerHTML = 'データ読み込み中・・・';
 
             if(n_idx <= 1) {
                 var msg1 = document.getElementById('mloader1-1');
@@ -102,6 +102,8 @@ var viewmode = 'marker';
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
                 webAr.loaderEnd = 1;
+                var mloader = document.getElementById('mloader3');
+                mloader.innerHTML = '';
                 // ロード完了
                 //if (webAr.srcno.length > 1) {
                 //    var msg = document.querySelector('slideshow');
