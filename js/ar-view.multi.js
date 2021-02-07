@@ -185,7 +185,7 @@ var viewmode = 'marker';
 
                 if (arg.Multi > 1) {
                     var bMulti = document.getElementById('imgMulti');
-                    bMulti.setAttribute('src', 'asset/markers-w.png');
+                    bMulti.src = 'asset/markers-w.png';
                 }
 
             } else {
