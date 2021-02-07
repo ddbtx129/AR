@@ -87,8 +87,8 @@ var viewmode = 'marker';
             mloader.innerHTML = '';
 
             if(n_idx <= 1) {
-                var msg1 = document.querySelector('mloader1-1');
-                var msg2 = document.querySelector('mloader1-2');
+                var msg1 = document.getElementById('mloader1-1');
+                var msg2 = document.getElementById('mloader1-2');
 
                 if (this.arData[0].isMarkerType == 1) {
                     msg1.innerHTML = "対象マーカーを検出し表示します。";
