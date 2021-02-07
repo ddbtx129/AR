@@ -185,21 +185,27 @@ window.addEventListener('orientationchange', updateOrientation, false);
 
 function updateOrientation() {
 
+    var scrInfo = document.getElementById('scrOrientation');
+
     switch (window.orientation) {
         case 0:
-            //disp += "縦向き";
+            // 縦向き
+            scrInfo.style.display = 'none';
             break;
 
         case -90:
-            //disp += "横向き：右回転";
+            // 横向き：右回転
+            scrInfo.style.display = 'inline';
             break;
 
         case 90:
-            //disp += "横向き：左回転";
+            // 横向き：左回転
+            scrInfo.style.display = 'inline';
             break;
 
         case 180:
-            //disp += "縦向き：上下逆向きに回転";
+            // 縦向き：上下逆向きに回転
+            scrInfo.style.display = 'none';
             break;
     }
 }
