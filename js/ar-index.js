@@ -3,15 +3,44 @@ var arType = 1;
 
 (function () {
 
+    window.addEventListener('orientationchange', updateOrientation, false);
+
+    function updateOrientation() {
+
+        var scrInfo = document.getElementById('scrOrientation');
+
+        switch (window.orientation) {
+            case 0:
+                // 縦向き
+                scrInfo.style.display = 'none';
+                break;
+
+            case -90:
+                // 横向き：右回転
+                scrInfo.style.display = 'inline';
+                break;
+
+            case 90:
+                // 横向き：左回転
+                scrInfo.style.display = 'inline';
+                break;
+
+            case 180:
+                // 縦向き：上下逆向きに回転
+                scrInfo.style.display = 'none';
+                break;
+        }
+    }
+
     document.addEventListener("touchmove",
         function (e) {
             e.preventDefault();
         }, { passive: false });
 
-    // 初期化のために実行
-    onResize();
-    // リサイズイベント発生時に実行
-    window.addEventListener('resize', onResize);
+    //// 初期化のために実行
+    //onResize();
+    //// リサイズイベント発生時に実行
+    //window.addEventListener('resize', onResize);
 
     var param = GetParam();
 
@@ -180,38 +209,38 @@ var arType = 1;
 
 }());
 
-document.addEventListener("DOMContentLoaded", function () {
-    updateOrientation();
-});
+//document.addEventListener("DOMContentLoaded", function () {
+//    updateOrientation();
+//});
 
-window.addEventListener('orientationchange', updateOrientation, false);
+//window.addEventListener('orientationchange', updateOrientation, false);
 
-function updateOrientation() {
+//function updateOrientation() {
 
-    var scrInfo = document.getElementById('scrOrientation');
+//    var scrInfo = document.getElementById('scrOrientation');
 
-    switch (window.orientation) {
-        case 0:
-            // 縦向き
-            scrInfo.style.display = 'none';
-            break;
+//    switch (window.orientation) {
+//        case 0:
+//            // 縦向き
+//            scrInfo.style.display = 'none';
+//            break;
 
-        case -90:
-            // 横向き：右回転
-            scrInfo.style.display = 'inline';
-            break;
+//        case -90:
+//            // 横向き：右回転
+//            scrInfo.style.display = 'inline';
+//            break;
 
-        case 90:
-            // 横向き：左回転
-            scrInfo.style.display = 'inline';
-            break;
+//        case 90:
+//            // 横向き：左回転
+//            scrInfo.style.display = 'inline';
+//            break;
 
-        case 180:
-            // 縦向き：上下逆向きに回転
-            scrInfo.style.display = 'none';
-            break;
-    }
-}
+//        case 180:
+//            // 縦向き：上下逆向きに回転
+//            scrInfo.style.display = 'none';
+//            break;
+//    }
+//}
 
 function requestFullScreen(elem) {
     if (elem.requestFullScreen) {
