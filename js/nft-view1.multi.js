@@ -96,7 +96,6 @@ var viewmode = 'marker';
                     //    document.getElementById("slideshow").style.display = 'none';
                     //}, 6000);
                 }
-
                 if (webAr.ar.arData[0].isPV) {
                     if (webAr.ar.arData[0].isMp4) {
                         var video = document.querySelector('#source101');
@@ -1620,7 +1619,7 @@ var viewmode = 'marker';
                 }
             }
 
-            if (val[0].isMarkerType == 1 || !!(self.isPV)) {
+            if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
                 document.getElementById("arloader").style.display = 'none';
             }
 
