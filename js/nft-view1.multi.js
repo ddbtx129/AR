@@ -1179,39 +1179,13 @@ var viewmode = 'marker';
             var prevPageY;
 
             // 拡大・縮小
-            //webAr.scene.addEventListener(self.eventNames.start, function (e) {
-            //    var event = e.changedTouches ? e.changedTouches[0] : e;
-            //    scalechange = 0;
-            //    prevPageY = event.pageY;    // 縦軸 or 前後軸
-            //});
-            webAr.scene.addEventListener('gesturestart', function (e) {
+            webAr.scene.addEventListener(self.eventNames.start, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 scalechange = 0;
                 prevPageY = event.pageY;    // 縦軸 or 前後軸
             });
 
-            //webAr.scene.addEventListener(self.eventNames.move, function (e) {
-            //    var event = e.changedTouches ? e.changedTouches[0] : e;
-            //    if (prevPageY) {
-            //        tapclicked = !!(tapCount = scalechange);
-            //        scalechange = 1;
-            //        var zoomRate = getSmall();
-            //        if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
-            //            var marker = webAr.markerIdx.split(',');
-            //            for (var i = 0; i < marker.length; i++) {
-            //                var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
-            //                var j = Number(marker[i]) - 1;
-            //                webAr.ar.arData[j].zoomRateH += rate;
-            //                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-            //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-            //                });
-            //                var elem = document.getElementById("debug1");
-            //                elem.innerHTML = "Scale: " + Number(webAr.ar.arData[j].zoomRateH).toFixed(1);
-            //            }
-            //        }
-            //    }
-            //});
-            webAr.scene.addEventListener('gesturechange', function (e) {
+            webAr.scene.addEventListener(self.eventNames.move, function (e) {
                 var event = e.changedTouches ? e.changedTouches[0] : e;
                 if (prevPageY) {
                     tapclicked = !!(tapCount = scalechange);
@@ -1233,11 +1207,7 @@ var viewmode = 'marker';
                 }
             });
 
-            //webAr.scene.addEventListener(self.eventNames.end, function (e) {
-            //    scalechange = 0;
-            //    prevPageY = null;
-            //});
-            webAr.scene.addEventListener('gestureend', function (e) {
+            webAr.scene.addEventListener(self.eventNames.end, function (e) {
                 scalechange = 0;
                 prevPageY = null;
             });
