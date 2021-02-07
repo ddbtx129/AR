@@ -999,8 +999,7 @@ var viewmode = 'marker';
                         var targetmarker = document.getElementById(elemId.toString());
                         var i = Number(targetmarker.getAttribute('data-index'));
 
-                        if (webAr.ar.arg.isMp4) {
-
+                        if (webAr.ar.arData[i].isMp4) {
                             if (webAr.markerIdx == '') {
                                 webAr.ar.arData[i].viewIdx = 1;
                                 webAr.markerIdx += (i + 1).toString();
