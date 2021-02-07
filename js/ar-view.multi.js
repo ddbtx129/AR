@@ -83,12 +83,12 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
             });
 
-            var mloader = document.getElementById('mloader');
+            var mloader = document.getElementById('mloader3');
             mloader.innerHTML = '';
 
             if(n_idx <= 1) {
-                var msg1 = document.querySelector('mloader1');
-                var msg2 = document.querySelector('mloader2');
+                var msg1 = document.querySelector('mloader1-1');
+                var msg2 = document.querySelector('mloader1-2');
 
                 if (this.arData[0].isMarkerType == 1) {
                     msg1.innerHTML = "対象マーカーを検出し表示します。";
