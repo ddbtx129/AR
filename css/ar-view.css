@@ -318,7 +318,7 @@ a-camera {
 }
 
 .screen-orientation {
-    height: 120%;
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
