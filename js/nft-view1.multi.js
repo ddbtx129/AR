@@ -1037,10 +1037,13 @@ var viewmode = 'marker';
 
                         if (webAr.ar.arData[i].isMp4) {
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
-
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
-                            video.pause();
-                            webAr.ar.videoState[i] = 2;
+                            if (webAr.ar.videoState[i] == 0) {
+                                document.getElementById("player").style.display = 'none';
+                            } else {
+                                video.pause();
+                                webAr.ar.videoState[i] = 2;
+                            }
                         }
 
                         webAr.ar.arData[i].viewIdx = 0;
