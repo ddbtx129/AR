@@ -24,7 +24,7 @@ var viewmode = 'marker';
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
     var scalechange = 0;
 
-    var getType = '';
+    var loaderEnd = 0;
 
     var idx = 0;
     var n_idx = 0;
@@ -38,6 +38,8 @@ var viewmode = 'marker';
     var ar = {
 
         init: function () {
+            
+            loaderEnd = 0;
 
             this.setArg();
 
@@ -83,7 +85,7 @@ var viewmode = 'marker';
 
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
-
+                webAr.loaderEnd = 1;
                 // ロード完了
                 if (webAr.srcno.length > 1) {
                     var msg = document.querySelector('slideshow');
@@ -1464,7 +1466,9 @@ var viewmode = 'marker';
 
             var slideinfo = document.getElementById("slideshow");
             slideinfo.addEventListener(self.eventNames.start, function (e) {
-                document.getElementById("slideshow").style.display = 'none';
+                if (webAr.loaderEnd == 1) {
+                    document.getElementById("slideshow").style.display = 'none';
+                }
             });
 
             function switchObject(e, fileno, oidx) {
@@ -1761,4 +1765,6 @@ var viewmode = 'marker';
     webAr.defwrapScale = defwrapScale;
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
+    webAr.loaderEnd = loaderEnd;
+
 }());
