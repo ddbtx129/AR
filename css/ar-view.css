@@ -317,6 +317,10 @@ a-camera {
     text-align: left;
 }
 
+.p3 {
+    text-align: center;
+}
+
 .screen-orientation {
     height: 100%;
     width: 100%;
