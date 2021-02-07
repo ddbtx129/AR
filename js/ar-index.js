@@ -8,10 +8,10 @@ var arType = 1;
             e.preventDefault();
         }, { passive: false });
 
-    //// 初期化のために実行
-    //onResize();
-    //// リサイズイベント発生時に実行
-    //window.addEventListener('resize', onResize);
+    // 初期化のために実行
+    onResize();
+    // リサイズイベント発生時に実行
+    window.addEventListener('resize', onResize);
 
     var param = GetParam();
 
@@ -165,9 +165,12 @@ var arType = 1;
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(width, height);
 
+        var camera = new THREE.Camera();
+
         // カメラのアスペクト比を正す
         camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+        //camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
     }
 
     function Err_Exit(msg) {
