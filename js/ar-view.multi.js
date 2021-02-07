@@ -183,6 +183,11 @@ var viewmode = 'marker';
                     }
                 }
 
+                if (arg.Multi > 1) {
+                    var bMulti = document.getElementById('imgMulti');
+                    bMulti.setAttribute('src', 'asset/markers-w.png');
+                }
+
             } else {
 
                 arg.Multi = 1;
@@ -1196,12 +1201,26 @@ var viewmode = 'marker';
                 if (prevPageY) {
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
-                    var zoomRate = getSmall();
-                    if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
-                        var marker = webAr.markerIdx.split(',');
-                        for (var i = 0; i < marker.length; i++) {
-                            var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
-                            var j = Number(marker[i]) - 1;
+                    //var zoomRate = getSmall();
+                    //if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
+                    //    var marker = webAr.markerIdx.split(',');
+                    //    for (var i = 0; i < marker.length; i++) {
+                    //        var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
+                    //        var j = Number(marker[i]) - 1;
+                    //        webAr.ar.arData[j].zoomRateH += rate;
+                    //        AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
+                    //            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
+                    //        });
+                    //        var elem = document.getElementById("debug1");
+                    //        elem.innerHTML = "Scale: " + Number(webAr.ar.arData[j].zoomRateH).toFixed(1);
+                    //    }
+                    //}
+                    var marker = webAr.markerIdx.split(',');
+                    for (var i = 0; i < marker.length; i++) {
+                        var j = Number(marker[i]) - 1;
+                        var zoomRate = webAr.ar.arData[j].zoomRateH;
+                        if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
+                            var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[j].wrapZoom;
                             webAr.ar.arData[j].zoomRateH += rate;
                             AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
                                 property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
