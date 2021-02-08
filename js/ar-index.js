@@ -11,37 +11,35 @@ var arType = 1;
 
         var msg1 = document.getElementById('mloader1-1');
         var msg2 = document.getElementById('mloader1-2');
+        var msg3 = document.getElementById('mloader3');
+        msg1.innerHTML = '';
+        msg2.innerHTML = '';
+
         scrInfo.style.width = "100%";
 
         switch (window.orientation) {
             case 0:
                 // 縦向き
-                msg1.innerHTML = '';
-                msg2.innerHTML = '';
                 scrInfo.style.display = 'none';
                 scrInfo.style.height = "100%";
                 break;
 
             case -90:
                 // 横向き：右回転
-                msg1.innerHTML = '画面を縦向きにして < br > 使用ください。<br><br>';
-                msg2.innerHTML = '';
+                msg3.innerHTML = '画面を縦向きにして < br > 使用ください。<br><br>';
                 scrInfo.style.display = 'inline';
                 scrInfo.style.height = "120%";
                 break;
 
             case 90:
                 // 横向き：左回転
-                msg1.innerHTML = '画面を縦向きにして < br > 使用ください。<br><br>';
-                msg2.innerHTML = '';
+                msg3.innerHTML = '画面を縦向きにして < br > 使用ください。<br><br>';
                 scrInfo.style.display = 'inline';
                 scrInfo.style.height = "120%";
                 break;
 
             case 180:
                 // 縦向き：上下逆向きに回転
-                msg1.innerHTML = '';
-                msg2.innerHTML = '';
                 scrInfo.style.display = 'none';
                 scrInfo.style.height = "100%";
                 break;

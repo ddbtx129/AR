@@ -1510,6 +1510,7 @@ var viewmode = 'marker';
             slideinfo.addEventListener(self.eventNames.start, function (e) {
                 if (webAr.loaderEnd == 1) {
                     document.getElementById("slideshow").style.display = 'none';
+                    webAr.loaderEnd = 2;
                 }
             });
 
