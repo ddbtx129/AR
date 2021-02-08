@@ -9,9 +9,9 @@
             <xs:complexType>
               <xs:sequence>
                 <!--有効期限-->
-                <xs:element name="ed" type="xs:string" minOccurs="0" />
+                <xs:element name="ed0" type="xs:string" minOccurs="0" />
                 <!--ARマーカータイプ-->
-                <xs:element name="ar" type="xs:string" minOccurs="0" />
+                <xs:element name="ar0" type="xs:string" minOccurs="0" />
                 <!--プレビュー表示-->
                 <xs:element name="pv" type="xs:string" minOccurs="0" />
                 <!--マーカー数-->
@@ -24,9 +24,9 @@
             <xs:complexType>
               <xs:sequence>
                 <!--有効期限-->
-                <xs:element name="ed" type="xs:string" minOccurs="0" />
+                <xs:element name="ed1" type="xs:string" minOccurs="0" />
                 <!--ARマーカータイプ-->
-                <xs:element name="ar" type="xs:string" minOccurs="0" />
+                <xs:element name="ar1" type="xs:string" minOccurs="0" />
                 <!--マーカーフォルダ-->
                 <xs:element name="m" type="xs:string" minOccurs="0" />
                 <!--マーカーフォルダ1-->
@@ -53,25 +53,25 @@
                 <xs:element name="o3" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
-
               </xs:sequence>
             </xs:complexType>
           </xs:element>
+          
         </xs:choice>
       </xs:complexType>
     </xs:element>
   </xs:schema>
 
   <basedata>
-    <ed>13465BA</ed>
-    <ar>1</ar>
+    <ed0>13465BA</ed0>
+    <ar0>1</ar0>
     <pv></pv>
     <len>2</len>
   </basedata>
 
   <pcsdata>
-    <ed>13465BA</ed>
-    <ar>1</ar>
+    <ed1>13465BA</ed1>
+    <ar1>1</ar1>
     <m></m>
     <m1></m1>
     <m2>01</m2>
@@ -88,8 +88,8 @@
   </pcsdata>
 
   <pcsdata>
-    <ed>13465BA</ed>
-    <ar>1</ar>
+    <ed1>13465BA</ed1>
+    <ar1>1</ar1>
     <m></m>
     <m1></m1>
     <m2>02</m2>
