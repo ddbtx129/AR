@@ -151,7 +151,7 @@ var viewmode = 'marker';
                     args[idx] = {};
 
                     // マーカー OR NFT
-                    args.ARList = pcs[0].ar && (parseInt(pcs[0].ar, 10).toString());
+                    args.ARList = pcs[idx].ar && (parseInt(pcs[idx].ar, 10).toString());
 
                     // 影
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
