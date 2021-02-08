@@ -129,6 +129,8 @@ var viewmode = 'marker';
                 arg[kv[0]] = decodeURIComponent(kv[1]);
             }
 
+            arg.DebugMode = arg.debug && (parseInt(arg.debug, 10).toString());
+
             if (!!(arg.xd)) {
                 
                 var base = {};
@@ -251,6 +253,12 @@ var viewmode = 'marker';
                     args[idx].LogoList = (logo).toString().split(',');
                     args[idx].LogoAnimeList = (args[idx].LogoList[1] && parseInt(args[idx].LogoList[1]));
                 }
+            }
+
+            if (!(arg.DebugMode)) {
+                document.getElementById('debug1').style.display = 'none';
+                document.getElementById('debug2').style.display = 'none';
+                document.getElementById('debug3').style.display = 'none';
             }
 
             self.arg = arg;
@@ -884,15 +892,6 @@ var viewmode = 'marker';
             var self = this;
             var val = self.arData;
 
-            //var bAngle = document.getElementById('swAngle');
-            //var bParalle = document.getElementById('swParallel');
-
-            //if (!!bParalle.classList.remove('current')) {
-            //    bParalle.classList.remove('current');
-            //}
-
-            //bAngle.classList.add('current');
-
             var mWrap = {};
             self.mWrap = {};
 
@@ -917,7 +916,6 @@ var viewmode = 'marker';
                     wrapPos.z -= defwrap[idx].Scale.y * 1.5;
                     //wrapPos.z -= defwrap[idx].Scale.y * 2.5;
 
-                    //wrapZoom = 0.5;
                     wrapZoom = 0.25;
                     zoomRateH = defwrap[idx].Scale.y * wrapZoom;
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
@@ -1097,17 +1095,6 @@ var viewmode = 'marker';
                     webAr.scene.appendChild(mWrap[idx]);
 
                     self.mWrap[idx] = mWrap[idx];
-
-                    //// ↓ rotation 切替 Event
-                    //if (!(self.arData[idx].isMarkerType == 1)) {
-                    //    self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                    //    self.wrap[idx].setAttribute('position', AFRAME.utils.coordinates.stringify(wrapPos));
-                    //    if (!bParalle.classList.contains('current')) {
-                    //        bParalle.classList.add('current');
-                    //        bAngle.classList.remove('current');
-                    //    }
-                    //}
-                    //// ↑
                 }
 
                 if (!!val[idx].isLogo) {
@@ -1144,52 +1131,6 @@ var viewmode = 'marker';
             this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos);
         },
 
-        //setAngleEvents: function (){
-            
-        //    var self = this;
-
-        //    var bAngle = document.getElementById('swAngle');
-        //    var bParalle = document.getElementById('swParallel');
-
-            //bAngle.addEventListener('click', function () {
-            //    if (!bAngle.classList.contains('current')) {
-            //        var marker = webAr.markerIdx.split(',');
-            //        for (var i = 0; i < marker.length; i++) {
-            //            var j = Number(marker[i]) - 1;
-            //            webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
-            //            webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
-            //            AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-            //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-            //            });
-            //            webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
-            //            webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
-            //            bAngle.classList.add('current');
-            //            bParalle.classList.remove('current');
-            //            webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
-            //        }
-            //    }
-            //});
-
-            //bParalle.addEventListener('click', function () {
-            //    if (!bParalle.classList.contains('current')) {
-            //        var marker = webAr.markerIdx.split(',');
-            //        for (var i = 0; i < marker.length; i++) {
-            //            var j = Number(marker[i]) - 1;
-            //            webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
-            //            webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
-            //            AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-            //                property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-            //            });
-            //            webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-            //            webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
-            //            bParalle.classList.add('current');
-            //            bAngle.classList.remove('current');
-            //            webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
-            //        }
-            //    }
-            //});
-        //},
-
         setOverturnEvents: function (){
 
             var bR90 = document.getElementById('swR90');
@@ -1199,14 +1140,8 @@ var viewmode = 'marker';
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    //webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
-                    //webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
                     webAr.ar.arData[j].pvAngle -= objAngle;
-                    //AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-                    //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-                    //});
                     webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((webAr.ar.arData[j].pvAngle).toString() + ' 0 0'));
-                    //webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
                 }
             });
@@ -1215,14 +1150,8 @@ var viewmode = 'marker';
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    //webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
-                    //webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
                     webAr.ar.arData[j].pvAngle += objAngle;
-                    //AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-                    //    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-                    //});
                     webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((webAr.ar.arData[j].pvAngle).toString() + ' 0 0'));
-                    //webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
                 }
             });
@@ -1306,11 +1235,6 @@ var viewmode = 'marker';
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    //if (!!(bAngle.classList.contains('current'))) {
-                    //    webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yClickRate;
-                    //} else {
-                    //    webAr.ar.arData[j].wrapPos.z -= webAr.ar.arData[j].yClickRate;
-                    //}
                     if (webAr.ar.arData[j].isMarkerType == 1) {
                         webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yClickRate;
                     } else {
@@ -1335,11 +1259,6 @@ var viewmode = 'marker';
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    //if (!!(bAngle.classList.contains('current'))) {
-                    //    webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yClickRate;
-                    //} else {
-                    //    webAr.ar.arData[j].wrapPos.z += webAr.ar.arData[j].yClickRate;
-                    //}
                     if (webAr.ar.arData[j].isMarkerType == 1) {
                         webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yClickRate;
                     } else {
@@ -1369,11 +1288,6 @@ var viewmode = 'marker';
 
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        //if (!!(bAngle.classList.contains('current'))) {
-                        //    webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yTouchRate;
-                        //} else {
-                        //    webAr.ar.arData[j].wrapPos.z -= webAr.ar.arData[j].yTouchRate;
-                        //}
                         if (webAr.ar.arData[j].isMarkerType == 1) {
                             webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yTouchRate;
                         } else {
@@ -1414,11 +1328,6 @@ var viewmode = 'marker';
 
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        //if (!!(bAngle.classList.contains('current'))) {
-                        //    webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yTouchRate;
-                        //} else {
-                        //    webAr.ar.arData[j].wrapPos.z += webAr.ar.arData[j].yTouchRate;
-                        //}
                         if (webAr.ar.arData[j].isMarkerType == 1) {
                             webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yTouchRate;
                         } else {
@@ -1651,9 +1560,6 @@ var viewmode = 'marker';
             var self = this;
             var val = self.arData;
 
-            document.getElementById("debug1").style.display = "inline";
-            document.getElementById("debug2").style.display = "inline";
-
             document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
@@ -1661,34 +1567,13 @@ var viewmode = 'marker';
             document.getElementById("player").style.display = 'none';
 
             if (webAr.ar.arData[0].oType != 'mp4') {
-
                 document.getElementById("info1").style.display = "none";
-
                 document.getElementById("scrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
-
-                //document.getElementById("swAngle").style.display = 'inline';
-                //document.getElementById("swParallel").style.display = 'inline';
-
             } else {
-
                 document.getElementById("info1").style.display = "inline";
-
                 document.getElementById("scrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
-
-                //document.getElementById("swAngle").style.display = 'none';
-                //document.getElementById("swParallel").style.display = 'none';
-
-                if (mode) {
-                    //document.getElementById("swAngle").style.display = 'none';
-                    //document.getElementById("swParallel").style.display = 'none';
-                } else {
-                    //document.getElementById("swAngle").style.display = 'inline';
-                    //document.getElementById("swParallel").style.display = 'inline';
-
-                    document.getElementById("player").style.display = 'none';
-                }
             }
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
