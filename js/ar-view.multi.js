@@ -1235,7 +1235,7 @@ var viewmode = 'marker';
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMarkerType == 1) {
+                    if (webAr.ar.arData[j].isMarkerType == 1 || webAr.ar.arData[j].isPV) {
                         webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yClickRate;
                     } else {
                         webAr.ar.arData[j].wrapPos.z -= webAr.ar.arData[j].yClickRate;
@@ -1259,7 +1259,7 @@ var viewmode = 'marker';
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMarkerType == 1) {
+                    if (webAr.ar.arData[j].isMarkerType == 1 || webAr.ar.arData[j].isPV) {
                         webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yClickRate;
                     } else {
                         webAr.ar.arData[j].wrapPos.z += webAr.ar.arData[j].yClickRate;
@@ -1288,7 +1288,7 @@ var viewmode = 'marker';
 
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        if (webAr.ar.arData[j].isMarkerType == 1) {
+                        if (webAr.ar.arData[j].isMarkerType == 1 || webAr.ar.arData[j].isPV) {
                             webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yTouchRate;
                         } else {
                             webAr.ar.arData[j].wrapPos.z -= webAr.ar.arData[j].yTouchRate;
@@ -1328,7 +1328,7 @@ var viewmode = 'marker';
 
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        if (webAr.ar.arData[j].isMarkerType == 1) {
+                        if (webAr.ar.arData[j].isMarkerType == 1 || webAr.ar.arData[j].isPV) {
                             webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yTouchRate;
                         } else {
                             webAr.ar.arData[j].wrapPos.z += webAr.ar.arData[j].yTouchRate;
