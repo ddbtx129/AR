@@ -26,14 +26,14 @@ var arType = 1;
 
             case -90:
                 // 横向き：右回転
-                msg3.innerHTML = '画面を縦向きにして < br > 使用ください。<br><br>';
+                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
                 scrInfo.style.display = 'inline';
                 scrInfo.style.height = "120%";
                 break;
 
             case 90:
                 // 横向き：左回転
-                msg3.innerHTML = '画面を縦向きにして < br > 使用ください。<br><br>';
+                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
                 scrInfo.style.display = 'inline';
                 scrInfo.style.height = "120%";
                 break;
