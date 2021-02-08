@@ -267,36 +267,36 @@ function requestFullScreen(elem) {
     }
 }
 
-function lockOrientation(mode) {
-    if (screen.orientation.lock) {
-        screen.orientation.lock(mode);
-    }
-    else if (screen.lockOrientation) {
-        screen.lockOrientation(mode);
-    }
-    else if (screen.webkitLockOrientation) {
-        screen.webkitLockOrientation(mode);
-    }
-    else if (screen.mozLockOrientation) {
-        screen.mozLockOrientation(mode);
-    }
-    else if (screen.msLockOrientation) {
-        screen.msLockOrientation(mode);
-    }
-}
+//function lockOrientation(mode) {
+//    if (screen.orientation.lock) {
+//        screen.orientation.lock(mode);
+//    }
+//    else if (screen.lockOrientation) {
+//        screen.lockOrientation(mode);
+//    }
+//    else if (screen.webkitLockOrientation) {
+//        screen.webkitLockOrientation(mode);
+//    }
+//    else if (screen.mozLockOrientation) {
+//        screen.mozLockOrientation(mode);
+//    }
+//    else if (screen.msLockOrientation) {
+//        screen.msLockOrientation(mode);
+//    }
+//}
 
-document.addEventListener("DOMContentLoaded", function () {
+//document.addEventListener("DOMContentLoaded", function () {
 
-    // html全体をフルスクリーン化します
-    requestFullScreen(document.documentElement);
-    // 縦画面に固定します
-    // screen.orientation.lockは即座に効くようですが、
-    // screen.lockOrientation系は少し間を開けないと有効にならないようです
-    setTimeout(function () {
-        lockOrientation("portrait");
-    }, 1);
+//    // html全体をフルスクリーン化します
+//    requestFullScreen(document.documentElement);
+//    // 縦画面に固定します
+//    // screen.orientation.lockは即座に効くようですが、
+//    // screen.lockOrientation系は少し間を開けないと有効にならないようです
+//    setTimeout(function () {
+//        lockOrientation("portrait");
+//    }, 1);
 
-}, false);
+//}, false);
 
 function GetFileType (arg) {
     var exct = 'png';
