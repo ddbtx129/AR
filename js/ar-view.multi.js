@@ -132,10 +132,10 @@ var viewmode = 'marker';
             if (!!(arg.xd)) {
                 
                 var base = {};
-                base = this.readBaseXml(rootPath + 'data/' + arg.mo + '/' + arg.x + '.xml');
+                base = this.readBaseXml('data/' + arg.mo + '/' + arg.x + '.xml');
 
                 var pcs = {};
-                pcs = this.readPcsXml(rootPath + 'data/' + arg.mo + '/' + arg.x + '.xml');
+                pcs = this.readPcsXml('data/' + arg.mo + '/' + arg.x + '.xml');
 
                 // プレビューモード
                 //arg.PVList = base[0].pv;
@@ -151,7 +151,7 @@ var viewmode = 'marker';
                     args[idx] = {};
 
                     // マーカー OR NFT
-                    args.ARList = pcs[idx].ar && (parseInt(pcs[idx].ar, 10).toString());
+                    args.ARList = pcs[idx].arp && (parseInt(pcs[idx].arp, 10).toString());
 
                     // 影
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
@@ -1711,13 +1711,18 @@ var viewmode = 'marker';
 
                 var data = new Array();
 
-                var cEd = xmldata.getElementsByTagName("ed");
-                var cAr = xmldata.getElementsByTagName("ar");
+                var cEd = xmldata.getElementsByTagName("ed0");
+                var cAr = xmldata.getElementsByTagName("ar0");
                 var cPv = xmldata.getElementsByTagName("pv");
                 var cLen = xmldata.getElementsByTagName("len");
 
                 var len = cEd.length;
                 for (var i = 0; i < len; i++) {
+                    window.alert(cEd[i].textContent);
+                    window.alert(cAr[i].textContent);
+                    window.alert(cPv[i].textContent);
+                    window.alert(cLen[i].textContent);
+
                     data[i] = {
                         ed: cEd[i].textContent,
                         ar: cAr[i].textContent,
@@ -1749,8 +1754,8 @@ var viewmode = 'marker';
             function setXmldata(tabelnm) {
                 var data = new Array();
 
-                var cEd = tabelnm.getElementsByTagName("ed");
-                var cAr = tabelnm.getElementsByTagName("ar");
+                var cEd = tabelnm.getElementsByTagName("ed1");
+                var cAr = tabelnm.getElementsByTagName("ar1");
                 var cM = tabelnm.getElementsByTagName("m");
                 var cM1 = tabelnm.getElementsByTagName("m1");
                 var cM2 = tabelnm.getElementsByTagName("m2");
