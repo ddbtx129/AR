@@ -1749,8 +1749,8 @@ var viewmode = 'marker';
             function setXmldata(tabelnm) {
                 var data = new Array();
 
-                var cEd = xmldata.getElementsByTagName("ed");
-                var cAr = xmldata.getElementsByTagName("ar");
+                var cEd = tabelnm.getElementsByTagName("ed");
+                var cAr = tabelnm.getElementsByTagName("ar");
                 var cM = tabelnm.getElementsByTagName("m");
                 var cM1 = tabelnm.getElementsByTagName("m1");
                 var cM2 = tabelnm.getElementsByTagName("m2");
