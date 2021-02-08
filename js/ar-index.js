@@ -22,7 +22,6 @@ var arType = 1;
 
             case -90:
                 // 横向き：右回転
-
                 scrInfo.style.display = 'inline';
                 scrInfo.style.height = "120%";
                 break;
