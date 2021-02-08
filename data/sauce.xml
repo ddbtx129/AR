@@ -4,27 +4,29 @@
     <xs:element name="ArData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
       <xs:complexType>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-          
+
           <xs:element name="basedata">
             <xs:complexType>
               <xs:sequence>
                 <!--有効期限-->
-                <xs:element name="ed" type="xs:string" minOccurs="0" />
+                <xs:element name="ed0" type="xs:string" minOccurs="0" />
                 <!--ARマーカータイプ-->
-                <xs:element name="ar" type="xs:string" minOccurs="0" />
+                <xs:element name="ar0" type="xs:string" minOccurs="0" />
                 <!--プレビュー表示-->
                 <xs:element name="pv" type="xs:string" minOccurs="0" />
+                <!--マーカー数-->
+                <xs:element name="len" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          
+
           <xs:element name="pcsdata">
             <xs:complexType>
               <xs:sequence>
                 <!--有効期限-->
-                <xs:element name="ed" type="xs:string" minOccurs="0" />
+                <xs:element name="ed1" type="xs:string" minOccurs="0" />
                 <!--ARマーカータイプ-->
-                <xs:element name="ar" type="xs:string" minOccurs="0" />
+                <xs:element name="ar1" type="xs:string" minOccurs="0" />
                 <!--マーカーフォルダ-->
                 <xs:element name="m" type="xs:string" minOccurs="0" />
                 <!--マーカーフォルダ1-->
@@ -51,24 +53,24 @@
                 <xs:element name="o3" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
-
-            </xs:sequence>
+              </xs:sequence>
             </xs:complexType>
           </xs:element>
+
         </xs:choice>
       </xs:complexType>
     </xs:element>
   </xs:schema>
         
   <basedata>
-      <ed></ed>
-      <ar></ar>
+      <ed0></ed0>
+      <ar0></ar0>
       <pv></pv>
   </basedata>
 
   <pcsdata>
-    <ed></ed>
-    <ar></ar>
+    <ed1></ed1>
+    <ar1></ar1>
     <m></m>
     <m1></m1>
     <m2></m2>
