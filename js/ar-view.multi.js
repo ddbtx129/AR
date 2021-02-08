@@ -1718,11 +1718,6 @@ var viewmode = 'marker';
 
                 var len = cEd.length;
                 for (var i = 0; i < len; i++) {
-                    window.alert(cEd[i].textContent);
-                    window.alert(cAr[i].textContent);
-                    window.alert(cPv[i].textContent);
-                    window.alert(cLen[i].textContent);
-
                     data[i] = {
                         ed: cEd[i].textContent,
                         ar: cAr[i].textContent,
