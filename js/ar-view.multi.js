@@ -1511,7 +1511,8 @@ var viewmode = 'marker';
                 if (webAr.loaderEnd == 1) {
                     document.getElementById("slideshow").style.display = 'none';
                     webAr.loaderEnd = 2;
-
+                    var slideshow = document.getElementById('slideshow');
+                    slidewrap.style.zIndex = '996';
                     var slidewrap = document.getElementById('slidewrap');
                     slidewrap.style.marginTop = '25%';
                 }
