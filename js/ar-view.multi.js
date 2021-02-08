@@ -63,7 +63,7 @@ var viewmode = 'marker';
 
                 this.setScene();
 
-                this.setAngleEvents();
+                //this.setAngleEvents();
                 this.setResizeEvents();
                 this.setMoveEvents();
                 this.setTapEvents();
@@ -101,17 +101,10 @@ var viewmode = 'marker';
 
             var loader = document.querySelector('a-assets');
             loader.addEventListener('loaded', function (e) {
+                // ロード完了
                 webAr.loaderEnd = 1;
                 var mloader = document.getElementById('mloader3');
                 mloader.innerHTML = '';
-                // ロード完了
-                //if (webAr.srcno.length > 1) {
-                //    var msg = document.querySelector('slideshow');
-                //    document.getElementById("slideshow").style.display = 'inline';
-                //    setTimeout(function () {
-                //        document.getElementById("slideshow").style.display = 'none';
-                //    }, 6000);
-                //}
                 if (webAr.ar.arData[0].isPV) {
                     if (webAr.ar.arData[0].isMp4) {
                         var video = document.querySelector('#source101');
@@ -156,6 +149,9 @@ var viewmode = 'marker';
                 for (idx = 0; idx < arg.Multi; idx++) {
 
                     args[idx] = {};
+
+                    // マーカー OR NFT
+                    args.ARList = pcs[0].ar && (parseInt(pcs[0].ar, 10).toString());
 
                     // 影
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
@@ -214,6 +210,9 @@ var viewmode = 'marker';
                 arg.PVList = arg.pv;
                 // マーカー OR NFT
                 arg.ARList = arg.ar && (parseInt(arg.ar, 10).toString());
+
+                // マーカー OR NFT
+                args[idx].ARList = arg.ar && (parseInt(arg.ar, 10).toString());
 
                 // 影
                 args[idx].shodowList = args[idx].xs && (parseInt(args[idx].xs, 16).toString(2));
@@ -332,7 +331,8 @@ var viewmode = 'marker';
                 dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
                 dataObj[idx].isPV = !!(self.arg.PVList);
                 dataObj[idx].isNFT = !!(self.arg.ARList);
-                dataObj[idx].isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1;
+                //dataObj[idx].isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1;
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
                 dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
@@ -342,11 +342,9 @@ var viewmode = 'marker';
                 
                 var wh = SizeSplit(self.args[idx].sizeList).toString().split(',');
                 var i = ((parseInt(self.args[idx].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeList).toString(10)).length : (parseInt(self.args[idx].sizeList).toString(10)).length + 1;
-                //var j = (dataObj[idx].isMarkerType == 1 ? 2 : 4);
                 var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
                 
                 dataObj[idx].size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-                //defScale = { w: dataObj[idx].size.w, h: dataObj[idx].size.h, d: dataObj[idx].size.h };
                 defobj[idx].Scale = { x: dataObj[idx].size.w, y: dataObj[idx].size.h, z: dataObj[idx].size.h };
                 
                 // オブジェクトソース
@@ -887,30 +885,23 @@ var viewmode = 'marker';
             var self = this;
             var val = self.arData;
 
-            var bAngle = document.getElementById('swAngle');
-            var bParalle = document.getElementById('swParallel');
+            //var bAngle = document.getElementById('swAngle');
+            //var bParalle = document.getElementById('swParallel');
 
-            if (!!bParalle.classList.remove('current')) {
-                bParalle.classList.remove('current');
-            }
+            //if (!!bParalle.classList.remove('current')) {
+            //    bParalle.classList.remove('current');
+            //}
 
-            bAngle.classList.add('current');
+            //bAngle.classList.add('current');
 
             var mWrap = {};
             self.mWrap = {};
-            //var yClickRate;
-            //var yTouchRate;
 
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 this.addScene(idx);
 
-                //if (!val.isMp4) {
-                //    document.getElementById("player").style.display = 'none';
-                //}
-
                 //var arGifRotation = '-30 0 0';
-                //var prevPageY;
                 var zoomRateH = defwrap[idx].Scale.y;
                 var wrapZoom = 1;
                 var pvAngle = -5;
@@ -1153,53 +1144,86 @@ var viewmode = 'marker';
             this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos);
         },
 
-        setAngleEvents: function(){
+        //setAngleEvents: function (){
             
+        //    var self = this;
+
+        //    var bAngle = document.getElementById('swAngle');
+        //    var bParalle = document.getElementById('swParallel');
+
+        //    bAngle.addEventListener('click', function () {
+        //        if (!bAngle.classList.contains('current')) {
+        //            var marker = webAr.markerIdx.split(',');
+        //            for (var i = 0; i < marker.length; i++) {
+        //                var j = Number(marker[i]) - 1;
+        //                webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
+        //                webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
+        //                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
+        //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
+        //                });
+        //                webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
+        //                webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
+        //                bAngle.classList.add('current');
+        //                bParalle.classList.remove('current');
+        //                webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
+        //            }
+        //        }
+        //    });
+
+        //    bParalle.addEventListener('click', function () {
+        //        if (!bParalle.classList.contains('current')) {
+        //            var marker = webAr.markerIdx.split(',');
+        //            for (var i = 0; i < marker.length; i++) {
+        //                var j = Number(marker[i]) - 1;
+        //                webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
+        //                webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
+        //                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
+        //                    property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
+        //                });
+        //                webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
+        //                webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
+        //                bParalle.classList.add('current');
+        //                bAngle.classList.remove('current');
+        //                webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
+        //            }
+        //        }
+        //    });
+        //},
+
+        setOverturnEvents: function (){
+
             var self = this;
 
-            var bAngle = document.getElementById('swAngle');
-            var bParalle = document.getElementById('swParallel');
+            var bR90 = document.getElementById('swR90');
+            var bR00 = document.getElementById('swR00');
 
-            bAngle.addEventListener('click', function () {
-                if (!bAngle.classList.contains('current')) {
+            bR90.addEventListener('click', function () {
+                if (!bR90.classList.contains('current')) {
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
+                        webAr.ar.arData[j].wrapPos = { x: webAr.defwrap[idx].Pos.x, y: webAr.defwrap[idx].Pos.y, z: webAr.defwrap[idx].Pos.z };
                         webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
                         AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
                             property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
                         });
-                        webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((objAngle).toString() + ' 0 0'));
-                        webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
-                        bAngle.classList.add('current');
-                        bParalle.classList.remove('current');
-                        webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
+
                     }
                 }
             });
 
-            bParalle.addEventListener('click', function () {
-                if (!bParalle.classList.contains('current')) {
+            bR00.addEventListener('click', function () {
+                if (!bR00.classList.contains('current')) {
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        webAr.ar.arData[j].wrapPos = webAr.defwrap[j].Pos;
-                        webAr.ar.arData[j].zoomRateH = webAr.defwrap[j].Scale.y * webAr.ar.arData[j].wrapZoom;
-                        AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-                            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-                        });
-                        webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify('-90 0 0'));
-                        webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
-                        bParalle.classList.add('current');
-                        bAngle.classList.remove('current');
-                        webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
+
                     }
                 }
             });
         },
 
-        setResizeEvents: function(){
+        setResizeEvents: function (){
 
             var self = this;
 
@@ -1217,20 +1241,6 @@ var viewmode = 'marker';
                 if (prevPageY) {
                     tapclicked = !!(tapCount = scalechange);
                     scalechange = 1;
-                    //var zoomRate = getSmall();
-                    //if ((zoomRate + (prevPageY - event.pageY) / webAr.scene.clientHeight / 5) > 0.1) {
-                    //    var marker = webAr.markerIdx.split(',');
-                    //    for (var i = 0; i < marker.length; i++) {
-                    //        var rate = ((prevPageY - event.pageY) / webAr.scene.clientHeight / 5) * webAr.ar.arData[i].wrapZoom;
-                    //        var j = Number(marker[i]) - 1;
-                    //        webAr.ar.arData[j].zoomRateH += rate;
-                    //        AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].wrap, 'animation', {
-                    //            property: 'scale', dur: 5, easing: 'linear', loop: false, to: webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH + ' ' + webAr.ar.arData[j].zoomRateH
-                    //        });
-                    //        var elem = document.getElementById("debug1");
-                    //        elem.innerHTML = "Scale: " + Number(webAr.ar.arData[j].zoomRateH).toFixed(1);
-                    //    }
-                    //}
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
@@ -1270,7 +1280,7 @@ var viewmode = 'marker';
             };
         },
 
-        setMoveEvents: function(){
+        setMoveEvents: function (){
 
             var self = this;
 
@@ -1504,8 +1514,9 @@ var viewmode = 'marker';
             });
 
             function switchObject(e, fileno, oidx) {
-
+                // ビューポートの変更(ズーム)を防止
                 e.preventDefault();
+
                 var marker = webAr.markerIdx.split(',');
 
                 if (webAr.ar.arData[oidx].srcno.length == 1) {
@@ -1533,9 +1544,6 @@ var viewmode = 'marker';
                 webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
                 webAr.ar.resetScene(oidx);
                 webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
-
-                //// ビューポートの変更(ズーム)を防止
-                //e.preventDefault();
 
                 tapCount = 0;
                 tapclicked = false;
@@ -1741,6 +1749,8 @@ var viewmode = 'marker';
             function setXmldata(tabelnm) {
                 var data = new Array();
 
+                var cEd = xmldata.getElementsByTagName("ed");
+                var cAr = xmldata.getElementsByTagName("ar");
                 var cM = tabelnm.getElementsByTagName("m");
                 var cM1 = tabelnm.getElementsByTagName("m1");
                 var cM2 = tabelnm.getElementsByTagName("m2");
@@ -1758,6 +1768,8 @@ var viewmode = 'marker';
                 var len = cM.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
+                        ed: cEd[i].textContent,
+                        ar: cAr[i].textContent,
                         m: cM[i].textContent,
                         m1: cM1[i].textContent,
                         m2: cM2[i].textContent,
