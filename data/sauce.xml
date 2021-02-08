@@ -21,6 +21,10 @@
           <xs:element name="pcsdata">
             <xs:complexType>
               <xs:sequence>
+                <!--有効期限-->
+                <xs:element name="ed" type="xs:string" minOccurs="0" />
+                <!--ARマーカータイプ-->
+                <xs:element name="ar" type="xs:string" minOccurs="0" />
                 <!--マーカーフォルダ-->
                 <xs:element name="m" type="xs:string" minOccurs="0" />
                 <!--マーカーフォルダ1-->
@@ -63,6 +67,8 @@
   </basedata>
 
   <pcsdata>
+    <ed></ed>
+    <ar></ar>
     <m></m>
     <m1></m1>
     <m2></m2>
