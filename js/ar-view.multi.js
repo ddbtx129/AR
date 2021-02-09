@@ -866,7 +866,7 @@ var viewmode = 'marker';
 
             if (oScale != null) {
                 var elem = document.getElementById("debug1");
-                elem.innerHTML = "WDH: " + Number(oScale).toFixed(1) + ' ∠: ' + Number(oAngle).toFixed(1);
+                elem.innerHTML = "WDH: " + Number(oScale).toFixed(1) + ' ∠ ' + Number(oAngle).toFixed(1);
             }
 
             if (oPosition != null) {
