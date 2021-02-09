@@ -1546,6 +1546,18 @@ var viewmode = 'marker';
                 document.getElementById("swPlay").style.display = 'none';
                 document.getElementById("info1").style.display = "none";
             });
+
+            window.addEventListener('blur', function (e) {
+                var marker = webAr.markerIdx.split(',');
+                for (var i = 0; i < marker.length; i++) {
+                    var j = Number(marker[i]) - 1;
+                    if (webAr.ar.arData[j].isMp4) {
+                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                        video.pause();
+                        webAr.ar.videoState[j] = 2;
+                    }
+                }
+            });
         },
 
         setDiplayBtn: function (mode) {
