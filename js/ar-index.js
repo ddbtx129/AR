@@ -3,54 +3,24 @@ var arType = 1;
 
 (function () {
 
+    document.addEventListener("touchmove", function (e) {
+        e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // html全体をフルスクリーン化します
+        requestFullScreen(document.documentElement);
+        // 縦画面に固定します
+        // screen.orientation.lockは即座に効くようですが、
+        // screen.lockOrientation系は少し間を開けないと有効にならないようです
+        setTimeout(function () {
+            lockOrientation("portrait");
+        }, 1);
+
+    }, false);
+
     window.addEventListener('orientationchange', updateOrientation, false);
-
-    function updateOrientation() {
-
-        var scrInfo = document.getElementById('slideshow');
-
-        var msg1 = document.getElementById('mloader1-1');
-        var msg2 = document.getElementById('mloader1-2');
-        var msg3 = document.getElementById('mloader3');
-        msg1.innerHTML = '';
-        msg2.innerHTML = '';
-
-        scrInfo.style.width = "100%";
-
-        switch (window.orientation) {
-            case 0:
-                // 縦向き
-                scrInfo.style.display = 'none';
-                scrInfo.style.height = "100%";
-                break;
-
-            case -90:
-                // 横向き：右回転
-                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
-                scrInfo.style.display = 'inline';
-                scrInfo.style.height = "120%";
-                break;
-
-            case 90:
-                // 横向き：左回転
-                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
-                scrInfo.style.display = 'inline';
-                scrInfo.style.height = "120%";
-                break;
-
-            case 180:
-                // 縦向き：上下逆向きに回転
-                scrInfo.style.display = 'none';
-                scrInfo.style.height = "100%";
-                break;
-        }
-
-    }
-
-    document.addEventListener("touchmove",
-        function (e) {
-            e.preventDefault();
-        }, { passive: false });
 
     //// 初期化のために実行
     //onResize();
@@ -109,11 +79,12 @@ var arType = 1;
                 return;
             }
         }
+    } else {
+        if (!(param.debug)) {
+            Err_Exit('パソコンで表示することはできません。');
+            retuern;
+        }
     }
-    //} else {
-    //        Err_Exit('パソコンで表示することはできません。');
-    //        retuern;
-    //}
 
     function GetQueryString() {
 
@@ -222,86 +193,82 @@ var arType = 1;
         location.href = "warning.html";
     }
 
+    function updateOrientation() {
+
+        var scrInfo = document.getElementById('slideshow');
+
+        var msg1 = document.getElementById('mloader1-1');
+        var msg2 = document.getElementById('mloader1-2');
+        var msg3 = document.getElementById('mloader3');
+        msg1.innerHTML = '';
+        msg2.innerHTML = '';
+
+        scrInfo.style.width = "100%";
+
+        switch (window.orientation) {
+            case 0:
+                // 縦向き
+                scrInfo.style.display = 'none';
+                scrInfo.style.height = "100%";
+                break;
+
+            case -90:
+                // 横向き：右回転
+                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
+                scrInfo.style.display = 'inline';
+                scrInfo.style.height = "120%";
+                break;
+
+            case 90:
+                // 横向き：左回転
+                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
+                scrInfo.style.display = 'inline';
+                scrInfo.style.height = "120%";
+                break;
+
+            case 180:
+                // 縦向き：上下逆向きに回転
+                scrInfo.style.display = 'none';
+                scrInfo.style.height = "100%";
+                break;
+        }
+
+    }
+
+    function requestFullScreen(elem) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        }
+        else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen();
+        }
+        else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        }
+        else if (elem.msRequestFullScreen) {
+            elem.msRequestFullScreen();
+        }
+    }
+
+    function lockOrientation(mode) {
+        if (screen.orientation.lock) {
+            screen.orientation.lock(mode);
+        }
+        else if (screen.lockOrientation) {
+            screen.lockOrientation(mode);
+        }
+        else if (screen.webkitLockOrientation) {
+            screen.webkitLockOrientation(mode);
+        }
+        else if (screen.mozLockOrientation) {
+            screen.mozLockOrientation(mode);
+        }
+        else if (screen.msLockOrientation) {
+            screen.msLockOrientation(mode);
+        }
+    }
+
 }());
-
-//document.addEventListener("DOMContentLoaded", function () {
-//    updateOrientation();
-//});
-
-//window.addEventListener('orientationchange', updateOrientation, false);
-
-//function updateOrientation() {
-
-//    var scrInfo = document.getElementById('scrOrientation');
-
-//    switch (window.orientation) {
-//        case 0:
-//            // 縦向き
-//            scrInfo.style.display = 'none';
-//            break;
-
-//        case -90:
-//            // 横向き：右回転
-//            scrInfo.style.display = 'inline';
-//            break;
-
-//        case 90:
-//            // 横向き：左回転
-//            scrInfo.style.display = 'inline';
-//            break;
-
-//        case 180:
-//            // 縦向き：上下逆向きに回転
-//            scrInfo.style.display = 'none';
-//            break;
-//    }
-//}
-
-function requestFullScreen(elem) {
-    if (elem.requestFullScreen) {
-        elem.requestFullScreen();
-    }
-    else if (elem.webkitRequestFullScreen) {
-        elem.webkitRequestFullScreen();
-    }
-    else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-    }
-    else if (elem.msRequestFullScreen) {
-        elem.msRequestFullScreen();
-    }
-}
-
-//function lockOrientation(mode) {
-//    if (screen.orientation.lock) {
-//        screen.orientation.lock(mode);
-//    }
-//    else if (screen.lockOrientation) {
-//        screen.lockOrientation(mode);
-//    }
-//    else if (screen.webkitLockOrientation) {
-//        screen.webkitLockOrientation(mode);
-//    }
-//    else if (screen.mozLockOrientation) {
-//        screen.mozLockOrientation(mode);
-//    }
-//    else if (screen.msLockOrientation) {
-//        screen.msLockOrientation(mode);
-//    }
-//}
-
-//document.addEventListener("DOMContentLoaded", function () {
-
-//    // html全体をフルスクリーン化します
-//    requestFullScreen(document.documentElement);
-//    // 縦画面に固定します
-//    // screen.orientation.lockは即座に効くようですが、
-//    // screen.lockOrientation系は少し間を開けないと有効にならないようです
-//    setTimeout(function () {
-//        lockOrientation("portrait");
-//    }, 1);
-
-//}, false);
 
 function GetFileType (arg) {
     var exct = 'png';
