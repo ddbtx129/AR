@@ -84,7 +84,7 @@
     <o1></o1>
     <o2>01</o2>
     <o3>10</o3>
-    <l>C8</l>
+    <l></l>
   </pcsdata>
 
   <pcsdata>
@@ -98,11 +98,11 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
-    <o>kingprince</o>
-    <o1></o1>
+    <o></o>
+    <o1>kingprince</o1>
     <o2>11</o2>
-    <o3>29</o3>
-    <l>C8</l>
+    <o3>19</o3>
+    <l></l>
   </pcsdata>
 
 </ArData>
