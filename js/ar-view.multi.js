@@ -1134,6 +1134,8 @@ var viewmode = 'marker';
 
         setOverturnEvents: function (){
 
+            var self = this;
+
             var bR90 = document.getElementById('swR90');
             var bR00 = document.getElementById('swR00');
             var timer;
@@ -1163,7 +1165,7 @@ var viewmode = 'marker';
             bR90.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
                 timer = setInterval(() => {
-                    changeAngle(-objAngle);
+                    changeAngle(-(objAngle * 0.1));
                 }, 10);
             });
 
@@ -1180,7 +1182,7 @@ var viewmode = 'marker';
             bR00.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
                 timer = setInterval(() => {
-                    changeAngle(objAngle);
+                    changeAngle((objAngle * 0.1));
                 }, 10);
             });
 
