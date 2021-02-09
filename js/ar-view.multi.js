@@ -1200,7 +1200,7 @@ var viewmode = 'marker';
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    webAr.ar.arData[j].pvAngle += angle;
+                    //webAr.ar.arData[j].pvAngle += angle;
                     if((webAr.ar.arData[j].pvAngle + angle) > 360){
                         bAr.ar.arData[j].pvAngle += (angle - 360);
                     } else if((webAr.ar.arData[j].pvAngle + angle) < -360){
