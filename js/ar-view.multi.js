@@ -105,7 +105,7 @@ var viewmode = 'marker';
                 // ロード完了
                 webAr.loaderEnd = 1;
                 var mloader = document.getElementById('mloader3');
-                mloader.innerHTML = '';
+                mloader.innerHTML = '※ 画面をタップすると表示を開始します。';
                 if (webAr.ar.arData[0].isPV) {
                     if (webAr.ar.arData[0].isMp4) {
                         var video = document.querySelector('#source101');
