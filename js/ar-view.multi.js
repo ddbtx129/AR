@@ -862,11 +862,11 @@ var viewmode = 'marker';
             }
         },
 
-        objectDataVal: function (oScale, oPosition) {
+        objectDataVal: function (oScale, oPosition, oAngle) {
 
             if (oScale != null) {
                 var elem = document.getElementById("debug1");
-                elem.innerHTML = "scale: " + Number(oScale).toFixed(1);
+                elem.innerHTML = "WDH: " + Number(oScale).toFixed(1) + ' ∠: ' + Number(oAngle).toFixed(1);
             }
 
             if (oPosition != null) {
@@ -1110,7 +1110,7 @@ var viewmode = 'marker';
                 self.arData[idx].wrapZoom = wrapZoom;
                 self.arData[idx].pvAngle = pvAngle;
 
-                this.objectDataVal(zoomRateH, wrapPos);
+                this.objectDataVal(zoomRateH, wrapPos, pvAngle);
             }
         },
 
@@ -1129,7 +1129,7 @@ var viewmode = 'marker';
                 this.createAnimation(oidx);
             }
 
-            this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos);
+            this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos, webAr.ar.arData[oidx].pvAngle);
         },
 
         setOverturnEvents: function (){
@@ -1202,7 +1202,7 @@ var viewmode = 'marker';
                     var j = Number(marker[i]) - 1;
                     webAr.ar.arData[j].pvAngle += angle;
                     webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((webAr.ar.arData[j].pvAngle).toString() + ' 0 0'));
-                    webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
+                    webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[oidx].pvAngle);
                 }
             };
         },
@@ -1434,7 +1434,7 @@ var viewmode = 'marker';
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
                     webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
-                    webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos);
+                    webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[oidx].pvAngle);
                 }            };
         },
 
@@ -1594,7 +1594,7 @@ var viewmode = 'marker';
                     var k = ((j + 1) < webAr.ar.arg.Multi) ? j + 1 : 0;
 
                     webAr.ar.arData[k].wrap.setAttribute('visible', true);
-                    webAr.ar.objectDataVal(webAr.ar.arData[k].zoomRateH, webAr.ar.arData[j].wrapPos);
+                    webAr.ar.objectDataVal(webAr.ar.arData[k].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[oidx].pvAngle);
 
                     var multi = document.getElementById('txtMultiNo');
                     webAr.markerIdx = (k + 1).toString();
