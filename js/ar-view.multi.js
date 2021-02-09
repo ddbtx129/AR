@@ -1200,11 +1200,12 @@ var viewmode = 'marker';
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    //webAr.ar.arData[j].pvAngle += angle;
                     if((webAr.ar.arData[j].pvAngle + angle) > 360){
                         webAr.ar.arData[j].pvAngle += (angle - 360);
-                    } else if((webAr.ar.arData[j].pvAngle + angle) < -360){
+                    } else if((webAr.ar.arData[j].pvAngle + angle) < -360) {
                         webAr.ar.arData[j].pvAngle += (angle + 360);
+                    } else {
+                        webAr.ar.arData[j].pvAngle += angle;
                     }
                     webAr.ar.arData[j].wrap.setAttribute('rotation', AFRAME.utils.coordinates.stringify((webAr.ar.arData[j].pvAngle).toString() + ' 0 0'));
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[j].pvAngle);
