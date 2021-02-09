@@ -109,7 +109,7 @@ var viewmode = 'marker';
                 if (webAr.ar.arData[0].isPV) {
                     if (webAr.ar.arData[0].isMp4) {
                         var video = document.querySelector('#source101');
-                        document.getElementById("player").style.display = 'inline';
+                        document.getElementById("swPlay").style.display = 'inline';
                         videostate = 1;
                     }
                 }
@@ -340,7 +340,6 @@ var viewmode = 'marker';
                 dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
                 dataObj[idx].isPV = !!(self.arg.PVList);
                 dataObj[idx].isNFT = !!(self.arg.ARList);
-                //dataObj[idx].isMarkerType = !!(self.arg.ARList) ? Number(self.arg.ARList) : 1;
                 dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
@@ -1022,7 +1021,7 @@ var viewmode = 'marker';
                                 webAr.markerIdx += (i + 1).toString();
                                 var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                                 if (webAr.ar.videoState[i] < 2) {
-                                    document.getElementById("player").style.display = 'inline';
+                                    document.getElementById("swPlay").style.display = 'inline';
                                     webAr.ar.videoState[i] = 1;
                                 } else {
                                     webAr.ar.videoState[i] = 3;
@@ -1055,7 +1054,7 @@ var viewmode = 'marker';
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             if (webAr.ar.videoState[i] < 2) {
-                                document.getElementById("player").style.display = 'none';
+                                document.getElementById("swPlay").style.display = 'none';
                             } else {
                                 video.pause();
                                 webAr.ar.videoState[i] = 2;
@@ -1122,7 +1121,7 @@ var viewmode = 'marker';
             this.addScene(oidx);
 
             if (!val[oidx].isMp4) {
-                document.getElementById("player").style.display = 'none';
+                document.getElementById("swPlay").style.display = 'none';
             }
 
             if (!!val[oidx].isLogo) {
@@ -1610,7 +1609,7 @@ var viewmode = 'marker';
                         var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
 
                         if (webAr.ar.videoState[k] < 2) {
-                            document.getElementById('player').style.display = 'inline';
+                            document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
                             webAr.ar.videoState[k] = 1;
                         } else {
@@ -1625,7 +1624,7 @@ var viewmode = 'marker';
         setMovieEvents: function () {
             var self = this;
 
-            var bPlay = document.getElementById('player');
+            var bPlay = document.getElementById('swPlay');
 
             bPlay.addEventListener('click', function () {
                 var marker = webAr.markerIdx.split(',');
@@ -1637,7 +1636,7 @@ var viewmode = 'marker';
                         webAr.ar.videoState[j] = 3;
                     }
                 }
-                document.getElementById("player").style.display = 'none';
+                document.getElementById("swPlay").style.display = 'none';
                 document.getElementById("info1").style.display = "none";
             });
         },
@@ -1651,15 +1650,15 @@ var viewmode = 'marker';
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
-            document.getElementById("player").style.display = 'none';
+            document.getElementById("swPlay").style.display = 'none';
 
             if (webAr.ar.arData[0].oType != 'mp4') {
                 document.getElementById("info1").style.display = "none";
-                document.getElementById("scrshot").style.display = "inline";
+                document.getElementById("swScrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
             } else {
                 document.getElementById("info1").style.display = "inline";
-                document.getElementById("scrshot").style.display = "none";
+                document.getElementById("swScrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
             }
 

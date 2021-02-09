@@ -2,7 +2,7 @@ var cameraFacing = false;
 
 window.addEventListener('DOMContentLoaded', function () {
 
-    var change_btn = document.querySelector('#swCamera');
+    var change_btn = document.getElementById('swCamera');
 
     // clickイベントリスナーで、切り替えボタンがタップされた時に切り替えを行う。
     change_btn.addEventListener("click", function (e) {
@@ -45,7 +45,7 @@ function stopStreamedVideo(videoElem) {
 
 window.addEventListener('DOMContentLoaded', function () {
 
-    var image = document.querySelector('#scrshot');
+    var image = document.getElementById('swScrshot');
 
     //スナップショットボタン
     image.addEventListener("click", function (e) {
