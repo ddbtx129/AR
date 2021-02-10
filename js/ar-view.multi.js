@@ -81,13 +81,6 @@ var viewmode = 'marker';
             var elem = document.getElementById("version1");
             elem.innerHTML = 'v1.0.130';
 
-            // デバイスの方向の変化を検出したとき
-            window.addEventListener('deviceorientation', function (e) {
-                // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
-                var elem = document.getElementById("debug3");
-                elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
-            });
-
             var msg3 = document.getElementById('mloader3');
             msg3.innerHTML = 'データ読み込み中・・・';
 
@@ -103,21 +96,9 @@ var viewmode = 'marker';
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
             }
-
-            var loader = document.querySelector('a-assets');
-            loader.addEventListener('loaded', function (e) {
-                // ロード完了
-                webAr.loaderEnd = 1;
-                var mloader = document.getElementById('mloader3');
-                mloader.innerHTML = '※ 画面をタップすると表示を開始します。';
-                if (webAr.ar.arData[0].isPV) {
-                    if (webAr.ar.arData[0].isMp4) {
-                        //var video = document.querySelector('#source101');
-                        document.getElementById("swPlay").style.display = 'inline';
-                        videostate = 1;
-                    }
-                }
-            });
+            
+            this.setGyroValuEvents();
+            this.setLoaderEvents();
         },
 
         setArg: function () {
@@ -1020,17 +1001,18 @@ var viewmode = 'marker';
                         if (webAr.ar.arData[i].isMp4) {
                             if (webAr.markerIdx == '') {
                                 webAr.ar.arData[i].wrap.setAttribute('visible', true);
-
                                 webAr.ar.arData[i].viewIdx = 1;
                                 webAr.markerIdx += (i + 1).toString();
                                 var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                                 if (webAr.ar.videoState[i] < 2) {
                                     document.getElementById("swPlay").style.display = 'inline';
                                     webAr.ar.videoState[i] = 1;
+                                    video.pause();
                                 } else {
                                     webAr.ar.videoState[i] = 3;
+                                    video.play();
                                 }
-                                video.play();
+                                //video.play();
                             }
                         } else {
                             webAr.ar.arData[i].viewIdx = 1;
@@ -1492,7 +1474,6 @@ var viewmode = 'marker';
                 if (webAr.ar.arData[0].isPV) {
                     var marker = webAr.markerIdx.split(',');
                     var j = Number(marker[0]) - 1;
-
                     if (webAr.ar.arData[j].isMp4) {
                         if (webAr.ar.videoState[j] > 1) {
                             var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
@@ -1504,7 +1485,6 @@ var viewmode = 'marker';
                     webAr.ar.arData[j].wrap.setAttribute('visible', false);
 
                     var k = ((j + 1) < webAr.ar.arg.Multi) ? j + 1 : 0;
-
                     webAr.ar.arData[k].wrap.setAttribute('visible', true);
                     webAr.ar.objectDataVal(webAr.ar.arData[k].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[j].pvAngle);
 
@@ -1514,10 +1494,10 @@ var viewmode = 'marker';
 
                     if (webAr.ar.arData[k].isMp4) {
                         var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
-
                         if (webAr.ar.videoState[k] < 2) {
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
+                            video.pause();
                             webAr.ar.videoState[k] = 1;
                         } else {
                             video.play();
@@ -1547,6 +1527,18 @@ var viewmode = 'marker';
                 document.getElementById("info1").style.display = "none";
             });
 
+            window.addEventListener('focus', function (e) {
+                var marker = webAr.markerIdx.split(',');
+                for (var i = 0; i < marker.length; i++) {
+                    var j = Number(marker[i]) - 1;
+                    if (webAr.ar.arData[j].isMp4 && webAr.ar.videoState[j] == 2) {
+                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                        video.play();
+                        webAr.ar.videoState[j] = 3;
+                    }
+                }
+            });
+
             window.addEventListener('blur', function (e) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
@@ -1554,9 +1546,23 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.pause();
-                        webAr.ar.videoState[j] = 2;
+                        if(webAr.ar.videoState[j] == 3){
+                            webAr.ar.videoState[j] = 2;
+                        } else {
+                            webAr.ar.videoState[j] = 1;
+                        }
                     }
                 }
+            });
+        },
+
+        setGyroValuEvents: function (){
+
+            // デバイスの方向の変化を検出したとき
+            window.addEventListener('deviceorientation', function (e) {
+                // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
+                var elem = document.getElementById("debug3");
+                elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
             });
         },
 
@@ -1586,6 +1592,26 @@ var viewmode = 'marker';
             }
 
             this.resetGyro();
+        },
+
+        setLoaderEvents: function () {
+
+            var loader = document.querySelector('a-assets');
+
+            loader.addEventListener('loaded', function (e) {
+                // ロード完了
+                webAr.loaderEnd = 1;
+                var mloader = document.getElementById('mloader3');
+                mloader.innerHTML = '※ 画面をタップすると表示を開始します。';
+                if (webAr.ar.arData[0].isPV) {
+                    if (webAr.ar.arData[0].isMp4) {
+                        document.getElementById("swPlay").style.display = 'inline';
+                        var video = document.querySelector('#source101');
+                        video.pause();
+                        webAr.ar.videoState[0] = 1;
+                    }
+                }
+            });
         },
 
         resetGyro: function () {
