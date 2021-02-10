@@ -1,7 +1,6 @@
 var webAr = webAr || {};
 
 var videoInfo = {};
-var videoState = 0;
 var tapCount = 0;
 var tapclicked = false;
 
@@ -1756,6 +1755,7 @@ var viewmode = 'marker';
     webAr.defwrapScale = defwrapScale;
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
+    webAr.videoState = videoState;
     webAr.loaderEnd = loaderEnd;
 
 }());
