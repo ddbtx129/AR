@@ -94,10 +94,7 @@ var viewmode = 'marker';
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
-            }
-            
-            this.setGyroValuEvents();
-            this.setLoaderEvents();
+            }            
         },
 
         setArg: function () {
@@ -1526,7 +1523,7 @@ var viewmode = 'marker';
                 document.getElementById("info1").style.display = "none";
             });
 
-            document.addEventListener('focus', function (e) {
+            window.addEventListener('focus', function (e) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
@@ -1538,7 +1535,7 @@ var viewmode = 'marker';
                 }
             });
 
-            document.addEventListener('blur', function (e) {
+            window.addEventListener('blur', function (e) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
@@ -1756,5 +1753,8 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
+
+    webAr.ar.setGyroValuEvents();
+    webAr.ar.setLoaderEvents();
 
 }());
