@@ -1526,7 +1526,7 @@ var viewmode = 'marker';
                 document.getElementById("info1").style.display = "none";
             });
 
-            window.addEventListener('focus', function (e) {
+            document.addEventListener('focus', function (e) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
@@ -1538,7 +1538,7 @@ var viewmode = 'marker';
                 }
             });
 
-            window.addEventListener('blur', function (e) {
+            document.addEventListener('blur', function (e) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
@@ -1755,7 +1755,6 @@ var viewmode = 'marker';
     webAr.defwrapScale = defwrapScale;
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
-    webAr.videoState = videoState;
     webAr.loaderEnd = loaderEnd;
 
 }());
