@@ -1529,6 +1529,7 @@ var viewmode = 'marker';
                     var j = Number(marker[i]) - 1;
                     if (webAr.ar.arData[j].isMp4 && webAr.ar.videoState[j] == 2) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                        document.getElementById("swPlay").style.display = 'inline';
                         video.play();
                         webAr.ar.videoState[j] = 3;
                     }
