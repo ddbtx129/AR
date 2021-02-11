@@ -1242,15 +1242,15 @@ var viewmode = 'marker';
 
             var bStart = document.getElementById('swStart');
 
-            bStart.addEventListener(self.eventNames.start, e => {
-                e.preventDefault();
-                bStart.setAttribute('src', 'asset/start-g-on.png')
-            });
+            //bStart.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bStart.setAttribute('src', 'asset/start-g-on.png')
+            //});
 
-            bStart.addEventListener(self.eventNames.end, e => {
-                e.preventDefault();
-                bStart.setAttribute('src', 'asset/start-g.png')
-            });
+            //bStart.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bStart.setAttribute('src', 'asset/start-g.png')
+            //});
 
             bStart.addEventListener('click', function () {
                 if (webAr.roulettestate == 0) {
@@ -1277,15 +1277,15 @@ var viewmode = 'marker';
 
             var bStop = document.getElementById('swStop');
 
-            bStop.addEventListener(self.eventNames.start, e => {
-                e.preventDefault();
-                bStop.setAttribute('src', 'asset/stop-r-on.png')
-            });
+            //bStop.addEventListener(self.eventNames.start, e => {
+            //    e.preventDefault();
+            //    bStop.setAttribute('src', 'asset/stop-r-on.png')
+            //});
 
-            bStop.addEventListener(self.eventNames.end, e => {
-                e.preventDefault();
-                bStop.setAttribute('src', 'asset/stop-r.png')
-            });
+            //bStop.addEventListener(self.eventNames.end, e => {
+            //    e.preventDefault();
+            //    bStop.setAttribute('src', 'asset/stop-r.png')
+            //});
 
             bStop.addEventListener('click', function () {
                 if (webAr.roulettestate == 1) {
