@@ -1276,7 +1276,7 @@ var viewmode = 'marker';
                         webAr.ar.arData[j].main.emit('rollpause');
                         webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
                         webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
-                        webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 300');
+                        webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 350');
                         webAr.ar.arData[j].main.emit('rollresume');
                         setTimeout(function () {
                             webAr.ar.arData[j].main.emit('rollpause');
