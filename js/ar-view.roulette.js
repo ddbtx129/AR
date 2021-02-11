@@ -73,7 +73,8 @@ var viewmode = 'marker';
                 this.setMoveEvents();
                 this.setTapEvents();
                 this.setPreviewEvents();
-                //this.setMovieEvents();
+                this.setRouletteRollStartEvents();
+                this.setRouletteRollStopEvents()
             }
 
             this.setSwitcher();
@@ -96,9 +97,6 @@ var viewmode = 'marker';
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
             }
-            
-            this.setGyroValuEvents();
-            this.setLoaderEvents();
         },
 
         setArg: function () {
@@ -548,9 +546,10 @@ var viewmode = 'marker';
 
                 if (val[idx].isShadow) {
                     var shadow = document.createElement('a-image');
+                    var posVec3shadow = self.positionVec3('shadow', idx);
 
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
-                    shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
+                    shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3shadow));
                     shadow.setAttribute('rotation', '-90 0 0');
                     shadow.setAttribute('style', 'z-index: 2');
 
@@ -564,6 +563,27 @@ var viewmode = 'marker';
                     });
 
                     self.arData[idx].shadow = shadow;
+
+                    var ashadow = document.createElement('a-image');
+                    var posVec3shadowarrow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) - 1 };
+                    defobj[idx].posVec3shadowarrow = posVec3shadowarrow;
+
+                    ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                    ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3shadowarrow));
+
+                    ashadow.setAttribute('rotation', '-90 0 0');
+                    ashadow.setAttribute('style', 'z-index: 2');
+
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[idx].Scale.y / 4), width: defobj[idx].Scale.x
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+
+                    self.arData[idx].ashadow = ashadow;
                 }
 
                 var elname = '';
@@ -618,10 +638,11 @@ var viewmode = 'marker';
 
                 var amain = document.createElement(elname);
 
-                var posVec3arrow = { x: posVec3.x, y: posVec3.y + defobj[idx].Scale.y + 1, z: posVec3.z };
+                var posVec3arrow = { x: posVec3.x, y: Number(posVec3.y) + 1, z: Number(posVec3.z) + 0.1 };
+                defobj[idx].posVec3arrow = posVec3arrow;
 
                 amain.setAttribute('id', 'amain' + (idx + 1).toString());
-                amain.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].posVec3arrow));
+                amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3arrow));
 
                 if (!val[idx].isGif) {
 
@@ -722,7 +743,8 @@ var viewmode = 'marker';
 
             var posVec3 = self.positionVec3('main', oidx);
             defobj[oidx].Pos = posVec3;
-
+            var mainroll = roulettedeg;
+            
             main.setAttribute('id', 'main' + ((oidx + 1)).toString());
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].Pos));
 
@@ -758,10 +780,12 @@ var viewmode = 'marker';
             }
 
             self.arData[oidx].main = main;
+            self.arData[oidx].mainroll = mainroll;
 
             var amain = document.createElement(elname);
 
             var posVec3arrow = { x: posVec3.x, y: posVec3.y + defobj[oidx].Scale.y + 1, z: posVec3.z };
+            defobj[oidx].posVec3arrow = posVec3arrow;
 
             amain.setAttribute('id', 'amain' + (oidx + 1).toString());
             amain.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].posVec3arrow));
@@ -959,6 +983,7 @@ var viewmode = 'marker';
             var val = self.arData;
 
             self.arData[oidx].shadow && self.wrap[oidx].appendChild(self.arData[oidx].shadow);
+            self.arData[oidx].ashadow && self.wrap[oidx].appendChild(self.arData[oidx].ashadow);
             self.arData[oidx].main && self.wrap[oidx].appendChild(self.arData[oidx].main);
             self.arData[oidx].amain && self.wrap[oidx].appendChild(self.arData[oidx].amain);
 
@@ -1210,6 +1235,45 @@ var viewmode = 'marker';
             }
 
             this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos, webAr.ar.arData[oidx].pvAngle);
+        },
+
+        setRouletteRollStartEvents: function () {
+            var self = this;
+
+            var bStart = document.getElementById('swStart');
+
+            bStart.addEventListener('click', function () {
+                var marker = webAr.markerIdx.split(',');
+                for (var i = 0; i < marker.length; i++) {
+                    var j = Number(marker[i]) - 1;
+                    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].main, 'animation__roll', {
+                        property: 'rotation',
+                        from: '0 0 0',
+                        to: '0 0 -360',
+                        dur: 500,
+                        loop: true,
+                        easing: 'linear',
+                        startEvents: 'rollstart',
+                        pauseEvents: 'rollend'
+                    });
+
+                    webAr.ar.arData[0].main.emit('rollstart');
+                }
+            });
+        },
+
+        setRouletteRollStopEvents: function () {
+            var self = this;
+
+            var bStop = document.getElementById('swStop');
+
+            bStop.addEventListener('click', function () {
+                var marker = webAr.markerIdx.split(',');
+                for (var i = 0; i < marker.length; i++) {
+                    var j = Number(marker[i]) - 1;
+                    webAr.ar.arData[j].main.emit('rollend');
+                }
+            });
         },
 
         setOverturnEvents: function (){
@@ -1728,19 +1792,6 @@ var viewmode = 'marker';
             return { x: 0, y: -h1_2 - margin, z: 0 };
         },
 
-        positionVec3Arrow: function (type, oidx) {
-            var self = this;
-            var h1 = self.arData[oidx].size.h;
-            var h1_2 = (self.arData[oidx].size.h / 5);
-            var margin = ((self.arData[oidx].isMp4) ? 0.25 : 0);
-
-            if (type === 'shadow') {
-                return { x: 0, y: 0, z: -h1_2 };
-            } else {
-                return { x: 0, y: h1_2 - margin, z: 0 };
-            }
-        },
-
         positionVec3: function (type, oidx) {
             var self = this;
             var h1 = self.arData[oidx].size.h;
@@ -1867,5 +1918,8 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
+
+    webAr.ar.setGyroValuEvents();
+    webAr.ar.setLoaderEvents();
 
 }());
