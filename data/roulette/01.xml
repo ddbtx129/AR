@@ -63,9 +63,10 @@
   </xs:schema>
         
   <basedata>
-      <ed0></ed0>
-      <ar0>1</ar0>
-      <pv>1</pv>
+    <ed0></ed0>
+    <ar0>1</ar0>
+    <pv>1</pv>
+    <len>1</len>
   </basedata>
 
   <pcsdata>
