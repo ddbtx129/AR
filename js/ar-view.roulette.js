@@ -1242,6 +1242,16 @@ var viewmode = 'marker';
 
             var bStart = document.getElementById('swStart');
 
+            bStart.addEventListener(self.eventNames.start, e => {
+                e.preventDefault();
+                bStart.setAttribute('src', 'asset/start-g-on.png')
+            });
+
+            bStart.addEventListener(self.eventNames.end, e => {
+                e.preventDefault();
+                bStart.setAttribute('src', 'asset/start-g.png')
+            });
+
             bStart.addEventListener('click', function () {
                 if (webAr.roulettestate == 0) {
                     var marker = webAr.markerIdx.split(',');
@@ -1266,7 +1276,17 @@ var viewmode = 'marker';
             });
 
             var bStop = document.getElementById('swStop');
-            
+
+            bStop.addEventListener(self.eventNames.start, e => {
+                e.preventDefault();
+                bStop.setAttribute('src', 'asset/stop-r-on.png')
+            });
+
+            bStop.addEventListener(self.eventNames.end, e => {
+                e.preventDefault();
+                bStop.setAttribute('src', 'asset/stop-r.png')
+            });
+
             bStop.addEventListener('click', function () {
                 if (webAr.roulettestate == 1) {
                     var marker = webAr.markerIdx.split(',');
@@ -1449,6 +1469,8 @@ var viewmode = 'marker';
 
             var bUP = document.getElementById('swUp');
             var bDOWN = document.getElementById('swDown');
+            //var bUP = document.getElementById('s-Up');
+            //var bDOWN = document.getElementById('s-Down');
             var timer;
 
             // 上下移動ボタン押下
@@ -1464,7 +1486,7 @@ var viewmode = 'marker';
             // UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
-                bUP.classList.add('active');
+                bUP.classList.add('current');
                 timer = setInterval(() => {
                     moveposition('up');
                 }, 10);
@@ -1472,20 +1494,20 @@ var viewmode = 'marker';
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
-                bUP.classList.remove('active');
+                bUP.classList.remove('current');
                 clearInterval(timer);
             });
 
             bUP.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
-                bUP.classList.remove('active');
+                bUP.classList.remove('current');
                 clearInterval(timer);
             });
 
             // DOWNボタン長押し
             bDOWN.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
-                bDOWN.classList.add('active');
+                bDOWN.classList.add('current');
                 timer = setInterval(() => {
                     moveposition('down');
                 }, 10);
@@ -1493,13 +1515,13 @@ var viewmode = 'marker';
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
-                bDOWN.classList.remove('active');
+                bDOWN.classList.remove('current');
                 clearInterval(timer);
             });
 
             bDOWN.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
-                bDOWN.classList.remove('active');
+                bDOWN.classList.remove('current');
                 clearInterval(timer);
             });
 
