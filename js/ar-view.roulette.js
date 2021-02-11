@@ -73,8 +73,7 @@ var viewmode = 'marker';
                 this.setMoveEvents();
                 this.setTapEvents();
                 this.setPreviewEvents();
-                this.setRouletteRollStartEvents();
-                this.setRouletteRollStopEvents()
+                this.setRouletteRollEvents();
             }
 
             this.setSwitcher();
@@ -1237,7 +1236,7 @@ var viewmode = 'marker';
             this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos, webAr.ar.arData[oidx].pvAngle);
         },
 
-        setRouletteRollStartEvents: function () {
+        setRouletteRollEvents: function () {
             var self = this;
 
             var bStart = document.getElementById('swStart');
@@ -1250,28 +1249,39 @@ var viewmode = 'marker';
                         property: 'rotation',
                         from: '0 0 0',
                         to: '0 0 -360',
-                        dur: 500,
+                        dur: 250,
                         loop: true,
                         easing: 'linear',
                         startEvents: 'rollstart',
-                        pauseEvents: 'rollend'
+                        pauseEvents: 'rollpause',
+                        resumeEvents: 'rollresume'
                     });
 
-                    webAr.ar.arData[0].main.emit('rollstart');
+                    webAr.ar.arData[j].main.emit('rollstart');
                 }
             });
-        },
-
-        setRouletteRollStopEvents: function () {
-            var self = this;
 
             var bStop = document.getElementById('swStop');
-
+            
             bStop.addEventListener('click', function () {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    webAr.ar.arData[j].main.emit('rollend');
+                    //webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 750');
+                    //webAr.ar.arData[j].main.emit('rollresume');
+                    //setTimeout(function () {
+                    //    webAr.ar.arData[j].main.emit('rollpause');
+                    //    webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 1500');
+                    //    webAr.ar.arData[j].main.emit('rollresume');
+                    //}, 1000);
+                    //setTimeout(function () {
+                    //    webAr.ar.arData[j].main.emit('rollpause');
+                    //    webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 3000');
+                    //    webAr.ar.arData[j].main.emit('rollresume');
+                    //}, 5000);
+                    setTimeout(function () {
+                        webAr.ar.arData[j].main.emit('rollpause');
+                    }, 250);
                 }
             });
         },
