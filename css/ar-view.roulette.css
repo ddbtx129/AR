@@ -156,12 +156,24 @@ a-camera {
     -webkit-touch-callout: none;
 }
 
+.a-updown {
+    opacity: 0.6;
+}
+    .a-updown.current {
+        opacity: 1;
+    }
+
+    .a-updown:hover {
+        opacity: 0.8;
+    }
+
 .ar-down {
     position: absolute;
     bottom: 20%;
     right: 1%;
     width: 30px;
     height: 30px;
+    opacity: 0.8;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -217,10 +229,19 @@ a-camera {
     left: 4px;
     width: 30px;
     height: 30px;
+    opacity: 0.6;
     z-index: 6;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+
+    .ar-R90.current {
+        opacity: 1;
+    }
+
+    .ar-R90:hover {
+        opacity: 0.8;
+    }
 
 .ar-R00 {
     position: absolute;
@@ -229,10 +250,18 @@ a-camera {
     left: 4px;
     width: 30px;
     height: 30px;
+    opacity: 0.6;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+    .ar-R00.current {
+        opacity: 1;
+    }
+
+    .ar-R00:hover {
+        opacity: 0.8;
+    }
 
 .ar-MultiNo {
     position: absolute;
