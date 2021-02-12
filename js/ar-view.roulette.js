@@ -1293,12 +1293,14 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
+                        var timer = 500;
                         var r = webAr.ar.arData[j].main.getAttribute('rotation');
                         webAr.ar.arData[j].main.emit('rollpause');
                         webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
                         webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
                         webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 350');
                         webAr.ar.arData[j].main.emit('rollresume');
+                        var timer1 = getRandomIntInclusive(500, 750);
                         setTimeout(function () {
                             webAr.ar.arData[j].main.emit('rollpause');
                             r = webAr.ar.arData[j].main.getAttribute('rotation');
@@ -1306,7 +1308,8 @@ var viewmode = 'marker';
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 600');
                             webAr.ar.arData[j].main.emit('rollresume');
-                        }, 500);
+                        }, timer1);
+                        var timer2 = getRandomIntInclusive(751, 1000);
                         setTimeout(function () {
                             webAr.ar.arData[j].main.emit('rollpause');
                             r = webAr.ar.arData[j].main.getAttribute('rotation');
@@ -1314,7 +1317,8 @@ var viewmode = 'marker';
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 800');
                             webAr.ar.arData[j].main.emit('rollresume');
-                        }, 750);
+                        }, timer2);
+                        var timer3 = getRandomIntInclusive(1001, 1200);
                         setTimeout(function () {
                             webAr.ar.arData[j].main.emit('rollpause');
                             r = webAr.ar.arData[j].main.getAttribute('rotation');
@@ -1322,7 +1326,8 @@ var viewmode = 'marker';
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 1000');
                             webAr.ar.arData[j].main.emit('rollresume');
-                        }, 1000);
+                        }, timer3);
+                        var timer4 = getRandomIntInclusive(1201, 2000);
                         setTimeout(function () {
                             webAr.ar.arData[j].main.emit('rollpause');
                             r = webAr.ar.arData[j].main.getAttribute('rotation');
@@ -1330,14 +1335,21 @@ var viewmode = 'marker';
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
                             webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 3000');
                             webAr.ar.arData[j].main.emit('rollresume');
-                        }, 2000);
+                        }, timer4);
+                        var timer5 = getRandomIntInclusive(2001, 3000);
                         setTimeout(function () {
                             webAr.ar.arData[j].main.emit('rollpause');
                             webAr.roulettestate = 0;
-                        }, 3000);
+                        }, timer5);
                     }
                 }
             });
+
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+            }
         },
 
         setOverturnEvents: function (){
