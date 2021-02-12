@@ -1257,10 +1257,11 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
+                        var r = webAr.ar.arData[j].main.getAttribute('rotation');
                         AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].main, 'animation__roll', {
                             property: 'rotation',
-                            from: '0 0 0',
-                            to: '0 0 -360',
+                            from: '0 0 ' + (r.z).toString(),
+                            to: '0 0 ' + (r.z - 360).toString(),
                             dur: 250,
                             loop: true,
                             easing: 'linear',
