@@ -114,6 +114,7 @@ var viewmode = 'marker';
             }
 
             arg.DebugMode = arg.debug && (parseInt(arg.debug, 10).toString());
+            arg.targetObj = arg.target ? (parseInt(arg.target, 10).toString()) : 0;
 
             if (!!(arg.xd)) {
                 
@@ -565,7 +566,7 @@ var viewmode = 'marker';
                     self.arData[idx].shadow = shadow;
 
                     var ashadow = document.createElement('a-image');
-                    var posVec3shadowarrow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) - 1 };
+                    var posVec3shadowarrow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                     defobj[idx].posVec3shadowarrow = posVec3shadowarrow;
 
                     ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -573,9 +574,10 @@ var viewmode = 'marker';
 
                     ashadow.setAttribute('rotation', '-90 0 0');
                     ashadow.setAttribute('style', 'z-index: 2');
+                    if (self.arg.targetObj == 1) ashadow.setAttribute('visible', false);
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[idx].Scale.y / 4), width: defobj[idx].Scale.x
+                        primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
@@ -638,7 +640,7 @@ var viewmode = 'marker';
 
                 var amain = document.createElement(elname);
 
-                var posVec3arrow = { x: posVec3.x, y: Number(posVec3.y) + 1, z: Number(posVec3.z) + 0.1 };
+                var posVec3arrow = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + 0.1};
                 defobj[idx].posVec3arrow = posVec3arrow;
 
                 amain.setAttribute('id', 'amain' + (idx + 1).toString());
@@ -649,9 +651,8 @@ var viewmode = 'marker';
                     amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-
                         amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
-                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y / 4));
+                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
                         amain.setAttribute('style', 'z-index: 4');
 
@@ -677,7 +678,6 @@ var viewmode = 'marker';
 
                 self.arData[idx].amain = amain;
 
-                
                 if (val[idx].isLogo) {
 
                     var logo = document.createElement('a-entity');
@@ -729,6 +729,28 @@ var viewmode = 'marker';
                 });
 
                 self.arData[oidx].shadow = shadow;
+
+                var ashadow = document.createElement('a-image');
+                var posVec3shadowarrow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                defobj[oidx].posVec3shadowarrow = posVec3shadowarrow;
+
+                ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3shadowarrow));
+
+                ashadow.setAttribute('rotation', '-90 0 0');
+                ashadow.setAttribute('style', 'z-index: 2');
+                if (self.arg.targetObj == 1) ashadow.setAttribute('visible', false);
+
+                AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                    primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                });
+
+                AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                    color: 'black', opacity: shadowopacity, depthTest: false
+                });
+
+                self.arData[oidx].ashadow = ashadow;
             }
 
             var elname = '';
@@ -784,7 +806,7 @@ var viewmode = 'marker';
 
             var amain = document.createElement(elname);
 
-            var posVec3arrow = { x: posVec3.x, y: posVec3.y + defobj[oidx].Scale.y + 1, z: posVec3.z };
+            var posVec3arrow = { x: posVec3.x, y: posVec3.y + defobj[oidx].Scale.y, z: posVec3.z + 0.1 };
             defobj[oidx].posVec3arrow = posVec3arrow;
 
             amain.setAttribute('id', 'amain' + (oidx + 1).toString());
@@ -797,7 +819,7 @@ var viewmode = 'marker';
                 if (!val[oidx].isGltf) {
 
                     amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
-                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y / 4));
+                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
 
                     amain.setAttribute('style', 'z-index: 4');
 
@@ -1242,23 +1264,15 @@ var viewmode = 'marker';
 
             var bStart = document.getElementById('swStart');
 
-            //bStart.addEventListener(self.eventNames.start, e => {
-            //    e.preventDefault();
-            //    bStart.setAttribute('src', 'asset/start-g-on.png')
-            //});
-
-            //bStart.addEventListener(self.eventNames.end, e => {
-            //    e.preventDefault();
-            //    bStart.setAttribute('src', 'asset/start-g.png')
-            //});
-
             bStart.addEventListener('click', function () {
                 if (webAr.roulettestate == 0) {
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
-                        var r = webAr.ar.arData[j].main.getAttribute('rotation');
-                        AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[j].main, 'animation__roll', {
+                        target = { 0: webAr.ar.arData[j].main, 1: webAr.ar.arData[j].amain };
+                        var rTarget = target[Number(webAr.ar.arg.targetObj)];
+                        var r = rTarget.getAttribute('rotation');
+                        AFRAME.utils.entity.setComponentProperty(rTarget, 'animation__roll', {
                             property: 'rotation',
                             from: '0 0 ' + (r.z).toString(),
                             to: '0 0 ' + (r.z - 360).toString(),
@@ -1269,8 +1283,7 @@ var viewmode = 'marker';
                             pauseEvents: 'rollpause',
                             resumeEvents: 'rollresume'
                         });
-
-                        webAr.ar.arData[j].main.emit('rollstart');
+                        rTarget.emit('rollstart');
                         webAr.roulettestate = 1;
                     }
                 }
@@ -1278,69 +1291,65 @@ var viewmode = 'marker';
 
             var bStop = document.getElementById('swStop');
 
-            //bStop.addEventListener(self.eventNames.start, e => {
-            //    e.preventDefault();
-            //    bStop.setAttribute('src', 'asset/stop-r-on.png')
-            //});
-
-            //bStop.addEventListener(self.eventNames.end, e => {
-            //    e.preventDefault();
-            //    bStop.setAttribute('src', 'asset/stop-r.png')
-            //});
-
             bStop.addEventListener('click', function () {
                 if (webAr.roulettestate == 1) {
+                    webAr.roulettestate = 3;
+                    var timers = { 0: 350, 1: 600, 2: 800, 3: 1000, 4: 3000, 5: 3500 };
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
                         var timer = 500;
-                        var r = webAr.ar.arData[j].main.getAttribute('rotation');
-                        webAr.ar.arData[j].main.emit('rollpause');
-                        webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
-                        webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
-                        webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 350');
-                        webAr.ar.arData[j].main.emit('rollresume');
-                        var timer1 = getRandomIntInclusive(500, 750);
+                        target = { 0: webAr.ar.arData[j].main, 1: webAr.ar.arData[j].amain };
+                        var rTarget = target[Number(webAr.ar.arg.targetObj)];
+                        var r = 0;
+                        rTarget.emit('rollresume');
+                        r = rTarget.getAttribute('rotation');
+                        rTarget.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
+                        rTarget.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
+                        rTarget.setAttribute('animation__roll', 'dur: ' + timers[0]);
+                        rTarget.emit('rollresume');
+                        var timer = {};
+                        timer[0] = getRandomIntInclusive(timers[0] + 1, timers[1] -1);
                         setTimeout(function () {
-                            webAr.ar.arData[j].main.emit('rollpause');
-                            r = webAr.ar.arData[j].main.getAttribute('rotation');
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 600');
-                            webAr.ar.arData[j].main.emit('rollresume');
-                        }, timer1);
-                        var timer2 = getRandomIntInclusive(751, 1000);
+                            rTarget.emit('rollresume');
+                            var r = rTarget.getAttribute('rotation');
+                            rTarget.setAttribute('animation__roll', 'from: 00 0 ' + (r.z).toString());
+                            rTarget.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
+                            rTarget.setAttribute('animation__roll', 'dur:' + timers[1]);
+                            rTarget.emit('rollresume');
+                        }, timer[0]);
+                        timer[1] = getRandomIntInclusive(timers[1] + 1, timers[2] - 1);
                         setTimeout(function () {
-                            webAr.ar.arData[j].main.emit('rollpause');
-                            r = webAr.ar.arData[j].main.getAttribute('rotation');
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 800');
-                            webAr.ar.arData[j].main.emit('rollresume');
-                        }, timer2);
-                        var timer3 = getRandomIntInclusive(1001, 1200);
+                            rTarget.emit('rollresume');
+                            var r = rTarget.getAttribute('rotation');
+                            rTarget.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
+                            rTarget.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
+                            rTarget.setAttribute('animation__roll', 'dur: ' + timers[2]);
+                            rTarget.emit('rollresume');
+                        }, timer[1]);
+                        timer[2] = getRandomIntInclusive(timers[2] + 1, timers[3] - 1);
                         setTimeout(function () {
-                            webAr.ar.arData[j].main.emit('rollpause');
-                            r = webAr.ar.arData[j].main.getAttribute('rotation');
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 1000');
-                            webAr.ar.arData[j].main.emit('rollresume');
-                        }, timer3);
-                        var timer4 = getRandomIntInclusive(1201, 2000);
+                            rTarget.emit('rollresume');
+                            var r = rTarget.getAttribute('rotation');
+                            rTarget.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
+                            rTarget.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
+                            rTarget.setAttribute('animation__roll', 'dur: ' + timers[3]);
+                            rTarget.emit('rollresume');
+                        }, timer[2]);
+                        timer[3] = getRandomIntInclusive(timers[3] + 1, timers[4] - 1);
                         setTimeout(function () {
-                            webAr.ar.arData[j].main.emit('rollpause');
-                            r = webAr.ar.arData[j].main.getAttribute('rotation');
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
-                            webAr.ar.arData[j].main.setAttribute('animation__roll', 'dur: 3000');
-                            webAr.ar.arData[j].main.emit('rollresume');
-                        }, timer4);
-                        var timer5 = getRandomIntInclusive(2001, 3000);
+                            rTarget.emit('rollresume');
+                            var r = rTarget.getAttribute('rotation');
+                            rTarget.setAttribute('animation__roll', 'from: 0 0 ' + (r.z).toString());
+                            rTarget.setAttribute('animation__roll', 'to: 0 0 ' + (r.z - 360).toString());
+                            rTarget.setAttribute('animation__roll', 'dur: ' + timers[4]);
+                            rTarget.emit('rollresume');
+                        }, timer[3]);
+                        timer[4] = getRandomIntInclusive(timers[4] + 1, timers[5] - 1);
                         setTimeout(function () {
-                            webAr.ar.arData[j].main.emit('rollpause');
+                            rTarget.emit('rollpause');
                             webAr.roulettestate = 0;
-                        }, timer5);
+                        }, timer[4]);
                     }
                 }
             });
@@ -1499,7 +1508,6 @@ var viewmode = 'marker';
             // UPボタン長押し
             bUP.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
-                bUP.classList.add('current');
                 timer = setInterval(() => {
                     moveposition('up');
                 }, 10);
@@ -1507,20 +1515,17 @@ var viewmode = 'marker';
 
             bUP.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
-                bUP.classList.remove('current');
                 clearInterval(timer);
             });
 
             bUP.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
-                bUP.classList.remove('current');
                 clearInterval(timer);
             });
 
             // DOWNボタン長押し
             bDOWN.addEventListener(self.eventNames.start, e => {
                 e.preventDefault();
-                bDOWN.classList.add('current');
                 timer = setInterval(() => {
                     moveposition('down');
                 }, 10);
@@ -1528,13 +1533,11 @@ var viewmode = 'marker';
 
             bDOWN.addEventListener(self.eventNames.end, e => {
                 e.preventDefault();
-                bDOWN.classList.remove('current');
                 clearInterval(timer);
             });
 
             bDOWN.addEventListener(self.eventNames.move, e => {
                 e.preventDefault();
-                bDOWN.classList.remove('current');
                 clearInterval(timer);
             });
 
