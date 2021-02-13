@@ -140,10 +140,14 @@ a-camera {
     right: 4px;
     width: 40px;
     height: 40px;
+    opacity: 0.75;
     z-index: 5;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+    .ar-stop:hover {
+        opacity: 1;
+    }
 
 .ar-up {
     position: absolute;
@@ -191,10 +195,15 @@ a-camera {
     left: 4px;
     width: 40px;
     height: 40px;
+    opacity: 0.75;
     z-index: 5;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+
+    .ar-start:hover {
+        opacity: 1;
+    }
 
 .ar-R90 {
     position: absolute;
