@@ -1733,7 +1733,9 @@ var viewmode = 'marker';
                         setTimeout(function () {
                             rTarget[0].emit('rollpause');
                             rTarget[0].emit('rollpause');
-                            webAr.roulettestate = 0;
+                            if (Object.keys(rTarget).length <= 1) {
+                                webAr.roulettestate = 0;
+                            }
                         }, timer[4]);
                         if (Object.keys(rTarget).length > 1) {
                             timer[5] = getRandomIntInclusive(rdur[5], rdur[5] + 500);
