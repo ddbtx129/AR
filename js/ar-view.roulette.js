@@ -409,17 +409,6 @@ var viewmode = 'marker';
 
                             assets.appendChild(img[i]);
 
-                            //dataObj[idx].imgAdd[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].arrow[i];
-
-                            //arrow[i] = document.createElement('img');
-                            //arrow[i].setAttribute('crossorigin', 'anonymous');
-                            //arrow[i].setAttribute('id', 'asource' + ((idx + 1) * 100 + (i + 1)).toString());
-                            //arrow[i].setAttribute('src', dataObj[idx].arrow[i]);
-
-                            //dataObj[idx].arObj[i].obj2 = arrow[i];
-
-                            //assets.appendChild(arrow[i]);
-
                             imgAdd[i] = {};
 
                             if (!!(self.args[idx].OAtList)) {
@@ -937,6 +926,8 @@ var viewmode = 'marker';
 
             var srcname = '#source' + (((Number(oidx) + 1) * 100) + objno).toString();
             var asrcname = '#asource' + (((Number(oidx) + 1) * 100) + objno).toString();
+            var bsrcname = '#bsource' + (((Number(oidx) + 1) * 100) + objno).toString();
+            var csrcname = '#csource' + (((Number(oidx) + 1) * 100) + objno).toString();
 
             if (val[oidx].isShadow) {
                 var shadow = document.createElement('a-image');
@@ -957,27 +948,77 @@ var viewmode = 'marker';
 
                 self.arData[oidx].shadow = shadow;
 
-                var ashadow = document.createElement('a-image');
-                var posVec3shadowarrow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
-                defobj[oidx].posVec3shadowarrow = posVec3shadowarrow;
+                if (self.args[oidx].OAtList) {
+                    var ashadow = document.createElement('a-image');
+                    var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                    defobj[oidx].posVec3ashadowa = posVec3ashadow;
 
-                ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
-                ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3shadowarrow));
+                    ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                    ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
 
-                ashadow.setAttribute('rotation', '-90 0 0');
-                ashadow.setAttribute('style', 'z-index: 2');
-                ashadow.setAttribute('visible', !(self.arg.targetObj));
+                    ashadow.setAttribute('rotation', '-90 0 0');
+                    ashadow.setAttribute('style', 'z-index: 2');
+                    ashadow.setAttribute('visible', !(self.arg.targetObj));
 
-                AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                    primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
-                });
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                    });
 
-                AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
-                    color: 'black', opacity: shadowopacity, depthTest: false
-                });
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
 
-                self.arData[oidx].ashadow = ashadow;
+                    self.arData[oidx].ashadow = ashadow;
+                }
+
+                if (self.args[oidx].OBtList) {
+                    var bshadow = document.createElement('a-image');
+                    var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                    defobj[oidx].posVec3bshadow = posVec3bshadow;
+
+                    bshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                    bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
+
+                    bshadow.setAttribute('rotation', '-90 0 0');
+                    bshadow.setAttribute('style', 'z-index: 2');
+                    bshadow.setAttribute('visible', !(self.arg.targetObj));
+
+                    AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+
+                    self.arData[oidx].bshadow = bshadow;
+                }
+
+                if (self.args[oidx].OCtList) {
+                    var cshadow = document.createElement('a-image');
+                    var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                    defobj[oidx].posVec3cshadow = posVec3cshadow;
+
+                    cshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                    cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
+
+                    cshadow.setAttribute('rotation', '-90 0 0');
+                    cshadow.setAttribute('style', 'z-index: 2');
+                    cshadow.setAttribute('visible', !(self.arg.targetObj));
+
+                    AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+
+                    self.arData[oidx].cshadow = cshadow;
+                }
             }
 
             var elname = '';
@@ -992,7 +1033,6 @@ var viewmode = 'marker';
 
             var posVec3 = self.positionVec3('main', oidx);
             defobj[oidx].Pos = posVec3;
-            var mainroll = roulettedeg;
             
             main.setAttribute('id', 'main' + ((oidx + 1)).toString());
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].Pos));
@@ -1029,48 +1069,135 @@ var viewmode = 'marker';
             }
 
             self.arData[oidx].main = main;
-            self.arData[oidx].mainroll = mainroll;
 
-            var amain = document.createElement(elname);
+            if (self.args[oidx].OAtList) {
 
-            var posVec3arrow = { x: posVec3.x, y: posVec3.y + defobj[oidx].Scale.y, z: posVec3.z + 0.1 };
-            defobj[oidx].posVec3arrow = posVec3arrow;
+                var amain = document.createElement(elname);
 
-            amain.setAttribute('id', 'amain' + (oidx + 1).toString());
-            amain.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].posVec3arrow));
+                var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OAZList) };
+                defobj[oidx].posVec3a = posVec3a;
 
-            if (!val[oidx].isGif) {
+                amain.setAttribute('id', 'amain' + (oidx + 1).toString());
+                amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
 
-                amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                if (!val[oidx].isGif) {
 
-                if (!val[oidx].isGltf) {
+                    amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                    amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
-                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+                    if (!val[oidx].isGltf) {
+                        amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
 
-                    amain.setAttribute('style', 'z-index: 4');
+                        amain.setAttribute('style', 'z-index: 4');
 
-                    if (val[oidx].isMp4) {
-                        amain.setAttribute('play', 'true');
+                        if (val[oidx].isMp4) {
+                            amain.setAttribute('play', 'true');
+                        }
+
+                        AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
+                            primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(amain, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
-                    AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
-                    });
-
-                    AFRAME.utils.entity.setComponentProperty(amain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
-                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                    });
                 } else {
-                    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    amain.setAttribute('rotation', '-30 0 0');
                 }
 
-            } else {
-                amain.setAttribute('rotation', '-30 0 0');
+                self.arData[oidx].amain = amain;
             }
 
-            self.arData[oidx].amain = amain;
+            if (self.args[oidx].OBtList) {
+
+                var bmain = document.createElement(elname);
+
+                var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OBZList) };
+                defobj[oidx].posVec3b = posVec3b;
+
+                bmain.setAttribute('id', 'bmain' + (oidx + 1).toString());
+                bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
+
+                if (!val[oidx].isGif) {
+
+                    bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                    if (!val[oidx].isGltf) {
+                        bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                        bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+
+                        bmain.setAttribute('style', 'z-index: 4');
+
+                        if (val[oidx].isMp4) {
+                            bmain.setAttribute('play', 'true');
+                        }
+
+                        AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
+                            primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    }
+
+                } else {
+                    bmain.setAttribute('rotation', '-30 0 0');
+                }
+
+                self.arData[oidx].bmain = bmain;
+            }
+
+            if (self.args[oidx].OCtList) {
+
+                var cmain = document.createElement(elname);
+
+                var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OCZList) };
+                defobj[oidx].posVec3c = posVec3c;
+
+                cmain.setAttribute('id', 'cmain' + (oidx + 1).toString());
+                cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
+
+                if (!val[oidx].isGif) {
+
+                    cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                    if (!val[oidx].isGltf) {
+                        cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                        cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+
+                        cmain.setAttribute('style', 'z-index: 4');
+
+                        if (val[oidx].isMp4) {
+                            cmain.setAttribute('play', 'true');
+                        }
+
+                        AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
+                            primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    }
+
+                } else {
+                    cmain.setAttribute('rotation', '-30 0 0');
+                }
+
+                self.arData[oidx].cmain = cmain;
+            }
 
             if (val[oidx].isLogo) {
 
@@ -1609,7 +1736,7 @@ var viewmode = 'marker';
                             webAr.roulettestate = 0;
                         }, timer[4]);
                         if (Object.keys(rTarget).length > 1) {
-                            timer[5] = getRandomIntInclusive(rdur[5], rdur[5] + 1000);
+                            timer[5] = getRandomIntInclusive(rdur[5], rdur[5] + 500);
                             setTimeout(function () {
                                 rTarget[1].emit('rollpause');
                                 rTarget[1].emit('rollpause');
