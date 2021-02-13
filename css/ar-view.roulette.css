@@ -151,20 +151,18 @@ a-camera {
     right: 1%;
     width: 30px;
     height: 30px;
+    opacity: 0.75;
     z-index: 6;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
 
-.a-updown {
-    opacity: 0.6;
-}
-    .a-updown.current {
+    .ar-up.current {
         opacity: 1;
     }
 
-    .a-updown:hover {
-        opacity: 0.8;
+    .ar-up:hover {
+        opacity: 1;
     }
 
 .ar-down {
@@ -173,11 +171,19 @@ a-camera {
     right: 1%;
     width: 30px;
     height: 30px;
-    opacity: 0.8;
+    opacity: 0.75;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+
+    .ar-down.current {
+        opacity: 1;
+    }
+
+    .ar-down:hover {
+        opacity: 1;
+    }
 
 .ar-start {
     position: absolute;
@@ -190,38 +196,6 @@ a-camera {
     -webkit-touch-callout: none;
 }
 
-.ar-angle {
-    position: absolute;
-    opacity: 0.5;
-    bottom: 28%;
-    left: 4px;
-    width: 30px;
-    height: 30px;
-    z-index: 6;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-.ar-parallel {
-    position: absolute;
-    opacity: 0.5;
-    bottom: 20%;
-    left: 4px;
-    width: 30px;
-    height: 30px;
-    z-index: 7;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-.ar-angle.current {
-    opacity: 1;
-}
-
-.ar-parallel.current {
-    opacity: 1;
-}
-
 .ar-R90 {
     position: absolute;
     opacity: 1;
@@ -229,7 +203,7 @@ a-camera {
     left: 4px;
     width: 30px;
     height: 30px;
-    opacity: 0.6;
+    opacity: 0.75;
     z-index: 6;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -240,7 +214,7 @@ a-camera {
     }
 
     .ar-R90:hover {
-        opacity: 0.8;
+        opacity: 1;
     }
 
 .ar-R00 {
@@ -250,7 +224,7 @@ a-camera {
     left: 4px;
     width: 30px;
     height: 30px;
-    opacity: 0.6;
+    opacity: 0.75;
     z-index: 7;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -260,7 +234,7 @@ a-camera {
     }
 
     .ar-R00:hover {
-        opacity: 0.8;
+        opacity: 1;
     }
 
 .ar-MultiNo {
@@ -269,20 +243,30 @@ a-camera {
     left: 2px;
     width: 80px;
     height: 30px;
+    opacity: 0.75;
     z-index: 5;
 }
-    .ar-MultiNo img{
+    .ar-MultiNo img {
         width: 26px;
         height: 26px;
-	    vertical-align: middle;
+        opacity: 0.75;
+        vertical-align: middle;
     }
+        .ar-MultiNo img:hover {
+            opacity: 1;
+        }
 
-    .ar-MultiNo span{
+    .ar-MultiNo span {
         vertical-align: middle;
         font-size: x-small;
         font-weight: bold;
+        opacity: 0.75;
         color: white;
     }
+
+        .ar-MultiNo span:hover {
+            opacity: 1;
+        }
 
 .arjs-loader {
     height: 100%;
