@@ -51,6 +51,15 @@
                 <xs:element name="o2" type="xs:string" minOccurs="0" />
                 <!--オブジェクト切替有りの場合最終オブジェクト名-->
                 <xs:element name="o3" type="xs:string" minOccurs="0" />
+                <!--追加オブジェクト-->
+                <xs:element name="oa" type="xs:string" minOccurs="0" />
+                <xs:element name="ob" type="xs:string" minOccurs="0" />
+                <xs:element name="oc" type="xs:string" minOccurs="0" />
+                <!--オブジェクト Z軸-->
+                <xs:element name="oz" type="xs:string" minOccurs="0" />
+                <xs:element name="oaz" type="xs:string" minOccurs="0" />
+                <xs:element name="obz" type="xs:string" minOccurs="0" />
+                <xs:element name="ocz" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
               </xs:sequence>
@@ -84,6 +93,14 @@
     <o1></o1>
     <o2>04</o2>
     <o3></o3>
+    <oa>04-a</oa>
+    <ob>04-b</ob>
+    <oc></oc>
+    <oz>0</oz>
+    <oaz>0.03</oaz>
+    <obz>0.05</obz>
+    <ocz></ocz>
     <l></l>
   </pcsdata>
+  
 </ArData>
