@@ -1008,7 +1008,6 @@ var viewmode = 'marker';
                                     webAr.ar.videoState[i] = 3;
                                     video.play();
                                 }
-                                //video.play();
                             }
                         } else {
                             webAr.ar.arData[i].viewIdx = 1;
