@@ -1756,7 +1756,7 @@ var viewmode = 'marker';
 
                     webAr.ar.resetStartStopModel(1, 2);
                     webAr.ar.arData[0].smodel.setAttribute('visible', true);
-
+                    var angle = 360 / 38;
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
@@ -1824,9 +1824,11 @@ var viewmode = 'marker';
                             }
                         }, timer[3]);
                         timer[4] = getRandomIntInclusive(rdur[4] + 1, rdur[5] - 1);
+                        var a = 0;
                         setTimeout(function () {
                             rTarget[0].emit('rollpause');
-                            rTarget[0].emit('rollpause');
+                            a = (rTarget[0].getAttribute('rotation').z) - ((rTarget[0].getAttribute('rotation').z < -360) ? (parseInt(rTarget[0].getAttribute('rotation').z / 360) * 360) : 0);
+                            a = ((a * -1) > angle ? (a - (angle * parseInt(a / angle))) : a);
                             if (Object.keys(rTarget).length <= 1) {
                                 webAr.ar.arData[0].smodel.setAttribute('visible', false);
                                 webAr.roulettestate = 0;
@@ -1836,9 +1838,20 @@ var viewmode = 'marker';
                             timer[5] = getRandomIntInclusive(rdur[5], rdur[5] + 500);
                             setTimeout(function () {
                                 rTarget[1].emit('rollpause');
-                                rTarget[1].emit('rollpause');
-                                webAr.ar.arData[0].smodel.setAttribute('visible', false);
-                                webAr.roulettestate = 0;
+                                setTimeout(function () {
+                                    r[1] = rTarget[1].getAttribute('rotation');
+                                    var b = (rTarget[1].getAttribute('rotation').z) - ((rTarget[1].getAttribute('rotation').z > 360) ? (parseInt(rTarget[1].getAttribute('rotation').z / 360) * 360) : 0);
+                                    b = (b > angle ? (b - (angle * parseInt(b / angle))) : b);
+                                    var c = Number(r[1].z) - (((a + b) < (angle * -1) && (a + b) > angle) ? 0 : ((a + b) / 2));
+                                    rTarget[1].setAttribute('animation__roll', 'from: 0 0 ' + (r[1].z).toString());
+                                    rTarget[1].setAttribute('animation__roll', 'to: 0 0 ' + c);
+                                    rTarget[1].setAttribute('animation__roll', 'easing: easeInQuad');
+                                    rTarget[1].setAttribute('animation__roll', 'dur: 10');
+                                    rTarget[1].setAttribute('animation__roll', 'loop: false');
+                                    rTarget[1].emit('rollresume');
+                                    webAr.ar.arData[0].smodel.setAttribute('visible', false);
+                                    webAr.roulettestate = 0;
+                                }, 750);
                             }, timer[5]);
                         }
                     }
