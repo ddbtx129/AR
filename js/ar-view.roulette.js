@@ -504,7 +504,25 @@ var viewmode = 'marker';
                             assets.appendChild(model[i]);
                         }
                     }
-                    
+
+                    dataObj[idx].startmodel = rootPath + 'asset/objmodel/start.gltf';
+
+                    var s1model = document.createElement('a-asset-item');
+                    s1model.setAttribute('crossorigin', 'anonymous');
+                    s1model.setAttribute('id', 's1source');
+                    s1model.setAttribute('src', dataObj[idx].startmodel);
+
+                    assets.appendChild(s1model);
+
+                    dataObj[idx].stopmodel = rootPath + 'asset/objmodel/stop.gltf';
+
+                    var s2model = document.createElement('a-asset-item');
+                    s2model.setAttribute('crossorigin', 'anonymous');
+                    s2model.setAttribute('id', 's2source');
+                    s2model.setAttribute('src', dataObj[idx].stopmodel);
+
+                    assets.appendChild(s2model);
+
                     if (dataObj[idx].isLogo) {
 
                         dataObj[idx].logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.args[idx].LogoList[0] + '.gltf';
@@ -894,13 +912,38 @@ var viewmode = 'marker';
                     self.arData[idx].cmain = cmain;
                 }
 
+                var smodel = document.createElement('a-entity');
+
+                var smodelpos = {
+                    Pos: self.positionVec3StartStop(idx),
+                    Scale: ((deflogoScale.x) + ' ' + (deflogoScale.y) + ' ' + (deflogoScale.z))
+                };
+
+                smodel.setAttribute('id', 'startstop');
+                smodel.setAttribute('position', AFRAME.utils.coordinates.stringify(smodelpos.Pos));
+                smodel.setAttribute('scale', AFRAME.utils.coordinates.stringify(smodelpos.Scale));
+                smodel.setAttribute('gltf-model', '#s1source');
+                smodel.setAttribute('style', 'z-index: 5');
+                smodel.setAttribute('visible', false);
+                AFRAME.utils.entity.setComponentProperty(smodel, 'animation__zoom', {
+                    property: 'scale',
+                    dir: 'alternate',
+                    dur: 1500,
+                    easing: 'easeOutCubic',
+                    loop: false,
+                    from: smodelpos.Scale.x + ' ' + Number(smodelpos.Scale.y) * 0.1 + ' ' + smodelpos.Scale.z,
+                    to: AFRAME.utils.coordinates.stringify(smodelpos.Scale)
+                });
+
+                self.arData[idx].smodel = smodel;
+
                 if (val[idx].isLogo) {
 
                     var logo = document.createElement('a-entity');
                     var rate = (!val[idx].isMp4) ? 1 : 2;
 
                     deflogo[idx] = {
-                        Pos: self.positionVec3Logo(Number(val[idx].isAnime), idx),
+                        Pos: self.positionVec3Logo(idx),
                         Scale: ((deflogoScale.x * rate) + ' ' + (deflogoScale.y * rate) + ' ' + (deflogoScale.z * rate))
                     };
 
@@ -1205,7 +1248,7 @@ var viewmode = 'marker';
                 var rate = (!val[oidx].isMp4) ? 1 : 2;
 
                 deflogo[oidx] = {
-                    Pos: self.positionVec3Logo(Number(val[oidx].isAnime), oidx),
+                    Pos: self.positionVec3Logo(oidx),
                     Scale: ((deflogoScale.x * rate) + ' ' + (deflogoScale.y * rate) + ' ' + (deflogoScale.z * rate))
                 };
 
@@ -1217,6 +1260,42 @@ var viewmode = 'marker';
 
                 self.arData[oidx].logo = logo;
             }
+        },
+
+        resetStartStopModel: function (del, view) {
+            var self = this;
+
+            var obj = document.getElementById('startstop');
+            if (obj != null) {
+                obj.remove();
+            }
+
+            var smodel = document.createElement('a-entity');
+
+            var smodelpos = {
+                Pos: self.positionVec3StartStop(0),
+                Scale: ((deflogoScale.x) + ' ' + (deflogoScale.y) + ' ' + (deflogoScale.z))
+            };
+
+            smodel.setAttribute('id', 'startstop');
+            smodel.setAttribute('position', AFRAME.utils.coordinates.stringify(smodelpos.Pos));
+            smodel.setAttribute('scale', AFRAME.utils.coordinates.stringify(smodelpos.Scale));
+            smodel.setAttribute('gltf-model', '#s' + view + 'source');
+            smodel.setAttribute('style', 'z-index: 5');
+            smodel.setAttribute('visible', false);
+            AFRAME.utils.entity.setComponentProperty(smodel, 'animation__zoom', {
+                property: 'scale',
+                dir: 'alternate',
+                dur: 1500,
+                easing: 'easeOutCubic',
+                loop: false,
+                from: smodelpos.Scale.x + ' ' + Number(smodelpos.Scale.y) * 0.1 + ' ' + smodelpos.Scale.z,
+                to: AFRAME.utils.coordinates.stringify(smodelpos.Scale)
+            });
+
+            self.arData[0].smodel = smodel;
+
+            self.arData[0].smodel && self.wrap[0].appendChild(self.arData[0].smodel);
         },
 
         createAnimation: function (oidx){
@@ -1367,6 +1446,8 @@ var viewmode = 'marker';
             self.arData[oidx].amain && self.wrap[oidx].appendChild(self.arData[oidx].amain);
             self.arData[oidx].bmain && self.wrap[oidx].appendChild(self.arData[oidx].bmain);
             self.arData[oidx].cmain && self.wrap[oidx].appendChild(self.arData[oidx].cmain);
+
+            self.arData[oidx].smodel && self.wrap[oidx].appendChild(self.arData[oidx].smodel);
 
             if (val[oidx].isLogo) {
                 self.arData[oidx].logo && self.wrap[oidx].appendChild(self.arData[oidx].logo);
@@ -1626,8 +1707,16 @@ var viewmode = 'marker';
             var target_dur = {};
 
             bStart.addEventListener('click', function () {
-                if (webAr.roulettestate == 0) {
+                if (webAr.roulettestate == 0 && webAr.ar.arData[0].smodel.getAttribute('visible') == false) {
+
+                    webAr.roulettestate = 3;
+
+                    webAr.ar.resetStartStopModel(2, 1);
+                    webAr.ar.arData[0].smodel.setAttribute('visible', true);
+                    setTimeout(function () { webAr.ar.arData[0].smodel.setAttribute('visible', false) }, 2000);
+
                     var marker = webAr.markerIdx.split(',');
+                    
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
                         target = {
@@ -1661,8 +1750,13 @@ var viewmode = 'marker';
             var bStop = document.getElementById('swStop');
 
             bStop.addEventListener('click', function () {
-                if (webAr.roulettestate == 1) {
+                if (webAr.roulettestate == 1 && webAr.ar.arData[0].smodel.getAttribute('visible') == false) {
+
                     webAr.roulettestate = 3;
+
+                    webAr.ar.resetStartStopModel(1, 2);
+                    webAr.ar.arData[0].smodel.setAttribute('visible', true);
+
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
@@ -1734,6 +1828,7 @@ var viewmode = 'marker';
                             rTarget[0].emit('rollpause');
                             rTarget[0].emit('rollpause');
                             if (Object.keys(rTarget).length <= 1) {
+                                webAr.ar.arData[0].smodel.setAttribute('visible', false);
                                 webAr.roulettestate = 0;
                             }
                         }, timer[4]);
@@ -1742,6 +1837,7 @@ var viewmode = 'marker';
                             setTimeout(function () {
                                 rTarget[1].emit('rollpause');
                                 rTarget[1].emit('rollpause');
+                                webAr.ar.arData[0].smodel.setAttribute('visible', false);
                                 webAr.roulettestate = 0;
                             }, timer[5]);
                         }
@@ -2266,6 +2362,14 @@ var viewmode = 'marker';
             var margin = ((self.arData[oidx].isMp4) ? 0.25 : 0);
 
             return { x: 0, y: -h1_2 - margin, z: 0 };
+        },
+
+        positionVec3StartStop: function (oidx) {
+            var self = this;
+            var h1_2 = (self.arData[oidx].size.h / 2);
+            var margin = 0.25;
+
+            return { x: 0, y: Number(self.arData[oidx].size.h) + margin, z: 0 };
         },
 
         positionVec3: function (type, oidx) {
