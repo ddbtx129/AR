@@ -892,7 +892,7 @@ var viewmode = 'marker';
                     viewmode = 'pv';
 
                     wrapPos.x -= 0;
-                    wrapPos.y -= ((val[idx].isMp4) ? 0 : 1.5);
+                    wrapPos.y -= ((val[idx].isMp4) ? 0 : -0.5);
                     //wrapPos.y -= ((val[idx].isMp4) ? -0.5 : 1);
                     wrapPos.z -= defwrap[idx].Scale.y * 1.5;
                     //wrapPos.z -= defwrap[idx].Scale.y * 2.5;
