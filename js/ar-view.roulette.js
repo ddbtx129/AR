@@ -1828,7 +1828,6 @@ var viewmode = 'marker';
                         setTimeout(function () {
                             rTarget[0].emit('rollpause');
                             a = (rTarget[0].getAttribute('rotation').z) - ((rTarget[0].getAttribute('rotation').z < -360) ? (parseInt(rTarget[0].getAttribute('rotation').z / 360) * 360) : 0);
-                            a = ((a * -1) > angle ? (a - (angle * parseInt(a / angle))) : a);
                             if (Object.keys(rTarget).length <= 1) {
                                 webAr.ar.arData[0].smodel.setAttribute('visible', false);
                                 webAr.roulettestate = 0;
@@ -1840,11 +1839,17 @@ var viewmode = 'marker';
                                 rTarget[1].emit('rollpause');
                                 setTimeout(function () {
                                     r[1] = rTarget[1].getAttribute('rotation');
+                                    //var a1 = (a - (angle * Math.floor(a / angle).toFixed(5))) > 0 ? (angle * (parseFloat((parseInt(a / angle)) + 1).toFixed(5))) : (angle * (parseFloat((parseInt(a / angle))).toFixed(5)));
+                                    var a1 = angle * (parseFloat(parseInt(Math.abs(a) / angle) + 1).toFixed(5));
+                                    var a2 = angle * (parseFloat(parseInt(Math.abs(a) / angle)).toFixed(5));
+                                    var a3 = (Math.abs(a1 - Math.abs(a)) > Math.abs(Math.abs(a) - a2)) ? (Math.abs(Math.abs(a) - a2) * -1) : Math.abs(a1 - Math.abs(a));
                                     var b = (rTarget[1].getAttribute('rotation').z) - ((rTarget[1].getAttribute('rotation').z > 360) ? (parseInt(rTarget[1].getAttribute('rotation').z / 360) * 360) : 0);
-                                    b = (b > angle ? (b - (angle * parseInt(b / angle))) : b);
-                                    var c = Number(r[1].z) - (((a + b) < (angle * -1) && (a + b) > angle) ? 0 : ((a + b) / 2));
+                                    //var b1 = (b - (angle * Math.floor(Math.abs(b) / angle).toFixed(5))) > 0 ? (angle * (parseFloat((parseInt(Math.abs(b) / angle)) + 1).toFixed(5))) : (angle * (parseFloat((parseInt(Math.abs(b) / angle))).toFixed(5)));
+                                    var b1 = angle * (parseFloat(parseInt(Math.abs(b) / angle) + 1).toFixed(5));
+                                    var b2 = angle * (parseFloat(parseInt(Math.abs(b) / angle)).toFixed(5));
+                                    var b3 = (Math.abs(Math.abs(b1) - Math.abs(b)) > Math.abs(Math.abs(b) - Math.abs(b2))) ? b2 - a3 : b1 + a3;
                                     rTarget[1].setAttribute('animation__roll', 'from: 0 0 ' + (r[1].z).toString());
-                                    rTarget[1].setAttribute('animation__roll', 'to: 0 0 ' + c);
+                                    rTarget[1].setAttribute('animation__roll', 'to: 0 0 ' + b3);
                                     rTarget[1].setAttribute('animation__roll', 'easing: easeInQuad');
                                     rTarget[1].setAttribute('animation__roll', 'dur: 10');
                                     rTarget[1].setAttribute('animation__roll', 'loop: false');
