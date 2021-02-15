@@ -1720,7 +1720,9 @@ var viewmode = 'marker';
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
                         target = {
-                            0: { 0: webAr.ar.arData[j].main }, 1: { 0: webAr.ar.arData[j].amain }, 2: { 0: webAr.ar.arData[j].main, 1: webAr.ar.arData[j].amain }
+                            0: { 0: webAr.ar.arData[j].main }, 
+                            1: { 0: webAr.ar.arData[j].amain }, 
+                            2: { 0: webAr.ar.arData[j].main, 1: webAr.ar.arData[j].amain }
                         };
                         target_dur = { 0: 250, 1: 300, 2: 1000 };
                         var rTarget = target[Number(webAr.ar.arg.targetObj)];
@@ -1762,13 +1764,16 @@ var viewmode = 'marker';
                         var j = Number(marker[i]) - 1;
                         var timer = {};
                         target = {
-                            0: { 0: webAr.ar.arData[j].main }, 1: { 0: webAr.ar.arData[j].amain }, 2: { 0: webAr.ar.arData[j].main, 1: webAr.ar.arData[j].amain }
+                            0: { 0: webAr.ar.arData[j].main }, 
+                            1: { 0: webAr.ar.arData[j].amain }, 
+                            2: { 0: webAr.ar.arData[j].main, 1: webAr.ar.arData[j].amain }
                         };
                         target_dur = {
                             0: { 0: 350, 1: 600, 2: 800, 3: 1000, 4: 3000, 5: 3500 },
                             1: { 0: 350, 1: 600, 2: 800, 3: 1000, 4: 3000, 5: 3500 },
                             2: { 0: 1200, 1: 1500, 2: 2000, 3: 2500, 4: 3000, 5: 3500 }
-                        };                        var rTarget = target[Number(webAr.ar.arg.targetObj)];
+                        };                        
+                        var rTarget = target[Number(webAr.ar.arg.targetObj)];
                         var rdur = target_dur[Number(webAr.ar.arg.targetObj)];
                         var r = {};
                         for (var k = 0; k < Object.keys(rTarget).length; k++) {
@@ -1842,12 +1847,13 @@ var viewmode = 'marker';
                                     //var a1 = (a - (angle * Math.floor(a / angle).toFixed(5))) > 0 ? (angle * (parseFloat((parseInt(a / angle)) + 1).toFixed(5))) : (angle * (parseFloat((parseInt(a / angle))).toFixed(5)));
                                     var a1 = angle * (parseFloat(parseInt(Math.abs(a) / angle) + 1).toFixed(5));
                                     var a2 = angle * (parseFloat(parseInt(Math.abs(a) / angle)).toFixed(5));
-                                    var a3 = (Math.abs(a1 - Math.abs(a)) > Math.abs(Math.abs(a) - a2)) ? (Math.abs(Math.abs(a) - a2) * -1) : Math.abs(a1 - Math.abs(a));
+                                    var a3 = (Math.abs(a1 - Math.abs(a)) > Math.abs(Math.abs(a) - a2)) ? (Math.abs(Math.abs(a) - a2)) : Math.abs(a1 - Math.abs(a));
+                                    var c = (Math.abs(a1 - Math.abs(a)) > Math.abs(Math.abs(a) - a2)) ? -1 : 1;
                                     var b = (rTarget[1].getAttribute('rotation').z) - ((rTarget[1].getAttribute('rotation').z > 360) ? (parseInt(rTarget[1].getAttribute('rotation').z / 360) * 360) : 0);
                                     //var b1 = (b - (angle * Math.floor(Math.abs(b) / angle).toFixed(5))) > 0 ? (angle * (parseFloat((parseInt(Math.abs(b) / angle)) + 1).toFixed(5))) : (angle * (parseFloat((parseInt(Math.abs(b) / angle))).toFixed(5)));
                                     var b1 = angle * (parseFloat(parseInt(Math.abs(b) / angle) + 1).toFixed(5));
                                     var b2 = angle * (parseFloat(parseInt(Math.abs(b) / angle)).toFixed(5));
-                                    var b3 = (Math.abs(Math.abs(b1) - Math.abs(b)) > Math.abs(Math.abs(b) - Math.abs(b2))) ? b2 - a3 : b1 + a3;
+                                    var b3 = (Math.abs(Math.abs(b1) - Math.abs(b)) > Math.abs(Math.abs(b) - Math.abs(b2))) ? b2 + a3 : b1 - a3;
                                     rTarget[1].setAttribute('animation__roll', 'from: 0 0 ' + (r[1].z).toString());
                                     rTarget[1].setAttribute('animation__roll', 'to: 0 0 ' + b3);
                                     rTarget[1].setAttribute('animation__roll', 'easing: easeInQuad');
