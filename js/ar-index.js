@@ -20,6 +20,7 @@ var arType = 1;
 
     }, false);
 
+
     window.addEventListener('orientationchange', updateOrientation, false);
 
     //// 初期化のために実行
@@ -71,6 +72,7 @@ var arType = 1;
         var day = date.getDate();
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
+        window.alert(document.documentElement.clientWidth + ' ' + document.documentElement.clientHeight);
 
         if (!!(param.ed)) {
 
@@ -242,6 +244,7 @@ var arType = 1;
     function DiplayBtn(orientation) {
 
         if (orientation == 'Horizontal') {
+            window.alert(document.documentElement.clientWidth + ' ' + document.documentElement.clientHeight);
             document.getElementById("swUp").style.display = 'none';
             document.getElementById("swDown").style.display = 'none'
 
@@ -249,6 +252,7 @@ var arType = 1;
             document.getElementById("swDown").style.display = 'none'
 
         } else if (orientation == 'Vertical') {
+            window.alert(document.documentElement.clientWidth + ' ' + document.documentElement.clientHeight);
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
