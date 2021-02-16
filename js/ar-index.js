@@ -244,7 +244,6 @@ var arType = 1;
     }
 
     function DiplayBtn(orientation) {
-        window.alert(orientationsensor);
 
         if (orientationsensor) {
             resetGyro();
@@ -273,10 +272,13 @@ var arType = 1;
 
         var cameraWrapper = document.getElementById("camera-wrapper");
         var camera = document.getElementById("camera");
+        var x = camera.getAttribute("rotation").x;
         var y = camera.getAttribute("rotation").y;
+        var z = camera.getAttribute("rotation").z;
 
-        cameraWrapper.setAttribute("rotation", { y: -1 * y });
-
+        if (x != 0 && y != 0 && z != 0) {
+            cameraWrapper.setAttribute("rotation", { x: -1 * x});
+        }
     }
 
     function requestFullScreen(elem) {

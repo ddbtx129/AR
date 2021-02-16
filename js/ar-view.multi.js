@@ -1554,15 +1554,12 @@ var orientationsensor = false;
         },
 
         setGyroValuEvents: function (){
-            if(window.DeviceOrientationEvent){
-                // デバイスの方向の変化を検出したとき
-                window.addEventListener('deviceorientation', function (e) {
-                    orientationsensor = true;
-                    // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
-                    var elem = document.getElementById("debug3");
-                    elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
-                });
-            }
+            // デバイスの方向の変化を検出したとき
+            window.addEventListener('deviceorientation', function (e) {
+                // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
+                var elem = document.getElementById("debug3");
+                elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
+            });
         },
 
         setDiplayBtn: function (mode) {
@@ -1615,10 +1612,16 @@ var orientationsensor = false;
 
         resetGyro: function () {
 
-            var cameraWrapper = document.getElementById("camera-wrapper");
-            var camera = document.getElementById("camera");
-            var y = camera.getAttribute("rotation").y;
-            cameraWrapper.setAttribute("rotation", { y: -1 * y });
+            if(window.DeviceOrientationEvent){
+                orientationsensor = true;
+                var cameraWrapper = document.getElementById("camera-wrapper");
+                var camera = document.getElementById("camera");
+                var x = camera.getAttribute("rotation").x;
+                var y = camera.getAttribute("rotation").y;
+                var z = camera.getAttribute("rotation").z;
+                //cameraWrapper.setAttribute("rotation", { y: -1 * y });
+                cameraWrapper.setAttribute("rotation", { x: -1 * x, y: -1 * y, z: -1 * z });
+            }
         },
 
         positionVec3Logo: function (anime, oidx) {
