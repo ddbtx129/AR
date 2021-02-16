@@ -5,6 +5,7 @@ var tapCount = 0;
 var tapclicked = false;
 
 var viewmode = 'marker';
+var orientationsensor = false;
 
 (function (global) {
 
@@ -1553,13 +1554,15 @@ var viewmode = 'marker';
         },
 
         setGyroValuEvents: function (){
-
-            // デバイスの方向の変化を検出したとき
-            window.addEventListener('deviceorientation', function (e) {
-                // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
-                var elem = document.getElementById("debug3");
-                elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
-            });
+            if(window.DeviceOrientationEvent){
+                // デバイスの方向の変化を検出したとき
+                window.addEventListener('deviceorientation', function (e) {
+                    orientationsensor = true;
+                    // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
+                    var elem = document.getElementById("debug3");
+                    elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
+                });
+            }
         },
 
         setDiplayBtn: function (mode) {
@@ -1611,6 +1614,7 @@ var viewmode = 'marker';
         },
 
         resetGyro: function () {
+
             var cameraWrapper = document.getElementById("camera-wrapper");
             var camera = document.getElementById("camera");
             var y = camera.getAttribute("rotation").y;
@@ -1741,6 +1745,7 @@ var viewmode = 'marker';
 
     webAr.ar = ar;
     webAr.ar.init();
+
     webAr.ar.setDiplayBtn(!!(ar.args[0].pv));
 
     webAr.srcno = srcno;

@@ -244,8 +244,11 @@ var arType = 1;
     }
 
     function DiplayBtn(orientation) {
+        window.alert(orientationsensor);
 
-        resetGyro();
+        if (orientationsensor) {
+            resetGyro();
+        }
 
         if (orientation == 'Horizontal') {
             
@@ -267,10 +270,13 @@ var arType = 1;
     }
 
     function resetGyro() {
+
         var cameraWrapper = document.getElementById("camera-wrapper");
         var camera = document.getElementById("camera");
         var y = camera.getAttribute("rotation").y;
+
         cameraWrapper.setAttribute("rotation", { y: -1 * y });
+
     }
 
     function requestFullScreen(elem) {
