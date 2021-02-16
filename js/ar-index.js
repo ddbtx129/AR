@@ -72,7 +72,6 @@ var arType = 1;
         var day = date.getDate();
         month = ('0' + month).slice(-2);
         day = ('0' + day).slice(-2);
-        window.alert(document.documentElement.clientWidth + ' ' + document.documentElement.clientHeight);
 
         if (!!(param.ed)) {
 
@@ -207,6 +206,9 @@ var arType = 1;
 
         //scrInfo.style.width = "100%";
 
+        // document.documentElement.clientWidth
+        // document.documentElement.clientHeight
+
         switch (window.orientation) {
             case 0:
                 // 縦向き
@@ -243,22 +245,32 @@ var arType = 1;
 
     function DiplayBtn(orientation) {
 
+        resetGyro();
+
         if (orientation == 'Horizontal') {
-            window.alert(document.documentElement.clientWidth + ' ' + document.documentElement.clientHeight);
+            
             document.getElementById("swUp").style.display = 'none';
             document.getElementById("swDown").style.display = 'none'
 
             document.getElementById("swR90").style.display = 'none';
-            document.getElementById("swDown").style.display = 'none'
+            document.getElementById("swR00").style.display = 'none'
 
         } else if (orientation == 'Vertical') {
-            window.alert(document.documentElement.clientWidth + ' ' + document.documentElement.clientHeight);
+
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swR90").style.display = 'inline';
             document.getElementById("swR00").style.display = 'inline'
+
         }
+    }
+
+    function resetGyro() {
+        var cameraWrapper = document.getElementById("camera-wrapper");
+        var camera = document.getElementById("camera");
+        var y = camera.getAttribute("rotation").y;
+        cameraWrapper.setAttribute("rotation", { y: -1 * y });
     }
 
     function requestFullScreen(elem) {
