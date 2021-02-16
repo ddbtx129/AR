@@ -195,44 +195,66 @@ var arType = 1;
 
     function updateOrientation() {
 
-        var scrInfo = document.getElementById('slideshow');
+        //var scrInfo = document.getElementById('slideshow');
 
-        var msg1 = document.getElementById('mloader1-1');
-        var msg2 = document.getElementById('mloader1-2');
-        var msg3 = document.getElementById('mloader3');
-        msg1.innerHTML = '';
-        msg2.innerHTML = '';
+        //var msg1 = document.getElementById('mloader1-1');
+        //var msg2 = document.getElementById('mloader1-2');
+        //var msg3 = document.getElementById('mloader3');
+        //msg1.innerHTML = '';
+        //msg2.innerHTML = '';
 
-        scrInfo.style.width = "100%";
+        //scrInfo.style.width = "100%";
 
         switch (window.orientation) {
             case 0:
                 // 縦向き
-                scrInfo.style.display = 'none';
-                scrInfo.style.height = "100%";
+                //scrInfo.style.display = 'none';
+                //scrInfo.style.height = "100%";
+                DiplayBtn('Vertical');
                 break;
 
             case -90:
                 // 横向き：右回転
-                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
-                scrInfo.style.display = 'inline';
-                scrInfo.style.height = "120%";
+                //msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
+                //scrInfo.style.display = 'inline';
+                //scrInfo.style.height = "120%";
+                DiplayBtn('Horizontal');
                 break;
 
             case 90:
                 // 横向き：左回転
-                msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
-                scrInfo.style.display = 'inline';
-                scrInfo.style.height = "120%";
+                //msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
+                //scrInfo.style.display = 'inline';
+                //scrInfo.style.height = "120%";
+                DiplayBtn('Horizontal');
                 break;
 
             case 180:
                 // 縦向き：上下逆向きに回転
-                scrInfo.style.display = 'none';
-                scrInfo.style.height = "100%";
+                //scrInfo.style.display = 'none';
+                //scrInfo.style.height = "100%";
+                DiplayBtn('Vertical');
                 break;
         }
 
+    }
+
+    function DiplayBtn(orientation) {
+
+        if (orientation == 'Horizontal') {
+            document.getElementById("swUp").style.display = 'none';
+            document.getElementById("swDown").style.display = 'none'
+
+            document.getElementById("swR90").style.display = 'none';
+            document.getElementById("swDown").style.display = 'none'
+
+        } else if (orientation == 'Vertical') {
+            document.getElementById("swUp").style.display = 'inline';
+            document.getElementById("swDown").style.display = 'inline';
+
+            document.getElementById("swR90").style.display = 'none';
+            document.getElementById("swR00").style.display = 'none'
+        }
     }
 
     function requestFullScreen(elem) {
