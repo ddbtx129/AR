@@ -252,8 +252,8 @@ var arType = 1;
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
-            document.getElementById("swR90").style.display = 'none';
-            document.getElementById("swR00").style.display = 'none'
+            document.getElementById("swR90").style.display = 'inline';
+            document.getElementById("swR00").style.display = 'inline'
         }
     }
 
