@@ -80,6 +80,10 @@ var viewmode = 'marker';
             var elem = document.getElementById("version1");
             elem.innerHTML = 'v1.0.130';
 
+            elem.addEventListener('click', function () {
+                Location.reload();
+            });
+
             var msg3 = document.getElementById('mloader3');
             msg3.innerHTML = 'データ読み込み中・・・';
 
