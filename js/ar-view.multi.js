@@ -81,7 +81,8 @@ var viewmode = 'marker';
             elem.innerHTML = 'v1.0.130';
 
             elem.addEventListener('click', function () {
-                Location.reload();
+                webAr.ar.resetGyro();
+                location.reload();
             });
 
             var msg3 = document.getElementById('mloader3');
