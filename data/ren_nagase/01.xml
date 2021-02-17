@@ -56,10 +56,10 @@
                 <xs:element name="ob" type="xs:string" minOccurs="0" />
                 <xs:element name="oc" type="xs:string" minOccurs="0" />
                 <!--オブジェクト Z軸-->
-                <xs:element name="o-z" type="xs:string" minOccurs="0" />
-                <xs:element name="oa-z" type="xs:string" minOccurs="0" />
-                <xs:element name="ob-z" type="xs:string" minOccurs="0" />
-                <xs:element name="oc-z" type="xs:string" minOccurs="0" />
+                <xs:element name="oz" type="xs:string" minOccurs="0" />
+                <xs:element name="oaz" type="xs:string" minOccurs="0" />
+                <xs:element name="obz" type="xs:string" minOccurs="0" />
+                <xs:element name="ocz" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
               </xs:sequence>
@@ -96,10 +96,10 @@
     <oa></oa>
     <ob></ob>
     <oc></oc>
-    <o-z></o-z>
-    <oa-z></oa-z>
-    <ob-z></ob-z>
-    <oc-z></oc-z>
+    <oz></oz>
+    <oaz></oaz>
+    <obz></obz>
+    <ocz></ocz>
     <l>190</l>
   </pcsdata>
 
@@ -121,10 +121,10 @@
     <oa></oa>
     <ob></ob>
     <oc></oc>
-    <o-z></o-z>
-    <oa-z></oa-z>
-    <ob-z></ob-z>
-    <oc-z></oc-z>
+    <oz></oz>
+    <oaz></oaz>
+    <obz></obz>
+    <ocz></ocz>
     <l>12C</l>
   </pcsdata>
 
@@ -146,10 +146,10 @@
     <oa></oa>
     <ob></ob>
     <oc></oc>
-    <o-z></o-z>
-    <oa-z></oa-z>
-    <ob-z></ob-z>
-    <oc-z></oc-z>
+    <oz></oz>
+    <oaz></oaz>
+    <obz></obz>
+    <ocz></ocz>
     <l>C8</l>
   </pcsdata>
 
