@@ -1848,7 +1848,6 @@ var viewmode = 'marker';
                                     var a1 = angle * (parseFloat(parseInt(Math.abs(a) / angle) + 1).toFixed(5));
                                     var a2 = angle * (parseFloat(parseInt(Math.abs(a) / angle)).toFixed(5));
                                     var a3 = (Math.abs(a1 - Math.abs(a)) > Math.abs(Math.abs(a) - a2)) ? (Math.abs(Math.abs(a) - a2)) : Math.abs(a1 - Math.abs(a));
-                                    var c = (Math.abs(a1 - Math.abs(a)) > Math.abs(Math.abs(a) - a2)) ? -1 : 1;
                                     var b = (rTarget[1].getAttribute('rotation').z) - ((rTarget[1].getAttribute('rotation').z > 360) ? (parseInt(rTarget[1].getAttribute('rotation').z / 360) * 360) : 0);
                                     //var b1 = (b - (angle * Math.floor(Math.abs(b) / angle).toFixed(5))) > 0 ? (angle * (parseFloat((parseInt(Math.abs(b) / angle)) + 1).toFixed(5))) : (angle * (parseFloat((parseInt(Math.abs(b) / angle))).toFixed(5)));
                                     var b1 = angle * (parseFloat(parseInt(Math.abs(b) / angle) + 1).toFixed(5));
@@ -2380,7 +2379,7 @@ var viewmode = 'marker';
             cameraWrapper.setAttribute("rotation", { y: -1 * y });
         },
 
-        positionVec3Logo: function (anime, oidx) {
+        positionVec3Logo: function (oidx) {
             var self = this;
             var h1_2 = (self.arData[oidx].size.h / 5);
             var margin = ((self.arData[oidx].isMp4) ? 0.25 : 0);
@@ -2475,6 +2474,7 @@ var viewmode = 'marker';
                 var cO1 = tabelnm.getElementsByTagName("o1");
                 var cO2 = tabelnm.getElementsByTagName("o2");
                 var cO3 = tabelnm.getElementsByTagName("o3");
+
                 var cOa = tabelnm.getElementsByTagName("oa");
                 var cOb = tabelnm.getElementsByTagName("ob");
                 var cOc = tabelnm.getElementsByTagName("oc");
