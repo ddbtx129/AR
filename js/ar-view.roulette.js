@@ -21,7 +21,7 @@ var viewmode = 'marker';
     var defScale = { x: 4, y: 4, z: 4 };
     var defwrapPos = { x: 0, y: 0, z: 0 };
     var defwrapScale = { x: 4, y: 4, z: 4 };
-    var deflogoScale = { x: 8, y: 6, z: 6 };
+    var deflogoScale = { x: 4, y: 6, z: 6 };
 
     var objAngle = 5;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };

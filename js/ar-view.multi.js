@@ -5,7 +5,6 @@ var tapCount = 0;
 var tapclicked = false;
 
 var viewmode = 'marker';
-var orientationsensor = false;
 
 (function (global) {
 
@@ -113,6 +112,7 @@ var orientationsensor = false;
             }
 
             arg.DebugMode = arg.debug && (parseInt(arg.debug, 10).toString());
+            arg.targetObj = arg.target ? (parseInt(arg.target, 10).toString()) : 0;
 
             if (!!(arg.xd)) {
                 
@@ -157,6 +157,17 @@ var orientationsensor = false;
                     args[idx].ObjectList1 = pcs[idx].o1;
                     args[idx].ObjectList2 = pcs[idx].o2;
                     args[idx].ObjectList3 = !!(pcs[idx].o3) ? pcs[idx].o3 : pcs[idx].o2;
+
+                    // 追加オブジェクト
+                    args[idx].OAtList = pcs[idx].oa;
+                    args[idx].OBtList = pcs[idx].ob;
+                    args[idx].OCList = pcs[idx].oc;
+                    
+                    // オブジェクトZ軸(重なり)
+                    args[idx].OZList = pcs[idx].oz && Number(pcs[idx].oz);
+                    args[idx].OAZList = pcs[idx].oaz && Number(pcs[idx].oaz);
+                    args[idx].OBZList = pcs[idx].obz && Number(pcs[idx].obz);
+                    args[idx].OCZList = pcs[idx].ocz && Number(pcs[idx].ocz);
 
                     // マーカー＆オブジェクト
                     args[idx].MkObjList = pcs[idx].mo;
@@ -224,6 +235,17 @@ var orientationsensor = false;
 
                 viewIdx[0] = 0;
                 videoState[0] = 0;
+
+                // 追加オブジェクト
+                args[idx].OAtList = args[idx].oa;
+                args[idx].OBtList = args[idx].ob;
+                args[idx].OCList = args[idx].oc;
+
+                // オブジェクトZ軸(重なり)
+                args[idx].OZList = 0;
+                args[idx].OAZList = 0;
+                args[idx].OBZList = 0;
+                args[idx].OCZList = 0;
 
                 // ロゴ表示
                 var logo = args[idx].l && ('0000' + (parseInt(args[idx].l, 16).toString(10))).slice(-4);
@@ -299,6 +321,7 @@ var orientationsensor = false;
                 dataObj[idx].oType = objecttype;
 
                 dataObj[idx].paths = {};
+                dataObj[idx].ObjectPath = {};
 
                 dataObj[idx].srcno = { obj: 1, from: 1, to: 1, length: 1 };
 
@@ -306,10 +329,30 @@ var orientationsensor = false;
                     dataObj[idx].srcno.length = 0;
                     for (var i = 0; i <= seq; i++) {
                         dataObj[idx].paths[i] = object[i] + '.' + dataObj[idx].oType;
+                        dataObj[idx].ObjectPath[i] = {};
+                        if (!!(self.args[idx].OAtList)) {
+                            dataObj[idx].ObjectPath[i].A = object[i] + '-a.' + dataObj[idx].oType;
+                        }
+                        if (!!(self.args[idx].OBtList)) {
+                            dataObj[idx].ObjectPath[i].B = object[i] + '-b.' + dataObj[idx].oType;
+                        }
+                        if (!!(self.args[idx].OCtList)) {
+                            dataObj[idx].ObjectPath[i].C = object[i] + '-c.' + dataObj[idx].oType;
+                        }
                         dataObj[idx].srcno.length += 1;
                     }
                 } else {
                     dataObj[idx].paths[0] = object[0] + '.' + dataObj[idx].oType;
+                    dataObj[idx].ObjectPath[0] = {};
+                    if (!!(self.args[idx].OAtList)) {
+                        dataObj[idx].ObjectPath[0].A = object[0] + '-a.' + dataObj[idx].oType;
+                    }
+                    if (!!(self.args[idx].OBtList)) {
+                        dataObj[idx].ObjectPath[0].B = object[0] + '-b.' + dataObj[idx].oType;
+                    }
+                    if (!!(self.args[idx].OCtList)) {
+                        dataObj[idx].ObjectPath[0].C = object[0] + '-c.' + dataObj[idx].oType;
+                    }
                 }
 
                 if (n_idx < dataObj[idx].srcno.length) {
@@ -347,6 +390,7 @@ var orientationsensor = false;
                     if (!!(dataObj[idx].isPng) || !!(dataObj[idx].isGif)) {
 
                         var img = {};
+                        var imgAdd = {};
 
                         for (var i = 0; i <= seq; i++) {
                             dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
@@ -359,6 +403,45 @@ var orientationsensor = false;
                             dataObj[idx].arObj[i] = { obj: img[i] };
 
                             assets.appendChild(img[i]);
+
+                            imgAdd[i] = {};
+
+                            if (!!(self.args[idx].OAtList)) {
+                                dataObj[idx].ObjectPath[i].A = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].A;
+
+                                imgAdd[i].A = document.createElement('img');
+                                imgAdd[i].A.setAttribute('crossorigin', 'anonymous');
+                                imgAdd[i].A.setAttribute('id', 'asource' + ((idx + 1) * 100 + (i + 1)).toString());
+                                imgAdd[i].A.setAttribute('src', dataObj[idx].ObjectPath[i].A);
+
+                                dataObj[idx].arObj[i][1] = imgAdd[i].A;
+
+                                assets.appendChild(imgAdd[i].A);
+                            }
+                            if (!!(self.args[idx].OBtList)) {
+                                dataObj[idx].ObjectPath[i].B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].B;
+
+                                imgAdd[i].B = document.createElement('img');
+                                imgAdd[i].B.setAttribute('crossorigin', 'anonymous');
+                                imgAdd[i].B.setAttribute('id', 'bsource' + ((idx + 1) * 100 + (i + 1)).toString());
+                                imgAdd[i].B.setAttribute('src', dataObj[idx].ObjectPath[i].B);
+
+                                dataObj[idx].arObj[i][2] = imgAdd[i].B;
+
+                                assets.appendChild(imgAdd[i].B);
+                            }
+                            if (!!(self.args[idx].OCtList)) {
+                                dataObj[idx].ObjectPath[i].C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].C;
+
+                                imgAdd[i].C = document.createElement('img');
+                                imgAdd[i].C.setAttribute('crossorigin', 'anonymous');
+                                imgAdd[i].C.setAttribute('id', 'csource' + ((idx + 1) * 100 + (i + 1)).toString());
+                                imgAdd[i].C.setAttribute('src', dataObj[idx].ObjectPath[i].C);
+
+                                dataObj[idx].arObj[i][3] = imgAdd[i].C;
+
+                                assets.appendChild(imgAdd[i].C);
+                            }
                         }
 
                     } else if (!!(dataObj[idx].isMp4)) {
@@ -530,6 +613,9 @@ var orientationsensor = false;
                 }
 
                 var srcname = '#source' + (((idx + 1) * 100) + objno).toString();
+                var asrcname = '#asource' + (((idx + 1) * 100) + objno).toString();
+                var bsrcname = '#bsource' + (((idx + 1) * 100) + objno).toString();
+                var csrcname = '#csource' + (((idx + 1) * 100) + objno).toString();
 
                 if (val[idx].isShadow) {
                     var shadow = document.createElement('a-image');
@@ -549,6 +635,78 @@ var orientationsensor = false;
                     });
 
                     self.arData[idx].shadow = shadow;
+
+                    if (self.args[idx].OAtList) {
+                        var ashadow = document.createElement('a-image');
+                        var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                        defobj[idx].posVec3ashadowa = posVec3ashadow;
+
+                        ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                        ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
+
+                        ashadow.setAttribute('rotation', '-90 0 0');
+                        ashadow.setAttribute('style', 'z-index: 2');
+                        ashadow.setAttribute('visible', !(self.arg.targetObj));
+
+                        AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                            primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                            color: 'black', opacity: shadowopacity, depthTest: false
+                        });
+
+                        self.arData[idx].ashadow = ashadow;
+                    }
+
+                    if (self.args[idx].OBtList) {
+                        var bshadow = document.createElement('a-image');
+                        var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                        defobj[idx].posVec3bshadow = posVec3bshadow;
+
+                        bshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                        bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
+
+                        bshadow.setAttribute('rotation', '-90 0 0');
+                        bshadow.setAttribute('style', 'z-index: 2');
+                        bshadow.setAttribute('visible', !(self.arg.targetObj));
+
+                        AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
+                            primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
+                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                            color: 'black', opacity: shadowopacity, depthTest: false
+                        });
+
+                        self.arData[idx].bshadow = bshadow;
+                    }
+
+                    if (self.args[idx].OCtList) {
+                        var cshadow = document.createElement('a-image');
+                        var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                        defobj[idx].posVec3cshadow = posVec3cshadow;
+
+                        cshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                        cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
+
+                        cshadow.setAttribute('rotation', '-90 0 0');
+                        cshadow.setAttribute('style', 'z-index: 2');
+                        cshadow.setAttribute('visible', !(self.arg.targetObj));
+
+                        AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
+                            primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
+                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                            color: 'black', opacity: shadowopacity, depthTest: false
+                        });
+
+                        self.arData[idx].cshadow = cshadow;
+                    }
                 }
 
                 var elname = '';
@@ -601,6 +759,140 @@ var orientationsensor = false;
 
                 self.arData[idx].main = main;
                 
+                var addmainobj = { 0: self.args[idx].OAtList, 1: self.args[idx].OBtList, 2: self.args[idx].OCtList };
+                var addmainZaxis = { 0: self.args[idx].OAZList, 1: self.args[idx].OBZList, 2: self.args[idx].OCZList };
+                
+                var addmain = {};
+
+                if (self.args[idx].OAtList) {
+
+                    var amain = document.createElement(elname);
+
+                    var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OAZList) };
+                    defobj[idx].posVec3a = posVec3a;
+
+                    amain.setAttribute('id', 'amain' + (idx + 1).toString());
+                    amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
+
+                    if (!val[idx].isGif) {
+
+                        amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                        if (!val[idx].isGltf) {
+                            amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
+                            amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+
+                            amain.setAttribute('style', 'z-index: 4');
+
+                            if (val[idx].isMp4) {
+                                amain.setAttribute('play', 'true');
+                            }
+
+                            AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
+                                primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                            });
+
+                            AFRAME.utils.entity.setComponentProperty(amain, 'material', {
+                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        } else {
+                            amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        }
+
+                    } else {
+                        amain.setAttribute('rotation', '-30 0 0');
+                    }
+
+                    self.arData[idx].amain = amain;
+                }
+
+                if (self.args[idx].OBtList) {
+
+                    var bmain = document.createElement(elname);
+
+                    var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OBZList) };
+                    defobj[idx].posVec3b = posVec3b;
+
+                    bmain.setAttribute('id', 'bmain' + (idx + 1).toString());
+                    bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
+
+                    if (!val[idx].isGif) {
+
+                        bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                        if (!val[idx].isGltf) {
+                            bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
+                            bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+
+                            bmain.setAttribute('style', 'z-index: 4');
+
+                            if (val[idx].isMp4) {
+                                bmain.setAttribute('play', 'true');
+                            }
+
+                            AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
+                                primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                            });
+
+                            AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
+                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        } else {
+                            bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        }
+
+                    } else {
+                        bmain.setAttribute('rotation', '-30 0 0');
+                    }
+
+                    self.arData[idx].bmain = bmain;
+                }
+
+                if (self.args[idx].OCtList) {
+
+                    var cmain = document.createElement(elname);
+
+                    var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OCZList) };
+                    defobj[idx].posVec3c = posVec3c;
+
+                    cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
+                    cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
+
+                    if (!val[idx].isGif) {
+
+                        cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                        if (!val[idx].isGltf) {
+                            cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
+                            cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+
+                            cmain.setAttribute('style', 'z-index: 4');
+
+                            if (val[idx].isMp4) {
+                                cmain.setAttribute('play', 'true');
+                            }
+
+                            AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
+                                primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                            });
+
+                            AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
+                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        } else {
+                            cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        }
+
+                    } else {
+                        cmain.setAttribute('rotation', '-30 0 0');
+                    }
+
+                    self.arData[idx].cmain = cmain;
+                }
+
                 if (val[idx].isLogo) {
 
                     var logo = document.createElement('a-entity');
@@ -651,6 +943,78 @@ var orientationsensor = false;
                 });
 
                 self.arData[oidx].shadow = shadow;
+
+                if (self.args[oidx].OAtList) {
+                    var ashadow = document.createElement('a-image');
+                    var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                    defobj[oidx].posVec3ashadowa = posVec3ashadow;
+
+                    ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                    ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
+
+                    ashadow.setAttribute('rotation', '-90 0 0');
+                    ashadow.setAttribute('style', 'z-index: 2');
+                    ashadow.setAttribute('visible', !(self.arg.targetObj));
+
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+
+                    self.arData[oidx].ashadow = ashadow;
+                }
+
+                if (self.args[oidx].OBtList) {
+                    var bshadow = document.createElement('a-image');
+                    var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                    defobj[oidx].posVec3bshadow = posVec3bshadow;
+
+                    bshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                    bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
+
+                    bshadow.setAttribute('rotation', '-90 0 0');
+                    bshadow.setAttribute('style', 'z-index: 2');
+                    bshadow.setAttribute('visible', !(self.arg.targetObj));
+
+                    AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+
+                    self.arData[oidx].bshadow = bshadow;
+                }
+
+                if (self.args[oidx].OCtList) {
+                    var cshadow = document.createElement('a-image');
+                    var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
+                    defobj[oidx].posVec3cshadow = posVec3cshadow;
+
+                    cshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                    cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
+
+                    cshadow.setAttribute('rotation', '-90 0 0');
+                    cshadow.setAttribute('style', 'z-index: 2');
+                    cshadow.setAttribute('visible', !(self.arg.targetObj));
+
+                    AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                    });
+
+                    AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+
+                    self.arData[oidx].cshadow = cshadow;
+                }
             }
 
             var elname = '';
@@ -701,6 +1065,135 @@ var orientationsensor = false;
             }
 
             self.arData[oidx].main = main;
+
+            if (self.args[oidx].OAtList) {
+
+                var amain = document.createElement(elname);
+
+                var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OAZList) };
+                defobj[oidx].posVec3a = posVec3a;
+
+                amain.setAttribute('id', 'amain' + (oidx + 1).toString());
+                amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
+
+                if (!val[oidx].isGif) {
+
+                    amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                    if (!val[oidx].isGltf) {
+                        amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+
+                        amain.setAttribute('style', 'z-index: 4');
+
+                        if (val[oidx].isMp4) {
+                            amain.setAttribute('play', 'true');
+                        }
+
+                        AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
+                            primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(amain, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    }
+
+                } else {
+                    amain.setAttribute('rotation', '-30 0 0');
+                }
+
+                self.arData[oidx].amain = amain;
+            }
+
+            if (self.args[oidx].OBtList) {
+
+                var bmain = document.createElement(elname);
+
+                var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OBZList) };
+                defobj[oidx].posVec3b = posVec3b;
+
+                bmain.setAttribute('id', 'bmain' + (oidx + 1).toString());
+                bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
+
+                if (!val[oidx].isGif) {
+
+                    bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                    if (!val[oidx].isGltf) {
+                        bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                        bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+
+                        bmain.setAttribute('style', 'z-index: 4');
+
+                        if (val[oidx].isMp4) {
+                            bmain.setAttribute('play', 'true');
+                        }
+
+                        AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
+                            primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    }
+
+                } else {
+                    bmain.setAttribute('rotation', '-30 0 0');
+                }
+
+                self.arData[oidx].bmain = bmain;
+            }
+
+            if (self.args[oidx].OCtList) {
+
+                var cmain = document.createElement(elname);
+
+                var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OCZList) };
+                defobj[oidx].posVec3c = posVec3c;
+
+                cmain.setAttribute('id', 'cmain' + (oidx + 1).toString());
+                cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
+
+                if (!val[oidx].isGif) {
+
+                    cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+
+                    if (!val[oidx].isGltf) {
+                        cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
+                        cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+
+                        cmain.setAttribute('style', 'z-index: 4');
+
+                        if (val[oidx].isMp4) {
+                            cmain.setAttribute('play', 'true');
+                        }
+
+                        AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
+                            primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        });
+
+                        AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    }
+
+                } else {
+                    cmain.setAttribute('rotation', '-30 0 0');
+                }
+
+                self.arData[oidx].cmain = cmain;
+            }
 
             if (val[oidx].isLogo) {
 
@@ -862,7 +1355,16 @@ var orientationsensor = false;
             var val = self.arData;
 
             self.arData[oidx].shadow && self.wrap[oidx].appendChild(self.arData[oidx].shadow);
+
+            self.arData[oidx].ashadow && self.wrap[oidx].appendChild(self.arData[oidx].ashadow);
+            self.arData[oidx].bshadow && self.wrap[oidx].appendChild(self.arData[oidx].bshadow);
+            self.arData[oidx].cshadow && self.wrap[oidx].appendChild(self.arData[oidx].cshadow);
+
             self.arData[oidx].main && self.wrap[oidx].appendChild(self.arData[oidx].main);
+
+            self.arData[oidx].amain && self.wrap[oidx].appendChild(self.arData[oidx].amain);
+            self.arData[oidx].bmain && self.wrap[oidx].appendChild(self.arData[oidx].bmain);
+            self.arData[oidx].cmain && self.wrap[oidx].appendChild(self.arData[oidx].cmain);
 
             if (val[oidx].isLogo) {
                 self.arData[oidx].logo && self.wrap[oidx].appendChild(self.arData[oidx].logo);
@@ -1325,7 +1827,8 @@ var orientationsensor = false;
                     var j = Number(marker[i]) - 1;
                     webAr.ar.arData[j].wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(webAr.ar.arData[j].wrapPos));
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[j].pvAngle);
-                }            };
+                }
+            };
         },
 
         setTapEvents: function () {
@@ -1613,14 +2116,20 @@ var orientationsensor = false;
         resetGyro: function () {
 
             if(window.DeviceOrientationEvent){
-                orientationsensor = true;
                 var cameraWrapper = document.getElementById("camera-wrapper");
                 var camera = document.getElementById("camera");
                 var x = camera.getAttribute("rotation").x;
                 var y = camera.getAttribute("rotation").y;
                 var z = camera.getAttribute("rotation").z;
-                //cameraWrapper.setAttribute("rotation", { y: -1 * y });
-                cameraWrapper.setAttribute("rotation", { x: -1 * x, y: -1 * y, z: -1 * z });
+
+                if (!isNaN(x) && !isNaN(y) && !isNaN(z)) {
+                    if (webAr.ar.arData[0].isMarkerType == 1 || webAr.ar.arData[0].isPV) {
+                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
+                        // cameraWrapper.setAttribute("rotation", { x: -1 * x, y: -1 * y, z: -1 * z });
+                    } else {
+                        cameraWrapper.setAttribute("rotation", { z: -1 * z });
+                    }
+                }
             }
         },
 
@@ -1713,6 +2222,15 @@ var orientationsensor = false;
                 var cO1 = tabelnm.getElementsByTagName("o1");
                 var cO2 = tabelnm.getElementsByTagName("o2");
                 var cO3 = tabelnm.getElementsByTagName("o3");
+
+                var cOa = tabelnm.getElementsByTagName("oa");
+                var cOb = tabelnm.getElementsByTagName("ob");
+                var cOc = tabelnm.getElementsByTagName("oc");
+                var cOZ = tabelnm.getElementsByTagName("oz");
+                var cOaZ = tabelnm.getElementsByTagName("oaz");
+                var cObZ = tabelnm.getElementsByTagName("obz");
+                var cOcZ = tabelnm.getElementsByTagName("ocz");
+
                 var cL = tabelnm.getElementsByTagName("l");
 
                 var len = cM.length;
@@ -1732,6 +2250,15 @@ var orientationsensor = false;
                         o1: cO1[i].textContent,
                         o2: cO2[i].textContent,
                         o3: cO3[i].textContent,
+
+                        oa: cOa[i].textContent,
+                        ob: cOb[i].textContent,
+                        oc: cOc[i].textContent,
+                        oz: cOZ[i].textContent,
+                        oaz: cOaZ[i].textContent,
+                        obz: cObZ[i].textContent,
+                        ocz: cOcZ[i].textContent,
+
                         l: cL[i].textContent
                     };
                 }

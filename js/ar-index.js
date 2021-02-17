@@ -10,13 +10,13 @@ var arType = 1;
     document.addEventListener("DOMContentLoaded", function () {
 
         // html全体をフルスクリーン化します
-        requestFullScreen(document.documentElement);
+        //requestFullScreen(document.documentElement);
         // 縦画面に固定します
         // screen.orientation.lockは即座に効くようですが、
         // screen.lockOrientation系は少し間を開けないと有効にならないようです
         setTimeout(function () {
             lockOrientation("portrait");
-        }, 1);
+        }, 500);
 
     }, false);
 
@@ -196,47 +196,24 @@ var arType = 1;
 
     function updateOrientation() {
 
-        //var scrInfo = document.getElementById('slideshow');
-
-        //var msg1 = document.getElementById('mloader1-1');
-        //var msg2 = document.getElementById('mloader1-2');
-        //var msg3 = document.getElementById('mloader3');
-        //msg1.innerHTML = '';
-        //msg2.innerHTML = '';
-
-        //scrInfo.style.width = "100%";
-
-        // document.documentElement.clientWidth
-        // document.documentElement.clientHeight
-
         switch (window.orientation) {
             case 0:
                 // 縦向き
-                //scrInfo.style.display = 'none';
-                //scrInfo.style.height = "100%";
                 DiplayBtn('Vertical');
                 break;
 
             case -90:
                 // 横向き：右回転
-                //msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
-                //scrInfo.style.display = 'inline';
-                //scrInfo.style.height = "120%";
                 DiplayBtn('Horizontal');
                 break;
 
             case 90:
                 // 横向き：左回転
-                //msg3.innerHTML = '画面を縦向きにして<br>使用ください。<br><br>';
-                //scrInfo.style.display = 'inline';
-                //scrInfo.style.height = "120%";
                 DiplayBtn('Horizontal');
                 break;
 
             case 180:
                 // 縦向き：上下逆向きに回転
-                //scrInfo.style.display = 'none';
-                //scrInfo.style.height = "100%";
                 DiplayBtn('Vertical');
                 break;
         }
@@ -245,9 +222,7 @@ var arType = 1;
 
     function DiplayBtn(orientation) {
 
-        if (orientationsensor) {
-            resetGyro();
-        }
+        //resetGyro();
 
         if (orientation == 'Horizontal') {
             
@@ -275,9 +250,9 @@ var arType = 1;
         var x = camera.getAttribute("rotation").x;
         var y = camera.getAttribute("rotation").y;
         var z = camera.getAttribute("rotation").z;
-
-        if (x != 0 && y != 0 && z != 0) {
-            cameraWrapper.setAttribute("rotation", { x: -1 * x});
+        
+        if (!isNaN(x) && !isNaN(y) && !isNaN(z)) {
+            cameraWrapper.setAttribute("rotation", { x: -1 * x });
         }
     }
 
