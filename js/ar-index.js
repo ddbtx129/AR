@@ -7,19 +7,18 @@ var arType = 1;
         e.preventDefault();
     }, { passive: false });
 
-    document.addEventListener("DOMContentLoaded", function () {
+    //document.addEventListener("DOMContentLoaded", function () {
 
-        // html全体をフルスクリーン化します
-        //requestFullScreen(document.documentElement);
-        // 縦画面に固定します
-        // screen.orientation.lockは即座に効くようですが、
-        // screen.lockOrientation系は少し間を開けないと有効にならないようです
-        setTimeout(function () {
-            lockOrientation("portrait");
-        }, 500);
+    //    // html全体をフルスクリーン化します
+    //    requestFullScreen(document.documentElement);
+    //    // 縦画面に固定します
+    //    // screen.orientation.lockは即座に効くようですが、
+    //    // screen.lockOrientation系は少し間を開けないと有効にならないようです
+    //    setTimeout(function () {
+    //        lockOrientation("portrait");
+    //    }, 10);
 
-    }, false);
-
+    //}, false);
 
     window.addEventListener('orientationchange', updateOrientation, false);
 
@@ -252,7 +251,7 @@ var arType = 1;
         var z = camera.getAttribute("rotation").z;
         
         if (!isNaN(x) && !isNaN(y) && !isNaN(z)) {
-            cameraWrapper.setAttribute("rotation", { x: -1 * x });
+            cameraWrapper.setAttribute("rotation", { y: -1 * y });
         }
     }
 

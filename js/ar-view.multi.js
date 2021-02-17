@@ -2114,23 +2114,10 @@ var viewmode = 'marker';
         },
 
         resetGyro: function () {
-
-            if(window.DeviceOrientationEvent){
-                var cameraWrapper = document.getElementById("camera-wrapper");
-                var camera = document.getElementById("camera");
-                var x = camera.getAttribute("rotation").x;
-                var y = camera.getAttribute("rotation").y;
-                var z = camera.getAttribute("rotation").z;
-
-                if (!isNaN(x) && !isNaN(y) && !isNaN(z)) {
-                    if (webAr.ar.arData[0].isMarkerType == 1 || webAr.ar.arData[0].isPV) {
-                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
-                        // cameraWrapper.setAttribute("rotation", { x: -1 * x, y: -1 * y, z: -1 * z });
-                    } else {
-                        cameraWrapper.setAttribute("rotation", { z: -1 * z });
-                    }
-                }
-            }
+            var cameraWrapper = document.getElementById("camera-wrapper");
+            var camera = document.getElementById("camera");
+            var y = camera.getAttribute("rotation").y;
+            cameraWrapper.setAttribute("rotation", { y: -1 * y });
         },
 
         positionVec3Logo: function (anime, oidx) {
