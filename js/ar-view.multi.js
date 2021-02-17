@@ -82,7 +82,7 @@ var viewmode = 'marker';
 
             elem.addEventListener('click', function () {
                 webAr.ar.resetGyro();
-                location.reload();
+                document.location.reload();
             });
 
             var msg3 = document.getElementById('mloader3');
