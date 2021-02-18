@@ -511,7 +511,7 @@ var viewmode = 'marker';
 
                         var model = document.createElement('a-asset-item');
                         model.setAttribute('crossorigin', 'anonymous');
-                        model.setAttribute('id', 'logosource' + ((idx + 1) * 100 + 1).toString());
+                        model.setAttribute('id', 'lsource' + ((idx + 1) * 100 + 1).toString());
                         model.setAttribute('src', dataObj[idx].logopath);
 
                         assets.appendChild(model);
@@ -911,7 +911,7 @@ var viewmode = 'marker';
                     logo.setAttribute('id', 'logo' + (idx + 1).toString());
                     logo.setAttribute('position', AFRAME.utils.coordinates.stringify(deflogo[idx].Pos));
                     logo.setAttribute('scale', AFRAME.utils.coordinates.stringify(deflogo[idx].Scale));
-                    logo.setAttribute('gltf-model', '#logosource' + ((idx + 1) * 100 + 1).toString());
+                    logo.setAttribute('gltf-model', '#lsource' + ((idx + 1) * 100 + 1).toString());
                     logo.setAttribute('style', 'z-index: 4');
 
                     self.arData[idx].logo = logo;
@@ -1213,7 +1213,7 @@ var viewmode = 'marker';
                 logo.setAttribute('id', 'logo' + (oidx + 1).toString());
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(deflogo[oidx].Pos));
                 logo.setAttribute('scale', AFRAME.utils.coordinates.stringify(deflogo[oidx].Scale));
-                logo.setAttribute('gltf-model', '#logosource' + ((oidx + 1) * 100 +1).toString());
+                logo.setAttribute('gltf-model', '#lsource' + ((oidx + 1) * 100 +1).toString());
                 logo.setAttribute('style', 'z-index: 4');
 
                 self.arData[oidx].logo = logo;
@@ -1236,7 +1236,7 @@ var viewmode = 'marker';
                 //    primitive: 'box', height: deflogoScale, width: deflogoScale, depth: deflogoScale, segmentsHeight: 1, segmentsWidth: 1
                 //});
                 //AFRAME.utils.entity.setComponentProperty(logo, 'material', {
-                //    shader: 'standard', npot: true, src: '#logosource', displacementMap: null, displacementBias: -0.5,
+                //    shader: 'standard', npot: true, src: '#lsource', displacementMap: null, displacementBias: -0.5,
                 //    side: 'double', transparent: true, alphaTest: 0.1, metalness: (!!(val.isReflect) ? 1 : 0), roughness: (!!(val.isReflect) ? 0.3 : 0.5)
                 //});
 
@@ -2035,11 +2035,14 @@ var viewmode = 'marker';
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMp4 && webAr.ar.videoState[j] == 2) {
-                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                        document.getElementById("swPlay").style.display = 'inline';
-                        video.play();
-                        webAr.ar.videoState[j] = 3;
+                    if (webAr.ar.arData[j].isMp4) {
+                        if(webAr.ar.videoState[j] == 2){
+                            var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            video.play();
+                            webAr.ar.videoState[j] = 3;
+                        } else if(webAr.ar.videoState[j] == 1){
+                            document.getElementById("swPlay").style.display = 'inline';
+                        }
                     }
                 }
             });
