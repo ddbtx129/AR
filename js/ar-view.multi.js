@@ -1998,7 +1998,7 @@ var viewmode = 'marker';
 
                     if (webAr.ar.arData[k].isMp4) {
                         var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
-                        if (webAr.ar.videoState[k] != 3) {
+                        if (webAr.ar.videoState[k] != 2) {
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
@@ -2038,12 +2038,15 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         if (webAr.ar.videoState != 3) {
                             document.getElementById("swPlay").style.display = 'inline';
-                            if (webAr.ar.videoState[j] == 2) {
-                                var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                                document.getElementById("swPlay").style.display = 'inline';
-                                video.play();
-                                webAr.ar.videoState[j] = 3;
-                            }
+                            //if (webAr.ar.videoState[j] == 2) {
+                            //    //var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            //    //document.getElementById("swPlay").style.display = 'inline';
+                            //    //video.play();
+                            //    webAr.ar.videoState[j] = 3;
+                            //} else if(webAr.ar.videoState[j] == 1){
+                            //    var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            //    document.getElementById("swPlay").style.display = 'inline';
+                            //}
                         }
                     }
                 }
