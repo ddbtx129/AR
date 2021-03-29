@@ -931,6 +931,7 @@ var viewmode = 'marker';
             var srcname = '#source' + (((Number(oidx) + 1) * 100) + objno).toString();
 
             if (val[oidx].isShadow) {
+
                 var shadow = document.createElement('a-image');
 
                 shadow.setAttribute('id', 'shadow' + ((oidx + 1)).toString());
@@ -950,6 +951,7 @@ var viewmode = 'marker';
                 self.arData[oidx].shadow = shadow;
 
                 if (self.args[oidx].OAtList) {
+
                     var ashadow = document.createElement('a-image');
                     var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                     defobj[oidx].posVec3ashadowa = posVec3ashadow;
@@ -974,6 +976,7 @@ var viewmode = 'marker';
                 }
 
                 if (self.args[oidx].OBtList) {
+
                     var bshadow = document.createElement('a-image');
                     var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                     defobj[oidx].posVec3bshadow = posVec3bshadow;
@@ -998,6 +1001,7 @@ var viewmode = 'marker';
                 }
 
                 if (self.args[oidx].OCtList) {
+
                     var cshadow = document.createElement('a-image');
                     var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                     defobj[oidx].posVec3cshadow = posVec3cshadow;
@@ -1468,7 +1472,8 @@ var viewmode = 'marker';
 
                         viewmode = 'nft';
                         pvAngle = -90;
-                        wrapZoom = 30;
+                        //wrapZoom = 30;
+                        wrapZoom = 1;
                         zoomRateH = zoomRateH * wrapZoom;
 
                         mWrap[idx].setAttribute('markerhandler', '');
