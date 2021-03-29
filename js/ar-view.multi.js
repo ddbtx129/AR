@@ -1473,7 +1473,7 @@ var viewmode = 'marker';
                         viewmode = 'nft';
                         pvAngle = -90;
                         //wrapZoom = 30;
-                        wrapZoom = 1;
+                        wrapZoom = 4;
                         zoomRateH = zoomRateH * wrapZoom;
 
                         mWrap[idx].setAttribute('markerhandler', '');
