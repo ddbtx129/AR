@@ -45,6 +45,7 @@ var viewmode = 'marker';
             document.getElementById("swPlay").style.display = 'none';
 
             this.setArg();
+            this.checkYukoukigen();
 
             if (this.setArData()) {
 
@@ -99,7 +100,9 @@ var viewmode = 'marker';
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
-            }            
+            }    
+
+            document.querySelector('a-scene').enterVR();
         },
 
         setArg: function () {
@@ -133,13 +136,17 @@ var viewmode = 'marker';
 
                 // マーカー OR NFT
                 arg.ARList = base[0].ar && (parseInt(base[0].ar, 10).toString());
-                
+
+                arg.ExDate = base[0].ed && (parseInt(base[0].ed, 16).toString(10));
+
                 arg.Multi = pcs.length;
 
                 for (idx = 0; idx < arg.Multi; idx++) {
 
                     args[idx] = {};
 
+                    args[idx].ar = 0;
+                    
                     // マーカー OR NFT
                     args[idx].ARList = pcs[idx].ar && (parseInt(pcs[idx].ar, 10).toString());
 
@@ -202,10 +209,14 @@ var viewmode = 'marker';
 
                 arg.Multi = 1;
 
+                arg.ExDate = args[idx].ed && (parseInt(args[idx].ed, 16).toString(10));
+
                 args[0] = {};
                 idx = 0;
 
                 args[idx] = arg;
+
+                args[idx].ar = 0;
 
                 // プレビューモード
                 arg.PVList = arg.pv;
@@ -276,6 +287,24 @@ var viewmode = 'marker';
 
             self.viewIdx = viewIdx;
             self.videoState = videoState;
+        },
+
+        checkYukoukigen: function(){
+
+            var self = this;
+
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            month = ('0' + month).slice(-2);
+            day = ('0' + day).slice(-2);
+
+            if (!!(self.arg.ExDate)) {
+                if (parseInt(self.arg.ExDate.toString()).toString(10) < (year + month + day).toString()) {
+                    this.Err_Exit('表示期限が終了しているため、表示することができません。');
+                }
+            }
         },
 
         setArData: function () {
@@ -376,8 +405,9 @@ var viewmode = 'marker';
                 dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
                 
                 // サイズ
-                self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
-                
+                //self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
+                self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
+
                 var wh = SizeSplit(self.args[idx].sizeList).toString().split(',');
                 var i = ((parseInt(self.args[idx].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeList).toString(10)).length : (parseInt(self.args[idx].sizeList).toString(10)).length + 1;
                 var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
@@ -534,7 +564,7 @@ var viewmode = 'marker';
 
                 if (!arData[idx].path) {
                     // 画像なかった
-                    Err_Exit('画像情報が取得できませんでした。');
+                    this.Err_Exit('画像情報が取得できませんでした。');
                     return false;
                 }
             }
@@ -666,6 +696,7 @@ var viewmode = 'marker';
                     }
 
                     if (self.args[idx].OBtList) {
+
                         var bshadow = document.createElement('a-image');
                         var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3bshadow = posVec3bshadow;
@@ -690,6 +721,7 @@ var viewmode = 'marker';
                     }
 
                     if (self.args[idx].OCtList) {
+
                         var cshadow = document.createElement('a-image');
                         var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3cshadow = posVec3cshadow;
@@ -1332,15 +1364,17 @@ var viewmode = 'marker';
                         });
                     }
                 } else {
-                    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn0', {
-                        property: 'rotation',
-                        dur: 3000,
-                        easing: 'easeOutElastic',
-                        elasticity: 300,
-                        from: '0 0 0',
-                        to: '0 360 0',
-                        startEvents: 'turn0'
-                    });
+                    if (val[idx].isAnime != 99) {
+                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn0', {
+                            property: 'rotation',
+                            dur: 3000,
+                            easing: 'easeOutElastic',
+                            elasticity: 300,
+                            from: '0 0 0',
+                            to: '0 360 0',
+                            startEvents: 'turn0'
+                        });
+                    }
                 }
             }
         },
@@ -1523,6 +1557,9 @@ var viewmode = 'marker';
                                 }
                             }
                         } else {
+                            
+                            //webAr.ar.setWrapAnime(i);
+
                             webAr.ar.arData[i].viewIdx = 1;
                             webAr.markerIdx = '';
                             for (var j = 0; j < webAr.ar.arg.Multi; j++) {
@@ -1596,7 +1633,7 @@ var viewmode = 'marker';
                 }
                 
                 self.arData[idx].yClickRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.2 : 5);
-                self.arData[idx].yTouchRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.02 : 2);
+                self.arData[idx].yTouchRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.02 : 0.5);
 
                 self.arData[idx].wrapPos = wrapPos;
                 self.arData[idx].zoomRateH = zoomRateH;
@@ -1607,6 +1644,68 @@ var viewmode = 'marker';
             }
         },
 
+        setWrapAnime: function(oidx) {
+            
+            var self = this;
+            var direction = getRandomIntInclusive(0, 1);
+            var rate = 1;
+
+            if(getRandomIntInclusive == 0){
+                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+                    property: 'position',
+                    dir: 'alternate',
+                    dur: 5000,
+                    easing: 'easeInOutQuart',
+                    loop: false,
+                    from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
+                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
+                    startEvents: 'pos0'
+                });
+            } else if(getRandomIntInclusive == 1){
+                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+                    property: 'position',
+                    dir: 'alternate',
+                    dur: 5000,
+                    easing: 'easeInOutQuart',
+                    loop: false,
+                    from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
+                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
+                    startEvents: 'pos0'
+                });
+            }
+            //} else if(getRandomIntInclusive == 2){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 50000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: (webAr.defwrapPos.x - (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
+            //        startEvents: 'pos0'
+            //    });            
+            //} else if(getRandomIntInclusive == 3){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 50000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: (webAr.defwrapPos.x + (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
+            //        startEvents: 'pos0'
+            //    });    
+            //}
+
+            webAr.ar.arData[oidx].wrap.emit('pos0');
+
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+            }
+        },
+        
         resetScene: function (oidx) {
 
             var self = this;
@@ -2037,37 +2136,41 @@ var viewmode = 'marker';
             });
 
             window.addEventListener('focus', function (e) {
-                var marker = webAr.markerIdx.split(',');
-                for (var i = 0; i < marker.length; i++) {
-                    var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMp4) {
-                        if (webAr.ar.videoState != 3) {
-                            document.getElementById("swPlay").style.display = 'inline';
-                            //if (webAr.ar.videoState[j] == 2) {
-                            //    //var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                            //    //document.getElementById("swPlay").style.display = 'inline';
-                            //    //video.play();
-                            //    webAr.ar.videoState[j] = 3;
-                            //} else if(webAr.ar.videoState[j] == 1){
-                            //    var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                            //    document.getElementById("swPlay").style.display = 'inline';
-                            //}
+                if(webAr.loaderEnd != 0){ 
+                    var marker = webAr.markerIdx.split(',');
+                    for (var i = 0; i < marker.length; i++) {
+                        var j = Number(marker[i]) - 1;
+                        if (webAr.ar.arData[j].isMp4) {
+                            if (webAr.ar.videoState != 3) {
+                                document.getElementById("swPlay").style.display = 'inline';
+                                //if (webAr.ar.videoState[j] == 2) {
+                                //    //var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                                //    //document.getElementById("swPlay").style.display = 'inline';
+                                //    //video.play();
+                                //    webAr.ar.videoState[j] = 3;
+                                //} else if(webAr.ar.videoState[j] == 1){
+                                //    var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                                //    document.getElementById("swPlay").style.display = 'inline';
+                                //}
+                            }
                         }
                     }
                 }
             });
 
             window.addEventListener('blur', function (e) {
-                var marker = webAr.markerIdx.split(',');
-                for (var i = 0; i < marker.length; i++) {
-                    var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMp4) {
-                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                        video.pause();
-                        if(webAr.ar.videoState[j] == 3){
-                            webAr.ar.videoState[j] = 2;
-                        } else {
-                            webAr.ar.videoState[j] = 1;
+                if(webAr.loaderEnd != 0) {
+                    var marker = webAr.markerIdx.split(',');
+                    for (var i = 0; i < marker.length; i++) {
+                        var j = Number(marker[i]) - 1;
+                        if (webAr.ar.arData[j].isMp4) {
+                            var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            video.pause();
+                            if(webAr.ar.videoState[j] == 3){
+                                webAr.ar.videoState[j] = 2;
+                            } else {
+                                webAr.ar.videoState[j] = 1;
+                            }
                         }
                     }
                 }
@@ -2275,6 +2378,11 @@ var viewmode = 'marker';
             xmlhttp.send(null);
 
             return xml;
+        },
+
+        Err_Exit: function (msg) {
+            window.alert(msg);
+            location.href = "warning.html";
         }
     };
 
