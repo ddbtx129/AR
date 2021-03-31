@@ -102,7 +102,7 @@ var viewmode = 'marker';
                 }
             }    
 
-            document.querySelector('a-scene').enterVR();
+            //document.querySelector('a-scene').enterVR();
         },
 
         setArg: function () {
