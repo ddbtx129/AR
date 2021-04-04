@@ -2433,7 +2433,8 @@ var viewmode = 'marker';
                     self.cEle.height = self.videoDom.clientHeight;
                     self.cEle.style.marginTop = self.videoDom.style.marginTop;
                     self.cEle.style.top = self.videoDom.style.top;
-                    cCtx.drawImage(self.videoDom, self.videoDom.videoWidth/10, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight, 0, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight);
+                /*                    cCtx.drawImage(self.videoDom, self.videoDom.videoWidth/10, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight, 0, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight);*/
+                    cCtx.drawImage(self.videoDom, self.videoDom.videoWidth, 0, self.videoDom.videoWidth, self.videoDom.videoHeight, 0, 0, self.videoDom.videoWidth, self.videoDom.videoHeight);
                 };
                 self.rLensTimer = setInterval(rLensUpgrade, 1000 / 60);
             });
