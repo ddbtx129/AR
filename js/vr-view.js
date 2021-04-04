@@ -2205,7 +2205,7 @@ var viewmode = 'marker';
             var self = this;
             var val = self.arData;
 
-            document.getElementById("modeSwitch").style.display = "inline";
+            //document.getElementById("modeSwitch").style.display = "inline";
             document.getElementById("swUp").style.display = 'inline';
             document.getElementById("swDown").style.display = 'inline';
 
@@ -2221,9 +2221,9 @@ var viewmode = 'marker';
                 document.getElementById("swCamera").style.display = "none";
             }
 
-            if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
-                document.getElementById("arloader").style.display = 'none';
-            }
+            //if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
+            //    document.getElementById("arloader").style.display = 'none';
+            //}
 
             this.resetGyro();
         },
