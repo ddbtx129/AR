@@ -76,7 +76,7 @@ var viewmode = 'marker';
                 this.setMovieEvents();
             }
 
-            this.setSwitcher();
+            //this.setSwitcher();
 
             var elem = document.getElementById("version1");
             elem.innerHTML = 'v1.0.130';
