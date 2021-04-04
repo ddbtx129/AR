@@ -2424,7 +2424,8 @@ var viewmode = 'marker';
                 var cCtx = self.cEle.getContext('2d');
                 self.videoDom = document.querySelector('video');
 
-                self.videoDom.style.left = '-20%';
+                //self.videoDom.style.left = '-20%';
+                self.videoDom.style.left = '0%';
                 self.cEle.style.zIndex = -1;
 
                 function rLensUpgrade(){
