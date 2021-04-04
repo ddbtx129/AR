@@ -2424,8 +2424,8 @@ var viewmode = 'marker';
                 var cCtx = self.cEle.getContext('2d');
                 self.videoDom = document.querySelector('video');
 
-                //self.videoDom.style.left = '-20%';
-                self.videoDom.style.left = '0%';
+                self.videoDom.style.left = '-20%';
+                //self.videoDom.style.left = '0%';
                 self.cEle.style.zIndex = -1;
 
                 function rLensUpgrade(){
@@ -2433,8 +2433,18 @@ var viewmode = 'marker';
                     self.cEle.height = self.videoDom.clientHeight;
                     self.cEle.style.marginTop = self.videoDom.style.marginTop;
                     self.cEle.style.top = self.videoDom.style.top;
-                /*                    cCtx.drawImage(self.videoDom, self.videoDom.videoWidth/10, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight, 0, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight);*/
-                    cCtx.drawImage(self.videoDom, self.videoDom.videoWidth, 0, self.videoDom.videoWidth, self.videoDom.videoHeight, 0, 0, self.videoDom.videoWidth, self.videoDom.videoHeight);
+                    // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  引数(sx, sy)と引数(sw, sh)は、元イメージ      引数(dx, dy)は、描画するイメージ 引数(dw, dh)は、イメージを描画
+                    cCtx.drawImage(self.videoDom,
+
+                        self.videoDom.videoWidth / 10,
+                        0,
+                        9 * self.videoDom.videoWidth / 10,
+                        self.videoDom.videoHeight,
+
+                        0,
+                        0,
+                        9 * self.videoDom.videoWidth / 10,
+                        self.videoDom.videoHeight);
                 };
                 self.rLensTimer = setInterval(rLensUpgrade, 1000 / 60);
             });
