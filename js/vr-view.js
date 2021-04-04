@@ -2404,8 +2404,51 @@ var viewmode = 'marker';
         }
     };
 
+    var vr = {
+
+        cEle : null,
+        videoDom : null,
+        rLensTimer : null,
+
+        init : function() {
+            this.cEle = document.getElementById('rightlens');
+            if (this.cEle) {
+                this.setEvents();
+            }
+        },
+
+        setEvents : function() {
+            var self = this;
+            webAr.scene.addEventListener('enter-vr', function(e) {
+
+                var cCtx = self.cEle.getContext('2d');
+                self.videoDom = document.querySelector('video');
+
+                self.videoDom.style.left = '-20%';
+                self.cEle.style.zIndex = -1;
+
+                function rLensUpgrade(){
+                    self.cEle.width  = self.videoDom.clientWidth;
+                    self.cEle.height = self.videoDom.clientHeight;
+                    self.cEle.style.marginTop = self.videoDom.style.marginTop;
+                    self.cEle.style.top = self.videoDom.style.top;
+                    cCtx.drawImage(self.videoDom, self.videoDom.videoWidth/10, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight, 0, 0, 9*self.videoDom.videoWidth/10, self.videoDom.videoHeight);
+                };
+                self.rLensTimer = setInterval(rLensUpgrade, 1000 / 60);
+            });
+
+            webAr.scene.addEventListener('exit-vr', function(e) {
+                self.videoDom.style.left = '0px';
+                self.cEle.style.zIndex = -5;
+                clearInterval(self.rLensTimer);
+            });
+        }
+    };
+
     webAr.ar = ar;
+    webAr.vr = vr;
     webAr.ar.init();
+    webAr.vr.init();
 
     webAr.ar.setDiplayBtn(!!(ar.args[0].pv));
 
