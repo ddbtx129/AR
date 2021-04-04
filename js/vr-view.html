@@ -1,0 +1,98 @@
+﻿<html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <title>ＡＲ</title>
+
+        <link rel="stylesheet" href="css/vr-view.css">
+
+        <script type="text/javascript" src="js/vr-index.js"></script>
+        <!--<script type="text/javascript" src="js/ar/1.2.0/aframe-v1.2.0.js"></script>-->
+        <script type="text/javascript" src="js/ar/1.0.3/aframe.min.js"></script>
+        <script type="text/javascript" src="js/ar/AR-js/1.6.0/aframe-ar.min.js"></script>
+        <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
+        <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
+        <script type="text/javascript" src="js/camera.event.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="slide-show" id="slideshow" style="display: inline">
+            <div id="slidewrap">
+                <p class="p3" id="mloader3">データ読み込み中・・・</p>
+                <br />
+                <p class="p1" id="mloader1-1">ダブルタップで次の表示に進みます。</p>
+                <p class="p1" id="mloader1-2">トリプルタップで前の表示に戻ります。</p>
+                <br />
+                <p class="p2" id="mloader2"></p>
+            </div>
+        </div>
+
+        <!--<div id="modeswitch" class="switch" style="display: inline">
+            <a id="swmarker" class="switem"><img src="asset/marker-t.png" width="30"></a><br>
+            <a id="swpreview" class="switem"><img src="asset/preview-t.png" width="30"></a>
+        </div>-->
+
+        <img class="swichcamera" id="swCamera" src="asset/camera-w.png" style="display: inline" />
+        <img class="ar-R90" id="swR90" src="asset/r90-w.png" style="display: inline" />
+        <img class="ar-R00" id="swR00" src="asset/r00-w.png" style="display: inline" />
+
+        <div id="info1" class="info1" style="display: none">
+            <a id="swInfo" class="InfoItem">
+                <p id="p1">画面をタップすると、再生が開始されます。<br><br>音声が流れますのでご注意下さい。</p>
+            </a>
+        </div>
+
+        <img class="ar-videoplay" id="swPlay" src="asset/play-w-optiy.png" style="display: inline" />
+
+        <a id="info"></a>
+
+        <img class="ar-scrshot" id="swScrshot" src="asset/scrshot-w.png" style="display: none" />
+        <img class="ar-up" id="swUp" src="asset/up-w.png" style="display: inline" />
+        <img class="ar-down" id="swDown" src="asset/down-w.png" style="display: inline" />
+
+        <img class="ar-prev" id="imgPrev" src="asset/prev.png" style="display: none" />
+        <img class="ar-next" id="imgNext" src="asset/next.png" style="display: none" />
+
+        <div class="ar-MultiNo" style="display: inline">
+            <a class="ar-multi" id="swMulti" style="display: inline"><img id='imgMulti' src="asset/marker-w.png" /></a>
+            <span class="ar-MultiText" id="txtMultiNo"></span>
+        </div>
+
+        <a-scene id="arScene" vr-mode-ui="enabled: true;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+            <!--<a-camera position="0 1 4" cursor-visible="true" cursor-scale="2" cursor-color="#0095DD" cursor-opacity="0.5"></a-camera>-->
+            <!--<a-entity camera id="camera" position="0 1 4" look-controls></a-entity>-->
+            <!--<a-sky src="asset/018.png" rotation="0 0 0"></a-sky>-->
+            <a-entity id="camera-wrapper">
+                <a-entity camera id="camera" position="0 1.5 0" look-controls></a-entity>
+            </a-entity>
+        </a-scene>
+
+        <p id="version1">v1.0.12</p>
+        <p id="debug1" style="display: inline">wdh: 0.0 ∠ 0.0</p>
+        <p id="debug2" style="display: inline">pos X: 0.0 Y: 0.0 Z: 0.0</p>
+        <p id="debug3" style="display: inline">dir X: 0.0 Y: 0.0 Z: 0.0</p>
+
+        <canvas id="rightlens" style="position: absolute; top: 0px; left: 50%; z-index: -5;"></canvas>
+        <script src="js/gifshader.js"></script>
+        <script src="js/chromakey.js"></script>
+        <script src="js/vr-view.js"></script>
+
+    </body>
+
+</html>
