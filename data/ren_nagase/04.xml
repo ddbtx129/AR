@@ -16,6 +16,10 @@
                 <xs:element name="pv" type="xs:string" minOccurs="0" />
                 <!--マーカー数-->
                 <xs:element name="len" type="xs:string" minOccurs="0" />
+                <!--wrap幅・高さ-->
+                <xs:element name="wzoom" type="xs:string" minOccurs="0" />
+                <!--wrapポジション-->
+                <xs:element name="xyz" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -60,6 +64,8 @@
                 <xs:element name="oaz" type="xs:string" minOccurs="0" />
                 <xs:element name="obz" type="xs:string" minOccurs="0" />
                 <xs:element name="ocz" type="xs:string" minOccurs="0" />
+                <!--背景有無 背景ファイル名-->
+                <xs:element name="bg" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
               </xs:sequence>
@@ -76,6 +82,8 @@
     <ar0>2</ar0>
     <pv></pv>
     <len>2</len>
+    <wzoom></wzoom>
+    <xyz></xyz>
   </basedata>
 
   <pcsdata>
@@ -100,6 +108,7 @@
     <oaz></oaz>
     <obz></obz>
     <ocz></ocz>
+    <bg></bg>
     <l>12C</l>
   </pcsdata>
   
