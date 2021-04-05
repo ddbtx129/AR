@@ -2434,7 +2434,7 @@ var viewmode = 'marker';
                 var cCtx = self.cEle.getContext('2d');
                 self.videoDom = document.querySelector('video');
 
-                self.videoDom.style.left = '-10%';
+                self.videoDom.style.left = '15%';
                 //self.videoDom.style.left = '0%';
                 self.videoDom.style.top = '20%';
                 self.cEle.style.zIndex = -1;
