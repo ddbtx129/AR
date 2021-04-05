@@ -2434,9 +2434,9 @@ var viewmode = 'marker';
                 var cCtx = self.cEle.getContext('2d');
                 self.videoDom = document.querySelector('video');
 
-                self.videoDom.style.left = '-100%';
+                self.videoDom.style.left = '-10%';
                 //self.videoDom.style.left = '0%';
-                //self.videoDom.style.top = '20%';
+                self.videoDom.style.top = '20%';
                 self.cEle.style.zIndex = -1;
 
                 function rLensUpgrade(){
@@ -2461,7 +2461,7 @@ var viewmode = 'marker';
                     //    self.videoDom.videoHeight);
                     cCtx.drawImage(self.videoDom,
 
-                    0,
+                    self.videoDom.videoWidth / 10,
                     0,
                     9 * self.videoDom.videoWidth / 10,
                     self.videoDom.videoHeight,
