@@ -2443,7 +2443,6 @@ var viewmode = 'marker';
                     self.cEle.height = self.videoDom.clientHeight;
                     self.cEle.style.marginTop = self.videoDom.style.marginTop;
                     self.cEle.style.top = self.videoDom.style.top;
-                    self.videoDom.style.left = "10%";
                     //cCtx.Scale(1.2, 1.2);
                     // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  
                     //           引数(sx, sy)と引数(sw, sh)は、元イメージ      
