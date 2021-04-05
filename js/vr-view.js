@@ -2433,7 +2433,10 @@ var viewmode = 'marker';
                     self.cEle.height = self.videoDom.clientHeight;
                     self.cEle.style.marginTop = self.videoDom.style.marginTop;
                     self.cEle.style.top = self.videoDom.style.top;
-                    // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  引数(sx, sy)と引数(sw, sh)は、元イメージ      引数(dx, dy)は、描画するイメージ 引数(dw, dh)は、イメージを描画
+                    cCtx.Scale(1.2, 1.2);
+                    // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  
+                    //           引数(sx, sy)と引数(sw, sh)は、元イメージ      
+                    //           引数(dx, dy)は、描画するイメージ 引数(dw, dh)は、イメージを描画
                     cCtx.drawImage(self.videoDom,
 
                         self.videoDom.videoWidth / 10,
