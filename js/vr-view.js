@@ -2434,8 +2434,8 @@ var viewmode = 'marker';
                 var cCtx = self.cEle.getContext('2d');
                 self.videoDom = document.querySelector('video');
 
-                self.videoDom.style.left = '-20%';
-                self.videoDom.style.top = '20%';
+                self.videoDom.style.left = '-10%';
+                self.videoDom.style.top = '10%';
                 self.cEle.style.zIndex = -1;
                 
                 function rLensUpgrade(){
@@ -2447,28 +2447,12 @@ var viewmode = 'marker';
                     // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  
                     //           引数(sx, sy)と引数(sw, sh)は、元イメージ      
                     //           引数(dx, dy)は、描画するイメージ 引数(dw, dh)は、イメージを描画
-                    //cCtx.drawImage(self.videoDom,
-
-                    //    self.videoDom.videoWidth / 10,
-                    //    0,
-                    //    9 * self.videoDom.videoWidth / 10,
-                    //    self.videoDom.videoHeight,
-
-                    //    0,
-                    //    0,
-                    //    9 * self.videoDom.videoWidth / 10,
-                    //    self.videoDom.videoHeight);
                     cCtx.drawImage(self.videoDom,
-
-                    self.videoDom.videoWidth / 10,
-                    0,
-                    9 * self.videoDom.videoWidth / 10,
-                    self.videoDom.videoHeight,
-
-                    0,
-                    0,
-                    (9 * self.videoDom.videoWidth / 10) * 1.2,
-                    (self.videoDom.videoHeight) * 1.2);
+                                0, 0,
+                                9 * self.videoDom.videoWidth / 10, self.videoDom.videoHeight,
+                                0, 0,
+                        (9 * self.videoDom.videoWidth / 10) * 1.2, (self.videoDom.videoHeight) * 1.2
+                    );
                 };
 
                 self.rLensTimer = setInterval(rLensUpgrade, 1000 / 60);
