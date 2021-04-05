@@ -182,6 +182,9 @@ var viewmode = 'marker';
                     args[idx].OBZList = pcs[idx].obz && Number(pcs[idx].obz);
                     args[idx].OCZList = pcs[idx].ocz && Number(pcs[idx].ocz);
 
+                    // 背景 (a-sky)
+                    args[idx].BgList = pcs[idx].bg;
+
                     // マーカー＆オブジェクト
                     args[idx].MkObjList = pcs[idx].mo;
 
@@ -263,6 +266,9 @@ var viewmode = 'marker';
                 args[idx].OAZList = 0;
                 args[idx].OBZList = 0;
                 args[idx].OCZList = 0;
+
+                // 背景 (a-sky)
+                args[idx].BgList = args[idx].bg;
 
                 // ロゴ表示
                 var logo = args[idx].l && ('0000' + (parseInt(args[idx].l, 16).toString(10))).slice(-4);
@@ -2357,6 +2363,8 @@ var viewmode = 'marker';
                 var cObZ = tabelnm.getElementsByTagName("obz");
                 var cOcZ = tabelnm.getElementsByTagName("ocz");
 
+                var cBg = tabelnm.getElementsByTagName("bg");
+
                 var cL = tabelnm.getElementsByTagName("l");
 
                 var len = cM.length;
@@ -2384,6 +2392,8 @@ var viewmode = 'marker';
                         oaz: cOaZ[i].textContent,
                         obz: cObZ[i].textContent,
                         ocz: cOcZ[i].textContent,
+
+                        bg: cBg[i].textContent,
 
                         l: cL[i].textContent
                     };
