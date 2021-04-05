@@ -2423,10 +2423,10 @@ var viewmode = 'marker';
 
                 var cCtx = self.cEle.getContext('2d');
                 self.videoDom = document.querySelector('video');
-                window.alert(10);
+
                 //self.videoDom.style.left = '-5%';
                 //self.videoDom.style.left = '0%';
-                self.videoDom.style.top = '10%';
+                self.videoDom.style.top = '20%';
                 self.cEle.style.zIndex = -1;
 
                 function rLensUpgrade(){
