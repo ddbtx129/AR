@@ -2458,8 +2458,8 @@ var viewmode = 'marker';
 
                     0,
                     0,
-                    9 * self.videoDom.videoWidth / 10,
-                    self.videoDom.videoHeight);
+                    (9 * self.videoDom.videoWidth / 10) * 1.2,
+                    (self.videoDom.videoHeight) * 1.2);
                 };
 
                 self.rLensTimer = setInterval(rLensUpgrade, 1000 / 60);
