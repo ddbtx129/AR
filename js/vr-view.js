@@ -2465,7 +2465,7 @@ var viewmode = 'marker';
                     9 * self.videoDom.videoWidth / 10,
                     self.videoDom.videoHeight,
 
-                    0
+                    0,
                     0,
                     (9 * self.videoDom.videoWidth / 10) * 1.2,
                     (self.videoDom.videoHeight) * 1.2);
