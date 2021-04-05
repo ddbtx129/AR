@@ -60,6 +60,8 @@
                 <xs:element name="oaz" type="xs:string" minOccurs="0" />
                 <xs:element name="obz" type="xs:string" minOccurs="0" />
                 <xs:element name="ocz" type="xs:string" minOccurs="0" />
+                <!--背景有無 背景ファイル名-->
+                <xs:element name="bg" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
               </xs:sequence>
@@ -100,6 +102,7 @@
     <oaz></oaz>
     <obz></obz>
     <ocz></ocz>
+    <bg></bg>
     <l>1F4</l>
   </pcsdata>
 
