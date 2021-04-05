@@ -2437,18 +2437,30 @@ var viewmode = 'marker';
                     // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  
                     //           引数(sx, sy)と引数(sw, sh)は、元イメージ      
                     //           引数(dx, dy)は、描画するイメージ 引数(dw, dh)は、イメージを描画
+                    //cCtx.drawImage(self.videoDom,
+
+                    //    self.videoDom.videoWidth / 10,
+                    //    0,
+                    //    9 * self.videoDom.videoWidth / 10,
+                    //    self.videoDom.videoHeight,
+
+                    //    0,
+                    //    0,
+                    //    9 * self.videoDom.videoWidth / 10,
+                    //    self.videoDom.videoHeight);
                     cCtx.drawImage(self.videoDom,
 
-                        self.videoDom.videoWidth / 10,
-                        0,
-                        9 * self.videoDom.videoWidth / 10,
-                        self.videoDom.videoHeight,
+                    0,
+                    0,
+                    9 * self.videoDom.videoWidth / 10,
+                    self.videoDom.videoHeight,
 
-                        0,
-                        0,
-                        9 * self.videoDom.videoWidth / 10,
-                        self.videoDom.videoHeight);
+                    0,
+                    0,
+                    9 * self.videoDom.videoWidth / 10,
+                    self.videoDom.videoHeight);
                 };
+
                 self.rLensTimer = setInterval(rLensUpgrade, 1000 / 60);
             });
 
