@@ -777,11 +777,11 @@ var viewmode = 'marker';
                 main.setAttribute('id', 'main' + (idx + 1).toString());
                 main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
 
-                if (!val[idx].isGif) {
+                //if (!val[idx].isGif) {
 
                     main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                    if (!val[idx].isGltf) {
+                    //if (!val[idx].isGltf) {
 
                         main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                         main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
@@ -800,13 +800,13 @@ var viewmode = 'marker';
                             shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
-                    } else {
-                        main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                    }
+                    //} else {
+                    //    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                    //}
 
-                } else {
-                    main.setAttribute('rotation', '-30 0 0');
-                }
+                //} else {
+                //    main.setAttribute('rotation', '-30 0 0');
+                //}
 
                 self.arData[idx].main = main;
                 
@@ -825,11 +825,11 @@ var viewmode = 'marker';
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
                     amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
 
-                    if (!val[idx].isGif) {
+                    //if (!val[idx].isGif) {
 
                         amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                        if (!val[idx].isGltf) {
+/*                        if (!val[idx].isGltf) {*/
                             amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
@@ -851,9 +851,9 @@ var viewmode = 'marker';
                             amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
-                    } else {
-                        amain.setAttribute('rotation', '-30 0 0');
-                    }
+                    //} else {
+                    //    amain.setAttribute('rotation', '-30 0 0');
+                    //}
 
                     self.arData[idx].amain = amain;
                 }
@@ -868,11 +868,11 @@ var viewmode = 'marker';
                     bmain.setAttribute('id', 'bmain' + (idx + 1).toString());
                     bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
 
-                    if (!val[idx].isGif) {
+                    //if (!val[idx].isGif) {
 
                         bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                        if (!val[idx].isGltf) {
+                        //if (!val[idx].isGltf) {
                             bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
@@ -890,13 +890,13 @@ var viewmode = 'marker';
                                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
-                        } else {
-                            bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                        }
+                    //    } else {
+                    //        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                    //    }
 
-                    } else {
-                        bmain.setAttribute('rotation', '-30 0 0');
-                    }
+                    //} else {
+                    //    bmain.setAttribute('rotation', '-30 0 0');
+                    //}
 
                     self.arData[idx].bmain = bmain;
                 }
@@ -911,7 +911,7 @@ var viewmode = 'marker';
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
                     cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
 
-                    if (!val[idx].isGif) {
+/*                    if (!val[idx].isGif) {*/
 
                         cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -933,13 +933,13 @@ var viewmode = 'marker';
                                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
-                        } else {
-                            cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                        }
+                    //    } else {
+                    //        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                    //    }
 
-                    } else {
-                        cmain.setAttribute('rotation', '-30 0 0');
-                    }
+                    //} else {
+                    //    cmain.setAttribute('rotation', '-30 0 0');
+                    //}
 
                     self.arData[idx].cmain = cmain;
                 }
