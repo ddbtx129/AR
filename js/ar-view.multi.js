@@ -847,9 +847,9 @@ var viewmode = 'marker';
                                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
-                        } else {
-                            amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                        }
+                        //} else {
+                        //    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        //}
 
                     //} else {
                     //    amain.setAttribute('rotation', '-30 0 0');
