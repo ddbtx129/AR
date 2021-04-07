@@ -640,8 +640,8 @@ var viewmode = 'marker';
                 wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(defwrap[idx].Pos));
                 //wrap.setAttribute('rotation', '0 0 0');
                 wrap.setAttribute('rotation', xAngle + ' 0 0');
-                //wrap.setAttribute('src', rootPath + 'asset/plane.png');
-                //wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                wrap.setAttribute('material', 'transparent: true, opacity: 0');
                 wrap.setAttribute('style', 'z-index: 5');
                 wrap.setAttribute('visible', true);
                 
@@ -668,7 +668,9 @@ var viewmode = 'marker';
 
                 if (val[idx].isShadow) {
                     var shadow = document.createElement('a-image');
-
+                    if (!!(val[idx].isGif)) {
+                        shadow = document.createElement('a-entity')
+                    }
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
                     shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
                     shadow.setAttribute('rotation', '-90 0 0');
@@ -687,6 +689,9 @@ var viewmode = 'marker';
 
                     if (self.args[idx].OAtList) {
                         var ashadow = document.createElement('a-image');
+                        if (!!(val[idx].isGif)) {
+                            ashadow = document.createElement('a-entity');
+                        }
                         var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3ashadowa = posVec3ashadow;
 
@@ -712,6 +717,9 @@ var viewmode = 'marker';
                     if (self.args[idx].OBtList) {
 
                         var bshadow = document.createElement('a-image');
+                        if (!!(val[idx].isGif)) {
+                            bshadow = document.createElement('a-entity');
+                        }
                         var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3bshadow = posVec3bshadow;
 
@@ -737,6 +745,9 @@ var viewmode = 'marker';
                     if (self.args[idx].OCtList) {
 
                         var cshadow = document.createElement('a-image');
+                        if (!!(val[idx].isGif)) {
+                            cshadow = document.createElement('a-entity');
+                        }
                         var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3cshadow = posVec3cshadow;
 
@@ -764,6 +775,9 @@ var viewmode = 'marker';
 
                 if (!val[idx].isMp4) {
                     elname = 'a-image'
+                    if (!!(val[idx].isGif)) {
+                        elname = 'a-entity';
+                    }
                 } else if (val[idx].isMp4) {
                     elname = 'a-video'
                 }
