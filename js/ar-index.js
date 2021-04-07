@@ -1,4 +1,4 @@
-﻿var rootPath = "https://www.aoshima-bk.co.jp/special/webar/";
+﻿var rootPath = "https://ddbtx129.github.io/AR/";
 var arType = 1;
 
 (function () {
@@ -226,10 +226,10 @@ var arType = 1;
         if (orientation == 'Horizontal') {
             
             document.getElementById("swUp").style.display = 'none';
-            document.getElementById("swDown").style.display = 'none';
+            document.getElementById("swDown").style.display = 'none'
 
             document.getElementById("swR90").style.display = 'none';
-            document.getElementById("swR00").style.display = 'none';
+            document.getElementById("swR00").style.display = 'none'
 
         } else if (orientation == 'Vertical') {
 
@@ -237,7 +237,7 @@ var arType = 1;
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swR90").style.display = 'inline';
-            document.getElementById("swR00").style.display = 'inline';
+            document.getElementById("swR00").style.display = 'inline'
 
         }
     }
