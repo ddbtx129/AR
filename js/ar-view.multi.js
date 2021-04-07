@@ -640,8 +640,8 @@ var viewmode = 'marker';
                 wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(defwrap[idx].Pos));
                 //wrap.setAttribute('rotation', '0 0 0');
                 wrap.setAttribute('rotation', xAngle + ' 0 0');
-                wrap.setAttribute('src', rootPath + 'asset/plane.png');
-                wrap.setAttribute('material', 'transparent: true, opacity: 0');
+                //wrap.setAttribute('src', rootPath + 'asset/plane.png');
+                //wrap.setAttribute('material', 'transparent: true, opacity: 0');
                 wrap.setAttribute('style', 'z-index: 5');
                 wrap.setAttribute('visible', true);
                 
