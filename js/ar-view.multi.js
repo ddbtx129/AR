@@ -911,11 +911,11 @@ var viewmode = 'marker';
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
                     cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
 
-/*                    if (!val[idx].isGif) {*/
+                    //if (!val[idx].isGif) {
 
                         cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                        if (!val[idx].isGltf) {
+                        //if (!val[idx].isGltf) {
                             cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
