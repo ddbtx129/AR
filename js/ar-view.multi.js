@@ -100,9 +100,7 @@ var viewmode = 'marker';
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
-            }    
-
-            //document.querySelector('a-scene').enterVR();
+            }            
         },
 
         setArg: function () {
@@ -139,6 +137,9 @@ var viewmode = 'marker';
 
                 arg.ExDate = base[0].ed && (parseInt(base[0].ed, 16).toString(10));
 
+                arg.WZOOM = base[0].wzoom && (parseInt(base[0].wzoom, 10).toString());
+                arg.XYZ = base[0].xyz && (base[0].xyz).toString();
+
                 arg.Multi = pcs.length;
 
                 for (idx = 0; idx < arg.Multi; idx++) {
@@ -154,6 +155,9 @@ var viewmode = 'marker';
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
                     // サイズ
                     args[idx].sizeList = pcs[idx].wh && (parseInt(pcs[idx].wh, 16).toString(10));
+                    // 倍率
+                    args[idx].WRAPZOOM = (pcs[idx].wrapzoom) && (parseInt(pcs[idx].wrapzoom, 10).toString());
+
                     // 角度
                     args[idx].angleList = pcs[idx].an && (parseInt(pcs[idx].an, 10).toString(2));
                     // オブジェクトタイプ
@@ -302,7 +306,10 @@ var viewmode = 'marker';
 
             if (!!(self.arg.ExDate)) {
                 if (parseInt(self.arg.ExDate.toString()).toString(10) < (year + month + day).toString()) {
-                    this.Err_Exit('表示期限が終了しているため、表示することができません。');
+                    var str = self.arg.ExDate.toString();
+                    var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
+
+                    this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
                 }
             }
         },
@@ -407,14 +414,14 @@ var viewmode = 'marker';
                 // サイズ
                 //self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
                 self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
-
+                
                 var wh = SizeSplit(self.args[idx].sizeList).toString().split(',');
                 var i = ((parseInt(self.args[idx].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeList).toString(10)).length : (parseInt(self.args[idx].sizeList).toString(10)).length + 1;
                 var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
-                
+
                 dataObj[idx].size = { w: (Number(wh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
                 defobj[idx].Scale = { x: dataObj[idx].size.w, y: dataObj[idx].size.h, z: dataObj[idx].size.h };
-                
+
                 // オブジェクトソース
                 if (dataObj[idx].path) {
 
@@ -453,6 +460,7 @@ var viewmode = 'marker';
 
                                 assets.appendChild(imgAdd[i].A);
                             }
+
                             if (!!(self.args[idx].OBtList)) {
                                 dataObj[idx].ObjectPath[i].B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].B;
 
@@ -465,6 +473,7 @@ var viewmode = 'marker';
 
                                 assets.appendChild(imgAdd[i].B);
                             }
+
                             if (!!(self.args[idx].OCtList)) {
                                 dataObj[idx].ObjectPath[i].C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].C;
 
@@ -619,13 +628,18 @@ var viewmode = 'marker';
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 defwrap[idx] = { Pos: defwrapPos, Scale: defwrapScale };
-
-                var wrap= document.createElement('a-entity');
+                var xAngle = (!!(self.args[idx].angleList) ? Number(self.args[idx].angleList) : 0);
+                var wrap = document.createElement('a-entity');
 
                 wrap.setAttribute('id', 'base' + ((idx + 1)).toString());
                 wrap.setAttribute('scale', AFRAME.utils.coordinates.stringify(defwrap[idx].Scale));
+                if (!(self.arData[idx].isPV) && !!(self.arg.XYZ)) {
+                    var pos = AFRAME.utils.coordinates.parse(self.arg.XYZ);
+                    defwrap[idx].Pos = pos;
+                }
                 wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(defwrap[idx].Pos));
-                wrap.setAttribute('rotation', '0 0 0');
+                //wrap.setAttribute('rotation', '0 0 0');
+                wrap.setAttribute('rotation', xAngle + ' 0 0');
                 wrap.setAttribute('src', rootPath + 'asset/plane.png');
                 wrap.setAttribute('material', 'transparent: true, opacity: 0');
                 wrap.setAttribute('style', 'z-index: 5');
@@ -1339,7 +1353,7 @@ var viewmode = 'marker';
                             to: '0 360 0',
                             startEvents: 'turn2'
                         });
-                    } else if (val[oidx].isAnime == 13) {
+                    } else if (val[idx].isAnime == 13) {
                         self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                         // 弾む
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
@@ -1364,7 +1378,7 @@ var viewmode = 'marker';
                         });
                     }
                 } else {
-                    if (val[oidx].isAnime != 99) {
+                    if (val[idx].isAnime != 99) {
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn0', {
                             property: 'rotation',
                             dur: 3000,
@@ -1475,8 +1489,11 @@ var viewmode = 'marker';
                         viewmode = 'marker';
                         pvAngle = -30;
                         //wrapZoom = 0.625;
-                        wrapZoom = 0.4;
-                        zoomRateH = zoomRateH * wrapZoom;
+                        //wrapZoom = 0.4;
+
+                        //wrapZoom = (!(self.arg.WZOOM)) ? 0.4 : Number(self.arg.WZOOM) <= 0 ? 0.4 : Number(self.arg.WZOOM);
+                        wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 0.4 : Number(self.args[idx].WRAPZOOM) <= 0 ? 0.4 : Number(self.args[idx].WRAPZOOM);
+                        sizeList = zoomRateH * wrapZoom;
 
                         defwrap[idx].Pos.y = -5;
 
@@ -1506,8 +1523,10 @@ var viewmode = 'marker';
 
                         viewmode = 'nft';
                         pvAngle = -90;
-                        //wrapZoom = 30;
-                        wrapZoom = 4;
+
+                        //wrapZoom = (!(self.arg.WZOOM)) ? 30 : Number(self.arg.WZOOM) <= 0 ? 30 : Number(self.arg.WZOOM);
+                        wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 30 : Number(self.args[idx].WRAPZOOM) <= 0 ? 30 : Number(self.args[idx].WRAPZOOM);
+                        //wrapZoom = 4;
                         zoomRateH = zoomRateH * wrapZoom;
 
                         mWrap[idx].setAttribute('markerhandler', '');
@@ -1633,7 +1652,7 @@ var viewmode = 'marker';
                 }
                 
                 self.arData[idx].yClickRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.2 : 5);
-                self.arData[idx].yTouchRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.02 : 0.5);
+                self.arData[idx].yTouchRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.02 : (0.1 * wrapZoom));
 
                 self.arData[idx].wrapPos = wrapPos;
                 self.arData[idx].zoomRateH = zoomRateH;
@@ -2272,7 +2291,7 @@ var viewmode = 'marker';
                     var xmlTb = xmlhttp.responseXML;
                     xml = setXmldata(xmlTb);
                 }
-            }
+            };
 
             function setXmldata(xmldata) {
 
@@ -2282,6 +2301,8 @@ var viewmode = 'marker';
                 var cAr = xmldata.getElementsByTagName("ar0");
                 var cPv = xmldata.getElementsByTagName("pv");
                 var cLen = xmldata.getElementsByTagName("len");
+                var cWzoom = xmldata.getElementsByTagName("wzoom");
+                var cXyz = xmldata.getElementsByTagName("xyz");
 
                 var len = cEd.length;
                 for (var i = 0; i < len; i++) {
@@ -2289,9 +2310,11 @@ var viewmode = 'marker';
                         ed: cEd[i].textContent,
                         ar: cAr[i].textContent,
                         pv: cPv[i].textContent,
-                        len: cLen[i].textContent
+                        len: cLen[i].textContent,
+                        wzoom: cWzoom[i].textContent,
+                        xyz: cXyz[i].textContent
                     };
-                }
+                };
 
                 return data;
             };
@@ -2311,9 +2334,10 @@ var viewmode = 'marker';
                     var xmlTb = xmlhttp.responseXML;
                     xml = setXmldata(xmlTb);
                 }
-            }
+            };
 
             function setXmldata(tabelnm) {
+
                 var data = new Array();
 
                 var cEd = tabelnm.getElementsByTagName("ed1");
@@ -2326,6 +2350,7 @@ var viewmode = 'marker';
                 var cXs = tabelnm.getElementsByTagName("xs");
                 var cAn = tabelnm.getElementsByTagName("an");
                 var cWh = tabelnm.getElementsByTagName("wh");
+                var cWrapzoom = tabelnm.getElementsByTagName("wrapzoom");
                 var cO = tabelnm.getElementsByTagName("o");
                 var cO1 = tabelnm.getElementsByTagName("o1");
                 var cO2 = tabelnm.getElementsByTagName("o2");
@@ -2338,6 +2363,8 @@ var viewmode = 'marker';
                 var cOaZ = tabelnm.getElementsByTagName("oaz");
                 var cObZ = tabelnm.getElementsByTagName("obz");
                 var cOcZ = tabelnm.getElementsByTagName("ocz");
+
+                var cBg = tabelnm.getElementsByTagName("bg");
 
                 var cL = tabelnm.getElementsByTagName("l");
 
@@ -2354,6 +2381,7 @@ var viewmode = 'marker';
                         xs: cXs[i].textContent,
                         an: cAn[i].textContent,
                         wh: cWh[i].textContent,
+                        wrapzoom: cWrapzoom[i].textContent,
                         o: cO[i].textContent,
                         o1: cO1[i].textContent,
                         o2: cO2[i].textContent,
@@ -2367,9 +2395,11 @@ var viewmode = 'marker';
                         obz: cObZ[i].textContent,
                         ocz: cOcZ[i].textContent,
 
+                        bg: cBg[i].textContent,
+
                         l: cL[i].textContent
                     };
-                }
+                };
 
                 return data;
             };
