@@ -16,12 +16,12 @@
 
         <link rel="stylesheet" href="css/ar-view.multi.css">
 
-        <script type="text/javascript" src="js/ar-index.js"></script>
+        <script type="text/javascript" src="js/ar-index.min.js"></script>
         <script type="text/javascript" src="js/nft/aframe-master.min.js"></script>
         <script type="text/javascript" src="js/nft/aframe-ar-nft.js"></script>
         <script type="text/javascript" src="js/ar/aframe-shadow-plane.js"></script>
         <script type="text/javascript" src="js/ar/aframe-text-geometry-component.min.js"></script>
-        <script type="text/javascript" src="js/camera.event.js"></script>
+        <script type="text/javascript" src="js/camera.event.min.js"></script>
 
     </head>
 
@@ -73,7 +73,7 @@
             <span class="ar-MultiText" id="txtMultiNo"></span>
         </div>
 
-        <a-scene id="arScene" vr-mode-ui="enabled: true;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
@@ -91,8 +91,8 @@
         <p id="debug2" style="display: inline">pos X: 0.0 Y: 0.0 Z: 0.0</p>
         <p id="debug3" style="display: inline">dir X: 0.0 Y: 0.0 Z: 0.0</p>
 
-        <script src="js/gifshader.js"></script>
-        <script src="js/chromakey.js"></script>
+        <script src="js/gifshader.min.js"></script>
+        <script src="js/chromakey.min.js"></script>
         <script src="js/ar-view.multi.js"></script>
 
 </body>
