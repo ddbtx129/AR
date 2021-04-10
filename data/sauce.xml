@@ -16,6 +16,10 @@
                 <xs:element name="pv" type="xs:string" minOccurs="0" />
                 <!--マーカー数-->
                 <xs:element name="len" type="xs:string" minOccurs="0" />
+                <!--wrap幅・高さ-->
+                <xs:element name="wzoom" type="xs:string" minOccurs="0" />
+                <!--wrapポジション-->
+                <xs:element name="xyz" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -43,6 +47,8 @@
                 <xs:element name="an" type="xs:string" minOccurs="0" />
                 <!--幅・高さ-->
                 <xs:element name="wh" type="xs:string" minOccurs="0" />
+                <!--倍率-->
+                <xs:element name="wrapzoom" type="xs:string" minOccurs="0" />
                 <!--オブジェクトフォルダ名-->
                 <xs:element name="o" type="xs:string" minOccurs="0" />
                 <!--オブジェクトフォルダ名1-->
@@ -56,10 +62,10 @@
                 <xs:element name="ob" type="xs:string" minOccurs="0" />
                 <xs:element name="oc" type="xs:string" minOccurs="0" />
                 <!--オブジェクト Z軸-->
-                <xs:element name="o-z" type="xs:string" minOccurs="0" />
-                <xs:element name="oa-z" type="xs:string" minOccurs="0" />
-                <xs:element name="ob-z" type="xs:string" minOccurs="0" />
-                <xs:element name="oc-z" type="xs:string" minOccurs="0" />
+                <xs:element name="oz" type="xs:string" minOccurs="0" />
+                <xs:element name="oaz" type="xs:string" minOccurs="0" />
+                <xs:element name="obz" type="xs:string" minOccurs="0" />
+                <xs:element name="ocz" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
               </xs:sequence>
@@ -72,10 +78,12 @@
   </xs:schema>
         
   <basedata>
-      <ed0></ed0>
-      <ar0></ar0>
-      <pv></pv>
-      <len></len>
+    <ed0></ed0>
+    <ar0></ar0>
+    <pv></pv>
+    <len></len>
+    <wzoom></wzoom>
+    <xyz></xyz>
   </basedata>
 
   <pcsdata>
@@ -96,10 +104,11 @@
     <oa></oa>
     <ob></ob>
     <oc></oc>
-    <o-z></o-z>
-    <oa-z></oa-z>
-    <ob-z></ob-z>
-    <oc-z></oc-z>
+    <oz></oz>
+    <oaz></oaz>
+    <obz></obz>
+    <ocz></ocz>
+    <bg></bg>
     <l></l>
   </pcsdata>
   
