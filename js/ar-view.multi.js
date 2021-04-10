@@ -777,7 +777,6 @@ var viewmode = 'marker';
                     elname = 'a-entity'
                 } else if (val[idx].isGltf) {
                     elname = 'a-image'
-                }
                 } else if (val[idx].isMp4) {
                     elname = 'a-video'
                 }
