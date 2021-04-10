@@ -340,17 +340,6 @@ var viewmode = 'marker';
                 var n_object = '';
                 var seq = 1;
 
-                dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
-                dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
-                dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
-                dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
-                dataObj[idx].isPV = !!(self.arg.PVList);
-                dataObj[idx].isNFT = !!(self.arg.ARList);
-                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
-                dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
-                dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
-                dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
-
                 if (!(self.args[idx].ObjectList)) {
                     seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
                     var no = Number(self.args[idx].ObjectList2);
@@ -411,16 +400,16 @@ var viewmode = 'marker';
                     n_idx = dataObj[idx].srcno.length
                 }
 
-                //dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
-                //dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
-                //dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
-                //dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
-                //dataObj[idx].isPV = !!(self.arg.PVList);
-                //dataObj[idx].isNFT = !!(self.arg.ARList);
-                //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
-                //dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
-                //dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
-                //dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
+                dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
+                dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
+                dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
+                dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
+                dataObj[idx].isPV = !!(self.arg.PVList);
+                dataObj[idx].isNFT = !!(self.arg.ARList);
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
+                dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
+                dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
+                dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
                 
                 // サイズ
                 //self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
