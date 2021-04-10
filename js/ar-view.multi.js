@@ -666,7 +666,7 @@ var viewmode = 'marker';
                 var bsrcname = '#bsource' + (((idx + 1) * 100) + objno).toString();
                 var csrcname = '#csource' + (((idx + 1) * 100) + objno).toString();
 
-                if (val[idx].isShadow) {
+                if (val[idx].isShadow && !(val[idx].isGltf)) {
                     var shadow = document.createElement('a-image');
 
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
@@ -685,7 +685,7 @@ var viewmode = 'marker';
 
                     self.arData[idx].shadow = shadow;
 
-                    if (self.args[idx].OAtList) {
+                    if (self.args[idx].OAtList && !(val[idx].isGltf)) {
                         var ashadow = document.createElement('a-image');
                         var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3ashadowa = posVec3ashadow;
@@ -709,7 +709,7 @@ var viewmode = 'marker';
                         self.arData[idx].ashadow = ashadow;
                     }
 
-                    if (self.args[idx].OBtList) {
+                    if (self.args[idx].OBtList && !(val[idx].isGltf)) {
 
                         var bshadow = document.createElement('a-image');
                         var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
@@ -734,7 +734,7 @@ var viewmode = 'marker';
                         self.arData[idx].bshadow = bshadow;
                     }
 
-                    if (self.args[idx].OCtList) {
+                    if (self.args[idx].OCtList && !(val[idx].isGltf)) {
 
                         var cshadow = document.createElement('a-image');
                         var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
@@ -764,8 +764,8 @@ var viewmode = 'marker';
 
                 if (!val[idx].isMp4) {
                     elname = 'a-entity'
-                } else if (val[idx].isGltf) {
-                    elname = 'a-image'
+                //} else if (val[idx].isGltf) {
+                //    elname = 'a-image'
                 } else if (val[idx].isMp4) {
                     elname = 'a-video'
                 }
@@ -982,7 +982,7 @@ var viewmode = 'marker';
 
             var srcname = '#source' + (((Number(oidx) + 1) * 100) + objno).toString();
 
-            if (val[oidx].isShadow) {
+            if (val[oidx].isShadow && !(val[oidx].isGltf)) {
 
                 var shadow = document.createElement('a-image');
 
@@ -1002,7 +1002,7 @@ var viewmode = 'marker';
 
                 self.arData[oidx].shadow = shadow;
 
-                if (self.args[oidx].OAtList) {
+                if (self.args[oidx].OAtList && !(val[oidx].isGltf)) {
 
                     var ashadow = document.createElement('a-image');
                     var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
@@ -1027,7 +1027,7 @@ var viewmode = 'marker';
                     self.arData[oidx].ashadow = ashadow;
                 }
 
-                if (self.args[oidx].OBtList) {
+                if (self.args[oidx].OBtList && !(val[oidx].isGltf)) {
 
                     var bshadow = document.createElement('a-image');
                     var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
@@ -1052,7 +1052,7 @@ var viewmode = 'marker';
                     self.arData[oidx].bshadow = bshadow;
                 }
 
-                if (self.args[oidx].OCtList) {
+                if (self.args[oidx].OCtList && !(val[oidx].isGltf)) {
 
                     var cshadow = document.createElement('a-image');
                     var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
@@ -1082,8 +1082,8 @@ var viewmode = 'marker';
 
             if (!val[oidx].isMp4) {
                 elname = 'a-image'
-            } else if (val[oidx].isGltf) {
-                elname = 'a-entity'
+            //} else if (val[oidx].isGltf) {
+            //    elname = 'a-entity'
             } else if (val[oidx].isMp4) {
                 elname = 'a-video'
             }
