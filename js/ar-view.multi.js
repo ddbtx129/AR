@@ -1504,7 +1504,8 @@ var viewmode = 'marker';
                         //wrapZoom = 0.4;
 
                         //wrapZoom = (!(self.arg.WZOOM)) ? 0.4 : Number(self.arg.WZOOM) <= 0 ? 0.4 : Number(self.arg.WZOOM);
-                        wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 0.4 : Number(self.args[idx].WRAPZOOM) <= 0 ? 0.4 : Number(self.args[idx].WRAPZOOM);
+                        //wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 0.4 : Number(self.args[idx].WRAPZOOM) <= 0 ? 0.4 : Number(self.args[idx].WRAPZOOM);
+                        wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 0.2 : Number(self.args[idx].WRAPZOOM) <= 0 ? 0.2 : Number(self.args[idx].WRAPZOOM);
                         sizeList = zoomRateH * wrapZoom;
 
                         defwrap[idx].Pos.y = -5;
