@@ -799,8 +799,6 @@ var viewmode = 'marker';
                         main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                         main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
-                        main.setAttribute('style', 'z-index: 3');
-
                         if (val[idx].isMp4) {
                             main.setAttribute('play', 'true');
                         }
@@ -814,12 +812,15 @@ var viewmode = 'marker';
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
+                        main.setAttribute('gltf-model', srcname);
                         main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                     }
 
                 } else {
                     main.setAttribute('rotation', '-30 0 0');
                 }
+
+                main.setAttribute('style', 'z-index: 3');
 
                 self.arData[idx].main = main;
                 
@@ -846,8 +847,6 @@ var viewmode = 'marker';
                             amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
-                            amain.setAttribute('style', 'z-index: 4');
-
                             if (val[idx].isMp4) {
                                 amain.setAttribute('play', 'true');
                             }
@@ -861,12 +860,15 @@ var viewmode = 'marker';
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         } else {
+                            amain.setAttribute('gltf-model', asrcname);
                             amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
                     } else {
                         amain.setAttribute('rotation', '-30 0 0');
                     }
+
+                    amain.setAttribute('style', 'z-index: 4');
 
                     self.arData[idx].amain = amain;
                 }
@@ -889,8 +891,6 @@ var viewmode = 'marker';
                             bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
-                            bmain.setAttribute('style', 'z-index: 4');
-
                             if (val[idx].isMp4) {
                                 bmain.setAttribute('play', 'true');
                             }
@@ -904,12 +904,15 @@ var viewmode = 'marker';
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         } else {
+                            bmain.setAttribute('gltf-model', bsrcname);
                             bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
                     } else {
                         bmain.setAttribute('rotation', '-30 0 0');
                     }
+
+                    bmain.setAttribute('style', 'z-index: 4');
 
                     self.arData[idx].bmain = bmain;
                 }
@@ -932,8 +935,6 @@ var viewmode = 'marker';
                             cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
-                            cmain.setAttribute('style', 'z-index: 4');
-
                             if (val[idx].isMp4) {
                                 cmain.setAttribute('play', 'true');
                             }
@@ -947,12 +948,15 @@ var viewmode = 'marker';
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         } else {
+                            cmain.setAttribute('gltf-model', csrcname);
                             cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
                     } else {
                         cmain.setAttribute('rotation', '-30 0 0');
                     }
+
+                    cmain.setAttribute('style', 'z-index: 4');
 
                     self.arData[idx].cmain = cmain;
                 }
@@ -1089,6 +1093,8 @@ var viewmode = 'marker';
 
             if (!val[oidx].isMp4) {
                 elname = 'a-image'
+            } else if (val[oidx].isGltf) {
+                elname = 'a-entity'
             } else if (val[oidx].isMp4) {
                 elname = 'a-video'
             }
@@ -1110,8 +1116,6 @@ var viewmode = 'marker';
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
 
-                    main.setAttribute('style', 'z-index: 3');
-
                     if (val[oidx].isMp4) {
                         main.setAttribute('play', 'true');
                     }
@@ -1125,12 +1129,15 @@ var viewmode = 'marker';
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
+                    main.setAttribute('gltf-model', srcname);
                     main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                 }
 
             } else {
                 main.setAttribute('rotation', '-30 0 0');
             }
+
+            main.setAttribute('style', 'z-index: 3');
 
             self.arData[oidx].main = main;
 
@@ -1167,6 +1174,7 @@ var viewmode = 'marker';
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
+                        amain.setAttribute('gltf-model', asrcname);
                         amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
@@ -1195,8 +1203,6 @@ var viewmode = 'marker';
                         bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
                         bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
 
-                        bmain.setAttribute('style', 'z-index: 4');
-
                         if (val[oidx].isMp4) {
                             bmain.setAttribute('play', 'true');
                         }
@@ -1210,12 +1216,15 @@ var viewmode = 'marker';
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
+                        bmain.setAttribute('gltf-model', bsrcname);
                         bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
                 } else {
                     bmain.setAttribute('rotation', '-30 0 0');
                 }
+
+                bmain.setAttribute('style', 'z-index: 4');
 
                 self.arData[oidx].bmain = bmain;
             }
@@ -1238,8 +1247,6 @@ var viewmode = 'marker';
                         cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
                         cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
 
-                        cmain.setAttribute('style', 'z-index: 4');
-
                         if (val[oidx].isMp4) {
                             cmain.setAttribute('play', 'true');
                         }
@@ -1253,12 +1260,15 @@ var viewmode = 'marker';
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
+                        cmain.setAttribute('gltf-model', csrcname);
                         cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
                 } else {
                     cmain.setAttribute('rotation', '-30 0 0');
                 }
+
+                cmain.setAttribute('style', 'z-index: 4');
 
                 self.arData[oidx].cmain = cmain;
             }
