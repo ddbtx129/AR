@@ -339,7 +339,18 @@ var viewmode = 'marker';
                 var object = {};
                 var n_object = '';
                 var seq = 1;
-                
+
+                dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
+                dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
+                dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
+                dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
+                dataObj[idx].isPV = !!(self.arg.PVList);
+                dataObj[idx].isNFT = !!(self.arg.ARList);
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
+                dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
+                dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
+                dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
+
                 if (!(self.args[idx].ObjectList)) {
                     seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
                     var no = Number(self.args[idx].ObjectList2);
@@ -400,16 +411,16 @@ var viewmode = 'marker';
                     n_idx = dataObj[idx].srcno.length
                 }
 
-                dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
-                dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
-                dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
-                dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
-                dataObj[idx].isPV = !!(self.arg.PVList);
-                dataObj[idx].isNFT = !!(self.arg.ARList);
-                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
-                dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
-                dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
-                dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
+                //dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
+                //dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
+                //dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
+                //dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
+                //dataObj[idx].isPV = !!(self.arg.PVList);
+                //dataObj[idx].isNFT = !!(self.arg.ARList);
+                //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
+                //dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
+                //dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
+                //dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
                 
                 // サイズ
                 //self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
@@ -668,9 +679,7 @@ var viewmode = 'marker';
 
                 if (val[idx].isShadow) {
                     var shadow = document.createElement('a-image');
-                    if (!!(val[idx].isGif)) {
-                        shadow = document.createElement('a-entity')
-                    }
+
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
                     shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
                     shadow.setAttribute('rotation', '-90 0 0');
@@ -689,9 +698,6 @@ var viewmode = 'marker';
 
                     if (self.args[idx].OAtList) {
                         var ashadow = document.createElement('a-image');
-                        if (!!(val[idx].isGif)) {
-                            ashadow = document.createElement('a-entity');
-                        }
                         var posVec3ashadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3ashadowa = posVec3ashadow;
 
@@ -717,9 +723,6 @@ var viewmode = 'marker';
                     if (self.args[idx].OBtList) {
 
                         var bshadow = document.createElement('a-image');
-                        if (!!(val[idx].isGif)) {
-                            bshadow = document.createElement('a-entity');
-                        }
                         var posVec3bshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3bshadow = posVec3bshadow;
 
@@ -745,9 +748,6 @@ var viewmode = 'marker';
                     if (self.args[idx].OCtList) {
 
                         var cshadow = document.createElement('a-image');
-                        if (!!(val[idx].isGif)) {
-                            cshadow = document.createElement('a-entity');
-                        }
                         var posVec3cshadow = { x: posVec3shadow.x, y: posVec3shadow.y, z: Number(posVec3shadow.z) };
                         defobj[idx].posVec3cshadow = posVec3cshadow;
 
@@ -774,10 +774,10 @@ var viewmode = 'marker';
                 var elname = '';
 
                 if (!val[idx].isMp4) {
+                    elname = 'a-entity'
+                } else if (val[idx].isGltf) {
                     elname = 'a-image'
-                    if (!!(val[idx].isGif)) {
-                        elname = 'a-entity';
-                    }
+                }
                 } else if (val[idx].isMp4) {
                     elname = 'a-video'
                 }
@@ -791,11 +791,11 @@ var viewmode = 'marker';
                 main.setAttribute('id', 'main' + (idx + 1).toString());
                 main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
 
-                //if (!val[idx].isGif) {
+                if (!val[idx].isGif) {
 
                     main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                    //if (!val[idx].isGltf) {
+                    if (!val[idx].isGltf) {
 
                         main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                         main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
@@ -814,13 +814,13 @@ var viewmode = 'marker';
                             shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
-                    //} else {
-                    //    main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                    //}
+                    } else {
+                        main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                    }
 
-                //} else {
-                //    main.setAttribute('rotation', '-30 0 0');
-                //}
+                } else {
+                    main.setAttribute('rotation', '-30 0 0');
+                }
 
                 self.arData[idx].main = main;
                 
@@ -839,11 +839,11 @@ var viewmode = 'marker';
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
                     amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
 
-                    //if (!val[idx].isGif) {
+                    if (!val[idx].isGif) {
 
                         amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-/*                        if (!val[idx].isGltf) {*/
+                        if (!val[idx].isGltf) {
                             amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
@@ -861,13 +861,13 @@ var viewmode = 'marker';
                                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
-                        //} else {
-                        //    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                        //}
+                        } else {
+                            amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        }
 
-                    //} else {
-                    //    amain.setAttribute('rotation', '-30 0 0');
-                    //}
+                    } else {
+                        amain.setAttribute('rotation', '-30 0 0');
+                    }
 
                     self.arData[idx].amain = amain;
                 }
@@ -882,11 +882,11 @@ var viewmode = 'marker';
                     bmain.setAttribute('id', 'bmain' + (idx + 1).toString());
                     bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
 
-                    //if (!val[idx].isGif) {
+                    if (!val[idx].isGif) {
 
                         bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                        //if (!val[idx].isGltf) {
+                        if (!val[idx].isGltf) {
                             bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
@@ -904,13 +904,13 @@ var viewmode = 'marker';
                                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
-                    //    } else {
-                    //        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                    //    }
+                        } else {
+                            bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        }
 
-                    //} else {
-                    //    bmain.setAttribute('rotation', '-30 0 0');
-                    //}
+                    } else {
+                        bmain.setAttribute('rotation', '-30 0 0');
+                    }
 
                     self.arData[idx].bmain = bmain;
                 }
@@ -925,11 +925,11 @@ var viewmode = 'marker';
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
                     cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
 
-                    //if (!val[idx].isGif) {
+                    if (!val[idx].isGif) {
 
                         cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
-                        //if (!val[idx].isGltf) {
+                        if (!val[idx].isGltf) {
                             cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                             cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
@@ -947,13 +947,13 @@ var viewmode = 'marker';
                                 shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
-                    //    } else {
-                    //        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
-                    //    }
+                        } else {
+                            cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        }
 
-                    //} else {
-                    //    cmain.setAttribute('rotation', '-30 0 0');
-                    //}
+                    } else {
+                        cmain.setAttribute('rotation', '-30 0 0');
+                    }
 
                     self.arData[idx].cmain = cmain;
                 }
