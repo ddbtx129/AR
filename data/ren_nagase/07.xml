@@ -47,6 +47,8 @@
                 <xs:element name="an" type="xs:string" minOccurs="0" />
                 <!--幅・高さ-->
                 <xs:element name="wh" type="xs:string" minOccurs="0" />
+                <!--倍率-->
+                <xs:element name="wrapzoom" type="xs:string" minOccurs="0" />
                 <!--オブジェクトフォルダ名-->
                 <xs:element name="o" type="xs:string" minOccurs="0" />
                 <!--オブジェクトフォルダ名1-->
@@ -97,6 +99,7 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
+    <wrapzoom></wrapzoom>
     <o></o>
     <o1></o1>
     <o2>31</o2>
@@ -123,6 +126,7 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
+    <wrapzoom></wrapzoom>
     <o></o>
     <o1></o1>
     <o2>41</o2>
@@ -149,6 +153,7 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
+    <wrapzoom></wrapzoom>
     <o></o>
     <o1></o1>
     <o2>51</o2>
