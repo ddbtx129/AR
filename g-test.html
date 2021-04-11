@@ -15,6 +15,7 @@
                     marker.addEventListener('markerFound', function () {
                         this.toggle = true;
                         this.vid.play();
+			window.alert("見つけた");
                     }.bind(this));
 
                     marker.addEventListener('markerLost', function () {
