@@ -78,12 +78,21 @@ var viewmode = 'marker';
 
             this.setSwitcher();
 
-            var elem = document.getElementById("version1");
-            elem.innerHTML = 'v1.0.130';
+            //var elem = document.getElementById("version1");
+            //elem.innerHTML = 'v1.0.130';
 
-            elem.addEventListener('click', function () {
-                webAr.ar.resetGyro();
-                window.location.reload(false);
+            //elem.addEventListener('click', function () {
+            //    webAr.ar.resetGyro();
+            //    window.location.reload(false);
+            //});
+
+            let elem = document.getElementById("version1");
+            let cameraWrapper = document.getElementById("camera-wrapper");
+            let camera = document.getElementById("camera");
+
+            elem.addEventListener("click", () => {
+                let y = camera.getAttribute("rotation").y;
+                cameraWrapper.setAttribute("rotation", { y: -1 * y });
             });
 
             var msg3 = document.getElementById('mloader3');
@@ -2260,6 +2269,18 @@ var viewmode = 'marker';
                 elem.innerHTML = "dir X: " + Number(e.beta).toFixed(1) + " Y: " + Number(e.gamma).toFixed(1) + ' Z: ' + Number(e.alpha).toFixed(1);
             });
         },
+
+        //setGyroReset: function () {
+
+        //    let btn = document.getElementById("btn");
+        //    let cameraWrapper = document.getElementById("camera-wrapper");
+        //    let camera = document.getElementById("camera");
+
+        //    btn.addEventListener("click", () => {
+        //        let y = camera.getAttribute("rotation").y;
+        //        cameraWrapper.setAttribute("rotation", { y: -1 * y });
+        //    });
+        //},
 
         setDiplayBtn: function (mode) {
 
