@@ -764,9 +764,9 @@ var viewmode = 'marker';
 
                 if (!val[idx].isMp4) {
                     if (!val[idx].isGif) {
-                        elname = 'a-entity'
-                    } else if (val[idx].isGltf) {
                         elname = 'a-image'
+                    } else {
+                        elname = 'a-entity'
                     }
                 } else if (val[idx].isMp4) {
                     elname = 'a-video'
