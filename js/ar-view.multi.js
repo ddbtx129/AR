@@ -1398,7 +1398,7 @@ var viewmode = 'marker';
                             to: '0 360 0',
                             startEvents: 'turn2'
                         });
-                    } else if (val[idx].isAnime == 13) {
+                    } else if (val[oidx].isAnime == 13) {
                         self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
                         // 弾む
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
@@ -1423,7 +1423,7 @@ var viewmode = 'marker';
                         });
                     }
                 } else {
-                    if (!!(val[idx].isAnime) && val[idx].isAnime != 99) {
+                    if (val[oidx].isAnime != 99) {
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn0', {
                             property: 'rotation',
                             dur: 3000,
