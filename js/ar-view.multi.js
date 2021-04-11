@@ -1423,7 +1423,7 @@ var viewmode = 'marker';
                         });
                     }
                 } else {
-                    if (val[idx].isAnime != 99) {
+                    if (!!(val[idx].isAnime) && val[idx].isAnime != 99) {
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn0', {
                             property: 'rotation',
                             dur: 3000,
