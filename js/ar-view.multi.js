@@ -808,7 +808,9 @@ var viewmode = 'marker';
                                 AFRAME.utils.entity.setComponentProperty(main, 'material', {
                                     shader: 'gif', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                                     side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                                });                            }
+                                });
+                                main.setAttribute('gif', "");
+                            }
                         } else {
                             // 0.1 0.9 0.2  #16 19E533  RGB  25 229 51
                             //AFRAME.utils.entity.setComponentProperty(main, 'material', {
@@ -1137,10 +1139,18 @@ var viewmode = 'marker';
                     });
 
                     if (!val[oidx].isMp4) {
-                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
-                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                        });
+                        if (!val[oidx].isGif) {
+                            AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        } else {
+                            AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                                shader: 'gif', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                            main.setAttribute('gif', "");
+                        }
                     } else {
                         //AFRAME.utils.entity.setComponentProperty(main, 'material', {
                         //    shader: 'chromakey', npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5,
