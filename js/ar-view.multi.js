@@ -779,7 +779,7 @@ var viewmode = 'marker';
                 main.setAttribute('id', 'main' + (idx + 1).toString());
                 main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
 
-                if (!val[idx].isGif) {
+                //if (!val[idx].isGif) {
 
                     main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -802,8 +802,12 @@ var viewmode = 'marker';
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         } else {
+                            //AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                            //    shader: 'chromakey', npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5,
+                            //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            //});
                             AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                                shader: 'chromakey', npot: true, src: srcname, color: '0,1,0', displacementMap: null, displacementBias: -0.5,
+                                shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         }
@@ -813,9 +817,9 @@ var viewmode = 'marker';
                         main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                     }
 
-                } else {
-                    main.setAttribute('rotation', '-30 0 0');
-                }
+                //} else {
+                //    main.setAttribute('rotation', '-30 0 0');
+                //}
 
                 main.setAttribute('style', 'z-index: 3');
 
@@ -836,7 +840,7 @@ var viewmode = 'marker';
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
                     amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
 
-                    if (!val[idx].isGif) {
+                    //if (!val[idx].isGif) {
 
                         amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -861,9 +865,9 @@ var viewmode = 'marker';
                             amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
-                    } else {
-                        amain.setAttribute('rotation', '-30 0 0');
-                    }
+                    //} else {
+                    //    amain.setAttribute('rotation', '-30 0 0');
+                    //}
 
                     amain.setAttribute('style', 'z-index: 4');
 
@@ -880,7 +884,7 @@ var viewmode = 'marker';
                     bmain.setAttribute('id', 'bmain' + (idx + 1).toString());
                     bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
 
-                    if (!val[idx].isGif) {
+                    //if (!val[idx].isGif) {
 
                         bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -905,9 +909,9 @@ var viewmode = 'marker';
                             bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
-                    } else {
-                        bmain.setAttribute('rotation', '-30 0 0');
-                    }
+                    //} else {
+                    //    bmain.setAttribute('rotation', '-30 0 0');
+                    //}
 
                     bmain.setAttribute('style', 'z-index: 4');
 
@@ -924,7 +928,7 @@ var viewmode = 'marker';
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
                     cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
 
-                    if (!val[idx].isGif) {
+                    //if (!val[idx].isGif) {
 
                         cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -949,9 +953,9 @@ var viewmode = 'marker';
                             cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
                         }
 
-                    } else {
-                        cmain.setAttribute('rotation', '-30 0 0');
-                    }
+                    //} else {
+                    //    cmain.setAttribute('rotation', '-30 0 0');
+                    //}
 
                     cmain.setAttribute('style', 'z-index: 4');
 
@@ -1104,7 +1108,7 @@ var viewmode = 'marker';
             main.setAttribute('id', 'main' + ((oidx + 1)).toString());
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].Pos));
 
-            if (!val[oidx].isGif) {
+            //if (!val[oidx].isGif) {
 
                 main.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -1121,18 +1125,29 @@ var viewmode = 'marker';
                         primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
-                    AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
-                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                    });
+                    if (!val[oidx].isMp4) {
+                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        //AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                        //    shader: 'chromakey', npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5,
+                        //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        //});
+                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                            shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    }
                 } else {
                     main.setAttribute('gltf-model', srcname);
                     main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                 }
 
-            } else {
-                main.setAttribute('rotation', '-30 0 0');
-            }
+            //} else {
+            //    main.setAttribute('rotation', '-30 0 0');
+            //}
 
             main.setAttribute('style', 'z-index: 3');
 
@@ -1148,7 +1163,7 @@ var viewmode = 'marker';
                 amain.setAttribute('id', 'amain' + (oidx + 1).toString());
                 amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
 
-                if (!val[oidx].isGif) {
+                //if (!val[oidx].isGif) {
 
                     amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -1175,9 +1190,9 @@ var viewmode = 'marker';
                         amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
-                } else {
-                    amain.setAttribute('rotation', '-30 0 0');
-                }
+                //} else {
+                //    amain.setAttribute('rotation', '-30 0 0');
+                //}
 
                 self.arData[oidx].amain = amain;
             }
@@ -1192,7 +1207,7 @@ var viewmode = 'marker';
                 bmain.setAttribute('id', 'bmain' + (oidx + 1).toString());
                 bmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3b));
 
-                if (!val[oidx].isGif) {
+                //if (!val[oidx].isGif) {
 
                     bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -1217,9 +1232,9 @@ var viewmode = 'marker';
                         bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
-                } else {
-                    bmain.setAttribute('rotation', '-30 0 0');
-                }
+                //} else {
+                //    bmain.setAttribute('rotation', '-30 0 0');
+                //}
 
                 bmain.setAttribute('style', 'z-index: 4');
 
@@ -1236,7 +1251,7 @@ var viewmode = 'marker';
                 cmain.setAttribute('id', 'cmain' + (oidx + 1).toString());
                 cmain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3c));
 
-                if (!val[oidx].isGif) {
+                //if (!val[oidx].isGif) {*/
 
                     cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
@@ -1261,9 +1276,9 @@ var viewmode = 'marker';
                         cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
                     }
 
-                } else {
-                    cmain.setAttribute('rotation', '-30 0 0');
-                }
+                //} else {
+                //    cmain.setAttribute('rotation', '-30 0 0');
+                //}
 
                 cmain.setAttribute('style', 'z-index: 4');
 
