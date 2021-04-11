@@ -803,7 +803,7 @@ var viewmode = 'marker';
                             });
                         } else {
                             AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                                shader: 'chromakey', npot: true, src: srcname, color: '0,1,0'm, displacementMap: null, displacementBias: -0.5,
+                                shader: 'chromakey', npot: true, src: srcname, color: '0,1,0', displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         }
 
