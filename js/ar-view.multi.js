@@ -796,10 +796,17 @@ var viewmode = 'marker';
                             primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
-                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
-                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                        });
+                        if (!val[idx].isMp4) {
+                            AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        } else {
+                            AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                                shader: 'chromakey', npot: true, src: srcname, color: '0,1,0'm, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        }
+
                     } else {
                         main.setAttribute('gltf-model', srcname);
                         main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
