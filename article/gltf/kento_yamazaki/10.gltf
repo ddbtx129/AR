@@ -1,6 +1,6 @@
 {
     "asset" : {
-        "generator" : "Khronos glTF Blender I/O v1.4.40",
+        "generator" : "Khronos glTF Blender I/O v1.5.17",
         "version" : "2.0"
     },
     "scene" : 0,
@@ -17,7 +17,7 @@
     ],
     "nodes" : [
         {
-            "name" : "Light",
+            "name" : "Light.001",
             "rotation" : [
                 0.16907575726509094,
                 0.7558803558349609,
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "name" : "Camera",
+            "name" : "Camera.001",
             "rotation" : [
                 0.483536034822464,
                 0.33687159419059753,
@@ -51,21 +51,31 @@
                 0.6427876353263855,
                 0,
                 0,
-                0.766044557094574
+                0.7660444974899292
+            ],
+            "scale" : [
+                0.5,
+                0.5,
+                0.5
             ],
             "translation" : [
                 0,
-                0.9900000095367432,
-                -0.17000003159046173
+                0.49000000953674316,
+                -0.08699999749660492
             ]
         },
         {
             "mesh" : 1,
             "name" : "\u5e73\u9762",
+            "scale" : [
+                0.5,
+                0.5,
+                0.5
+            ],
             "translation" : [
                 0,
                 0,
-                -0.9899999499320984
+                -0.5
             ]
         }
     ],
@@ -76,8 +86,7 @@
             "name" : "\u30de\u30c6\u30ea\u30a2\u30eb.001",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 0,
-                    "texCoord" : 0
+                    "index" : 0
                 },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0.5
@@ -89,8 +98,7 @@
             "name" : "\u30de\u30c6\u30ea\u30a2\u30eb",
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
-                    "index" : 1,
-                    "texCoord" : 0
+                    "index" : 1
                 },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0.5
@@ -263,7 +271,7 @@
     "samplers" : [
         {
             "magFilter" : 9729,
-            "minFilter" : 9986
+            "minFilter" : 9987
         }
     ],
     "buffers" : [
