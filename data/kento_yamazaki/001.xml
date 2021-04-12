@@ -88,7 +88,7 @@
     <xyz></xyz>
   </basedata>
 
-  <pcsdata>
+    <pcsdata>
     <ed1>13465BA</ed1>
     <ar1>1</ar1>
     <m></m>
@@ -101,8 +101,8 @@
     <wh></wh>
     <wrapzoom></wrapzoom>
     <o></o>
-    <o1>kaito_takahashi</o1>
-    <o2>02</o2>
+    <o1>kento_yamazaki</o1>
+    <o2>01</o2>
     <o3></o3>
     <oa></oa>
     <ob></ob>
@@ -114,7 +114,7 @@
     <bg></bg>
     <l></l>
   </pcsdata>
-  
+
   <pcsdata>
     <ed1>13465BA</ed1>
     <ar1>1</ar1>
@@ -128,8 +128,8 @@
     <wh></wh>
     <wrapzoom></wrapzoom>
     <o></o>
-    <o1>kaito_takahashi</o1>
-    <o2>03</o2>
+    <o1>kento_yamazaki</o1>
+    <o2>09</o2>
     <o3></o3>
     <oa></oa>
     <ob></ob>
@@ -141,7 +141,7 @@
     <bg></bg>
     <l></l>
   </pcsdata>
-  
+
   <pcsdata>
     <ed1>13465BA</ed1>
     <ar1>1</ar1>
@@ -155,8 +155,8 @@
     <wh></wh>
     <wrapzoom></wrapzoom>
     <o></o>
-    <o1>kaito_takahashi</o1>
-    <o2>08</o2>
+    <o1>kento_yamazaki</o1>
+    <o2>10</o2>
     <o3></o3>
     <oa></oa>
     <ob></ob>
