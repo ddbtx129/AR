@@ -2329,6 +2329,7 @@ var viewmode = 'marker';
 
                 document.getElementById("swSound").style.display = "inline";
                 videosound = 1;
+                window.alert(1);
             }
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
