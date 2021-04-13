@@ -82,11 +82,11 @@
             <span class="ar-MultiText" id="txtMultiNo"></span>
         </div>
 
-        <img class="ar-sound" id="swSound" src="asset/sound_on_w.png" style="display: inline" />
+        <img class="ar-sound" id="swSound" src="asset/sound_on_w.png" style="display: none" />
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
             
-            <a-entity  id="arParticle" position="0 2.25 -15" particle-system="preset: snow" style="display: none"></a-entity>
+            <a-entity  id="arParticle" position="0 2.25 -15" particle-system="preset: snow; particleCount: 5000; color：＃0000FF、＃00FF00、＃FF0000; size : 4 "></a-entity>
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
