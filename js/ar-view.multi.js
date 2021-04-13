@@ -2286,7 +2286,7 @@ var viewmode = 'marker';
             bSound.addEventListener('click', function () {
                 var marker = webAr.markerIdx.split(',');
                 var j = Number(marker[0]) - 1;
-                if (webAr.ar.arData[i].isMp4) {
+                if (webAr.ar.arData[j].isMp4) {
                     let video = document.querySelector('#source' + (((Number(j) + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                     if(webAr.videosound == 1){
                         video.muted = false;
