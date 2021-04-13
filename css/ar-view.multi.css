@@ -299,7 +299,7 @@ a-camera {
 .ar-sound {
     position: absolute;
     bottom: 0%;
-    right: 5%;
+    right: 10%;
     width: 30px;
     height: 30px;
     opacity: 0.75;
