@@ -37,12 +37,15 @@ var viewmode = 'marker';
     var markerIdx = '';
     var videoState = {};
 
+    var videosound = 0;
+
     var ar = {
 
         init: function () {
             
             loaderEnd = 0;
             document.getElementById("swPlay").style.display = 'none';
+            document.getElementById("swSound").style.display = 'none';
 
             this.setArg();
             this.checkYukoukigen();
@@ -514,8 +517,8 @@ var viewmode = 'marker';
                             video[i].setAttribute('crossorigin', 'anonymous');
                             video[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
                             video[i].setAttribute("playsinline", "");
-                            video[i].setAttribute("controls", "");
-                            video[i].setAttribute("autoplay", "");
+                            video[i].setAttribute("controls", "false");
+                            //video[i].setAttribute("autoplay", "");
 
                             audio[i] = document.createElement("audio");
                             audio[i].setAttribute("src", dataObj[idx].paths[i]);
@@ -526,8 +529,8 @@ var viewmode = 'marker';
                             audio[i].setAttribute('crossorigin', 'anonymous');
                             audio[i].setAttribute('webkit-playsinline', 'webkit-playsinline');
                             audio[i].setAttribute("playsinline", "");
-                            audio[i].setAttribute("controls", "");
-                            audio[i].setAttribute("autoplay", "");
+                            audio[i].setAttribute("controls", "false");
+                            //audio[i].setAttribute("autoplay", "");
 
                             dataObj[idx].arObj[i] = { obj: video[i], obj2: audio[i] };
 
@@ -2270,6 +2273,25 @@ var viewmode = 'marker';
             });
         },
 
+        setSoundEvebts: function(){
+            let bSound = document.getElementById("swSound");
+
+            bSound.addEventListener('click', function () {
+                if (webAr.ar.arData[i].isMp4) {
+                    let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                    if(webAr.videosound == 1){
+                        video.muted = false;
+                        bSound.setAttribute("src", "asset/sound_on_w.png");
+                        webAr.videosound = 0;
+                    } else {
+                        video.muted = true;
+                        bSound.setAttribute("src", "asset/sound_off_w.png");
+                        webAr.videosound = 1;
+                    }
+                }
+            });
+        },
+
         //setGyroReset: function () {
 
         //    let btn = document.getElementById("btn");
@@ -2294,6 +2316,9 @@ var viewmode = 'marker';
             document.getElementById("swPlay").style.display = 'none';
 
             if (webAr.ar.arData[0].oType != 'mp4') {
+                document.getElementById("swSound").style.display = "none";
+                videosound = 0;
+
                 document.getElementById("info1").style.display = "none";
                 document.getElementById("swScrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
@@ -2301,6 +2326,9 @@ var viewmode = 'marker';
                 document.getElementById("info1").style.display = "inline";
                 document.getElementById("swScrshot").style.display = "none";
                 document.getElementById("swCamera").style.display = "none";
+
+                document.getElementById("swSound").style.display = "inline";
+                videosound = 1;
             }
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
@@ -2508,6 +2536,7 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
+    webAr.videosound = videosound;
 
     webAr.ar.setGyroValuEvents();
     webAr.ar.setLoaderEvents();
