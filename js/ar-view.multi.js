@@ -308,8 +308,6 @@ var viewmode = 'marker';
             self.viewIdx = viewIdx;
             self.videoState = videoState;
             self.videosound = videosound;
-
-            window.alert(videosound);
         },
 
         checkYukoukigen: function(){
@@ -2290,8 +2288,6 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-                window.alert(webAr.ar.videosound);
-
                 if (webAr.ar.videosound == 1) {
                     bSound.setAttribute("src", "asset/sound_off_w.png");
                     webAr.ar.videosound = 0;
@@ -2304,7 +2300,6 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[i].isMp4) {
                         for (var j = 0; j < webAr.ar.arData[i].srcno.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
-                            window.alert('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
                             if (webAr.ar.videosound == 0) {
                                 video.muted = true;
                             } else {
