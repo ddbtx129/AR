@@ -18,18 +18,25 @@
 
         <script type="text/javascript" src="js/ar-index.min.js"></script>
         <script type="text/javascript" src="js/ar/1.2.0/v2/aframe.min.js"></script>
-        <script type="text/javascript" src="js/ar/AR-js/3.3.1/aframe-ar-nft.js"></script>
+        <script type="text/javascript" src="js/ar/ar-js/3.3.1/aframe-ar-nft.js"></script>
         <script type="text/javascript" src="js/aframe-gif-shader/aframe-gif-shader.js"></script>
         <script type="text/javascript" src="js/aframe-chromakey-material/aframe-chromakey-material.js"></script>
         <script type="text/javascript" src="js/aframe-gif-shader/aframe-gif-component.js"></script>
         <script type="text/javascript" src="js/camera.event.min.js"></script>
+
+        <style type="text/css">
+            .auto-style1 {
+                left: 2px;
+                top: 0px;
+            }
+        </style>
 
     </head>
 
     <body>
 
         <div class="arjs-loader" id="arloader" style="display: inline">
-            <div>Now Loading...<br>しばらくお待ちください...</div>
+            <div class="auto-style1">Now Loading...<br>しばらくお待ちください...</div>
         </div>
 
         <div class="slide-show" id="slideshow" style="display: inline">
@@ -73,6 +80,8 @@
             <a class="ar-multi" id="swMulti" style="display: inline"><img id='imgMulti' src="asset/marker-w.png" /></a>
             <span class="ar-MultiText" id="txtMultiNo"></span>
         </div>
+
+        <img class="ar-sound" id="swSound" src="asset/sound_on_w.png" style="display: inline" />
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
