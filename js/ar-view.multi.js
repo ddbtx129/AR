@@ -99,8 +99,7 @@ var viewmode = 'marker';
                 cameraWrapper.setAttribute("rotation", { y: -1 * y });
             });
 
-            let particle = document.getElementById('arParticle');
-            particle.startParticles();
+            this.el.components['particle-system'].startParticles();
 
             var msg3 = document.getElementById('mloader3');
             msg3.innerHTML = 'データ読み込み中・・・';
