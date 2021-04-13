@@ -1,25 +1,24 @@
 ﻿<html>
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
-    <meta name="robots" content="noindex,nofollow,noarchive">
-    <meta name="twitter:card" content="summary" />
-    <meta property="og:title" content="WebAR" />
-    <meta property="og:description" content="標準ブラウザからARが見られます。" />
-    <meta property="og:image" content="asset/share.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+        <meta name="robots" content="noindex,nofollow,noarchive">
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="WebAR" />
+        <meta property="og:description" content="標準ブラウザからARが見られます。" />
+        <meta property="og:image" content="asset/share.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>ＡＲ</title>
+        <title>ＡＲ</title>
 
-    <link rel="stylesheet" href="css/ar-view.multi.css">
+        <link rel="stylesheet" href="css/ar-view.multi.css">
 
         <script type="text/javascript" src="js/ar-index.min.js"></script>
         <script type="text/javascript" src="js/ar/1.2.0/v2/aframe.min.js"></script>
         <script type="text/javascript" src="js/ar/ar-js/3.3.1/aframe-ar-nft.js"></script>
-        <script type="text/javascript" src="js/aframe-particle-system-component/aframe-particle-system-component.min.js"></script>
         <script type="text/javascript" src="js/aframe-gif-shader/aframe-gif-shader.js"></script>
         <script type="text/javascript" src="js/aframe-chromakey-material/aframe-chromakey-material.js"></script>
         <script type="text/javascript" src="js/aframe-gif-shader/aframe-gif-component.js"></script>
@@ -82,11 +81,9 @@
             <span class="ar-MultiText" id="txtMultiNo"></span>
         </div>
 
-        <img class="ar-sound" id="swSound" src="asset/sound_on_w.png" style="display: none" />
+        <img class="ar-sound" id="swSound" src="asset/sound_on_w.png" style="display: inline" />
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-            
-            <a-entity  id="arParticle" position="0 2.25 -15" particle-system="preset: snow; particleCount: 5000; color：＃0000FF、＃00FF00、＃FF0000; size : 4 "></a-entity>
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
