@@ -132,7 +132,7 @@ var viewmode = 'marker';
 
             arg.DebugMode = arg.debug && (parseInt(arg.debug, 10).toString());
             arg.targetObj = arg.target ? (parseInt(arg.target, 10).toString()) : 0;
-            arg.Muted = arg.mu ? (parseInt(arg.target, 10)) : 0;
+            arg.Muted = arg.mute ? (parseInt(arg.target, 10)) : 0;
 
             videosound = arg.Muted;
                 
@@ -523,6 +523,12 @@ var viewmode = 'marker';
                             video[i].setAttribute("playsinline", "");
                             video[i].setAttribute("controls", "false");
                             //video[i].setAttribute("autoplay", "");
+
+                            if (videosound == 1) {
+                                video[i].setAttribute('muted', false);
+                            } else {
+                                video[i].setAttribute('muted', true);
+                            }
 
                             audio[i] = document.createElement("audio");
                             audio[i].setAttribute("src", dataObj[idx].paths[i]);
@@ -2193,11 +2199,11 @@ var viewmode = 'marker';
 
                     if (webAr.ar.arData[k].isMp4) {
                         
-                        var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
-                        let bSound = document.getElementById("swSound");
-                        bSound.setAttribute("src", "asset/sound_on_w.png");
-                        video.muted = true;
-                        webAr.videosound = 1;
+                        //var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
+                        //let bSound = document.getElementById("swSound");
+                        //bSound.setAttribute("src", "asset/sound_on_w.png");
+                        //video.muted = true;
+                        //webAr.videosound = 1;
 
                         if (webAr.ar.videoState[k] != 2) {
                             video.pause();
@@ -2341,19 +2347,6 @@ var viewmode = 'marker';
                 document.getElementById("swCamera").style.display = "none";
 
                 document.getElementById("swSound").style.display = "inline";
-
-                var j =0;
-                let video = document.querySelector('#source' + ((Number(1) * 100) + val[j].srcno.obj).toString());
-
-                if (videosound == 1) {
-                    video.muted = true;
-                    document.getElementById("swSound").setAttribute("src", "asset/sound_off_w.png");
-                    videosound = 0;
-                } else {
-                    video.muted = false;
-                    document.getElementById("swSound").setAttribute("src", "asset/sound_on_w.png");
-                    videosound = 1;
-                }
             }
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
