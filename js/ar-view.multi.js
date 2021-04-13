@@ -1,4 +1,4 @@
-webAr = webAr || {};
+var webAr = webAr || {};
 
 var videoInfo = {};
 var tapCount = 0;
