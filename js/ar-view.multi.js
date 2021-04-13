@@ -2561,6 +2561,7 @@ var viewmode = 'marker';
 
     webAr.ar = ar;
     webAr.ar.init();
+    webAr.videosound = videosound;
 
     webAr.ar.setDiplayBtn(!!(ar.args[0].pv));
 
@@ -2574,7 +2575,6 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
-    webAr.videosound = videosound;
 
     webAr.ar.setGyroValuEvents();
     webAr.ar.setLoaderEvents();
