@@ -77,7 +77,6 @@ var viewmode = 'marker';
                 this.setTapEvents();
                 this.setPreviewEvents();
                 this.setMovieEvents();
-                this.setSoundEvebts();
             }
 
             this.setSwitcher();
@@ -99,8 +98,6 @@ var viewmode = 'marker';
                 cameraWrapper.setAttribute("rotation", { y: -1 * y });
             });
 
-            this.el.components['particle-system'].startParticles();
-
             var msg3 = document.getElementById('mloader3');
             msg3.innerHTML = 'データ読み込み中・・・';
 
@@ -115,7 +112,7 @@ var viewmode = 'marker';
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
-            }        
+            }            
         },
 
         setArg: function () {
@@ -2191,13 +2188,7 @@ var viewmode = 'marker';
                     multi.innerHTML = webAr.markerIdx;
 
                     if (webAr.ar.arData[k].isMp4) {
-                        
                         var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
-                        let bSound = document.getElementById("swSound");
-                        bSound.setAttribute("src", "asset/sound_on_w.png");
-                        video.muted = true;
-                        webAr.videosound = 1;
-
                         if (webAr.ar.videoState[k] != 2) {
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
@@ -2286,17 +2277,15 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-                var marker = webAr.markerIdx.split(',');
-                var j = Number(marker[0]) - 1;
-                if (webAr.ar.arData[j].isMp4) {
-                    let video = document.querySelector('#source' + (((Number(j) + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                    if (webAr.videosound == 1) {
-                        video.muted = true;
-                        bSound.setAttribute("src", "asset/sound_off_w.png");
-                        webAr.videosound = 0;
-                    } else {
+                if (webAr.ar.arData[i].isMp4) {
+                    let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                    if(webAr.videosound == 1){
                         video.muted = false;
                         bSound.setAttribute("src", "asset/sound_on_w.png");
+                        webAr.videosound = 0;
+                    } else {
+                        video.muted = true;
+                        bSound.setAttribute("src", "asset/sound_off_w.png");
                         webAr.videosound = 1;
                     }
                 }
@@ -2325,10 +2314,12 @@ var viewmode = 'marker';
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swPlay").style.display = 'none';
+            window.alert(111);
 
             if (webAr.ar.arData[0].oType != 'mp4') {
-                document.getElementById("swSound").style.display = "none";
+                document.getElementById("swSound").style.display = "inline";
                 videosound = 0;
+                window.alert(0);
 
                 document.getElementById("info1").style.display = "none";
                 document.getElementById("swScrshot").style.display = "inline";
@@ -2340,6 +2331,7 @@ var viewmode = 'marker';
 
                 document.getElementById("swSound").style.display = "inline";
                 videosound = 1;
+                window.alert(1);
             }
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
