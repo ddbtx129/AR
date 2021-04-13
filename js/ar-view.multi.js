@@ -132,7 +132,7 @@ var viewmode = 'marker';
 
             arg.DebugMode = arg.debug && (parseInt(arg.debug, 10).toString());
             arg.targetObj = arg.target ? (parseInt(arg.target, 10).toString()) : 0;
-            arg.Muted = arg.mute ? (parseInt(arg.target, 10)) : 0;
+            arg.Muted = arg.mute ? (parseInt(arg.mute, 10)) : 0;
 
             videosound = arg.Muted;
                 
