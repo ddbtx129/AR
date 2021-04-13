@@ -134,7 +134,7 @@ var viewmode = 'marker';
             arg.targetObj = arg.target ? (parseInt(arg.target, 10).toString()) : 0;
             arg.Muted = arg.mute ? (parseInt(arg.target, 10)) : 0;
 
-            videosound = arg.Muted;
+            self.videosound = arg.Muted;
                 
             if (!!(arg.xd)) {
                 
@@ -2287,15 +2287,16 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-                window.alert('0-#source' + (webAr.videosound));
-                if (webAr.videosound == 1) {
+                window.alert(webAr.ar.videosound);
+
+                if (webAr.ar.videosound == 1) {
                     bSound.setAttribute("src", "asset/sound_off_w.png");
-                    webAr.videosound = 0;
+                    webAr.ar.videosound = 0;
                 } else {
                     bSound.setAttribute("src", "asset/sound_on_w.png");
-                    webAr.videosound = 1;
+                    webAr.ar.videosound = 1;
                 }
-                window.alert('1-#source' + (webAr.videosound));
+                window.alert(webAr.ar.arg.Multi);
                 for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                     if (webAr.ar.arData[i].isMp4) {
                         for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
@@ -2348,7 +2349,7 @@ var viewmode = 'marker';
 
                 document.getElementById("swSound").style.display = "inline";
 
-                if (videosound == 1) {
+                if (self.videosound == 1) {
                     document.getElementById("swSound").setAttribute("src", "asset/sound_on_w.png");
                 } else {
                     document.getElementById("swSound").setAttribute("src", "asset/sound_off_w.png");
@@ -2358,7 +2359,7 @@ var viewmode = 'marker';
                     if (self.arData[i].isMp4) {
                         for (var j = 0; j < self.arData[i].arObj.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
-                            if (webAr.videosound == 1) {
+                            if (self.videosound == 1) {
                                 video.muted = true;
                             } else {
                                 video.muted = false;
