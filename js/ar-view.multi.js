@@ -2287,7 +2287,7 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-                window.alert('#source' + (webAr.videosound));
+                window.alert('0-#source' + (webAr.videosound));
                 if (webAr.videosound == 1) {
                     bSound.setAttribute("src", "asset/sound_off_w.png");
                     webAr.videosound = 0;
@@ -2295,7 +2295,7 @@ var viewmode = 'marker';
                     bSound.setAttribute("src", "asset/sound_on_w.png");
                     webAr.videosound = 1;
                 }
-                window.alert('#source' + (webAr.videosound));
+                window.alert('1-#source' + (webAr.videosound));
                 for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                     if (webAr.ar.arData[i].isMp4) {
                         for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
@@ -2358,7 +2358,6 @@ var viewmode = 'marker';
                     if (self.arData[i].isMp4) {
                         for (var j = 0; j < self.arData[i].arObj.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
-                            window.alert('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
                             if (webAr.videosound == 1) {
                                 video.muted = true;
                             } else {
