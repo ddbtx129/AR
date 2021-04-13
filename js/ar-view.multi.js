@@ -77,6 +77,7 @@ var viewmode = 'marker';
                 this.setTapEvents();
                 this.setPreviewEvents();
                 this.setMovieEvents();
+                this.setSoundEvebts();
             }
 
             this.setSwitcher();
@@ -2188,7 +2189,13 @@ var viewmode = 'marker';
                     multi.innerHTML = webAr.markerIdx;
 
                     if (webAr.ar.arData[k].isMp4) {
+                        
                         var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
+                        let bSound = document.getElementById("swSound");
+                        bSound.setAttribute("src", "asset/sound_on_w.png");
+                        video.muted = true;
+                        webAr.videosound = 1;
+
                         if (webAr.ar.videoState[k] != 2) {
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
@@ -2277,15 +2284,17 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
+                var marker = webAr.markerIdx.split(',');
+                var j = Number(marker[0]) - 1;
                 if (webAr.ar.arData[i].isMp4) {
-                    let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                    let video = document.querySelector('#source' + (((Number(j) + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                     if(webAr.videosound == 1){
                         video.muted = false;
-                        bSound.setAttribute("src", "asset/sound_on_w.png");
+                        bSound.setAttribute("src", "asset/sound_off_w.png");
                         webAr.videosound = 0;
                     } else {
                         video.muted = true;
-                        bSound.setAttribute("src", "asset/sound_off_w.png");
+                        bSound.setAttribute("src", "asset/sound_on_w.png");
                         webAr.videosound = 1;
                     }
                 }
