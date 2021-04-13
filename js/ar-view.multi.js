@@ -2314,6 +2314,7 @@ var viewmode = 'marker';
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swPlay").style.display = 'none';
+            window.alert(111);
 
             if (webAr.ar.arData[0].oType != 'mp4') {
                 document.getElementById("swSound").style.display = "inline";
