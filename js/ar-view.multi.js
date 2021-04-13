@@ -524,12 +524,6 @@ var viewmode = 'marker';
                             video[i].setAttribute("controls", "false");
                             //video[i].setAttribute("autoplay", "");
 
-                            if (videosound == 1) {
-                                video[i].setAttribute('muted', false);
-                            } else {
-                                video[i].setAttribute('muted', true);
-                            }
-
                             audio[i] = document.createElement("audio");
                             audio[i].setAttribute("src", dataObj[idx].paths[i]);
                             audio[i].setAttribute('id', 'asource' + ((idx + 1) * 100 + (i + 1)).toString());
@@ -2293,7 +2287,7 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-
+                window.alert('#source' + (webAr.videosound);
                 if (webAr.videosound == 1) {
                     bSound.setAttribute("src", "asset/sound_off_w.png");
                     webAr.videosound = 0;
@@ -2301,11 +2295,12 @@ var viewmode = 'marker';
                     bSound.setAttribute("src", "asset/sound_on_w.png");
                     webAr.videosound = 1;
                 }
-
+                window.alert('#source' + (webAr.videosound);
                 for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                     if (webAr.ar.arData[i].isMp4) {
                         for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
+                            window.alert('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
                             if (webAr.videosound == 0) {
                                 video.muted = true;
                             } else {
@@ -2357,6 +2352,20 @@ var viewmode = 'marker';
                     document.getElementById("swSound").setAttribute("src", "asset/sound_on_w.png");
                 } else {
                     document.getElementById("swSound").setAttribute("src", "asset/sound_off_w.png");
+                }
+
+                for (var i = 0; i < self.arg.Multi; i++) {
+                    if (self.arData[i].isMp4) {
+                        for (var j = 0; j < self.arData[i].arObj.length; j++) {
+                            let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
+                            window.alert('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
+                            if (webAr.videosound == 1) {
+                                video.muted = true;
+                            } else {
+                                video.muted = false;
+                            }
+                        }
+                    }
                 }
             }
 
