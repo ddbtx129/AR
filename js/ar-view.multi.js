@@ -99,6 +99,9 @@ var viewmode = 'marker';
                 cameraWrapper.setAttribute("rotation", { y: -1 * y });
             });
 
+            let particle = document.getElementById('arParticle');
+            particle.startParticles();
+
             var msg3 = document.getElementById('mloader3');
             msg3.innerHTML = 'データ読み込み中・・・';
 
@@ -113,7 +116,7 @@ var viewmode = 'marker';
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
                     msg2.innerHTML = "対象イメージに水平にしてください。";
                 }
-            }            
+            }        
         },
 
         setArg: function () {
