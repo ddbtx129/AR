@@ -2299,6 +2299,7 @@ var viewmode = 'marker';
                 window.alert(webAr.ar.arg.Multi);
                 for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                     if (webAr.ar.arData[i].isMp4) {
+                        window.alert(webAr.ar.arData[i].arObj.length);
                         for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
                             window.alert('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
@@ -2561,7 +2562,6 @@ var viewmode = 'marker';
 
     webAr.ar = ar;
     webAr.ar.init();
-    webAr.videosound = videosound;
 
     webAr.ar.setDiplayBtn(!!(ar.args[0].pv));
 
