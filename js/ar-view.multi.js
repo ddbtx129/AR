@@ -134,7 +134,7 @@ var viewmode = 'marker';
             arg.targetObj = arg.target ? (parseInt(arg.target, 10).toString()) : 0;
             arg.Muted = arg.mute ? (parseInt(arg.target, 10)) : 0;
 
-            self.videosound = arg.Muted;
+            videosound = arg.Muted;
                 
             if (!!(arg.xd)) {
                 
@@ -307,6 +307,7 @@ var viewmode = 'marker';
 
             self.viewIdx = viewIdx;
             self.videoState = videoState;
+            self.videosound = videosound;
         },
 
         checkYukoukigen: function(){
@@ -2299,8 +2300,8 @@ var viewmode = 'marker';
                 window.alert(webAr.ar.arg.Multi);
                 for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                     if (webAr.ar.arData[i].isMp4) {
-                        window.alert(webAr.ar.arData[i].arObj.length);
-                        for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
+                        window.alert(webAr.ar.arData[i].srcno.length);
+                        for (var j = 0; j < webAr.ar.arData[i].srcno.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
                             window.alert('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
                             if (webAr.videosound == 0) {
