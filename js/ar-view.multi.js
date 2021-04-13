@@ -2293,19 +2293,23 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-                var marker = webAr.markerIdx.split(',');
-                for (var i = 0; i < marker.length; i++) {
-                    var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMp4) {
-                        let video = document.querySelector('#source' + (((Number(j) + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                        if (webAr.videosound == 1) {
-                            video.muted = true;
-                            bSound.setAttribute("src", "asset/sound_off_w.png");
-                            webAr.videosound = 0;
-                        } else {
-                            video.muted = false;
-                            bSound.setAttribute("src", "asset/sound_on_w.png");
-                            webAr.videosound = 1;
+                if (webAr.videosound == 1) {
+                    bSound.setAttribute("src", "asset/sound_off_w.png");
+                    webAr.videosound = 0;
+                } else {
+                    bSound.setAttribute("src", "asset/sound_on_w.png");
+                    webAr.videosound = 1;
+                }
+
+                for (var i = 0; i < webAr.ar.arg.Multi; i++) {
+                    if (webAr.ar.arData[i].isMp4) {
+                        for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
+                            let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
+                            if (webAr.videosound == 1) {
+                                video.muted = true;
+                            } else {
+                                video.muted = false;
+                            }
                         }
                     }
                 }
@@ -2354,8 +2358,6 @@ var viewmode = 'marker';
                     document.getElementById("swSound").setAttribute("src", "asset/sound_off_w.png");
                 }
             }
-
-
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
                 document.getElementById("arloader").style.display = 'none';
