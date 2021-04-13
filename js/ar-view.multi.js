@@ -2293,6 +2293,7 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
+
                 if (webAr.videosound == 1) {
                     bSound.setAttribute("src", "asset/sound_off_w.png");
                     webAr.videosound = 0;
@@ -2305,7 +2306,7 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[i].isMp4) {
                         for (var j = 0; j < webAr.ar.arData[i].arObj.length; j++) {
                             let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
-                            if (webAr.videosound == 1) {
+                            if (webAr.videosound == 0) {
                                 video.muted = true;
                             } else {
                                 video.muted = false;
