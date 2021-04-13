@@ -109,7 +109,7 @@ a-camera {
     background-color: rgba(235, 235, 235, 0.8);
     padding: 5px 8px;
     border-radius: 0 0 0 0;
-    z-index: 994;
+    z-index: 1;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
 }
@@ -293,6 +293,26 @@ a-camera {
     }
 
     .ar-R00:hover {
+        opacity: 1
+    }
+
+.ar-sound {
+    position: absolute;
+    bottom: 0%;
+    right: 5%;
+    width: 30px;
+    height: 30px;
+    opacity: 0.75;
+    z-index: 7;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+    .ar-sound.current {
+        opacity: 1
+    }
+
+    .ar-sound:hover {
         opacity: 1
     }
 
