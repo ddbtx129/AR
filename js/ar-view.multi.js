@@ -2347,7 +2347,15 @@ var viewmode = 'marker';
                 document.getElementById("swCamera").style.display = "none";
 
                 document.getElementById("swSound").style.display = "inline";
+
+                if (videosound == 1) {
+                    document.getElementById("swSound").setAttribute("src", "asset/sound_on_w.png");
+                } else {
+                    document.getElementById("swSound").setAttribute("src", "asset/sound_off_w.png");
+                }
             }
+
+
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
                 document.getElementById("arloader").style.display = 'none';
