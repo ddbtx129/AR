@@ -1,4 +1,4 @@
-var webAr = webAr || {};
+webAr = webAr || {};
 
 var videoInfo = {};
 var tapCount = 0;
@@ -2314,12 +2314,10 @@ var viewmode = 'marker';
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swPlay").style.display = 'none';
-            window.alert(111);
 
             if (webAr.ar.arData[0].oType != 'mp4') {
-                document.getElementById("swSound").style.display = "inline";
+                document.getElementById("swSound").style.display = "none";
                 videosound = 0;
-                window.alert(0);
 
                 document.getElementById("info1").style.display = "none";
                 document.getElementById("swScrshot").style.display = "inline";
@@ -2331,7 +2329,6 @@ var viewmode = 'marker';
 
                 document.getElementById("swSound").style.display = "inline";
                 videosound = 1;
-                window.alert(1);
             }
 
             if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
