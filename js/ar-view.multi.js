@@ -2288,12 +2288,12 @@ var viewmode = 'marker';
                 var j = Number(marker[0]) - 1;
                 if (webAr.ar.arData[j].isMp4) {
                     let video = document.querySelector('#source' + (((Number(j) + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                    if(webAr.videosound == 1){
-                        video.muted = false;
+                    if (webAr.videosound == 1) {
+                        video.muted = true;
                         bSound.setAttribute("src", "asset/sound_off_w.png");
                         webAr.videosound = 0;
                     } else {
-                        video.muted = true;
+                        video.muted = false;
                         bSound.setAttribute("src", "asset/sound_on_w.png");
                         webAr.videosound = 1;
                     }
