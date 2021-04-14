@@ -1530,6 +1530,7 @@ var viewmode = 'marker';
 
                 if (self.arData[idx].isPV) {
 
+                    parti.setAttribute('position', '0 2.25 -15');
                     AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
 
                     viewmode = 'pv';
@@ -1558,10 +1559,14 @@ var viewmode = 'marker';
                         self.wrap[idx].setAttribute('visible', false);
                     }
 
+                    parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
+                    AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+
                     webAr.scene.appendChild(self.wrap[idx]);
 
                 } else {
 
+                    parti.setAttribute('position', '0 2.25 -15');
                     AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
 
                     var mk = '';
