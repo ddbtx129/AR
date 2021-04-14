@@ -20,6 +20,8 @@
                 <xs:element name="wzoom" type="xs:string" minOccurs="0" />
                 <!--wrapポジション-->
                 <xs:element name="xyz" type="xs:string" minOccurs="0" />
+                <!--パーティクルシステム-->
+                <xs:element name="parti" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -66,8 +68,12 @@
                 <xs:element name="oaz" type="xs:string" minOccurs="0" />
                 <xs:element name="obz" type="xs:string" minOccurs="0" />
                 <xs:element name="ocz" type="xs:string" minOccurs="0" />
+                <!--背景有無 背景ファイル名-->
+                <xs:element name="bg" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
+                <!--ロゴ表示-->
+                <xs:element name="par" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -84,6 +90,7 @@
     <len></len>
     <wzoom></wzoom>
     <xyz></xyz>
+    <parti></parti>
   </basedata>
 
   <pcsdata>
@@ -110,6 +117,7 @@
     <ocz></ocz>
     <bg></bg>
     <l></l>
+    <par></par>
   </pcsdata>
   
 </ArData>
