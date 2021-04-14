@@ -20,6 +20,8 @@
                 <xs:element name="wzoom" type="xs:string" minOccurs="0" />
                 <!--wrapポジション-->
                 <xs:element name="xyz" type="xs:string" minOccurs="0" />
+                <!--パーティクルシステム-->
+                <xs:element name="parti" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -70,10 +72,12 @@
                 <xs:element name="bg" type="xs:string" minOccurs="0" />
                 <!--ロゴ表示-->
                 <xs:element name="l" type="xs:string" minOccurs="0" />
+                <!--ロゴ表示-->
+                <xs:element name="par" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          
+
         </xs:choice>
       </xs:complexType>
     </xs:element>
@@ -86,6 +90,7 @@
     <len>2</len>
     <wzoom></wzoom>
     <xyz></xyz>
+    <parti></parti>
   </basedata>
 
   <pcsdata>
@@ -113,6 +118,7 @@
     <ocz></ocz>
     <bg>bg-02.png</bg>
     <l></l>
+    <par></par>
   </pcsdata>
 
 </ArData>
