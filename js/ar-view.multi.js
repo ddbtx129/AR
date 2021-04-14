@@ -1557,12 +1557,12 @@ var viewmode = 'marker';
                     webAr.scene.appendChild(self.wrap[idx]);
 
                     var particle = document.getElementById("arParticle");
-                    particle.particle-system,enabled = "true";
+                    particle.enabled = true;
 
                 } else {
 
                     var particle = document.getElementById("arParticle");
-                    particle.particle-system,enabled = "false";
+                    particle.enabled = false;
 
                     var mk = '';
 
