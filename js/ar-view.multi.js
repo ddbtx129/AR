@@ -1515,6 +1515,8 @@ var viewmode = 'marker';
             var mWrap = {};
             self.mWrap = {};
 
+            console.clear();
+
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 this.addScene(idx);
@@ -1642,6 +1644,7 @@ var viewmode = 'marker';
                     self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
                     mWrap[idx].addEventListener('markerFound', function (e) {
+                        console.clear();
 
                         AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
 
@@ -1688,6 +1691,8 @@ var viewmode = 'marker';
                     });
 
                     mWrap[idx].addEventListener('markerLost', function (e) {
+
+                        console.clear();
 
                         AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
 
@@ -1828,6 +1833,8 @@ var viewmode = 'marker';
 
             var self = this;
             var val = self.arData;
+
+            console.clear();
 
             this.addScene(oidx);
 
@@ -2054,6 +2061,7 @@ var viewmode = 'marker';
                 var pos = parti.getAttribute('position');
                 var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
                 parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
+                console.clear();
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
