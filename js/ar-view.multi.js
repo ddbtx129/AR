@@ -1530,9 +1530,6 @@ var viewmode = 'marker';
 
                 if (self.arData[idx].isPV) {
 
-                    parti.setAttribute('position', '0 2.25 -15');
-                    AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
-
                     viewmode = 'pv';
 
                     wrapPos.x -= 0;
@@ -2052,6 +2049,11 @@ var viewmode = 'marker';
                         }
                     }
                 }
+
+                var parti = document.getElementById('arParticle');
+                var pos = parti.getAttribute('position');
+                var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
+                parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
