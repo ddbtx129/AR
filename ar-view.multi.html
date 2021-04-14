@@ -17,8 +17,7 @@
         <link rel="stylesheet" href="css/ar-view.multi.css">
 
         <script type="text/javascript" src="js/ar-index.min.js"></script>
-        <!--<script type="text/javascript" src="js/ar/1.2.0/v2/aframe.min.js"></script>-->
-        <script type="text/javascript" src="js/ar/1.2.0/v2/aframe.min.js"></script>
+        <script type="text/javascript" src="js/ar/1.1.0/v2/aframe.min.js"></script>
         <script type="text/javascript" src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
         <script type="text/javascript" src="js/ar/ar-js/3.3.1/aframe-ar-nft.js"></script>
         <script type="text/javascript" src="js/aframe-gif-shader/aframe-gif-shader.js"></script>
@@ -87,8 +86,8 @@
 
         <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-<!--            <a-entity position="0 2.25 -15" particle-system="preset: snow; color: #0000ff,#ffff00,#ff0000; particleCount: 10000"  style="display: inline" ></a-entity>-->
-            <a-entity id="arParticle" position="0 2.25 -15" particle-system="color: #EF2D5E,#F898AD,#FF8000,#FADB05,#F2E646,#80FF00,#00FF66,#03FCB1,#24CAFF; opacity: 0.7; ParticleCount: 5000; enabled: true" ></a-entity>
+            <!--<a-entity position="0 2.25 -15" particle-system="preset: snow; color: #0000ff,#ffff00,#ff0000; particleCount: 10000"  style="display: inline" ></a-entity>-->
+            <a-entity id="arParticle" position="0 2.25 -15" particle-system="color: #EF2D5E,#F898AD,#FF8000,#FADB05,#F2E646,#80FF00,#00FF66,#03FCB1,#24CAFF; opacity: 0.7; ParticleCount: 2500; enabled: true" style="display: none" ></a-entity>
 
             <a-entity light="type: ambient; color: #BBB"></a-entity>
             <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
