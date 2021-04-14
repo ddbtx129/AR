@@ -1556,7 +1556,13 @@ var viewmode = 'marker';
 
                     webAr.scene.appendChild(self.wrap[idx]);
 
+                    var particle = document.getElementById("arParticle");
+                    particle.particle-system,enabled = "true";
+
                 } else {
+
+                    var particle = document.getElementById("arParticle");
+                    particle.particle-system,enabled = "false";
 
                     var mk = '';
 
@@ -1671,6 +1677,9 @@ var viewmode = 'marker';
                         }
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
+
+                        var particle = document.getElementById("arParticle");
+                        particle.particle-system,enabled = "true";
                     });
 
                     mWrap[idx].addEventListener('markerLost', function (e) {
@@ -1708,6 +1717,9 @@ var viewmode = 'marker';
                         if (webAr.markerIdx == '') {
                             webAr.ar.resetGyro();
                         }
+
+                        var particle = document.getElementById("arParticle");
+                        particle.particle-system,enabled = "false";
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
