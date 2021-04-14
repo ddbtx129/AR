@@ -1526,7 +1526,11 @@ var viewmode = 'marker';
 
                 var wrapPos = { x: defwrap[idx].Pos.x, y: defwrap[idx].Pos.y, z: defwrap[idx].Pos.z };
 
+                var parti = document.getElementById("arParticle");
+
                 if (self.arData[idx].isPV) {
+
+                    AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
 
                     viewmode = 'pv';
 
@@ -1557,6 +1561,8 @@ var viewmode = 'marker';
                     webAr.scene.appendChild(self.wrap[idx]);
 
                 } else {
+
+                    AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
 
                     var mk = '';
 
@@ -1634,6 +1640,9 @@ var viewmode = 'marker';
                     self.wrap[idx].setAttribute('rotation', AFRAME.utils.coordinates.stringify(String(pvAngle) + ' 0 0'));
 
                     mWrap[idx].addEventListener('markerFound', function (e) {
+
+                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
@@ -1677,6 +1686,9 @@ var viewmode = 'marker';
                     });
 
                     mWrap[idx].addEventListener('markerLost', function (e) {
+
+                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
