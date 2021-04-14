@@ -162,6 +162,8 @@ var viewmode = 'marker';
                 arg.WZOOM = base[0].wzoom && (parseInt(base[0].wzoom, 10).toString());
                 arg.XYZ = base[0].xyz && (base[0].xyz).toString();
 
+                arg.PARTI = base[0].parti && (base[0].parti).toString();
+
                 arg.Multi = pcs.length;
 
                 for (idx = 0; idx < arg.Multi; idx++) {
@@ -224,6 +226,8 @@ var viewmode = 'marker';
                         args[idx].LogoList = (logo).toString().split(',');
                         args[idx].LogoAnimeList = (args[idx].LogoList[1] && parseInt(args[idx].LogoList[1]));
                     }
+
+                    args[idx].PARList = pcs[idx].par;
                 }
 
                 if (arg.Multi > 1) {
@@ -300,6 +304,8 @@ var viewmode = 'marker';
                     args[idx].LogoList = (logo).toString().split(',');
                     args[idx].LogoAnimeList = (args[idx].LogoList[1] && parseInt(args[idx].LogoList[1]));
                 }
+
+                args[idx].PARList = args[idx].par;
             }
 
             if (!(arg.DebugMode)) {
@@ -433,7 +439,8 @@ var viewmode = 'marker';
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
                 dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
-                
+                dataObj[idx].isParti = (!!(self.args[idx].PARList) ? self.args[idx].PARList : self.arg.PARTI);
+
                 // サイズ
                 //self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && Number(self.args[idx].ar) == 0) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
                 self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
@@ -1517,6 +1524,7 @@ var viewmode = 'marker';
 
             console.clear();
 
+
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 this.addScene(idx);
@@ -1529,6 +1537,7 @@ var viewmode = 'marker';
                 var wrapPos = { x: defwrap[idx].Pos.x, y: defwrap[idx].Pos.y, z: defwrap[idx].Pos.z };
 
                 var parti = document.getElementById("arParticle");
+                AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
 
                 if (self.arData[idx].isPV) {
 
@@ -1558,15 +1567,19 @@ var viewmode = 'marker';
                         self.wrap[idx].setAttribute('visible', false);
                     }
 
-                    parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
-                    AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                    if (!!(val[idx].isParti)) {
+                        parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
+                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                    }
 
                     webAr.scene.appendChild(self.wrap[idx]);
 
                 } else {
 
-                    parti.setAttribute('position', '0 2.25 -15');
-                    AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                    if (!!(val[idx].isParti)) {
+                        parti.setAttribute('position', '0 2.25 -15');
+                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                    }
 
                     var mk = '';
 
@@ -1646,12 +1659,14 @@ var viewmode = 'marker';
                     mWrap[idx].addEventListener('markerFound', function (e) {
                         console.clear();
 
-                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
-
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
                         var i = Number(targetmarker.getAttribute('data-index'));
+                        
+                        if (webAr.ar.arData[i]) {
+                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle'), "particle-system", { enabled: true });
+                        }
 
                         if (webAr.ar.arData[i].isMp4) {
                             if (webAr.markerIdx == '') {
@@ -1685,21 +1700,20 @@ var viewmode = 'marker';
                         }
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
-
-                        var particle = document.getElementById("arParticle");
-                        particle.particle-system,enabled = "true";
                     });
 
                     mWrap[idx].addEventListener('markerLost', function (e) {
 
                         console.clear();
 
-                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
-
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
                         var i = Number(targetmarker.getAttribute('data-index'));
+
+                        if (webAr.ar.arData[i]) {
+                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle'), "particle-system", { enabled: false });
+                        }
 
                         if (webAr.ar.arData[i].isMp4) {
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
@@ -1731,8 +1745,6 @@ var viewmode = 'marker';
                             webAr.ar.resetGyro();
                         }
 
-                        var particle = document.getElementById("arParticle");
-                        particle.particle-system,enabled = "false";
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
@@ -2057,10 +2069,13 @@ var viewmode = 'marker';
                     }
                 }
 
-                var parti = document.getElementById('arParticle');
-                var pos = parti.getAttribute('position');
-                var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
-                parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
+                if (!!(webAr.ar.arData[j].isParti)) {
+                    var parti = document.getElementById('arParticle');
+                    var pos = parti.getAttribute('position');
+                    var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
+                    parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
+                }
+
                 console.clear();
 
                 for (var i = 0; i < marker.length; i++) {
@@ -2476,6 +2491,7 @@ var viewmode = 'marker';
                 var cLen = xmldata.getElementsByTagName("len");
                 var cWzoom = xmldata.getElementsByTagName("wzoom");
                 var cXyz = xmldata.getElementsByTagName("xyz");
+                var cParti = xmldata.getElementsByTagName("parti");
 
                 var len = cEd.length;
                 for (var i = 0; i < len; i++) {
@@ -2485,7 +2501,8 @@ var viewmode = 'marker';
                         pv: cPv[i].textContent,
                         len: cLen[i].textContent,
                         wzoom: cWzoom[i].textContent,
-                        xyz: cXyz[i].textContent
+                        xyz: cXyz[i].textContent,
+                        parti: cParti[i].textContent
                     };
                 };
 
@@ -2541,6 +2558,8 @@ var viewmode = 'marker';
 
                 var cL = tabelnm.getElementsByTagName("l");
 
+                var cPar = tabelnm.getElementsByTagName("par");
+
                 var len = cM.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
@@ -2570,7 +2589,10 @@ var viewmode = 'marker';
 
                         bg: cBg[i].textContent,
 
-                        l: cL[i].textContent
+                        l: cL[i].textContent,
+
+                        par: cPar[i].textContent
+
                     };
                 };
 
