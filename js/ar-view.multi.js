@@ -1556,13 +1556,7 @@ var viewmode = 'marker';
 
                     webAr.scene.appendChild(self.wrap[idx]);
 
-                    var particle = document.getElementById("arParticle");
-                    particle.enabled = true;
-
                 } else {
-
-                    var particle = document.getElementById("arParticle");
-                    particle.enabled = false;
 
                     var mk = '';
 
