@@ -1676,6 +1676,7 @@ var viewmode = 'marker';
                                 webAr.ar.arData[i].viewIdx = 1;
                                 webAr.markerIdx += (i + 1).toString();
                                 var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                                video.muted = !(webAr.ar.videosound == 1);
                                 if (webAr.ar.videoState[i] < 2) {
                                     document.getElementById("swPlay").style.display = 'inline';
                                     webAr.ar.videoState[i] = 1;
@@ -1720,6 +1721,7 @@ var viewmode = 'marker';
                         if (webAr.ar.arData[i].isMp4) {
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
+                            video.muted = !(webAr.ar.videosound == 1);
                             if (webAr.ar.videoState[i] < 2) {
                                 document.getElementById("swPlay").style.display = 'none';
                             } else {
