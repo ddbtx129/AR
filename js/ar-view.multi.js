@@ -2232,7 +2232,7 @@ var viewmode = 'marker';
                     var j = Number(marker[0]) - 1;
                     if (webAr.ar.arData[j].isMp4) {
                         if (webAr.ar.videoState[j] > 1) {
-                            //var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                             //if (webAr.ar.videosound == 1) {
                             //    video.muted = true;
                             //}
