@@ -2233,9 +2233,7 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         if (webAr.ar.videoState[j] > 1) {
                             var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                            //if (webAr.ar.videosound == 1) {
-                            //    video.muted = true;
-                            //}
+                            video.muted = !!(webAr.ar.videosound == 1);
                             video.pause();
                             webAr.ar.videoState[j] = 2;
                         }
@@ -2252,15 +2250,14 @@ var viewmode = 'marker';
                     multi.innerHTML = webAr.markerIdx;
 
                     if (webAr.ar.arData[k].isMp4) {
+                        var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
+                        video.muted = !!(webAr.ar.videosound == 1);
                         if (webAr.ar.videoState[k] != 2) {
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
                             webAr.ar.videoState[k] = 1;
                         } else {
-                            //if (webAr.ar.videosound == 1) {
-                            //    video.muted = false;
-                            //}
                             video.play();
                             webAr.ar.videoState[k] = 3;
                         }
