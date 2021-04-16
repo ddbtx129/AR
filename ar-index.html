@@ -73,7 +73,8 @@
             //}
 
             var paramfull = document.location.search.substring(1);
-            var rootPath = "https://ddbtx129.github.io/AR/"
+            //var rootPath = "https://www.aoshima-bk.co.jp/special/webar/"
+            var rootPath = (location.href).replace('ar-index.html' + '?' + paramfull, '');
 
             if (param.ar) {
                 if (Number(param.ar) > 0) {
