@@ -1,7 +1,11 @@
-﻿var rootPath = "https://ddbtx129.github.io/AR/";
+﻿var rootPath = "https://spcont.aoshima-bk.co.jp/spcontents/";
 var arType = 1;
 
 (function () {
+
+    var path = location.href;
+    var paramfull = document.location.search.substring(1);
+    rootPath = (location.href).replace('ar-view.multi.html?' + paramfull, '');
 
     document.addEventListener("touchmove", function (e) {
         e.preventDefault();
@@ -226,10 +230,10 @@ var arType = 1;
         if (orientation == 'Horizontal') {
             
             document.getElementById("swUp").style.display = 'none';
-            document.getElementById("swDown").style.display = 'none'
+            document.getElementById("swDown").style.display = 'none';
 
             document.getElementById("swR90").style.display = 'none';
-            document.getElementById("swR00").style.display = 'none'
+            document.getElementById("swR00").style.display = 'none';
 
         } else if (orientation == 'Vertical') {
 
@@ -237,7 +241,7 @@ var arType = 1;
             document.getElementById("swDown").style.display = 'inline';
 
             document.getElementById("swR90").style.display = 'inline';
-            document.getElementById("swR00").style.display = 'inline'
+            document.getElementById("swR00").style.display = 'inline';
 
         }
     }
