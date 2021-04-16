@@ -2343,8 +2343,10 @@ var viewmode = 'marker';
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
-                window.alert('#source' + (((webAr.markerIdx - 1) * 100) + webAr.ar.arData[(webAr.markerIdx - 1)].srcno.obj).toString());
-                var video = document.querySelector('#source' + (((webAr.markerIdx - 1) * 100) + webAr.ar.arData[(webAr.markerIdx - 1)].srcno.obj).toString());
+                window.alert('#source' + ('#source' + ((webAr.markerIdx * 100) + webAr.ar.arData[(webAr.markerIdx - 1)].srcno.obj).toString()));
+                window.alert(webAr.markerIdx);
+
+                var video = document.querySelector('#source' + ((webAr.markerIdx * 100) + webAr.ar.arData[(webAr.markerIdx - 1)].srcno.obj).toString());
 
                 if (webAr.ar.videosound == 1) {
                     bSound.setAttribute("src", "asset/sound_off_w.png");
