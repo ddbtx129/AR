@@ -243,9 +243,9 @@ var viewmode = 'marker';
                         attribute.pos = parti[0].pos;
                         attribute.partisys = parti[0].partisys;
 
-                        args[idx].PARList.el = attribute;
+                        args[idx].Particle = attribute;
 
-                        window.alert(args[idx].PARList.el.partisys);
+                        window.alert(args[idx].Particle.partisys);
                     }
                 }
                  
@@ -645,9 +645,9 @@ var viewmode = 'marker';
 
                     var parti = document.createElement('a-entity');
 
-                    parti.setAttribute('id', self.args[idx].PARList.el.idnm + (idx + 1));
-                    parti.setAttribute('position', self.args[idx].PARList.el.pos);
-                    parti.setAttribute('particle-system', self.args[idx].PARList.el.partisys);
+                    parti.setAttribute('id', self.args[idx].Particle.idnm + (idx + 1));
+                    parti.setAttribute('position', self.args[idx].Particle.pos);
+                    parti.setAttribute('particle-system', self.args[idx].Particle.partisys);
                     parti.setAttribute('style', 'display:none');
                     window.alert(0);
                     el.appendChild(parti);
