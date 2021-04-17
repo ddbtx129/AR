@@ -254,11 +254,10 @@ var viewmode = 'marker';
                                 attribute.partisys = parti[k].partisys;
 
                                 particle[k] = attribute;
+                                window.alert(particle[k].partisys);
                             }
 
                             args[idx].Particle = particle;
-
-                            window.alert(args[idx].Particle.length);
                         }
                     }
                 }
