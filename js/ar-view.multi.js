@@ -243,7 +243,7 @@ var viewmode = 'marker';
                             var parti = {};
                             parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
                             
-                            var particle = {};
+                            var particle = new Array();
 
                             for (var k = 0; k < parti.length; k++) {
                                 
@@ -254,7 +254,6 @@ var viewmode = 'marker';
                                 attribute.partisys = parti[k].partisys;
 
                                 particle[k] = attribute;
-                                window.alert(particle[k].partisys);
                             }
 
                             args[idx].Particle = particle;
