@@ -651,7 +651,7 @@ var viewmode = 'marker';
 
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
-                if (!!(self.args[idx].PARList)) {
+                if (!!(self.arData[idx].isParti)) {
 
                     for (var k = 0; k < self.args[idx].Particle.length; k++) {
 
