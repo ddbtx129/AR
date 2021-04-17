@@ -235,15 +235,27 @@ var viewmode = 'marker';
                     args[idx].PARList = (!!(pcs[idx].par) ? pcs[idx].par : arg.PARTI);
 
                     if (args[idx].PARList) {
-                        var parti = {};
-                        parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
 
-                        var attribute = {};
-                        attribute.idnm = (parti[0].idnm + (idx + 1).toString());
-                        attribute.pos = parti[0].pos;
-                        attribute.partisys = parti[0].partisys;
+                        var file = 'particle/' + args[idx].PARList + '.xml';
+                        var fsize = file.fileSize;
 
-                        args[idx].Particle = attribute;
+                        if (fsize != -1) {
+                            var parti = {};
+                            parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
+                            args[idx].Particle = {};
+                            for (var k = 0; k < parti.length; k++) {
+
+                                var attribute = {};
+
+                                attribute.idnm = (parti[k].idnm + ((idx + 1) * 100) + (k + 1).toString());
+                                attribute.pos = parti[k].pos;
+                                attribute.partisys = parti[k].partisys;
+
+                                args[idx].Particle[k] = attribute;
+                            }
+                        }
+
+                        args[idx].PARList = null;
                     }
                 }
                  
@@ -641,14 +653,17 @@ var viewmode = 'marker';
 
                 if (!!(self.args[idx].PARList)) {
 
-                    var parti = document.createElement('a-entity');
+                    for (var k = 0; k < self.args[idx].Particle.length; k++) {
 
-                    parti.setAttribute('id', self.args[idx].Particle.idnm);
-                    parti.setAttribute('position', self.args[idx].Particle.pos);
-                    parti.setAttribute('particle-system', self.args[idx].Particle.partisys);
-                    parti.setAttribute('style', 'display:none');
+                        var parti = document.createElement('a-entity');
 
-                    el.appendChild(parti);
+                        parti.setAttribute('id', self.args[idx].Particle[k].idnm);
+                        parti.setAttribute('position', self.args[idx].Particle[k].pos);
+                        parti.setAttribute('particle-system', self.args[idx].Particle[k].partisys);
+                        parti.setAttribute('style', 'display:none');
+
+                        el.appendChild(parti);
+                    }
                 }
             }
         },
@@ -1574,8 +1589,12 @@ var viewmode = 'marker';
 
                 var wrapPos = { x: defwrap[idx].Pos.x, y: defwrap[idx].Pos.y, z: defwrap[idx].Pos.z };
 
-                var parti = document.getElementById("arParticle" + (idx + 1));
-                AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                if (!!(val[idx].isParti)) {
+                    for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                        var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k +1)));
+                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                    }
+                }
 
                 if (self.arData[idx].isPV) {
 
@@ -1606,8 +1625,11 @@ var viewmode = 'marker';
                     }
 
                     if (!!(val[idx].isParti)) {
-                        parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
-                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                        for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                            var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k + 1)));
+                            parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
+                            AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                        }
                     }
 
                     webAr.scene.appendChild(self.wrap[idx]);
@@ -1615,8 +1637,11 @@ var viewmode = 'marker';
                 } else {
 
                     if (!!(val[idx].isParti)) {
-                        parti.setAttribute('position', '0 2.25 -15');
-                        AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                        for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                            var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k + 1)));
+                            parti.setAttribute('position', '0 2.25 -15');
+                            AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                        }
                     }
 
                     var mk = '';
@@ -1704,7 +1729,10 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
                         
                         if (webAr.ar.arData[i].isParti) {
-                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle' + (webar.markerIdx)), "particle-system", { enabled: true });
+                            for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                                var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
+                                AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                            }
                         }
 
                         if (webAr.ar.arData[i].isMp4) {
@@ -1752,7 +1780,10 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
 
                         if (webAr.ar.arData[i].isParti) {
-                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle' + webar.markerIdx), "particle-system", { enabled: false });
+                            for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                                var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
+                                AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                            }
                         }
 
                         if (webAr.ar.arData[i].isMp4) {
@@ -2111,10 +2142,11 @@ var viewmode = 'marker';
                 }
 
                 if (!!(webAr.ar.arData[j].isParti)) {
-                    var parti = document.getElementById('arParticle' + webar.markerIdx);
-                    var pos = parti.getAttribute('position');
-                    var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
-                    parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
+                    for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                        var parti = document.getElementById("arParticle" + (webar.markerIdx * 100 + (k + 1)));
+                        var pos = parti.getAttribute('position');
+                        var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
+                        parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));                    }
                 }
 
                 console.clear();
