@@ -236,13 +236,19 @@ var viewmode = 'marker';
 
                     if (args[idx].PARList) {
                         var parti = {};
+                        args[idx].PARList = {};
+
                         parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
+                        args[idx].PARList.el = {
+                            idnm: (parti[0].idnm + (idx + 1).toString()),
+                            pos: parti[0].pos,
+                            partisys: parti[0].partisys
+                        }
+                        //args[idx].PARList.idnm = (parti[0].idnm + (idx + 1).toString());
+                        //args[idx].PARList.pos = parti[0].pos;
+                        //args[idx].PARList.partisys = parti[0].partisys;
 
-                        args[idx].PARList.idnm = (parti[0].idnm + (idx + 1).toString());
-                        args[idx].PARList.pos = parti[0].pos;
-                        args[idx].PARList.partisys = parti[0].partisys;
-
-                        window.alert(parti[0].partisys);
+                        window.alert(args[idx].PARList.el.partisys);
                     }
                 }
                  
