@@ -235,15 +235,16 @@ var viewmode = 'marker';
                     args[idx].PARList = (!!(pcs[idx].par) ? pcs[idx].par : arg.PARTI);
 
                     if (args[idx].PARList) {
-                        window.alert(0);
+
                         var file = 'particle/' + args[idx].PARList + '.xml';
                         var fsize = file.fileSize;
 
                         if (fsize != -1) {
                             var parti = {};
                             parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
-                            args[idx].Particle = {};
-                            window.alert(1);
+                            
+                            var particle = {};
+
                             for (var k = 0; k < parti.length; k++) {
                                 
                                 var attribute = {};
@@ -252,8 +253,11 @@ var viewmode = 'marker';
                                 attribute.pos = parti[k].pos;
                                 attribute.partisys = parti[k].partisys;
 
-                                args[idx].Particle[k] = attribute;
+                                particle[k] = attribute;
                             }
+
+                            args[idx].Particle = paticle;
+
                             window.alert(args[idx].Particle.length);
                         }
                     }
