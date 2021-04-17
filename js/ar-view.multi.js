@@ -2530,7 +2530,7 @@ var viewmode = 'marker';
                 var cPos = xmldata.getElementsByTagName("pos");
                 var cParti = xmldata.getElementsByTagName("partisys");
 
-                var len = cEd.length;
+                var len = cId.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
                         idnm: cId[i].textContent,
