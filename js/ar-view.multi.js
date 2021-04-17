@@ -256,8 +256,6 @@ var viewmode = 'marker';
                                 args[idx].Particle[k] = attribute;
                             }
                         }
-
-                        args[idx].PARList = null;
                     }
                 }
                  
