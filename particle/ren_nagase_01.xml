@@ -26,13 +26,13 @@
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>texture: preset: snow; color: #000000; opacity: 0.5; ParticleCount: 5000; size: 8, enabled: true</partisys>
+    <partisys>texture: article/pic/ren_nagase/149.png; preset: snow; color: #000000; opacity: 0.7; ParticleCount: 5000; size: 8, enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>texture: asset/kingprince.png; preset: snow; color: #EF2D5E,#F2E646,#24CAFF; opacity: 0.7; ParticleCount: 5000; size: 8, enabled: true</partisys>
+    <partisys>texture: asset/kingprince.png; preset: snow; color: #EF2D5E,#F2E646,#24CAFF; opacity: 0.8; ParticleCount: 5000; size: 8, enabled: true</partisys>
   </particle>
   
 </ArData>
