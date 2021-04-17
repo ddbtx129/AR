@@ -232,7 +232,7 @@ var viewmode = 'marker';
                         args[idx].LogoAnimeList = (args[idx].LogoList[1] && parseInt(args[idx].LogoList[1]));
                     }
 
-                    args[idx].PARList = pcs[idx].par;
+                    args[idx].PARList = (!!(pcs[idx].par) ? pcs[idx].par : arg.PARTI);
 
                     if (args[idx].PARList) {
                         var parti = {};
