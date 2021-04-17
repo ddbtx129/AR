@@ -236,8 +236,6 @@ var viewmode = 'marker';
 
                     if (args[idx].PARList) {
                         var parti = {};
-                        args[idx].PARList = {};
-
                         parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
                         args[idx].PARList.el = {
                             idnm: (parti[0].idnm + (idx + 1).toString()),
