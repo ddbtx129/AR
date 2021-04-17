@@ -239,7 +239,7 @@ var viewmode = 'marker';
                         parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
 
                         var attribute = {};
-                        attribute.idnnm = (parti[0].idnm + (idx + 1).toString());
+                        attribute.idnm = (parti[0].idnm + (idx + 1).toString());
                         attribute.pos = parti[0].pos;
                         attribute.partisys = parti[0].partisys;
 
