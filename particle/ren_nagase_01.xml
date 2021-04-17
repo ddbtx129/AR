@@ -26,13 +26,13 @@
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>texture: article/pic/ren_nagase/ren_ren.png; preset: dast; opacity: 0.8; ParticleCount: 1000; size: 8, enabled: true</partisys>
+    <partisys>texture: article/pic/ren_nagase/ren_ren.png; preset: dust; opacity: 0.8; ParticleCount: 1000; size: 8, enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>texture: article/pic/kingprince/kingprince.png; preset: dast; opacity: 0.8; ParticleCount: 1000; size: 8, enabled: true</partisys>
+    <partisys>texture: article/pic/kingprince/kingprince.png; preset: dust; opacity: 0.8; ParticleCount: 1000; size: 8, enabled: true</partisys>
   </particle>
   
 </ArData>
