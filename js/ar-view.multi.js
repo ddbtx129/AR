@@ -245,7 +245,7 @@ var viewmode = 'marker';
                             args[idx].Particle = {};
                             window.alert(1);
                             for (var k = 0; k < parti.length; k++) {
-                                window.alert(2);
+                                
                                 var attribute = {};
 
                                 attribute.idnm = (parti[k].idnm + ((idx + 1) * 100) + (k + 1).toString());
@@ -254,6 +254,7 @@ var viewmode = 'marker';
 
                                 args[idx].Particle[k] = attribute;
                             }
+                            window.alert(args[idx].Particle.length);
                         }
                     }
                 }
