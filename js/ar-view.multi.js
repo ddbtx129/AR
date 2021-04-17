@@ -633,9 +633,10 @@ var viewmode = 'marker';
             var self = this;
             var beforel = null;
             let el = document.getElementById('arScene');
-            window.alert(100);
+            window.alert(self.arg.Multi);
             for (idx = 0; idx < self.arg.Multi; idx++) {
-                if (self.args[idx].PARList) {
+                window.alert(self.args[idx].PARList);
+                if (!!(self.args[idx].PARList)) {
 
                     var parti = document.createElement('a-entity');
 
