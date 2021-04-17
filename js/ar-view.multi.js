@@ -242,7 +242,7 @@ var viewmode = 'marker';
                         args[idx].PARList.pos = parti[0].pos;
                         args[idx].PARList.partisys = parti[0].partisys;
 
-                        window.alert(args[idx].PARList.partisys);
+                        window.alert(parti[0].partisys);
                     }
                 }
                  
