@@ -256,7 +256,7 @@ var viewmode = 'marker';
                                 particle[k] = attribute;
                             }
 
-                            args[idx].Particle = paticle;
+                            args[idx].Particle = particle;
 
                             window.alert(args[idx].Particle.length);
                         }
