@@ -237,14 +237,13 @@ var viewmode = 'marker';
                     if (args[idx].PARList) {
                         var parti = {};
                         parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
-                        args[idx].PARList.el = {
-                            idnm: (parti[0].idnm + (idx + 1).toString()),
-                            pos: parti[0].pos,
-                            partisys: parti[0].partisys
-                        }
-                        //args[idx].PARList.idnm = (parti[0].idnm + (idx + 1).toString());
-                        //args[idx].PARList.pos = parti[0].pos;
-                        //args[idx].PARList.partisys = parti[0].partisys;
+
+                        var attribute = {};
+                        attribute.idnnm = (parti[0].idnm + (idx + 1).toString());
+                        attribute.pos = parti[0].pos;
+                        attribute.partisys = parti[0].partisys;
+
+                        args[idx].PARList.el = attribute;
 
                         window.alert(args[idx].PARList.el.partisys);
                     }
@@ -646,9 +645,9 @@ var viewmode = 'marker';
 
                     var parti = document.createElement('a-entity');
 
-                    parti.setAttribute('id', self.args[idx].PARList.idnm + (idx + 1));
-                    parti.setAttribute('position', self.args[idx].PARList.pos);
-                    parti.setAttribute('particle-system', self.args[idx].PARList.partisys);
+                    parti.setAttribute('id', self.args[idx].PARList.el.idnm + (idx + 1));
+                    parti.setAttribute('position', self.args[idx].PARList.el.pos);
+                    parti.setAttribute('particle-system', self.args[idx].PARList.el.partisys);
                     parti.setAttribute('style', 'display:none');
                     window.alert(0);
                     el.appendChild(parti);
