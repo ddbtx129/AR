@@ -1,5 +1,3 @@
-const { default: aframeMin } = require("./ar/1.0.4/v2/aframe.min");
-
 var webAr = webAr || {};
 
 var videoInfo = {};
