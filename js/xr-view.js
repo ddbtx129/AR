@@ -2629,7 +2629,13 @@ var viewmode = 'marker';
         getPlayButton: function (min, max) {
             var imgno = ('00' + Number(getRandomIntInclusive(min, max))).slice(-2);
             window.alert('asset/play-optiy/' + imgno + '.png');
-            return 'asset/play-optiy/' + imgno + '.png'
+            return 'asset/play-optiy/' + imgno + '.png';
+
+            getRandomIntInclusive: function (min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+            }
         },
 
         getRandomIntInclusive: function (min, max) {
