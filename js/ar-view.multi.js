@@ -236,7 +236,7 @@ var viewmode = 'marker';
 
                     if (args[idx].PARList) {
                         var parti = {};
-                        parti = this.readBaseXml('particle/' + args.PARList + '.xml');
+                        parti = this.readBaseXml('particle/' + args[idx].PARList + '.xml');
 
                         args[idx].PARList.idnm = (parti[0].idnm + (idx + 1).toString());
                         args[idx].PARList.pos = parti[0].pos;
