@@ -634,7 +634,7 @@ var viewmode = 'marker';
             var beforel = null;
             let el = document.getElementById('arScene');
 
-            for (idx = 0; idx < arg.Multi; idx++) {
+            for (idx = 0; idx < self.arg.Multi; idx++) {
                 if (self.args[idx].PARList) {
 
                     var parti = document.createElement('a-entity');
