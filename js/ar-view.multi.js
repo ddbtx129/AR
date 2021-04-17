@@ -241,6 +241,8 @@ var viewmode = 'marker';
                         args[idx].PARList.idnm = (parti[0].idnm + (idx + 1).toString());
                         args[idx].PARList.pos = parti[0].pos;
                         args[idx].PARList.partisys = parti[0].partisys;
+
+                        window.alert(args[idx].PARList.partisys);
                     }
                 }
                  
