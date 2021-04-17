@@ -26,19 +26,19 @@
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>preset: snow; color: #24CAFF; opacity: 0.7; ParticleCount: 2000; size: 8, enabled: true</partisys>
+    <partisys>preset: snow; color: #24CAFF; opacity: 0.7; ParticleCount: 500; size: 8, enabled: true</partisys>
   </particle>
   
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>preset: snow; color: #F2E646; opacity: 0.7; ParticleCount: 1500; size: 8, enabled: true</partisys>
+    <partisys>preset: snow; color: #F2E646; opacity: 0.7; ParticleCount: 500; size: 8, enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 2.25 -15</pos>
-    <partisys>preset: snow; color: #EF2D5E; opacity: 0.7; ParticleCount: 1500; size: 8, enabled: true</partisys>
+    <partisys>preset: snow; color: #EF2D5E; opacity: 0.7; ParticleCount: 500; size: 8, enabled: true</partisys>
   </particle>
 
 </ArData>
