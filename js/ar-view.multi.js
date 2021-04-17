@@ -235,7 +235,7 @@ var viewmode = 'marker';
                     args[idx].PARList = (!!(pcs[idx].par) ? pcs[idx].par : arg.PARTI);
 
                     if (args[idx].PARList) {
-
+                        window.alert(0);
                         var file = 'particle/' + args[idx].PARList + '.xml';
                         var fsize = file.fileSize;
 
@@ -243,8 +243,9 @@ var viewmode = 'marker';
                             var parti = {};
                             parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
                             args[idx].Particle = {};
+                            window.alert(1);
                             for (var k = 0; k < parti.length; k++) {
-
+                                window.alert(2);
                                 var attribute = {};
 
                                 attribute.idnm = (parti[k].idnm + ((idx + 1) * 100) + (k + 1).toString());
@@ -646,12 +647,15 @@ var viewmode = 'marker';
             var self = this;
             var beforel = null;
             let el = document.getElementById('arScene');
-
+            window.alert(10);
             for (idx = 0; idx < self.arg.Multi; idx++) {
+                window.alert(11);
 
                 if (!!(self.arData[idx].isParti)) {
+                    window.alert(12);
 
                     for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                        window.alert(13);
 
                         var parti = document.createElement('a-entity');
 
