@@ -645,7 +645,7 @@ var viewmode = 'marker';
 
                     var parti = document.createElement('a-entity');
 
-                    parti.setAttribute('id', self.args[idx].Particle.idnm + (idx + 1));
+                    parti.setAttribute('id', self.args[idx].Particle.idnm);
                     parti.setAttribute('position', self.args[idx].Particle.pos);
                     parti.setAttribute('particle-system', self.args[idx].Particle.partisys);
                     parti.setAttribute('style', 'display:none');
