@@ -1672,7 +1672,7 @@ var viewmode = 'marker';
                                 var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                                 video.muted = !(webAr.ar.videosound == 1);
                                 if (webAr.ar.videoState[i] < 2) {
-                                    (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(1, 20));
+                                    (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
                                     document.getElementById("swPlay").style.display = 'inline';
                                     webAr.ar.videoState[i] = 1;
                                     video.pause();
@@ -2305,7 +2305,7 @@ var viewmode = 'marker';
                         var j = Number(marker[i]) - 1;
                         if (webAr.ar.arData[j].isMp4) {
                             if (webAr.ar.videoState != 3) {
-                                (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(1, 20));
+                                (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
                                 document.getElementById("swPlay").style.display = 'inline';
                             }
                         }
@@ -2415,7 +2415,7 @@ var viewmode = 'marker';
                 mloader.innerHTML = '※ 画面をタップすると表示を開始します。';
                 if (webAr.ar.arData[0].isPV) {
                     if (webAr.ar.arData[0].isMp4) {
-                        (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(1, 20));
+                        (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
                         document.getElementById("swPlay").style.display = 'inline';
                         var video = document.querySelector('#source101');
                         video.pause();
@@ -2626,12 +2626,12 @@ var viewmode = 'marker';
             return xml;
         },
 
-        getPlayButton: function (min, max) {
-            var imgno = ('00' + Number(getRandomIntInclusive(min, max))).slice(-2);
+        getPlayButton: function () {
+            var imgno = ('00' + Number(getRandom(0, 20))).slice(-2);
             window.alert('asset/play-optiy/' + imgno + '.png');
             return 'asset/play-optiy/' + imgno + '.png';
 
-            getRandomIntInclusive: function (min, max) {
+            function getRandom(min, max) {
                 min = Math.ceil(min);
                 max = Math.floor(max);
                 return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
