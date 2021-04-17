@@ -2627,7 +2627,7 @@ var viewmode = 'marker';
         },
 
         getPlayButton: function () {
-            var imgno = ('00' + Number(getRandom(0, 20))).slice(-2);
+            var imgno = ('00' + Number(getRandom(1, 20))).slice(-2);
             return 'asset/play-optiy/' + imgno + '.png';
 
             function getRandom(min, max) {
