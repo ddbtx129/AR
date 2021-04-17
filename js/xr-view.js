@@ -2628,7 +2628,6 @@ var viewmode = 'marker';
 
         getPlayButton: function () {
             var imgno = ('00' + Number(getRandom(0, 20))).slice(-2);
-            window.alert('asset/play-optiy/' + imgno + '.png');
             return 'asset/play-optiy/' + imgno + '.png';
 
             function getRandom(min, max) {
