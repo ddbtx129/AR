@@ -650,15 +650,12 @@ var viewmode = 'marker';
             var self = this;
             var beforel = null;
             let el = document.getElementById('arScene');
-            window.alert(10);
+
             for (idx = 0; idx < self.arg.Multi; idx++) {
-                window.alert(11);
 
                 if (!!(self.arData[idx].isParti)) {
-                    window.alert(self.args[idx].Particle.length);
 
                     for (var k = 0; k < self.args[idx].Particle.length; k++) {
-                        window.alert(13);
 
                         var parti = document.createElement('a-entity');
 
@@ -1734,7 +1731,7 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
                         
                         if (webAr.ar.arData[i].isParti) {
-                            for (var k = 0; k < webAr.ar.args[idx].Particle.length; k++) {
+                            for (var k = 0; k < webAr.ar.args[i].Particle.length; k++) {
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
                                 AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
                             }
@@ -1771,6 +1768,7 @@ var viewmode = 'marker';
                                 }
                             }
                         }
+
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
                     });
