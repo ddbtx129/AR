@@ -643,9 +643,9 @@ var viewmode = 'marker';
                     parti.setAttribute('position', self.args[idx].PARList.pos);
                     parti.setAttribute('particle-system', self.args[idx].PARList.partisys);
                     parti.setAttribute('style', 'display:none');
-
-                    el.insertBefore(parti, beforel.nextElementSibling);
-                    beforel = parti;
+                    window.alert(0);
+                    el.insertBefore(parti, el.nextElementSibling);
+                    window.alert(1);
                 }
             }
         },
