@@ -54,6 +54,8 @@ var viewmode = 'marker';
 
             if (this.setArData()) {
 
+                this.setParticleElement();
+
                 this.setWrap();
 
                 this.createModel(1);
@@ -125,6 +127,7 @@ var viewmode = 'marker';
             var arg = {};
             var viewIdx = {};
             var args = {};
+
             var pair = location.search.substring(1).split('&');
 
             for (var i = 0; pair[i]; i++) {
@@ -230,8 +233,17 @@ var viewmode = 'marker';
                     }
 
                     args[idx].PARList = pcs[idx].par;
-                }
 
+                    if (args[idx].PARList) {
+                        var parti = {};
+                        parti = this.readBaseXml('particle/' + args.PARList + '.xml');
+
+                        args[idx].PARList.idnm = (parti[0].idnm + (idx + 1).toString());
+                        args[idx].PARList.pos = parti[0].pos;
+                        args[idx].PARList.partisys = parti[0].partisys;
+                    }
+                }
+                 
                 if (arg.Multi > 1) {
                     var bMulti = document.getElementById('imgMulti');
                     bMulti.src = 'asset/markers-w.png';
@@ -614,6 +626,28 @@ var viewmode = 'marker';
             self.arData = arData;
             
             return true;
+        },
+
+        setParticleElement: function () {
+
+            var self = this;
+            var beforel = null;
+            let el = document.getElementById('arScene');
+
+            for (idx = 0; idx < arg.Multi; idx++) {
+                if (self.args[idx].PARList) {
+
+                    var parti = document.createElement('a-entity');
+
+                    parti.setAttribute('id', self.args[idx].PARList.idnm + (idx + 1));
+                    parti.setAttribute('position', self.args[idx].PARList.pos);
+                    parti.setAttribute('particle-system', self.args[idx].PARList.partisys);
+                    parti.setAttribute('style', 'display:none');
+
+                    el.insertBefore(parti, beforel.nextElementSibling);
+                    beforel = parti;
+                }
+            }
         },
 
         setSwitcher: function () {
@@ -2474,6 +2508,43 @@ var viewmode = 'marker';
             } else {
                 return { x: 0, y: h1_2, z: 0 };
             }
+        },
+
+        readParticleXml: function (filenm) {
+            var xmlhttp = new XMLHttpRequest();
+            var xml = new Array();
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var xmlTb = xmlhttp.responseXML;
+                    xml = setXmldata(xmlTb);
+                }
+            };
+
+            function setXmldata(xmldata) {
+
+                var data = new Array();
+
+                var cId = xmldata.getElementsByTagName("idnm");
+                var cPos = xmldata.getElementsByTagName("pos");
+                var cParti = xmldata.getElementsByTagName("partisys");
+
+                var len = cEd.length;
+                for (var i = 0; i < len; i++) {
+                    data[i] = {
+                        idnm: cId[i].textContent,
+                        pos: cPos[i].textContent,
+                        partisys: cParti[i].textContent
+                    };
+                };
+
+                return data;
+            };
+
+            xmlhttp.open("GET", filenm, false);
+            xmlhttp.send(null);
+
+            return xml;
         },
 
         readBaseXml: function (filenm) {
