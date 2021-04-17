@@ -244,8 +244,6 @@ var viewmode = 'marker';
                         attribute.partisys = parti[0].partisys;
 
                         args[idx].Particle = attribute;
-
-                        window.alert(args[idx].Particle.partisys);
                     }
                 }
                  
@@ -638,9 +636,9 @@ var viewmode = 'marker';
             var self = this;
             var beforel = null;
             let el = document.getElementById('arScene');
-            window.alert(self.arg.Multi);
+
             for (idx = 0; idx < self.arg.Multi; idx++) {
-                window.alert(self.args[idx].PARList);
+
                 if (!!(self.args[idx].PARList)) {
 
                     var parti = document.createElement('a-entity');
@@ -649,9 +647,8 @@ var viewmode = 'marker';
                     parti.setAttribute('position', self.args[idx].Particle.pos);
                     parti.setAttribute('particle-system', self.args[idx].Particle.partisys);
                     parti.setAttribute('style', 'display:none');
-                    window.alert(0);
+
                     el.appendChild(parti);
-                    window.alert(1);
                 }
             }
         },
