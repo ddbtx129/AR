@@ -1627,13 +1627,13 @@ var viewmode = 'marker';
 
                     if (idx > 0) {
                         self.wrap[idx].setAttribute('visible', false);
-                    }
-
-                    if (!!(val[idx].isParti)) {
-                        for (var k = 0; k < self.args[idx].Particle.length; k++) {
-                            var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k + 1)));
-                            parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
-                            AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                    } else {
+                        if (!!(val[idx].isParti)) {
+                            for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                                var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k + 1)));
+                                parti.setAttribute('position', '0 ' + (2.25 + wrapPos.y) + ' -15');
+                                AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
+                            }
                         }
                     }
 
@@ -2305,37 +2305,51 @@ var viewmode = 'marker';
             bMarker.addEventListener('click', function () {
                 if (webAr.ar.arData[0].isPV) {
                     var marker = webAr.markerIdx.split(',');
-                    var j = Number(marker[0]) - 1;
-                    if (webAr.ar.arData[j].isMp4) {
-                        if (webAr.ar.videoState[j] > 1) {
-                            var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                    var i = Number(marker[0]) - 1;
+                    if (webAr.ar.arData[i].isMp4) {
+                        if (webAr.ar.videoState[i] > 1) {
+                            var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
                             video.pause();
-                            webAr.ar.videoState[j] = 2;
+                            webAr.ar.videoState[i] = 2;
                         }
                     }
 
-                    webAr.ar.arData[j].wrap.setAttribute('visible', false);
+                    if (webAr.ar.arData[i].isParti) {
+                        for (var k = 0; k < webAr.ar.arData[i].Particle.length; k++) {
+                            var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
+                            AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
+                        }
+                    }
 
-                    var k = ((j + 1) < webAr.ar.arg.Multi) ? j + 1 : 0;
-                    webAr.ar.arData[k].wrap.setAttribute('visible', true);
-                    webAr.ar.objectDataVal(webAr.ar.arData[k].zoomRateH, webAr.ar.arData[j].wrapPos, webAr.ar.arData[j].pvAngle);
+                    webAr.ar.arData[i].wrap.setAttribute('visible', false);
+
+                    var j = ((i + 1) < webAr.ar.arg.Multi) ? i + 1 : 0;
+                    webAr.ar.arData[j].wrap.setAttribute('visible', true);
+                    webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[i].wrapPos, webAr.ar.arData[i].pvAngle);
 
                     var multi = document.getElementById('txtMultiNo');
-                    webAr.markerIdx = (k + 1).toString();
+                    webAr.markerIdx = (j + 1).toString();
                     multi.innerHTML = webAr.markerIdx;
 
-                    if (webAr.ar.arData[k].isMp4) {
-                        var video = document.querySelector('#source' + (((k + 1) * 100) + webAr.ar.arData[k].srcno.obj).toString());
+                    if (webAr.ar.arData[j].isMp4) {
+                        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
-                        if (webAr.ar.videoState[k] != 2) {
+                        if (webAr.ar.videoState[j] != 2) {
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
-                            webAr.ar.videoState[k] = 1;
+                            webAr.ar.videoState[j] = 1;
                         } else {
                             video.play();
-                            webAr.ar.videoState[k] = 3;
+                            webAr.ar.videoState[j] = 3;
+                        }
+                    }
+
+                    if (webAr.ar.arData[j].isParti) {
+                        for (var k = 0; k < webAr.ar.arData[j].Particle.length; k++) {
+                            var parti = document.getElementById("arParticle" + ((j + 1) * 100 + (k + 1)));
+                            AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
                         }
                     }
                 }
