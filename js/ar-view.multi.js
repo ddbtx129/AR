@@ -652,7 +652,7 @@ var viewmode = 'marker';
                 window.alert(11);
 
                 if (!!(self.arData[idx].isParti)) {
-                    window.alert(12);
+                    window.alert(self.args[idx].Particle.length);
 
                     for (var k = 0; k < self.args[idx].Particle.length; k++) {
                         window.alert(13);
