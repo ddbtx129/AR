@@ -1729,7 +1729,7 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
                         
                         if (webAr.ar.arData[i].isParti) {
-                            for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                            for (var k = 0; k < webAr.ar.arData[idx].Particle.length; k++) {
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
                                 AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
                             }
@@ -1780,7 +1780,7 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
 
                         if (webAr.ar.arData[i].isParti) {
-                            for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                            for (var k = 0; k < webAr.ar.arData[i].Particle.length; k++) {
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
                                 AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
                             }
@@ -2142,7 +2142,7 @@ var viewmode = 'marker';
                 }
 
                 if (!!(webAr.ar.arData[j].isParti)) {
-                    for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                    for (var k = 0; k < webAr.ar.arData[j].Particle.length; k++) {
                         var parti = document.getElementById("arParticle" + (webar.markerIdx * 100 + (k + 1)));
                         var pos = parti.getAttribute('position');
                         var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
@@ -2474,24 +2474,11 @@ var viewmode = 'marker';
                 document.getElementById("swCamera").style.display = "none";
 
                 document.getElementById("swSound").style.display = "inline";
-
-                //for (var i = 0; i < self.arg.Multi; i++) {
-                //    if (self.arData[i].isMp4) {
-                //        for (var j = 0; j < self.arData[i].arObj.length; j++) {
-                //            let video = document.querySelector('#source' + (((Number(i) + 1) * 100) + (j + 1)).toString());
-                //            if (self.videosound == 1) {
-                //                video.muted = true;
-                //            } else {
-                //                video.muted = false;
-                //            }
-                //        }
-                //    }
-                //}
             }
 
-            if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
-                document.getElementById("arloader").style.display = 'none';
-            }
+            //if (val[0].isMarkerType == 1 || !!(val[0].isPV)) {
+            //    document.getElementById("arloader").style.display = 'none';
+            //}
 
             this.resetGyro();
         },
