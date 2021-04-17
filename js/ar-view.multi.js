@@ -233,6 +233,8 @@ var viewmode = 'marker';
                     }
 
                     args[idx].PARList = (!!(pcs[idx].par) ? pcs[idx].par : arg.PARTI);
+                    window.alert(pcs[idx].par);
+                    window.alert(args[idx].PARList);
 
                     if (args[idx].PARList) {
 
