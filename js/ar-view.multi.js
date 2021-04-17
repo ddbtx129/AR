@@ -249,7 +249,7 @@ var viewmode = 'marker';
                                 
                                 var attribute = {};
 
-                                attribute.idnm = (parti[k].idnm + ((idx + 1) * 100) + (k + 1).toString());
+                                attribute.idnm = (parti[k].idnm + (((idx + 1) * 100) + (k + 1)).toString());
                                 attribute.pos = parti[k].pos;
                                 attribute.partisys = parti[k].partisys;
 
