@@ -1571,7 +1571,7 @@ var viewmode = 'marker';
 
                 var wrapPos = { x: defwrap[idx].Pos.x, y: defwrap[idx].Pos.y, z: defwrap[idx].Pos.z };
 
-                var parti = document.getElementById("arParticle");
+                var parti = document.getElementById("arParticle" + (idx + 1));
                 AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
 
                 if (self.arData[idx].isPV) {
@@ -1701,7 +1701,7 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
                         
                         if (webAr.ar.arData[i].isParti) {
-                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle'), "particle-system", { enabled: true });
+                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle' + (webar.markerIdx)), "particle-system", { enabled: true });
                         }
 
                         if (webAr.ar.arData[i].isMp4) {
@@ -1749,7 +1749,7 @@ var viewmode = 'marker';
                         var i = Number(targetmarker.getAttribute('data-index'));
 
                         if (webAr.ar.arData[i].isParti) {
-                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle'), "particle-system", { enabled: false });
+                            AFRAME.utils.entity.setComponentProperty(document.getElementById('arParticle' + webar.markerIdx), "particle-system", { enabled: false });
                         }
 
                         if (webAr.ar.arData[i].isMp4) {
@@ -2108,7 +2108,7 @@ var viewmode = 'marker';
                 }
 
                 if (!!(webAr.ar.arData[j].isParti)) {
-                    var parti = document.getElementById('arParticle');
+                    var parti = document.getElementById('arParticle' + webar.markerIdx);
                     var pos = parti.getAttribute('position');
                     var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
                     parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
