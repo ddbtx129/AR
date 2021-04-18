@@ -2244,7 +2244,7 @@ var viewmode = 'marker';
                             var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
                             video.pause();
-                            //webAr.ar.videoState[i] = 2;
+                            webAr.ar.videoState[i] = 2;
                         }
                     }
 
@@ -2270,7 +2270,7 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
-                        if (Number(webAr.ar.videoState[j]) != 2) {
+                        if (Number(webAr.ar.videoState[j]) != 2 || Number(webAr.ar.videoState[j]) <= 0) {
                             video.pause();
                             (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
                             document.getElementById('swPlay').style.display = 'inline';
@@ -2337,7 +2337,7 @@ var viewmode = 'marker';
                         if (webAr.ar.arData[j].isMp4) {
                             var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                             video.pause();
-                            webAr.ar.videoState[j] = 1;
+                            webAr.ar.videoState[j] = -1;
 
                             //if(webAr.ar.videoState[j] == 3){
                             //    webAr.ar.videoState[j] = 2;
