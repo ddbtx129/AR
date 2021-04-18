@@ -1568,6 +1568,7 @@ var viewmode = 'marker';
 
                     webAr.scene.appendChild(self.wrap[idx]);
 
+                    this.setWrapAnime(idx);
                 } else {
 
                     if (!!(val[idx].isParti)) {
@@ -1771,8 +1772,6 @@ var viewmode = 'marker';
                 self.arData[idx].zoomRateH = zoomRateH;
                 self.arData[idx].wrapZoom = wrapZoom;
                 self.arData[idx].pvAngle = pvAngle;
-
-                this.setWrapAnime(idx);
 
                 this.objectDataVal(zoomRateH, wrapPos, pvAngle);
             }
