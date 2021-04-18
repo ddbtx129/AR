@@ -2248,15 +2248,16 @@ var viewmode = 'marker';
                     multi.innerHTML = webAr.markerIdx;
 
                     if (webAr.ar.arData[j].isMp4) {
-                        window.alert(webAr.ar.videoState[j]);
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
                         if (webAr.ar.videoState[j] != 2) {
+                            window.alert(webAr.ar.videoState[j]);
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
                             webAr.ar.videoState[j] = 1;
                         } else {
+                            window.alert(webAr.ar.videoState[j]);
                             video.play();
                             webAr.ar.videoState[j] = 3;
                         }
