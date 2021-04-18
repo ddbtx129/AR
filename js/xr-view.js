@@ -1355,7 +1355,7 @@ var viewmode = 'marker';
             var direction = getRandomIntInclusive(0, 1);
             var rate = 1;
             console.log('000' + oidx);
-            if (getRandomIntInclusive == 0) {
+            if (direction == 0) {
                 AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + (oidx + 1), {
                     property: 'position',
                     dir: 'alternate',
@@ -1367,7 +1367,7 @@ var viewmode = 'marker';
                     startEvents: 'posModel' + (oidx + 1)
                 });
                 console.log(0);
-            } else if (getRandomIntInclusive == 1) {
+            } else if (direction == 1) {
                 AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + (oidx + 1), {
                     property: 'position',
                     dir: 'alternate',
