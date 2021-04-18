@@ -1754,8 +1754,6 @@ var viewmode = 'marker';
 
                     mWrap[idx].setAttribute('url', AFRAME.utils.coordinates.stringify(rootPath + mk));
 
-                    this.setWrapAnime(idx);
-
                     mWrap[idx].appendChild(self.wrap[idx]);
                     webAr.scene.appendChild(mWrap[idx]);
 
@@ -1773,6 +1771,8 @@ var viewmode = 'marker';
                 self.arData[idx].zoomRateH = zoomRateH;
                 self.arData[idx].wrapZoom = wrapZoom;
                 self.arData[idx].pvAngle = pvAngle;
+
+                this.setWrapAnime(idx);
 
                 this.objectDataVal(zoomRateH, wrapPos, pvAngle);
             }
