@@ -1844,7 +1844,7 @@ var viewmode = 'marker';
                     self.mWrap[idx] = mWrap[idx];
                 }
 
-                this.setModelAnime(idx);
+                this.createModelAnime(idx);
 
                 if (!!val[idx].isLogo) {
                     this.createAnimation(idx);
@@ -1873,7 +1873,7 @@ var viewmode = 'marker';
                 document.getElementById("swPlay").style.display = 'none';
             }
 
-            this.setModelAnime(oidx);
+            this.createModelAnime(oidx);
 
             if (!!val[oidx].isLogo) {
                 this.createAnimation(oidx);
