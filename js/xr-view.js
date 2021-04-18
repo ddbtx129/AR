@@ -2251,12 +2251,13 @@ var viewmode = 'marker';
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
                         if (Number(webAr.ar.videoState[j]) != 2) {
+                            console.log('!=2  ' + webAr.ar.videoState[j]);
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
                             webAr.ar.videoState[j] = 1;
                         } else {
-                            window.alert(webAr.ar.videoState[j]);
+                            console.log('==2  ' + webAr.ar.videoState[j]);
                             video.play();
                             webAr.ar.videoState[j] = 3;
                         }
