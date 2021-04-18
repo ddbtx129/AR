@@ -2256,8 +2256,10 @@ var viewmode = 'marker';
                             document.getElementById("info1").style.display = "none";
                             webAr.ar.videoState[j] = 1;
                         } else {
-                            video.play();
-                            webAr.ar.videoState[j] = 3;
+                            if (webAr.ar.videoState[j] == 3) {
+                                video.play();
+                                webAr.ar.videoState[j] = 3;
+                            }
                         }
                     }
 
