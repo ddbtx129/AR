@@ -1354,31 +1354,55 @@ var viewmode = 'marker';
             var self = this;
             var direction = getRandomIntInclusive(0, 1);
             var rate = 1;
-            console.log('000' + oidx);
+
             if (direction == 0) {
-                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
-                    property: 'position',
-                    dir: 'alternate',
-                    dur: 5000,
-                    easing: 'easeInOutQuart',
-                    loop: false,
-                    from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
-                    to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
-                    startEvents: 'posModel' + Number(oidx)
-                });
-                console.log(0);
+                if (self.arData[idx].isPV) {
+                    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
+                        property: 'position',
+                        dir: 'alternate',
+                        dur: 1000,
+                        easing: 'easeInOutQuart',
+                        loop: true,
+                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z - (defobj[oidx].Scale.z * rate) * 3) ,
+                        to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
+                        startEvents: 'posModel' + Number(oidx)
+                    });
+                } else {
+                    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
+                        property: 'position',
+                        dir: 'alternate',
+                        dur: 1000,
+                        easing: 'easeInOutQuart',
+                        loop: true,
+                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
+                        to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
+                        startEvents: 'posModel' + Number(oidx)
+                    });
+                }
             } else if (direction == 1) {
-                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
-                    property: 'position',
-                    dir: 'alternate',
-                    dur: 5000,
-                    easing: 'easeInOutQuart',
-                    loop: false,
-                    from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
-                    to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
-                    startEvents: 'posModel' + Number(oidx)
-                });
-                console.log(1);
+                if (self.arData[idx].isPV) {
+                    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
+                        property: 'position',
+                        dir: 'alternate',
+                        dur: 1000,
+                        easing: 'easeInOutQuart',
+                        loop: true,
+                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z + (defobj[oidx].Scale.z * rate) * 3),
+                        to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
+                        startEvents: 'posModel' + Number(oidx)
+
+                } else {
+                    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
+                        property: 'position',
+                        dir: 'alternate',
+                        dur: 1000,
+                        easing: 'easeInOutQuart',
+                        loop: true,
+                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
+                        to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
+                        startEvents: 'posModel' + Number(oidx)
+                    });
+                }
             }
 
             //if(getRandomIntInclusive == 0){
