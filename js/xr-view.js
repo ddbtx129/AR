@@ -2334,23 +2334,51 @@ var viewmode = 'marker';
 
             window.addEventListener('blur', function (e) {
                 if (webAr.loaderEnd != 0) {
-                    var marker = webAr.markerIdx.split(',');
-                    for (var i = 0; i < marker.length; i++) {
-                        var j = Number(marker[i]) - 1;
-                        if (webAr.ar.arData[j].isMp4) {
-                            var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                            video.pause();
-                            webAr.ar.videoState[j] = -1;
-
-                            //if(webAr.ar.videoState[j] == 3){
-                            //    webAr.ar.videoState[j] = 2;
-                            //} else {
-                            //    webAr.ar.videoState[j] = 1;
+                    if (webAr.ar.arData[0].isPV == 1) {
+                        for (var j = 0; j < webAr.args.Multi; j++) {
+                            //if (webAr.ar.arData[j].isMp4) {
+                            //    if (webAr.ar.arData[j].isMp4) {
+                            //        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            //        video.pause();
+                            //        if (webAr.ar.videoState[j] == 3) {
+                            //            webAr.ar.videoState[j] = 2;
+                            //        } else {
+                            //            webAr.ar.videoState[j] = 1;
+                            //        }
+                            //    }
                             //}
+                            VideoStop(j);
+                        }
+                    } else {
+                        var marker = webAr.markerIdx.split(',');
+                        for (var i = 0; i < marker.length; i++) {
+                            var j = Number(marker[i]) - 1;
+                            //if (webAr.ar.arData[j].isMp4) {
+                            //    var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                            //    video.pause();
+                            //    if (webAr.ar.videoState[j] == 3) {
+                            //        webAr.ar.videoState[j] = 2;
+                            //    } else {
+                            //        webAr.ar.videoState[j] = 1;
+                            //    }
+                            //}
+                            VideoStop(j);
                         }
                     }
                 }
             });
+
+            function VideoStop(oidx) {
+                if (webAr.ar.arData[oidx].isMp4) {
+                    var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
+                    video.pause();
+                    if (webAr.ar.videoState[oidx] == 3) {
+                        webAr.ar.videoState[oidx] = 2;
+                    } else {
+                        webAr.ar.videoState[oidx] = 1;
+                    }
+                }
+            };
         },
 
         setGyroValuEvents: function (){
