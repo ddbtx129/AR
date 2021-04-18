@@ -1515,8 +1515,6 @@ var viewmode = 'marker';
             var mWrap = {};
             self.mWrap = {};
 
-            console.clear();
-
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 this.addScene(idx);
@@ -1652,8 +1650,6 @@ var viewmode = 'marker';
 
                     mWrap[idx].addEventListener('markerFound', function (e) {
 
-                        console.clear();
-
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
@@ -1704,8 +1700,6 @@ var viewmode = 'marker';
                     });
 
                     mWrap[idx].addEventListener('markerLost', function (e) {
-
-                        console.clear();
 
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
@@ -1849,8 +1843,6 @@ var viewmode = 'marker';
 
             var self = this;
             var val = self.arData;
-
-            console.clear();
 
             this.addScene(oidx);
 
@@ -2080,8 +2072,6 @@ var viewmode = 'marker';
                         var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
                         parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));                    }
                 }
-
-                console.clear();
 
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
