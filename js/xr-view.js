@@ -1722,6 +1722,7 @@ var viewmode = 'marker';
                             } else {
                                 video.pause();
                                 webAr.ar.videoState[i] = 2;
+                                console.log('markerLost');
                             }
                         }
 
@@ -2227,6 +2228,7 @@ var viewmode = 'marker';
                             video.muted = !(webAr.ar.videosound == 1);
                             video.pause();
                             webAr.ar.videoState[i] = 2;
+                            console.log('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                         }
                     }
 
