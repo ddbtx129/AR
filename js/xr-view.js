@@ -2223,13 +2223,11 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     var i = Number(marker[0]) - 1;
                     if (webAr.ar.arData[i].isMp4) {
-                        console.log(webAr.ar.videoState[i]);
                         if (webAr.ar.videoState[i] > 1) {
                             var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
                             video.pause();
                             //webAr.ar.videoState[i] = 2;
-                            console.log('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                         }
                     }
 
@@ -2252,16 +2250,14 @@ var viewmode = 'marker';
 
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                        console.log('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
                         if (Number(webAr.ar.videoState[j]) != 2) {
-                            console.log('!=2  ' + webAr.ar.videoState[j]);
                             video.pause();
+                            (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
                             webAr.ar.videoState[j] = 1;
                         } else {
-                            console.log('==2  ' + webAr.ar.videoState[j]);
                             video.play();
                             webAr.ar.videoState[j] = 3;
                         }
