@@ -2240,6 +2240,7 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     var i = Number(marker[0]) - 1;
                     if (webAr.ar.arData[i].isMp4) {
+                        console.log(i + ' ' + webAr.ar.videoState[i])
                         if (webAr.ar.videoState[i] > 1) {
                             var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
