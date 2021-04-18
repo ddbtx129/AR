@@ -1356,7 +1356,7 @@ var viewmode = 'marker';
             var rate = 1;
             console.log('000' + oidx);
             if (direction == 0) {
-                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx) + 1, {
+                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                     property: 'position',
                     dir: 'alternate',
                     dur: 5000,
@@ -1364,11 +1364,11 @@ var viewmode = 'marker';
                     loop: false,
                     from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
                     to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
-                    startEvents: 'posModel' + Number(oidx) + 1
+                    startEvents: 'posModel' + Number(oidx)
                 });
                 console.log(0);
             } else if (direction == 1) {
-                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx) + 1, {
+                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                     property: 'position',
                     dir: 'alternate',
                     dur: 5000,
@@ -1376,7 +1376,7 @@ var viewmode = 'marker';
                     loop: false,
                     from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
                     to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
-                    startEvents: 'posModel' + Number(oidx) + 1
+                    startEvents: 'posModel' + Number(oidx)
                 });
                 console.log(1);
             }
@@ -2232,7 +2232,7 @@ var viewmode = 'marker';
                 webAr.ar.resetScene(oidx);
                 webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
                 console.log(oidx);
-                webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx) + 1);
+                webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx));
 
                 tapCount = 0;
                 tapclicked = false;
@@ -2270,7 +2270,7 @@ var viewmode = 'marker';
                     webAr.ar.arData[j].wrap.setAttribute('visible', true);
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[i].wrapPos, webAr.ar.arData[i].pvAngle);
 
-                    webAr.ar.arData[j].main.emit('posModel' + (j + 1));
+                    webAr.ar.arData[j].main.emit('posModel' + (j));
 
                     var multi = document.getElementById('txtMultiNo');
                     webAr.markerIdx = (j + 1).toString();
