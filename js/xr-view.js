@@ -1363,11 +1363,11 @@ var viewmode = 'marker';
                         dur: 1000,
                         easing: 'easeInOutQuart',
                         loop: true,
-                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z - (defobj[oidx].Scale.z * rate) * 3) ,
+                        from: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) - (Number(defobj[oidx].Scale.z) * rate) * 3),
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
-                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z - (defobj[oidx].Scale.z * rate) * 3));
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) - (Number(defobj[oidx].Scale.z) * rate) * 3));
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 } else {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
@@ -1376,11 +1376,11 @@ var viewmode = 'marker';
                         dur: 1000,
                         easing: 'easeInOutQuart',
                         loop: true,
-                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
+                        from: defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) - (Number(defobj[oidx].Scale.y) * rate) * 3) + ' ' + defobj[oidx].Pos.z,
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
-                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z);
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) - (Number(defobj[oidx].Scale.y) * rate) * 3) + ' ' + defobj[oidx].Pos.z);
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
             } else if (direction == 1) {
@@ -1391,11 +1391,11 @@ var viewmode = 'marker';
                         dur: 1000,
                         easing: 'easeInOutQuart',
                         loop: true,
-                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z + (defobj[oidx].Scale.z * rate) * 3),
+                        from: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) + (Number(defobj[oidx].Scale.z) * rate) * 3),
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
-                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z - (defobj[oidx].Scale.z * rate) * 3));
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) - (Number(defobj[oidx].Scale.z) * rate) * 3));
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 } else {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
@@ -1404,11 +1404,11 @@ var viewmode = 'marker';
                         dur: 1000,
                         easing: 'easeInOutQuart',
                         loop: true,
-                        from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
+                        from: defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) + (Number(defobj[oidx].Scale.y) * rate) * 3) + ' ' + defobj[oidx].Pos.z,
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
-                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z);
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) + (Number(defobj[oidx].Scale.y) * rate) * 3) + ' ' + defobj[oidx].Pos.z);
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
             }
