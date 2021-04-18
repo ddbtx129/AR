@@ -1394,27 +1394,27 @@ var viewmode = 'marker';
                             easing: 'easeOutElastic',
                             elasticity: 300
                         });
-                    } else if (val[oidx].isAnime == 3) {
-                        self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                        // 弾む
-                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos', {
-                            property: 'position',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeInOutQuart',
-                            loop: true,
-                            from: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
-                            to: deflogo[oidx].Pos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
-                        });
-                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale', {
-                            property: 'scale',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeOutQuad',
-                            loop: true,
-                            from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y* 0.8 + ' ' + deflogo[oidx].Scale.z,
-                            to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z
-                        });
+                    //} else if (val[oidx].isAnime == 3) {
+                    //    self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                    //    // 弾む
+                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos', {
+                    //        property: 'position',
+                    //        dir: 'alternate',
+                    //        dur: 400,
+                    //        easing: 'easeInOutQuart',
+                    //        loop: true,
+                    //        from: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                    //        to: deflogo[oidx].Pos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
+                    //    });
+                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale', {
+                    //        property: 'scale',
+                    //        dir: 'alternate',
+                    //        dur: 400,
+                    //        easing: 'easeOutQuad',
+                    //        loop: true,
+                    //        from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y* 0.8 + ' ' + deflogo[oidx].Scale.z,
+                    //        to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z
+                    //    });
                     } else if (val[oidx].isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn1', {
                             property: 'rotation',
@@ -1434,29 +1434,29 @@ var viewmode = 'marker';
                             to: '0 360 0',
                             startEvents: 'turn2'
                         });
-                    } else if (val[oidx].isAnime == 13) {
-                        self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                        // 弾む
-                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
-                            property: 'position',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeInOutQuart',
-                            loop: false,
-                            from: deflogo[oidx].x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.h * rate) / 5) + ' ' + deflogo[oidx].Pos.z,
-                            to: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
-                            startEvents: 'pos3'
-                        });
-                        AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale3', {
-                            property: 'scale',
-                            dir: 'alternate',
-                            dur: 400,
-                            easing: 'easeOutQuad',
-                            loop: false,
-                            from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y * 0.8 + ' ' + deflogo[oidx].Scale.z,
-                            to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z,
-                            startEvents: 'scale3'
-                        });
+                    //} else if (val[oidx].isAnime == 13) {
+                    //    self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                    //    // 弾む
+                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
+                    //        property: 'position',
+                    //        dir: 'alternate',
+                    //        dur: 400,
+                    //        easing: 'easeInOutQuart',
+                    //        loop: false,
+                    //        from: deflogo[oidx].x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.h * rate) / 5) + ' ' + deflogo[oidx].Pos.z,
+                    //        to: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                    //        startEvents: 'pos3'
+                    //    });
+                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale3', {
+                    //        property: 'scale',
+                    //        dir: 'alternate',
+                    //        dur: 400,
+                    //        easing: 'easeOutQuad',
+                    //        loop: false,
+                    //        from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y * 0.8 + ' ' + deflogo[oidx].Scale.z,
+                    //        to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z,
+                    //        startEvents: 'scale3'
+                    //    });
                     }
                 } else {
                     if (val[oidx].isAnime != 99) {
@@ -1784,27 +1784,49 @@ var viewmode = 'marker';
             var direction = getRandomIntInclusive(0, 1);
             var rate = 1;
 
-            if(getRandomIntInclusive == 0){
+            if (getRandomIntInclusive == 0) {
                 AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
                     property: 'position',
                     dir: 'alternate',
                     dur: 5000,
                     easing: 'easeInOutQuart',
                     loop: false,
-                    from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
+                    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y - (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
+                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z
                 });
-            } else if(getRandomIntInclusive == 1){
+            } else if (getRandomIntInclusive == 1) {
                 AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
                     property: 'position',
                     dir: 'alternate',
                     dur: 5000,
                     easing: 'easeInOutQuart',
                     loop: false,
-                    from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
+                    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y + (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
+                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z
                 });
             }
+
+            //if(getRandomIntInclusive == 0){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 5000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
+            //    });
+            //} else if(getRandomIntInclusive == 1){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 5000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
+            //    });
+            //}
             //} else if(getRandomIntInclusive == 2){
             //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
             //        property: 'position',
