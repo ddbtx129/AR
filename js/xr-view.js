@@ -2250,7 +2250,7 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
-                        if (webAr.ar.videoState[j] != 2) {
+                        if (Number(webAr.ar.videoState[j]) != 2) {
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
@@ -2300,6 +2300,7 @@ var viewmode = 'marker';
                             var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                             if (webAr.ar.videoState[j] != 3) {
                                 video.pause();
+                                webAr.ar.videoState[j] = 1;
                                 (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
                                 document.getElementById("swPlay").style.display = 'inline';
                             }
