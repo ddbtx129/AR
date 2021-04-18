@@ -298,7 +298,7 @@ var viewmode = 'marker';
                 args[idx].ObjectList1 = args[idx].o1;
                 args[idx].ObjectList2 = args[idx].o2;
                 args[idx].ObjectList3 = !!(args[idx].o3) ? args[idx].o3 : args[idx].o2;
-
+                
                 // マーカー＆オブジェクト
                 args[idx].MkObjList = args[idx].mo;
 
@@ -396,6 +396,7 @@ var viewmode = 'marker';
                     seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
                     var no = Number(self.args[idx].ObjectList2);
                     for (var i = 0; i <= seq; i++) {
+                        window.alert(('0' + i).slice(-1));
                         var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
                         var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
                         object[i] = ((self.args[idx].MkObjList) && (obj) ?
@@ -2314,7 +2315,7 @@ var viewmode = 'marker';
             });
 
             window.addEventListener('blur', function (e) {
-                if(webAr.loaderEnd != 0) {
+                if (webAr.loaderEnd != 0) {
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
