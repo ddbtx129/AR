@@ -1390,7 +1390,7 @@ var viewmode = 'marker';
                         from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z + (defobj[oidx].Scale.z * rate) * 3),
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
-
+                    });
                 } else {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
