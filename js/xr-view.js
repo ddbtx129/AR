@@ -726,6 +726,8 @@ var viewmode = 'marker';
                 
                 self.wrap[idx] = wrap;
                 self.arData[idx].wrap = self.wrap[idx];
+
+                this.setWrapAnime(idx);
             }
         },
 
@@ -1401,8 +1403,8 @@ var viewmode = 'marker';
                             dur: 400,
                             easing: 'easeInOutQuart',
                             loop: true,
-                            from: logopos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
-                            to: logopos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
+                            from: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                            to: deflogo[oidx].Pos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
                         });
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale', {
                             property: 'scale',
@@ -1681,8 +1683,6 @@ var viewmode = 'marker';
                             }
                         } else {
                             
-                            //webAr.ar.setWrapAnime(i);
-
                             webAr.ar.arData[i].viewIdx = 1;
                             webAr.markerIdx = '';
                             for (var j = 0; j < webAr.ar.arg.Multi; j++) {
@@ -1792,8 +1792,7 @@ var viewmode = 'marker';
                     easing: 'easeInOutQuart',
                     loop: false,
                     from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
-                    startEvents: 'pos0'
+                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
                 });
             } else if(getRandomIntInclusive == 1){
                 AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
@@ -1803,8 +1802,7 @@ var viewmode = 'marker';
                     easing: 'easeInOutQuart',
                     loop: false,
                     from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
-                    startEvents: 'pos0'
+                    to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
                 });
             }
             //} else if(getRandomIntInclusive == 2){
