@@ -1785,26 +1785,44 @@ var viewmode = 'marker';
             var rate = 1;
 
             if (getRandomIntInclusive == 0) {
-                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
-                    property: 'position',
-                    dir: 'alternate',
-                    dur: 5000,
-                    easing: 'easeInOutQuart',
-                    loop: false,
-                    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y - (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
-                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
-                    startEvents: 'pos0'
+                //AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
+                //    property: 'position',
+                //    dir: 'alternate',
+                //    dur: 5000,
+                //    easing: 'easeInOutQuart',
+                //    loop: false,
+                //    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y - (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
+                //    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
+                //    startEvents: 'pos0'
+                //});
+                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__turn10', {
+                    property: 'rotation',
+                    dur: 3000,
+                    easing: 'easeOutElastic',
+                    elasticity: 300,
+                    from: '0 0 0',
+                    to: '0 360 0',
+                    startEvents: 'turn0'
                 });
             } else if (getRandomIntInclusive == 1) {
-                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
-                    property: 'position',
-                    dir: 'alternate',
-                    dur: 5000,
-                    easing: 'easeInOutQuart',
-                    loop: false,
-                    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y + (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
-                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
-                    startEvents: 'pos0'
+                //AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
+                //    property: 'position',
+                //    dir: 'alternate',
+                //    dur: 5000,
+                //    easing: 'easeInOutQuart',
+                //    loop: false,
+                //    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y + (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
+                //    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
+                //    startEvents: 'pos0'
+                //});
+                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__turn10', {
+                    property: 'rotation',
+                    dur: 3000,
+                    easing: 'easeOutElastic',
+                    elasticity: 300,
+                    from: '0 360 0',
+                    to: '0 0 0',
+                    startEvents: 'turn0'
                 });
             }
 
