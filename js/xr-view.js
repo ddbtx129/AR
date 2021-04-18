@@ -1785,24 +1785,26 @@ var viewmode = 'marker';
             var rate = 1;
 
             if (getRandomIntInclusive == 0) {
-                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
                     property: 'position',
                     dir: 'alternate',
                     dur: 5000,
                     easing: 'easeInOutQuart',
                     loop: false,
                     from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y - (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
-                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z
+                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
+                    startEvents: 'pos0'
                 });
             } else if (getRandomIntInclusive == 1) {
-                AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
                     property: 'position',
                     dir: 'alternate',
                     dur: 5000,
                     easing: 'easeInOutQuart',
                     loop: false,
                     from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y + (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
-                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z
+                    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
+                    startEvents: 'pos0'
                 });
             }
 
@@ -1851,7 +1853,7 @@ var viewmode = 'marker';
             //    });    
             //}
 
-            webAr.ar.arData[oidx].wrap.emit('pos0');
+            //webAr.ar.arData[oidx].wrap.emit('pos0');
 
             function getRandomIntInclusive(min, max) {
                 min = Math.ceil(min);
@@ -2228,6 +2230,8 @@ var viewmode = 'marker';
                 webAr.ar.resetScene(oidx);
                 webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
 
+                webAr.ar.arData[oidx].wrap.emit('pos0');
+
                 tapCount = 0;
                 tapclicked = false;
             };
@@ -2263,6 +2267,7 @@ var viewmode = 'marker';
                     var j = ((i + 1) < webAr.ar.arg.Multi) ? i + 1 : 0;
                     webAr.ar.arData[j].wrap.setAttribute('visible', true);
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[i].wrapPos, webAr.ar.arData[i].pvAngle);
+                    webAr.ar.arData[j].wrap.emit('pos0');
 
                     var multi = document.getElementById('txtMultiNo');
                     webAr.markerIdx = (j + 1).toString();
