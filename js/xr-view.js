@@ -2248,6 +2248,7 @@ var viewmode = 'marker';
                     multi.innerHTML = webAr.markerIdx;
 
                     if (webAr.ar.arData[j].isMp4) {
+                        window.alert(webAr.ar.videoState[j]);
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
                         if (webAr.ar.videoState[j] != 2) {
