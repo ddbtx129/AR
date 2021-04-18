@@ -2123,9 +2123,8 @@ var viewmode = 'marker';
                 }
 
                 if (!!(webAr.ar.arData[j].isParti)) {
-                    for (var k = 0; k < webAr.ar.arData[j].Particle.length; k++) {
+                    for (var k = 0; k < webAr.ar.args[j].Particle.length; k++) {
                         var parti = document.getElementById("arParticle" + (webar.markerIdx * 100 + (k + 1)));
-                        var pos = parti.getAttribute('position');
                         var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
                         parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));                    }
                 }
