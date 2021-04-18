@@ -1367,6 +1367,8 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z - (defobj[oidx].Scale.z * rate) * 3));
+                    console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 } else {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
@@ -1378,6 +1380,8 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z);
+                    console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
             } else if (direction == 1) {
                 if (self.arData[oidx].isPV) {
@@ -1391,6 +1395,8 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z - (defobj[oidx].Scale.z * rate) * 3));
+                    console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 } else {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
@@ -1402,6 +1408,8 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('from:' + defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z);
+                    console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
             }
 
