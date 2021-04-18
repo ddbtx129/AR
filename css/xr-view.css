@@ -68,8 +68,8 @@ a-camera {
 
 .ar-videoplay {
     position: absolute;
-    top: 42%;
-    left: 42%;
+    top: 50%;
+    left: 50%;
     width: 82px;
     height: 82px;
     opacity: 0.8;
