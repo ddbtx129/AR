@@ -2251,6 +2251,7 @@ var viewmode = 'marker';
 
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                        console.log('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
                         if (Number(webAr.ar.videoState[j]) != 2) {
                             console.log('!=2  ' + webAr.ar.videoState[j]);
