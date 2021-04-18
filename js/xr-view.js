@@ -2246,13 +2246,13 @@ var viewmode = 'marker';
                     var multi = document.getElementById('txtMultiNo');
                     webAr.markerIdx = (j + 1).toString();
                     multi.innerHTML = webAr.markerIdx;
-
+                    window.alert(j);
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
+                        window.alert(j);
+                        window.alert(webAr.ar.videoState[j]);
                         if (webAr.ar.videoState[j] != 2) {
-                            window.alert(j);
-                            window.alert(webAr.ar.videoState[j]);
                             video.pause();
                             document.getElementById('swPlay').style.display = 'inline';
                             document.getElementById("info1").style.display = "none";
