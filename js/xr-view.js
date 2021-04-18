@@ -1362,7 +1362,7 @@ var viewmode = 'marker';
                         dir: 'alternate',
                         dur: 1000,
                         easing: 'easeInOutQuart',
-                        loop: true,
+                        loop: false,
                         from: defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) - (Number(defobj[oidx].Scale.y) * rate) * 10) + ' ' + defobj[oidx].Pos.z,
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
@@ -1376,7 +1376,7 @@ var viewmode = 'marker';
                         dir: 'alternate',
                         dur: 1000,
                         easing: 'easeInOutQuart',
-                        loop: true,
+                        loop: false,
                         from: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) - (Number(defobj[oidx].Scale.z) * rate) * 10),
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
@@ -1392,7 +1392,7 @@ var viewmode = 'marker';
                         dir: 'alternate',
                         dur: 1000,
                         easing: 'easeInOutQuart',
-                        loop: true,
+                        loop: false,
                         from: defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) + (Number(defobj[oidx].Scale.y) * rate) * 10) + ' ' + defobj[oidx].Pos.z,
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
@@ -1406,7 +1406,7 @@ var viewmode = 'marker';
                         dir: 'alternate',
                         dur: 1000,
                         easing: 'easeInOutQuart',
-                        loop: true,
+                        loop: false,
                         from: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) + (Number(defobj[oidx].Scale.z) * rate) * 10),
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
@@ -1416,51 +1416,6 @@ var viewmode = 'marker';
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
             }
-
-            //if(getRandomIntInclusive == 0){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 5000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
-            //    });
-            //} else if(getRandomIntInclusive == 1){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 5000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
-            //    });
-            //}
-            //} else if(getRandomIntInclusive == 2){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 50000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: (webAr.defwrapPos.x - (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
-            //        startEvents: 'pos0'
-            //    });            
-            //} else if(getRandomIntInclusive == 3){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 50000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: (webAr.defwrapPos.x + (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
-            //        startEvents: 'pos0'
-            //    });    
-            //}
 
             function getRandomIntInclusive(min, max) {
                 min = Math.ceil(min);
@@ -1880,7 +1835,7 @@ var viewmode = 'marker';
                     self.mWrap[idx] = mWrap[idx];
                 }
 
-                this.createModelAnime(idx);
+                //this.createModelAnime(idx);
 
                 if (!!val[idx].isLogo) {
                     this.createAnimation(idx);
@@ -1909,7 +1864,7 @@ var viewmode = 'marker';
                 document.getElementById("swPlay").style.display = 'none';
             }
 
-            this.createModelAnime(oidx);
+            //this.createModelAnime(oidx);
 
             if (!!val[oidx].isLogo) {
                 this.createAnimation(oidx);
@@ -2267,8 +2222,8 @@ var viewmode = 'marker';
                 webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
                 webAr.ar.resetScene(oidx);
                 webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
-                console.log('posModel' + Number(oidx));
-                webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx));
+
+                //webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx));
 
                 tapCount = 0;
                 tapclicked = false;
@@ -2306,7 +2261,7 @@ var viewmode = 'marker';
                     webAr.ar.arData[j].wrap.setAttribute('visible', true);
                     webAr.ar.objectDataVal(webAr.ar.arData[j].zoomRateH, webAr.ar.arData[i].wrapPos, webAr.ar.arData[i].pvAngle);
 
-                    webAr.ar.arData[j].main.emit('posModel' + (j));
+                    //webAr.ar.arData[j].main.emit('posModel' + (j));
 
                     var multi = document.getElementById('txtMultiNo');
                     webAr.markerIdx = (j + 1).toString();
