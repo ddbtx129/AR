@@ -1349,6 +1349,88 @@ var viewmode = 'marker';
             }
         },
 
+        setModelAnime: function (oidx) {
+
+            var self = this;
+            var direction = getRandomIntInclusive(0, 1);
+            var rate = 1;
+
+            if (getRandomIntInclusive == 0) {
+                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + (oidx + 1), {
+                    property: 'position',
+                    dir: 'alternate',
+                    dur: 5000,
+                    easing: 'easeInOutQuart',
+                    loop: false,
+                    from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y - (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
+                    to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
+                    startEvents: 'posModel' + (oidx + 1)
+                });
+            } else if (getRandomIntInclusive == 1) {
+                AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + (oidx + 1), {
+                    property: 'position',
+                    dir: 'alternate',
+                    dur: 5000,
+                    easing: 'easeInOutQuart',
+                    loop: false,
+                    from: defobj[oidx].Pos.x + ' ' + (defobj[oidx].Pos.y + (defobj[oidx].Scale.y * rate) * 3) + ' ' + defobj[oidx].Pos.z,
+                    to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
+                    startEvents: 'posModel' + (oidx + 1)
+                });
+            }
+
+            //if(getRandomIntInclusive == 0){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 5000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
+            //    });
+            //} else if(getRandomIntInclusive == 1){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 5000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
+            //    });
+            //}
+            //} else if(getRandomIntInclusive == 2){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 50000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: (webAr.defwrapPos.x - (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
+            //        startEvents: 'pos0'
+            //    });            
+            //} else if(getRandomIntInclusive == 3){
+            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
+            //        property: 'position',
+            //        dir: 'alternate',
+            //        dur: 50000,
+            //        easing: 'easeInOutQuart',
+            //        loop: false,
+            //        from: (webAr.defwrapPos.x + (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
+            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
+            //        startEvents: 'pos0'
+            //    });    
+            //}
+
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+            }
+        },
+
         createAnimation: function (oidx){
 
             var self = this;
@@ -1568,7 +1650,6 @@ var viewmode = 'marker';
 
                     webAr.scene.appendChild(self.wrap[idx]);
 
-                    this.setWrapAnime(idx);
                 } else {
 
                     if (!!(val[idx].isParti)) {
@@ -1761,10 +1842,12 @@ var viewmode = 'marker';
                     self.mWrap[idx] = mWrap[idx];
                 }
 
+                this.setModelAnime(idx);
+
                 if (!!val[idx].isLogo) {
                     this.createAnimation(idx);
                 }
-                
+
                 self.arData[idx].yClickRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.2 : 5);
                 self.arData[idx].yTouchRate = ((!!(val[idx].isMarkerType == 1) || !!(val[idx].isPV)) ? 0.02 : (0.1 * wrapZoom));
 
@@ -1774,108 +1857,6 @@ var viewmode = 'marker';
                 self.arData[idx].pvAngle = pvAngle;
 
                 this.objectDataVal(zoomRateH, wrapPos, pvAngle);
-            }
-        },
-
-        setWrapAnime: function(oidx) {
-            
-            var self = this;
-            var direction = getRandomIntInclusive(0, 1);
-            var rate = 1;
-
-            if (getRandomIntInclusive == 0) {
-                //AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
-                //    property: 'position',
-                //    dir: 'alternate',
-                //    dur: 5000,
-                //    easing: 'easeInOutQuart',
-                //    loop: false,
-                //    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y - (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
-                //    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
-                //    startEvents: 'pos0'
-                //});
-                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__turn10', {
-                    property: 'rotation',
-                    dur: 3000,
-                    easing: 'easeOutElastic',
-                    elasticity: 300,
-                    from: '0 0 0',
-                    to: '0 360 0',
-                    startEvents: 'turn10'
-                });
-            } else if (getRandomIntInclusive == 1) {
-                //AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__pos0', {
-                //    property: 'position',
-                //    dir: 'alternate',
-                //    dur: 5000,
-                //    easing: 'easeInOutQuart',
-                //    loop: false,
-                //    from: defwrap[idx].Pos.x + ' ' + (defwrap[idx].Pos.y + (defwrap[idx].Scale.y * rate) * 3) + ' ' + defwrap[idx].Pos.z,
-                //    to: defwrap[idx].Pos.x + ' ' + defwrap[idx].Pos.y + ' ' + defwrap[idx].Pos.z,
-                //    startEvents: 'pos0'
-                //});
-                AFRAME.utils.entity.setComponentProperty(self.wrap[oidx], 'animation__turn10', {
-                    property: 'rotation',
-                    dur: 3000,
-                    easing: 'easeOutElastic',
-                    elasticity: 300,
-                    from: '0 360 0',
-                    to: '0 0 0',
-                    startEvents: 'turn10'
-                });
-            }
-
-            //if(getRandomIntInclusive == 0){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 5000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y - (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
-            //    });
-            //} else if(getRandomIntInclusive == 1){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 5000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: webAr.defwrapPos.x + ' ' + (webAr.defwrapPos.y + (webAr.defwrapScale.h * rate) * 3) + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z
-            //    });
-            //}
-            //} else if(getRandomIntInclusive == 2){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 50000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: (webAr.defwrapPos.x - (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
-            //        startEvents: 'pos0'
-            //    });            
-            //} else if(getRandomIntInclusive == 3){
-            //    AFRAME.utils.entity.setComponentProperty(webAr.ar.arData[oidx].wrap, 'animation__pos0', {
-            //        property: 'position',
-            //        dir: 'alternate',
-            //        dur: 50000,
-            //        easing: 'easeInOutQuart',
-            //        loop: false,
-            //        from: (webAr.defwrapPos.x + (webAr.defwrapScale.w * rate) * 3) + ' ' + webAr.defwrapPos.y + ' ' + webAr.defwrapPos.z,
-            //        to: webAr.ar.arData[oidx].wrapPos.x + ' ' + webAr.ar.arData[oidx].wrapPos.y + ' ' + webAr.ar.arData[oidx].wrapPos.z,
-            //        startEvents: 'pos0'
-            //    });    
-            //}
-
-            //webAr.ar.arData[oidx].wrap.emit('pos0');
-
-            function getRandomIntInclusive(min, max) {
-                min = Math.ceil(min);
-                max = Math.floor(max);
-                return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
             }
         },
         
@@ -1889,6 +1870,8 @@ var viewmode = 'marker';
             if (!val[oidx].isMp4) {
                 document.getElementById("swPlay").style.display = 'none';
             }
+
+            this.setModelAnime(oidx);
 
             if (!!val[oidx].isLogo) {
                 this.createAnimation(oidx);
@@ -2247,7 +2230,7 @@ var viewmode = 'marker';
                 webAr.ar.resetScene(oidx);
                 webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
 
-                webAr.ar.arData[oidx].wrap.emit('turn10');
+                self.arData[oidx].main.emit('posModel' + (oidx + 1));
 
                 tapCount = 0;
                 tapclicked = false;
