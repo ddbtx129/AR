@@ -1795,7 +1795,6 @@ var viewmode = 'marker';
                             } else {
                                 video.pause();
                                 webAr.ar.videoState[i] = 2;
-                                console.log('markerLost');
                             }
                         }
 
@@ -2240,8 +2239,6 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     var i = Number(marker[0]) - 1;
                     if (webAr.ar.arData[i].isMp4) {
-                        console.log(i + ' ' + webAr.ar.videoState[i])
-                        console.log(0 + ' ' + webAr.ar.videoState[0])
                         if (webAr.ar.videoState[i] > 1) {
                             var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
@@ -2272,7 +2269,6 @@ var viewmode = 'marker';
                     if (webAr.ar.arData[j].isMp4) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
-                        console.log(j + ' ' + webAr.ar.videoState[j])
                         if (Number(webAr.ar.videoState[j]) != 2 || Number(webAr.ar.videoState[j]) <= 0) {
                             video.pause();
                             (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton());
