@@ -459,7 +459,8 @@ var viewmode = 'marker';
                 dataObj[idx].isPV = !!(self.arg.PVList);
                 dataObj[idx].isNFT = !!(self.arg.ARList);
                 //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
-                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1; 
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
+                dataObj[idx].isOpenAnime = !!(self.args[idx].ARList) ? (Number(self.args[idx].ARList) >= 10 ? 1 : 0) : 0;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
                 dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
@@ -2319,6 +2320,7 @@ var viewmode = 'marker';
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
+                        console.log(webAr.ar.videoState[j]);
                         if (webAr.ar.arData[j].isMp4) {
                             var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                             video.pause();
