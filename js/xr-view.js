@@ -1356,7 +1356,7 @@ var viewmode = 'marker';
             var rate = 1;
 
             if (direction == 0) {
-                if (self.arData[idx].isPV) {
+                if (self.arData[oidx].isPV) {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
                         dir: 'alternate',
@@ -1380,7 +1380,7 @@ var viewmode = 'marker';
                     });
                 }
             } else if (direction == 1) {
-                if (self.arData[idx].isPV) {
+                if (self.arData[oidx].isPV) {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
                         dir: 'alternate',
