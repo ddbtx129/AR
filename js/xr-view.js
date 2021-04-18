@@ -1367,6 +1367,7 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('posModel' + Number(oidx));
                     console.log('from:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) - (Number(defobj[oidx].Scale.z) * rate) * 3));
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 } else {
@@ -1380,6 +1381,7 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('posModel' + Number(oidx));
                     console.log('from:' + defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) - (Number(defobj[oidx].Scale.y) * rate) * 3) + ' ' + defobj[oidx].Pos.z);
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
@@ -1395,6 +1397,7 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('posModel' + Number(oidx));
                     console.log('from:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + (Number(defobj[oidx].Pos.z) - (Number(defobj[oidx].Scale.z) * rate) * 3));
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 } else {
@@ -1408,6 +1411,7 @@ var viewmode = 'marker';
                         to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                         startEvents: 'posModel' + Number(oidx)
                     });
+                    console.log('posModel' + Number(oidx));
                     console.log('from:' + defobj[oidx].Pos.x + ' ' + (Number(defobj[oidx].Pos.y) + (Number(defobj[oidx].Scale.y) * rate) * 3) + ' ' + defobj[oidx].Pos.z);
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
@@ -2263,7 +2267,7 @@ var viewmode = 'marker';
                 webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
                 webAr.ar.resetScene(oidx);
                 webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
-                console.log(oidx);
+                console.log('posModel' + Number(oidx));
                 webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx));
 
                 tapCount = 0;
