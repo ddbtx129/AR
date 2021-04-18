@@ -1349,7 +1349,7 @@ var viewmode = 'marker';
             }
         },
 
-        setModelAnime: function (oidx) {
+        createModelAnime: function (oidx) {
 
             var self = this;
             var direction = getRandomIntInclusive(0, 1);
@@ -1366,6 +1366,7 @@ var viewmode = 'marker';
                     to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                     startEvents: 'posModel' + (oidx + 1)
                 });
+                console.log(0);
             } else if (getRandomIntInclusive == 1) {
                 AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + (oidx + 1), {
                     property: 'position',
@@ -1377,6 +1378,7 @@ var viewmode = 'marker';
                     to: defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z,
                     startEvents: 'posModel' + (oidx + 1)
                 });
+                console.log(1);
             }
 
             //if(getRandomIntInclusive == 0){
