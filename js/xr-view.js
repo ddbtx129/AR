@@ -1354,7 +1354,7 @@ var viewmode = 'marker';
             var self = this;
             var direction = getRandomIntInclusive(0, 1);
             var rate = 1;
-
+            console.log('000' + oidx);
             if (getRandomIntInclusive == 0) {
                 AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + (oidx + 1), {
                     property: 'position',
