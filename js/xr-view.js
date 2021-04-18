@@ -396,7 +396,6 @@ var viewmode = 'marker';
                     seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
                     var no = Number(self.args[idx].ObjectList2);
                     for (var i = 0; i <= seq; i++) {
-                        window.alert(('0' + i).slice(-1));
                         var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
                         var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
                         object[i] = ((self.args[idx].MkObjList) && (obj) ?
@@ -459,7 +458,8 @@ var viewmode = 'marker';
                 dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
                 dataObj[idx].isPV = !!(self.arg.PVList);
                 dataObj[idx].isNFT = !!(self.arg.ARList);
-                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
+                //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1; 
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
                 dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
