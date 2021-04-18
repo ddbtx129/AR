@@ -2103,6 +2103,14 @@ var viewmode = 'marker';
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
                     webAr.ar.arData[j].wrapPos = AFRAME.utils.coordinates.parse(webAr.ar.arData[j].wrap.getAttribute('position'));
+
+                    if (!!(webAr.ar.arData[j].isParti)) {
+                        for (var k = 0; k < webAr.ar.args[j].Particle.length; k++) {
+                            var parti = document.getElementById("arParticle" + ((j + 1) * 100 + (k + 1)));
+                            var parpos = { x: 0, y: (2.25 + Number(webAr.ar.arData[j].wrapPos.y)), z: (-15 + Number(webAr.ar.arData[j].wrapPos.z)) };
+                            parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));
+                        }
+                    }
                 }
 
                 for (var i = 0; i < marker.length; i++) {
@@ -2120,13 +2128,6 @@ var viewmode = 'marker';
                             webAr.ar.arData[j].wrapPos.z += webAr.ar.arData[j].yTouchRate;
                         }
                     }
-                }
-
-                if (!!(webAr.ar.arData[j].isParti)) {
-                    for (var k = 0; k < webAr.ar.args[j].Particle.length; k++) {
-                        var parti = document.getElementById("arParticle" + (webar.markerIdx * 100 + (k + 1)));
-                        var parpos = { x: 0, y: (2.25 + + webAr.ar.arData[j].wrapPos.y), z: (-15 + + webAr.ar.arData[j].wrapPos.z) };
-                        parti.setAttribute('position', AFRAME.utils.coordinates.stringify(parpos));                    }
                 }
 
                 for (var i = 0; i < marker.length; i++) {
