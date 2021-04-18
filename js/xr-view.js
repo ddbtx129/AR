@@ -2335,7 +2335,7 @@ var viewmode = 'marker';
             window.addEventListener('blur', function (e) {
                 if (webAr.loaderEnd != 0) {
                     if (webAr.ar.arData[0].isPV == 1) {
-                        for (var j = 0; j < webAr.args.Multi; j++) {
+                        for (var j = 0; j < webAr.arg.Multi; j++) {
                             //if (webAr.ar.arData[j].isMp4) {
                             //    if (webAr.ar.arData[j].isMp4) {
                             //        var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
