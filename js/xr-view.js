@@ -1356,7 +1356,7 @@ var viewmode = 'marker';
             var rate = 1;
 
             if (direction == 0) {
-                if (self.arData[j].isMarkerType == 1 || self.arData[oidx].isPV) {
+                if (self.arData[oidx].isMarkerType == 1 || self.arData[oidx].isPV) {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
                         dir: 'alternate',
@@ -1386,7 +1386,7 @@ var viewmode = 'marker';
                     console.log('to:' + defobj[oidx].Pos.x + ' ' + defobj[oidx].Pos.y + ' ' + defobj[oidx].Pos.z);
                 }
             } else if (direction == 1) {
-                if (self.arData[j].isMarkerType == 1 || self.arData[oidx].isPV) {
+                if (self.arData[oidx].isMarkerType == 1 || self.arData[oidx].isPV) {
                     AFRAME.utils.entity.setComponentProperty(self.arData[oidx].main, 'animation__posModel' + Number(oidx), {
                         property: 'position',
                         dir: 'alternate',
