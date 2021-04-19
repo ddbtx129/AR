@@ -403,11 +403,14 @@ var viewmode = 'marker';
                 }
 
                 if (!(self.args[idx].ObjectList)) {
+
                     var no = Number(self.args[idx].ObjectList2);
                     if (dataObj[idx].isRandom != 9) {
-                        no = this.getRandomIntInclusive(Number(self.args[idx].ObjectList2), Number(self.args[idx].ObjectList3));
-                    } else {
                         seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
+
+                    } else {
+                        seq = 1;
+                        no = this.getRandomIntInclusive(Number(self.args[idx].ObjectList2), Number(self.args[idx].ObjectList3));
                     }
 
                     for (var i = 0; i <= seq; i++) {
