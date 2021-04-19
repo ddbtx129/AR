@@ -409,7 +409,7 @@ var viewmode = 'marker';
                         seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
 
                     } else {
-                        seq = 1;
+                        seq = 0;
                         no = this.getRandomIntInclusive(Number(self.args[idx].ObjectList2), Number(self.args[idx].ObjectList3));
                     }
 
