@@ -392,20 +392,14 @@ var viewmode = 'marker';
                 var n_object = '';
                 var seq = 0;
 
-                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
-                console.log(Number(('0' + Number(self.args[idx].ARList)).slice(-1)));
-                dataObj[idx].isRandom = 0;
-
-                if (!!(self.args[idx].ARList)) {
-                    if (Number(self.args[idx].ARList) > 10) {
-                        dataObj[idx].isRandom = (Number(self.args[idx].ARList) - Number(dataObj[idx].isMarkerType)) / 10;
-                    }
-                }
+                var MarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
+                var RandomType = 0;
+                RandomType = (Number(self.args[idx].ARList) - Number(MarkerType)) / 10;
 
                 if (!(self.args[idx].ObjectList)) {
 
                     var no = Number(self.args[idx].ObjectList2);
-                    if (dataObj[idx].isRandom != 9) {
+                    if (RandomType != 9) {
                         seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
                     } else {
                         seq = 0;
@@ -475,6 +469,12 @@ var viewmode = 'marker';
                 dataObj[idx].isPV = !!(self.arg.PVList);
                 dataObj[idx].isNFT = !!(self.arg.ARList);
                 //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
+                if (!!(self.args[idx].ARList)) {
+                    if (Number(self.args[idx].ARList) > 10) {
+                        dataObj[idx].isRandom = (Number(self.args[idx].ARList) - Number(dataObj[idx].isMarkerType)) / 10;
+                    }
+                }
                 dataObj[idx].isOpenAnime = !!(self.args[idx].ARList) ? (Number(self.args[idx].ARList) >= 10 ? 1 : 0) : 0;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
