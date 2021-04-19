@@ -420,6 +420,7 @@ var viewmode = 'marker';
                             (self.args[idx].MkObjList + '/' + obj)
                             :
                             (self.args[idx].ObjectList1 + '/' + obj));
+                        console.log(object[i]);
                     }
                 } else {
                     object[0] = (!(self.args[idx].ObjectList) ? '' : self.args[idx].ObjectList);
@@ -1797,6 +1798,18 @@ var viewmode = 'marker';
                         var targetmarker = document.getElementById(elemId.toString());
                         var i = Number(targetmarker.getAttribute('data-index'));
 
+                        if (webar.arData[i].isRandom == 8) {
+                            var marker = webAr.markerIdx.split(',');
+                            var j = Number(marker[i]) - 1;
+                            if (webAr.ar.arData[j].seq > 0) {
+                                var objNo = webAr.ar.getRandomIntInclusive(1, webAr.ar.arData[j].srcno.length);
+                                //var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
+                                //switchObj(objNo, j);
+                                webAr.ar.removeObject(j);
+                                webAr.ar.switchObject(objNo, j);
+                            }
+                        }
+
                         if (webAr.ar.arData[i].isParti) {
                             for (var k = 0; k < webAr.ar.args[i].Particle.length; k++) {
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
@@ -1834,7 +1847,6 @@ var viewmode = 'marker';
                         if (webAr.markerIdx == '') {
                             webAr.ar.resetGyro();
                         }
-
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
@@ -2131,7 +2143,6 @@ var viewmode = 'marker';
                        
                         if (tapclicked && tapCount == 2 && !(scalechange)) {
                             tapclicked = false;
-                            
                             var marker = webAr.markerIdx.split(',');
                             for (var i = 0; i < marker.length; i++) {
                                 var j = Number(marker[i]) - 1;
