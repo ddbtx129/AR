@@ -2457,7 +2457,7 @@ var viewmode = 'marker';
             });
 
             function VideoStop(oidx) {
-                if (webAr.ar.arData[oidx].isMp4) {
+                if (webAr.ar.arData[j].isMp4 != null && wwebAr.ar.arData[oidx].isMp4) {
                     var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
                     video.pause();
                     if (webAr.ar.videoState[oidx] == 3) {
