@@ -392,9 +392,24 @@ var viewmode = 'marker';
                 var n_object = '';
                 var seq = 1;
 
+                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
+
+                dataObj[idx].isRandom = 0;
+
+                if (!!(self.args[idx].ARList)) {
+                    if (Number(self.args[idx].ARList) > 10) {
+                        dataObj[idx].isRandom = (Number(self.args[idx].ARList) - Number(dataObj[idx].isMarkerType)) / 10;
+                    }
+                }
+
                 if (!(self.args[idx].ObjectList)) {
-                    seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
                     var no = Number(self.args[idx].ObjectList2);
+                    if (dataObj[idx].isRandom != 9) {
+                        no = this.getRandomIntInclusive(Number(self.args[idx].ObjectList2), Number(self.args[idx].ObjectList3));
+                    } else {
+                        seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
+                    }
+
                     for (var i = 0; i <= seq; i++) {
                         var j = ((no + i) < 100) ? 2 : ((no + i).toString()).length;
                         var obj = (('0').repeat(j) + (parseInt(no + i, 10).toString())).slice(-(j));
@@ -403,7 +418,6 @@ var viewmode = 'marker';
                             :
                             (self.args[idx].ObjectList1 + '/' + obj));
                     }
-                    
                 } else {
                     object[0] = (!(self.args[idx].ObjectList) ? '' : self.args[idx].ObjectList);
                 }
@@ -459,7 +473,6 @@ var viewmode = 'marker';
                 dataObj[idx].isPV = !!(self.arg.PVList);
                 dataObj[idx].isNFT = !!(self.arg.ARList);
                 //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
-                dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
                 dataObj[idx].isOpenAnime = !!(self.args[idx].ARList) ? (Number(self.args[idx].ARList) >= 10 ? 1 : 0) : 0;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
