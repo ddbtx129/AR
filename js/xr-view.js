@@ -1671,7 +1671,7 @@ var viewmode = 'marker';
                     }
 
                     var mk = '';
-
+                    console.log('isMarkerType' + val[idx].isMarkerType);
                     if (val[idx].isMarkerType == 1) {
                         console.log('a-marker');
                         viewmode = 'marker';
