@@ -2117,7 +2117,7 @@ var viewmode = 'marker';
                             for (var i = 0; i < marker.length; i++) {
                                 var j = Number(marker[i]) - 1;
                                 var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
-                                switchObject(e, objNo, j);
+                                switchObj(e, objNo, j);
                             }
                             return;
                         }
@@ -2127,7 +2127,7 @@ var viewmode = 'marker';
                             for (var i = 0; i < marker.length; i++) {
                                 var j = Number(marker[i]) - 1;
                                 var objNo = ((webAr.ar.arData[j].srcno.obj - 1) > 0) ? webAr.ar.arData[j].srcno.obj - 1 : webAr.ar.arData[j].srcno.length;
-                                switchObject(e, objNo, j);
+                                switchObj(e, objNo, j);
                             }
                             return;
                         }
@@ -2190,43 +2190,80 @@ var viewmode = 'marker';
                 }
             });
 
-            function switchObject(e, fileno, oidx) {
+            function switchObj(e, fileno, oidx) {
+                //  e =イベント  fileno = 変更後ファイル名  oidx = 現インデックス (ラッパー 及び 影・メインオブジェ・ロゴ オブジェクト a-assistのぞく)
                 // ビューポートの変更(ズーム)を防止
                 e.preventDefault();
 
-                var marker = webAr.markerIdx.split(',');
+                //var marker = webAr.markerIdx.split(',');
 
-                if (webAr.ar.arData[oidx].srcno.length == 1) {
-                    return;
-                }
+                //if (webAr.ar.arData[oidx].srcno.length == 1) {
+                //    return;
+                //}
 
-                if (!!(webAr.ar.arData[oidx].isMp4)) {
-                    return;
-                }
+                //if (!!(webAr.ar.arData[oidx].isMp4)) {
+                //    return;
+                //}
 
-                var shadow = document.getElementById('shadow' + (Number(oidx) + 1).toString());
-                if (shadow != null) {
-                    shadow.remove();
-                }
-                var main = document.getElementById('main' + (Number(oidx) + 1).toString());
-                if (main != null) {
-                    main.remove();
-                }
-                var logo = document.getElementById('logo' + (Number(oidx) + 1).toString());
-                if (logo != null) {
-                    logo.remove();
-                }
+                //var shadow = document.getElementById('shadow' + (Number(oidx) + 1).toString());
+                //if (shadow != null) {
+                //    shadow.remove();
+                //}
+                //var main = document.getElementById('main' + (Number(oidx) + 1).toString());
+                //if (main != null) {
+                //    main.remove();
+                //}
+                //var logo = document.getElementById('logo' + (Number(oidx) + 1).toString());
+                //if (logo != null) {
+                //    logo.remove();
+                //}
 
-                webAr.ar.arData[oidx].srcno.obj = fileno;
-                webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
-                webAr.ar.resetScene(oidx);
-                webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
+                this.removeObject(oidx);
+
+                //webAr.ar.arData[oidx].srcno.obj = fileno;
+                //webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
+                //webAr.ar.resetScene(oidx);
+                //webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
 
                 //webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx));
+
+                this.switchObject(fileno, oidx);
 
                 tapCount = 0;
                 tapclicked = false;
             };
+        },
+
+        removeObject: function (oidx) {
+            var marker = webAr.markerIdx.split(',');
+
+            if (webAr.ar.arData[oidx].srcno.length == 1) {
+                return;
+            }
+
+            if (!!(webAr.ar.arData[oidx].isMp4)) {
+                return;
+            }
+
+            var shadow = document.getElementById('shadow' + (Number(oidx) + 1).toString());
+            if (shadow != null) {
+                shadow.remove();
+            }
+            var main = document.getElementById('main' + (Number(oidx) + 1).toString());
+            if (main != null) {
+                main.remove();
+            }
+            var logo = document.getElementById('logo' + (Number(oidx) + 1).toString());
+            if (logo != null) {
+                logo.remove();
+            }
+        },
+
+        switchObject: function (fileno, oidx) {
+            webAr.ar.arData[oidx].srcno.obj = fileno;
+            webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
+            webAr.ar.resetScene(oidx);
+            webAr.ar.arData[oidx].wrap.setAttribute('visible', true);
         },
 
         setPreviewEvents: function () {
