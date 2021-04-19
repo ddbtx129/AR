@@ -1814,8 +1814,7 @@ var viewmode = 'marker';
                             }
                         }
 
-
-                        if (webar.ar.arData[i].isRandom == 8) {
+                        if (webAr.ar.arData[i].isRandom == 8) {
                             if (webAr.ar.arData[i].seq > 0) {
                                 var objNo = webAr.ar.getRandomIntInclusive(1, webAr.ar.arData[i].srcno.length);
                                 webAr.ar.removeObject(i);
