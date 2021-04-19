@@ -390,7 +390,7 @@ var viewmode = 'marker';
                 // データの準備
                 var object = {};
                 var n_object = '';
-                var seq = 1;
+                var seq = 0;
 
                 dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
 
@@ -407,7 +407,6 @@ var viewmode = 'marker';
                     var no = Number(self.args[idx].ObjectList2);
                     if (dataObj[idx].isRandom != 9) {
                         seq = (Number(self.args[idx].ObjectList3) - Number(self.args[idx].ObjectList2));
-
                     } else {
                         seq = 0;
                         no = this.getRandomIntInclusive(Number(self.args[idx].ObjectList2), Number(self.args[idx].ObjectList3));
@@ -435,7 +434,7 @@ var viewmode = 'marker';
 
                 dataObj[idx].srcno = { obj: 1, from: 1, to: 1, length: 1 };
 
-                if (seq > 1) {
+                if (seq > 0) {
                     dataObj[idx].srcno.length = 0;
                     for (var i = 0; i <= seq; i++) {
                         dataObj[idx].paths[i] = object[i] + '.' + dataObj[idx].oType;
@@ -449,6 +448,7 @@ var viewmode = 'marker';
                         if (!!(self.args[idx].OCtList)) {
                             dataObj[idx].ObjectPath[i].C = object[i] + '-c.' + dataObj[idx].oType;
                         }
+                        console.log(dataObj[idx].paths[i]);
                         dataObj[idx].srcno.length += 1;
                     }
                 } else {
@@ -565,7 +565,7 @@ var viewmode = 'marker';
 
                         for (var i = 0; i <= seq; i++) {
                             dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
-                            console.log(dataObj[idx].paths[i]);
+
                             video[i] = document.createElement("video");
                             video[i].setAttribute("src", dataObj[idx].paths[i]);
                             video[i].setAttribute('id', 'source' + ((idx + 1) * 100 + (i + 1)).toString());
