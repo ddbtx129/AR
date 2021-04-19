@@ -1672,11 +1672,8 @@ var viewmode = 'marker';
 
                     var mk = '';
 
-                    // NFTマーカー
-                    mWrap[idx] = document.createElement('a-nft');
-
                     if (val[idx].isMarkerType == 1) {
-
+                        console.log('a-marker');
                         viewmode = 'marker';
                         pvAngle = -30;
 
@@ -1715,6 +1712,8 @@ var viewmode = 'marker';
                         wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 30 : Number(self.args[idx].WRAPZOOM) <= 0 ? 30 : Number(self.args[idx].WRAPZOOM);
                         zoomRateH = zoomRateH * wrapZoom;
 
+                        // NFTマーカー
+                        mWrap[idx] = document.createElement('a-nft');
                         mWrap[idx].setAttribute('markerhandler', '');
                         mWrap[idx].setAttribute('preset', 'custom');
                         mWrap[idx].setAttribute('type', 'nft');
