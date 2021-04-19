@@ -420,7 +420,6 @@ var viewmode = 'marker';
                             (self.args[idx].MkObjList + '/' + obj)
                             :
                             (self.args[idx].ObjectList1 + '/' + obj));
-                        console.log(object[i]);
                     }
                 } else {
                     object[0] = (!(self.args[idx].ObjectList) ? '' : self.args[idx].ObjectList);
@@ -566,7 +565,7 @@ var viewmode = 'marker';
 
                         for (var i = 0; i <= seq; i++) {
                             dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
-
+                            console.log(dataObj[idx].paths[i]);
                             video[i] = document.createElement("video");
                             video[i].setAttribute("src", dataObj[idx].paths[i]);
                             video[i].setAttribute('id', 'source' + ((idx + 1) * 100 + (i + 1)).toString());
