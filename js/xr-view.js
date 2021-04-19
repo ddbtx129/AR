@@ -393,7 +393,7 @@ var viewmode = 'marker';
                 var seq = 0;
 
                 dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
-
+                console.log(Number(('0' + Number(self.args[idx].ARList)).slice(-1)));
                 dataObj[idx].isRandom = 0;
 
                 if (!!(self.args[idx].ARList)) {
@@ -448,7 +448,6 @@ var viewmode = 'marker';
                         if (!!(self.args[idx].OCtList)) {
                             dataObj[idx].ObjectPath[i].C = object[i] + '-c.' + dataObj[idx].oType;
                         }
-                        console.log(dataObj[idx].paths[i]);
                         dataObj[idx].srcno.length += 1;
                     }
                 } else {
