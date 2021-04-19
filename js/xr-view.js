@@ -1805,6 +1805,7 @@ var viewmode = 'marker';
                             if (webAr.ar.videoState[i] < 2) {
                                 document.getElementById("swPlay").style.display = 'none';
                             } else {
+                                document.getElementById("swPlay").style.display = 'none';
                                 video.pause();
                                 webAr.ar.videoState[i] = 2;
                             }
