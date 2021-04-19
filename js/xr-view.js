@@ -637,6 +637,8 @@ var viewmode = 'marker';
 
                         document.body.appendChild(bTap);
                     }
+
+                    dataObj[idx].seq = seq;
                 }
 
                 arData[idx] = dataObj[idx];
@@ -2129,11 +2131,14 @@ var viewmode = 'marker';
                        
                         if (tapclicked && tapCount == 2 && !(scalechange)) {
                             tapclicked = false;
+                            
                             var marker = webAr.markerIdx.split(',');
                             for (var i = 0; i < marker.length; i++) {
                                 var j = Number(marker[i]) - 1;
-                                var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
-                                switchObj(e, objNo, j);
+                                if (webAr.ar.arData[j].seq > 0) {
+                                    var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
+                                    switchObj(e, objNo, j);
+                                }
                             }
                             return;
                         }
@@ -2142,8 +2147,10 @@ var viewmode = 'marker';
                             var marker = webAr.markerIdx.split(',');
                             for (var i = 0; i < marker.length; i++) {
                                 var j = Number(marker[i]) - 1;
-                                var objNo = ((webAr.ar.arData[j].srcno.obj - 1) > 0) ? webAr.ar.arData[j].srcno.obj - 1 : webAr.ar.arData[j].srcno.length;
-                                switchObj(e, objNo, j);
+                                if (webAr.ar.arData[j].seq > 0) {
+                                    var objNo = ((webAr.ar.arData[j].srcno.obj - 1) > 0) ? webAr.ar.arData[j].srcno.obj - 1 : webAr.ar.arData[j].srcno.length;
+                                    switchObj(e, objNo, j);
+                                }
                             }
                             return;
                         }
