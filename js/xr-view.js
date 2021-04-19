@@ -2218,7 +2218,7 @@ var viewmode = 'marker';
                 //    logo.remove();
                 //}
 
-                this.removeObject(oidx);
+                webAr.ar.removeObject(oidx);
 
                 //webAr.ar.arData[oidx].srcno.obj = fileno;
                 //webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
@@ -2227,7 +2227,7 @@ var viewmode = 'marker';
 
                 //webAr.ar.arData[oidx].main.emit('posModel' + Number(oidx));
 
-                this.switchObject(fileno, oidx);
+                webAr.ar.switchObject(fileno, oidx);
 
                 tapCount = 0;
                 tapclicked = false;
