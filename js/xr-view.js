@@ -470,11 +470,7 @@ var viewmode = 'marker';
                 dataObj[idx].isNFT = !!(self.arg.ARList);
                 //dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(self.args[idx].ARList) : 1;
                 dataObj[idx].isMarkerType = !!(self.args[idx].ARList) ? Number(('0' + Number(self.args[idx].ARList)).slice(-1)) : 1;
-                if (!!(self.args[idx].ARList)) {
-                    if (Number(self.args[idx].ARList) > 10) {
-                        dataObj[idx].isRandom = (Number(self.args[idx].ARList) - Number(dataObj[idx].isMarkerType)) / 10;
-                    }
-                }
+                dataObj[idx].isRandom = RandomType;
                 dataObj[idx].isOpenAnime = !!(self.args[idx].ARList) ? (Number(self.args[idx].ARList) >= 10 ? 1 : 0) : 0;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
