@@ -1671,9 +1671,9 @@ var viewmode = 'marker';
                     }
 
                     var mk = '';
-                    console.log('isMarkerType' + val[idx].isMarkerType);
+
                     if (val[idx].isMarkerType == 1) {
-                        console.log('a-marker');
+
                         viewmode = 'marker';
                         pvAngle = -30;
 
@@ -1795,18 +1795,6 @@ var viewmode = 'marker';
                         var targetmarker = document.getElementById(elemId.toString());
                         var i = Number(targetmarker.getAttribute('data-index'));
 
-                        if (webar.arData[i].isRandom == 8) {
-                            var marker = webAr.markerIdx.split(',');
-                            var j = Number(marker[i]) - 1;
-                            if (webAr.ar.arData[j].seq > 0) {
-                                var objNo = webAr.ar.getRandomIntInclusive(1, webAr.ar.arData[j].srcno.length);
-                                //var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
-                                //switchObj(objNo, j);
-                                webAr.ar.removeObject(j);
-                                webAr.ar.switchObject(objNo, j);
-                            }
-                        }
-
                         if (webAr.ar.arData[i].isParti) {
                             for (var k = 0; k < webAr.ar.args[i].Particle.length; k++) {
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
@@ -1823,6 +1811,15 @@ var viewmode = 'marker';
                             } else {
                                 video.pause();
                                 webAr.ar.videoState[i] = 2;
+                            }
+                        }
+
+
+                        if (webar.arData[i].isRandom == 8) {
+                            if (webAr.ar.arData[i].seq > 0) {
+                                var objNo = webAr.ar.getRandomIntInclusive(1, webAr.ar.arData[i].srcno.length);
+                                webAr.ar.removeObject(i);
+                                webAr.ar.switchObject(objNo, i);
                             }
                         }
 
