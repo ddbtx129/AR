@@ -211,10 +211,10 @@ var viewmode = 'marker';
                     args[idx].OCList = pcs[idx].oc;
                     
                     // オブジェクトZ軸(重なり)
-                    args[idx].OZList = pcs[idx].oz && (pcs[idx].oz).tostring();
-                    args[idx].OAZList = pcs[idx].oaz && (pcs[idx].oaz).tostring();
-                    args[idx].OBZList = pcs[idx].obz && (pcs[idx].obz).tostring();
-                    args[idx].OCZList = pcs[idx].ocz && (pcs[idx].ocz).tostring();
+                    args[idx].OZList = pcs[idx].oz && (pcs[idx].oz).toString();
+                    args[idx].OAZList = pcs[idx].oaz && (pcs[idx].oaz).toString();
+                    args[idx].OBZList = pcs[idx].obz && (pcs[idx].obz).toString();
+                    args[idx].OCZList = pcs[idx].ocz && (pcs[idx].ocz).toString();
 
                     // マーカー＆オブジェクト
                     args[idx].MkObjList = pcs[idx].mo;
