@@ -442,34 +442,29 @@ var viewmode = 'marker';
 
                 dataObj[idx].srcno = { obj: 1, from: 1, to: 1, length: 1 };
 
+                dataObj[idx].addType = { A: '', B: '', C: '' };
+
                 if (seq > 0) {
                     dataObj[idx].srcno.length = 0;
                     for (var i = 0; i <= seq; i++) {
                         dataObj[idx].paths[i] = object[i] + '.' + dataObj[idx].oType;
-                        dataObj[idx].ObjectPath[i] = {};
-                        if (!!(self.args[idx].OAtList)) {
-                            dataObj[idx].ObjectPath[i].A = object[i] + '-a.' + dataObj[idx].oType;
-                        }
-                        if (!!(self.args[idx].OBtList)) {
-                            dataObj[idx].ObjectPath[i].B = object[i] + '-b.' + dataObj[idx].oType;
-                        }
-                        if (!!(self.args[idx].OCtList)) {
-                            dataObj[idx].ObjectPath[i].C = object[i] + '-c.' + dataObj[idx].oType;
-                        }
                         dataObj[idx].srcno.length += 1;
                     }
                 } else {
                     dataObj[idx].paths[0] = object[0] + '.' + dataObj[idx].oType;
-                    dataObj[idx].ObjectPath[0] = {};
-                    if (!!(self.args[idx].OAtList)) {
-                        dataObj[idx].ObjectPath[0].A = object[0] + '-a.' + dataObj[idx].oType;
-                    }
-                    if (!!(self.args[idx].OBtList)) {
-                        dataObj[idx].ObjectPath[0].B = object[0] + '-b.' + dataObj[idx].oType;
-                    }
-                    if (!!(self.args[idx].OCtList)) {
-                        dataObj[idx].ObjectPath[0].C = object[0] + '-c.' + dataObj[idx].oType;
-                    }
+                }
+
+                if (!!(self.args[idx].OAtList)) {
+                    dataObj[idx].addType.A = (!!(self.args[idx].OAtList || '').match(/\.gif$/i)) ? 'gif' : 'png';
+                    dataObj[idx].ObjectPath.A = self.args[idx].OAtList;
+                }
+                if (!!(self.args[idx].OBtList)) {
+                    dataObj[idx].addType.B = (!!(self.args[idx].OBtList || '').match(/\.gif$/i)) ? 'gif' : 'png';
+                    dataObj[idx].ObjectPath.B = self.args[idx].OBtList;
+                }
+                if (!!(self.args[idx].OCtList)) {
+                    dataObj[idx].addType.C = (!!(self.args[idx].OCtList || '').match(/\.gif$/i)) ? 'gif' : 'png';
+                    dataObj[idx].ObjectPath.C = self.args[idx].OBtList;
                 }
 
                 if (n_idx < dataObj[idx].srcno.length) {
@@ -511,7 +506,7 @@ var viewmode = 'marker';
                     if (!!(dataObj[idx].isPng) || !!(dataObj[idx].isGif)) {
 
                         var img = {};
-                        var imgAdd = {};
+                        //var imgAdd = {};
 
                         for (var i = 0; i <= seq; i++) {
                             dataObj[idx].paths[i] = rootPath + 'article/' + folder + '/' + dataObj[idx].paths[i];
@@ -526,46 +521,46 @@ var viewmode = 'marker';
 
                             assets.appendChild(img[i]);
 
-                            imgAdd[i] = {};
+                            //imgAdd[i] = {};
 
-                            if (!!(self.args[idx].OAtList)) {
-                                dataObj[idx].ObjectPath[i].A = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].A;
+                            //if (!!(self.args[idx].OAtList)) {
+                            //    dataObj[idx].ObjectPath[i].A = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].A;
 
-                                imgAdd[i].A = document.createElement('img');
-                                imgAdd[i].A.setAttribute('crossorigin', 'anonymous');
-                                imgAdd[i].A.setAttribute('id', 'asource' + ((idx + 1) * 100 + (i + 1)).toString());
-                                imgAdd[i].A.setAttribute('src', dataObj[idx].ObjectPath[i].A);
+                            //    imgAdd[i].A = document.createElement('img');
+                            //    imgAdd[i].A.setAttribute('crossorigin', 'anonymous');
+                            //    imgAdd[i].A.setAttribute('id', 'asource' + ((idx + 1) * 100 + (i + 1)).toString());
+                            //    imgAdd[i].A.setAttribute('src', dataObj[idx].ObjectPath[i].A);
 
-                                dataObj[idx].arObj[i][1] = imgAdd[i].A;
+                            //    dataObj[idx].arObj[i][1] = imgAdd[i].A;
 
-                                assets.appendChild(imgAdd[i].A);
-                            }
+                            //    assets.appendChild(imgAdd[i].A);
+                            //}
 
-                            if (!!(self.args[idx].OBtList)) {
-                                dataObj[idx].ObjectPath[i].B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].B;
+                            //if (!!(self.args[idx].OBtList)) {
+                            //    dataObj[idx].ObjectPath[i].B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].B;
 
-                                imgAdd[i].B = document.createElement('img');
-                                imgAdd[i].B.setAttribute('crossorigin', 'anonymous');
-                                imgAdd[i].B.setAttribute('id', 'bsource' + ((idx + 1) * 100 + (i + 1)).toString());
-                                imgAdd[i].B.setAttribute('src', dataObj[idx].ObjectPath[i].B);
+                            //    imgAdd[i].B = document.createElement('img');
+                            //    imgAdd[i].B.setAttribute('crossorigin', 'anonymous');
+                            //    imgAdd[i].B.setAttribute('id', 'bsource' + ((idx + 1) * 100 + (i + 1)).toString());
+                            //    imgAdd[i].B.setAttribute('src', dataObj[idx].ObjectPath[i].B);
 
-                                dataObj[idx].arObj[i][2] = imgAdd[i].B;
+                            //    dataObj[idx].arObj[i][2] = imgAdd[i].B;
 
-                                assets.appendChild(imgAdd[i].B);
-                            }
+                            //    assets.appendChild(imgAdd[i].B);
+                            //}
 
-                            if (!!(self.args[idx].OCtList)) {
-                                dataObj[idx].ObjectPath[i].C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].C;
+                            //if (!!(self.args[idx].OCtList)) {
+                            //    dataObj[idx].ObjectPath[i].C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath[i].C;
 
-                                imgAdd[i].C = document.createElement('img');
-                                imgAdd[i].C.setAttribute('crossorigin', 'anonymous');
-                                imgAdd[i].C.setAttribute('id', 'csource' + ((idx + 1) * 100 + (i + 1)).toString());
-                                imgAdd[i].C.setAttribute('src', dataObj[idx].ObjectPath[i].C);
+                            //    imgAdd[i].C = document.createElement('img');
+                            //    imgAdd[i].C.setAttribute('crossorigin', 'anonymous');
+                            //    imgAdd[i].C.setAttribute('id', 'csource' + ((idx + 1) * 100 + (i + 1)).toString());
+                            //    imgAdd[i].C.setAttribute('src', dataObj[idx].ObjectPath[i].C);
 
-                                dataObj[idx].arObj[i][3] = imgAdd[i].C;
+                            //    dataObj[idx].arObj[i][3] = imgAdd[i].C;
 
-                                assets.appendChild(imgAdd[i].C);
-                            }
+                            //    assets.appendChild(imgAdd[i].C);
+                            //}
                         }
 
                     } else if (!!(dataObj[idx].isMp4)) {
@@ -626,7 +621,51 @@ var viewmode = 'marker';
                             assets.appendChild(model[i]);
                         }
                     }
-                    
+
+                    if (!!(self.args[idx].OAtList) || !!(self.args[idx].OBtList) || !!(self.args[idx].OCtList)) {
+
+                        var imgAdd = {};
+
+                            if (!!(self.args[idx].OAtList)) {
+                                dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
+
+                                imgAdd.A = document.createElement('img');
+                                imgAdd.A.setAttribute('crossorigin', 'anonymous');
+                                imgAdd.A.setAttribute('id', 'asource' + ((idx + 1) * 100).toString());
+                                imgAdd.A.setAttribute('src', dataObj[idx].ObjectPath.A);
+
+                                dataObj[idx].arObj.A = imgAdd.A;
+
+                                assets.appendChild(imgAdd.A);
+                            }
+
+                            if (!!(self.args[idx].OBtList)) {
+                                dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
+
+                                imgAdd.B = document.createElement('img');
+                                imgAdd.B.setAttribute('crossorigin', 'anonymous');
+                                imgAdd.B.setAttribute('id', 'bsource' + ((idx + 1) * 100).toString());
+                                imgAdd.B.setAttribute('src', dataObj[idx].ObjectPath.B);
+
+                                dataObj[idx].arObj.B = imgAdd.B;
+
+                                assets.appendChild(imgAdd.B);
+                            }
+
+                            if (!!(self.args[idx].OCtList)) {
+                                dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
+
+                                imgAdd.C = document.createElement('img');
+                                imgAdd.C.setAttribute('crossorigin', 'anonymous');
+                                imgAdd.C.setAttribute('id', 'csource' + ((idx + 1) * 100).toString());
+                                imgAdd.C.setAttribute('src', dataObj[idx].ObjectPath.C);
+
+                                dataObj[idx].arObj.C = imgAdd.C;
+
+                                assets.appendChild(imgAdd.C);
+                            }
+                    }
+
                     if (dataObj[idx].isLogo) {
 
                         dataObj[idx].logopath = rootPath + 'article/gltf/' + n_object + '/' + 'logo-' + self.args[idx].LogoList[0] + '.gltf';
@@ -772,9 +811,9 @@ var viewmode = 'marker';
                 }
 
                 var srcname = '#source' + (((idx + 1) * 100) + objno).toString();
-                var asrcname = '#asource' + (((idx + 1) * 100) + objno).toString();
-                var bsrcname = '#bsource' + (((idx + 1) * 100) + objno).toString();
-                var csrcname = '#csource' + (((idx + 1) * 100) + objno).toString();
+                var asrcname = '#asource' + ((idx + 1) * 100).toString();
+                var bsrcname = '#bsource' + ((idx + 1) * 100).toString();
+                var csrcname = '#csource' + ((idx + 1) * 100).toString();
 
                 if (val[idx].isShadow && !(val[idx].isGltf)) {
                     var shadow = document.createElement('a-image');
@@ -943,7 +982,8 @@ var viewmode = 'marker';
 
                 if (self.args[idx].OAtList) {
 
-                    var amain = document.createElement(elname);
+                    var aelname = (val[idx].addType.A == 'gif') ? 'a-entity' : 'a-image';
+                    var amain = document.createElement(aelname);
 
                     var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OAZList) };
                     defobj[idx].posVec3a = posVec3a;
@@ -981,7 +1021,8 @@ var viewmode = 'marker';
 
                 if (self.args[idx].OBtList) {
 
-                    var bmain = document.createElement(elname);
+                    var belname = (val[idx].addType.B == 'gif') ? 'a-entity' : 'a-image';
+                    var bmain = document.createElement(belname);
 
                     var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OBZList) };
                     defobj[idx].posVec3b = posVec3b;
@@ -1019,7 +1060,8 @@ var viewmode = 'marker';
 
                 if (self.args[idx].OCtList) {
 
-                    var cmain = document.createElement(elname);
+                    var celname = (val[idx].addType.C == 'gif') ? 'a-entity' : 'a-image';
+                    var cmain = document.createElement(celname);
 
                     var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OCZList) };
                     defobj[idx].posVec3c = posVec3c;
@@ -1248,7 +1290,8 @@ var viewmode = 'marker';
 
             if (self.args[oidx].OAtList) {
 
-                var amain = document.createElement(elname);
+                var aelname = (val[idx].addType.A == 'gif') ? 'a-entity' : 'a-image';
+                var amain = document.createElement(aelname);
 
                 var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OAZList) };
                 defobj[oidx].posVec3a = posVec3a;
@@ -1286,7 +1329,8 @@ var viewmode = 'marker';
 
             if (self.args[oidx].OBtList) {
 
-                var bmain = document.createElement(elname);
+                var belname = (val[idx].addType.B == 'gif') ? 'a-entity' : 'a-image';
+                var bmain = document.createElement(belname);
 
                 var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OBZList) };
                 defobj[oidx].posVec3b = posVec3b;
@@ -1324,7 +1368,8 @@ var viewmode = 'marker';
 
             if (self.args[oidx].OCtList) {
 
-                var cmain = document.createElement(elname);
+                var celname = (val[idx].addType.C == 'gif') ? 'a-entity' : 'a-image';
+                var cmain = document.createElement(celname);
 
                 var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OCZList) };
                 defobj[oidx].posVec3c = posVec3c;
