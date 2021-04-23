@@ -21,6 +21,8 @@ var viewmode = 'marker';
     var defwrapPos = { x: 0, y: 0, z: 0 };
     var defwrapScale = { x: 4, y: 4, z: 4 };
     var deflogoScale = { x: 8, y: 6, z: 6 };
+    
+    var viewAngle = 0;
 
     var objAngle = 5;
     var srcno = { obj: 1, from: 1, to: 1, length: 1 };
@@ -104,10 +106,18 @@ var viewmode = 'marker';
 
                 if (this.arData[0].isMarkerType == 1) {
                     msg1.innerHTML = "対象マーカーを検出し表示します。";
-                    msg2.innerHTML = "マーカーに垂直にしてください。";
+                    if(viewAngle == 0){
+                        msg2.innerHTML = "マーカーに垂直にしてください。";
+                    } else {
+                        msg2.innerHTML = "マーカーに平行にしてください。";
+                    }
                 } else {
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
-                    msg2.innerHTML = "対象イメージに水平にしてください。";
+                    if(viewAngle == 0){
+                        msg2.innerHTML = "対象イメージに垂直にしてください。";
+                    } else {
+                        msg2.innerHTML = "対象イメージに平行にしてください。";
+                    }
                 }
             }        
         },
@@ -1631,7 +1641,7 @@ var viewmode = 'marker';
                 if (self.arData[idx].isPV) {
 
                     viewmode = 'pv';
-
+                    
                     wrapPos.x -= 0;
                     wrapPos.y -= ((val[idx].isMp4) ? -1 : -0);
                     wrapPos.z -= defwrap[idx].Scale.y * 1.5;
@@ -1881,7 +1891,9 @@ var viewmode = 'marker';
                 self.arData[idx].zoomRateH = zoomRateH;
                 self.arData[idx].wrapZoom = wrapZoom;
                 self.arData[idx].pvAngle = pvAngle;
-
+                
+                viewAngle = (pvAngle >= -30 && pvAngle <= 20) ? 0 : -90;
+                
                 this.objectDataVal(zoomRateH, wrapPos, pvAngle);
             }
         },
@@ -2741,7 +2753,7 @@ var viewmode = 'marker';
         getPlayButton: function (filenm) {
 
             var file = 'asset/play-w-optiy.png';
-            var playimg = 'asset/play-w-optiy.png'
+            var playimg = 'asset/play-w-optiy.png';
             var fsize = -1;
 
             if(!(filenm)){
@@ -2754,7 +2766,7 @@ var viewmode = 'marker';
             fsize = file.fileSize;
 
             if (fsize != -1) {
-                playimg = file    
+                playimg = file;
             }
 
             return playimg;
