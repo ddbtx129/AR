@@ -99,6 +99,13 @@
             <a-entity camera id="camera" position="0 1.5 0" look-controls></a-entity>
         </a-entity>
 
+        <a-entity position='0 2 -15' kks-magic='preset:fireworks;options:{eColor:"#FF3333"}'></a-entity>
+
+        <a-assets>
+            <img id="myPattern" src="js/kksMagic/kksFireWorks/imgs/pattern.png">
+        </a-assets>
+        <a-entity position='0 -30 -100' kks-magic='preset:fireworks;options:{eColor:"#FF3333",pAssetId:"myPattern"}'></a-entity>
+
     </a-scene>
 
     <p id="version1" style="display: inline">v1.0.12</p>
