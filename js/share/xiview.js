@@ -993,7 +993,7 @@ var viewmode = 'marker';
                     //    console.log('x:' + posVec3a.x + ' y:' + posVec3a.y + ' z:' + posVec3a.z);
                     //} else {
                         posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
-                        console.log('デフォルト')
+                    console.log('x:' + posVec3a.x + ' y:' + posVec3a.y + ' z:' + posVec3a.z);
                     //}
                     defobj[idx].posVec3a = posVec3a;
 
