@@ -986,7 +986,13 @@ var viewmode = 'marker';
                     var aelname = (val[idx].addType.A == 'gif') ? 'a-entity' : 'a-image';
                     var amain = document.createElement(aelname);
 
-                    var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OAZList) };
+                    var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
+                    var posVec3a = {};
+                    if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                        var posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.z) + Number(apos.y), z: Number(posVec3.z) + Number(apos.y) };
+                    } else {
+                        posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
+                    }
                     defobj[idx].posVec3a = posVec3a;
 
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
@@ -1025,7 +1031,13 @@ var viewmode = 'marker';
                     var belname = (val[idx].addType.B == 'gif') ? 'a-entity' : 'a-image';
                     var bmain = document.createElement(belname);
 
-                    var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OBZList) };
+                    var bpos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
+                    var posVec3b = {};
+                    if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                        posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.y) };
+                    } else {
+                        posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.y) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
+                    }
                     defobj[idx].posVec3b = posVec3b;
 
                     bmain.setAttribute('id', 'bmain' + (idx + 1).toString());
@@ -1064,7 +1076,13 @@ var viewmode = 'marker';
                     var celname = (val[idx].addType.C == 'gif') ? 'a-entity' : 'a-image';
                     var cmain = document.createElement(celname);
 
-                    var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[idx].OCZList) };
+                    var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
+                    var posVec3c = {};
+                    if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                        posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
+                    } else {
+                        posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.z), z: Number(posVec3.z) + Number(cpos.y) };
+                    }
                     defobj[idx].posVec3c = posVec3c;
 
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
@@ -1295,7 +1313,13 @@ var viewmode = 'marker';
                 var aelname = (val[idx].addType.A == 'gif') ? 'a-entity' : 'a-image';
                 var amain = document.createElement(aelname);
 
-                var posVec3a = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OAZList) };
+                var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
+                var posVec3a = {};
+                if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                    posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.z) + Number(apos.y), z: Number(posVec3.z) + Number(apos.y) };
+                } else {
+                    posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
+                }
                 defobj[oidx].posVec3a = posVec3a;
 
                 amain.setAttribute('id', 'amain' + (oidx + 1).toString());
@@ -1334,7 +1358,13 @@ var viewmode = 'marker';
                 var belname = (val[idx].addType.B == 'gif') ? 'a-entity' : 'a-image';
                 var bmain = document.createElement(belname);
 
-                var posVec3b = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OBZList) };
+                var bpos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
+                var posVec3b = {};
+                if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                    posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.y) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
+                } else {
+                    posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.y) };
+                }
                 defobj[oidx].posVec3b = posVec3b;
 
                 bmain.setAttribute('id', 'bmain' + (oidx + 1).toString());
@@ -1373,7 +1403,13 @@ var viewmode = 'marker';
                 var celname = (val[idx].addType.C == 'gif') ? 'a-entity' : 'a-image';
                 var cmain = document.createElement(celname);
 
-                var posVec3c = { x: Number(posVec3.x), y: Number(posVec3.y), z: Number(posVec3.z) + Number(self.args[oidx].OCZList) };
+                var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
+                var posVec3c = {};
+                if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                    posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.z) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.y) };
+                } else {
+                    posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
+                }
                 defobj[oidx].posVec3c = posVec3c;
 
                 cmain.setAttribute('id', 'cmain' + (oidx + 1).toString());
