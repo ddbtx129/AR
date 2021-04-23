@@ -988,7 +988,7 @@ var viewmode = 'marker';
 
                     var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
                     var posVec3a = {};
-                    if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                    if (val[idx].isPV || val[idx].isMarkerType == 2) {
                         var posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.z) + Number(apos.y), z: Number(posVec3.z) + Number(apos.y) };
                     } else {
                         posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
@@ -1033,7 +1033,7 @@ var viewmode = 'marker';
 
                     var bpos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
                     var posVec3b = {};
-                    if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                    if (val[idx].isPV || val[idx].isMarkerType == 2) {
                         posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.y) };
                     } else {
                         posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.y) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
@@ -1078,7 +1078,7 @@ var viewmode = 'marker';
 
                     var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
                     var posVec3c = {};
-                    if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                    if (val[idx].isPV || val[idx].isMarkerType == 2) {
                         posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
                     } else {
                         posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.z), z: Number(posVec3.z) + Number(cpos.y) };
@@ -1310,12 +1310,12 @@ var viewmode = 'marker';
 
             if (self.args[oidx].OAtList) {
 
-                var aelname = (val[idx].addType.A == 'gif') ? 'a-entity' : 'a-image';
+                var aelname = (val[oidx].addType.A == 'gif') ? 'a-entity' : 'a-image';
                 var amain = document.createElement(aelname);
 
-                var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
+                var apos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
                 var posVec3a = {};
-                if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                if (val[oidx].isPV || val[oidx].isMarkerType == 2) {
                     posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.z) + Number(apos.y), z: Number(posVec3.z) + Number(apos.y) };
                 } else {
                     posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
@@ -1355,12 +1355,12 @@ var viewmode = 'marker';
 
             if (self.args[oidx].OBtList) {
 
-                var belname = (val[idx].addType.B == 'gif') ? 'a-entity' : 'a-image';
+                var belname = (val[oidx].addType.B == 'gif') ? 'a-entity' : 'a-image';
                 var bmain = document.createElement(belname);
 
-                var bpos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
+                var bpos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
                 var posVec3b = {};
-                if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                if (val[oidx].isPV || val[oidx].isMarkerType == 2) {
                     posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.y) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
                 } else {
                     posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.y) };
@@ -1400,12 +1400,12 @@ var viewmode = 'marker';
 
             if (self.args[oidx].OCtList) {
 
-                var celname = (val[idx].addType.C == 'gif') ? 'a-entity' : 'a-image';
+                var celname = (val[oidx].addType.C == 'gif') ? 'a-entity' : 'a-image';
                 var cmain = document.createElement(celname);
 
-                var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
+                var cpos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
                 var posVec3c = {};
-                if (val[idx], isPV || val[idx].isMarkerType == 2) {
+                if (val[oidx].isPV || val[oidx].isMarkerType == 2) {
                     posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.z) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.y) };
                 } else {
                     posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
