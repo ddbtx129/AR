@@ -1679,17 +1679,17 @@ var viewmode = 'marker';
             var self = this;
             var val = self.arData;
 
-            self.arData[oidx].shadow && self.wrap[oidx].appendChild(self.arData[oidx].shadow);
-
             self.arData[oidx].ashadow && self.wrap[oidx].appendChild(self.arData[oidx].ashadow);
             self.arData[oidx].bshadow && self.wrap[oidx].appendChild(self.arData[oidx].bshadow);
             self.arData[oidx].cshadow && self.wrap[oidx].appendChild(self.arData[oidx].cshadow);
 
-            self.arData[oidx].main && self.wrap[oidx].appendChild(self.arData[oidx].main);
+            self.arData[oidx].shadow && self.wrap[oidx].appendChild(self.arData[oidx].shadow);
 
             self.arData[oidx].amain && self.wrap[oidx].appendChild(self.arData[oidx].amain);
             self.arData[oidx].bmain && self.wrap[oidx].appendChild(self.arData[oidx].bmain);
             self.arData[oidx].cmain && self.wrap[oidx].appendChild(self.arData[oidx].cmain);
+
+            self.arData[oidx].main && self.wrap[oidx].appendChild(self.arData[oidx].main);
 
             if (val[oidx].isLogo) {
                 self.arData[oidx].logo && self.wrap[oidx].appendChild(self.arData[oidx].logo);
