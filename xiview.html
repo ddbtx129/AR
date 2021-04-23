@@ -92,19 +92,19 @@
 
     <a-scene id="arScene" vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-        <a-entity light="type: ambient; color: #BBB"></a-entity>
-        <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
-        <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
-        <a-entity id="camera-wrapper">
-            <a-entity camera id="camera" position="0 1.5 0" look-controls></a-entity>
-        </a-entity>
-
         <a-entity position='0 2 -15' kks-magic='preset:fireworks;options:{eColor:"#FF3333"}'></a-entity>
 
         <a-assets>
             <img id="myPattern" src="js/kksMagic/kksFireWorks/imgs/pattern.png">
         </a-assets>
         <a-entity position='0 -30 -100' kks-magic='preset:fireworks;options:{eColor:"#FF3333",pAssetId:"myPattern"}'></a-entity>
+
+        <a-entity light="type: ambient; color: #BBB"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.35" position="-2 10 5"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.17" position="0 -4 1"></a-entity>
+        <a-entity id="camera-wrapper">
+            <a-entity camera id="camera" position="0 1.5 0" look-controls></a-entity>
+        </a-entity>
 
     </a-scene>
 
