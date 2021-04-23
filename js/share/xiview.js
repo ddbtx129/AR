@@ -817,6 +817,7 @@ var viewmode = 'marker';
 
                 if (val[idx].isShadow && !(val[idx].isGltf)) {
                     var shadow = document.createElement('a-image');
+                    var posVec3shadow = self.positionVec3('shadow', idx);
 
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
                     shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
@@ -1132,6 +1133,7 @@ var viewmode = 'marker';
             if (val[oidx].isShadow && !(val[oidx].isGltf)) {
 
                 var shadow = document.createElement('a-image');
+                var posVec3shadow = self.positionVec3('shadow', idx);
 
                 shadow.setAttribute('id', 'shadow' + ((oidx + 1)).toString());
                 shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', oidx)));
