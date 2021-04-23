@@ -624,6 +624,14 @@ var viewmode = 'marker';
 
                     if (!!(self.args[idx].OAtList) || !!(self.args[idx].OBtList) || !!(self.args[idx].OCtList)) {
 
+                        var addSize = GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png');
+                        var addwh = SizeSplit(addSize).toString().split(',');
+                        var i = ((parseInt(addSize).toString(10)).length % 2 == 0) ? (parseInt(addSize).toString(10)).length : (parseInt(addSize).toString(10)).length + 1;
+                        var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
+
+                        dataObj[idx].addsize = { w: (Number(addwh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(addwh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+                        defobj[idx].addScale = { x: dataObj[idx].addsize.w, y: dataObj[idx].addsize.h, z: dataObj[idx].addsize.h };
+
                         var imgAdd = {};
 
                             if (!!(self.args[idx].OAtList)) {
@@ -850,7 +858,7 @@ var viewmode = 'marker';
                         ashadow.setAttribute('visible', !(self.arg.targetObj));
 
                         AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
+                            primitive: 'plane', height: (defobj[idx].addScale.y), width: (defobj[idx].addScale.x)
                         });
 
                         AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
@@ -876,7 +884,7 @@ var viewmode = 'marker';
                         bshadow.setAttribute('visible', !(self.arg.targetObj));
 
                         AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
+                            primitive: 'plane', height: (defobj[idx].addScale.y), width: (defobj[idx].addScale.x)
                         });
 
                         AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
@@ -902,7 +910,7 @@ var viewmode = 'marker';
                         cshadow.setAttribute('visible', !(self.arg.targetObj));
 
                         AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].Scale.y), width: (defobj[idx].Scale.x)
+                            primitive: 'plane', height: (defobj[idx].addScale.y), width: (defobj[idx].addScale.x)
                         });
 
                         AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
@@ -1001,15 +1009,15 @@ var viewmode = 'marker';
                     amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-                        amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
-                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+                        amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.x));
+                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.y));
 
                         if (val[idx].isMp4) {
                             amain.setAttribute('play', 'true');
                         }
 
                         AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
-                            primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                            primitive: 'plane', height: defobj[idx].addScale.y, width: defobj[idx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
                         AFRAME.utils.entity.setComponentProperty(amain, 'material', {
@@ -1018,7 +1026,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         amain.setAttribute('gltf-model', asrcname);
-                        amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].addScale));
                     }
 
                     amain.setAttribute('style', 'z-index: 4');
@@ -1041,15 +1049,15 @@ var viewmode = 'marker';
                     bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-                        bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
-                        bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+                        bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.x));
+                        bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.y));
 
                         if (val[idx].isMp4) {
                             bmain.setAttribute('play', 'true');
                         }
 
                         AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
-                            primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                            primitive: 'plane', height: defobj[idx].addScale.y, width: defobj[idx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
                         AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
@@ -1058,7 +1066,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         bmain.setAttribute('gltf-model', bsrcname);
-                        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].addScale));
                     }
 
                     bmain.setAttribute('style', 'z-index: 4');
@@ -1081,15 +1089,15 @@ var viewmode = 'marker';
                     cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-                        cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
-                        cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
+                        cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.x));
+                        cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.y));
 
                         if (val[idx].isMp4) {
                             cmain.setAttribute('play', 'true');
                         }
 
                         AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
-                            primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                            primitive: 'plane', height: defobj[idx].addScale.y, width: defobj[idx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
                         AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
@@ -1098,7 +1106,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         cmain.setAttribute('gltf-model', csrcname);
-                        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
+                        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].addScale));
                     }
 
                     cmain.setAttribute('style', 'z-index: 4');
@@ -1174,7 +1182,7 @@ var viewmode = 'marker';
                     ashadow.setAttribute('visible', !(self.arg.targetObj));
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                        primitive: 'plane', height: (defobj[oidx].addScale.y), width: (defobj[oidx].addScale.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
@@ -1200,7 +1208,7 @@ var viewmode = 'marker';
                     bshadow.setAttribute('visible', !(self.arg.targetObj));
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                        primitive: 'plane', height: (defobj[oidx].addScale.y), width: (defobj[oidx].addScale.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
@@ -1226,7 +1234,7 @@ var viewmode = 'marker';
                     cshadow.setAttribute('visible', !(self.arg.targetObj));
 
                     AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].Scale.y), width: (defobj[oidx].Scale.x)
+                        primitive: 'plane', height: (defobj[oidx].addScale.y), width: (defobj[oidx].addScale.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
@@ -1316,8 +1324,8 @@ var viewmode = 'marker';
                 amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                 if (!val[oidx].isGltf) {
-                    amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
-                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+                    amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.x));
+                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.y));
 
                     amain.setAttribute('style', 'z-index: 4');
 
@@ -1326,7 +1334,7 @@ var viewmode = 'marker';
                     }
 
                     AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].addScale.y, width: defobj[oidx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(amain, 'material', {
@@ -1335,7 +1343,7 @@ var viewmode = 'marker';
                     });
                 } else {
                     amain.setAttribute('gltf-model', asrcname);
-                    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale));
                 }
 
                 self.arData[oidx].amain = amain;
@@ -1356,15 +1364,15 @@ var viewmode = 'marker';
                 bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                 if (!val[oidx].isGltf) {
-                    bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
-                    bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+                    bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.x));
+                    bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.y));
 
                     if (val[oidx].isMp4) {
                         bmain.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].addScale.y, width: defobj[oidx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
@@ -1373,7 +1381,7 @@ var viewmode = 'marker';
                     });
                 } else {
                     bmain.setAttribute('gltf-model', bsrcname);
-                    bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale));
                 }
 
                 bmain.setAttribute('style', 'z-index: 4');
@@ -1396,15 +1404,15 @@ var viewmode = 'marker';
                 cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                 if (!val[oidx].isGltf) {
-                    cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
-                    cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
+                    cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.x));
+                    cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.y));
 
                     if (val[oidx].isMp4) {
                         cmain.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].addScale.y, width: defobj[oidx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
@@ -1413,7 +1421,7 @@ var viewmode = 'marker';
                     });
                 } else {
                     cmain.setAttribute('gltf-model', csrcname);
-                    cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
+                    cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale));
                 }
 
                 cmain.setAttribute('style', 'z-index: 4');
