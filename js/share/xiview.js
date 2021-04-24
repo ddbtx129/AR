@@ -818,6 +818,8 @@ var viewmode = 'marker';
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 defwrap[idx] = { Pos: defwrapPos, Scale: defwrapScale };
+                var wpos = AFRAME.utils.coordinates.parse(self.args[idx].WrapZList);
+
                 //var xAngle = (!!(self.args[idx].angleList) ? Number(self.args[idx].angleList) : 0);
                 var wrap = document.createElement('a-entity');
 
@@ -827,6 +829,13 @@ var viewmode = 'marker';
                     var pos = AFRAME.utils.coordinates.parse(self.arg.XYZ);
                     defwrap[idx].Pos = pos;
                 }
+
+                defwrap[idx].Pos = {
+                    x: (Number(defwrap[idx].Pos.x) + Number(wpos.x)).toFixed(2),
+                    y: (Number(defwrap[idx].Pos.y) + Number(wpos.y)).toFixed(2),
+                    z: (Number(defwrap[idx].Pos.z) + Number(wpos.z)).toFixed(2)
+                };
+
                 wrap.setAttribute('position', AFRAME.utils.coordinates.stringify(defwrap[idx].Pos));
                 wrap.setAttribute('rotation', '0 0 0');
                 //wrap.setAttribute('rotation', xAngle + ' 0 0');
