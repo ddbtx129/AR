@@ -856,10 +856,13 @@ var viewmode = 'marker';
 
                 if (val[idx].isShadow && !(val[idx].isGltf)) {
                     var shadow = document.createElement('a-image');
+                    var spos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                     var posVec3shadow = self.positionVec3('shadow', idx);
+                    var posVec3mshadow = { x: Number(posVec3shadow.x) + Number(spos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(spos.y) };
 
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
-                    shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
+                    //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
+                    shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3mshadow));
                     shadow.setAttribute('rotation', '-90 0 0');
                     shadow.setAttribute('style', 'z-index: 2');
 
@@ -969,7 +972,9 @@ var viewmode = 'marker';
 
                 var posVec3 = self.positionVec3('main', idx);
                 defPos = posVec3;
-                defobj[idx].Pos = posVec3;
+                //defobj[idx].Pos = posVec3;
+                var mpos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
+                defobj[idx].Pos = { x: Number(posVec3.x) + Number(mpos.x), y: Number(posVec3.y) + Number(mpos.y), z: Number(posVec3.z) + Number(mpos.z) };
 
                 main.setAttribute('id', 'main' + (idx + 1).toString());
                 main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
@@ -1112,7 +1117,7 @@ var viewmode = 'marker';
                     var cmain = document.createElement(celname);
 
                     var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
-                    var posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.z), z: Number(posVec3.z) + Number(cpos.z) };
+                    var posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
                     defobj[idx].posVec3c = posVec3c;
 
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
@@ -1181,10 +1186,12 @@ var viewmode = 'marker';
             if (val[oidx].isShadow && !(val[oidx].isGltf)) {
 
                 var shadow = document.createElement('a-image');
-                var posVec3shadow = self.positionVec3('shadow', idx);
+                var posVec3shadow = self.positionVec3('shadow', oidx);
+                var posVec3mshadow = { x: Number(posVec3shadow.x) + Number(spos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(spos.y) };
 
                 shadow.setAttribute('id', 'shadow' + ((oidx + 1)).toString());
-                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', oidx)));
+                //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', oidx)));
+                shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3mshadow));
                 shadow.setAttribute('rotation', '-90 0 0');
                 shadow.setAttribute('style', 'z-index: 2');
 
@@ -1294,6 +1301,8 @@ var viewmode = 'marker';
 
             var posVec3 = self.positionVec3('main', oidx);
             defobj[oidx].Pos = posVec3;
+            var mpos = AFRAME.utils.coordinates.parse(self.args[oidx].OZList);
+            defobj[oidx].Pos = { x: Number(posVec3.x) + Number(mpos.x), y: Number(posVec3.y) + Number(mpos.y), z: Number(posVec3.z) + Number(mpos.z) };
 
             main.setAttribute('id', 'main' + ((oidx + 1)).toString());
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].Pos));
