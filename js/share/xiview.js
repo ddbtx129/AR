@@ -193,7 +193,6 @@ var viewmode = 'marker';
                     args[idx].sizeBList = pcs[idx].whb && (pcs[idx].whb);
                     // Cサイズ 倍率
                     args[idx].sizeCList = pcs[idx].whc && (pcs[idx].whc);
-                    console.log(args[idx].sizeAList);
 
                     // 倍率
                     args[idx].WRAPZOOM = (pcs[idx].wrapzoom) && (parseInt(pcs[idx].wrapzoom, 10).toString());
@@ -639,7 +638,7 @@ var viewmode = 'marker';
 
                             // 追加Aサイズ
                             self.args[idx].sizeAList = !!(self.args[idx].sizeAList) ? self.args[idx].sizeAList : 1;
-                            console.log(self.args[idx].sizeAList);
+
                             defobj[idx].ScaleA = {
                                 x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2),
                                 y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2),
@@ -1091,7 +1090,6 @@ var viewmode = 'marker';
                             shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
-                        console.log(defobj[idx].ScaleA.x);
                     } else {
                         amain.setAttribute('gltf-model', asrcname);
                         amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA));
