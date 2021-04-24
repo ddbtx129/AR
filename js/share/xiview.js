@@ -994,9 +994,9 @@ var viewmode = 'marker';
                 defobj[idx].Pos = posVec3;
                 var mpos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                 defobj[idx].Pos = {
-                    x: Number(posVec3.x).toFixed(2) + Number(mpos.x).toFixed(2),
-                    y: Number(posVec3.y).toFixed(2) + Number(mpos.y).toFixed(2),
-                    z: Number(posVec3.z).toFixed(2) + Number(mpos.z).toFixed(2)
+                    x: (Number(posVec3.x) + Number(mpos.x)).toFixed(2),
+                    y: (Number(posVec3.y) + Number(mpos.y)).toFixed(2),
+                    z: (Number(posVec3.z) + Number(mpos.z)).toFixed(2)
                 };
 
                 console.log(defobj[idx].Pos.x);
