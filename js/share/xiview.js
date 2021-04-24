@@ -890,7 +890,7 @@ var viewmode = 'marker';
                         AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
                             primitive: 'plane', height: (defobj[idx].ScaleA.y), width: (defobj[idx].ScaleA.x)
                         });
-
+                        console.log(defobj[idx].ScaleA.x);
                         AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
                             shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
                             color: 'black', opacity: shadowopacity, depthTest: false
