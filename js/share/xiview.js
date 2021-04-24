@@ -886,7 +886,7 @@ var viewmode = 'marker';
                         var aspos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
                         var posVec3ashadow = {
                             x: (Number(posVec3shadow.x) + Number(aspos.x)9.toFixed(2),
-                            y: (Number(posVec3shadow.y)9.toFixed(2),
+                            y: (Number(posVec3shadow.y)).toFixed(2),
                             z: (Number(posVec3shadow.z) - Number(aspos.y)9.toFixed(2)
                         };
 
