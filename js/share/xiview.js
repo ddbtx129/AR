@@ -642,8 +642,8 @@ var viewmode = 'marker';
 
                             defobj[idx].ScaleA = {
                                 x: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeAList),
-                                y: Number(defobj[idx].Scale.y) * Number(self.args[idx].sizeAList),
-                                z: Number(defobj[idx].Scale.z) * Number(self.args[idx].sizeAList)
+                                y: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeAList),
+                                z: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeAList)
                             };
 
                             dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
@@ -665,8 +665,8 @@ var viewmode = 'marker';
 
                             defobj[idx].ScaleA = {
                                 x: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList),
-                                y: Number(defobj[idx].Scale.y) * Number(self.args[idx].sizeBList),
-                                z: Number(defobj[idx].Scale.z) * Number(self.args[idx].sizeBList)
+                                y: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList),
+                                z: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)
                             };
 
                             dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
@@ -688,8 +688,8 @@ var viewmode = 'marker';
 
                             defobj[idx].ScaleA = {
                                 x: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList),
-                                y: Number(defobj[idx].Scale.y) * Number(self.args[idx].sizeCList),
-                                z: Number(defobj[idx].Scale.z) * Number(self.args[idx].sizeCList)
+                                y: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList),
+                                z: Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)
                             };
 
                             dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
