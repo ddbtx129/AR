@@ -121,8 +121,8 @@
     <oa>share/01.png</oa>
     <ob></ob>
     <oc></oc>
-    <oz></oz>
-    <oaz>0 2 0.01</oaz>
+    <oz>0 0.1 0</oz>
+    <oaz>0 1.62 0.01</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
