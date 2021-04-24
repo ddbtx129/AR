@@ -2754,6 +2754,9 @@ var viewmode = 'marker';
                 var cXs = tabelnm.getElementsByTagName("xs");
                 var cAn = tabelnm.getElementsByTagName("an");
                 var cWh = tabelnm.getElementsByTagName("wh");
+                var cWha = tabelnm.getElementsByTagName("wha") && tabelnm.getElementsByTagName("wha").toString();
+                var cWhb = tabelnm.getElementsByTagName("whb") && tabelnm.getElementsByTagName("whb").toString();
+                var cWhc = tabelnm.getElementsByTagName("whc") && tabelnm.getElementsByTagName("whc").toString();
                 var cWrapzoom = tabelnm.getElementsByTagName("wrapzoom");
                 var cO = tabelnm.getElementsByTagName("o");
                 var cO1 = tabelnm.getElementsByTagName("o1");
@@ -2787,6 +2790,9 @@ var viewmode = 'marker';
                         xs: cXs[i].textContent,
                         an: cAn[i].textContent,
                         wh: cWh[i].textContent,
+                        wha: cWha[i].textContent,
+                        whb: cWhb[i].textContent,
+                        whc: cWhc[i].textContent,
                         wrapzoom: cWrapzoom[i].textContent,
                         o: cO[i].textContent,
                         o1: cO1[i].textContent,
