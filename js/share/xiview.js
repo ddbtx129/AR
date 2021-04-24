@@ -1010,10 +1010,6 @@ var viewmode = 'marker';
                     z: (Number(posVec3.z) + Number(mpos.z)).toFixed(2)
                 };
 
-                console.log(defobj[idx].Pos.x);
-                console.log(defobj[idx].Pos.y);
-                console.log(defobj[idx].Pos.z);
-
                 main.setAttribute('id', 'main' + (idx + 1).toString());
                 main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
 
@@ -1080,10 +1076,6 @@ var viewmode = 'marker';
                     };
 
                     defobj[idx].posVec3a = posVec3a;
-
-                    console.log(defobj[idx].posVec3a.x);
-                    console.log(defobj[idx].posVec3a.y);
-                    console.log(defobj[idx].posVec3a.z);
 
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
                     amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
