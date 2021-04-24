@@ -640,9 +640,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeAList = !!(self.args[idx].sizeAList) ? self.args[idx].sizeAList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2),
-                                y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2),
-                                z: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2)
+                                x: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeAList)).toFixed(2),
+                                y: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeAList)).toFixed(2),
+                                z: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeAList)).toFixed(2)
                             };
 
                             dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
@@ -663,9 +663,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeBList = !!(self.args[idx].sizeBList) ? self.args[idx].sizeBList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeBList).toFixed(2)).toFixed(2),
-                                y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeBList).toFixed(2)).toFixed(2),
-                                z: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeBList).toFixed(2)).toFixed(2)
+                                x: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)).toFixed(2),
+                                y: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)).toFixed(2),
+                                z: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)).toFixed(2)
                             };
 
                             dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
@@ -686,9 +686,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeCList = !!(self.args[idx].sizeCList) ? self.args[idx].sizeCList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeCList).toFixed(2)).toFixed(2),
-                                y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeCList).toFixed(2)).toFixed(2),
-                                z: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeCList).toFixed(2)).toFixed(2)
+                                x: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)).toFixed(2),
+                                y: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)).toFixed(2),
+                                z: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)).toFixed(2)
                             };
 
                             dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
@@ -858,9 +858,9 @@ var viewmode = 'marker';
                     var spos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                     var posVec3shadow = self.positionVec3('shadow', idx);
                     var posVec3mshadow = {
-                        x: Number(posVec3shadow.x).toFixed(2) + Number(spos.x).toFixed(2),
-                        y: Number(posVec3shadow.y).toFixed(2),
-                        z: Number(posVec3shadow.z).toFixed(2) - Number(spos.y).toFixed(2)
+                        x: (Number(posVec3shadow.x) + Number(spos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(spos.y)).toFixed(2)
                     };
 
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
@@ -885,9 +885,9 @@ var viewmode = 'marker';
                         var ashadow = document.createElement('a-image');
                         var aspos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
                         var posVec3ashadow = {
-                            x: Number(posVec3shadow.x).toFixed(2) + Number(aspos.x).toFixed(2),
-                            y: Number(posVec3shadow.y).toFixed(2),
-                            z: Number(posVec3shadow.z).toFixed(2) - Number(aspos.y).toFixed(2)
+                            x: (Number(posVec3shadow.x) + Number(aspos.x)9.toFixed(2),
+                            y: (Number(posVec3shadow.y)9.toFixed(2),
+                            z: (Number(posVec3shadow.z) - Number(aspos.y)9.toFixed(2)
                         };
 
                         defobj[idx].posVec3ashadowa = posVec3ashadow;
@@ -916,9 +916,9 @@ var viewmode = 'marker';
                         var bshadow = document.createElement('a-image');
                         var bspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
                         var posVec3bshadow = {
-                            x: Number(posVec3shadow.x).toFixed(2) + Number(bspos.x).toFixed(2),
-                            y: Number(posVec3shadow.y).toFixed(2),
-                            z: Number(posVec3shadow.z).toFixed(2) - Number(bspos.y).toFixed(2)
+                            x: (Number(posVec3shadow.x) + Number(bspos.x)).toFixed(2),
+                            y: (Number(posVec3shadow.y)).toFixed(2),
+                            z: (Number(posVec3shadow.z) - Number(bspos.y)).toFixed(2)
                         };
 
                         defobj[idx].posVec3bshadow = posVec3bshadow;
@@ -947,9 +947,9 @@ var viewmode = 'marker';
                         var cshadow = document.createElement('a-image');
                         var cspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
                         var posVec3cshadow = {
-                            x: Number(posVec3shadow.x).toFixed(2) + Number(cspos.x).toFixed(2),
-                            y: Number(posVec3shadow.y).toFixed(2),
-                            z: Number(posVec3shadow.z).toFixed(2) - Number(cspos.y).toFixed(2)
+                            x: (Number(posVec3shadow.x) + Number(cspos.x)).toFixed(2),
+                            y: (Number(posVec3shadow.y)).toFixed(2),
+                            z: (Number(posVec3shadow.z) - Number(cspos.y)).toFixed(2)
                         };
 
                         defobj[idx].posVec3cshadow = posVec3cshadow;
@@ -1062,12 +1062,16 @@ var viewmode = 'marker';
 
                     var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
                     var posVec3a = {
-                        x: Number(posVec3.x).toFixed(2) + Number(apos.x).toFixed(2),
-                        y: Number(posVec3.y).toFixed(2) + Number(apos.y).toFixed(2),
-                        z: Number(posVec3.z).toFixed(2) + Number(apos.z).toFixed(2)
+                        x: (Number(posVec3.x) + Number(apos.x)).toFixed(2),
+                        y: (Number(posVec3.y) + Number(apos.y)).toFixed(2),
+                        z: (Number(posVec3.z) + Number(apos.z)).toFixed(2)
                     };
 
                     defobj[idx].posVec3a = posVec3a;
+
+                    console.log(defobj[idx].posVec3a.x);
+                    console.log(defobj[idx].posVec3a.y);
+                    console.log(defobj[idx].posVec3a.z);
 
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
                     amain.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3a));
@@ -1107,9 +1111,9 @@ var viewmode = 'marker';
 
                     var bpos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
                     var posVec3b = {
-                        x: Number(posVec3.x).toFixed(2) + Number(bpos.x).toFixed(2),
-                        y: Number(posVec3.y).toFixed(2) + Number(bpos.y).toFixed(2),
-                        z: Number(posVec3.z).toFixed(2) + Number(bpos.z).toFixed(2)
+                        x: (Number(posVec3.x) + Number(bpos.x)).toFixed(2),
+                        y: (Number(posVec3.y) + Number(bpos.y)).toFixed(2),
+                        z: (Number(posVec3.z) + Number(bpos.z)).toFixed(2)
                     };
 
                     defobj[idx].posVec3b = posVec3b;
@@ -1152,9 +1156,9 @@ var viewmode = 'marker';
 
                     var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
                     var posVec3c = {
-                        x: Number(posVec3.x).toFixed(2) + Number(cpos.x).toFixed(2),
-                        y: Number(posVec3.y).toFixed(2) + Number(cpos.y).toFixed(2),
-                        z: Number(posVec3.z).toFixed(2) + Number(cpos.z).toFixed(2)
+                        x: (Number(posVec3.x) + Number(cpos.x)).toFixed(2),
+                        y: (Number(posVec3.y) + Number(cpos.y)).toFixed(2),
+                        z: (Number(posVec3.z) + Number(cpos.z)).toFixed(2)
                     };
 
                     defobj[idx].posVec3c = posVec3c;
@@ -1227,9 +1231,9 @@ var viewmode = 'marker';
                 var shadow = document.createElement('a-image');
                 var posVec3shadow = self.positionVec3('shadow', oidx);
                 var posVec3mshadow = {
-                    x: Number(posVec3shadow.x).toFixed(2) + Number(spos.x).toFixed(2),
-                    y: Number(posVec3shadow.y).toFixed(2),
-                    z: Number(posVec3shadow.z).toFixed(2) - Number(spos.y).toFixed(2)
+                    x: (Number(posVec3shadow.x) + Number(spos.x)).toFixed(2),
+                    y: (Number(posVec3shadow.y)).toFixed(2),
+                    z: (Number(posVec3shadow.z) - Number(spos.y)).toFixed(2)
                 };
 
                 shadow.setAttribute('id', 'shadow' + ((oidx + 1)).toString());
@@ -1254,9 +1258,9 @@ var viewmode = 'marker';
                     var ashadow = document.createElement('a-image');
                     var aspos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
                     var posVec3ashadow = {
-                        x: Number(posVec3shadow.x).toFixed(2) + Number(aspos.x).toFixed(2),
-                        y: Number(posVec3shadow.y).toFixed(2),
-                        z: Number(posVec3shadow.z) - Number(aspos.y)
+                        x: (Number(posVec3shadow.x) + Number(aspos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(aspos.y)).toFixed(2)
                     };
 
                     defobj[oidx].posVec3ashadowa = posVec3ashadow;
@@ -1285,9 +1289,9 @@ var viewmode = 'marker';
                     var bshadow = document.createElement('a-image');
                     var bspos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
                     var posVec3bshadow = {
-                        x: Number(posVec3shadow.x).toFixed(2) + Number(bspos.x).toFixed(2),
-                        y: Number(posVec3shadow.y).toFixed(2),
-                        z: Number(posVec3shadow.z).toFixed(2) - Number(bspos.y).toFixed(2)
+                        x: (Number(posVec3shadow.x) + Number(bspos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(bspos.y)).toFixed(2)
                     };
 
                     defobj[oidx].posVec3bshadow = posVec3bshadow;
@@ -1316,9 +1320,9 @@ var viewmode = 'marker';
                     var cshadow = document.createElement('a-image');
                     var cspos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
                     var posVec3cshadow = {
-                        x: Number(posVec3shadow.x).toFixed(2) + Number(cspos.x).toFixed(2),
-                        y: Number(posVec3shadow.y).toFixed(2),
-                        z: Number(posVec3shadow.z).toFixed(2) - Number(cspos.y).toFixed(2)
+                        x: (Number(posVec3shadow.x) + Number(cspos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(cspos.y)).toFixed(2)
                     };
 
                     defobj[oidx].posVec3cshadow = posVec3cshadow;
@@ -1361,9 +1365,9 @@ var viewmode = 'marker';
             defobj[oidx].Pos = posVec3;
             var mpos = AFRAME.utils.coordinates.parse(self.args[oidx].OZList);
             defobj[oidx].Pos = {
-                x: Number(posVec3.x).toFixed(2) + Number(mpos.x).toFixed(2),
-                y: Number(posVec3.y).toFixed(2) + Number(mpos.y).toFixed(2),
-                z: Number(posVec3.z).toFixed(2) + Number(mpos.z).toFixed(2)
+                x: (Number(posVec3.x) + Number(mpos.x)).toFixed(2),
+                y: (Number(posVec3.y) + Number(mpos.y)).toFixed(2),
+                z: (Number(posVec3.z) + Number(mpos.z)).toFixed(2)
             };
 
             main.setAttribute('id', 'main' + ((oidx + 1)).toString());
@@ -1419,9 +1423,9 @@ var viewmode = 'marker';
 
                 var apos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
                 var posVec3a = {
-                    x: Number(posVec3.x).toFixed(2) + Number(apos.x).toFixed(2),
-                    y: Number(posVec3.y).toFixed(2) + Number(apos.y).toFixed(2),
-                    z: Number(posVec3.z).toFixed(2) + Number(apos.z).toFixed(2)
+                    x: (Number(posVec3.x) + Number(apos.x)).toFixed(2),
+                    y: (Number(posVec3.y) + Number(apos.y)).toFixed(2),
+                    z: (Number(posVec3.z) + Number(apos.z)).toFixed(2)
                 };
 
                 defobj[oidx].posVec3a = posVec3a;
@@ -1464,9 +1468,9 @@ var viewmode = 'marker';
 
                 var bpos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
                 var posVec3b = {
-                    x: Number(posVec3.x).toFixed(2) + Number(bpos.x).toFixed(2),
-                    y: Number(posVec3.y).toFixed(2) + Number(bpos.y).toFixed(2),
-                    z: Number(posVec3.z).toFixed(2) + Number(bpos.z).toFixed(2)
+                    x: (Number(posVec3.x) + Number(bpos.x)).toFixed(2),
+                    y: (Number(posVec3.y) + Number(bpos.y)).toFixed(2),
+                    z: (Number(posVec3.z) + Number(bpos.z)).toFixed(2)
                 };
 
                 defobj[oidx].posVec3b = posVec3b;
@@ -1509,9 +1513,9 @@ var viewmode = 'marker';
 
                 var cpos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
                 var posVec3c = posVec3c = {
-                    x: Number(posVec3.x).toFixed(2) + Number(cpos.x).toFixed(2),
-                    y: Number(posVec3.y).toFixed(2) + Number(cpos.y).toFixed(2),
-                    z: Number(posVec3.z).toFixed(2) + Number(cpos.z).toFixed(2)
+                    x: (Number(posVec3.x) + Number(cpos.x)).toFixed(2),
+                    y: (Number(posVec3.y) + Number(cpos.y)).toFixed(2),
+                    z: (Number(posVec3.z) + Number(cpos.z)).toFixed(2)
                 };
 
                 defobj[oidx].posVec3c = posVec3c;
