@@ -186,13 +186,15 @@ var viewmode = 'marker';
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
                     // サイズ
                     args[idx].sizeList = pcs[idx].wh && (parseInt(pcs[idx].wh, 16).toString(10));
-                    // サイズ
-                    args[idx].sizeAList = pcs[idx].wha && (parseInt(pcs[idx].wha, 16).toString(10));
-                    // サイズ
-                    args[idx].sizeBList = pcs[idx].whb && (parseInt(pcs[idx].whb, 16).toString(10));
-                    // サイズ
-                    args[idx].sizeCList = pcs[idx].whc && (parseInt(pcs[idx].whc, 16).toString(10));
+
+                    // Aサイズ 倍率
+                    args[idx].sizeAList = pcs[idx].wha && (parseInt(pcs[idx].wha, 10).toString());
+                    // Bサイズ 倍率
+                    args[idx].sizeBList = pcs[idx].whb && (parseInt(pcs[idx].whb, 10).toString());
+                    // Cサイズ 倍率
+                    args[idx].sizeCList = pcs[idx].whc && (parseInt(pcs[idx].whc, 10).toString());
                     console.log(args[idx].sizeAList);
+
                     // 倍率
                     args[idx].WRAPZOOM = (pcs[idx].wrapzoom) && (parseInt(pcs[idx].wrapzoom, 10).toString());
 
@@ -637,13 +639,13 @@ var viewmode = 'marker';
                         if (!!(self.args[idx].OAtList)) {
 
                             // 追加Aサイズ
-                            self.args[idx].sizeAList = String(!!(!!(self.args[idx].sizeAList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeAList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png'));
+                            self.args[idx].sizeAList = !!(self.args[idx].sizeAList) ? self.args[idx].sizeAList : 1;
 
-                            var wha = SizeSplit(self.args[idx].sizeAList).toString().split(',');
-                            var i = ((parseInt(self.args[idx].sizeAList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeAList).toString(10)).length : (parseInt(self.args[idx].sizeAList).toString(10)).length + 1;
-
-                            dataObj[idx].addAsize = { w: (Number(wha[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wha[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-                            defobj[idx].ScaleA = { x: dataObj[idx].addAsize.w, y: dataObj[idx].addAsize.h, z: dataObj[idx].addAsize.h };
+                            defobj[idx].ScaleA = {
+                                x: Number(dataObj[idx].size.x) * Number(self.args[idx].sizeAList),
+                                y: Number(dataObj[idx].size.y) * Number(self.args[idx].sizeAList),
+                                z: Number(dataObj[idx].size.z) * Number(self.args[idx].sizeAList)
+                            };
 
                             dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
 
@@ -660,13 +662,13 @@ var viewmode = 'marker';
                         if (!!(self.args[idx].OBtList)) {
 
                             // 追加Bサイズ
-                            self.args[idx].sizeBList = String(!!(!!(self.args[idx].sizeBList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeBList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png'));
+                            self.args[idx].sizeBList = !!(self.args[idx].sizeBList) ? self.args[idx].sizeBList : 1;
 
-                            var whb = SizeSplit(self.args[idx].sizeBList).toString().split(',');
-                            var i = ((parseInt(self.args[idx].sizeBList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeBList).toString(10)).length : (parseInt(self.args[idx].sizeBList).toString(10)).length + 1;
-
-                            dataObj[idx].addBsize = { w: (Number(whb[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(whb[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-                            defobj[idx].ScaleB = { x: dataObj[idx].addBsize.w, y: dataObj[idx].addBsize.h, z: dataObj[idx].addBsize.h };
+                            defobj[idx].ScaleA = {
+                                x: Number(dataObj[idx].size.x) * Number(self.args[idx].sizeBList),
+                                y: Number(dataObj[idx].size.y) * Number(self.args[idx].sizeBList),
+                                z: Number(dataObj[idx].size.z) * Number(self.args[idx].sizeBList)
+                            };
 
                             dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
 
@@ -682,14 +684,14 @@ var viewmode = 'marker';
 
                         if (!!(self.args[idx].OCtList)) {
 
-                            // 追加Bサイズ
-                            self.args[idx].sizeCList = String(!!(!!(self.args[idx].sizeCList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeCList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png'));
+                            // 追加Cサイズ
+                            self.args[idx].sizeCList = !!(self.args[idx].sizeCList) ? self.args[idx].sizeCList : 1;
 
-                            var whc = SizeSplit(self.args[idx].sizeCList).toString().split(',');
-                            var i = ((parseInt(self.args[idx].sizeCList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeCList).toString(10)).length : (parseInt(self.args[idx].sizeCList).toString(10)).length + 1;
-
-                            dataObj[idx].addCsize = { w: (Number(whc[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(whc[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-                            defobj[idx].ScaleC = { x: dataObj[idx].addCsize.w, y: dataObj[idx].addCsize.h, z: dataObj[idx].addCsize.h };
+                            defobj[idx].ScaleA = {
+                                x: Number(dataObj[idx].size.x) * Number(self.args[idx].sizeCList),
+                                y: Number(dataObj[idx].size.y) * Number(self.args[idx].sizeCList),
+                                z: Number(dataObj[idx].size.z) * Number(self.args[idx].sizeCList)
+                            };
 
                             dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
 
@@ -2785,16 +2787,9 @@ var viewmode = 'marker';
                 var cXs = tabelnm.getElementsByTagName("xs");
                 var cAn = tabelnm.getElementsByTagName("an");
                 var cWh = tabelnm.getElementsByTagName("wh");
-                var cWha = (!!tabelnm.getElementsByTagName("wha")) ? tabelnm.getElementsByTagName("wha") : '';
-                console.log((!!tabelnm.getElementsByTagName("wha")));
-                console.log(tabelnm.getElementsByTagName("wha"));
-                var cWhb = (!!tabelnm.getElementsByTagName("whb")) ? tabelnm.getElementsByTagName("whb") : '';
-                console.log((!!tabelnm.getElementsByTagName("whb")));
-                console.log(tabelnm.getElementsByTagName("whb"));
-                var cWhc = (!!tabelnm.getElementsByTagName("whc")) ? tabelnm.getElementsByTagName("whc") : '';
-                //var cWha = tabelnm.getElementsByTagName("wha");
-                //var cWhb = tabelnm.getElementsByTagName("whb");
-                //var cWhc = tabelnm.getElementsByTagName("whc");
+                var cWha = tabelnm.getElementsByTagName("wha");
+                var cWhb = tabelnm.getElementsByTagName("whb");
+                var cWhc = tabelnm.getElementsByTagName("whc");
                 var cWrapzoom = tabelnm.getElementsByTagName("wrapzoom");
                 var cO = tabelnm.getElementsByTagName("o");
                 var cO1 = tabelnm.getElementsByTagName("o1");
@@ -2828,9 +2823,9 @@ var viewmode = 'marker';
                         xs: cXs[i].textContent,
                         an: cAn[i].textContent,
                         wh: cWh[i].textContent,
-                        wha: cWha[i].textContent,
-                        whb: cWhb[i].textContent,
-                        whc: cWhc[i].textContent,
+                        wha: (cWha[i] != null) && cWha[i].textContent,
+                        whb: (cWhb[i] != null) && cWhb[i].textContent,
+                        whc: (cWhc[i] != null) && cWhc[i].textContent,
                         wrapzoom: cWrapzoom[i].textContent,
                         o: cO[i].textContent,
                         o1: cO1[i].textContent,
