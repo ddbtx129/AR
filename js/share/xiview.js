@@ -1054,6 +1054,7 @@ var viewmode = 'marker';
                             shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
+                        console.log(defobj[idx].ScaleA.x);
                     } else {
                         amain.setAttribute('gltf-model', asrcname);
                         amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA));
