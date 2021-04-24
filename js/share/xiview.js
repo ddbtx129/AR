@@ -975,6 +975,9 @@ var viewmode = 'marker';
                 //defobj[idx].Pos = posVec3;
                 var mpos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                 defobj[idx].Pos = { x: Number(posVec3.x) + Number(mpos.x), y: Number(posVec3.y) + Number(mpos.y), z: Number(posVec3.z) + Number(mpos.z) };
+                console.log(defobj[idx].Pos.x);
+                console.log(defobj[idx].Pos.y);
+                console.log(defobj[idx].Pos.z);
 
                 main.setAttribute('id', 'main' + (idx + 1).toString());
                 main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[idx].Pos));
