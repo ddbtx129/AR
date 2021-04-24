@@ -2785,16 +2785,9 @@ var viewmode = 'marker';
                 var cXs = tabelnm.getElementsByTagName("xs");
                 var cAn = tabelnm.getElementsByTagName("an");
                 var cWh = tabelnm.getElementsByTagName("wh");
-                var cWha = (!!tabelnm.getElementsByTagName("wha")) ? tabelnm.getElementsByTagName("wha") : '';
-                console.log((!!tabelnm.getElementsByTagName("wha")));
-                console.log(tabelnm.getElementsByTagName("wha"));
-                var cWhb = (!!tabelnm.getElementsByTagName("whb")) ? tabelnm.getElementsByTagName("whb") : '';
-                console.log((!!tabelnm.getElementsByTagName("whb")));
-                console.log(tabelnm.getElementsByTagName("whb"));
-                var cWhc = (!!tabelnm.getElementsByTagName("whc")) ? tabelnm.getElementsByTagName("whc") : '';
-                //var cWha = tabelnm.getElementsByTagName("wha");
-                //var cWhb = tabelnm.getElementsByTagName("whb");
-                //var cWhc = tabelnm.getElementsByTagName("whc");
+                var cWha = tabelnm.getElementsByTagName("wha");
+                var cWhb = tabelnm.getElementsByTagName("whb");
+                var cWhc = tabelnm.getElementsByTagName("whc");
                 var cWrapzoom = tabelnm.getElementsByTagName("wrapzoom");
                 var cO = tabelnm.getElementsByTagName("o");
                 var cO1 = tabelnm.getElementsByTagName("o1");
@@ -2828,9 +2821,9 @@ var viewmode = 'marker';
                         xs: cXs[i].textContent,
                         an: cAn[i].textContent,
                         wh: cWh[i].textContent,
-                        wha: cWha[i].textContent,
-                        whb: cWhb[i].textContent,
-                        whc: cWhc[i].textContent,
+                        wha: (!!(cWha[i].textContent) && cWha[i].textContent),
+                        whb: (!!(cWhb[i].textContent) && cWhb[i].textContent),
+                        whc: (!!(cWhc[i].textContent) && cWhc[i].textContent),
                         wrapzoom: cWrapzoom[i].textContent,
                         o: cO[i].textContent,
                         o1: cO1[i].textContent,
