@@ -192,7 +192,7 @@ var viewmode = 'marker';
                     args[idx].sizeBList = pcs[idx].whb && (parseInt(pcs[idx].whb, 16).toString(10));
                     // サイズ
                     args[idx].sizeCList = pcs[idx].whc && (parseInt(pcs[idx].whc, 16).toString(10));
-
+                    console.log(args[idx].sizeAList);
                     // 倍率
                     args[idx].WRAPZOOM = (pcs[idx].wrapzoom) && (parseInt(pcs[idx].wrapzoom, 10).toString());
 
