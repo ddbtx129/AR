@@ -186,6 +186,13 @@ var viewmode = 'marker';
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
                     // サイズ
                     args[idx].sizeList = pcs[idx].wh && (parseInt(pcs[idx].wh, 16).toString(10));
+                    // サイズ
+                    args[idx].sizeAList = pcs[idx].wha && (parseInt(pcs[idx].wha, 16).toString(10));
+                    // サイズ
+                    args[idx].sizeBList = pcs[idx].whb && (parseInt(pcs[idx].whb, 16).toString(10));
+                    // サイズ
+                    args[idx].sizeCList = pcs[idx].whc && (parseInt(pcs[idx].whc, 16).toString(10));
+
                     // 倍率
                     args[idx].WRAPZOOM = (pcs[idx].wrapzoom) && (parseInt(pcs[idx].wrapzoom, 10).toString());
 
@@ -624,54 +631,77 @@ var viewmode = 'marker';
 
                     if (!!(self.args[idx].OAtList) || !!(self.args[idx].OBtList) || !!(self.args[idx].OCtList)) {
 
-                        var addSize = GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png');
-                        var addwh = SizeSplit(addSize).toString().split(',');
-                        var i = ((parseInt(addSize).toString(10)).length % 2 == 0) ? (parseInt(addSize).toString(10)).length : (parseInt(addSize).toString(10)).length + 1;
+                        var imgAdd = {};
                         var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
 
-                        dataObj[idx].addsize = { w: (Number(addwh[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(addwh[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
-                        defobj[idx].addScale = { x: dataObj[idx].addsize.w, y: dataObj[idx].addsize.h, z: dataObj[idx].addsize.h };
+                        if (!!(self.args[idx].OAtList)) {
 
-                        var imgAdd = {};
+                            // 追加Aサイズ
+                            self.args[idx].sizeAList = String(!!(!!(self.args[idx].sizeAList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeAList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png'));
 
-                            if (!!(self.args[idx].OAtList)) {
-                                dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
+                            var wha = SizeSplit(self.args[idx].sizeAList).toString().split(',');
+                            var i = ((parseInt(self.args[idx].sizeAList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeAList).toString(10)).length : (parseInt(self.args[idx].sizeAList).toString(10)).length + 1;
 
-                                imgAdd.A = document.createElement('img');
-                                imgAdd.A.setAttribute('crossorigin', 'anonymous');
-                                imgAdd.A.setAttribute('id', 'asource' + ((idx + 1) * 100).toString());
-                                imgAdd.A.setAttribute('src', dataObj[idx].ObjectPath.A);
+                            dataObj[idx].addAsize = { w: (Number(wha[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wha[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+                            defobj[idx].ScaleA = { x: dataObj[idx].addAsize.w, y: dataObj[idx].addAsize.h, z: dataObj[idx].addAsize.h };
 
-                                dataObj[idx].arObj.A = imgAdd.A;
+                            dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
 
-                                assets.appendChild(imgAdd.A);
-                            }
+                            imgAdd.A = document.createElement('img');
+                            imgAdd.A.setAttribute('crossorigin', 'anonymous');
+                            imgAdd.A.setAttribute('id', 'asource' + ((idx + 1) * 100).toString());
+                            imgAdd.A.setAttribute('src', dataObj[idx].ObjectPath.A);
 
-                            if (!!(self.args[idx].OBtList)) {
-                                dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
+                            dataObj[idx].arObj.A = imgAdd.A;
 
-                                imgAdd.B = document.createElement('img');
-                                imgAdd.B.setAttribute('crossorigin', 'anonymous');
-                                imgAdd.B.setAttribute('id', 'bsource' + ((idx + 1) * 100).toString());
-                                imgAdd.B.setAttribute('src', dataObj[idx].ObjectPath.B);
+                            assets.appendChild(imgAdd.A);
+                        }
 
-                                dataObj[idx].arObj.B = imgAdd.B;
+                        if (!!(self.args[idx].OBtList)) {
 
-                                assets.appendChild(imgAdd.B);
-                            }
+                            // 追加Bサイズ
+                            self.args[idx].sizeBList = String(!!(!!(self.args[idx].sizeBList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeBList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png'));
 
-                            if (!!(self.args[idx].OCtList)) {
-                                dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
+                            var whb = SizeSplit(self.args[idx].sizeBList).toString().split(',');
+                            var i = ((parseInt(self.args[idx].sizeBList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeBList).toString(10)).length : (parseInt(self.args[idx].sizeBList).toString(10)).length + 1;
 
-                                imgAdd.C = document.createElement('img');
-                                imgAdd.C.setAttribute('crossorigin', 'anonymous');
-                                imgAdd.C.setAttribute('id', 'csource' + ((idx + 1) * 100).toString());
-                                imgAdd.C.setAttribute('src', dataObj[idx].ObjectPath.C);
+                            dataObj[idx].addBsize = { w: (Number(whb[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(whb[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+                            defobj[idx].ScaleB = { x: dataObj[idx].addBsize.w, y: dataObj[idx].addBsize.h, z: dataObj[idx].addBsize.h };
 
-                                dataObj[idx].arObj.C = imgAdd.C;
+                            dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
 
-                                assets.appendChild(imgAdd.C);
-                            }
+                            imgAdd.B = document.createElement('img');
+                            imgAdd.B.setAttribute('crossorigin', 'anonymous');
+                            imgAdd.B.setAttribute('id', 'bsource' + ((idx + 1) * 100).toString());
+                            imgAdd.B.setAttribute('src', dataObj[idx].ObjectPath.B);
+
+                            dataObj[idx].arObj.B = imgAdd.B;
+
+                            assets.appendChild(imgAdd.B);
+                        }
+
+                        if (!!(self.args[idx].OCtList)) {
+
+                            // 追加Bサイズ
+                            self.args[idx].sizeCList = String(!!(!!(self.args[idx].sizeCList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeCList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), 'png'));
+
+                            var whc = SizeSplit(self.args[idx].sizeCList).toString().split(',');
+                            var i = ((parseInt(self.args[idx].sizeCList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeCList).toString(10)).length : (parseInt(self.args[idx].sizeCList).toString(10)).length + 1;
+
+                            dataObj[idx].addCsize = { w: (Number(whc[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(whc[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
+                            defobj[idx].ScaleC = { x: dataObj[idx].addCsize.w, y: dataObj[idx].addCsize.h, z: dataObj[idx].addCsize.h };
+
+                            dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
+
+                            imgAdd.C = document.createElement('img');
+                            imgAdd.C.setAttribute('crossorigin', 'anonymous');
+                            imgAdd.C.setAttribute('id', 'csource' + ((idx + 1) * 100).toString());
+                            imgAdd.C.setAttribute('src', dataObj[idx].ObjectPath.C);
+
+                            dataObj[idx].arObj.C = imgAdd.C;
+
+                            assets.appendChild(imgAdd.C);
+                        }
                     }
 
                     if (dataObj[idx].isLogo) {
@@ -858,7 +888,7 @@ var viewmode = 'marker';
                         ashadow.setAttribute('visible', !(self.arg.targetObj));
 
                         AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].addScale.y), width: (defobj[idx].addScale.x)
+                            primitive: 'plane', height: (defobj[idx].ScaleA.y), width: (defobj[idx].ScaleA.x)
                         });
 
                         AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
@@ -884,7 +914,7 @@ var viewmode = 'marker';
                         bshadow.setAttribute('visible', !(self.arg.targetObj));
 
                         AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].addScale.y), width: (defobj[idx].addScale.x)
+                            primitive: 'plane', height: (defobj[idx].ScaleB.y), width: (defobj[idx].ScaleB.x)
                         });
 
                         AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
@@ -910,7 +940,7 @@ var viewmode = 'marker';
                         cshadow.setAttribute('visible', !(self.arg.targetObj));
 
                         AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].addScale.y), width: (defobj[idx].addScale.x)
+                            primitive: 'plane', height: (defobj[idx].ScaleC.y), width: (defobj[idx].ScaleC.x)
                         });
 
                         AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
@@ -1009,15 +1039,15 @@ var viewmode = 'marker';
                     amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-                        amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.x));
-                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.y));
+                        amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA.x));
+                        amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA.y));
 
                         if (val[idx].isMp4) {
                             amain.setAttribute('play', 'true');
                         }
 
                         AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
-                            primitive: 'plane', height: defobj[idx].addScale.y, width: defobj[idx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
+                            primitive: 'plane', height: defobj[idx].ScaleA.y, width: defobj[idx].ScaleA.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
                         AFRAME.utils.entity.setComponentProperty(amain, 'material', {
@@ -1026,7 +1056,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         amain.setAttribute('gltf-model', asrcname);
-                        amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].addScale));
+                        amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA));
                     }
 
                     amain.setAttribute('style', 'z-index: 4');
@@ -1049,15 +1079,15 @@ var viewmode = 'marker';
                     bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-                        bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.x));
-                        bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.y));
+                        bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleB.x));
+                        bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleB.y));
 
                         if (val[idx].isMp4) {
                             bmain.setAttribute('play', 'true');
                         }
 
                         AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
-                            primitive: 'plane', height: defobj[idx].addScale.y, width: defobj[idx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
+                            primitive: 'plane', height: defobj[idx].ScaleB.y, width: defobj[idx].ScaleB.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
                         AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
@@ -1066,7 +1096,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         bmain.setAttribute('gltf-model', bsrcname);
-                        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].addScale));
+                        bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleB));
                     }
 
                     bmain.setAttribute('style', 'z-index: 4');
@@ -1089,15 +1119,15 @@ var viewmode = 'marker';
                     cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                     if (!val[idx].isGltf) {
-                        cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.x));
-                        cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].addScale.y));
+                        cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleC.x));
+                        cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleC.y));
 
                         if (val[idx].isMp4) {
                             cmain.setAttribute('play', 'true');
                         }
 
                         AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
-                            primitive: 'plane', height: defobj[idx].addScale.y, width: defobj[idx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
+                            primitive: 'plane', height: defobj[idx].ScaleC.y, width: defobj[idx].ScaleC.x, segmentsHeight: 1, segmentsWidth: 1
                         });
 
                         AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
@@ -1106,7 +1136,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         cmain.setAttribute('gltf-model', csrcname);
-                        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].addScale));
+                        cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleC));
                     }
 
                     cmain.setAttribute('style', 'z-index: 4');
@@ -1182,7 +1212,7 @@ var viewmode = 'marker';
                     ashadow.setAttribute('visible', !(self.arg.targetObj));
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].addScale.y), width: (defobj[oidx].addScale.x)
+                        primitive: 'plane', height: (defobj[oidx].ScaleA.y), width: (defobj[oidx].ScaleA.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
@@ -1208,7 +1238,7 @@ var viewmode = 'marker';
                     bshadow.setAttribute('visible', !(self.arg.targetObj));
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].addScale.y), width: (defobj[oidx].addScale.x)
+                        primitive: 'plane', height: (defobj[oidx].ScaleB.y), width: (defobj[oidx].ScaleB.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
@@ -1234,7 +1264,7 @@ var viewmode = 'marker';
                     cshadow.setAttribute('visible', !(self.arg.targetObj));
 
                     AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].addScale.y), width: (defobj[oidx].addScale.x)
+                        primitive: 'plane', height: (defobj[oidx].ScaleC.y), width: (defobj[oidx].ScaleC.x)
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
@@ -1324,8 +1354,8 @@ var viewmode = 'marker';
                 amain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                 if (!val[oidx].isGltf) {
-                    amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.x));
-                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.y));
+                    amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleA.x));
+                    amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleA.y));
 
                     amain.setAttribute('style', 'z-index: 4');
 
@@ -1334,7 +1364,7 @@ var viewmode = 'marker';
                     }
 
                     AFRAME.utils.entity.setComponentProperty(amain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].addScale.y, width: defobj[oidx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].ScaleA.y, width: defobj[oidx].ScaleA.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(amain, 'material', {
@@ -1343,7 +1373,7 @@ var viewmode = 'marker';
                     });
                 } else {
                     amain.setAttribute('gltf-model', asrcname);
-                    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale));
+                    amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleA));
                 }
 
                 self.arData[oidx].amain = amain;
@@ -1364,15 +1394,15 @@ var viewmode = 'marker';
                 bmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                 if (!val[oidx].isGltf) {
-                    bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.x));
-                    bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.y));
+                    bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleB.x));
+                    bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleB.y));
 
                     if (val[oidx].isMp4) {
                         bmain.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(bmain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].addScale.y, width: defobj[oidx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].ScaleB.y, width: defobj[oidx].ScaleB.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
@@ -1381,7 +1411,7 @@ var viewmode = 'marker';
                     });
                 } else {
                     bmain.setAttribute('gltf-model', bsrcname);
-                    bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale));
+                    bmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleB));
                 }
 
                 bmain.setAttribute('style', 'z-index: 4');
@@ -1404,15 +1434,15 @@ var viewmode = 'marker';
                 cmain.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
 
                 if (!val[oidx].isGltf) {
-                    cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.x));
-                    cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale.y));
+                    cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleC.x));
+                    cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleC.y));
 
                     if (val[oidx].isMp4) {
                         cmain.setAttribute('play', 'true');
                     }
 
                     AFRAME.utils.entity.setComponentProperty(cmain, 'geometry', {
-                        primitive: 'plane', height: defobj[oidx].addScale.y, width: defobj[oidx].addScale.x, segmentsHeight: 1, segmentsWidth: 1
+                        primitive: 'plane', height: defobj[oidx].ScaleC.y, width: defobj[oidx].ScaleC.x, segmentsHeight: 1, segmentsWidth: 1
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
@@ -1421,7 +1451,7 @@ var viewmode = 'marker';
                     });
                 } else {
                     cmain.setAttribute('gltf-model', csrcname);
-                    cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].addScale));
+                    cmain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleC));
                 }
 
                 cmain.setAttribute('style', 'z-index: 4');
