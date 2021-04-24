@@ -49,6 +49,12 @@
                 <xs:element name="an" type="xs:string" minOccurs="0" />
                 <!--幅・高さ-->
                 <xs:element name="wh" type="xs:string" minOccurs="0" />
+                <!--幅・高さ-->
+                <xs:element name="wha" type="xs:string" minOccurs="0" />
+                <!--幅・高さ-->
+                <xs:element name="whb" type="xs:string" minOccurs="0" />
+                <!--幅・高さ-->
+                <xs:element name="whc" type="xs:string" minOccurs="0" />
                 <!--倍率-->
                 <xs:element name="wrapzoom" type="xs:string" minOccurs="0" />
                 <!--オブジェクトフォルダ名-->
@@ -82,6 +88,7 @@
       </xs:complexType>
     </xs:element>
   </xs:schema>
+  
   <basedata>
     <ed0>13465BA</ed0>
     <ar0>1</ar0>
@@ -103,6 +110,9 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
+    <wha>FC8</wha>
+    <whb></whb>
+    <whc></whc>
     <wrapzoom></wrapzoom>
     <o></o>
     <o1></o1>
@@ -131,6 +141,9 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
+    <wha></wha>
+    <whb></whb>
+    <whc></whc>
     <wrapzoom></wrapzoom>
     <o></o>
     <o1></o1>
@@ -159,6 +172,9 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
+    <wha></wha>
+    <whb></whb>
+    <whc></whc>
     <wrapzoom></wrapzoom>
     <o></o>
     <o1></o1>
