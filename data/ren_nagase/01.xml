@@ -122,7 +122,7 @@
     <ob></ob>
     <oc></oc>
     <oz></oz>
-    <oaz>0 1 0.05</oaz>
+    <oaz>0 1 -0.1</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
@@ -153,7 +153,7 @@
     <ob></ob>
     <oc></oc>
     <oz></oz>
-    <oaz>0 1 0.05</oaz>
+    <oaz>0 1 -0.1</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
@@ -184,7 +184,7 @@
     <ob></ob>
     <oc></oc>
     <oz></oz>
-    <oaz>0 1 0.05</oaz>
+    <oaz>0 1 -0.1</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
