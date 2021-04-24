@@ -220,7 +220,7 @@ var viewmode = 'marker';
                     args[idx].OCList = pcs[idx].oc;
                     
                     // オブジェクトZ軸(重なり)
-                    args[idx].OZList = pcs[idx].oz && (pcs[idx].oz).toString();
+                    args[idx].OZList = !!(pcs[idx].oz) ? (pcs[idx].oz).toString() : '0 0 0';
                     args[idx].OAZList = pcs[idx].oaz && (pcs[idx].oaz).toString();
                     args[idx].OBZList = pcs[idx].obz && (pcs[idx].obz).toString();
                     args[idx].OCZList = pcs[idx].ocz && (pcs[idx].ocz).toString();
@@ -972,7 +972,7 @@ var viewmode = 'marker';
 
                 var posVec3 = self.positionVec3('main', idx);
                 defPos = posVec3;
-                //defobj[idx].Pos = posVec3;
+                defobj[idx].Pos = posVec3;
                 var mpos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                 defobj[idx].Pos = { x: Number(posVec3.x) + Number(mpos.x), y: Number(posVec3.y) + Number(mpos.y), z: Number(posVec3.z) + Number(mpos.z) };
                 console.log(defobj[idx].Pos.x);
