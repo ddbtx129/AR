@@ -847,7 +847,7 @@ var viewmode = 'marker';
 
                         var ashadow = document.createElement('a-image');
                         var aspos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
-                        var posVec3ashadow = { x: Number(posVec3shadow.x) + Number(aspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) + Number(aspos.y) };
+                        var posVec3ashadow = { x: Number(posVec3shadow.x) + Number(aspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(aspos.y) };
                         defobj[idx].posVec3ashadowa = posVec3ashadow;
 
                         ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -873,7 +873,7 @@ var viewmode = 'marker';
 
                         var bshadow = document.createElement('a-image');
                         var bspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                        var posVec3bshadow = { x: Number(posVec3shadow.x) + Number(bspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) + Number(bspos.x) };
+                        var posVec3bshadow = { x: Number(posVec3shadow.x) + Number(bspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(bspos.y) };
                         defobj[idx].posVec3bshadow = posVec3bshadow;
 
                         bshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -899,7 +899,7 @@ var viewmode = 'marker';
 
                         var cshadow = document.createElement('a-image');
                         var cspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                        var posVec3cshadow = { x: Number(posVec3shadow.x) + Number(cspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) + Number(cspos.y) };
+                        var posVec3cshadow = { x: Number(posVec3shadow.x) + Number(cspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(cspos.y) };
                         defobj[idx].posVec3cshadow = posVec3cshadow;
 
                         cshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -1080,7 +1080,7 @@ var viewmode = 'marker';
                     var cmain = document.createElement(celname);
 
                     var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
-                    var posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.z), z: Number(posVec3.z) + Number(cpos.y) };
+                    var posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.z), z: Number(posVec3.z) + Number(cpos.z) };
                     defobj[idx].posVec3c = posVec3c;
 
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
@@ -1171,7 +1171,7 @@ var viewmode = 'marker';
 
                     var ashadow = document.createElement('a-image');
                     var aspos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
-                    var posVec3ashadow = { x: Number(posVec3shadow.x) + Number(aspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) + Number(aspos.y) };
+                    var posVec3ashadow = { x: Number(posVec3shadow.x) + Number(aspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(aspos.y) };
                     defobj[oidx].posVec3ashadowa = posVec3ashadow;
 
                     ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
@@ -1197,7 +1197,7 @@ var viewmode = 'marker';
 
                     var bshadow = document.createElement('a-image');
                     var bspos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
-                    var posVec3bshadow = { x: Number(posVec3shadow.x) + Number(bspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) + Number(bspos.y) };
+                    var posVec3bshadow = { x: Number(posVec3shadow.x) + Number(bspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(bspos.y) };
                     defobj[oidx].posVec3bshadow = posVec3bshadow;
 
                     bshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
@@ -1223,7 +1223,7 @@ var viewmode = 'marker';
 
                     var cshadow = document.createElement('a-image');
                     var cspos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
-                    var posVec3cshadow = { x: Number(posVec3shadow.x) + Number(cspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) + Number(cspos.y) };
+                    var posVec3cshadow = { x: Number(posVec3shadow.x) + Number(cspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(cspos.y) };
                     defobj[oidx].posVec3cshadow = posVec3cshadow;
 
                     cshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
@@ -1355,7 +1355,7 @@ var viewmode = 'marker';
                 var bmain = document.createElement(belname);
 
                 var bpos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
-                var posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.y) };
+                var posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
                 defobj[oidx].posVec3b = posVec3b;
 
                 bmain.setAttribute('id', 'bmain' + (oidx + 1).toString());
