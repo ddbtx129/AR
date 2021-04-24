@@ -641,9 +641,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeAList = !!(self.args[idx].sizeAList) ? self.args[idx].sizeAList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(dataObj[idx].size.x) * Number(self.args[idx].sizeAList),
-                                y: Number(dataObj[idx].size.y) * Number(self.args[idx].sizeAList),
-                                z: Number(dataObj[idx].size.z) * Number(self.args[idx].sizeAList)
+                                x: Number(dataObj[idx].Scale.x) * Number(self.args[idx].sizeAList),
+                                y: Number(dataObj[idx].Scale.y) * Number(self.args[idx].sizeAList),
+                                z: Number(dataObj[idx].Scale.z) * Number(self.args[idx].sizeAList)
                             };
 
                             dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
@@ -664,9 +664,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeBList = !!(self.args[idx].sizeBList) ? self.args[idx].sizeBList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(dataObj[idx].size.x) * Number(self.args[idx].sizeBList),
-                                y: Number(dataObj[idx].size.y) * Number(self.args[idx].sizeBList),
-                                z: Number(dataObj[idx].size.z) * Number(self.args[idx].sizeBList)
+                                x: Number(dataObj[idx].Scale.x) * Number(self.args[idx].sizeBList),
+                                y: Number(dataObj[idx].Scale.y) * Number(self.args[idx].sizeBList),
+                                z: Number(dataObj[idx].Scale.z) * Number(self.args[idx].sizeBList)
                             };
 
                             dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
@@ -687,9 +687,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeCList = !!(self.args[idx].sizeCList) ? self.args[idx].sizeCList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(dataObj[idx].size.x) * Number(self.args[idx].sizeCList),
-                                y: Number(dataObj[idx].size.y) * Number(self.args[idx].sizeCList),
-                                z: Number(dataObj[idx].size.z) * Number(self.args[idx].sizeCList)
+                                x: Number(dataObj[idx].Scale.x) * Number(self.args[idx].sizeCList),
+                                y: Number(dataObj[idx].Scale.y) * Number(self.args[idx].sizeCList),
+                                z: Number(dataObj[idx].Scale.z) * Number(self.args[idx].sizeCList)
                             };
 
                             dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
@@ -1031,7 +1031,7 @@ var viewmode = 'marker';
 
                     var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
                     var posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
-                    console.log('x:' + posVec3a.x + ' y:' + posVec3a.y + ' z:' + posVec3a.z);
+
                     defobj[idx].posVec3a = posVec3a;
 
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
