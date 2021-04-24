@@ -858,7 +858,11 @@ var viewmode = 'marker';
                     var shadow = document.createElement('a-image');
                     var spos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                     var posVec3shadow = self.positionVec3('shadow', idx);
-                    var posVec3mshadow = { x: Number(posVec3shadow.x) + Number(spos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(spos.y) };
+                    var posVec3mshadow = {
+                        x: Number(posVec3shadow.x).toFixed(2) + Number(spos.x).toFixed(2),
+                        y: Number(posVec3shadow.y).toFixed(2),
+                        z: Number(posVec3shadow.z).toFixed(2) - Number(spos.y).toFixed(2)
+                    };
 
                     shadow.setAttribute('id', 'shadow' + (idx + 1).toString());
                     //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', idx)));
@@ -881,7 +885,12 @@ var viewmode = 'marker';
 
                         var ashadow = document.createElement('a-image');
                         var aspos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
-                        var posVec3ashadow = { x: Number(posVec3shadow.x) + Number(aspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(aspos.y) };
+                        var posVec3ashadow = {
+                            x: Number(posVec3shadow.x).toFixed(2) + Number(aspos.x).toFixed(2),
+                            y: Number(posVec3shadow.y).toFixed(2),
+                            z: Number(posVec3shadow.z).toFixed(2) - Number(aspos.y).toFixed(2)
+                        };
+
                         defobj[idx].posVec3ashadowa = posVec3ashadow;
 
                         ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -907,7 +916,12 @@ var viewmode = 'marker';
 
                         var bshadow = document.createElement('a-image');
                         var bspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                        var posVec3bshadow = { x: Number(posVec3shadow.x) + Number(bspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(bspos.y) };
+                        var posVec3bshadow = {
+                            x: Number(posVec3shadow.x).toFixed(2) + Number(bspos.x).toFixed(2),
+                            y: Number(posVec3shadow.y).toFixed(2),
+                            z: Number(posVec3shadow.z).toFixed(2) - Number(bspos.y).toFixed(2)
+                        };
+
                         defobj[idx].posVec3bshadow = posVec3bshadow;
 
                         bshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -933,7 +947,12 @@ var viewmode = 'marker';
 
                         var cshadow = document.createElement('a-image');
                         var cspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                        var posVec3cshadow = { x: Number(posVec3shadow.x) + Number(cspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(cspos.y) };
+                        var posVec3cshadow = {
+                            x: Number(posVec3shadow.x).toFixed(2) + Number(cspos.x).toFixed(2),
+                            y: Number(posVec3shadow.y).toFixed(2),
+                            z: Number(posVec3shadow.z).toFixed(2) - Number(cspos.y).toFixed(2)
+                        };
+
                         defobj[idx].posVec3cshadow = posVec3cshadow;
 
                         cshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
@@ -974,7 +993,12 @@ var viewmode = 'marker';
                 defPos = posVec3;
                 defobj[idx].Pos = posVec3;
                 var mpos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
-                defobj[idx].Pos = { x: Number(posVec3.x) + Number(mpos.x), y: Number(posVec3.y) + Number(mpos.y), z: Number(posVec3.z) + Number(mpos.z) };
+                defobj[idx].Pos = {
+                    x: Number(posVec3.x).toFixed(2) + Number(mpos.x).toFixed(2),
+                    y: Number(posVec3.y).toFixed(2) + Number(mpos.y).toFixed(2),
+                    z: Number(posVec3.z).toFixed(2) + Number(mpos.z).toFixed(2)
+                };
+
                 console.log(defobj[idx].Pos.x);
                 console.log(defobj[idx].Pos.y);
                 console.log(defobj[idx].Pos.z);
@@ -1038,7 +1062,11 @@ var viewmode = 'marker';
                     var amain = document.createElement(aelname);
 
                     var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
-                    var posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
+                    var posVec3a = {
+                        x: Number(posVec3.x).toFixed(2) + Number(apos.x).toFixed(2),
+                        y: Number(posVec3.y).toFixed(2) + Number(apos.y).toFixed(2),
+                        z: Number(posVec3.z).toFixed(2) + Number(apos.z).toFixed(2)
+                    };
 
                     defobj[idx].posVec3a = posVec3a;
 
@@ -1080,7 +1108,12 @@ var viewmode = 'marker';
                     var bmain = document.createElement(belname);
 
                     var bpos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                    var posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.y) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
+                    var posVec3b = {
+                        x: Number(posVec3.x).toFixed(2) + Number(bpos.x).toFixed(2),
+                        y: Number(posVec3.y).toFixed(2) + Number(bpos.y).toFixed(2),
+                        z: Number(posVec3.z).toFixed(2) + Number(bpos.z).toFixed(2)
+                    };
+
                     defobj[idx].posVec3b = posVec3b;
 
                     bmain.setAttribute('id', 'bmain' + (idx + 1).toString());
@@ -1120,7 +1153,12 @@ var viewmode = 'marker';
                     var cmain = document.createElement(celname);
 
                     var cpos = AFRAME.utils.coordinates.parse(self.args[idx].OCZList);
-                    var posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
+                    var posVec3c = {
+                        x: Number(posVec3.x).toFixed(2) + Number(cpos.x).toFixed(2),
+                        y: Number(posVec3.y).toFixed(2) + Number(cpos.y).toFixed(2),
+                        z: Number(posVec3.z).toFixed(2) + Number(cpos.z).toFixed(2)
+                    };
+
                     defobj[idx].posVec3c = posVec3c;
 
                     cmain.setAttribute('id', 'cmain' + (idx + 1).toString());
@@ -1190,7 +1228,11 @@ var viewmode = 'marker';
 
                 var shadow = document.createElement('a-image');
                 var posVec3shadow = self.positionVec3('shadow', oidx);
-                var posVec3mshadow = { x: Number(posVec3shadow.x) + Number(spos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(spos.y) };
+                var posVec3mshadow = {
+                    x: Number(posVec3shadow.x).toFixed(2) + Number(spos.x).toFixed(2),
+                    y: Number(posVec3shadow.y).toFixed(2),
+                    z: Number(posVec3shadow.z).toFixed(2) - Number(spos.y).toFixed(2)
+                };
 
                 shadow.setAttribute('id', 'shadow' + ((oidx + 1)).toString());
                 //shadow.setAttribute('position', AFRAME.utils.coordinates.stringify(self.positionVec3('shadow', oidx)));
@@ -1213,7 +1255,12 @@ var viewmode = 'marker';
 
                     var ashadow = document.createElement('a-image');
                     var aspos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
-                    var posVec3ashadow = { x: Number(posVec3shadow.x) + Number(aspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(aspos.y) };
+                    var posVec3ashadow = {
+                        x: Number(posVec3shadow.x).toFixed(2) + Number(aspos.x).toFixed(2),
+                        y: Number(posVec3shadow.y).toFixed(2),
+                        z: Number(posVec3shadow.z) - Number(aspos.y)
+                    };
+
                     defobj[oidx].posVec3ashadowa = posVec3ashadow;
 
                     ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
@@ -1239,7 +1286,12 @@ var viewmode = 'marker';
 
                     var bshadow = document.createElement('a-image');
                     var bspos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
-                    var posVec3bshadow = { x: Number(posVec3shadow.x) + Number(bspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(bspos.y) };
+                    var posVec3bshadow = {
+                        x: Number(posVec3shadow.x).toFixed(2) + Number(bspos.x).toFixed(2),
+                        y: Number(posVec3shadow.y).toFixed(2),
+                        z: Number(posVec3shadow.z).toFixed(2) - Number(bspos.y).toFixed(2)
+                    };
+
                     defobj[oidx].posVec3bshadow = posVec3bshadow;
 
                     bshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
@@ -1265,7 +1317,12 @@ var viewmode = 'marker';
 
                     var cshadow = document.createElement('a-image');
                     var cspos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
-                    var posVec3cshadow = { x: Number(posVec3shadow.x) + Number(cspos.x), y: posVec3shadow.y, z: Number(posVec3shadow.z) - Number(cspos.y) };
+                    var posVec3cshadow = {
+                        x: Number(posVec3shadow.x).toFixed(2) + Number(cspos.x).toFixed(2),
+                        y: Number(posVec3shadow.y).toFixed(2),
+                        z: Number(posVec3shadow.z).toFixed(2) - Number(cspos.y).toFixed(2)
+                    };
+
                     defobj[oidx].posVec3cshadow = posVec3cshadow;
 
                     cshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
@@ -1305,7 +1362,11 @@ var viewmode = 'marker';
             var posVec3 = self.positionVec3('main', oidx);
             defobj[oidx].Pos = posVec3;
             var mpos = AFRAME.utils.coordinates.parse(self.args[oidx].OZList);
-            defobj[oidx].Pos = { x: Number(posVec3.x) + Number(mpos.x), y: Number(posVec3.y) + Number(mpos.y), z: Number(posVec3.z) + Number(mpos.z) };
+            defobj[oidx].Pos = {
+                x: Number(posVec3.x).toFixed(2) + Number(mpos.x).toFixed(2),
+                y: Number(posVec3.y).toFixed(2) + Number(mpos.y).toFixed(2),
+                z: Number(posVec3.z).toFixed(2) + Number(mpos.z).toFixed(2)
+            };
 
             main.setAttribute('id', 'main' + ((oidx + 1)).toString());
             main.setAttribute('position', AFRAME.utils.coordinates.stringify(defobj[oidx].Pos));
@@ -1359,7 +1420,12 @@ var viewmode = 'marker';
                 var amain = document.createElement(aelname);
 
                 var apos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
-                var posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
+                var posVec3a = {
+                    x: Number(posVec3.x).toFixed(2) + Number(apos.x).toFixed(2),
+                    y: Number(posVec3.y).toFixed(2) + Number(apos.y).toFixed(2),
+                    z: Number(posVec3.z).toFixed(2) + Number(apos.z).toFixed(2)
+                };
+
                 defobj[oidx].posVec3a = posVec3a;
 
                 amain.setAttribute('id', 'amain' + (oidx + 1).toString());
@@ -1399,7 +1465,12 @@ var viewmode = 'marker';
                 var bmain = document.createElement(belname);
 
                 var bpos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
-                var posVec3b = { x: Number(posVec3.x) + Number(bpos.x), y: Number(posVec3.z) + Number(bpos.y), z: Number(posVec3.z) + Number(bpos.z) };
+                var posVec3b = {
+                    x: Number(posVec3.x).toFixed(2) + Number(bpos.x).toFixed(2),
+                    y: Number(posVec3.y).toFixed(2) + Number(bpos.y).toFixed(2),
+                    z: Number(posVec3.z).toFixed(2) + Number(bpos.z).toFixed(2)
+                };
+
                 defobj[oidx].posVec3b = posVec3b;
 
                 bmain.setAttribute('id', 'bmain' + (oidx + 1).toString());
@@ -1439,7 +1510,12 @@ var viewmode = 'marker';
                 var cmain = document.createElement(celname);
 
                 var cpos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
-                var posVec3c = posVec3c = { x: Number(posVec3.x) + Number(cpos.x), y: Number(posVec3.y) + Number(cpos.y), z: Number(posVec3.z) + Number(cpos.z) };
+                var posVec3c = posVec3c = {
+                    x: Number(posVec3.x).toFixed(2) + Number(cpos.x).toFixed(2),
+                    y: Number(posVec3.y).toFixed(2) + Number(cpos.y).toFixed(2),
+                    z: Number(posVec3.z).toFixed(2) + Number(cpos.z).toFixed(2)
+                };
+
                 defobj[oidx].posVec3c = posVec3c;
 
                 cmain.setAttribute('id', 'cmain' + (oidx + 1).toString());
