@@ -110,7 +110,7 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
-    <wha>2</wha>
+    <wha>1.25</wha>
     <whb></whb>
     <whc></whc>
     <wrapzoom></wrapzoom>
@@ -118,11 +118,11 @@
     <o1></o1>
     <o2>01</o2>
     <o3>10</o3>
-    <oa>share/01.png</oa>
+    <oa>kingprince/kingprince.png</oa>
     <ob></ob>
     <oc></oc>
     <oz></oz>
-    <oaz>0 0 0.05</oaz>
+    <oaz>0 1 0.05</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
@@ -141,7 +141,7 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
-    <wha></wha>
+    <wha>1.25</wha>
     <whb></whb>
     <whc></whc>
     <wrapzoom></wrapzoom>
@@ -149,11 +149,11 @@
     <o1></o1>
     <o2>11</o2>
     <o3>20</o3>
-    <oa></oa>
+    <oa>kingprince/kingprince.png</oa>
     <ob></ob>
     <oc></oc>
     <oz></oz>
-    <oaz></oaz>
+    <oaz>0 1 0.05</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
@@ -172,7 +172,7 @@
     <xs>1</xs>
     <an></an>
     <wh></wh>
-    <wha></wha>
+    <wha>1.25</wha>
     <whb></whb>
     <whc></whc>
     <wrapzoom></wrapzoom>
@@ -180,11 +180,11 @@
     <o1></o1>
     <o2>21</o2>
     <o3>30</o3>
-    <oa></oa>
+    <oa>kingprince/kingprince.png</oa>
     <ob></ob>
     <oc></oc>
     <oz></oz>
-    <oaz></oaz>
+    <oaz>0 1 0.05</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
