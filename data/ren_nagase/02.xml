@@ -69,7 +69,8 @@
                 <xs:element name="oa" type="xs:string" minOccurs="0" />
                 <xs:element name="ob" type="xs:string" minOccurs="0" />
                 <xs:element name="oc" type="xs:string" minOccurs="0" />
-                <!--オブジェクト Z軸-->
+                <!--オブジェクト +X +Y +Z-->
+                <xs:element name="wrapz" type="xs:string" minOccurs="0" />
                 <xs:element name="oz" type="xs:string" minOccurs="0" />
                 <xs:element name="oaz" type="xs:string" minOccurs="0" />
                 <xs:element name="obz" type="xs:string" minOccurs="0" />
@@ -121,8 +122,9 @@
     <oa>share/01.png</oa>
     <ob></ob>
     <oc></oc>
+    <wrapz>0 -2 0</wrapz>
     <oz>0 1.45 0</oz>
-    <oaz>0 1 0.01</oaz>
+    <oaz>0 1.2 0.01</oaz>
     <obz></obz>
     <ocz></ocz>
     <bg></bg>
