@@ -641,10 +641,10 @@ var viewmode = 'marker';
 
                             var wha = SizeSplit(self.args[idx].sizeAList).toString().split(',');
                             var i = ((parseInt(self.args[idx].sizeAList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeAList).toString(10)).length : (parseInt(self.args[idx].sizeAList).toString(10)).length + 1;
-
+                            
                             dataObj[idx].addAsize = { w: (Number(wha[0]) * (10 ** -((i - j) / 2))).toFixed(1), h: (Number(wha[1]) * (10 ** -((i - j) / 2))).toFixed(1) };
                             defobj[idx].ScaleA = { x: dataObj[idx].addAsize.w, y: dataObj[idx].addAsize.h, z: dataObj[idx].addAsize.h };
-
+                            console.log(defobj[idx].ScaleA.x);
                             dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
 
                             imgAdd.A = document.createElement('img');
@@ -1030,7 +1030,7 @@ var viewmode = 'marker';
 
                     var apos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
                     var posVec3a = { x: Number(posVec3.x) + Number(apos.x), y: Number(posVec3.y) + Number(apos.y), z: Number(posVec3.z) + Number(apos.z) };
-                    console.log('x:' + posVec3a.x + ' y:' + posVec3a.y + ' z:' + posVec3a.z);
+
                     defobj[idx].posVec3a = posVec3a;
 
                     amain.setAttribute('id', 'amain' + (idx + 1).toString());
@@ -1054,7 +1054,7 @@ var viewmode = 'marker';
                             shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
-                        console.log(defobj[idx].ScaleA.x);
+
                     } else {
                         amain.setAttribute('gltf-model', asrcname);
                         amain.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA));
