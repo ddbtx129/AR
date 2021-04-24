@@ -188,11 +188,11 @@ var viewmode = 'marker';
                     args[idx].sizeList = pcs[idx].wh && (parseInt(pcs[idx].wh, 16).toString(10));
 
                     // Aサイズ 倍率
-                    args[idx].sizeAList = pcs[idx].wha && (parseInt(pcs[idx].wha, 10).toString());
+                    args[idx].sizeAList = pcs[idx].wha && (pcs[idx].wha);
                     // Bサイズ 倍率
-                    args[idx].sizeBList = pcs[idx].whb && (parseInt(pcs[idx].whb, 10).toString());
+                    args[idx].sizeBList = pcs[idx].whb && (pcs[idx].whb);
                     // Cサイズ 倍率
-                    args[idx].sizeCList = pcs[idx].whc && (parseInt(pcs[idx].whc, 10).toString());
+                    args[idx].sizeCList = pcs[idx].whc && (pcs[idx].whc);
                     console.log(args[idx].sizeAList);
 
                     // 倍率
