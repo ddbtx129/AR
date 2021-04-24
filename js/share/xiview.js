@@ -217,8 +217,11 @@ var viewmode = 'marker';
                     args[idx].OAtList = pcs[idx].oa;
                     args[idx].OBtList = pcs[idx].ob;
                     args[idx].OCList = pcs[idx].oc;
-                    
-                    // オブジェクトZ軸(重なり)
+
+                    // ラッパー +X +Y +Z
+                    args[idx].WrapZList = !!(pcs[idx].wrapz) ? (pcs[idx].wrapz).toString() : '0 0 0';
+
+                    // オブジェクト +X +Y +Z
                     args[idx].OZList = !!(pcs[idx].oz) ? (pcs[idx].oz).toString() : '0 0 0';
                     args[idx].OAZList = !!(pcs[idx].oaz) ? (pcs[idx].oaz).toString() : '0 0 0';
                     args[idx].OBZList = !!(pcs[idx].obz) ? (pcs[idx].obz).toString() : '0 0 0';
@@ -2791,9 +2794,9 @@ var viewmode = 'marker';
                 var len = cId.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
-                        idnm: cId[i].textContent,
-                        pos: cPos[i].textContent,
-                        partisys: cParti[i].textContent
+                        idnm: (cId[i] != null) && cId[i].textContent,
+                        pos: (cPos[i] != null) && cPos[i].textContent,
+                        partisys: (cParti[i] != null) && cParti[i].textContent
                     };
                 };
 
@@ -2832,13 +2835,13 @@ var viewmode = 'marker';
                 var len = cEd.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
-                        ed: cEd[i].textContent,
-                        ar: cAr[i].textContent,
-                        pv: cPv[i].textContent,
-                        len: cLen[i].textContent,
-                        wzoom: cWzoom[i].textContent,
-                        xyz: cXyz[i].textContent,
-                        parti: cParti[i].textContent
+                        ed: (cEd[i] != null) && cEd[i].textContent,
+                        ar: (cAr[i] != null) && cAr[i].textContent,
+                        pv: (cPv[i] != null) && cPv[i].textContent,
+                        len: (cLen[i] != null) && cLen[i].textContent,
+                        wzoom: (cWzoom[i] != null) && cWzoom[i].textContent,
+                        xyz: (cXyz[i] != null) && cXyz[i].textContent,
+                        parti: (cParti[i] != null) && cParti[i].textContent
                     };
                 };
 
@@ -2888,6 +2891,8 @@ var viewmode = 'marker';
                 var cOa = tabelnm.getElementsByTagName("oa");
                 var cOb = tabelnm.getElementsByTagName("ob");
                 var cOc = tabelnm.getElementsByTagName("oc");
+
+                var cWrapZ = tabelnm.getElementsByTagName("wrapz");
                 var cOZ = tabelnm.getElementsByTagName("oz");
                 var cOaZ = tabelnm.getElementsByTagName("oaz");
                 var cObZ = tabelnm.getElementsByTagName("obz");
@@ -2902,38 +2907,40 @@ var viewmode = 'marker';
                 var len = cM.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
-                        ed: cEd[i].textContent,
-                        ar: cAr[i].textContent,
-                        m: cM[i].textContent,
-                        m1: cM1[i].textContent,
-                        m2: cM2[i].textContent,
-                        mo: cMo[i].textContent,
-                        t: cT[i].textContent,
-                        xs: cXs[i].textContent,
-                        an: cAn[i].textContent,
-                        wh: cWh[i].textContent,
+                        ed: (cEd[i] != null) && cEd[i].textContent,
+                        ar: (cAr[i] != null) && cAr[i].textContent,
+                        m: (cM[i] != null) && cM[i].textContent,
+                        m1: (cM1[i] != null) && cM1[i].textContent,
+                        m2: (cM2[i] != null) && cM2[i].textContent,
+                        mo: (cMo[i] != null) && cMo[i].textContent,
+                        t: (cT[i] != null) && cT[i].textContent,
+                        xs: (cXs[i] != null) && cXs[i].textContent,
+                        an: (cAn[i] != null) && cAn[i].textContent,
+                        wh: (cWh[i] != null) && cWh[i].textContent,
                         wha: (cWha[i] != null) && cWha[i].textContent,
                         whb: (cWhb[i] != null) && cWhb[i].textContent,
                         whc: (cWhc[i] != null) && cWhc[i].textContent,
-                        wrapzoom: cWrapzoom[i].textContent,
-                        o: cO[i].textContent,
-                        o1: cO1[i].textContent,
-                        o2: cO2[i].textContent,
-                        o3: cO3[i].textContent,
+                        wrapzoom: (cWrapzoom[i] != null) && cWrapzoom[i].textContent,
+                        o: (cO[i] != null) && cO[i].textContent,
+                        o1: (cO1[i] != null) && cO1[i].textContent,
+                        o2: (cO2[i] != null) && cO2[i].textContent,
+                        o3: (cO3[i] != null) && cO3[i].textContent,
 
-                        oa: cOa[i].textContent,
-                        ob: cOb[i].textContent,
-                        oc: cOc[i].textContent,
-                        oz: cOZ[i].textContent,
-                        oaz: cOaZ[i].textContent,
-                        obz: cObZ[i].textContent,
-                        ocz: cOcZ[i].textContent,
+                        oa: (cOa[i] != null) && cOa[i].textContent,
+                        ob: (cOb[i] != null) && cOb[i].textContent,
+                        oc: (cOc[i] != null) && cOc[i].textContent,
 
-                        bg: cBg[i].textContent,
+                        wrapz: (cWrapZ[i] != null) && cWrapZ[i].textContent,
+                        oz: (cOZ[i] != null) && cOZ[i].textContent,
+                        oaz: (cOaZ[i] != null) && cOaZ[i].textContent,
+                        obz: (cObZ[i] != null) && cObZ[i].textContent,
+                        ocz: (cOcZ[i] != null) && cOcZ[i].textContent,
 
-                        l: cL[i].textContent,
+                        bg: (cBg[i] != null) && cBg[i].textContent,
 
-                        par: cPar[i].textContent
+                        l: (cL[i] != null) && cL[i].textContent,
+
+                        par: (cPar[i] != null) && cPar[i].textContent
 
                     };
                 };
