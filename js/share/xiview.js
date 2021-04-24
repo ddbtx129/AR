@@ -641,9 +641,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeAList = !!(self.args[idx].sizeAList) ? self.args[idx].sizeAList : 1;
                             console.log(self.args[idx].sizeAList);
                             defobj[idx].ScaleA = {
-                                x: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeAList).toFixed(1)).toFixed(1),
-                                y: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeAList).toFixed(1)).toFixed(1),
-                                z: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeAList).toFixed(1)).toFixed(1)
+                                x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2),
+                                y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2),
+                                z: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeAList).toFixed(2)).toFixed(2)
                             };
 
                             dataObj[idx].ObjectPath.A = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.A;
@@ -664,9 +664,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeBList = !!(self.args[idx].sizeBList) ? self.args[idx].sizeBList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeBList).toFixed(1)).toFixed(1),
-                                y: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeBList).toFixed(1)).toFixed(1),
-                                z: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeBList).toFixed(1)).toFixed(1)
+                                x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeBList).toFixed(2)).toFixed(2),
+                                y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeBList).toFixed(2)).toFixed(2),
+                                z: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeBList).toFixed(2)).toFixed(2)
                             };
 
                             dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
@@ -687,9 +687,9 @@ var viewmode = 'marker';
                             self.args[idx].sizeCList = !!(self.args[idx].sizeCList) ? self.args[idx].sizeCList : 1;
 
                             defobj[idx].ScaleA = {
-                                x: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeCList).toFixed(1)).toFixed(1),
-                                y: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeCList).toFixed(1)).toFixed(1),
-                                z: Number(Number(defobj[idx].Scale.x).toFixed(1) * Number(self.args[idx].sizeCList).toFixed(1)).toFixed(1)
+                                x: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeCList).toFixed(2)).toFixed(2),
+                                y: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeCList).toFixed(2)).toFixed(2),
+                                z: Number(Number(defobj[idx].Scale.x).toFixed(2) * Number(self.args[idx].sizeCList).toFixed(2)).toFixed(2)
                             };
 
                             dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
