@@ -2634,7 +2634,7 @@ var viewmode = 'marker';
                     }
 
                     if (!!(webAr.ar.arData[j].isFirework)) {
-                        clearInterval(webAr.fireworks);
+                        webAr.ar.startFireworksEvent();
                     }
                 }
             });
@@ -2678,6 +2678,10 @@ var viewmode = 'marker';
                                     document.getElementById("swPlay").style.display = 'inline';
                                 }
                             }
+
+                            if (!!(webAr.ar.arData[j].isFirework)) {
+                                webAr.ar.startFireworksEvent();
+                            }
                         }
                     }
                 }
@@ -2696,6 +2700,8 @@ var viewmode = 'marker';
                             VideoStop(j);
                         }
                     }
+
+                    clearInterval(webAr.fireworks);
                 }
             });
 
