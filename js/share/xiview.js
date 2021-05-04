@@ -43,6 +43,8 @@ var viewmode = 'marker';
     var displaysound = 1;
     //var videosound = 1;
 
+    var fireworks;
+
     var ar = {
 
         init: function () {
@@ -170,6 +172,7 @@ var viewmode = 'marker';
                 arg.XYZ = base[0].xyz && (base[0].xyz).toString();
 
                 arg.PARTI = base[0].parti && (base[0].parti).toString();
+                arg.FireWorks = base[0].fireworks && (base[0].fireworks).toString();
 
                 arg.Multi = pcs.length;
 
@@ -184,6 +187,10 @@ var viewmode = 'marker';
 
                     // 影
                     args[idx].shodowList = pcs[idx].xs && (parseInt(pcs[idx].xs, 16).toString(2));
+                    // 影
+                    args[idx].ashodowList = pcs[idx].xsa && (parseInt(pcs[idx].xsa, 16).toString(2));                    // 影
+                    args[idx].bshodowList = pcs[idx].xsb && (parseInt(pcs[idx].xsb, 16).toString(2));                    // 影
+                    args[idx].cshodowList = pcs[idx].xsc && (parseInt(pcs[idx].xsc, 16).toString(2));
                     // サイズ
                     args[idx].sizeList = pcs[idx].wh && (parseInt(pcs[idx].wh, 16).toString(10));
 
@@ -246,6 +253,7 @@ var viewmode = 'marker';
                     }
 
                     args[idx].PARList = (!!(pcs[idx].par) ? pcs[idx].par : arg.PARTI);
+                    args[idx].FireWorkList = (!!(pcs[idx].firework) ? pcs[idx].firework : arg.fireworks);
 
                     if (args[idx].PARList) {
 
@@ -265,6 +273,10 @@ var viewmode = 'marker';
                                 attribute.idnm = (parti[k].idnm + (((idx + 1) * 100) + (k + 1)).toString());
                                 attribute.pos = parti[k].pos;
                                 attribute.partisys = parti[k].partisys;
+                                attribute.fireworks = parti[k].fireworks;
+                                attribute.assets = parti[k].assets;
+                                attribute.assetsid = parti[k].assetsid;
+                                attribute.assetssrc = parti[k].assetssrc;
 
                                 particle[k] = attribute;
                             }
@@ -302,6 +314,11 @@ var viewmode = 'marker';
 
                 // 影
                 args[idx].shodowList = args[idx].xs && (parseInt(args[idx].xs, 16).toString(2));
+
+                args[idx].ashodowList = args[idx].xsa && (parseInt(args[idx].xsa, 16).toString(2));
+                args[idx].bshodowList = args[idx].xsb && (parseInt(args[idx].xsb, 16).toString(2));
+                args[idx].cshodowList = args[idx].xsc && (parseInt(args[idx].xsc, 16).toString(2));
+
                 // サイズ
                 args[idx].sizeList = args[idx].wh && (parseInt(args[idx].wh, 16).toString(10));
                 // 角度
@@ -494,8 +511,15 @@ var viewmode = 'marker';
                 dataObj[idx].isOpenAnime = !!(self.args[idx].ARList) ? (Number(self.args[idx].ARList) >= 10 ? 1 : 0) : 0;
                 dataObj[idx].isLogo = (!!(self.args[idx].LogoList) ? self.args[idx].LogoList[0] : '0');
                 dataObj[idx].isAnime = (!!(self.args[idx].LogoAnimeList) ? Number(self.args[idx].LogoAnimeList) : 0);
+
                 dataObj[idx].isShadow = self.args[idx].shodowList && !!Number(self.args[idx].shodowList);
+
+                dataObj[idx].isAShadow = self.args[idx].ashodowList && !!Number(self.args[idx].ashodowList);
+                dataObj[idx].isBShadow = self.args[idx].bshodowList && !!Number(self.args[idx].bshodowList);
+                dataObj[idx].isCShadow = self.args[idx].cshodowList && !!Number(self.args[idx].cshodowList);
+
                 dataObj[idx].isParti = (!!(self.args[idx].PARList) ? self.args[idx].PARList : self.arg.PARTI);
+                dataObj[idx].isFirework = self.args[idx].FireWorkList;
 
                 // サイズ
                 self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
@@ -665,13 +689,13 @@ var viewmode = 'marker';
                             // 追加Bサイズ
                             self.args[idx].sizeBList = !!(self.args[idx].sizeBList) ? self.args[idx].sizeBList : 1;
 
-                            defobj[idx].ScaleA = {
+                            defobj[idx].ScaleB = {
                                 x: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)).toFixed(2),
                                 y: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)).toFixed(2),
                                 z: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeBList)).toFixed(2)
                             };
 
-                            dataObj[idx].ObjectPath.B = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.B;
+                            dataObj[idx].ObjectPath.B = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.B;
 
                             imgAdd.B = document.createElement('img');
                             imgAdd.B.setAttribute('crossorigin', 'anonymous');
@@ -688,13 +712,13 @@ var viewmode = 'marker';
                             // 追加Cサイズ
                             self.args[idx].sizeCList = !!(self.args[idx].sizeCList) ? self.args[idx].sizeCList : 1;
 
-                            defobj[idx].ScaleA = {
+                            defobj[idx].ScaleC = {
                                 x: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)).toFixed(2),
                                 y: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)).toFixed(2),
                                 z: (Number(defobj[idx].Scale.x) * Number(self.args[idx].sizeCList)).toFixed(2)
                             };
 
-                            dataObj[idx].ObjectPath.C = rootPath + 'article/' + folder + '/' + dataObj[idx].ObjectPath.C;
+                            dataObj[idx].ObjectPath.C = rootPath + 'article/pic/' + dataObj[idx].ObjectPath.C;
 
                             imgAdd.C = document.createElement('img');
                             imgAdd.C.setAttribute('crossorigin', 'anonymous');
@@ -760,15 +784,23 @@ var viewmode = 'marker';
                 if (!!(self.arData[idx].isParti)) {
 
                     for (var k = 0; k < self.args[idx].Particle.length; k++) {
+                        if (!!(self.args[idx].Particle[k].assets)) {
+                            var ass = document.createElement('a-assets');
+                            ass.setAttribute('id', self.args[idx].Particle[k].assetsid);
+                            ass.setAttribute('position', self.args[idx].Particle[k].assetssrc);
 
-                        var parti = document.createElement('a-entity');
+                            el.appendChild(ass);
+                        }
 
-                        parti.setAttribute('id', self.args[idx].Particle[k].idnm);
-                        parti.setAttribute('position', self.args[idx].Particle[k].pos);
-                        parti.setAttribute('particle-system', self.args[idx].Particle[k].partisys);
-                        parti.setAttribute('style', 'display:none');
+                        if (!!(self.args[idx].Particle[k].idnm)) {
+                            var parti = document.createElement('a-entity');
+                            parti.setAttribute('id', self.args[idx].Particle[k].idnm);
+                            parti.setAttribute('position', self.args[idx].Particle[k].pos);
+                            parti.setAttribute('particle-system', self.args[idx].Particle[k].partisys);
+                            parti.setAttribute('style', 'display:none');
 
-                        el.appendChild(parti);
+                            el.appendChild(parti);
+                        }
                     }
                 }
             }
@@ -866,6 +898,7 @@ var viewmode = 'marker';
                 var csrcname = '#csource' + ((idx + 1) * 100).toString();
 
                 if (val[idx].isShadow && !(val[idx].isGltf)) {
+
                     var shadow = document.createElement('a-image');
                     var spos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
                     var posVec3shadow = self.positionVec3('shadow', idx);
@@ -891,99 +924,99 @@ var viewmode = 'marker';
                     });
 
                     self.arData[idx].shadow = shadow;
+                }
 
-                    if (self.args[idx].OAtList && !(val[idx].isGltf)) {
+                if (self.args[idx].OAtList && val[idx].isAShadow && !(val[idx].isGltf)) {
 
-                        var ashadow = document.createElement('a-image');
-                        var aspos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
-                        var posVec3ashadow = {
-                            x: (Number(posVec3shadow.x) + Number(aspos.x)).toFixed(2),
-                            y: (Number(posVec3shadow.y)).toFixed(2),
-                            z: (Number(posVec3shadow.z) - Number(aspos.y)).toFixed(2)
-                        };
+                    var ashadow = document.createElement('a-image');
+                    var aspos = AFRAME.utils.coordinates.parse(self.args[idx].OAZList);
+                    var posVec3ashadow = {
+                        x: (Number(posVec3shadow.x) + Number(aspos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(aspos.y)).toFixed(2)
+                    };
 
-                        defobj[idx].posVec3ashadowa = posVec3ashadow;
+                    defobj[idx].posVec3ashadowa = posVec3ashadow;
 
-                        ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
-                        ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
+                    ashadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                    ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
 
-                        ashadow.setAttribute('rotation', '-90 0 0');
-                        ashadow.setAttribute('style', 'z-index: 2');
-                        ashadow.setAttribute('visible', !(self.arg.targetObj));
+                    ashadow.setAttribute('rotation', '-90 0 0');
+                    ashadow.setAttribute('style', 'z-index: 2');
+                    ashadow.setAttribute('visible', !(self.arg.targetObj));
 
-                        AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].ScaleA.y), width: (defobj[idx].ScaleA.x)
-                        });
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[idx].ScaleA.y), width: (defobj[idx].ScaleA.x)
+                    });
 
-                        AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
-                            color: 'black', opacity: shadowopacity, depthTest: false
-                        });
+                    AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
 
-                        self.arData[idx].ashadow = ashadow;
-                    }
+                    self.arData[idx].ashadow = ashadow;
+                }
 
-                    if (self.args[idx].OBtList && !(val[idx].isGltf)) {
+                if (self.args[idx].OBtList && val[idx].isBShadow && !(val[idx].isGltf)) {
 
-                        var bshadow = document.createElement('a-image');
-                        var bspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                        var posVec3bshadow = {
-                            x: (Number(posVec3shadow.x) + Number(bspos.x)).toFixed(2),
-                            y: (Number(posVec3shadow.y)).toFixed(2),
-                            z: (Number(posVec3shadow.z) - Number(bspos.y)).toFixed(2)
-                        };
+                    var bshadow = document.createElement('a-image');
+                    var bspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
+                    var posVec3bshadow = {
+                        x: (Number(posVec3shadow.x) + Number(bspos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(bspos.y)).toFixed(2)
+                    };
 
-                        defobj[idx].posVec3bshadow = posVec3bshadow;
+                    defobj[idx].posVec3bshadow = posVec3bshadow;
 
-                        bshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
-                        bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
+                    bshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                    bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
 
-                        bshadow.setAttribute('rotation', '-90 0 0');
-                        bshadow.setAttribute('style', 'z-index: 2');
-                        bshadow.setAttribute('visible', !(self.arg.targetObj));
+                    bshadow.setAttribute('rotation', '-90 0 0');
+                    bshadow.setAttribute('style', 'z-index: 2');
+                    bshadow.setAttribute('visible', !(self.arg.targetObj));
 
-                        AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].ScaleB.y), width: (defobj[idx].ScaleB.x)
-                        });
+                    AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[idx].ScaleB.y), width: (defobj[idx].ScaleB.x)
+                    });
 
-                        AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
-                            color: 'black', opacity: shadowopacity, depthTest: false
-                        });
+                    AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
 
-                        self.arData[idx].bshadow = bshadow;
-                    }
+                    self.arData[idx].bshadow = bshadow;
+                }
 
-                    if (self.args[idx].OCtList && !(val[idx].isGltf)) {
+                if (self.args[idx].OCtList && val[idx].isCShadow && !(val[idx].isGltf)) {
 
-                        var cshadow = document.createElement('a-image');
-                        var cspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
-                        var posVec3cshadow = {
-                            x: (Number(posVec3shadow.x) + Number(cspos.x)).toFixed(2),
-                            y: (Number(posVec3shadow.y)).toFixed(2),
-                            z: (Number(posVec3shadow.z) - Number(cspos.y)).toFixed(2)
-                        };
+                    var cshadow = document.createElement('a-image');
+                    var cspos = AFRAME.utils.coordinates.parse(self.args[idx].OBZList);
+                    var posVec3cshadow = {
+                        x: (Number(posVec3shadow.x) + Number(cspos.x)).toFixed(2),
+                        y: (Number(posVec3shadow.y)).toFixed(2),
+                        z: (Number(posVec3shadow.z) - Number(cspos.y)).toFixed(2)
+                    };
 
-                        defobj[idx].posVec3cshadow = posVec3cshadow;
+                    defobj[idx].posVec3cshadow = posVec3cshadow;
 
-                        cshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
-                        cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
+                    cshadow.setAttribute('id', 'ashadow' + (idx + 1).toString());
+                    cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
 
-                        cshadow.setAttribute('rotation', '-90 0 0');
-                        cshadow.setAttribute('style', 'z-index: 2');
-                        cshadow.setAttribute('visible', !(self.arg.targetObj));
+                    cshadow.setAttribute('rotation', '-90 0 0');
+                    cshadow.setAttribute('style', 'z-index: 2');
+                    cshadow.setAttribute('visible', !(self.arg.targetObj));
 
-                        AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
-                            primitive: 'plane', height: (defobj[idx].ScaleC.y), width: (defobj[idx].ScaleC.x)
-                        });
+                    AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
+                        primitive: 'plane', height: (defobj[idx].ScaleC.y), width: (defobj[idx].ScaleC.x)
+                    });
 
-                        AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
-                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
-                            color: 'black', opacity: shadowopacity, depthTest: false
-                        });
+                    AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
+                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                        color: 'black', opacity: shadowopacity, depthTest: false
+                    });
 
-                        self.arData[idx].cshadow = cshadow;
-                    }
+                    self.arData[idx].cshadow = cshadow;
                 }
 
                 var elname = '';
@@ -1256,99 +1289,99 @@ var viewmode = 'marker';
                 });
 
                 self.arData[oidx].shadow = shadow;
+            }
 
-                if (self.args[oidx].OAtList && !(val[oidx].isGltf)) {
+            if (self.args[oidx].OAtList && val[oidx].isAShadow && !(val[oidx].isGltf)) {
 
-                    var ashadow = document.createElement('a-image');
-                    var aspos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
-                    var posVec3ashadow = {
-                        x: (Number(posVec3shadow.x) + Number(aspos.x)).toFixed(2),
-                        y: (Number(posVec3shadow.y)).toFixed(2),
-                        z: (Number(posVec3shadow.z) - Number(aspos.y)).toFixed(2)
-                    };
+                var ashadow = document.createElement('a-image');
+                var aspos = AFRAME.utils.coordinates.parse(self.args[oidx].OAZList);
+                var posVec3ashadow = {
+                    x: (Number(posVec3shadow.x) + Number(aspos.x)).toFixed(2),
+                    y: (Number(posVec3shadow.y)).toFixed(2),
+                    z: (Number(posVec3shadow.z) - Number(aspos.y)).toFixed(2)
+                };
 
-                    defobj[oidx].posVec3ashadowa = posVec3ashadow;
+                defobj[oidx].posVec3ashadowa = posVec3ashadow;
 
-                    ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
-                    ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
+                ashadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                ashadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3ashadow));
 
-                    ashadow.setAttribute('rotation', '-90 0 0');
-                    ashadow.setAttribute('style', 'z-index: 2');
-                    ashadow.setAttribute('visible', !(self.arg.targetObj));
+                ashadow.setAttribute('rotation', '-90 0 0');
+                ashadow.setAttribute('style', 'z-index: 2');
+                ashadow.setAttribute('visible', !(self.arg.targetObj));
 
-                    AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].ScaleA.y), width: (defobj[oidx].ScaleA.x)
-                    });
+                AFRAME.utils.entity.setComponentProperty(ashadow, 'geometry', {
+                    primitive: 'plane', height: (defobj[oidx].ScaleA.y), width: (defobj[oidx].ScaleA.x)
+                });
 
-                    AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
-                        color: 'black', opacity: shadowopacity, depthTest: false
-                    });
+                AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                    color: 'black', opacity: shadowopacity, depthTest: false
+                });
 
-                    self.arData[oidx].ashadow = ashadow;
-                }
+                self.arData[oidx].ashadow = ashadow;
+            }
 
-                if (self.args[oidx].OBtList && !(val[oidx].isGltf)) {
+            if (self.args[oidx].OBtList && val[oidx].isAShadow && !(val[oidx].isGltf)) {
 
-                    var bshadow = document.createElement('a-image');
-                    var bspos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
-                    var posVec3bshadow = {
-                        x: (Number(posVec3shadow.x) + Number(bspos.x)).toFixed(2),
-                        y: (Number(posVec3shadow.y)).toFixed(2),
-                        z: (Number(posVec3shadow.z) - Number(bspos.y)).toFixed(2)
-                    };
+                var bshadow = document.createElement('a-image');
+                var bspos = AFRAME.utils.coordinates.parse(self.args[oidx].OBZList);
+                var posVec3bshadow = {
+                    x: (Number(posVec3shadow.x) + Number(bspos.x)).toFixed(2),
+                    y: (Number(posVec3shadow.y)).toFixed(2),
+                    z: (Number(posVec3shadow.z) - Number(bspos.y)).toFixed(2)
+                };
 
-                    defobj[oidx].posVec3bshadow = posVec3bshadow;
+                defobj[oidx].posVec3bshadow = posVec3bshadow;
 
-                    bshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
-                    bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
+                bshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                bshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3bshadow));
 
-                    bshadow.setAttribute('rotation', '-90 0 0');
-                    bshadow.setAttribute('style', 'z-index: 2');
-                    bshadow.setAttribute('visible', !(self.arg.targetObj));
+                bshadow.setAttribute('rotation', '-90 0 0');
+                bshadow.setAttribute('style', 'z-index: 2');
+                bshadow.setAttribute('visible', !(self.arg.targetObj));
 
-                    AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].ScaleB.y), width: (defobj[oidx].ScaleB.x)
-                    });
+                AFRAME.utils.entity.setComponentProperty(bshadow, 'geometry', {
+                    primitive: 'plane', height: (defobj[oidx].ScaleB.y), width: (defobj[oidx].ScaleB.x)
+                });
 
-                    AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
-                        color: 'black', opacity: shadowopacity, depthTest: false
-                    });
+                AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                    color: 'black', opacity: shadowopacity, depthTest: false
+                });
 
-                    self.arData[oidx].bshadow = bshadow;
-                }
+                self.arData[oidx].bshadow = bshadow;
+            }
 
-                if (self.args[oidx].OCtList && !(val[oidx].isGltf)) {
+            if (self.args[oidx].OCtList && val[oidx].isAShadow && !(val[oidx].isGltf)) {
 
-                    var cshadow = document.createElement('a-image');
-                    var cspos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
-                    var posVec3cshadow = {
-                        x: (Number(posVec3shadow.x) + Number(cspos.x)).toFixed(2),
-                        y: (Number(posVec3shadow.y)).toFixed(2),
-                        z: (Number(posVec3shadow.z) - Number(cspos.y)).toFixed(2)
-                    };
+                var cshadow = document.createElement('a-image');
+                var cspos = AFRAME.utils.coordinates.parse(self.args[oidx].OCZList);
+                var posVec3cshadow = {
+                    x: (Number(posVec3shadow.x) + Number(cspos.x)).toFixed(2),
+                    y: (Number(posVec3shadow.y)).toFixed(2),
+                    z: (Number(posVec3shadow.z) - Number(cspos.y)).toFixed(2)
+                };
 
-                    defobj[oidx].posVec3cshadow = posVec3cshadow;
+                defobj[oidx].posVec3cshadow = posVec3cshadow;
 
-                    cshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
-                    cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
+                cshadow.setAttribute('id', 'ashadow' + (oidx + 1).toString());
+                cshadow.setAttribute('position', AFRAME.utils.coordinates.stringify(posVec3cshadow));
 
-                    cshadow.setAttribute('rotation', '-90 0 0');
-                    cshadow.setAttribute('style', 'z-index: 2');
-                    cshadow.setAttribute('visible', !(self.arg.targetObj));
+                cshadow.setAttribute('rotation', '-90 0 0');
+                cshadow.setAttribute('style', 'z-index: 2');
+                cshadow.setAttribute('visible', !(self.arg.targetObj));
 
-                    AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
-                        primitive: 'plane', height: (defobj[oidx].ScaleC.y), width: (defobj[oidx].ScaleC.x)
-                    });
+                AFRAME.utils.entity.setComponentProperty(cshadow, 'geometry', {
+                    primitive: 'plane', height: (defobj[oidx].ScaleC.y), width: (defobj[oidx].ScaleC.x)
+                });
 
-                    AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
-                        color: 'black', opacity: shadowopacity, depthTest: false
-                    });
+                AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
+                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                    color: 'black', opacity: shadowopacity, depthTest: false
+                });
 
-                    self.arData[oidx].cshadow = cshadow;
-                }
+                self.arData[oidx].cshadow = cshadow;
             }
 
             var elname = '';
@@ -1952,6 +1985,12 @@ var viewmode = 'marker';
 
                     mWrap[idx].addEventListener('markerFound', function (e) {
 
+                        let cameraWrapper = document.getElementById("camera-wrapper");
+                        let camera = document.getElementById("camera");
+
+                        let y = camera.getAttribute("rotation").y;
+                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
+
                         var elem = e.target || e.srcElement;
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
@@ -1962,6 +2001,10 @@ var viewmode = 'marker';
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
                                 AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
                             }
+                        }
+
+                        if(!!(webAr.ar.arData[i].isFirework)) {
+                            webAr.ar.startFireworksEvent();
                         }
 
                         if (webAr.ar.arData[i].isMp4) {
@@ -2017,6 +2060,10 @@ var viewmode = 'marker';
                             }
                         }
 
+                        if(!!(webAr.ar.arData[i].isFirework)) {
+                            clearInterval(webAr.fireworks);
+                        }
+
                         if (webAr.ar.arData[i].isMp4) {
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
@@ -2053,9 +2100,16 @@ var viewmode = 'marker';
                         var multi = document.getElementById('txtMultiNo');
                         multi.innerHTML = webAr.markerIdx;
 
-                        if (webAr.markerIdx == '') {
-                            webAr.ar.resetGyro();
-                        }
+                        //if (webAr.markerIdx == '') {
+                        //    webAr.ar.resetGyro();
+                        //}
+                        
+                        let cameraWrapper = document.getElementById("camera-wrapper");
+                        let camera = document.getElementById("camera");
+
+                        let y = camera.getAttribute("rotation").y;
+                        cameraWrapper.setAttribute("rotation", { y: -1 * y });
+                    
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
@@ -2432,6 +2486,10 @@ var viewmode = 'marker';
                     slideshow.style.zIndex = '996';
                     var slidewrap = document.getElementById('slidewrap');
                     slidewrap.style.marginTop = '25%';
+
+                    if (webAr.ar.arData[0].isPV && !!(webAr.ar.arData[0].isFirework)) {
+                        webAr.ar.startFireworksEvent();
+                    }
                 }
             });
 
@@ -2532,6 +2590,10 @@ var viewmode = 'marker';
                         }
                     }
 
+                    if (!!(webAr.ar.arData[i].isFirework)) {
+                        clearInterval(webAr.fireworks);
+                    }
+
                     webAr.ar.arData[i].wrap.setAttribute('visible', false);
 
                     var j = ((i + 1) < webAr.ar.arg.Multi) ? i + 1 : 0;
@@ -2568,6 +2630,10 @@ var viewmode = 'marker';
                             var parti = document.getElementById("arParticle" + ((j + 1) * 100 + (k + 1)));
                             AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: true });
                         }
+                    }
+
+                    if (!!(webAr.ar.arData[j].isFirework)) {
+                        clearInterval(webAr.fireworks);
                     }
                 }
             });
@@ -2673,6 +2739,67 @@ var viewmode = 'marker';
                     webAr.ar.videosound = 1;
                 }
             });
+        },
+
+        startFireworksEvent: function(){
+
+            var basefws = $('<a-entity></a-entity>');
+            basefws.attr('ID', 'arFirework');
+            $('a-scene').prepend(basefws);
+
+            var fws1 = $('<a-entity></a-entity>');
+            fws1.attr('position', '-38 -110 -250');
+            //fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
+            fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
+            //$('a-scene').append(fws1);
+            $('#arFirework').append(fws1);
+
+            var fws2 = $('<a-entity></a-entity>');
+            fws2.attr('position', '0 -110 -250');
+            //fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
+            fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
+            //$('a-scene').append(fws2);
+            $('#arFirework').append(fws2);
+
+            var fws3 = $('<a-entity></a-entity>');
+            fws3.attr('position', '30 -110 -250');
+            /*fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');*/
+            fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');
+            //$('a-scene').append(fws3);
+            $('#arFirework').append(fws3);
+
+            webAr.fireworks = setInterval(function () {
+                webAr.ar.createFirework();
+            }, 2500);
+        },
+
+        createFirework: function(){
+
+            function genCirclePoint(radius1,  hei, radius2) {
+                var rand = Math.random() * Math.PI;
+                var xsign = Math.random() > 0.5 ? 1 : -1;
+                var r = Math.random() * (radius2 - radius1) + radius1;
+
+                var x = r * Math.sin(rand) * xsign;
+                var z = r * Math.cos(rand);
+                if (z > 0) {
+                    z = z * -1;
+                };
+                //var p = new THREE.Vector3(x, hei, z);
+                var p = new THREE.Vector3(x, hei, -180);
+                return p;
+            };
+
+            function genFireWork(pos) {
+                var fws = $('<a-entity></a-entity>');
+                fws.attr('position', pos.x + ' ' + pos.y + ' ' + pos.z);
+                fws.attr('particle-firework', 'preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8,}');
+                //$('a-scene').append(fws);
+                $('#arFirework').append(fws);
+            };
+
+            var pos = genCirclePoint(0, -30, 120);
+            genFireWork(pos);
         },
 
         //setGyroReset: function () {
@@ -2791,14 +2918,22 @@ var viewmode = 'marker';
                 var cId = xmldata.getElementsByTagName("idnm");
                 var cPos = xmldata.getElementsByTagName("pos");
                 var cParti = xmldata.getElementsByTagName("partisys");
+                var cFireWorks = xmldata.getElementsByTagName("fireworks");
+                var cAssets = xmldata.getElementsByTagName("assets");
+                var cAssetsid = xmldata.getElementsByTagName("assetsid");
+                var cAssetssrc = xmldata.getElementsByTagName("assetssrc");
 
                 var len = cId.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
                         idnm: (cId[i] != null) && cId[i].textContent,
                         pos: (cPos[i] != null) && cPos[i].textContent,
-                        partisys: (cParti[i] != null) && cParti[i].textContent
-                    };
+                        partisys: (cParti[i] != null) && cParti[i].textContent,
+                        fireworks: (cFireWorks[i] != null) && cFireWorks[i].textContent,
+                        assets: (cAssets[i] != null) && cAssets[i].textContent,
+                        assetsid: (cAssetsid[i] != null) && cAssetsid[i].textContent,
+                        cAssetssrc: (cAssetssrc[i] != null) && cAssetssrc[i].textContent
+                   };
                 };
 
                 return data;
@@ -2832,6 +2967,7 @@ var viewmode = 'marker';
                 var cWzoom = xmldata.getElementsByTagName("wzoom");
                 var cXyz = xmldata.getElementsByTagName("xyz");
                 var cParti = xmldata.getElementsByTagName("parti");
+                var cFireworks = xmldata.getElementsByTagName("fireworks");
 
                 var len = cEd.length;
                 for (var i = 0; i < len; i++) {
@@ -2842,7 +2978,8 @@ var viewmode = 'marker';
                         len: (cLen[i] != null) && cLen[i].textContent,
                         wzoom: (cWzoom[i] != null) && cWzoom[i].textContent,
                         xyz: (cXyz[i] != null) && cXyz[i].textContent,
-                        parti: (cParti[i] != null) && cParti[i].textContent
+                        parti: (cParti[i] != null) && cParti[i].textContent,
+                        fireworks: (cFireworks[i] != null) && cFireworks[i].textContent
                     };
                 };
 
@@ -2878,6 +3015,9 @@ var viewmode = 'marker';
                 var cMo = tabelnm.getElementsByTagName("mo");
                 var cT = tabelnm.getElementsByTagName("t");
                 var cXs = tabelnm.getElementsByTagName("xs");
+                var cXsa = tabelnm.getElementsByTagName("xsa");
+                var cXsb = tabelnm.getElementsByTagName("xsb");
+                var cXsc = tabelnm.getElementsByTagName("xsc");
                 var cAn = tabelnm.getElementsByTagName("an");
                 var cWh = tabelnm.getElementsByTagName("wh");
                 var cWha = tabelnm.getElementsByTagName("wha");
@@ -2904,6 +3044,7 @@ var viewmode = 'marker';
                 var cL = tabelnm.getElementsByTagName("l");
 
                 var cPar = tabelnm.getElementsByTagName("par");
+                var cFirework = tabelnm.getElementsByTagName("firework");
 
                 var len = cM.length;
                 for (var i = 0; i < len; i++) {
@@ -2916,6 +3057,9 @@ var viewmode = 'marker';
                         mo: (cMo[i] != null) && cMo[i].textContent,
                         t: (cT[i] != null) && cT[i].textContent,
                         xs: (cXs[i] != null) && cXs[i].textContent,
+                        xsa: (cXsa[i] != null) && cXsa[i].textContent,
+                        xsb: (cXsb[i] != null) && cXsb[i].textContent,
+                        xsc: (cXsc[i] != null) && cXsc[i].textContent,
                         an: (cAn[i] != null) && cAn[i].textContent,
                         wh: (cWh[i] != null) && cWh[i].textContent,
                         wha: (cWha[i] != null) && cWha[i].textContent,
@@ -2941,8 +3085,8 @@ var viewmode = 'marker';
 
                         l: (cL[i] != null) && cL[i].textContent,
 
-                        par: (cPar[i] != null) && cPar[i].textContent
-
+                        par: (cPar[i] != null) && cPar[i].textContent,
+                        firework: (cFirework[i] != null) && cFirework[i].textContent
                     };
                 };
 
@@ -3010,6 +3154,7 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
+    webAr.fireworks = fireworks;
 
     webAr.ar.setGyroValuEvents();
     webAr.ar.setLoaderEvents();
