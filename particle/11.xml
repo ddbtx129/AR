@@ -32,19 +32,19 @@
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/bubble/04.png; preset: snow; color: #24CAFF; opacity: 0.5; ParticleCount: 1000; maxAge: 10; size: 6; velocityValue: 0.001 0.001 0.001; velocitySpread: 0.5 0 0.5; accelerationValue: 0.001 0.001 0.001; accelerationSpread: 0.001 0.001 0.001; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/bubble/04.png; preset: snow; color: #24CAFF; opacity: 0.5; ParticleCount: 1000; maxAge: 10; size: 6; velocityValue: 0.01 0.01 0.01; velocitySpread: 0.75 0 0.75; accelerationValue: 0.01 0.01 0.01; accelerationSpread: 0.01 0.01 0.01; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/bubble/04.png; preset: snow; color: #F2E646; opacity: 0.5; ParticleCount: 1000; maxAge: 10; size: 6; velocityValue: 0.001 0.001 0.001; velocitySpread: 0.5 0 0.5; accelerationValue: 0.001 0.001 0.001; accelerationSpread: 0.001 0.001 0.001; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/bubble/04.png; preset: snow; color: #F2E646; opacity: 0.5; ParticleCount: 1000; maxAge: 10; size: 6; velocityValue: 0.01 0.01 0.01; velocitySpread: 0.75 0 0.75; accelerationValue: 0.01 0.01 0.01; accelerationSpread: 0.01 0.01 0.01; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/bubble/04.png; preset: snow; color: #EF2D5E; opacity: 0.5; ParticleCount: 1000; maxAge: 10; size: 6; velocityValue: 0.001 0.001 0.001; velocitySpread: 0.5 0 0.5; accelerationValue: 0.001 0.001 0.001; accelerationSpread: 0.001 0.001 0.001; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/bubble/04.png; preset: snow; color: #EF2D5E; opacity: 0.5; ParticleCount: 1000; maxAge: 10; size: 6; velocityValue: 0.01 0.01 0.01; velocitySpread: 0.75 0 0.75; accelerationValue: 0.01 0.01 0.01; accelerationSpread: 0.01 0.01 0.01; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
   
 </ArData>
