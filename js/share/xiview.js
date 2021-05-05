@@ -292,7 +292,8 @@ var viewmode = 'marker';
 
                         var file = 'particle/fireworks_' + args[idx].FireWorkList + '.xml';
                         var fsize = file.fileSize;
-
+                        console.log(file);
+                        console.log(fsize);
                         if (fsize != -1) {
                             var fw = {};
                             fw = this.readParticleXml(file);
