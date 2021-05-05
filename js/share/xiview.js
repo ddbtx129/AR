@@ -314,6 +314,8 @@ var viewmode = 'marker';
                             }
 
                             args[idx].Particlefireworks = fireworks;
+
+                            console.log(args[idx].Particlefireworks.length);
                         }
 
                     } else {
