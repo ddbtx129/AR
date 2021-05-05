@@ -795,7 +795,7 @@ var viewmode = 'marker';
                 }
 
                 arData[idx] = dataObj[idx];
-
+                console.log(arData[idx].isMp4);
                 if (!arData[idx].path) {
                     // 画像なかった
                     this.Err_Exit('画像情報が取得できませんでした。');
