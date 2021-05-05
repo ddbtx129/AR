@@ -260,8 +260,7 @@ var viewmode = 'marker';
 
                         var file = 'particle/' + args[idx].PARList + '.xml';
                         var fsize = file.fileSize;
-                        console.log(file);
-                        console.log(fsize);
+
                         if (fsize != -1) {
 
                             var parti = {};
@@ -293,8 +292,7 @@ var viewmode = 'marker';
 
                         var file = 'particle/fireworks_' + args[idx].FireWorkList + '.xml';
                         var fsize = file.fileSize;
-                        console.log(file);
-                        console.log(fsize);
+
                         if (fsize != -1) {
 
                             var fw = {};
@@ -315,8 +313,6 @@ var viewmode = 'marker';
                             }
 
                             args[idx].Particlefireworks = particle;
-
-                            console.log(args[idx].Particlefireworks[0].kind);
                         }
 
                     } else {
@@ -3047,7 +3043,6 @@ var viewmode = 'marker';
 
                 var len = cKind.length;
                 for (var i = 0; i < len; i++) {
-                    console.log(cKind[i].textContent);
 
                     data[i] = {
                         kind: (cKind[i] != null) && cKind[i].textContent,
