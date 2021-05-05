@@ -2820,8 +2820,8 @@ var viewmode = 'marker';
                 //$('#arFirework').append(fws3);
                 console.log(webAr.ar.args[oidx].Particlefireworks.length);
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                    console.log(webAr.ar.args[oidx].particlefirework[i].kind);
-                    if (Number(webAr.ar.args[oidx].particlefirework[i].kind) == 0) {
+                    console.log(webAr.ar.args[oidx].Particlefireworks[i].kind);
+                    if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
                         var fws = $('<a-entity></a-entity>');
                         fws.attr('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
                         fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
