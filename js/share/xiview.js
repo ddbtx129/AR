@@ -2820,7 +2820,7 @@ var viewmode = 'marker';
                 //$('#arFirework').append(fws3);
                 console.log(webAr.ar.args[oidx].Particlefireworks.length);
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                    console.log(webAr.ar.args[oidx].Particlefireworks[i].kind);
+                    
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
                         var fws = $('<a-entity></a-entity>');
                         fws.attr('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
@@ -2872,7 +2872,7 @@ var viewmode = 'marker';
                 //$('a-scene').append(fws);
                 $('#arFirework').append(fws);
             };
-
+            console.log(fireworksobj.pos);
             //var pos = genCirclePoint(0, -30, 120);
             var fireworkspos = AFRAME.utils.coordinates.parse(fireworksobj.pos);
             var pos = genCirclePoint(fireworkspos.x, fireworkspos.y, fireworkspos.z);
