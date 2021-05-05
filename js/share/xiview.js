@@ -300,7 +300,7 @@ var viewmode = 'marker';
                             var fw = {};
                             fw = this.readFireworksXml(file);
 
-                            var fireworks = new Array();
+                            var particle = new Array();
 
                             for (var k = 0; k < fw.length; k++) {
 
@@ -311,12 +311,12 @@ var viewmode = 'marker';
                                 attribute.particlefirework = fw[k].particlefirework;
                                 attribute.fireworktimer = fw[k].fireworktimer;
 
-                                fireworks[k] = attribute;
+                                particle[k] = attribute;
                             }
 
-                            args[idx].Particlefireworks = fireworks;
+                            args[idx].Particlefireworks = particle;
 
-                            console.log(args[idx].Particlefireworks.length);
+                            console.log(args[idx].Particlefireworks[0].kind);
                         }
 
                     } else {
