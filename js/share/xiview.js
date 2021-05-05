@@ -2818,8 +2818,8 @@ var viewmode = 'marker';
 
                     if (webAr.ar.args[oidx].particlefirework[i].kind == 0) {
                         var fws = $('<a-entity></a-entity>');
-                        fws.attr('position', webAr.ar.args[oidx].particlefirework[i].pos);
-                        fws.attr('particle-firework', webAr.ar.args[oidx].particlefirework[i].particlefirework);
+                        fws.attr('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
+                        fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                         $('#arFirework').append(fws);
                     }
                 }
@@ -2829,13 +2829,13 @@ var viewmode = 'marker';
 
             var timer = 2000;
 
-            for (var i = 0; i < webAr.ar.args[oidx].particlefirework.length; i++) {
+            for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
-                if (webAr.ar.args[oidx].particlefirework[i].kind == 1) {
-                    timer = Number(webAr.ar.args[oidx].particlefirework[i].fireworktimer);
+                if (webAr.ar.args[oidx].Particlefireworks[i].kind == 1) {
+                    timer = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
 
                     webAr.fireworks = setInterval(function () {
-                        webAr.ar.createFirework(webAr.ar.args[oidx].particlefirework[i]);
+                        webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
                     }, timer);
                 }
             }
