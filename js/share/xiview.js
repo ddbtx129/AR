@@ -2821,7 +2821,7 @@ var viewmode = 'marker';
                 console.log(webAr.ar.args[oidx].Particlefireworks.length);
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
-                    if (webAr.ar.args[oidx].particlefirework[i].kind == 0) {
+                    if (Number(webAr.ar.args[oidx].particlefirework[i].kind) == 0) {
                         var fws = $('<a-entity></a-entity>');
                         fws.attr('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
                         fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
@@ -2836,7 +2836,7 @@ var viewmode = 'marker';
 
             for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
-                if (webAr.ar.args[oidx].Particlefireworks[i].kind == 1) {
+                if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
                     timer = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
 
                     webAr.fireworks = setInterval(function () {
