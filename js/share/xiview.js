@@ -2795,25 +2795,25 @@ var viewmode = 'marker';
                 basefws.attr('ID', 'arFirework');
                 $('a-scene').prepend(basefws);
 
-                var fws1 = $('<a-entity></a-entity>');
-                fws1.attr('position', '-38 -110 -250');
+                //var fws1 = $('<a-entity></a-entity>');
+                //fws1.attr('position', '-38 -110 -250');
+                ////fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
                 //fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
-                fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
-                $('#arFirework').append(fws1);
+                //$('#arFirework').append(fws1);
 
-                var fws2 = $('<a-entity></a-entity>');
-                fws2.attr('position', '0 -110 -250');
+                //var fws2 = $('<a-entity></a-entity>');
+                //fws2.attr('position', '0 -110 -250');
+                ////fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
                 //fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
-                fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
-                $('#arFirework').append(fws2);
+                //$('#arFirework').append(fws2);
 
-                var fws3 = $('<a-entity></a-entity>');
-                fws3.attr('position', '30 -110 -250');
-                /*fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');*/
-                fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');
-                $('#arFirework').append(fws3);
+                //var fws3 = $('<a-entity></a-entity>');
+                //fws3.attr('position', '30 -110 -250');
+                ///*fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');*/
+                //fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');
+                //$('#arFirework').append(fws3);
 
-                for (var i = 0; i < webAr.ar.args[oidx].particlefirework.length; i++) {
+                for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
                     if (webAr.ar.args[oidx].particlefirework[i].kind == 0) {
                         var fws = $('<a-entity></a-entity>');
