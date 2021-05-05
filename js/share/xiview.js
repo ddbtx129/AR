@@ -540,6 +540,7 @@ var viewmode = 'marker';
                 dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
                 dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
                 dataObj[idx].isMp4 = false;
+                console.log(!!(dataObj[idx].path || '').match(/\.mp4$/i));
                 dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
                 dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
                 dataObj[idx].isPV = !!(self.arg.PVList);
