@@ -795,7 +795,7 @@ var viewmode = 'marker';
                 }
 
                 arData[idx] = dataObj[idx];
-                console.log(arData[idx].isMp4);
+
                 if (!arData[idx].path) {
                     // 画像なかった
                     this.Err_Exit('画像情報が取得できませんでした。');
@@ -805,7 +805,8 @@ var viewmode = 'marker';
 
             webAr.scene.appendChild(assets);
             self.arData = arData;
-            
+            console.log(self.arData[0].isMp4);
+
             return true;
         },
 
