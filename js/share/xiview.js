@@ -3046,6 +3046,8 @@ var viewmode = 'marker';
 
                 var len = cKind.length;
                 for (var i = 0; i < len; i++) {
+                    console.log(cKind[i].textContent);
+
                     data[i] = {
                         kind: (cKind[i] != null) && cKind[i].textContent,
                         pos: (cPos[i] != null) && cPos[i].textContent,
