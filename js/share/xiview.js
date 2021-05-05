@@ -260,7 +260,8 @@ var viewmode = 'marker';
 
                         var file = 'particle/' + args[idx].PARList + '.xml';
                         var fsize = file.fileSize;
-
+                        console.log(file);
+                        console.log(fsize);
                         if (fsize != -1) {
                             var parti = {};
                             parti = this.readParticleXml(file);
