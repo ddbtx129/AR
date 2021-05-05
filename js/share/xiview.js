@@ -44,7 +44,7 @@ var viewmode = 'marker';
     //var videosound = 1;
 
     var fireworks;  //  花火タイマー
-    var particlestart = 0;
+    var particlestart = new Array;
 
     var ar = {
 
@@ -263,7 +263,7 @@ var viewmode = 'marker';
 
                         if (fsize != -1) {
                             var parti = {};
-                            parti = this.readParticleXml('particle/' + args[idx].PARList + '.xml');
+                            parti = this.readParticleXml(file);
                             
                             var particle = new Array();
 
@@ -284,6 +284,38 @@ var viewmode = 'marker';
 
                             args[idx].Particle = particle;
                         }
+                    }
+
+                    particlestart[idx] = 0;
+
+                    if (!!(args[idx].FireWorkList)) {
+
+                        var file = 'particle/fireworks_' + args[idx].FireWorkList + '.xml';
+                        var fsize = file.fileSize;
+
+                        if (fsize != -1) {
+                            var fw = {};
+                            fw = this.readParticleXml(file);
+
+                            var fireworks = new Array();
+
+                            for (var k = 0; k < fw.length; k++) {
+
+                                var attribute = {};
+
+                                attribute.kind = fw[k].kind;
+                                attribute.pos = fw[k].pos;
+                                attribute.particlefirework = fw[k].particlefirework;
+                                attribute.fireworktimer = fw[k].fireworktimer;
+
+                                fireworks[k] = attribute;
+                            }
+
+                            args[idx].Particlefireworks = fireworks;
+                        }
+
+                    } else {
+                        particlestart[idx] = -1;
                     }
                 }
                  
@@ -1028,7 +1060,7 @@ var viewmode = 'marker';
                     } else {
                         elname = 'a-entity'
                     }
-                } else if (val[idx].isMp4) {
+                } else if (!!(val[idx].isMp4)) {
                     elname = 'a-video'
                 }
 
@@ -1037,7 +1069,9 @@ var viewmode = 'marker';
                 var posVec3 = self.positionVec3('main', idx);
                 defPos = posVec3;
                 defobj[idx].Pos = posVec3;
+
                 var mpos = AFRAME.utils.coordinates.parse(self.args[idx].OZList);
+
                 defobj[idx].Pos = {
                     x: (Number(posVec3.x) + Number(mpos.x)).toFixed(2),
                     y: (Number(posVec3.y) + Number(mpos.y)).toFixed(2),
@@ -1054,9 +1088,9 @@ var viewmode = 'marker';
                     main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.x));
                     main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].Scale.y));
 
-                    if (val[idx].isMp4) {
-                        main.setAttribute('play', 'true');
-                    }
+                    //if (val[idx].isMp4) {
+                    //    main.setAttribute('play', 'true');
+                    //}
 
                     AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                         primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
@@ -1076,6 +1110,8 @@ var viewmode = 'marker';
                             main.setAttribute('gif', "");
                         }
                     } else {
+                        main.setAttribute('play', 'true');
+
                         // 0.1 0.9 0.2  #16 19E533  RGB  25 229 51
                         AFRAME.utils.entity.setComponentProperty(main, 'material', {
                             shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
@@ -1092,10 +1128,10 @@ var viewmode = 'marker';
 
                 self.arData[idx].main = main;
                 
-                var addmainobj = { 0: self.args[idx].OAtList, 1: self.args[idx].OBtList, 2: self.args[idx].OCtList };
-                var addmainZaxis = { 0: self.args[idx].OAZList, 1: self.args[idx].OBZList, 2: self.args[idx].OCZList };
+                //var addmainobj = { 0: self.args[idx].OAtList, 1: self.args[idx].OBtList, 2: self.args[idx].OCtList };
+                //var addmainZaxis = { 0: self.args[idx].OAZList, 1: self.args[idx].OBZList, 2: self.args[idx].OCZList };
                 
-                var addmain = {};
+                //var addmain = {};
 
                 if (self.args[idx].OAtList) {
 
@@ -1120,7 +1156,7 @@ var viewmode = 'marker';
                         amain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA.x));
                         amain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleA.y));
 
-                        if (val[idx].isMp4) {
+                        if (!!(val[idx].isMp4)) {
                             amain.setAttribute('play', 'true');
                         }
 
@@ -1165,7 +1201,7 @@ var viewmode = 'marker';
                         bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleB.x));
                         bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleB.y));
 
-                        if (val[idx].isMp4) {
+                        if (!!(val[idx].isMp4)) {
                             bmain.setAttribute('play', 'true');
                         }
 
@@ -1210,7 +1246,7 @@ var viewmode = 'marker';
                         cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleC.x));
                         cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[idx].ScaleC.y));
 
-                        if (val[idx].isMp4) {
+                        if (!!(val[idx].isMp4)) {
                             cmain.setAttribute('play', 'true');
                         }
 
@@ -1393,7 +1429,7 @@ var viewmode = 'marker';
                 } else {
                     elname = 'a-entity'
                 }
-            } else if (val[oidx].isMp4) {
+            } else if (!!(val[oidx].isMp4)) {
                 elname = 'a-video'
             }
 
@@ -1418,9 +1454,9 @@ var viewmode = 'marker';
                 main.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.x));
                 main.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale.y));
 
-                if (val[oidx].isMp4) {
-                    main.setAttribute('play', 'true');
-                }
+                //if (val[oidx].isMp4) {
+                //    main.setAttribute('play', 'true');
+                //}
 
                 AFRAME.utils.entity.setComponentProperty(main, 'geometry', {
                     primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x, segmentsHeight: 1, segmentsWidth: 1
@@ -1446,6 +1482,8 @@ var viewmode = 'marker';
                     });
                 }
             } else {
+                main.setAttribute('play', 'true');
+
                 main.setAttribute('gltf-model', srcname);
                 main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[oidx].Scale));
             }
@@ -1479,7 +1517,7 @@ var viewmode = 'marker';
 
                     amain.setAttribute('style', 'z-index: 4');
 
-                    if (val[oidx].isMp4) {
+                    if (!!(val[oidx].isMp4)) {
                         amain.setAttribute('play', 'true');
                     }
 
@@ -1522,7 +1560,7 @@ var viewmode = 'marker';
                     bmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleB.x));
                     bmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleB.y));
 
-                    if (val[oidx].isMp4) {
+                    if (!!(val[oidx].isMp4)) {
                         bmain.setAttribute('play', 'true');
                     }
 
@@ -1567,7 +1605,7 @@ var viewmode = 'marker';
                     cmain.setAttribute('width', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleC.x));
                     cmain.setAttribute('height', AFRAME.utils.coordinates.stringify(defobj[oidx].ScaleC.y));
 
-                    if (val[oidx].isMp4) {
+                    if (!!(val[oidx].isMp4)) {
                         cmain.setAttribute('play', 'true');
                     }
 
@@ -1872,7 +1910,7 @@ var viewmode = 'marker';
                     viewmode = 'pv';
                     
                     wrapPos.x -= 0;
-                    wrapPos.y -= ((val[idx].isMp4) ? -1 : -0);
+                    wrapPos.y -= (!!(val[idx].isMp4) ? -1 : -0);
                     wrapPos.z -= defwrap[idx].Scale.y * 1.5;
 
                     wrapZoom = 0.25;
@@ -2005,10 +2043,10 @@ var viewmode = 'marker';
                         }
 
                         if(!!(webAr.ar.arData[i].isFirework)) {
-                            webAr.ar.startFireworksEvent();
+                            webAr.ar.startFireworksEvent(i);
                         }
 
-                        if (webAr.ar.arData[i].isMp4) {
+                        if (!!(webAr.ar.arData[i].isMp4)) {
                             if (webAr.markerIdx == '') {
                                 webAr.ar.arData[i].wrap.setAttribute('visible', true);
                                 webAr.ar.arData[i].viewIdx = 1;
@@ -2065,7 +2103,7 @@ var viewmode = 'marker';
                             clearInterval(webAr.fireworks);
                         }
 
-                        if (webAr.ar.arData[i].isMp4) {
+                        if (!!(webAr.ar.arData[i].isMp4)) {
                             webAr.ar.arData[i].wrap.setAttribute('visible', false);
                             var video = document.querySelector('#source' + (((Number(i) + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
@@ -2489,7 +2527,7 @@ var viewmode = 'marker';
                     slidewrap.style.marginTop = '25%';
 
                     if (webAr.ar.arData[0].isPV && !!(webAr.ar.arData[0].isFirework)) {
-                        webAr.ar.startFireworksEvent();
+                        webAr.ar.startFireworksEvent(0);
                     }
                 }
             });
@@ -2544,7 +2582,7 @@ var viewmode = 'marker';
             webAr.ar.resetModel(oidx, webAr.ar.arData[oidx].srcno.obj);
             webAr.ar.resetScene(oidx);
 
-            if (webAr.ar.arData[oidx].isMp4) {
+            if (!!(webAr.ar.arData[oidx].isMp4)) {
                 var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
                 video.muted = !(webAr.ar.videosound == 1);
                 if (Number(webAr.ar.videoState[oidx]) != 2 || Number(webAr.ar.videoState[oidx]) <= 0) {
@@ -2575,7 +2613,7 @@ var viewmode = 'marker';
                 if (webAr.ar.arData[0].isPV) {
                     var marker = webAr.markerIdx.split(',');
                     var i = Number(marker[0]) - 1;
-                    if (webAr.ar.arData[i].isMp4) {
+                    if (!!(webAr.ar.arData[i].isMp4)) {
                         if (webAr.ar.videoState[i] > 1) {
                             var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
                             video.muted = !(webAr.ar.videosound == 1);
@@ -2607,7 +2645,7 @@ var viewmode = 'marker';
                     webAr.markerIdx = (j + 1).toString();
                     multi.innerHTML = webAr.markerIdx;
 
-                    if (webAr.ar.arData[j].isMp4) {
+                    if (!!(webAr.ar.arData[j].isMp4)) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.muted = !(webAr.ar.videosound == 1);
                         if (Number(webAr.ar.videoState[j]) != 2 || Number(webAr.ar.videoState[j]) <= 0) {
@@ -2634,7 +2672,7 @@ var viewmode = 'marker';
                     }
 
                     if (!!(webAr.ar.arData[j].isFirework)) {
-                        webAr.ar.startFireworksEvent();
+                        webAr.ar.startFireworksEvent(0);
                     }
                 }
             });
@@ -2649,7 +2687,7 @@ var viewmode = 'marker';
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    if (webAr.ar.arData[j].isMp4) {
+                    if (!!(webAr.ar.arData[j].isMp4)) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.play();
                         webAr.ar.videoState[j] = 3;
@@ -2665,7 +2703,7 @@ var viewmode = 'marker';
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
                         if (webAr.ar != null && webAr.ar.arData != null) {
-                            if (webAr.ar.arData[j].isMp4) {
+                            if (!!(webAr.ar.arData[j].isMp4)) {
                                 var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                                 if (webAr.ar.videoState[j] != 3) {
                                     video.pause();
@@ -2680,7 +2718,7 @@ var viewmode = 'marker';
                             }
 
                             if (!!(webAr.ar.arData[j].isFirework)) {
-                                webAr.ar.startFireworksEvent();
+                                webAr.ar.startFireworksEvent(j);
                             }
                         }
                     }
@@ -2707,7 +2745,7 @@ var viewmode = 'marker';
 
             function VideoStop(oidx) {
                 if (webAr.ar != null && webAr.ar.arData != null) {
-                    if (webAr.ar.arData[oidx].isMp4) {
+                    if (!!(webAr.ar.arData[oidx].isMp4)) {
                         var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
                         video.pause();
                         if (webAr.ar.videoState[oidx] == 3) {
@@ -2748,9 +2786,10 @@ var viewmode = 'marker';
             });
         },
 
-        startFireworksEvent: function(){
+        startFireworksEvent: function (oidx) {
 
-            if (webAr.particlestart == 0) {
+            //if (webAr.particlestart == 0) {
+            if (webAr.particlestart[oidx] == 0) {
 
                 var basefws = $('<a-entity></a-entity>');
                 basefws.attr('ID', 'arFirework');
@@ -2760,32 +2799,49 @@ var viewmode = 'marker';
                 fws1.attr('position', '-38 -110 -250');
                 //fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
                 fws1.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
-                //$('a-scene').append(fws1);
                 $('#arFirework').append(fws1);
 
                 var fws2 = $('<a-entity></a-entity>');
                 fws2.attr('position', '0 -110 -250');
                 //fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
                 fws2.attr('particle-firework', 'preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],useTrail:0,useBloom:0,eCount:500,eHeight:80,eSize:6,rSize:3}');
-                //$('a-scene').append(fws2);
                 $('#arFirework').append(fws2);
 
                 var fws3 = $('<a-entity></a-entity>');
                 fws3.attr('position', '30 -110 -250');
                 /*fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');*/
                 fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');
-                //$('a-scene').append(fws3);
                 $('#arFirework').append(fws3);
 
-                webAr.particlestart = 1;
+                for (var i = 0; i < webAr.ar.args[oidx].particlefirework.length; i++) {
+
+                    if (webAr.ar.args[oidx].particlefirework[i].kind == 0) {
+                        var fws = $('<a-entity></a-entity>');
+                        fws.attr('position', webAr.ar.args[oidx].particlefirework[i].pos);
+                        fws.attr('particle-firework', webAr.ar.args[oidx].particlefirework[i].particlefirework);
+                        $('#arFirework').append(fws);
+                    }
+                }
+
+                webAr.particlestart[oidx] = 1;
             }
 
-            webAr.fireworks = setInterval(function () {
-                webAr.ar.createFirework();
-            }, 2500);
+            var timer = 2000;
+
+            for (var i = 0; i < webAr.ar.args[oidx].particlefirework.length; i++) {
+
+                if (webAr.ar.args[oidx].particlefirework[i].kind == 1) {
+                    timer = Number(webAr.ar.args[oidx].particlefirework[i].fireworktimer);
+
+                    webAr.fireworks = setInterval(function () {
+                        webAr.ar.createFirework(webAr.ar.args[oidx].particlefirework[i]);
+                    }, timer);
+                }
+            }
+
         },
 
-        createFirework: function(){
+        createFirework: function (fireworksobj) {
 
             function genCirclePoint(radius1,  hei, radius2) {
                 var rand = Math.random() * Math.PI;
@@ -2805,12 +2861,16 @@ var viewmode = 'marker';
             function genFireWork(pos) {
                 var fws = $('<a-entity></a-entity>');
                 fws.attr('position', pos.x + ' ' + pos.y + ' ' + pos.z);
-                fws.attr('particle-firework', 'preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8,}');
+                //fws.attr('particle-firework', 'preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8,}');
+                fws.attr('particle-firework', fireworksobj.particlefirework);
                 //$('a-scene').append(fws);
                 $('#arFirework').append(fws);
             };
 
-            var pos = genCirclePoint(0, -30, 120);
+            //var pos = genCirclePoint(0, -30, 120);
+            var fireworkspos = AFRAME.utils.coordinates.parse(fireworksobj.pos);
+            var pos = genCirclePoint(fireworkspos.x, fireworkspos.y, fireworkspos.z);
+
             genFireWork(pos);
         },
 
@@ -2867,8 +2927,8 @@ var viewmode = 'marker';
                 webAr.loaderEnd = 1;
                 var mloader = document.getElementById('mloader3');
                 mloader.innerHTML = '※ 画面をタップすると表示を開始します。';
-                if (webAr.ar.arData[0].isPV) {
-                    if (webAr.ar.arData[0].isMp4) {
+                if (!!(webAr.ar.arData[0].isPV)) {
+                    if (!!(webAr.ar.arData[0].isMp4)) {
                         var video = document.querySelector('#source101');
                         var objnm = '';
                         if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
@@ -2894,7 +2954,7 @@ var viewmode = 'marker';
         positionVec3Logo: function (anime, oidx) {
             var self = this;
             var h1_2 = (self.arData[oidx].size.h / 5);
-            var margin = ((self.arData[oidx].isMp4) ? 0.25 : 0);
+            var margin = (!!(self.arData[oidx].isMp4) ? 0.25 : 0);
 
             return { x: 0, y: -h1_2 - margin, z: 0 };
         },
@@ -2947,6 +3007,45 @@ var viewmode = 'marker';
                         assetsid: (cAssetsid[i] != null) && cAssetsid[i].textContent,
                         cAssetssrc: (cAssetssrc[i] != null) && cAssetssrc[i].textContent
                    };
+                };
+
+                return data;
+            };
+
+            xmlhttp.open("GET", filenm, false);
+            xmlhttp.send(null);
+
+            return xml;
+        },
+
+        readFireworksXml: function (filenm) {
+            var xmlhttp = new XMLHttpRequest();
+            var xml = new Array();
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var xmlTb = xmlhttp.responseXML;
+                    xml = setXmldata(xmlTb);
+                }
+            };
+
+            function setXmldata(xmldata) {
+
+                var data = new Array();
+
+                var cKind = xmldata.getElementsByTagName("kind");
+                var cPos = xmldata.getElementsByTagName("pos");
+                var cPparticlefirework = xmldata.getElementsByTagName("particlefirework");
+                var cFireworktimer = xmldata.getElementsByTagName("fireworktimer");
+
+                var len = cId.length;
+                for (var i = 0; i < len; i++) {
+                    data[i] = {
+                        kind: (cKind[i] != null) && cKind[i].textContent,
+                        pos: (cPos[i] != null) && cPos[i].textContent,
+                        particlefirework: (cPparticlefirework[i] != null) && cPparticlefirework[i].textContent,
+                        fireworktimer: (cFireworktimer[i] != null) && cFireworktimer[i].textContent
+                    };
                 };
 
                 return data;
