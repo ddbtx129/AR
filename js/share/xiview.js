@@ -2847,7 +2847,7 @@ var viewmode = 'marker';
 
         },
 
-        createFirework: function (fireworksobj) {
+        createFirework: function (oidx, row) {
 
             function genCirclePoint(radius1,  hei, radius2) {
                 var rand = Math.random() * Math.PI;
@@ -2868,13 +2868,13 @@ var viewmode = 'marker';
                 var fws = $('<a-entity></a-entity>');
                 fws.attr('position', pos.x + ' ' + pos.y + ' ' + pos.z);
                 //fws.attr('particle-firework', 'preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8,}');
-                fws.attr('particle-firework', fireworksobj.particlefirework);
+                fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 //$('a-scene').append(fws);
                 $('#arFirework').append(fws);
             };
-            console.log(fireworksobj.pos);
+            console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
             //var pos = genCirclePoint(0, -30, 120);
-            var fireworkspos = AFRAME.utils.coordinates.parse(fireworksobj.pos);
+            var fireworkspos = AFRAME.utils.coordinates.parse(webAr.ar.args[oidx].Particlefireworks[row].pos);
             var pos = genCirclePoint(fireworkspos.x, fireworkspos.y, fireworkspos.z);
 
             genFireWork(pos);
