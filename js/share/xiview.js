@@ -3044,7 +3044,7 @@ var viewmode = 'marker';
                 var cPparticlefirework = xmldata.getElementsByTagName("particlefirework");
                 var cFireworktimer = xmldata.getElementsByTagName("fireworktimer");
 
-                var len = cId.length;
+                var len = cKind.length;
                 for (var i = 0; i < len; i++) {
                     data[i] = {
                         kind: (cKind[i] != null) && cKind[i].textContent,
