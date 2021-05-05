@@ -2813,7 +2813,7 @@ var viewmode = 'marker';
                 ///*fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');*/
                 //fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');
                 //$('#arFirework').append(fws3);
-
+                console.log(webAr.ar.args[oidx].Particlefireworks.length);
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
                     if (webAr.ar.args[oidx].particlefirework[i].kind == 0) {
