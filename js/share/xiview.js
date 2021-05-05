@@ -2706,6 +2706,7 @@ var viewmode = 'marker';
                     for (var i = 0; i < marker.length; i++) {
                         var j = Number(marker[i]) - 1;
                         if (webAr.ar != null && webAr.ar.arData != null) {
+                            console.log(webAr.ar.arData[j].isMp4);
                             if (!!(webAr.ar.arData[j].isMp4)) {
                                 var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                                 if (webAr.ar.videoState[j] != 3) {
