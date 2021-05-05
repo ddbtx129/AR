@@ -263,9 +263,9 @@ var viewmode = 'marker';
                         console.log(file);
                         console.log(fsize);
                         if (fsize != -1) {
+
                             var parti = {};
                             parti = this.readParticleXml(file);
-                            
                             var particle = new Array();
 
                             for (var k = 0; k < parti.length; k++) {
@@ -296,8 +296,9 @@ var viewmode = 'marker';
                         console.log(file);
                         console.log(fsize);
                         if (fsize != -1) {
+
                             var fw = {};
-                            fw = this.readParticleXml(file);
+                            fw = this.readFireworksXml(file);
 
                             var fireworks = new Array();
 
