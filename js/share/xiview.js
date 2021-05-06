@@ -2550,6 +2550,7 @@ var viewmode = 'marker';
         },
 
         removeObject: function (oidx) {
+
             var marker = webAr.markerIdx.split(',');
 
             if (webAr.ar.arData[oidx].srcno.length == 1) {
@@ -2615,7 +2616,7 @@ var viewmode = 'marker';
             bMarker.addEventListener('click', function () {
                 if (webAr.ar.arData[0].isPV) {
                     var marker = webAr.markerIdx.split(',');
-                    var i = Number(marker[0]) - 1;
+                    var i = (Number(marker[0]) - 1) < 0 ? 0 : Number(marker[0]) - 1;
                     if (!!(webAr.ar.arData[i].isMp4)) {
                         if (webAr.ar.videoState[i] > 1) {
                             var video = document.querySelector('#source' + (((i + 1) * 100) + webAr.ar.arData[i].srcno.obj).toString());
@@ -2689,7 +2690,7 @@ var viewmode = 'marker';
             bPlay.addEventListener('click', function () {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
-                    var j = Number(marker[i]) - 1;
+                    var j = (Number(marker[i]) - 1) < 0 ? 0 : Number(marker[i]) - 1
                     if (!!(webAr.ar.arData[j].isMp4)) {
                         var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                         video.play();
@@ -2704,9 +2705,8 @@ var viewmode = 'marker';
                 if(webAr.loaderEnd != 0){ 
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
-                        var j = Number(marker[i]) - 1;
+                        var j = (Number(marker[i]) - 1) < 0 ? 0 : Number(marker[i]) - 1;
                         if (webAr.ar != null && webAr.ar.arData != null) {
-                            console.log(j);
                             if (!!(webAr.ar.arData[j].isMp4)) {
                                 var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                                 if (webAr.ar.videoState[j] != 3) {
