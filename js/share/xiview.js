@@ -2856,6 +2856,8 @@ var viewmode = 'marker';
         },
 
         createFirework: function (oidx, row) {
+            console.log(oidx);
+            console.log(row);
 
             function genCirclePoint(radius1,  hei, radius2) {
                 var rand = Math.random() * Math.PI;
