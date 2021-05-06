@@ -2451,11 +2451,13 @@ var viewmode = 'marker';
                         if (tapclicked && tapCount == 2 && !(scalechange)) {
                             tapclicked = false;
                             var marker = webAr.markerIdx.split(',');
-                            for (var i = 0; i < marker.length; i++) {
-                                var j = Number(marker[i]) - 1;
-                                if (webAr.ar.arData[j].seq > 0) {
-                                    var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
-                                    switchObj(e, objNo, j);
+                            if(marker.length > 0) {
+                                for (var i = 0; i < marker.length; i++) {
+                                    var j = Number(marker[i]) - 1;
+                                    if (webAr.ar.arData[j].seq > 0) {
+                                        var objNo = ((webAr.ar.arData[j].srcno.obj + 1) <= webAr.ar.arData[j].srcno.length) ? webAr.ar.arData[j].srcno.obj + 1 : 1;
+                                        switchObj(e, objNo, j);
+                                    }
                                 }
                             }
                             return;
@@ -2463,11 +2465,13 @@ var viewmode = 'marker';
                         if (tapclicked && tapCount >= 3 && !(scalechange)) {
                             tapclicked = false;
                             var marker = webAr.markerIdx.split(',');
-                            for (var i = 0; i < marker.length; i++) {
-                                var j = Number(marker[i]) - 1;
-                                if (webAr.ar.arData[j].seq > 0) {
-                                    var objNo = ((webAr.ar.arData[j].srcno.obj - 1) > 0) ? webAr.ar.arData[j].srcno.obj - 1 : webAr.ar.arData[j].srcno.length;
-                                    switchObj(e, objNo, j);
+                            if(marker.length > 0) {
+                                for (var i = 0; i < marker.length; i++) {
+                                    var j = Number(marker[i]) - 1;
+                                    if (webAr.ar.arData[j].seq > 0) {
+                                        var objNo = ((webAr.ar.arData[j].srcno.obj - 1) > 0) ? webAr.ar.arData[j].srcno.obj - 1 : webAr.ar.arData[j].srcno.length;
+                                        switchObj(e, objNo, j);
+                                    }
                                 }
                             }
                             return;
