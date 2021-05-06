@@ -2804,9 +2804,10 @@ var viewmode = 'marker';
             //if (webAr.particlestart == 0) {
             if (webAr.particlestart[oidx] == 0) {
 
-                var basefws = $('<a-entity></a-entity>');
-                basefws.attr('ID', 'arFirework');
-                $('a-scene').prepend(basefws);
+                //var basefws = $('<a-entity></a-entity>');
+                //basefws.attr('ID', 'arFirework');
+                //basefws.setAttribute('ID', 'arFirework');
+                //$('a-scene').prepend(basefws);
 
                 //var fws1 = $('<a-entity></a-entity>');
                 //fws1.attr('position', '-38 -110 -250');
@@ -2829,10 +2830,13 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
                     
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
-                        var fws = $('<a-entity></a-entity>');
-                        fws.attr('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
-                        fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
-                        $('#arFirework').append(fws);
+                        //var fws = $('<a-entity></a-entity>');
+                        var fws = document.createElement('a-entity');
+                        fws.setAttribute('ID', 'arFirework' + (i).toString());
+                        fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
+                        fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
+                        //$('#arFirework').append(fws);
+                        document.getElementById('a-scene').after(fws);
                     }
                 }
 
@@ -2880,19 +2884,14 @@ var viewmode = 'marker';
             };
 
             function genFireWork(pos) {
-                var fws = $('<a-entity></a-entity>');
+                var fws = document.createElement('a-entity');
                 fws.attr('position', pos.x + ' ' + pos.y + ' ' + pos.z);
-                //fws.attr('particle-firework', 'preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8,}');
                 fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
-                //$('a-scene').append(fws);
-                $('#arFirework').append(fws);
-
+                document.getElementById('arScene').appendChild(fws);
                 console.log(0);
             };
 
             var fpos = { x: 0, y: -30, z: 120 };
-            //var pos = genCirclePoint(0, -30, 120);
-
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
 
             if(posdata.length >= 3 ){
