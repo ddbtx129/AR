@@ -32,37 +32,37 @@
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/balloon/01.png; preset: snow; opacity: 0.5; ParticleCount: 100; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/balloon/01.png; preset: snow; opacity: 0.5; ParticleCount: 50; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/balloon/02.png; preset: snow; opacity: 0.5; ParticleCount: 100; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/balloon/02.png; preset: snow; opacity: 0.5; ParticleCount: 50; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/balloon/03.png; preset: snow; opacity: 0.5; ParticleCount: 100; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/balloon/03.png; preset: snow; opacity: 0.5; ParticleCount: 50; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/balloon/04.png; preset: snow; opacity: 0.5; ParticleCount: 100; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/balloon/04.png; preset: snow; opacity: 0.5; ParticleCount: 50; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/balloon/05.png; preset: snow; opacity: 0.5; ParticleCount: 100; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/balloon/05.png; preset: snow; opacity: 0.5; ParticleCount: 50; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
 
   <particle>
     <idnm>arParticle</idnm>
     <pos>0 -2.25 -15</pos>
-    <partisys>texture: asset/balloon/06.png; preset: snow; opacity: 0.5; ParticleCount: 100; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
+    <partisys>texture: asset/balloon/06.png; preset: snow; opacity: 0.5; ParticleCount: 50; maxAge: 10; size: 8; accelerationValue: 0.1 0.1 0.1; accelerationSpread: 0.1 0.1 0.1; velocityValue: 0.1 2.5 0.1; velocitySpread: 1.5 0.5 1.5; rotationAngle: 0; blending: 1;direction: -1; enabled: true</partisys>
   </particle>
   
 </ArData>
