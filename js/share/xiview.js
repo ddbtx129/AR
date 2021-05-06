@@ -2836,7 +2836,7 @@ var viewmode = 'marker';
                         fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
                         fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                         //$('#arFirework').append(fws);
-                        document.getElementById('a-scene').after(fws);
+                        document.getElementById('a-scene').appendChild(fws);
                     }
                 }
 
