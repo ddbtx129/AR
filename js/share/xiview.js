@@ -2848,7 +2848,8 @@ var viewmode = 'marker';
                     timer = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
 
                     webAr.fireworks = setInterval(function () {
-                        webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
+                        //webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
+                        webAr.ar.createFirework(oidx, i);
                     }, timer);
                 }
             }
