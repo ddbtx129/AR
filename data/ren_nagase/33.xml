@@ -104,7 +104,7 @@
     <len>1</len>
     <wzoom></wzoom>
     <xyz>0 0 50</xyz>
-    <parti>11</parti>
+    <parti>21</parti>
     <fireworks>1</fireworks>
   </basedata>
 
@@ -140,7 +140,7 @@
     <ocz></ocz>
     <bg></bg>
     <l>12C</l>
-    <par>11</par>
+    <par>21</par>
     <firework></firework>
   </pcsdata>
 
