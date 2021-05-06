@@ -2748,15 +2748,16 @@ var viewmode = 'marker';
             });
 
             function VideoStop(oidx) {
-                console.log(oidx);
-                if (webAr.ar != null && webAr.ar.arData != null) {
-                    if (!!(webAr.ar.arData[oidx].isMp4)) {
-                        var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
-                        video.pause();
-                        if (webAr.ar.videoState[oidx] == 3) {
-                            webAr.ar.videoState[oidx] = 2;
-                        } else {
-                            webAr.ar.videoState[oidx] = 1;
+                if (oidx > -1) {
+                    if (webAr.ar != null && webAr.ar.arData != null) {
+                        if (!!(webAr.ar.arData[oidx].isMp4)) {
+                            var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
+                            video.pause();
+                            if (webAr.ar.videoState[oidx] == 3) {
+                                webAr.ar.videoState[oidx] = 2;
+                            } else {
+                                webAr.ar.videoState[oidx] = 1;
+                            }
                         }
                     }
                 }
