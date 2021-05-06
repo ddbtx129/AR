@@ -2872,10 +2872,16 @@ var viewmode = 'marker';
                 //$('a-scene').append(fws);
                 $('#arFirework').append(fws);
             };
-            console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
+
+            var fpos = { x: 0, y: -30, z: 120 };
             //var pos = genCirclePoint(0, -30, 120);
-            var fireworkspos = AFRAME.utils.coordinates.parse(webAr.ar.args[oidx].Particlefireworks[row].pos);
-            var pos = genCirclePoint(fireworkspos.x, fireworkspos.y, fireworkspos.z);
+            var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).split(',');
+
+            if(posdata.length >= 3 ){
+                fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
+            }
+
+            var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
 
             genFireWork(pos);
         },
