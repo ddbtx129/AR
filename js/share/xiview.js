@@ -2829,8 +2829,7 @@ var viewmode = 'marker';
             }
 
             if(arrData > -1) {
-                webAr.fireworksIntervali = setInterval(function () {
-                    //webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
+                webAr.fireworksIntervali = setInterval(() => {
                     webAr.ar.createFirework(oidx, arrData);
                 }, timer);
             }
