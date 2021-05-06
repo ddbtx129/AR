@@ -2725,7 +2725,8 @@ var viewmode = 'marker';
                                     document.getElementById("swPlay").style.display = 'inline';
                                 }
                             }
-
+                            var slide = document.getElementById('slideshow').style.display;
+                            console.log(slide);
                             if (!!(webAr.ar.arData[j].isFirework)) {
                                 webAr.ar.startFireworksEvent(j);
                             }
