@@ -2707,24 +2707,26 @@ var viewmode = 'marker';
                 if(webAr.loaderEnd != 0) { 
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
-                        var j = (Number(marker[i]) - 1) < 0 ? 0 : Number(marker[i]) - 1;
-                        if (webAr.ar != null && webAr.ar.arData != null) {
-                            if (!!(webAr.ar.arData[j].isMp4)) {
-                                var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                                if (webAr.ar.videoState[j] != 3) {
-                                    video.pause();
-                                    webAr.ar.videoState[j] = 1;
-                                    var objnm = '';
-                                    if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
-                                        objnm = video.getAttribute('object-name');
+                        var j =  Number(marker[i]) - 1;
+                        if(j >= 0) {
+                            if (webAr.ar != null && webAr.ar.arData != null) {
+                                if (!!(webAr.ar.arData[j].isMp4)) {
+                                    var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                                    if (webAr.ar.videoState[j] != 3) {
+                                        video.pause();
+                                        webAr.ar.videoState[j] = 1;
+                                        var objnm = '';
+                                        if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                                            objnm = video.getAttribute('object-name');
+                                        }
+                                        (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
+                                        document.getElementById("swPlay").style.display = 'inline';
                                     }
-                                    (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
-                                    document.getElementById("swPlay").style.display = 'inline';
                                 }
-                            }
 
-                            if (!!(webAr.ar.arData[j].isFirework)) {
-                                webAr.ar.startFireworksEvent(j);
+                                if (!!(webAr.ar.arData[j].isFirework)) {
+                                    webAr.ar.startFireworksEvent(j);
+                                }
                             }
                         }
                     }
