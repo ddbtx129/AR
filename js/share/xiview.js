@@ -307,7 +307,7 @@ var viewmode = 'marker';
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
                                 attribute.fireworktimer = fw[k].fireworktimer;
-                                console.log(attribute.pos);
+
                                 particle[k] = attribute;
                             }
   
@@ -536,7 +536,6 @@ var viewmode = 'marker';
                 dataObj[idx].isPng = !!(dataObj[idx].path || '').match(/\.png$/i);
                 dataObj[idx].isGif = !!(dataObj[idx].path || '').match(/\.gif$/i);
                 dataObj[idx].isMp4 = false;
-                console.log(!!(dataObj[idx].path || '').match(/\.mp4$/i));
                 dataObj[idx].isMp4 = !!(dataObj[idx].path || '').match(/\.mp4$/i);
                 dataObj[idx].isGltf = !!(dataObj[idx].path || '').match(/\.gltf$/i);
                 dataObj[idx].isPV = !!(self.arg.PVList);
@@ -2103,7 +2102,7 @@ var viewmode = 'marker';
                         }
 
                         if(!!(webAr.ar.arData[i].isFirework)) {
-                            clearInterval(webAr.fireworks);
+                            webAr.ar.stopFireworksEvent();
                         }
 
                         if (!!(webAr.ar.arData[i].isMp4)) {
@@ -2640,7 +2639,7 @@ var viewmode = 'marker';
                     }
 
                     if (!!(webAr.ar.arData[i].isFirework)) {
-                        clearInterval(webAr.fireworks);
+                        webAr.ar.stopFireworksEvent();
                     }
 
                     webAr.ar.arData[i].wrap.setAttribute('visible', false);
@@ -2751,7 +2750,7 @@ var viewmode = 'marker';
                         }
                     }
                     console.log('stop');
-                    clearInterval(webAr.fireworks);
+                    webAr.ar.stopFireworksEvent();
                 }
             });
 
@@ -2859,6 +2858,10 @@ var viewmode = 'marker';
             }
         },
 
+        stopFireworksEvent: function () {
+            clearInterval(webAr.fireworks);
+        },
+
         createFirework: function (oidx, row) {
 
             function genCirclePoint(radius1,  hei, radius2) {
@@ -2888,7 +2891,6 @@ var viewmode = 'marker';
             var fpos = { x: 0, y: -30, z: 120 };
             //var pos = genCirclePoint(0, -30, 120);
 
-            console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
 
             if(posdata.length >= 3 ){
