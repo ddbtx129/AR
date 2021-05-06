@@ -2726,9 +2726,10 @@ var viewmode = 'marker';
                                 }
                             }
                             var slide = document.getElementById('slideshow').style.display;
-                            console.log(slide);
-                            if (!!(webAr.ar.arData[j].isFirework)) {
-                                webAr.ar.startFireworksEvent(j);
+                            if (slide == 'none') {
+                                if (!!(webAr.ar.arData[j].isFirework)) {
+                                    webAr.ar.startFireworksEvent(j);
+                                }
                             }
                         }
                     }
