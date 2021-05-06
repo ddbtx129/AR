@@ -11,13 +11,12 @@
         init: init,
         tick: tick,
         author: 'fireworks',
-        desc: 'A pretty fireworks!',
+        desc: 'particle-firework',
     });
 
     function init() {
         var self = this;
 
-        //self.$pfOption = {
         self.pfOption = {
             rMaxCount: 1000, rCount: 300, rSpeed: 50, rSpread: 0.2, rLife: 200, rLifeRand: 100, rSize: 3, rColor: '#90ddff', rColors: undefined, rTexture: path + "/images/particle-64-1.png",
             eMaxCount: 2000, eCount: 50, eSize: 3, eColor: '#ff55ff', eColors: undefined, eTexture: path + "/images/particle-64-1.png", eAcc: 40, eAccRand: 10, eLife: 1000, eLifeRand: 100, eGravity: '0 -100 0', eSpeed: '0 80 0', eHeight: -110,
@@ -26,35 +25,30 @@
             useBloom: 1, bMaxCount: 5000, bCount: 200, bCountRand: 100, bColors: undefined, bSize: 2, bTexture: path + "/images/particle-64-1.png", bAcc: 30, bAccRand: 1, bLife: 500, bLifeRand: 200,
         };
 
-        //self.$pfOption = Object.assign(self.$pfOption, self.data.options);
         self.pfOption = Object.assign(self.pfOption, self.data.options);
 
-        //var gravityArr = self.$pfOption.eGravity.split(' ');
-        //self.$pfOption.eGravity = new THREE.Vector3(Number(gravityArr[0]), Number(gravityArr[1]), Number(gravityArr[2]));
         var gravityArr = self.pfOption.eGravity.split(' ');
         self.pfOption.eGravity = new THREE.Vector3(Number(gravityArr[0]), Number(gravityArr[1]), Number(gravityArr[2]));
 
-        //var espeedArr = self.$pfOption.eSpeed.split(' ');
-        //self.$pfOption.eSpeed = new THREE.Vector3(Number(espeedArr[0]), Number(espeedArr[1]), Number(espeedArr[2]));
         var espeedArr = self.pfOption.eSpeed.split(' ');
         self.pfOption.eSpeed = new THREE.Vector3(Number(espeedArr[0]), Number(espeedArr[1]), Number(espeedArr[2]));
 
-        //if (self.$pfOption.eCount > 10000) self.$pfOption.eCount = 10000;
-        //if (!self.$pfOption.usePattern && self.$pfOption.useTrail && self.$pfOption.eCount > 100) self.$pfOption.eCount = 100;
-        //if (self.$pfOption.useBloom && self.$pfOption.bCount > 1000) self.$pfOption.bCount = 1000;
-        //if (self.$pfOption.usePattern && self.$pfOption.eCount > 10000) self.$pfOption.eCount = 10000;
-        if (self.pfOption.eCount > 10000) self.pfOption.eCount = 10000;
-        if (!self.pfOption.usePattern && self.pfOption.useTrail && self.pfOption.eCount > 100) self.pfOption.eCount = 100;
-        if (self.pfOption.useBloom && self.pfOption.bCount > 1000) self.pfOption.bCount = 1000;
-        if (self.pfOption.usePattern && self.pfOption.eCount > 10000) self.pfOption.eCount = 10000;
+        if (self.pfOption.eCount > 10000) {
+            self.pfOption.eCount = 10000;
+        }
 
-        //var rMat = new THREE.PointsMaterial({
-        //    size: self.$pfOption.rSize,
-        //    map: new THREE.TextureLoader().load(self.$pfOption.rTexture),
-        //    blending: THREE.AdditiveBlending,
-        //    transparent: true,
-        //    depthTest: false,
-        //});
+        if (!self.pfOption.usePattern && self.pfOption.useTrail && self.pfOption.eCount > 100) {
+            self.pfOption.eCount = 100;
+        }
+
+        if (self.pfOption.useBloom && self.pfOption.bCount > 1000) {
+            self.pfOption.bCount = 1000;
+        }
+
+        if (self.pfOption.usePattern && self.pfOption.eCount > 10000) {
+            self.pfOption.eCount = 10000;
+        }
+
         var rMat = new THREE.PointsMaterial({
             size: self.pfOption.rSize,
             map: new THREE.TextureLoader().load(self.pfOption.rTexture),
@@ -63,16 +57,6 @@
             depthTest: false,
         });
 
-        //if (self.$pfOption.rColors) {
-        //    var carr = [];
-        //    self.$pfOption.rColors.forEach(function (clr) {
-        //        carr.push(new THREE.Color(clr));
-        //    });
-        //    self.$pfOption.rColors = carr;
-        //    rMat.vertexColors = THREE.VertexColors;
-        //} else {
-        //    rMat.color = new THREE.Color(self.$pfOption.rColor);
-        //};
         if (self.pfOption.rColors) {
             var carr = [];
             self.pfOption.rColors.forEach(function (clr) {
@@ -84,13 +68,6 @@
             rMat.color = new THREE.Color(self.pfOption.rColor);
         };
 
-        //var eMat = new THREE.PointsMaterial({
-        //    size: self.$pfOption.eSize,
-        //    map: new THREE.TextureLoader().load(self.$pfOption.eTexture),
-        //    blending: THREE.AdditiveBlending,
-        //    transparent: true,
-        //    depthTest: false,
-        //});
         var eMat = new THREE.PointsMaterial({
             size: self.pfOption.eSize,
             map: new THREE.TextureLoader().load(self.pfOption.eTexture),
@@ -99,16 +76,6 @@
             depthTest: false,
         });
 
-        //if (self.$pfOption.eColors) {
-        //    var carr = [];
-        //    self.$pfOption.eColors.forEach(function (clr) {
-        //        carr.push(new THREE.Color(clr));
-        //    });
-        //    self.$pfOption.eColors = carr;
-        //    eMat.vertexColors = THREE.VertexColors;
-        //} else {
-        //    eMat.color = new THREE.Color(self.$pfOption.eColor);
-        //};
         if (self.pfOption.eColors) {
             var carr = [];
             self.pfOption.eColors.forEach(function (clr) {
@@ -120,62 +87,20 @@
             eMat.color = new THREE.Color(self.pfOption.eColor);
         };
 
-        //self.$pfData = {
-        //    rPoints: [],
-        //    rColors: [],
-        //    ePoints: [],
-        //    eColors: [],
-        //    tPoints: [],
-        //    tColors: [],
-        //    bPoints: [],
-        //    bColors: [],
-        //    pPoints: [],
-        //    pColors: [],
-        //    height: 0,
-        //    level: 0,
-        //    levels: {
-        //        rocket: 0,
-        //        explore: 1,
-        //        bloom: 2,
-        //    },
-        //    rMat: rMat,
-        //    eMat: eMat,
-        //    time: 0,
-        //};
         self.pfData = {
             rPoints: [], rColors: [], ePoints: [], eColors: [], tPoints: [], tColors: [], bPoints: [], bColors: [], pPoints: [], pColors: [], height: 0, level: 0,
             levels: { rocket: 0, explore: 1, bloom: 2, },
             rMat: rMat, eMat: eMat, time: 0,
         };
 
-        //self.$pfRocket = new THREE.Points(new THREE.Geometry(), rMat);
-        //self.$pfExplore = new THREE.Points(new THREE.Geometry(), eMat);
-        //var particlemagic = new THREE.Group();
-        //particlemagic.add(self.$pfRocket);
-        //particlemagic.add(self.$pfExplore);
         self.pfRocket = new THREE.Points(new THREE.Geometry(), rMat);
         self.pfExplore = new THREE.Points(new THREE.Geometry(), eMat);
         var particlemagic = new THREE.Group();
         particlemagic.add(self.pfRocket);
         particlemagic.add(self.pfExplore);
 
-        //if (self.$pfOption.usePattern) {
-        //    genPattern.call(self);
-
-        //    self.pMat = new THREE.PointsMaterial({
-        //        size: self.$pfOption.eSize,
-        //        vertexColors: THREE.VertexColors,
-        //        map: new THREE.TextureLoader().load(self.$pfOption.eTexture),
-        //        blending: THREE.AdditiveBlending,
-        //        transparent: true,
-        //        depthTest: false,
-        //    });
-        //    self.$pfPattern = new THREE.Points(new THREE.Geometry(), self.pMat);
-        //    particlemagic.add(self.$pfPattern);
-        //};
         if (self.pfOption.usePattern) {
             genPattern.call(self);
-
             self.pMat = new THREE.PointsMaterial({
                 size: self.pfOption.eSize,
                 vertexColors: THREE.VertexColors,
@@ -188,25 +113,6 @@
             particlemagic.add(self.pfPattern);
         };
 
-        //if (self.$pfOption.useTrail) {
-        //    self.tMat = new THREE.PointsMaterial({
-        //        size: self.$pfOption.tSize,
-        //        map: new THREE.TextureLoader().load(self.$pfOption.eTexture),
-        //        blending: THREE.AdditiveBlending,
-        //        opacity: self.$pfOption.tOpacity,
-        //        transparent: true,
-        //        depthTest: false,
-        //    });
-
-        //    if (self.$pfOption.eColors) {
-        //        self.tMat.vertexColors = THREE.VertexColors;
-        //    } else {
-        //        self.tMat.color = new THREE.Color(self.$pfOption.eColor);
-        //    };
-
-        //    self.$pfTrail = new THREE.Points(new THREE.Geometry(), self.tMat);
-        //    particlemagic.add(self.$pfTrail);
-        //};
         if (self.pfOption.useTrail) {
             self.tMat = new THREE.PointsMaterial({
                 size: self.pfOption.tSize,
@@ -227,33 +133,6 @@
             particlemagic.add(self.pfTrail);
         };
 
-        //if (self.$pfOption.useBloom) {
-        //    self.bMat = new THREE.PointsMaterial({
-        //        size: self.$pfOption.bSize,
-        //        map: new THREE.TextureLoader().load(self.$pfOption.bTexture),
-        //        blending: THREE.AdditiveBlending,
-        //        transparent: true,
-        //        depthTest: false,
-        //    });
-
-        //    if (self.$pfOption.bColors) {
-        //        var carr = [];
-        //        self.$pfOption.bColors.forEach(function (clr) {
-        //            carr.push(new THREE.Color(clr));
-        //        });
-        //        self.$pfOption.bColors = carr;
-        //        self.bMat.vertexColors = THREE.VertexColors;
-        //    } else {
-        //        if (self.$pfOption.eColors) {
-        //            self.bMat.vertexColors = THREE.VertexColors;
-        //        } else {
-        //            self.bMat.color = new THREE.Color(self.$pfOption.eColor);
-        //        }
-        //    };
-
-        //    self.$pfBloom = new THREE.Points(new THREE.Geometry(), self.bMat);
-        //    particlemagic.add(self.$pfBloom);
-        //};
         if (self.pfOption.useBloom) {
             self.bMat = new THREE.PointsMaterial({
                 size: self.pfOption.bSize,
@@ -288,29 +167,20 @@
     function tick() {
         var self = this;
         var time = arguments[0][0];
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
         var deltaTime = arguments[0][1];
         pfData.time += deltaTime;
 
-        //if (pfData.height < self.$pfOption.eHeight) {
-        //    pfData.level = pfData.levels.rocket;
-        //    genRocket.call(self, deltaTime);
-        //} else {
-        //    if (pfData.level < pfData.levels.explore) {
-        //        if (!pfOption.usePattern) genExplore.call(self);
-        //        pfData.level = pfData.levels.explore;
-        //    };
-        //};
         if (pfData.height < self.pfOption.eHeight) {
             pfData.level = pfData.levels.rocket;
             genRocket.call(self, deltaTime);
         } else {
             if (pfData.level < pfData.levels.explore) {
-                if (!pfOption.usePattern) genExplore.call(self);
+                if (!pfOption.usePattern) {
+                    genExplore.call(self);
+                }
                 pfData.level = pfData.levels.explore;
             };
         };
@@ -323,7 +193,9 @@
             if (!pfOption.usePattern) {
                 genTrails.call(self, deltaTime);
                 exploreTick.call(self, deltaTime);
-                if (pfOption.useTrail) trailTick.call(self, deltaTime);
+                if (pfOption.useTrail) {
+                    trailTick.call(self, deltaTime);
+                }
             } else {
                 patternTick.call(self, deltaTime);
             };
@@ -341,8 +213,6 @@
     function genPattern() {
 
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
         var img = document.getElementById(pfOption.pAssetId);
@@ -359,7 +229,6 @@
         var pRot = new THREE.Vector3(1, 0, 0);
         var pRotR = pfOption.pRotationX * Math.PI / 180;
 
-        //for (var i = 0; self.$pfData.pPoints.length < self.$pfOption.eCount; i++) {
         for (var i = 0; self.pfData.pPoints.length < self.pfOption.eCount; i++) {
             var ix = Math.floor(Math.random() * img.width);
             var iz = Math.floor(Math.random() * img.height);
@@ -378,7 +247,6 @@
                 p.life = pfOption.pLife + genRandom() * pfOption.pLifeRand;
                 p.dur = pfOption.pDuration;
                 p.rand = Math.random() * 0.1 + 0.9;
-            //    self.$pfData.pPoints.push(p);
                 self.pfData.pPoints.push(p);
             };
         };
@@ -387,8 +255,6 @@
     function patternTick(deltaTime) {
 
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
         var timeUnit = pfData.time == 0 ? 0.16 : deltaTime / 1000;
@@ -425,14 +291,11 @@
         newGeo.vertices = varr;
         newGeo.colors = carr;
 
-    //    self.$pfPattern.geometry = newGeo;
         self.pfPattern.geometry = newGeo;
     };
 
     function genTrails(deltaTime) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
@@ -450,7 +313,6 @@
                 if (pfOption.eColors) {
                     var clr = pfOption.eColors[i % pfOption.eColors.length];
                     p.clr = clr;
-                //    self.$pfData.tColors.push(clr);
                     self.pfData.tColors.push(clr);
                 };
             };
@@ -459,8 +321,6 @@
 
     function trailTick(deltaTime) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
         var timeUnit = pfData.time == 0 ? 0.16 : deltaTime / 1000;
@@ -487,16 +347,15 @@
         var newGeo = new THREE.Geometry();
         newGeo.vertices = varr;
 
-        if (pfOption.eColors) newGeo.colors = carr;
+        if (pfOption.eColors) {
+            newGeo.colors = carr;
+        }
 
-    //    self.$pfTrail.geometry = newGeo;
         self.pfTrail.geometry = newGeo;
     };
 
     function genBloom(particle) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
@@ -514,11 +373,9 @@
             if (pfOption.bColors) {
                 var clr = pfOption.bColors[i % pfOption.bColors.length];
                 p.clr = clr;
-            //    self.$pfData.bColors.push(clr);
                 self.pfData.bColors.push(clr);
             } else if (pfOption.eColors) {
                 p.clr = particle.clr;
-                //self.$pfData.bColors.push(p.clr);
                 self.pfData.bColors.push(p.clr);
             };
         };
@@ -526,8 +383,6 @@
 
     function bloomTick(deltaTime) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
@@ -554,23 +409,22 @@
 
         var newGeo = new THREE.Geometry();
         newGeo.vertices = varr;
-        if (pfOption.bColors || pfOption.eColors) newGeo.colors = carr;
 
-    //    self.$pfBloom.geometry = newGeo;
+        if (pfOption.bColors || pfOption.eColors) {
+            newGeo.colors = carr;
+        }
+
         self.pfBloom.geometry = newGeo;
     };
 
     function rocketTick(deltaTime) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
         var timeUnit = pfData.time == 0 ? 0.16 : deltaTime / 1000;
 
         pfData.height += pfOption.rSpeed * timeUnit;
-        //self.$pfRocket.position.y = pfData.height;
         self.pfRocket.position.y = pfData.height;
 
         var parr = [];
@@ -587,23 +441,24 @@
                 p.pos = p.pos.add(pfOption.eGravity.clone().multiplyScalar(timeUnit));
                 parr.push(p);
                 varr.push(p.pos);
-                if (pfOption.rColors) carr.push(p.clr);
+                if (pfOption.rColors) {
+                    carr.push(p.clr);
+                }
             };
         };
         pfData.rPoints = parr;
         var newGeo = new THREE.Geometry();
         newGeo.vertices = varr;
-        if (pfOption.rColors) newGeo.colors = carr;
+        if (pfOption.rColors) {
+            newGeo.colors = carr;
+        }
 
-    //    self.$pfRocket.geometry = newGeo;
         self.pfRocket.geometry = newGeo;
 
     };
 
     function exploreTick(deltaTime) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
         var timeUnit = pfData.time == 0 ? 0.16 : deltaTime / 1000;
@@ -625,23 +480,22 @@
                 if (pfOption.eColors) carr.push(p.clr);
             } else if (pfOption.useBloom) {
                 genBloom.call(self, p);
-            //    self.$pfData.level = self.$pfData.levels.bloom;
                 self.pfData.level = self.pfData.levels.bloom;
             };
         };
         pfData.ePoints = parr;
         var newGeo = new THREE.Geometry();
         newGeo.vertices = varr;
-        if (pfOption.eColors) newGeo.colors = carr;
 
-    //    self.$pfExplore.geometry = newGeo;
+        if (pfOption.eColors) {
+            newGeo.colors = carr;
+        }
+
         self.pfExplore.geometry = newGeo;
     };
 
     function genRocket(deltaTime) {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
@@ -667,7 +521,6 @@
                     clr = pfOption.rColors[i % pfOption.rColors.length];
                 };
                 p.clr = clr;
-            //    self.$pfData.rColors.push(clr);
                 self.pfData.rColors.push(clr);
             };
         };
@@ -675,8 +528,6 @@
 
     function genExplore() {
         var self = this;
-        //var pfData = self.$pfData;
-        //var pfOption = self.$pfOption;
         var pfData = self.pfData;
         var pfOption = self.pfOption;
 
@@ -694,7 +545,6 @@
             if (pfOption.eColors) {
                 var clr = pfOption.eColors[i % pfOption.eColors.length];
                 p.clr = clr;
-            //    self.$pfData.eColors.push(clr);
                 self.pfData.eColors.push(clr);
             };
         };
