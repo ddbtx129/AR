@@ -43,7 +43,7 @@ var viewmode = 'marker';
     var displaysound = 1;
     //var videosound = 1;
 
-    var fireworks;  //  花火タイマー
+    var fireworksIntervali;  //  花火タイマー
     var particlestart = new Array;
 
     var ar = {
@@ -2851,7 +2851,7 @@ var viewmode = 'marker';
             }
 
             if(arrData > -1) {
-                webAr.fireworks = setInterval(function () {
+                webAr.fireworksIntervali = setInterval(function () {
                     //webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
                     webAr.ar.createFirework(oidx, arrData);
                 }, timer);
@@ -2859,7 +2859,7 @@ var viewmode = 'marker';
         },
 
         stopFireworksEvent: function () {
-            clearInterval(webAr.fireworks);
+            clearInterval(webAr.fireworksIntervali);
         },
 
         createFirework: function (oidx, row) {
@@ -3297,7 +3297,7 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
-    webAr.fireworks = fireworks;
+    webAr.fireworksIntervali = fireworksIntervali;
     webAr.particlestart = particlestart;
 
     webAr.ar.setGyroValuEvents();
