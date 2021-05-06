@@ -2841,17 +2841,21 @@ var viewmode = 'marker';
             }
 
             var timer = 2000;
+            var arrData = -1;
 
             for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                console.log(i);
                 if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
                     timer = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-                    console.log(timer);
-                    webAr.fireworks = setInterval(function () {
-                        //webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
-                        webAr.ar.createFirework(oidx, i);
-                    }, timer);
+                    arrData = i;
+                    break;
                 }
+            }
+
+            if(arrData > -1) {
+                webAr.fireworks = setInterval(function () {
+                    //webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
+                    webAr.ar.createFirework(oidx, arrData);
+                }, timer);
             }
         },
 
