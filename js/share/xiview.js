@@ -2750,8 +2750,8 @@ var viewmode = 'marker';
                         }
                     }
                     console.log(-1);
-                    webAr.ar.stopFireworksEvent();
                 }
+                webAr.ar.stopFireworksEvent();
             });
 
             function VideoStop(oidx) {
