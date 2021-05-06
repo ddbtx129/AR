@@ -292,13 +292,12 @@ var viewmode = 'marker';
 
                         var file = 'particle/fireworks_' + args[idx].FireWorkList + '.xml';
                         var fsize = file.fileSize;
+                        var particle = new Array();
 
                         if (fsize != -1) {
 
                             var fw = {};
                             fw = this.readFireworksXml(file);
-
-                            var particle = new Array();
 
                             for (var k = 0; k < fw.length; k++) {
 
@@ -311,9 +310,10 @@ var viewmode = 'marker';
                                 console.log(attribute.pos);
                                 particle[k] = attribute;
                             }
-
-                            args[idx].Particlefireworks = particle;
+  
                         }
+
+                        args[idx].Particlefireworks = particle;
 
                     } else {
                         particlestart[idx] = -1;
@@ -2826,7 +2826,7 @@ var viewmode = 'marker';
                 ///*fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');*/
                 //fws3.attr('particle-firework', 'preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],useTrail:1,useBloom:1,eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4}');
                 //$('#arFirework').append(fws3);
-                console.log(webAr.ar.args[oidx].Particlefireworks.length);
+
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
                     
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
@@ -2843,17 +2843,16 @@ var viewmode = 'marker';
             var timer = 2000;
 
             for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-
+                console.log(i);
                 if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
                     timer = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-
+                    console.log(timer);
                     webAr.fireworks = setInterval(function () {
                         //webAr.ar.createFirework(webAr.ar.args[oidx].Particlefireworks[i]);
                         webAr.ar.createFirework(oidx, i);
                     }, timer);
                 }
             }
-
         },
 
         createFirework: function (oidx, row) {
@@ -2884,8 +2883,7 @@ var viewmode = 'marker';
 
             var fpos = { x: 0, y: -30, z: 120 };
             //var pos = genCirclePoint(0, -30, 120);
-            console.log(oidx);
-            console.log(row);
+
             console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
 
