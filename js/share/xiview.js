@@ -2830,14 +2830,10 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
                     
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
-                        //var fws = $('<a-entity></a-entity>');
                         var fws = document.createElement('a-entity');
                         fws.setAttribute('ID', 'arFirework' + (i).toString());
                         fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
                         fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
-                        //$('#arFirework').append(fws);
-
-                        let el = document.getElementById('arScene');
                         document.getElementById('arScene').appendChild(fws);
                     }
                 }
@@ -2887,8 +2883,8 @@ var viewmode = 'marker';
 
             function genFireWork(pos) {
                 var fws = document.createElement('a-entity');
-                fws.attr('position', pos.x + ' ' + pos.y + ' ' + pos.z);
-                fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
+                fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
+                fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 document.getElementById('arScene').appendChild(fws);
                 console.log(0);
             };
