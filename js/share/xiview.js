@@ -2726,7 +2726,7 @@ var viewmode = 'marker';
                                         document.getElementById("swPlay").style.display = 'inline';
                                     }
                                 }
-
+                                console.log(1);
                                 if (!!(webAr.ar.arData[j].isFirework)) {
                                     webAr.ar.startFireworksEvent(j);
                                 }
@@ -2749,7 +2749,7 @@ var viewmode = 'marker';
                             VideoStop(j);
                         }
                     }
-
+                    console.log(-1);
                     webAr.ar.stopFireworksEvent();
                 }
             });
