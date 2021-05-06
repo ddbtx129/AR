@@ -2749,7 +2749,7 @@ var viewmode = 'marker';
                             VideoStop(j);
                         }
                     }
-                    console.log('stop');
+
                     webAr.ar.stopFireworksEvent();
                 }
             });
@@ -2886,6 +2886,8 @@ var viewmode = 'marker';
                 fws.attr('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 //$('a-scene').append(fws);
                 $('#arFirework').append(fws);
+
+                console.log(0);
             };
 
             var fpos = { x: 0, y: -30, z: 120 };
