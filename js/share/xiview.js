@@ -861,7 +861,7 @@ var viewmode = 'marker';
                     for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                         webAr.ar.videoState[i] = 0;
                     }
-                    this.setDiplayBtn(0);
+                    webAr.ar.setDiplayBtn(0);
                 }
             });
 
@@ -872,7 +872,7 @@ var viewmode = 'marker';
                     for (var i = 0; i < webAr.ar.arg.Multi; i++) {
                         webAr.ar.videoState[i] = 0;
                     }
-                    this.setDiplayBtn(1);
+                    webAr.ar.setDiplayBtn(1);
                 }
             });
         },
@@ -2712,24 +2712,22 @@ var viewmode = 'marker';
                     for (var i = 0; i < marker.length; i++) {
                         var j =  Number(marker[i]) - 1;
                         if(j >= 0) {
-                            if (webAr.ar != null && webAr.ar.arData != null) {
-                                if (!!(webAr.ar.arData[j].isMp4)) {
-                                    var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
-                                    if (webAr.ar.videoState[j] != 3) {
-                                        video.pause();
-                                        webAr.ar.videoState[j] = 1;
-                                        var objnm = '';
-                                        if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
-                                            objnm = video.getAttribute('object-name');
-                                        }
-                                        (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
-                                        document.getElementById("swPlay").style.display = 'inline';
+                            if (!!(webAr.ar.arData[j].isMp4)) {
+                                var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
+                                if (webAr.ar.videoState[j] != 3) {
+                                    video.pause();
+                                    webAr.ar.videoState[j] = 1;
+                                    var objnm = '';
+                                    if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                                        objnm = video.getAttribute('object-name');
                                     }
+                                    (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
+                                    document.getElementById("swPlay").style.display = 'inline';
                                 }
-                                console.log(1);
-                                if (!!(webAr.ar.arData[j].isFirework)) {
-                                    webAr.ar.startFireworksEvent(j);
-                                }
+                            }
+
+                            if (!!(webAr.ar.arData[j].isFirework)) {
+                                webAr.ar.startFireworksEvent(j);
                             }
                         }
                     }
@@ -2749,22 +2747,19 @@ var viewmode = 'marker';
                             VideoStop(j);
                         }
                     }
-                    console.log(-1);
                 }
                 webAr.ar.stopFireworksEvent();
             });
 
             function VideoStop(oidx) {
                 if (oidx > -1) {
-                    if (webAr.ar != null && webAr.ar.arData != null) {
-                        if (!!(webAr.ar.arData[oidx].isMp4)) {
-                            var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
-                            video.pause();
-                            if (webAr.ar.videoState[oidx] == 3) {
-                                webAr.ar.videoState[oidx] = 2;
-                            } else {
-                                webAr.ar.videoState[oidx] = 1;
-                            }
+                    if (!!(webAr.ar.arData[oidx].isMp4)) {
+                        var video = document.querySelector('#source' + (((oidx + 1) * 100) + webAr.ar.arData[oidx].srcno.obj).toString());
+                        video.pause();
+                        if (webAr.ar.videoState[oidx] == 3) {
+                            webAr.ar.videoState[oidx] = 2;
+                        } else {
+                            webAr.ar.videoState[oidx] = 1;
                         }
                     }
                 }
@@ -2861,7 +2856,6 @@ var viewmode = 'marker';
                 fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
                 fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 document.getElementById('arScene').appendChild(fws);
-                console.log(0);
             };
 
             var fpos = { x: 0, y: -30, z: 120 };
