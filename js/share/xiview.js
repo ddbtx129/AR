@@ -2884,7 +2884,8 @@ var viewmode = 'marker';
 
             var fpos = { x: 0, y: -30, z: 120 };
             //var pos = genCirclePoint(0, -30, 120);
-            var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).split(',');
+            console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
+            var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
 
             if(posdata.length >= 3 ){
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
