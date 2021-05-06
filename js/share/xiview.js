@@ -2750,7 +2750,7 @@ var viewmode = 'marker';
                             VideoStop(j);
                         }
                     }
-                    console.log('stop';)
+                    console.log('stop');
                     clearInterval(webAr.fireworks);
                 }
             });
