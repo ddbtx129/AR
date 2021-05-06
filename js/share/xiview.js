@@ -308,7 +308,7 @@ var viewmode = 'marker';
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
                                 attribute.fireworktimer = fw[k].fireworktimer;
-
+                                console.log(attribute.pos);
                                 particle[k] = attribute;
                             }
 
