@@ -2486,27 +2486,29 @@ var viewmode = 'marker';
 
                         for (var i = 0; i < marker.length; i++) {
                             var j = Number(marker[i]) - 1;
-                            if (!(val[j].isAnime)) {
-                                if (!!(val[j].isLogo)) {
-                                    if (val[j].path) {
-                                        self.arData[j].logo.emit('turn0');
+                            if(j > -1) {
+                                if (!(val[j].isAnime)) {
+                                    if (!!(val[j].isLogo)) {
+                                        if (val[j].path) {
+                                            self.arData[j].logo.emit('turn0');
+                                        }
                                     }
-                                }
-                            } else {
-                                if (val[j].isAnime == 11) {
-                                    if (val[j].path && val[j].isAnime == 11) {
-                                        self.arData[j].logo.emit('turn1');
+                                } else {
+                                    if (val[j].isAnime == 11) {
+                                        if (val[j].path && val[j].isAnime == 11) {
+                                            self.arData[j].logo.emit('turn1');
+                                        }
                                     }
-                                }
-                                if (val[j].isAnime == 12) {
-                                    if (val[j].path && val[j].isAnime == 12) {
-                                        self.arData[j].logo.emit('turn2');
+                                    if (val[j].isAnime == 12) {
+                                        if (val[j].path && val[j].isAnime == 12) {
+                                            self.arData[j].logo.emit('turn2');
+                                        }
                                     }
-                                }
-                                if (val[j].isAnime == 13) {
-                                    if (val[j].path && val[j].isAnime == 13) {
-                                        self.arData[j].logo.emit('pos3');
-                                        self.arData[j].logo.emit('scale3');
+                                    if (val[j].isAnime == 13) {
+                                        if (val[j].path && val[j].isAnime == 13) {
+                                            self.arData[j].logo.emit('pos3');
+                                            self.arData[j].logo.emit('scale3');
+                                        }
                                     }
                                 }
                             }
@@ -2702,7 +2704,7 @@ var viewmode = 'marker';
             });
 
             window.addEventListener('focus', function (e) {
-                if(webAr.loaderEnd != 0){ 
+                if(webAr.loaderEnd != 0) { 
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
                         var j = (Number(marker[i]) - 1) < 0 ? 0 : Number(marker[i]) - 1;
