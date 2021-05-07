@@ -2833,7 +2833,6 @@ var viewmode = 'marker';
                 if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
                     fireworksidx.push(i);
                     arrData = i;
-                    break;
                 }
             }
 
