@@ -2806,10 +2806,16 @@ var viewmode = 'marker';
                         let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                         let fTimer = webAr.ar.getRandomIntInclusive()
+                        var fpos = { x: 0, y: -110, z: 250 };
+                        var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
+                        if (posdata.length >= 3) {
+                            fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
+                        }
                         setInterval(() => {
                             var fws = document.createElement('a-entity');
                             fws.setAttribute('ID', 'arFirework' + (i).toString());
-                            fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
+                            //fws.setAttribute('position', fpos.x + ' ' + fpos.y + ' ' + fpos.z);
+                            fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                             document.getElementById('arScene').appendChild(fws);
                         }, fTimer);
@@ -2835,10 +2841,11 @@ var viewmode = 'marker';
                 for (var i = 0; i < fireworksidx.length; i++) {
                     let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                     let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-                    let fTimer = webAr.ar.getRandomIntInclusive()
+                    let fTimer = webAr.ar.getRandomIntInclusive(min, max);
+                    console.log(i);
                     webAr.fireworksInterval = setInterval(() => {
                         webAr.ar.createFirework(oidx, fireworksidx[i]);
-                    }, timer);
+                    }, fTimer);
                 }
             }
         },
@@ -2866,7 +2873,8 @@ var viewmode = 'marker';
 
             function genFireWork(pos) {
                 var fws = document.createElement('a-entity');
-                fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
+                //fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
+                fws.setAttribute('position', AFRAME.utils.coordinates.stringify(pos));
                 fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 document.getElementById('arScene').appendChild(fws);
             };
