@@ -2838,8 +2838,11 @@ var viewmode = 'marker';
                     let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                     let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                     let fTimer = webAr.ar.getRandomIntInclusive(min, max);
+                    console.log(min);
+                    console.log(max);
                     console.log(fTimer);
                     console.log(fireworksidx[i]);
+                    console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
                     webAr.fireworksInterval.push(setInterval(() => {
                         webAr.ar.createFirework(oidx, fireworksidx[i]);
                     }, fTimer));
@@ -2866,7 +2869,7 @@ var viewmode = 'marker';
                     z = z * -1;
                 };
                 //var p = new THREE.Vector3(x, hei, z);
-                var p = new THREE.Vector3(x, hei, -250);
+                var p = new THREE.Vector3(x, hei, -180);
                 return p;
             };
 
