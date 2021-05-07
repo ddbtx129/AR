@@ -44,7 +44,7 @@ var viewmode = 'marker';
     //var videosound = 1;
 
     var fireworksIntervali;  //  花火タイマー
-    var particlestart = new Array;
+    var particlestart = new Array();
 
     var ar = {
 
@@ -306,7 +306,8 @@ var viewmode = 'marker';
                                 attribute.kind = fw[k].kind;
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
-                                attribute.fireworktimer = fw[k].fireworktimer;
+                                attribute.fireworktimer = (!!(fw[k].fireworktimer) ? fw[k].fireworktimer : 0);
+                                attribute.timerrange = (!!(fw[k].timerrange) ? fw[k].timerrange : attribute.fireworktimer);
 
                                 particle[k] = attribute;
                             }
@@ -2801,13 +2802,17 @@ var viewmode = 'marker';
             if (webAr.particlestart[oidx] == 0) {
 
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                    
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
-                        var fws = document.createElement('a-entity');
-                        fws.setAttribute('ID', 'arFirework' + (i).toString());
-                        fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
-                        fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
-                        document.getElementById('arScene').appendChild(fws);
+                        let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
+                        let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
+                        let fTimer = webAr.ar.getRandomIntInclusive()
+                        setInterval(() => {
+                            var fws = document.createElement('a-entity');
+                            fws.setAttribute('ID', 'arFirework' + (i).toString());
+                            fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
+                            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
+                            document.getElementById('arScene').appendChild(fws);
+                        }, fTimer);
                     }
                 }
 
@@ -2816,24 +2821,30 @@ var viewmode = 'marker';
 
             var timer = 2000;
             var arrData = -1;
+            var fireworksidx = new Array();
 
             for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
                 if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
-                    timer = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
+                    fireworksidx.push(i);
                     arrData = i;
                     break;
                 }
             }
 
-            if(arrData > -1) {
-                webAr.fireworksIntervali = setInterval(() => {
-                    webAr.ar.createFirework(oidx, arrData);
-                }, timer);
+            if (arrData > -1) {
+                for (var i = 0; i < fireworksidx.length; i++) {
+                    let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
+                    let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
+                    let fTimer = webAr.ar.getRandomIntInclusive()
+                    webAr.fireworksInterval = setInterval(() => {
+                        webAr.ar.createFirework(oidx, fireworksidx[i]);
+                    }, timer);
+                }
             }
         },
 
         stopFireworksEvent: function () {
-            clearInterval(webAr.fireworksIntervali);
+            clearInterval(webAr.fireworksInterval);
         },
 
         createFirework: function (oidx, row) {
@@ -3035,6 +3046,7 @@ var viewmode = 'marker';
                 var cPos = xmldata.getElementsByTagName("pos");
                 var cPparticlefirework = xmldata.getElementsByTagName("particlefirework");
                 var cFireworktimer = xmldata.getElementsByTagName("fireworktimer");
+                var cTimerrange = xmldata.getElementsByTagName("timerrange");
 
                 var len = cKind.length;
                 for (var i = 0; i < len; i++) {
@@ -3043,7 +3055,8 @@ var viewmode = 'marker';
                         kind: (cKind[i] != null) && cKind[i].textContent,
                         pos: (cPos[i] != null) && cPos[i].textContent,
                         particlefirework: (cPparticlefirework[i] != null) && cPparticlefirework[i].textContent,
-                        fireworktimer: (cFireworktimer[i] != null) && cFireworktimer[i].textContent
+                        fireworktimer: (cFireworktimer[i] != null) && cFireworktimer[i].textContent,
+                        timerrange: (cTimerrange[i] != null) && cTimerrange[i].textContent
                     };
                 };
 
