@@ -2842,7 +2842,7 @@ var viewmode = 'marker';
                     console.log(max);
                     console.log(fTimer);
                     console.log(fireworksidx[i]);
-                    console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
+                    console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
                     webAr.fireworksInterval.push(setInterval(() => {
                         webAr.ar.createFirework(oidx, fireworksidx[i]);
                     }, fTimer));
