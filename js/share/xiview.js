@@ -43,7 +43,7 @@ var viewmode = 'marker';
     var displaysound = 1;
     //var videosound = 1;
 
-    var fireworksIntervali;  //  花火タイマー
+    var fireworksInterval = new Array();  //  花火タイマー
     var particlestart = new Array();
 
     var ar = {
@@ -3285,7 +3285,7 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
-    webAr.fireworksIntervali = fireworksIntervali;
+    webAr.fireworksInterval = fireworksInterval;
     webAr.particlestart = particlestart;
 
     webAr.ar.setGyroValuEvents();
