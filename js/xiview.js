@@ -2801,6 +2801,9 @@ var viewmode = 'marker';
 
             if (webAr.particlestart[oidx] == 0) {
 
+                var arrData = -1;
+                var fireworksidx = new Array();
+
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
                         let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
@@ -2819,38 +2822,34 @@ var viewmode = 'marker';
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                             document.getElementById('arScene').appendChild(fws);
                         }, fTimer);
+                    } else if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
+                        fireworksidx.push(i);
+                        arrData = i;
                     }
                 }
 
                 webAr.particlestart[oidx] = 1;
             }
 
-            var timer = 2000;
-            var arrData = -1;
-            var fireworksidx = new Array();
-
-            for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
-                    fireworksidx.push(i);
-                    arrData = i;
-                }
-            }
+            webAr.fireworksInterval = new Array();
 
             if (arrData > -1) {
                 for (var i = 0; i < fireworksidx.length; i++) {
                     let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                     let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                     let fTimer = webAr.ar.getRandomIntInclusive(min, max);
-                    console.log(i);
-                    webAr.fireworksInterval = setInterval(() => {
+                    console.log(fireworksidx[i]);
+                    webAr.fireworksInterval.push(setInterval(() => {
                         webAr.ar.createFirework(oidx, fireworksidx[i]);
-                    }, fTimer);
+                    }, fTimer));
                 }
             }
         },
 
         stopFireworksEvent: function () {
-            clearInterval(webAr.fireworksInterval);
+            for (var i = 0; i < webAr.fireworksInterval.length; i++) {
+                clearInterval(webAr.fireworksInterval[i]);
+            }
         },
 
         createFirework: function (oidx, row) {
@@ -2866,7 +2865,7 @@ var viewmode = 'marker';
                     z = z * -1;
                 };
                 //var p = new THREE.Vector3(x, hei, z);
-                var p = new THREE.Vector3(x, hei, -180);
+                var p = new THREE.Vector3(x, hei, -250);
                 return p;
             };
 
