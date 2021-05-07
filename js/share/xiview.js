@@ -2807,7 +2807,7 @@ var viewmode = 'marker';
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                         let fTimer = webAr.ar.getRandomIntInclusive()
                         var fpos = { x: 0, y: -110, z: 250 };
-                        var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
+                        var posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
                         if (posdata.length >= 3) {
                             fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
                         }
