@@ -2835,8 +2835,8 @@ var viewmode = 'marker';
 
             if (arrData > -1) {
                 for (var i = 0; i < fireworksidx.length; i++) {
-                    let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
-                    let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
+                    let min = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].timerrange);
+                    let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
                     let fTimer = webAr.ar.getRandomIntInclusive(min, max);
                     console.log(min);
                     console.log(max);
