@@ -2822,7 +2822,7 @@ var viewmode = 'marker';
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                             document.getElementById('arScene').appendChild(fws);
                         }, fTimer);
-                    } else i                if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
+                    } else if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
                         fireworksidx.push(i);
                         arrData = i;
                     }
@@ -2838,6 +2838,7 @@ var viewmode = 'marker';
                     let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                     let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                     let fTimer = webAr.ar.getRandomIntInclusive(min, max);
+                    console.log(fTimer);
                     console.log(fireworksidx[i]);
                     webAr.fireworksInterval.push(setInterval(() => {
                         webAr.ar.createFirework(oidx, fireworksidx[i]);
