@@ -2810,8 +2810,8 @@ var viewmode = 'marker';
                         let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                         let fTimer = webAr.ar.getRandomIntInclusive()
-                        var fpos = { x: 0, y: -110, z: 250 };
-                        var posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
+                        let fpos = { x: 0, y: -110, z: 250 };
+                        let posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
                         if (posdata.length >= 3) {
                             fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
                         }
@@ -2823,13 +2823,17 @@ var viewmode = 'marker';
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                             document.getElementById('arScene').appendChild(fws);
                         }, fTimer);
-                    } else if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
-                        fireworksidx.push(i);
-                        arrData = i;
-                    }
+                    } 
                 }
 
                 webAr.particlestart[oidx] = 1;
+            }
+
+            for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
+                if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
+                    fireworksidx.push(i);
+                    arrData = i;
+                }
             }
 
             webAr.fireworksInterval = new Array();
@@ -2843,7 +2847,7 @@ var viewmode = 'marker';
                     console.log(max);
                     console.log(fTimer);
                     console.log(fireworksidx[i]);
-/*                    console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);*/
+                    //console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
                     webAr.fireworksInterval.push(setInterval(() => {
                         webAr.ar.createFirework(oidx, fireworksidx[i]);
                     }, fTimer));
