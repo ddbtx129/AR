@@ -2225,36 +2225,36 @@ var viewmode = 'marker';
                 changeAngle(objAngle);
             });
 
-            bR90.addEventListener(self.eventNames.start, e => {
+            bR90.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 timer = setInterval(() => {
                     changeAngle(-(objAngle * 0.1));
                 }, 10);
             });
 
-            bR90.addEventListener(self.eventNames.end, e => {
+            bR90.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            bR90.addEventListener(self.eventNames.move, e => {
+            bR90.addEventListener(self.eventNames.move, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            bR00.addEventListener(self.eventNames.start, e => {
+            bR00.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 timer = setInterval(() => {
                     changeAngle((objAngle * 0.1));
                 }, 10);
             });
 
-            bR00.addEventListener(self.eventNames.end, e => {
+            bR00.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            bR00.addEventListener(self.eventNames.move, e => {
+            bR00.addEventListener(self.eventNames.move, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
@@ -2352,7 +2352,7 @@ var viewmode = 'marker';
             // ↑ 
 
             // UPボタン長押し
-            bUP.addEventListener(self.eventNames.start, e => {
+            bUP.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
@@ -2360,20 +2360,20 @@ var viewmode = 'marker';
                 }, 10);
             });
 
-            bUP.addEventListener(self.eventNames.end, e => {
+            bUP.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
 
-            bUP.addEventListener(self.eventNames.move, e => {
+            bUP.addEventListener(self.eventNames.move, function (e) {
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
 
             // DOWNボタン長押し
-            bDOWN.addEventListener(self.eventNames.start, e => {
+            bDOWN.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
@@ -2381,13 +2381,13 @@ var viewmode = 'marker';
                 }, 10);
             });
 
-            bDOWN.addEventListener(self.eventNames.end, e => {
+            bDOWN.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 bDOWN.classList.remove('active');
                 clearInterval(timer);
             });
 
-            bDOWN.addEventListener(self.eventNames.move, e => {
+            bDOWN.addEventListener(self.eventNames.move, function(e) {
                 e.preventDefault();
                 bDOWN.classList.remove('active');
                 clearInterval(timer);
@@ -2815,7 +2815,7 @@ var viewmode = 'marker';
                         if (posdata.length >= 3) {
                             fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
                         }
-                        setInterval(() => {
+                        setTimeout(function () {
                             var fws = document.createElement('a-entity');
                             fws.setAttribute('ID', 'arFirework' + (i).toString());
                             //fws.setAttribute('position', fpos.x + ' ' + fpos.y + ' ' + fpos.z);
@@ -2848,9 +2848,11 @@ var viewmode = 'marker';
                     console.log(fTimer);
                     console.log(fireworksidx[i]);
                     //console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
-                    webAr.fireworksInterval.push(setInterval(() => {
-                        webAr.ar.createFirework(oidx, fireworksidx[i]);
-                    }, fTimer));
+                    setTimeout(function () {
+                        webAr.fireworksInterval.push(setInterval(function () {
+                            webAr.ar.createFirework(oidx, fireworksidx[i]);
+                        }, fTimer));
+                    }, 1000);
                 }
             }
         },
