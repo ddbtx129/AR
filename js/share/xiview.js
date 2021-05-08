@@ -2806,10 +2806,6 @@ var viewmode = 'marker';
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
                     //console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
-
-                        let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
-                        let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-                        let fTimer = webAr.ar.getRandomIntInclusive(min, max);
                         
                         //console.log(min);
                         //console.log(max);
@@ -2847,6 +2843,10 @@ var viewmode = 'marker';
                             document.getElementById('arScene').appendChild(fws);
                         };
 
+                        let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
+                        let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
+                        let fTimer = webAr.ar.getRandomIntInclusive(min, max);
+
                         setTimeout(firstfireworks, ftimer);
                     } 
                 }
@@ -2869,9 +2869,7 @@ var viewmode = 'marker';
 
                 if (arrData > -1) {
                     for (var i = 0; i < fireworksidx.length; i++) {
-                        let min = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].timerrange);
-                        let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
-                        let fTimer = webAr.ar.getRandomIntInclusive(min, max);
+
                         console.log(min);
                         console.log(max);
                         console.log(fTimer);
@@ -2884,6 +2882,10 @@ var viewmode = 'marker';
                         var nextfireworks = function (i) {
                             webAr.ar.createFirework(oidx, fireworksidx[i]);
                         };
+
+                        let min = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].timerrange);
+                        let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
+                        let fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
                         webAr.fireworksInterval.push(setInterval(nextfireworks, fTimer));
                     }
