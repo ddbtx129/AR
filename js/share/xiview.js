@@ -2832,16 +2832,16 @@ var viewmode = 'marker';
                 webAr.particlestart[oidx] = 1;
             }
 
-            let fireworksidx = new Array();
-
-            for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
-                    fireworksidx.push(i);
-                    arrData = i;
-                }
-            }
-
             setTimeout(function () {
+
+                let fireworksidx = new Array();
+
+                for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
+                    if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
+                        fireworksidx.push(i);
+                        arrData = i;
+                    }
+                }
 
                 webAr.fireworksInterval = new Array();
 
