@@ -2799,36 +2799,35 @@ var viewmode = 'marker';
 
         startFireworksEvent: function (oidx) {
 
+            var arrData = -1;
+
             if (webAr.particlestart[oidx] == 0) {
 
-                var arrData = -1;
-
-
-                for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                    console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
-                    if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
-                        let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
-                        let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-                        let fTimer = webAr.ar.getRandomIntInclusive()
-                        let fpos = { x: 0, y: -110, z: 250 };
-                        let posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
-                        if (posdata.length >= 3) {
-                            fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
-                        }
-                        console.log(min);
-                        console.log(max);
-                        console.log(fTimer);
-                        console.log(i);
-                        setTimeout(function () {
-                            var fws = document.createElement('a-entity');
-                            fws.setAttribute('ID', 'arFirework' + (i).toString());
-                            //fws.setAttribute('position', fpos.x + ' ' + fpos.y + ' ' + fpos.z);
-                            fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
-                            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
-                            document.getElementById('arScene').appendChild(fws);
-                        }, fTimer);
-                    } 
-                }
+                //for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
+                //    console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
+                //    if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
+                //        let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
+                //        let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
+                //        let fTimer = webAr.ar.getRandomIntInclusive(min, max);
+                //        let fpos = { x: 0, y: -110, z: 250 };
+                //        let posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
+                //        if (posdata.length >= 3) {
+                //            fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
+                //        }
+                //        console.log(min);
+                //        console.log(max);
+                //        console.log(fTimer);
+                //        console.log(i);
+                //        setTimeout(function () {
+                //            var fws = document.createElement('a-entity');
+                //            fws.setAttribute('ID', 'arFirework' + (i).toString());
+                //            //fws.setAttribute('position', fpos.x + ' ' + fpos.y + ' ' + fpos.z);
+                //            fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
+                //            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
+                //            document.getElementById('arScene').appendChild(fws);
+                //        }, fTimer);
+                //    } 
+                //}
 
                 webAr.particlestart[oidx] = 1;
             }
