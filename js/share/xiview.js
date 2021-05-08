@@ -2827,8 +2827,9 @@ var viewmode = 'marker';
                         //    document.getElementById('arScene').appendChild(fws);
 
                         //}, fTimer);
+                        
 
-                        var firstfireworks = function (i) {
+                        var firstfireworks = function () {
 
                             let fpos = { x: 0, y: -110, z: 250 };
                             let posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
@@ -2841,7 +2842,8 @@ var viewmode = 'marker';
                             fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
                             document.getElementById('arScene').appendChild(fws);
-                        };
+
+                        }
 
                         let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
@@ -2881,7 +2883,7 @@ var viewmode = 'marker';
 
                         var nextfireworks = function (i) {
                             webAr.ar.createFirework(oidx, fireworksidx[i]);
-                        };
+                        }
 
                         let min = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].timerrange);
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
