@@ -2832,7 +2832,7 @@ var viewmode = 'marker';
                 webAr.particlestart[oidx] = 1;
             }
 
-            setTimeout(function () {
+            //setTimeout(function () {
 
                 let fireworksidx = new Array();
 
@@ -2861,7 +2861,7 @@ var viewmode = 'marker';
 
                     }
                 }
-            }, 3000);
+/*            }, 3000);*/
         },
 
         stopFireworksEvent: function () {
