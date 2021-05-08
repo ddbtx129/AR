@@ -2849,7 +2849,7 @@ var viewmode = 'marker';
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
                         var fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
-                        setTimeout(firstfireworks, ftimer);
+                        setTimeout(firstfireworks, 3000);
                     } 
                 }
 
@@ -2889,7 +2889,7 @@ var viewmode = 'marker';
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
                         var fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
-                        webAr.fireworksInterval.push(setInterval(nextfireworks, fTimer));
+                        webAr.fireworksInterval.push(setInterval(nextfireworks, 3000));
                     }
                 }
 /*            }, 3000);*/
