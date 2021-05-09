@@ -70,7 +70,7 @@
     <kind>1</kind>
     <basepos>0, -120, -250</basepos>
     <pos>40, -90, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#fcf149",eColors:["#3ffc52","#fcd435","#a3fa4b","#ffce48"],eCount:500,eHeight:80,eSize:4,rSize:3,tSize:3,bSize:3,eOpacity:0.7,eAlphaTest:0.3</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#fcf149",eColors:["#3ffc52","#fcd435","#a3fa4b","#ffce48"],eCount:500,eHeight:80,eSize:4,rSize:3,tSize:3,bSize:3,eOpacity:0.7,eAlphaTest:0.3,bOpacity:0.6,bAlphaTest:0.4</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>6000</fireworktimer>
@@ -81,7 +81,7 @@
     <kind>1</kind>
     <basepos>0, -120, -250</basepos>
     <pos>40, -90, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],eCount:500,eHeight:80,eSize:4,rSize:3,tSize:3,bSize:3,eOpacity:0.7,eAlphaTest:0.3</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],eCount:500,eHeight:80,eSize:4,rSize:3,tSize:3,bSize:3,eOpacity:0.7,eAlphaTest:0.3,bOpacity:0.6,bAlphaTest:0.4</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>9000</fireworktimer>
@@ -92,7 +92,7 @@
     <kind>1</kind>
     <basepos>0, -120, -250</basepos>
     <pos>40, -90, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],eCount:500,eHeight:80,eSize:4,rSize:3,tSize:3,bSize:3,eOpacity:0.7,eAlphaTest:0.3</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],eCount:500,eHeight:80,eSize:4,rSize:3,tSize:3,bSize:3,eOpacity:0.7,eAlphaTest:0.3,bOpacity:0.6,bAlphaTest:0.4</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>12000</fireworktimer>
