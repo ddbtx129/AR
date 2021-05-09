@@ -70,7 +70,7 @@
     <kind>1</kind>
     <basepos>0, -110, -250</basepos>
     <pos>20, -110, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#fcf149",eColors:["#fc3f3f","#fca035","#fa4b8e","#ff9548"],eCount:500,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:3</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#fcf149",eColors:["#3ffc52","#fcd435","#a3fa4b","#6dff48"],eCount:500,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:3</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>5000</fireworktimer>
