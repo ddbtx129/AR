@@ -2888,6 +2888,7 @@ var viewmode = 'marker';
                         };
 
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
+                        console.log('Particle-fireworks Interval : ' + fTimer);
                     }
                 }
             }, nexttimeout);
