@@ -21,7 +21,7 @@ var viewmode = 'marker';
     var defwrapPos = { x: 0, y: 0, z: 0 };
     var defwrapScale = { x: 4, y: 4, z: 4 };
     var deflogoScale = { x: 8, y: 6, z: 6 };
-    
+
     var viewAngle = 0;
 
     var objAngle = 5;
@@ -43,13 +43,14 @@ var viewmode = 'marker';
     var displaysound = 1;
     //var videosound = 1;
 
-    var fireworksIntervali;  //  花火タイマー
+    var fireworksInterval = new Array();  //  花火タイマー
     var particlestart = new Array();
+    var fireworksstart = new Array();
 
     var ar = {
 
         init: function () {
-            
+
             loaderEnd = 0;
             document.getElementById("swPlay").style.display = 'none';
             document.getElementById("swSound").style.display = 'none';
@@ -103,26 +104,26 @@ var viewmode = 'marker';
             var msg3 = document.getElementById('mloader3');
             msg3.innerHTML = 'データ読み込み中・・・';
 
-            if(n_idx <= 1) {
+            if (n_idx <= 1) {
                 var msg1 = document.getElementById('mloader1-1');
                 var msg2 = document.getElementById('mloader1-2');
 
                 if (this.arData[0].isMarkerType == 1) {
                     msg1.innerHTML = "対象マーカーを検出し表示します。";
-                    if(viewAngle == 0){
+                    if (viewAngle == 0) {
                         msg2.innerHTML = "マーカーに垂直にしてください。";
                     } else {
                         msg2.innerHTML = "マーカーに平行にしてください。";
                     }
                 } else {
                     msg1.innerHTML = "対象イメージを追跡し表示します。";
-                    if(viewAngle == 0){
+                    if (viewAngle == 0) {
                         msg2.innerHTML = "対象イメージに垂直にしてください。";
                     } else {
                         msg2.innerHTML = "対象イメージに平行にしてください。";
                     }
                 }
-            }        
+            }
         },
 
         setArg: function () {
@@ -153,7 +154,7 @@ var viewmode = 'marker';
             }
 
             if (!!(arg.xd)) {
-                
+
                 var base = {};
                 base = this.readBaseXml('data/' + arg.mo + '/' + arg.x + '.xml');
 
@@ -182,7 +183,7 @@ var viewmode = 'marker';
                     args[idx] = {};
 
                     args[idx].ar = 0;
-                    
+
                     // マーカー OR NFT
                     args[idx].ARList = pcs[idx].ar && (parseInt(pcs[idx].ar, 10).toString());
 
@@ -243,7 +244,7 @@ var viewmode = 'marker';
 
                     // ロゴ表示
                     var logo = pcs[idx].l && ('0000' + (parseInt(pcs[idx].l, 16).toString(10))).slice(-4);
-                    
+
                     args[idx].LogoList = {};
                     args[idx].LogoAnimeList = {};
 
@@ -268,7 +269,7 @@ var viewmode = 'marker';
                             var particle = new Array();
 
                             for (var k = 0; k < parti.length; k++) {
-                                
+
                                 var attribute = {};
 
                                 attribute.idnm = (parti[k].idnm + (((idx + 1) * 100) + (k + 1)).toString());
@@ -304,14 +305,17 @@ var viewmode = 'marker';
                                 var attribute = {};
 
                                 attribute.kind = fw[k].kind;
+                                attribute.basepos = fw[k].basepos;
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
+                                attribute.trail = (!!(fw[k].trail) ? fw[k].trail : 0);
+                                attribute.bloom = (!!(fw[k].bloom) ? fw[k].bloom : 0);
                                 attribute.fireworktimer = (!!(fw[k].fireworktimer) ? fw[k].fireworktimer : 0);
                                 attribute.timerrange = (!!(fw[k].timerrange) ? fw[k].timerrange : attribute.fireworktimer);
 
                                 particle[k] = attribute;
                             }
-  
+
                         }
 
                         args[idx].Particlefireworks = particle;
@@ -320,7 +324,7 @@ var viewmode = 'marker';
                         particlestart[idx] = -1;
                     }
                 }
-                 
+
                 if (arg.Multi > 1) {
                     var bMulti = document.getElementById('imgMulti');
                     bMulti.src = 'asset/markers-w.png';
@@ -371,7 +375,7 @@ var viewmode = 'marker';
                 args[idx].ObjectList1 = args[idx].o1;
                 args[idx].ObjectList2 = args[idx].o2;
                 args[idx].ObjectList3 = !!(args[idx].o3) ? args[idx].o3 : args[idx].o2;
-                
+
                 // マーカー＆オブジェクト
                 args[idx].MkObjList = args[idx].mo;
 
@@ -418,7 +422,7 @@ var viewmode = 'marker';
             self.videosound = videosound;
         },
 
-        checkYukoukigen: function(){
+        checkYukoukigen: function () {
 
             var self = this;
 
@@ -442,7 +446,7 @@ var viewmode = 'marker';
         setArData: function () {
 
             var self = this;
-            
+
             var arData = {};
             var dataObj = {};
             var assets = document.createElement('a-assets');
@@ -459,7 +463,7 @@ var viewmode = 'marker';
                 defobj[idx] = {};
 
                 var objecttype = (!(self.args[idx].typeList) ? GetFileType('') : GetFileType(String(self.args[idx].typeList)));
-                
+
                 // データの準備
                 var object = {};
                 var n_object = '';
@@ -492,9 +496,9 @@ var viewmode = 'marker';
                     }
                 } else {
                     object[0] = (!(self.args[idx].ObjectList) ? '' : self.args[idx].ObjectList);
-                    objName[0] =self.args[idx].ObjectList;
+                    objName[0] = self.args[idx].ObjectList;
                 }
-                
+
                 n_object = ((self.args[idx].MkObjList) ? (self.args[idx].MkObjList) : ((self.args[idx].ObjectList1) ? (self.args[idx].ObjectList1) : (self.args[idx].ObjectList)));
 
                 dataObj[idx] = { path: object[0] + '.' + objecttype };
@@ -559,7 +563,7 @@ var viewmode = 'marker';
 
                 // サイズ
                 self.args[idx].sizeList = String(!!(!!(self.args[idx].sizeList) && !(dataObj[idx].isPV)) ? self.args[idx].sizeList : GetDefaultSize((dataObj[idx].isMarkerType == 1 ? 0 : 1), dataObj[idx].oType));
-                
+
                 var wh = SizeSplit(self.args[idx].sizeList).toString().split(',');
                 var i = ((parseInt(self.args[idx].sizeList).toString(10)).length % 2 == 0) ? (parseInt(self.args[idx].sizeList).toString(10)).length : (parseInt(self.args[idx].sizeList).toString(10)).length + 1;
                 var j = (dataObj[idx].isMarkerType == 1 ? 2 : 2);
@@ -778,7 +782,7 @@ var viewmode = 'marker';
 
                         assets.appendChild(model);
                     }
-                    
+
                     if (dataObj[idx].tap) {
 
                         self.tap = true;
@@ -854,7 +858,7 @@ var viewmode = 'marker';
             } else {
                 swMarker.classList.add('current');
             }
-            
+
             swMarker.addEventListener('click', function () {
                 if (!this.classList.contains('current')) {
                     webAr.markerIdx = '';
@@ -911,7 +915,7 @@ var viewmode = 'marker';
                 wrap.setAttribute('material', 'transparent: true, opacity: 0');
                 wrap.setAttribute('style', 'z-index: 5');
                 wrap.setAttribute('visible', true);
-                
+
                 self.wrap[idx] = wrap;
                 self.arData[idx].wrap = self.wrap[idx];
             }
@@ -921,7 +925,7 @@ var viewmode = 'marker';
 
             var self = this;
             var val = self.arData;
-            
+
             for (idx = 0; idx < self.arg.Multi; idx++) {
 
                 if (!val[idx].path) {
@@ -1130,10 +1134,10 @@ var viewmode = 'marker';
                 main.setAttribute('style', 'z-index: 3');
 
                 self.arData[idx].main = main;
-                
+
                 //var addmainobj = { 0: self.args[idx].OAtList, 1: self.args[idx].OBtList, 2: self.args[idx].OCtList };
                 //var addmainZaxis = { 0: self.args[idx].OAZList, 1: self.args[idx].OBZList, 2: self.args[idx].OCZList };
-                
+
                 //var addmain = {};
 
                 if (self.args[idx].OAtList) {
@@ -1643,7 +1647,7 @@ var viewmode = 'marker';
                 logo.setAttribute('id', 'logo' + (oidx + 1).toString());
                 logo.setAttribute('position', AFRAME.utils.coordinates.stringify(deflogo[oidx].Pos));
                 logo.setAttribute('scale', AFRAME.utils.coordinates.stringify(deflogo[oidx].Scale));
-                logo.setAttribute('gltf-model', '#lsource' + ((oidx + 1) * 100 +1).toString());
+                logo.setAttribute('gltf-model', '#lsource' + ((oidx + 1) * 100 + 1).toString());
                 logo.setAttribute('style', 'z-index: 4');
 
                 self.arData[oidx].logo = logo;
@@ -1725,7 +1729,7 @@ var viewmode = 'marker';
             }
         },
 
-        createAnimation: function (oidx){
+        createAnimation: function (oidx) {
 
             var self = this;
             var val = self.arData;
@@ -1768,27 +1772,27 @@ var viewmode = 'marker';
                             easing: 'easeOutElastic',
                             elasticity: 300
                         });
-                    //} else if (val[oidx].isAnime == 3) {
-                    //    self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                    //    // 弾む
-                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos', {
-                    //        property: 'position',
-                    //        dir: 'alternate',
-                    //        dur: 400,
-                    //        easing: 'easeInOutQuart',
-                    //        loop: true,
-                    //        from: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
-                    //        to: deflogo[oidx].Pos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
-                    //    });
-                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale', {
-                    //        property: 'scale',
-                    //        dir: 'alternate',
-                    //        dur: 400,
-                    //        easing: 'easeOutQuad',
-                    //        loop: true,
-                    //        from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y* 0.8 + ' ' + deflogo[oidx].Scale.z,
-                    //        to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z
-                    //    });
+                        //} else if (val[oidx].isAnime == 3) {
+                        //    self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        //    // 弾む
+                        //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos', {
+                        //        property: 'position',
+                        //        dir: 'alternate',
+                        //        dur: 400,
+                        //        easing: 'easeInOutQuart',
+                        //        loop: true,
+                        //        from: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                        //        to: deflogo[oidx].Pos.x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.y * rate) / 5) + ' ' + deflogo[oidx].Pos.z
+                        //    });
+                        //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale', {
+                        //        property: 'scale',
+                        //        dir: 'alternate',
+                        //        dur: 400,
+                        //        easing: 'easeOutQuad',
+                        //        loop: true,
+                        //        from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y* 0.8 + ' ' + deflogo[oidx].Scale.z,
+                        //        to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z
+                        //    });
                     } else if (val[oidx].isAnime == 11) {
                         AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__turn1', {
                             property: 'rotation',
@@ -1808,29 +1812,29 @@ var viewmode = 'marker';
                             to: '0 360 0',
                             startEvents: 'turn2'
                         });
-                    //} else if (val[oidx].isAnime == 13) {
-                    //    self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
-                    //    // 弾む
-                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
-                    //        property: 'position',
-                    //        dir: 'alternate',
-                    //        dur: 400,
-                    //        easing: 'easeInOutQuart',
-                    //        loop: false,
-                    //        from: deflogo[oidx].x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.h * rate) / 5) + ' ' + deflogo[oidx].Pos.z,
-                    //        to: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
-                    //        startEvents: 'pos3'
-                    //    });
-                    //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale3', {
-                    //        property: 'scale',
-                    //        dir: 'alternate',
-                    //        dur: 400,
-                    //        easing: 'easeOutQuad',
-                    //        loop: false,
-                    //        from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y * 0.8 + ' ' + deflogo[oidx].Scale.z,
-                    //        to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z,
-                    //        startEvents: 'scale3'
-                    //    });
+                        //} else if (val[oidx].isAnime == 13) {
+                        //    self.arData[oidx].logo.setAttribute('rotation', AFRAME.utils.coordinates.stringify('0 0 0'));
+                        //    // 弾む
+                        //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__pos3', {
+                        //        property: 'position',
+                        //        dir: 'alternate',
+                        //        dur: 400,
+                        //        easing: 'easeInOutQuart',
+                        //        loop: false,
+                        //        from: deflogo[oidx].x + ' ' + (deflogo[oidx].Pos.y + (deflogo[oidx].Scale.h * rate) / 5) + ' ' + deflogo[oidx].Pos.z,
+                        //        to: deflogo[oidx].Pos.x + ' ' + deflogo[oidx].Pos.y + ' ' + deflogo[oidx].Pos.z,
+                        //        startEvents: 'pos3'
+                        //    });
+                        //    AFRAME.utils.entity.setComponentProperty(self.arData[oidx].logo, 'animation__scale3', {
+                        //        property: 'scale',
+                        //        dir: 'alternate',
+                        //        dur: 400,
+                        //        easing: 'easeOutQuad',
+                        //        loop: false,
+                        //        from: deflogo[oidx].Scale.x * 1.2 + ' ' + deflogo[oidx].Scale.y * 0.8 + ' ' + deflogo[oidx].Scale.z,
+                        //        to: deflogo[oidx].Scale.x * 0.8 + ' ' + deflogo[oidx].Scale.y * 1.2 + ' ' + deflogo[oidx].Scale.z,
+                        //        startEvents: 'scale3'
+                        //    });
                     }
                 } else {
                     if (val[oidx].isAnime != 99) {
@@ -1861,7 +1865,7 @@ var viewmode = 'marker';
             }
         },
 
-        addScene: function(oidx) {
+        addScene: function (oidx) {
 
             var self = this;
             var val = self.arData;
@@ -1903,7 +1907,7 @@ var viewmode = 'marker';
 
                 if (!!(val[idx].isParti)) {
                     for (var k = 0; k < self.args[idx].Particle.length; k++) {
-                        var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k +1)));
+                        var parti = document.getElementById("arParticle" + ((idx + 1) * 100 + (k + 1)));
                         AFRAME.utils.entity.setComponentProperty(parti, "particle-system", { enabled: false });
                     }
                 }
@@ -1911,7 +1915,7 @@ var viewmode = 'marker';
                 if (self.arData[idx].isPV) {
 
                     viewmode = 'pv';
-                    
+
                     wrapPos.x -= 0;
                     wrapPos.y -= (!!(val[idx].isMp4) ? -1 : -0);
                     wrapPos.z -= defwrap[idx].Scale.y * 1.5;
@@ -1994,7 +1998,7 @@ var viewmode = 'marker';
                         viewmode = 'nft';
                         var xAngle = (!!(self.args[idx].angleList) ? Number(self.args[idx].angleList) : 0);
                         pvAngle = -90 + xAngle;
-                        
+
                         wrapZoom = (!(self.args[idx].WRAPZOOM)) ? 30 : Number(self.args[idx].WRAPZOOM) <= 0 ? 30 : Number(self.args[idx].WRAPZOOM);
                         zoomRateH = zoomRateH * wrapZoom;
 
@@ -2037,7 +2041,7 @@ var viewmode = 'marker';
                         var elemId = elem.id;
                         var targetmarker = document.getElementById(elemId.toString());
                         var i = Number(targetmarker.getAttribute('data-index'));
-                        
+
                         if (webAr.ar.arData[i].isParti) {
                             for (var k = 0; k < webAr.ar.args[i].Particle.length; k++) {
                                 var parti = document.getElementById("arParticle" + ((i + 1) * 100 + (k + 1)));
@@ -2045,7 +2049,7 @@ var viewmode = 'marker';
                             }
                         }
 
-                        if(!!(webAr.ar.arData[i].isFirework)) {
+                        if (!!(webAr.ar.arData[i].isFirework)) {
                             webAr.ar.startFireworksEvent(i);
                         }
 
@@ -2058,7 +2062,7 @@ var viewmode = 'marker';
                                 video.muted = !(webAr.ar.videosound == 1);
                                 if (webAr.ar.videoState[i] < 2) {
                                     var objnm = '';
-                                    if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                                    if (webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9) {
                                         objnm = video.getAttribute('object-name');
                                     }
                                     (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
@@ -2071,7 +2075,7 @@ var viewmode = 'marker';
                                 }
                             }
                         } else {
-                            
+
                             webAr.ar.arData[i].viewIdx = 1;
                             webAr.markerIdx = '';
                             for (var j = 0; j < webAr.ar.arg.Multi; j++) {
@@ -2102,7 +2106,7 @@ var viewmode = 'marker';
                             }
                         }
 
-                        if(!!(webAr.ar.arData[i].isFirework)) {
+                        if (!!(webAr.ar.arData[i].isFirework)) {
                             webAr.ar.stopFireworksEvent();
                         }
 
@@ -2145,13 +2149,13 @@ var viewmode = 'marker';
                         //if (webAr.markerIdx == '') {
                         //    webAr.ar.resetGyro();
                         //}
-                        
+
                         let cameraWrapper = document.getElementById("camera-wrapper");
                         let camera = document.getElementById("camera");
 
                         let y = camera.getAttribute("rotation").y;
                         cameraWrapper.setAttribute("rotation", { y: -1 * y });
-                    
+
                     });
 
                     AFRAME.utils.entity.setComponentProperty(self.wrap[idx], 'animation', {
@@ -2182,13 +2186,13 @@ var viewmode = 'marker';
                 self.arData[idx].zoomRateH = zoomRateH;
                 self.arData[idx].wrapZoom = wrapZoom;
                 self.arData[idx].pvAngle = pvAngle;
-                
+
                 viewAngle = (pvAngle >= -30 && pvAngle <= 20) ? 0 : -90;
-                
+
                 this.objectDataVal(zoomRateH, wrapPos, pvAngle);
             }
         },
-        
+
         resetScene: function (oidx) {
 
             var self = this;
@@ -2209,7 +2213,7 @@ var viewmode = 'marker';
             this.objectDataVal(webAr.ar.arData[oidx].zoomRateH, webAr.ar.arData[oidx].wrapPos, webAr.ar.arData[oidx].pvAngle);
         },
 
-        setOverturnEvents: function (){
+        setOverturnEvents: function () {
 
             var self = this;
 
@@ -2225,47 +2229,47 @@ var viewmode = 'marker';
                 changeAngle(objAngle);
             });
 
-            bR90.addEventListener(self.eventNames.start, e => {
+            bR90.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 timer = setInterval(() => {
                     changeAngle(-(objAngle * 0.1));
                 }, 10);
             });
 
-            bR90.addEventListener(self.eventNames.end, e => {
+            bR90.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            bR90.addEventListener(self.eventNames.move, e => {
+            bR90.addEventListener(self.eventNames.move, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            bR00.addEventListener(self.eventNames.start, e => {
+            bR00.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 timer = setInterval(() => {
                     changeAngle((objAngle * 0.1));
                 }, 10);
             });
 
-            bR00.addEventListener(self.eventNames.end, e => {
+            bR00.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            bR00.addEventListener(self.eventNames.move, e => {
+            bR00.addEventListener(self.eventNames.move, function (e) {
                 e.preventDefault();
                 clearInterval(timer);
             });
 
-            function changeAngle (angle){
+            function changeAngle(angle) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
-                    if((webAr.ar.arData[j].pvAngle + angle) > 360){
+                    if ((webAr.ar.arData[j].pvAngle + angle) > 360) {
                         webAr.ar.arData[j].pvAngle += (angle - 360);
-                    } else if((webAr.ar.arData[j].pvAngle + angle) < -360) {
+                    } else if ((webAr.ar.arData[j].pvAngle + angle) < -360) {
                         webAr.ar.arData[j].pvAngle += (angle + 360);
                     } else {
                         webAr.ar.arData[j].pvAngle += angle;
@@ -2276,7 +2280,7 @@ var viewmode = 'marker';
             };
         },
 
-        setResizeEvents: function (){
+        setResizeEvents: function () {
 
             var self = this;
 
@@ -2333,7 +2337,7 @@ var viewmode = 'marker';
             };
         },
 
-        setMoveEvents: function (){
+        setMoveEvents: function () {
 
             var self = this;
 
@@ -2352,7 +2356,7 @@ var viewmode = 'marker';
             // ↑ 
 
             // UPボタン長押し
-            bUP.addEventListener(self.eventNames.start, e => {
+            bUP.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 bUP.classList.add('active');
                 timer = setInterval(() => {
@@ -2360,20 +2364,20 @@ var viewmode = 'marker';
                 }, 10);
             });
 
-            bUP.addEventListener(self.eventNames.end, e => {
+            bUP.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
 
-            bUP.addEventListener(self.eventNames.move, e => {
+            bUP.addEventListener(self.eventNames.move, function (e) {
                 e.preventDefault();
                 bUP.classList.remove('active');
                 clearInterval(timer);
             });
 
             // DOWNボタン長押し
-            bDOWN.addEventListener(self.eventNames.start, e => {
+            bDOWN.addEventListener(self.eventNames.start, function (e) {
                 e.preventDefault();
                 bDOWN.classList.add('active');
                 timer = setInterval(() => {
@@ -2381,19 +2385,19 @@ var viewmode = 'marker';
                 }, 10);
             });
 
-            bDOWN.addEventListener(self.eventNames.end, e => {
+            bDOWN.addEventListener(self.eventNames.end, function (e) {
                 e.preventDefault();
                 bDOWN.classList.remove('active');
                 clearInterval(timer);
             });
 
-            bDOWN.addEventListener(self.eventNames.move, e => {
+            bDOWN.addEventListener(self.eventNames.move, function(e) {
                 e.preventDefault();
                 bDOWN.classList.remove('active');
                 clearInterval(timer);
             });
 
-            function moveposition (updown) {
+            function moveposition(updown) {
                 var marker = webAr.markerIdx.split(',');
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
@@ -2411,13 +2415,13 @@ var viewmode = 'marker';
                 for (var i = 0; i < marker.length; i++) {
                     var j = Number(marker[i]) - 1;
                     if (webAr.ar.arData[j].isMarkerType == 1 || webAr.ar.arData[j].isPV) {
-                        if(updown == 'up'){
+                        if (updown == 'up') {
                             webAr.ar.arData[j].wrapPos.y += webAr.ar.arData[j].yTouchRate;
-                        } else{
+                        } else {
                             webAr.ar.arData[j].wrapPos.y -= webAr.ar.arData[j].yTouchRate;
                         }
                     } else {
-                        if(updown == 'up'){
+                        if (updown == 'up') {
                             webAr.ar.arData[j].wrapPos.z -= webAr.ar.arData[j].yTouchRate;
                         } else {
                             webAr.ar.arData[j].wrapPos.z += webAr.ar.arData[j].yTouchRate;
@@ -2441,17 +2445,17 @@ var viewmode = 'marker';
             var timer = 350;
 
             webAr.scene.addEventListener(self.eventNames.start, function (e) {
-                
+
                 ++tapCount;
-                
+
                 if (tapclicked && tapCount > 0) {
 
                     setTimeout(function () {
-                       
+
                         if (tapclicked && tapCount == 2 && !(scalechange)) {
                             tapclicked = false;
                             var marker = webAr.markerIdx.split(',');
-                            if(marker.length > 0) {
+                            if (marker.length > 0) {
                                 for (var i = 0; i < marker.length; i++) {
                                     var j = Number(marker[i]) - 1;
                                     if (webAr.ar.arData[j].seq > 0) {
@@ -2465,7 +2469,7 @@ var viewmode = 'marker';
                         if (tapclicked && tapCount >= 3 && !(scalechange)) {
                             tapclicked = false;
                             var marker = webAr.markerIdx.split(',');
-                            if(marker.length > 0) {
+                            if (marker.length > 0) {
                                 for (var i = 0; i < marker.length; i++) {
                                     var j = Number(marker[i]) - 1;
                                     if (webAr.ar.arData[j].seq > 0) {
@@ -2490,7 +2494,7 @@ var viewmode = 'marker';
 
                         for (var i = 0; i < marker.length; i++) {
                             var j = Number(marker[i]) - 1;
-                            if(j > -1) {
+                            if (j > -1) {
                                 if (!(val[j].isAnime)) {
                                     if (!!(val[j].isLogo)) {
                                         if (val[j].path) {
@@ -2598,7 +2602,7 @@ var viewmode = 'marker';
                 if (Number(webAr.ar.videoState[oidx]) != 2 || Number(webAr.ar.videoState[oidx]) <= 0) {
                     video.pause();
                     var objnm = '';
-                    if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                    if (webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9) {
                         objnm = video.getAttribute('object-name');
                     }
                     (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
@@ -2618,7 +2622,7 @@ var viewmode = 'marker';
 
             var self = this;
             var bMarker = document.getElementById('swMulti');
-            
+
             bMarker.addEventListener('click', function () {
                 if (webAr.ar.arData[0].isPV) {
                     var marker = webAr.markerIdx.split(',');
@@ -2661,7 +2665,7 @@ var viewmode = 'marker';
                         if (Number(webAr.ar.videoState[j]) != 2 || Number(webAr.ar.videoState[j]) <= 0) {
                             video.pause();
                             var objnm = '';
-                            if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                            if (webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9) {
                                 objnm = video.getAttribute('object-name');
                             }
                             (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
@@ -2708,18 +2712,18 @@ var viewmode = 'marker';
             });
 
             window.addEventListener('focus', function (e) {
-                if(webAr.loaderEnd != 0) { 
+                if (webAr.loaderEnd != 0) {
                     var marker = webAr.markerIdx.split(',');
                     for (var i = 0; i < marker.length; i++) {
-                        var j =  Number(marker[i]) - 1;
-                        if(j >= 0) {
+                        var j = Number(marker[i]) - 1;
+                        if (j >= 0) {
                             if (!!(webAr.ar.arData[j].isMp4)) {
                                 var video = document.querySelector('#source' + (((j + 1) * 100) + webAr.ar.arData[j].srcno.obj).toString());
                                 if (webAr.ar.videoState[j] != 3) {
                                     video.pause();
                                     webAr.ar.videoState[j] = 1;
                                     var objnm = '';
-                                    if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                                    if (webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9) {
                                         objnm = video.getAttribute('object-name');
                                     }
                                     (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
@@ -2769,7 +2773,7 @@ var viewmode = 'marker';
             };
         },
 
-        setGyroValuEvents: function (){
+        setGyroValuEvents: function () {
             // デバイスの方向の変化を検出したとき
             window.addEventListener('deviceorientation', function (e) {
                 // e.beta：(x軸 -180 ～ 180)    e.gamma：(y軸 -90 ～ 90)   e.alpha：(z軸 0 ～ 360)
@@ -2778,7 +2782,7 @@ var viewmode = 'marker';
             });
         },
 
-        setSoundEvebts: function(){
+        setSoundEvebts: function () {
             let bSound = document.getElementById("swSound");
 
             bSound.addEventListener('click', function () {
@@ -2799,88 +2803,165 @@ var viewmode = 'marker';
 
         startFireworksEvent: function (oidx) {
 
+            var arrData = -1;
+            var nexttimeout = 1500;
+
             if (webAr.particlestart[oidx] == 0) {
 
+                nexttimeout = 1;
+
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
+
                     if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 0) {
+
                         let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-                        let fTimer = webAr.ar.getRandomIntInclusive()
-                        setInterval(() => {
-                            var fws = document.createElement('a-entity');
-                            fws.setAttribute('ID', 'arFirework' + (i).toString());
-                            fws.setAttribute('position', webAr.ar.args[oidx].Particlefireworks[i].pos);
-                            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[i].particlefirework);
+                        var fTimer = webAr.ar.getRandomIntInclusive(min, max);
+
+                        function setFirstElement(j) {
+
+                            let fpos = { x: 0, y: -110, z: 250 };
+                            let posdata = (webAr.ar.args[oidx].Particlefireworks[j].pos).toString().split(',');
+                            if (posdata.length >= 3) {
+                                fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
+                            }
+
+                            if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                                document.getElementById('arFirework' + (j + 1).toString()).remove();
+                            }
+
+                            let fws = document.createElement('a-entity');
+                            fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
+                            fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
+                            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+                            let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
+                            let useTrail = 0;
+                            if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 0 && Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 1) {
+                                pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
+                            } else if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) <= -1) {
+                                useTrail = webAr.ar.getRandomIntInclusive(0, 1);
+                                pf += ',useTrail: ' + (useTrail).toString();
+                            }
+                            let useBloom = 0;
+                            if (Number(webAr.ar.args[oidx].Particlefireworks[j].bloom) == 0 && Number(webAr.ar.args[oidx].Particlefireworks[j].bloom) == 1) {
+                                pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
+                            } else if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) <= -1) {
+                                useBloom = webAr.ar.getRandomIntInclusive(0, 1);
+                                pf += ',useBloom: ' + (useBloom).toString();
+                            }
+                            pf += '}';
+                            fws.setAttribute('particle-firework', pf);
+
                             document.getElementById('arScene').appendChild(fws);
-                        }, fTimer);
-                    }
+
+                        };
+
+                        setTimeout(setFirstElement, fTimer, i);
+                    } 
                 }
 
                 webAr.particlestart[oidx] = 1;
             }
 
-            var timer = 2000;
-            var arrData = -1;
-            var fireworksidx = new Array();
+            setTimeout(function () {
 
-            for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
-                if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
-                    fireworksidx.push(i);
-                    arrData = i;
-                    break;
-                }
-            }
+                let fireworksidx = new Array();
 
-            if (arrData > -1) {
-                for (var i = 0; i < fireworksidx.length; i++) {
-                    let min = Number(webAr.ar.args[oidx].Particlefireworks[i].timerrange);
-                    let max = Number(webAr.ar.args[oidx].Particlefireworks[i].fireworktimer);
-                    let fTimer = webAr.ar.getRandomIntInclusive()
-                    webAr.fireworksInterval = setInterval(() => {
-                        webAr.ar.createFirework(oidx, fireworksidx[i]);
-                    }, timer);
+                for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
+                    if (Number(webAr.ar.args[oidx].Particlefireworks[i].kind) == 1) {
+                        fireworksidx.push(i);
+                        arrData = i;
+                    }
                 }
-            }
+
+                webAr.fireworksInterval = new Array();
+
+                if (arrData > -1) {
+                    for (var i = 0; i < fireworksidx.length; i++) {
+                        let min = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].timerrange);
+                        let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
+                        var fTimer = webAr.ar.getRandomIntInclusive(min, max);
+
+                        function setNextElement(j) {
+                            webAr.ar.createFirework(j[0], j[1]);
+
+                        };
+
+                        webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
+                        console.log(fTimer);
+                    }
+                }
+            }, nexttimeout);
         },
 
         stopFireworksEvent: function () {
-            clearInterval(webAr.fireworksInterval);
+            for (var i = 0; i < webAr.fireworksInterval.length; i++) {
+                clearInterval(webAr.fireworksInterval[i]);
+            }
         },
 
         createFirework: function (oidx, row) {
 
-            function genCirclePoint(radius1,  hei, radius2) {
+            function genCirclePoint(radius1, hei, radius2) {
                 var rand = Math.random() * Math.PI;
                 var xsign = Math.random() > 0.5 ? 1 : -1;
                 var r = Math.random() * (radius2 - radius1) + radius1;
 
-                var x = r * Math.sin(rand) * xsign;
-                var z = r * Math.cos(rand);
-                if (z > 0) {
-                    z = z * -1;
-                };
+                //var x = r * Math.sin(rand) * xsign;
+                //var z = r * Math.cos(rand);
+                //if (z > 0) {
+                //    z = z * -1;
+                //};
+
+                var x = webAr.ar.getRandomDecimal(radius1 * -1, radius1);
+                var y = webAr.ar.getRandomDecimal(hei, (hei + 70));
+                var z = radius2;
                 //var p = new THREE.Vector3(x, hei, z);
-                var p = new THREE.Vector3(x, hei, -180);
+                //var p = new THREE.Vector3(x, hei, radius2);
+                var p = new THREE.Vector3(x, y, z);
                 return p;
             };
 
-            function genFireWork(pos) {
-                var fws = document.createElement('a-entity');
-                fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
-                fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
+            function genFireWork(pos, j) {
+
+                if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                    document.getElementById('arFirework' + (j + 1).toString()).remove();
+                }
+
+                let fws = document.createElement('a-entity');
+                fws.setAttribute('ID', 'arFirework' + (row + 1).toString());
+                fws.setAttribute('position', AFRAME.utils.coordinates.stringify(pos));
+
+                let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
+                let useTrail = 0;
+                if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 0 && Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 1) {
+                    pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
+                } else if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) <= -1) {
+                    useTrail = webAr.ar.getRandomIntInclusive(0, 1);
+                    pf += ',useTrail: ' + (useTrail).toString();
+                }
+                let useBloom = 0;
+                if (Number(webAr.ar.args[oidx].Particlefireworks[j].bloom) == 0 && Number(webAr.ar.args[oidx].Particlefireworks[j].bloom) == 1) {
+                    pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
+                } else if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) <= -1) {
+                    useBloom = webAr.ar.getRandomIntInclusive(0, 1);
+                    pf += ',useBloom: ' + (useBloom).toString();
+                }
+                pf += '}';
+
+                fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
             };
 
-            var fpos = { x: 0, y: -30, z: 120 };
+            var fpos = { x: 0, y: -30, z: -120 };
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
-
-            if(posdata.length >= 3 ){
+            if (posdata.length >= 3) {
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
             }
 
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
-
-            genFireWork(pos);
+            console.log(pos);
+            genFireWork(pos, row);
         },
 
         //setGyroReset: function () {
@@ -2908,7 +2989,7 @@ var viewmode = 'marker';
 
             if (webAr.ar.arData[0].oType != 'mp4') {
                 document.getElementById("swSound").style.display = "none";
-               
+
                 document.getElementById("info1").style.display = "none";
                 document.getElementById("swScrshot").style.display = "inline";
                 document.getElementById("swCamera").style.display = "inline";
@@ -2940,7 +3021,7 @@ var viewmode = 'marker';
                     if (!!(webAr.ar.arData[0].isMp4)) {
                         var video = document.querySelector('#source101');
                         var objnm = '';
-                        if(webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9){
+                        if (webAr.ar.arData[0].isRandom == 8 || webAr.ar.arData[0].isRandom == 9) {
                             objnm = video.getAttribute('object-name');
                         }
                         (document.getElementById("swPlay")).setAttribute('src', webAr.ar.getPlayButton(objnm));
@@ -3015,7 +3096,7 @@ var viewmode = 'marker';
                         assets: (cAssets[i] != null) && cAssets[i].textContent,
                         assetsid: (cAssetsid[i] != null) && cAssetsid[i].textContent,
                         cAssetssrc: (cAssetssrc[i] != null) && cAssetssrc[i].textContent
-                   };
+                    };
                 };
 
                 return data;
@@ -3043,8 +3124,11 @@ var viewmode = 'marker';
                 var data = new Array();
 
                 var cKind = xmldata.getElementsByTagName("kind");
+                var cBasePos = xmldata.getElementsByTagName("basepos");
                 var cPos = xmldata.getElementsByTagName("pos");
                 var cPparticlefirework = xmldata.getElementsByTagName("particlefirework");
+                var cTrail = xmldata.getElementsByTagName("trail");
+                var cBloom = xmldata.getElementsByTagName("bloom");
                 var cFireworktimer = xmldata.getElementsByTagName("fireworktimer");
                 var cTimerrange = xmldata.getElementsByTagName("timerrange");
 
@@ -3053,8 +3137,11 @@ var viewmode = 'marker';
 
                     data[i] = {
                         kind: (cKind[i] != null) && cKind[i].textContent,
+                        basepos: (cBasePos[i] != null) && cBasePos[i].textContent,
                         pos: (cPos[i] != null) && cPos[i].textContent,
                         particlefirework: (cPparticlefirework[i] != null) && cPparticlefirework[i].textContent,
+                        trail: (cTrail[i] != null) && cTrail[i].textContent,
+                        bloom: (cBloom[i] != null) && cBloom[i].textContent,
                         fireworktimer: (cFireworktimer[i] != null) && cFireworktimer[i].textContent,
                         timerrange: (cTimerrange[i] != null) && cTimerrange[i].textContent
                     };
@@ -3229,7 +3316,7 @@ var viewmode = 'marker';
             var playimg = 'asset/play-w-optiy.png';
             var fsize = -1;
 
-            if(!(filenm)){
+            if (!(filenm)) {
                 var imgno = ('00' + Number(getRandom(1, 20))).slice(-2);
                 file = 'asset/play-optiy/' + imgno + '.png';
             } else {
@@ -3257,6 +3344,12 @@ var viewmode = 'marker';
             return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
         },
 
+        getRandomDecimal: function (min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.random() * (max - min + 1) + min; //The maximum is inclusive and the minimum is inclusive
+        },
+
         Err_Exit: function (msg) {
             window.alert(msg);
             location.href = "warning.html";
@@ -3278,7 +3371,7 @@ var viewmode = 'marker';
     webAr.deflogoScale = deflogoScale;
     webAr.markerIdx = markerIdx;
     webAr.loaderEnd = loaderEnd;
-    webAr.fireworksIntervali = fireworksIntervali;
+    webAr.fireworksInterval = fireworksInterval;
     webAr.particlestart = particlestart;
 
     webAr.ar.setGyroValuEvents();
