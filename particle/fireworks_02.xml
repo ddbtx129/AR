@@ -59,7 +59,7 @@
     <kind>0</kind>
     <basepos>0, -110, -250</basepos>
     <pos>30, -110, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:3</particlefirework>
     <trail>1</trail>
     <bloom>1</bloom>
     <fireworktimer>2000</fireworktimer>
@@ -70,7 +70,7 @@
     <kind>1</kind>
     <basepos>0, -110, -250</basepos>
     <pos>20, -110, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#ff9548",eColors:["#fc3f3f","#fca035","#fa4b8e"],eCount:10,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:4</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#fcf149",eColors:["#fc3f3f","#fca035","#fa4b8e","#ff9548"],eCount:500,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:3</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>5000</fireworktimer>
@@ -81,7 +81,7 @@
     <kind>1</kind>
     <basepos>0, -110, -250</basepos>
     <pos>0, -110, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],eCount:500,eHeight:80,eSize:6,rSize:3</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#74d9ff",eColors:["#3fc9fc","#357afc","#e64bfa","#fa4bb7"],eCount:500,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:3</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>7000</fireworktimer>
@@ -92,7 +92,7 @@
     <kind>1</kind>
     <basepos>0, -110, -250</basepos>
     <pos>-20, -110, -250</pos>
-    <particlefirework>preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],eCount:500,eHeight:80,eSize:6,rSize:3</particlefirework>
+    <particlefirework>preset:fireworks;options:{rColor:"#ff4dd6",eColors:["#ff4d8e","#ff4d62","#ff8e4d","#ffc44d"],eCount:500,eHeight:80,eSize:6,rSize:3,tSize:3,bSize:3</particlefirework>
     <trail>-1</trail>
     <bloom>-1</bloom>
     <fireworktimer>9000</fireworktimer>
