@@ -68,8 +68,8 @@
 
   <particle>
     <kind>1</kind>
-    <basepos>0, -30, -120</basepos>
-    <pos>0, -30, -120</pos>
+    <basepos>0, -30, -180</basepos>
+    <pos>0, -30, -180</pos>
     <particlefirework>preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8</particlefirework>
     <trail>9</trail>
     <bloom>9</bloom>
