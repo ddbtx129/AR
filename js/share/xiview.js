@@ -2888,7 +2888,6 @@ var viewmode = 'marker';
                         };
 
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
-                        console.log(fTimer);
                     }
                 }
             }, nexttimeout);
@@ -2958,9 +2957,7 @@ var viewmode = 'marker';
             if (posdata.length >= 3) {
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
             }
-
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
-            console.log(pos);
             genFireWork(pos, row);
         },
 
