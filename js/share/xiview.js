@@ -2828,7 +2828,7 @@ var viewmode = 'marker';
                         var fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
                         var firstfireworks = setTimeout(function (i) {
-
+                            console.log(i);
                             let fpos = { x: 0, y: -110, z: 250 };
                             let posdata = (webAr.ar.args[oidx].Particlefireworks[i].pos).toString().split(',');
                             if (posdata.length >= 3) {
@@ -2867,10 +2867,10 @@ var viewmode = 'marker';
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
                         var fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
-                        console.log(min);
-                        console.log(max);
-                        console.log(fTimer);
-                        console.log(fireworksidx[i]);
+                        //console.log(min);
+                        //console.log(max);
+                        //console.log(fTimer);
+                        //console.log(fireworksidx[i]);
                         //console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
                         //webAr.fireworksInterval.push(setInterval(function (i) {
                         //    webAr.ar.createFirework(oidx, fireworksidx[i]);
@@ -2914,9 +2914,9 @@ var viewmode = 'marker';
                 fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 document.getElementById('arScene').appendChild(fws);
             };
-            console.log(oidx);
-            console.log(row);
-            console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
+            //console.log(oidx);
+            //console.log(row);
+            //console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
             var fpos = { x: 0, y: -30, z: 120 };
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
 
