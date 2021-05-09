@@ -2910,7 +2910,7 @@ var viewmode = 'marker';
                     z = z * -1;
                 };
 
-                x = WebAr.ar.getRandomDecimal(radius1 * -1, radius1);
+                x = webAr.ar.getRandomDecimal(radius1 * -1, radius1);
                 //var p = new THREE.Vector3(x, hei, z);
                 var p = new THREE.Vector3(x, hei, radius2);
                 return p;
