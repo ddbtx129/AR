@@ -2833,10 +2833,10 @@ var viewmode = 'marker';
                             let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
                             let useTrail = 0;
                             let useBloom = 0;
-                            if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                            if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 0 && Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 1) {
                                 pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
                                 pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
-                            } else {
+                            } else if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) <= -1) {
                                 useTrail = webAr.ar.getRandomIntInclusive(0, 1);
                                 useBloom = useTrail;
                                 pf += ',useTrail: ' + (useTrail).toString();
@@ -2923,10 +2923,10 @@ var viewmode = 'marker';
                 let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
                 let useTrail = 0;
                 let useBloom = 0;
-                if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 0 && Number(webAr.ar.args[oidx].Particlefireworks[j].trail) == 1) {
                     pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
                     pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
-                } else {
+                } else if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) <= -1) {
                     useTrail = webAr.ar.getRandomIntInclusive(0, 1);
                     useBloom = useTrail;
                     pf += ',useTrail: ' + (useTrail).toString();
