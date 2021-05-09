@@ -2954,7 +2954,7 @@ var viewmode = 'marker';
             }
 
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
-
+            console.log(pos);
             genFireWork(pos, row);
         },
 
