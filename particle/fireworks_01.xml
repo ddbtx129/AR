@@ -73,8 +73,8 @@
     <particlefirework>preset:fireworks;options:{eColors:["#FF3333","#ffef33","#33ff99","#33b1ff","#4b33ff","#ff33f7"],eCount:8</particlefirework>
     <trail>9</trail>
     <bloom>9</bloom>
-    <fireworktimer>3000</fireworktimer>
-    <timerrange>3000</timerrange>
+    <fireworktimer>10000</fireworktimer>
+    <timerrange>10000</timerrange>
   </particle>
   
 </ArData>
