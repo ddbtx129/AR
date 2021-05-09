@@ -2820,12 +2820,22 @@ var viewmode = 'marker';
                                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
                             }
 
-                            let fws = document.createElement('a-entity');
-                            fws.setAttribute('ID', 'arFirework' + (j).toString());
+                            let fws;
+                            let flg = 0;
+                            if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                                fws = document.createElement('a-entity');
+                                fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
+                                flg = 1;
+                            } else {
+                                fws = document.getElementById('arFirework' + (j + 1).toString());
+                            }
+                            
                             fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
-                            document.getElementById('arScene').appendChild(fws);
 
+                            if (flg != 0) {
+                                document.getElementById('arScene').appendChild(fws);
+                            }
                         };
 
                         setTimeout(setFirstElement, fTimer, i);
@@ -2887,12 +2897,29 @@ var viewmode = 'marker';
                 return p;
             };
 
-            function genFireWork(pos) {
-                var fws = document.createElement('a-entity');
+            function genFireWork(pos, j) {
+
+                let fws;
+                let flg = 0;
+                if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                    fws = document.createElement('a-entity');
+                    fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
+                    flg = 1;
+                } else {
+                    fws = document.getElementById('arFirework' + (j + 1).toString());
+                }
+
+                //let fws = document.createElement('a-entity');
                 //fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
+                //fws.setAttribute('ID', 'arFirework' + (row + 1).toString());
                 fws.setAttribute('position', AFRAME.utils.coordinates.stringify(pos));
-                fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
-                document.getElementById('arScene').appendChild(fws);
+                fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+                //document.getElementById('arScene').appendChild(fws);
+
+                if (flg != 0) {
+                    document.getElementById('arScene').appendChild(fws);
+                }
+
                 console.log(1);
             };
 
@@ -2904,7 +2931,7 @@ var viewmode = 'marker';
 
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
 
-            genFireWork(pos);
+            genFireWork(pos, row);
         },
 
         //setGyroReset: function () {
