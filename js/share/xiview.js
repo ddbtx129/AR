@@ -2909,9 +2909,10 @@ var viewmode = 'marker';
                 if (z > 0) {
                     z = z * -1;
                 };
+
+                x = WebAr.ar.getRandomDecimal(radius1 * -1, radius1);
                 //var p = new THREE.Vector3(x, hei, z);
-                //var p = new THREE.Vector3(x, hei, radius2);
-                var p = new THREE.Vector3(radius1, hei, radius2);
+                var p = new THREE.Vector3(x, hei, radius2);
                 return p;
             };
 
@@ -3335,6 +3336,12 @@ var viewmode = 'marker';
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+        },
+
+        getRandomDecimal: function (min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.random() * (max - min + 1) + min; //The maximum is inclusive and the minimum is inclusive
         },
 
         Err_Exit: function (msg) {
