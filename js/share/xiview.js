@@ -2907,15 +2907,18 @@ var viewmode = 'marker';
                 var xsign = Math.random() > 0.5 ? 1 : -1;
                 var r = Math.random() * (radius2 - radius1) + radius1;
 
-                var x = r * Math.sin(rand) * xsign;
-                var z = r * Math.cos(rand);
-                if (z > 0) {
-                    z = z * -1;
-                };
+                //var x = r * Math.sin(rand) * xsign;
+                //var z = r * Math.cos(rand);
+                //if (z > 0) {
+                //    z = z * -1;
+                //};
 
-                x = webAr.ar.getRandomDecimal(radius1 * -1, radius1);
+                var x = webAr.ar.getRandomDecimal(radius1 * -1, radius1);
+                var y = webAr.ar.getRandomDecimal(hei, (hei - 70));
+                var z = radius2;
                 //var p = new THREE.Vector3(x, hei, z);
-                var p = new THREE.Vector3(x, hei, radius2);
+                //var p = new THREE.Vector3(x, hei, radius2);
+                var p = new THREE.Vector3(x, y, z);
                 return p;
             };
 
