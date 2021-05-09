@@ -2833,8 +2833,7 @@ var viewmode = 'marker';
                             let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
                             let useTrail = 0;
                             let useBloom = 0;
-                            console.log(webAr.ar.args[oidx].Particlefireworks[j].trail);
-                            if (Nmber(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                            if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
                                 pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
                                 pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
                             } else {
@@ -2922,7 +2921,7 @@ var viewmode = 'marker';
                 let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
                 let useTrail = 0;
                 let useBloom = 0;
-                if (Nmber(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
                     pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
                     pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
                 } else {
