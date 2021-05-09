@@ -2920,7 +2920,7 @@ var viewmode = 'marker';
                     document.getElementById('arScene').appendChild(fws);
                 }
 
-                console.log(1);
+                console.log('arFirework' + (j + 1).toString());
             };
 
             var fpos = { x: 0, y: -30, z: 120 };
