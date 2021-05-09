@@ -143,6 +143,7 @@
             color: self.data.options.color || '#FFFFFF',
             size: 4,
             blending: THREE.AdditiveBlending,
+            opacity: 0.6,
             transparent: true,
         });
 
@@ -171,11 +172,11 @@
         var self = this;
 
         self.pfOption = {
-            rMaxCount: 1000, rCount: 300, rSpeed: 50, rSpread: 0.2, rLife: 200, rLifeRand: 100, rSize: 3, rColor: '#90ddff', rColors: undefined, rTexture: path + "/images/particle-64-1.png",
-            eMaxCount: 2000, eCount: 50, eSize: 3, eColor: '#ff55ff', eColors: undefined, eTexture: path + "/images/particle-64-1.png", eAcc: 40, eAccRand: 10, eLife: 1000, eLifeRand: 100, eGravity: '0 -100 0', eSpeed: '0 80 0', eHeight: -110,
+            rMaxCount: 1000, rCount: 300, rSpeed: 50, rSpread: 0.2, rLife: 200, rLifeRand: 100, rSize: 3, rColor: '#90ddff', rColors: undefined, rTexture: path + "/images/particle-64-1.png", rOpacity: 0.6,
+            eMaxCount: 2000, eCount: 50, eSize: 3, eColor: '#ff55ff', eColors: undefined, eTexture: path + "/images/particle-64-1.png", eAcc: 40, eAccRand: 10, eLife: 1000, eLifeRand: 100, eGravity: '0 -100 0', eSpeed: '0 80 0', eHeight: -110, eOpacity: 0.6, 
             usePattern: 0, pAssetId: "ParticleFireWorksPattern", pScale: 1, pRotationX: 90, pDuration: 500, pLife: 1000, pLifeRand: 500, pHold: 0,
             useTrail: 1, tMaxCount: 2000, tCount: 120, tSize: 2, tSpread: 0.2, tLife: 500, tOpacity: 0.6,
-            useBloom: 1, bMaxCount: 5000, bCount: 200, bCountRand: 100, bColors: undefined, bSize: 2, bTexture: path + "/images/particle-64-1.png", bAcc: 30, bAccRand: 1, bLife: 500, bLifeRand: 200,
+            useBloom: 1, bMaxCount: 5000, bCount: 200, bCountRand: 100, bColors: undefined, bSize: 2, bTexture: path + "/images/particle-64-1.png", bAcc: 30, bAccRand: 1, bLife: 500, bLifeRand: 200, bOpacity: 0.6, 
         };
 
         self.pfOption = Object.assign(self.pfOption, self.data.options);
@@ -206,6 +207,7 @@
             size: self.pfOption.rSize,
             map: new THREE.TextureLoader().load(self.pfOption.rTexture),
             blending: THREE.AdditiveBlending,
+            opacity: self.pfOption.rOpacity,
             transparent: true,
             depthTest: false,
         });
@@ -225,6 +227,7 @@
             size: self.pfOption.eSize,
             map: new THREE.TextureLoader().load(self.pfOption.eTexture),
             blending: THREE.AdditiveBlending,
+            opacity: self.pfOption.eOpacity,
             transparent: true,
             depthTest: false,
         });
@@ -259,6 +262,7 @@
                 vertexColors: THREE.VertexColors,
                 map: new THREE.TextureLoader().load(self.pfOption.eTexture),
                 blending: THREE.AdditiveBlending,
+                opacity: self.pfOption.eOpacity,
                 transparent: true,
                 depthTest: false,
             });
@@ -291,6 +295,7 @@
                 size: self.pfOption.bSize,
                 map: new THREE.TextureLoader().load(self.pfOption.bTexture),
                 blending: THREE.AdditiveBlending,
+                opacity: self.pfOption.bOpacity,
                 transparent: true,
                 depthTest: false,
             });
