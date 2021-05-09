@@ -307,6 +307,8 @@ var viewmode = 'marker';
                                 attribute.basepos = fw[k].basepos;
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
+                                attribute.trail = fw[k].trail;
+                                attribute.bloom = fw[k].bloom;
                                 attribute.fireworktimer = (!!(fw[k].fireworktimer) ? fw[k].fireworktimer : 0);
                                 attribute.timerrange = (!!(fw[k].timerrange) ? fw[k].timerrange : attribute.fireworktimer);
 
@@ -2827,7 +2829,20 @@ var viewmode = 'marker';
                             let fws = document.createElement('a-entity');
                             fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
                             fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
-                            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+                            //fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+                            let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
+                            let useTrail = 0;
+                            let useBloom = 0;
+                            if (Nmber(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                                pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
+                                pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
+                            } else {
+                                useTrail = webAr.ar.getRandomIntInclusive(0, 1);
+                                useBloom = useTrail;
+                                pf += ',useTrail: ' + (useTrail).toString();
+                                pf += ',useBloom: ' + (useBloom).toString();
+                            }
+                            fws.setAttribute('particle-firework', pf);
                             document.getElementById('arScene').appendChild(fws);
 
                         };
@@ -2901,7 +2916,21 @@ var viewmode = 'marker';
                 //fws.setAttribute('position', pos.x + ' ' + pos.y + ' ' + pos.z);
                 fws.setAttribute('ID', 'arFirework' + (row + 1).toString());
                 fws.setAttribute('position', AFRAME.utils.coordinates.stringify(pos));
-                fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+                //fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+
+                let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
+                let useTrail = 0;
+                let useBloom = 0;
+                if (Nmber(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                    pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
+                    pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
+                } else {
+                    useTrail = webAr.ar.getRandomIntInclusive(0, 1);
+                    useBloom = useTrail;
+                    pf += ',useTrail: ' + (useTrail).toString();
+                    pf += ',useBloom: ' + (useBloom).toString();
+                }
+                fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
 
                 console.log('arFirework' + (j + 1).toString());
@@ -3081,6 +3110,8 @@ var viewmode = 'marker';
                 var cBasePos = xmldata.getElementsByTagName("basepos");
                 var cPos = xmldata.getElementsByTagName("pos");
                 var cPparticlefirework = xmldata.getElementsByTagName("particlefirework");
+                var cTrail = xmldata.getElementsByTagName("trail");
+                var cBloom = xmldata.getElementsByTagName("bloom");
                 var cFireworktimer = xmldata.getElementsByTagName("fireworktimer");
                 var cTimerrange = xmldata.getElementsByTagName("timerrange");
 
@@ -3092,6 +3123,8 @@ var viewmode = 'marker';
                         basepos: (cBasePos[i] != null) && cBasePos[i].textContent,
                         pos: (cPos[i] != null) && cPos[i].textContent,
                         particlefirework: (cPparticlefirework[i] != null) && cPparticlefirework[i].textContent,
+                        trail: (cTrail[i] != null) && cTrail[i].textContent,
+                        bloom: (cBloom[i] != null) && cBloom[i].textContent,
                         fireworktimer: (cFireworktimer[i] != null) && cFireworktimer[i].textContent,
                         timerrange: (cTimerrange[i] != null) && cTimerrange[i].textContent
                     };
