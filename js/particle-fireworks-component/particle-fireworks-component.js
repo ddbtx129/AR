@@ -145,6 +145,8 @@
             blending: THREE.AdditiveBlending,
             opacity: 0.6,
             transparent: true,
+            depthTest: false,
+            alpha: true,
         });
 
         var pf = new THREE.Points(geo, mat);
@@ -210,6 +212,7 @@
             opacity: self.pfOption.rOpacity,
             transparent: true,
             depthTest: false,
+            alpha: true,
         });
 
         if (self.pfOption.rColors) {
@@ -230,6 +233,7 @@
             opacity: self.pfOption.eOpacity,
             transparent: true,
             depthTest: false,
+            alpha: true,
         });
 
         if (self.pfOption.eColors) {
@@ -265,6 +269,7 @@
                 opacity: self.pfOption.eOpacity,
                 transparent: true,
                 depthTest: false,
+                alpha: true,
             });
             self.pfPattern = new THREE.Points(new THREE.Geometry(), self.pMat);
             particlemagic.add(self.pfPattern);
@@ -278,6 +283,7 @@
                 opacity: self.pfOption.tOpacity,
                 transparent: true,
                 depthTest: false,
+                alpha: true,
             });
 
             if (self.pfOption.eColors) {
@@ -298,6 +304,7 @@
                 opacity: self.pfOption.bOpacity,
                 transparent: true,
                 depthTest: false,
+                alpha: true,
             });
 
             if (self.pfOption.bColors) {
