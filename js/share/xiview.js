@@ -2804,8 +2804,11 @@ var viewmode = 'marker';
         startFireworksEvent: function (oidx) {
 
             var arrData = -1;
+            var nexttimeout = 1500;
 
             if (webAr.particlestart[oidx] == 0) {
+
+                nexttimeout = 1;
 
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
@@ -2888,7 +2891,7 @@ var viewmode = 'marker';
                         console.log(fTimer);
                     }
                 }
-            }, 750);
+            }, nexttimeout);
         },
 
         stopFireworksEvent: function () {
