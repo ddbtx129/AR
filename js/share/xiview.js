@@ -2914,7 +2914,7 @@ var viewmode = 'marker';
                 //};
 
                 var x = webAr.ar.getRandomDecimal(radius1 * -1, radius1);
-                var y = webAr.ar.getRandomDecimal(hei, (hei - 70));
+                var y = webAr.ar.getRandomDecimal(hei, (hei + 50));
                 var z = radius2;
                 //var p = new THREE.Vector3(x, hei, z);
                 //var p = new THREE.Vector3(x, hei, radius2);
