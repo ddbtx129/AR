@@ -2815,7 +2815,7 @@ var viewmode = 'marker';
                         var fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
                         function setFirstElement(j) {
-                            console.log(j);
+
                             let fpos = { x: 0, y: -110, z: 250 };
                             let posdata = (webAr.ar.args[oidx].Particlefireworks[j].pos).toString().split(',');
                             if (posdata.length >= 3) {
@@ -2842,6 +2842,7 @@ var viewmode = 'marker';
                                 pf += ',useTrail: ' + (useTrail).toString();
                                 pf += ',useBloom: ' + (useBloom).toString();
                             }
+                            console.log(pf);
                             fws.setAttribute('particle-firework', pf);
                             document.getElementById('arScene').appendChild(fws);
 
