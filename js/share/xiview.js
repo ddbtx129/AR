@@ -2834,8 +2834,6 @@ var viewmode = 'marker';
                             let useTrail = 0;
                             let useBloom = 0;
                             if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
-                                fws.particle-firework.option.useTrail = webAr.ar.args[oidx].Particlefireworks[j].trail;
-                                fws.particle-firework.option.useTrail = webAr.ar.args[oidx].Particlefireworks[j].bloom;
                                 pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
                                 pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
                             } else {
