@@ -2829,11 +2829,13 @@ var viewmode = 'marker';
                             let fws = document.createElement('a-entity');
                             fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
                             fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
-                            //fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
+                            fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
                             let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
                             let useTrail = 0;
                             let useBloom = 0;
                             if (Number(webAr.ar.args[oidx].Particlefireworks[j].trail) != -1) {
+                                fws.particle-firework.option.useTrail = webAr.ar.args[oidx].Particlefireworks[j].trail;
+                                fws.particle-firework.option.useTrail = webAr.ar.args[oidx].Particlefireworks[j].bloom;
                                 pf += ',useTrail: ' + webAr.ar.args[oidx].Particlefireworks[j].trail;
                                 pf += ',useBloom: ' + webAr.ar.args[oidx].Particlefireworks[j].bloom;
                             } else {
@@ -2842,6 +2844,7 @@ var viewmode = 'marker';
                                 pf += ',useTrail: ' + (useTrail).toString();
                                 pf += ',useBloom: ' + (useBloom).toString();
                             }
+                            pf += '}';
                             console.log(pf);
                             fws.setAttribute('particle-firework', pf);
                             document.getElementById('arScene').appendChild(fws);
@@ -2931,6 +2934,7 @@ var viewmode = 'marker';
                     pf += ',useTrail: ' + (useTrail).toString();
                     pf += ',useBloom: ' + (useBloom).toString();
                 }
+                pf += '}';
                 fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
 
