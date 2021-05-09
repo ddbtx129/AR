@@ -2854,15 +2854,6 @@ var viewmode = 'marker';
                         let max = Number(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].fireworktimer);
                         var fTimer = webAr.ar.getRandomIntInclusive(min, max);
 
-                        //console.log(min);
-                        //console.log(max);
-                        //console.log(fTimer);
-                        //console.log(fireworksidx[i]);
-                        //console.log(webAr.ar.args[oidx].Particlefireworks[i].pos);
-                        //webAr.fireworksInterval.push(setInterval(function (i) {
-                        //    webAr.ar.createFirework(oidx, fireworksidx[i]);
-                        //}, fTimer));
-
                         function setNextElement(j) {
                             webAr.ar.createFirework(j[0], j[1]);
                         };
@@ -2870,7 +2861,7 @@ var viewmode = 'marker';
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
                     }
                 }
-            }, 3000);
+            }, 1500);
         },
 
         stopFireworksEvent: function () {
@@ -2902,21 +2893,14 @@ var viewmode = 'marker';
                 fws.setAttribute('position', AFRAME.utils.coordinates.stringify(pos));
                 fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[row].particlefirework);
                 document.getElementById('arScene').appendChild(fws);
+                console.log(1);
             };
-            //console.log(oidx);
-            //console.log(row);
-            //console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
+
             var fpos = { x: 0, y: -30, z: 120 };
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
             if (posdata.length >= 3) {
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
             }
-
-            //var basefpos = { x: 0, y: -110, z: -250 };
-            //var baseposdata = (webAr.ar.args[oidx].Particlefireworks[row].basepos).toString().split(',');
-            //if (posdata.length >= 3) {
-            //    basefpos = { x: Number(baseposdata[0]), y: Number(baseposdata[1]), z: Number(baseposdata[2]) };
-            //}
 
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
 
