@@ -304,6 +304,7 @@ var viewmode = 'marker';
                                 var attribute = {};
 
                                 attribute.kind = fw[k].kind;
+                                attribute.basepos = fw[k].basepos;
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
                                 attribute.fireworktimer = (!!(fw[k].fireworktimer) ? fw[k].fireworktimer : 0);
@@ -2891,7 +2892,7 @@ var viewmode = 'marker';
                     z = z * -1;
                 };
                 //var p = new THREE.Vector3(x, hei, z);
-                var p = new THREE.Vector3(x, hei, -180);
+                var p = new THREE.Vector3(x, hei, radius2);
                 return p;
             };
 
@@ -2907,10 +2908,15 @@ var viewmode = 'marker';
             //console.log(webAr.ar.args[oidx].Particlefireworks[row].pos);
             var fpos = { x: 0, y: -30, z: 120 };
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
-
             if (posdata.length >= 3) {
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
             }
+
+            //var basefpos = { x: 0, y: -110, z: -250 };
+            //var baseposdata = (webAr.ar.args[oidx].Particlefireworks[row].basepos).toString().split(',');
+            //if (posdata.length >= 3) {
+            //    basefpos = { x: Number(baseposdata[0]), y: Number(baseposdata[1]), z: Number(baseposdata[2]) };
+            //}
 
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
 
@@ -3077,6 +3083,7 @@ var viewmode = 'marker';
                 var data = new Array();
 
                 var cKind = xmldata.getElementsByTagName("kind");
+                var cBasePos = xmldata.getElementsByTagName("basepos");
                 var cPos = xmldata.getElementsByTagName("pos");
                 var cPparticlefirework = xmldata.getElementsByTagName("particlefirework");
                 var cFireworktimer = xmldata.getElementsByTagName("fireworktimer");
@@ -3087,6 +3094,7 @@ var viewmode = 'marker';
 
                     data[i] = {
                         kind: (cKind[i] != null) && cKind[i].textContent,
+                        basepos: (cBasePos[i] != null) && cBasePos[i].textContent,
                         pos: (cPos[i] != null) && cPos[i].textContent,
                         particlefirework: (cPparticlefirework[i] != null) && cPparticlefirework[i].textContent,
                         fireworktimer: (cFireworktimer[i] != null) && cFireworktimer[i].textContent,
