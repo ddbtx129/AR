@@ -2881,12 +2881,14 @@ var viewmode = 'marker';
 
                         function setNextElement(j) {
                             webAr.ar.createFirework(j[0], j[1]);
+
                         };
 
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
+                        console.log(fTimer);
                     }
                 }
-            }, 1000);
+            }, 750);
         },
 
         stopFireworksEvent: function () {
@@ -2908,7 +2910,8 @@ var viewmode = 'marker';
                     z = z * -1;
                 };
                 //var p = new THREE.Vector3(x, hei, z);
-                var p = new THREE.Vector3(x, hei, radius2);
+                //var p = new THREE.Vector3(x, hei, radius2);
+                var p = new THREE.Vector3(radius1, hei, radius2);
                 return p;
             };
 
@@ -2938,15 +2941,12 @@ var viewmode = 'marker';
                     pf += ',useBloom: ' + (useBloom).toString();
                 }
                 pf += '}';
-                console.log(pos);
-                console.log(pf);
+
                 fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
-
-                console.log('arFirework' + (j + 1).toString());
             };
 
-            var fpos = { x: 0, y: -30, z: 120 };
+            var fpos = { x: 0, y: -30, z: -120 };
             var posdata = (webAr.ar.args[oidx].Particlefireworks[row].pos).toString().split(',');
             if (posdata.length >= 3) {
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
