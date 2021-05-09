@@ -143,10 +143,10 @@
             color: self.data.options.color || '#FFFFFF',
             size: 4,
             blending: THREE.AdditiveBlending,
-            opacity: 0.5,
             transparent: true,
-            depthTest: false,
+            opacity: 0.5,
             alphaTest: 0.5,
+            depthTest: false,
         });
 
         var pf = new THREE.Points(geo, mat);
@@ -178,7 +178,7 @@
             eMaxCount: 2000, eCount: 50, eSize: 3, eColor: '#ff55ff', eColors: undefined, eTexture: path + "/images/particle-64-1.png", eAcc: 40, eAccRand: 10, eLife: 1000, eLifeRand: 100, eGravity: '0 -100 0', eSpeed: '0 80 0', eHeight: -110, eOpacity: 0.6, eAlphaTest: 0.4, 
             usePattern: 0, pAssetId: "ParticleFireWorksPattern", pScale: 1, pRotationX: 90, pDuration: 500, pLife: 1000, pLifeRand: 500, pHold: 0,
             useTrail: 1, tMaxCount: 2000, tCount: 120, tSize: 2, tSpread: 0.2, tLife: 500, tOpacity: 0.6, tAlphaTest: 0.4,
-            useBloom: 1, bMaxCount: 5000, bCount: 200, bCountRand: 100, bColors: undefined, bSize: 2, bTexture: path + "/images/particle-64-1.png", bAcc: 30, bAccRand: 1, bLife: 500, bLifeRand: 200, bOpacity: 0.6, tAlphaTest: 0.4,
+            useBloom: 1, bMaxCount: 5000, bCount: 200, bCountRand: 100, bColors: undefined, bSize: 2, bTexture: path + "/images/particle-64-1.png", bAcc: 30, bAccRand: 1, bLife: 500, bLifeRand: 200, bOpacity: 0.6, bAlphaTest: 0.4,
         };
 
         self.pfOption = Object.assign(self.pfOption, self.data.options);
@@ -230,10 +230,10 @@
             size: self.pfOption.eSize,
             map: new THREE.TextureLoader().load(self.pfOption.eTexture),
             blending: THREE.AdditiveBlending,
-            opacity: self.pfOption.eOpacity,
             transparent: true,
-            depthTest: false,
+            opacity: self.pfOption.eOpacity,
             alphaTest: self.pfOption.eAlphaTest,
+            depthTest: false,
         });
 
         if (self.pfOption.eColors) {
@@ -266,10 +266,11 @@
                 vertexColors: THREE.VertexColors,
                 map: new THREE.TextureLoader().load(self.pfOption.eTexture),
                 blending: THREE.AdditiveBlending,
-                opacity: self.pfOption.eOpacity,
                 transparent: true,
-                depthTest: false,
+                opacity: self.pfOption.eOpacity,
                 alphaTest: self.pfOption.eAlphaTest,
+                depthTest: false,
+
             });
             self.pfPattern = new THREE.Points(new THREE.Geometry(), self.pMat);
             particlemagic.add(self.pfPattern);
@@ -280,10 +281,10 @@
                 size: self.pfOption.tSize,
                 map: new THREE.TextureLoader().load(self.pfOption.eTexture),
                 blending: THREE.AdditiveBlending,
-                opacity: self.pfOption.tOpacity,
                 transparent: true,
-                depthTest: false,
+                opacity: self.pfOption.tOpacity,
                 alphaTest: self.pfOption.tAlphaTest,
+                depthTest: false,
             });
 
             if (self.pfOption.eColors) {
@@ -301,10 +302,10 @@
                 size: self.pfOption.bSize,
                 map: new THREE.TextureLoader().load(self.pfOption.bTexture),
                 blending: THREE.AdditiveBlending,
-                opacity: self.pfOption.bOpacity,
                 transparent: true,
-                depthTest: false,
+                opacity: self.pfOption.bOpacity,
                 alphaTest: self.pfOption.bAlphaTest,
+                depthTest: false,
             });
 
             if (self.pfOption.bColors) {
