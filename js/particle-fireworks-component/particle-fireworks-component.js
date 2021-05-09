@@ -174,7 +174,7 @@
         var self = this;
 
         self.pfOption = {
-            rMaxCount: 1000, rCount: 300, rSpeed: 50, rSpread: 0.2, rLife: 200, rLifeRand: 100, rSize: 3, rColor: '#90ddff', rColors: undefined, rTexture: path + "/images/particle-64-1.png", rOpacity: 0.8, rAlphaTest: 0.2,
+            rMaxCount: 1000, rCount: 300, rSpeed: 50, rSpread: 0.2, rLife: 200, rLifeRand: 100, rSize: 3, rColor: '#90ddff', rColors: undefined, rTexture: path + "/images/particle-64-1.png", rOpacity: 0.6, rAlphaTest: 0.4,
             eMaxCount: 2000, eCount: 50, eSize: 3, eColor: '#ff55ff', eColors: undefined, eTexture: path + "/images/particle-64-1.png", eAcc: 40, eAccRand: 10, eLife: 1000, eLifeRand: 100, eGravity: '0 -100 0', eSpeed: '0 80 0', eHeight: -110, eOpacity: 0.8, eAlphaTest: 0.2, 
             usePattern: 0, pAssetId: "ParticleFireWorksPattern", pScale: 1, pRotationX: 90, pDuration: 500, pLife: 1000, pLifeRand: 500, pHold: 0,
             useTrail: 1, tMaxCount: 2000, tCount: 120, tSize: 2, tSpread: 0.2, tLife: 500, tOpacity: 0.6, tAlphaTest: 0.4,
