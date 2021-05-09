@@ -2822,7 +2822,7 @@ var viewmode = 'marker';
 
                             let fws;
                             let flg = 0;
-                            if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                            if (document.getElementById('arFirework' + (j + 1).toString()) == null) {
                                 fws = document.createElement('a-entity');
                                 fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
                                 flg = 1;
@@ -2901,7 +2901,7 @@ var viewmode = 'marker';
 
                 let fws;
                 let flg = 0;
-                if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                if (document.getElementById('arFirework' + (j + 1).toString()) == null) {
                     fws = document.createElement('a-entity');
                     fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
                     flg = 1;
