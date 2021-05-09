@@ -45,6 +45,7 @@ var viewmode = 'marker';
 
     var fireworksInterval = new Array();  //  花火タイマー
     var particlestart = new Array();
+    var fireworksstart = new Array();
 
     var ar = {
 
@@ -2937,6 +2938,7 @@ var viewmode = 'marker';
                     pf += ',useBloom: ' + (useBloom).toString();
                 }
                 pf += '}';
+                console.log(pos);
                 console.log(pf);
                 fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
