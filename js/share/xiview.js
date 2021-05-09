@@ -2843,7 +2843,7 @@ var viewmode = 'marker';
                                 pf += ',useBloom: ' + (useBloom).toString();
                             }
                             pf += '}';
-                            console.log(pf);
+
                             fws.setAttribute('particle-firework', pf);
                             document.getElementById('arScene').appendChild(fws);
 
@@ -2933,9 +2933,9 @@ var viewmode = 'marker';
                     pf += ',useBloom: ' + (useBloom).toString();
                 }
                 pf += '}';
+                console.log(pf);
                 fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
-
                 console.log('arFirework' + (j + 1).toString());
             };
 
