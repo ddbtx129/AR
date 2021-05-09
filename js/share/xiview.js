@@ -307,8 +307,8 @@ var viewmode = 'marker';
                                 attribute.basepos = fw[k].basepos;
                                 attribute.pos = fw[k].pos;
                                 attribute.particlefirework = fw[k].particlefirework;
-                                attribute.trail = fw[k].trail;
-                                attribute.bloom = fw[k].bloom;
+                                attribute.trail = (!!(fw[k].trail) ? fw[k].trail : 0);
+                                attribute.bloom = (!!(fw[k].bloom) ? fw[k].bloom : 0);
                                 attribute.fireworktimer = (!!(fw[k].fireworktimer) ? fw[k].fireworktimer : 0);
                                 attribute.timerrange = (!!(fw[k].timerrange) ? fw[k].timerrange : attribute.fireworktimer);
 
