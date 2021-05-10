@@ -12,12 +12,12 @@
         arg[kv[0]] = decodeURIComponent(kv[1]);
     }
     console.log(0);
-    if (!!(arg[0].msg)) {
+    if (!!(arg.msg)) {
         var maginfo = document.getElementById('warningmsg');
-        console.log('1.' + arg[0].msg);
+        console.log('1.' + arg.msg);
         if (maginfo != null) {
-            console.log('2.' + arg[0].msg);
-            maginfo.innerHTML = (arg[0].msg) + "<br/>" + '※ 画面をタップすると表示を開始します。';
+            console.log('2.' + arg.msg);
+            maginfo.innerHTML = (arg.msg) + '<br/><br/>' + 'ＡＲを表示できませんでした。';
         }
     }
 
