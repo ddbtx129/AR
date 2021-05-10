@@ -974,15 +974,10 @@ var viewmode = 'marker';
                             alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
                         });
                     } else {
+                        console.log(val[idx].Shader);
                         AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: val[idx].Shader, 
-                            npot: true, 
-                            src: srcname, 
-                            transparent: true, 
-                            alphaTest: shadowalphaTest,
-                            color: '0.1 0.9 0.2',
-                            opacity: shadowopacity, 
-                            depthTest: false
+                            shader: val[idx].Shader, npot: true, src: srcname, transparent: true, alphaTest: shadowalphaTest,
+                            color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
                         });
                     }
 
@@ -1155,17 +1150,8 @@ var viewmode = 'marker';
                             });
                         } else {
                             AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                                shader: val[idx].Shader, 
-                                npot: true, 
-                                src: srcname, 
-                                color: '0.1 0.9 0.2',
-                                displacementMap: null, 
-                                displacementBias: -0.5,
-                                side: 'double', 
-                                transparent: true, 
-                                alphaTest: 0.1, 
-                                metalness: 0, 
-                                roughness: 0.5
+                                shader: val[idx].Shader, npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         }
                     }
@@ -1382,14 +1368,8 @@ var viewmode = 'marker';
                     });
                 } else {
                     AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: val[oidx].Shader, 
-                        npot: true, 
-                        src: srcname, 
-                        transparent: true, 
-                        alphaTest: shadowalphaTest,
-                        color: '0.1 0.9 0.2',
-                        opacity: shadowopacity, 
-                        depthTest: false
+                        shader: val[oidx].Shader, npot: true, src: srcname, transparent: true, 
+                        alphaTest: shadowalphaTest, color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
                     });
                 }
 
@@ -1555,17 +1535,8 @@ var viewmode = 'marker';
                         });
                     } else {
                         AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: val[idx].Shader, 
-                            npot: true, 
-                            src: srcname, 
-                            color: '0.1 0.9 0.2',
-                            displacementMap: null, 
-                            displacementBias: -0.5,
-                            side: 'double', 
-                            transparent: true, 
-                            alphaTest: 0.1, 
-                            metalness: 0, 
-                            roughness: 0.5
+                            shader: (val[idx].Shader).toString(), npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5, 
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     }
                 }
