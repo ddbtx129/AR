@@ -107,7 +107,7 @@
     <wzoom></wzoom>
     <xyz>0 0 50</xyz>
     <parti></parti>
-    <fireworks></fireworks>
+    <fireworks>02</fireworks>
   </basedata>
 
   <pcsdata>
@@ -144,7 +144,7 @@
     <bg></bg>
     <l>C8</l>
     <par></par>
-    <firework></firework>
+    <firework>02</firework>
   </pcsdata>
 
 </ArData>
