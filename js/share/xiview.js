@@ -1067,7 +1067,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                        shader: valval[idx].isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
