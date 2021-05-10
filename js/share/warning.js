@@ -14,8 +14,7 @@
     if (!!(arg.msg)) {
         var maginfo = document.getElementById('warningmsg');
         if (maginfo != null) {
-            console.log('2.' + arg.msg);
-            maginfo.innerHTML = atob(arg.msg) + '<br/><br/>' + 'ＡＲを表示できませんでした。';
+            maginfo.innerHTML = decodeURIComponent(escape(window.atob(arg.msg))) + '<br/><br/>' + 'ＡＲを表示できませんでした。';
         }
     }
 
