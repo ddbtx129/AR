@@ -439,11 +439,11 @@ var viewmode = 'marker';
             month = ('0' + month).slice(-2);
             day = ('0' + day).slice(-2);
 
-            if (!!(self.arg.ExDate)) {
+            if (!!(self.arg.ExDate) && Expired == 0) {
                 if (parseInt(self.arg.ExDate.toString()).toString(10) < (year + month + day).toString()) {
                     var str = self.arg.ExDate.toString();
                     var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
-
+                    Expired = 1;
                     this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
                 }
             }
@@ -451,23 +451,21 @@ var viewmode = 'marker';
 
         checkEndkigen: function (enddate) {
 
-            if (Expired == 0) {
-                var self = this;
+            var self = this;
 
-                var date = new Date();
-                var year = date.getFullYear();
-                var month = date.getMonth() + 1;
-                var day = date.getDate();
-                month = ('0' + month).slice(-2);
-                day = ('0' + day).slice(-2);
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            month = ('0' + month).slice(-2);
+            day = ('0' + day).slice(-2);
 
-                if (!!(enddate)) {
-                    if (parseInt(enddate.toString()).toString(10) < (year + month + day).toString()) {
-                        var str = enddate.toString();
-                        var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
-                        Expired = 1;
-                        this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
-                    }
+            if (!!(enddate) && Expired == 0) {
+                if (parseInt(enddate.toString()).toString(10) < (year + month + day).toString()) {
+                    var str = enddate.toString();
+                    var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
+                    Expired = 1;
+                    this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
                 }
             }
         },
