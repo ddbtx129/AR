@@ -9,3 +9,7 @@
     }
 
 }());
+
+function message(msg) {
+    warningmsg = msg;
+};
