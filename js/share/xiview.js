@@ -5,7 +5,6 @@ var tapCount = 0;
 var tapclicked = false;
 
 var viewmode = 'marker';
-var Expired = 0;
 
 (function (global) {
 
@@ -47,6 +46,7 @@ var Expired = 0;
     var fireworksInterval = new Array();  //  花火タイマー
     var particlestart = new Array();
     var fireworksstart = new Array();
+    var Expired = 0;
 
     var ar = {
 
