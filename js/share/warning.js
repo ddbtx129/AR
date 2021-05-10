@@ -1,6 +1,5 @@
 ﻿var warningmsg;
 
-
 (function () {
 
     console.log(0);
@@ -22,8 +21,4 @@
         }
     }
 
-});
-
-function warningmessage(msg) {
-    warningmsg = msg;
-};
+}());
