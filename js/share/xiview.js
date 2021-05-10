@@ -968,9 +968,9 @@ var viewmode = 'marker';
                     //    alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
                     //});
 
-                    if(val.isGif || !(self.args[idx].MaterialShader)) {
+                    if(val[idx].isGif || !(self.args[idx].MaterialShader)) {
                         AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
-                            shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                            shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
                             alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
                         });
                     } else {
@@ -1013,7 +1013,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
@@ -1044,7 +1044,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: valval[idx].isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
@@ -1075,7 +1075,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
@@ -1129,7 +1129,7 @@ var viewmode = 'marker';
                     if (!val[idx].isMp4) {
                         if (!val[idx].isGif) {
                             AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                                shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         } else {
@@ -1215,7 +1215,7 @@ var viewmode = 'marker';
                         });
 
                         AFRAME.utils.entity.setComponentProperty(amain, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1260,7 +1260,7 @@ var viewmode = 'marker';
                         });
 
                         AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1305,7 +1305,7 @@ var viewmode = 'marker';
                         });
 
                         AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1375,9 +1375,9 @@ var viewmode = 'marker';
                 //    color: 'black', opacity: 0.3, depthTest: false
                 //});
 
-                if(val.isGif || !(self.args[oidx].MaterialShader)) {
+                if(val[oidx].isGif || !(self.args[oidx].MaterialShader)) {
                     AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                        shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
                         alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
                     });
                 } else {
@@ -1420,7 +1420,7 @@ var viewmode = 'marker';
                 });
 
                 AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                    shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
                     color: 'black', opacity: shadowopacity, depthTest: false
                 });
 
@@ -1451,7 +1451,7 @@ var viewmode = 'marker';
                 });
 
                 AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                    shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
                     color: 'black', opacity: shadowopacity, depthTest: false
                 });
 
@@ -1482,7 +1482,7 @@ var viewmode = 'marker';
                 });
 
                 AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                    shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
                     color: 'black', opacity: shadowopacity, depthTest: false
                 });
 
@@ -1533,7 +1533,7 @@ var viewmode = 'marker';
                 if (!val[oidx].isMp4) {
                     if (!val[oidx].isGif) {
                         AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1614,7 +1614,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(amain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                        shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
@@ -1657,7 +1657,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                        shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
@@ -1702,7 +1702,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                        shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
