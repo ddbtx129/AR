@@ -3438,7 +3438,7 @@ var viewmode = 'marker';
             window.alert(msg);
             warningmsg = msg.replace('\n', '<br/>');
             message(msg.replace('\n', '<br/>'));
-            location.href = "warning.html";
+            //location.href = "warning.html";
         }
     };
 
