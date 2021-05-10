@@ -458,7 +458,8 @@ var viewmode = 'marker';
             var day = date.getDate();
             month = ('0' + month).slice(-2);
             day = ('0' + day).slice(-2);
-
+            console.log(enddate);
+            console.log(parseInt(enddate.toString()).toString(10));
             if (!!(enddate)) {
                 if (parseInt(enddate.toString()).toString(10) < (year + month + day).toString()) {
                     var str = enddate.toString();
