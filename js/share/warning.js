@@ -17,7 +17,9 @@
 
     if (!!(arg[0].msg)) {
         var maginfo = document.getElementById('warningmsg');
+        console.log('1.' + arg[0].msg);
         if (maginfo != null) {
+            console.log('2.' + arg[0].msg);
             maginfo.innerHTML = (arg[0].msg) + "<br/>" + '※ 画面をタップすると表示を開始します。';
         }
     }
