@@ -170,6 +170,8 @@ var viewmode = 'marker';
 
                 arg.ExDate = base[0].ed && (parseInt(base[0].ed, 16).toString(10));
 
+                this.checkEndkigen(arg.ExDate);
+
                 arg.WZOOM = base[0].wzoom && (parseInt(base[0].wzoom, 10).toString());
                 arg.XYZ = base[0].xyz && (base[0].xyz).toString();
 
@@ -439,6 +441,27 @@ var viewmode = 'marker';
             if (!!(self.arg.ExDate)) {
                 if (parseInt(self.arg.ExDate.toString()).toString(10) < (year + month + day).toString()) {
                     var str = self.arg.ExDate.toString();
+                    var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
+
+                    this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
+                }
+            }
+        },
+
+        checkEndkigen: function (enddate) {
+
+            var self = this;
+
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            month = ('0' + month).slice(-2);
+            day = ('0' + day).slice(-2);
+
+            if (!!(enddate)) {
+                if (parseInt(enddate.toString()).toString(10) < (year + month + day).toString()) {
+                    var str = enddate.toString();
                     var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
 
                     this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
