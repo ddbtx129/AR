@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <title>ＡＲ</title>
-
+    <script src="js/share/warning.js"></script>
     <style type="text/css">
         .warningmessage {
             text-align: center;
@@ -32,7 +32,13 @@
             </article>
         </div>
     </div>
-    <script src="js/share/warning.js"></script>
+    <script>
+        var msg = document.getElementById('warningmsg');
+
+        if (msg != null) {
+            msg.innerHTML = warningmsg + "<br/>" + '※ 画面をタップすると表示を開始します。';
+        }
+    </script>
 </body>
 
 </html>
