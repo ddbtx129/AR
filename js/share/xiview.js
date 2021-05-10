@@ -975,7 +975,7 @@ var viewmode = 'marker';
                         });
                     } else {
                         console.log(val[idx].Shader);
-                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                        AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                             shader: val[idx].Shader, npot: true, src: srcname, transparent: true, alphaTest: shadowalphaTest,
                             color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
                         });
@@ -1367,7 +1367,7 @@ var viewmode = 'marker';
                         alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
                     });
                 } else {
-                    AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
                         shader: val[oidx].Shader, npot: true, src: srcname, transparent: true, 
                         alphaTest: shadowalphaTest, color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
                     });
