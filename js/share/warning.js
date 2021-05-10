@@ -5,7 +5,7 @@
     var msg = document.getElementById('warningmsg');
 
     if (msg != null) {
-        mloader.innerHTML = warningmsg + "<br/>" + '※ 画面をタップすると表示を開始します。';
+        msg.innerHTML = warningmsg + "<br/>" + '※ 画面をタップすると表示を開始します。';
     }
 
 }());
