@@ -46,6 +46,7 @@ var viewmode = 'marker';
     var fireworksInterval = new Array();  //  花火タイマー
     var particlestart = new Array();
     var fireworksstart = new Array();
+    var Expired = 0;
 
     var ar = {
 
@@ -170,6 +171,8 @@ var viewmode = 'marker';
 
                 arg.ExDate = base[0].ed && (parseInt(base[0].ed, 16).toString(10));
 
+                this.checkEndkigen(arg.ExDate);
+
                 arg.WZOOM = base[0].wzoom && (parseInt(base[0].wzoom, 10).toString());
                 arg.XYZ = base[0].xyz && (base[0].xyz).toString();
 
@@ -205,6 +208,9 @@ var viewmode = 'marker';
 
                     // 倍率
                     args[idx].WRAPZOOM = (pcs[idx].wrapzoom) && (parseInt(pcs[idx].wrapzoom, 10).toString());
+
+                    // マテリアル シェーダー
+                    args[idx].MaterialShader = pcs[idx].materialshader;
 
                     // 角度
                     args[idx].angleList = pcs[idx].an && ((pcs[idx].an).toString());
@@ -433,11 +439,32 @@ var viewmode = 'marker';
             month = ('0' + month).slice(-2);
             day = ('0' + day).slice(-2);
 
-            if (!!(self.arg.ExDate)) {
+            if (!!(self.arg.ExDate) && Expired == 0) {
                 if (parseInt(self.arg.ExDate.toString()).toString(10) < (year + month + day).toString()) {
                     var str = self.arg.ExDate.toString();
                     var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
+                    Expired = 1;
+                    this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
+                }
+            }
+        },
 
+        checkEndkigen: function (enddate) {
+
+            var self = this;
+
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            month = ('0' + month).slice(-2);
+            day = ('0' + day).slice(-2);
+
+            if (!!(enddate) && Expired == 0) {
+                if (parseInt(enddate.toString()).toString(10) < (year + month + day).toString()) {
+                    var str = enddate.toString();
+                    var y_date = (str.substr(0, 4) + '年' + str.substr(4, 2) + '月' + str.substr(6, 2) + '日');
+                    Expired = 1;
                     this.Err_Exit('表示期限は、' + y_date + ' です。\n' + '表示期限が終了しているため、表示することができません。');
                 }
             }
@@ -557,6 +584,8 @@ var viewmode = 'marker';
                 dataObj[idx].isAShadow = self.args[idx].ashodowList && !!Number(self.args[idx].ashodowList);
                 dataObj[idx].isBShadow = self.args[idx].bshodowList && !!Number(self.args[idx].bshodowList);
                 dataObj[idx].isCShadow = self.args[idx].cshodowList && !!Number(self.args[idx].cshodowList);
+                
+                dataObj[idx].Shader = !!(self.args[idx].MaterialShader) ? (self.args[idx].MaterialShader).toString() : "standard";
 
                 dataObj[idx].isParti = (!!(self.args[idx].PARList) ? self.args[idx].PARList : self.arg.PARTI);
                 dataObj[idx].isFirework = self.args[idx].FireWorkList;
@@ -958,10 +987,27 @@ var viewmode = 'marker';
                         primitive: 'plane', height: defobj[idx].Scale.y, width: defobj[idx].Scale.x
                     });
 
-                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, alphaTest: shadowalphaTest,
-                        color: 'black', opacity: shadowopacity, depthTest: false
-                    });
+                    //AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
+                    //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                    //    alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
+                    //});
+
+                    if(val[idx].isGif || !(self.args[idx].MaterialShader)) {
+                        AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
+                            shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                            alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
+                        });
+                    } else {
+                        console.log(val[idx].Shader);
+                        AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                            shader: val[idx].Shader, npot: true, src: srcname, transparent: true, alphaTest: shadowalphaTest,
+                            color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
+                        });
+                        AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
+                            shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                            alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
+                        });
+                    }
 
                     self.arData[idx].shadow = shadow;
                 }
@@ -990,7 +1036,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
@@ -1021,7 +1067,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: valval[idx].isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
@@ -1052,7 +1098,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
-                        shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                        shader: val[idx].isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
                         color: 'black', opacity: shadowopacity, depthTest: false
                     });
 
@@ -1106,7 +1152,7 @@ var viewmode = 'marker';
                     if (!val[idx].isMp4) {
                         if (!val[idx].isGif) {
                             AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                                shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                                shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                                 side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                             });
                         } else {
@@ -1120,12 +1166,23 @@ var viewmode = 'marker';
                         main.setAttribute('play', 'true');
 
                         // 0.1 0.9 0.2  #16 19E533  RGB  25 229 51
-                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
-                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                        });
-                    }
+                        //AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                        //    shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                        //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        //});
 
+                        if(!(self.args[idx].MaterialShader)) {
+                            AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                                shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        } else {
+                            AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                                shader: val[idx].Shader, npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5,
+                                side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                            });
+                        }
+                    }
                 } else {
                     main.setAttribute('gltf-model', srcname);
                     main.setAttribute('scale', AFRAME.utils.coordinates.stringify(defobj[idx].Scale));
@@ -1172,7 +1229,7 @@ var viewmode = 'marker';
                         });
 
                         AFRAME.utils.entity.setComponentProperty(amain, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1217,7 +1274,7 @@ var viewmode = 'marker';
                         });
 
                         AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1262,7 +1319,7 @@ var viewmode = 'marker';
                         });
 
                         AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[idx].isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1327,10 +1384,26 @@ var viewmode = 'marker';
                     primitive: 'plane', height: defobj[oidx].Scale.y, width: defobj[oidx].Scale.x
                 });
 
-                AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, alphaTest: 0.1,
-                    color: 'black', opacity: 0.3, depthTest: false
-                });
+                //AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                //    shader: val.isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, alphaTest: 0.1,
+                //    color: 'black', opacity: 0.3, depthTest: false
+                //});
+
+                if(val[oidx].isGif || !(self.args[oidx].MaterialShader)) {
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
+                        shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                        alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+                } else {
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', {
+                        shader: val[oidx].Shader, npot: true, src: srcname, transparent: true, 
+                        alphaTest: shadowalphaTest, color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
+                    });
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
+                        shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                        alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
+                    });
+                }
 
                 self.arData[oidx].shadow = shadow;
             }
@@ -1359,7 +1432,7 @@ var viewmode = 'marker';
                 });
 
                 AFRAME.utils.entity.setComponentProperty(ashadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
+                    shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: asrcname, transparent: true, alphaTest: shadowalphaTest,
                     color: 'black', opacity: shadowopacity, depthTest: false
                 });
 
@@ -1390,7 +1463,7 @@ var viewmode = 'marker';
                 });
 
                 AFRAME.utils.entity.setComponentProperty(bshadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
+                    shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: bsrcname, transparent: true, alphaTest: shadowalphaTest,
                     color: 'black', opacity: shadowopacity, depthTest: false
                 });
 
@@ -1421,7 +1494,7 @@ var viewmode = 'marker';
                 });
 
                 AFRAME.utils.entity.setComponentProperty(cshadow, 'material', {
-                    shader: val.isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
+                    shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: csrcname, transparent: true, alphaTest: shadowalphaTest,
                     color: 'black', opacity: shadowopacity, depthTest: false
                 });
 
@@ -1472,7 +1545,7 @@ var viewmode = 'marker';
                 if (!val[oidx].isMp4) {
                     if (!val[oidx].isGif) {
                         AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                            shader: val.isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                            shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
                             side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                         });
                     } else {
@@ -1483,10 +1556,21 @@ var viewmode = 'marker';
                         main.setAttribute('gif', "");
                     }
                 } else {
-                    AFRAME.utils.entity.setComponentProperty(main, 'material', {
-                        shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
-                        side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
-                    });
+                    //AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                    //    shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                    //    side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                    //});
+                    if(!(self.args[idx].MaterialShader)) {
+                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                            shader: 'standard', npot: true, src: srcname, displacementMap: null, displacementBias: -0.5,
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    } else {
+                        AFRAME.utils.entity.setComponentProperty(main, 'material', {
+                            shader: (val[idx].Shader).toString(), npot: true, src: srcname, color: '0.1 0.9 0.2', displacementMap: null, displacementBias: -0.5, 
+                            side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
+                        });
+                    }
                 }
             } else {
                 main.setAttribute('play', 'true');
@@ -1533,7 +1617,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(amain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
+                        shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: asrcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
@@ -1576,7 +1660,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(bmain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
+                        shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: bsrcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
@@ -1621,7 +1705,7 @@ var viewmode = 'marker';
                     });
 
                     AFRAME.utils.entity.setComponentProperty(cmain, 'material', {
-                        shader: val.isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
+                        shader: val[oidx].isGif ? 'gif' : 'standard', npot: true, src: csrcname, displacementMap: null, displacementBias: -0.5,
                         side: 'double', transparent: true, alphaTest: 0.1, metalness: 0, roughness: 0.5
                     });
                 } else {
@@ -2888,7 +2972,7 @@ var viewmode = 'marker';
                         };
 
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
-                        console.log(fTimer);
+                        console.log('Particle-fireworks no.' + fireworksidx[i] +' Interval : ' + fTimer);
                     }
                 }
             }, nexttimeout);
@@ -2914,7 +2998,7 @@ var viewmode = 'marker';
                 //};
 
                 var x = webAr.ar.getRandomDecimal(radius1 * -1, radius1);
-                var y = webAr.ar.getRandomDecimal(hei, (hei + 70));
+                var y = webAr.ar.getRandomDecimal(hei, (hei + 50));
                 var z = radius2;
                 //var p = new THREE.Vector3(x, hei, z);
                 //var p = new THREE.Vector3(x, hei, radius2);
@@ -2958,9 +3042,7 @@ var viewmode = 'marker';
             if (posdata.length >= 3) {
                 fpos = { x: Number(posdata[0]), y: Number(posdata[1]), z: Number(posdata[2]) };
             }
-
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
-            console.log(pos);
             genFireWork(pos, row);
         },
 
@@ -3235,6 +3317,7 @@ var viewmode = 'marker';
                 var cWhb = tabelnm.getElementsByTagName("whb");
                 var cWhc = tabelnm.getElementsByTagName("whc");
                 var cWrapzoom = tabelnm.getElementsByTagName("wrapzoom");
+                var cMaterialshader = tabelnm.getElementsByTagName("materialshader");
                 var cO = tabelnm.getElementsByTagName("o");
                 var cO1 = tabelnm.getElementsByTagName("o1");
                 var cO2 = tabelnm.getElementsByTagName("o2");
@@ -3277,6 +3360,7 @@ var viewmode = 'marker';
                         whb: (cWhb[i] != null) && cWhb[i].textContent,
                         whc: (cWhc[i] != null) && cWhc[i].textContent,
                         wrapzoom: (cWrapzoom[i] != null) && cWrapzoom[i].textContent,
+                        materialshader: (cMaterialshader[i] != null) && cMaterialshader[i].textContent,
                         o: (cO[i] != null) && cO[i].textContent,
                         o1: (cO1[i] != null) && cO1[i].textContent,
                         o2: (cO2[i] != null) && cO2[i].textContent,
@@ -3352,6 +3436,8 @@ var viewmode = 'marker';
 
         Err_Exit: function (msg) {
             window.alert(msg);
+            warningmsg = msg.replace('\n', '<br/>');
+            message(msg.replace('\n', '<br/>'));
             location.href = "warning.html";
         }
     };
