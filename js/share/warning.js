@@ -16,7 +16,10 @@
     }
 
     if (!!(arg[0].msg)) {
-        msg.innerHTML = (arg[0].msg) + "<br/>" + '※ 画面をタップすると表示を開始します。';
+        var maginfo = document.getElementById('warningmsg');
+        if (maginfo != null) {
+            maginfo.innerHTML = (arg[0].msg) + "<br/>" + '※ 画面をタップすると表示を開始します。';
+        }
     }
 
 });
