@@ -59,7 +59,7 @@
                 day = ('0' + day).slice(-2);
 
                 if (!!(param.ed)) {
-
+                    console.log(parseInt(param.ed.toString(), 16).toString(10));
                     if (parseInt(param.ed.toString(), 16).toString(10) < (year + month + day).toString()) {
                         Err_Exit('表示期限が終了しているため、表示することができません。');
                     }
