@@ -1,7 +1,7 @@
 ﻿var warningmsg;
 
 
-(function (global) {
+(function () {
 
     var self = this;
 
