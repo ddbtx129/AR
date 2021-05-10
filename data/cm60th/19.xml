@@ -128,7 +128,7 @@
     <whb></whb>
     <whc></whc>
     <wrapzoom></wrapzoom>
-    <materialshader></materialshader>
+    <materialshader>chromakey</materialshader>
     <o></o>
     <o1></o1>
     <o2>19</o2>
@@ -136,8 +136,8 @@
     <oa></oa>
     <ob></ob>
     <oc></oc>
-    <oz></oz>
     <wrapz></wrapz>
+    <oz></oz>
     <oaz></oaz>
     <obz></obz>
     <ocz></ocz>
