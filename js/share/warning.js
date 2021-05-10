@@ -1,6 +1,6 @@
-﻿var warningmsg;
+﻿var warningmsg = '';
 
-(function () {
+(function (global) {
 
     var msg = document.getElementById('warningmsg');
 
