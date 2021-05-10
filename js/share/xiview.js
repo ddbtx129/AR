@@ -1371,6 +1371,10 @@ var viewmode = 'marker';
                         shader: val[oidx].Shader, npot: true, src: srcname, transparent: true, 
                         alphaTest: shadowalphaTest, color: '0.1 0.9 0.2', opacity: shadowopacity, depthTest: false
                     });
+                    AFRAME.utils.entity.setComponentProperty(shadow, 'material', { 
+                        shader: val[oidx].isGif ? 'gif' : 'flat', npot: true, src: srcname, transparent: true, 
+                        alphaTest: shadowalphaTest, color: 'black', opacity: shadowopacity, depthTest: false
+                    });
                 }
 
                 self.arData[oidx].shadow = shadow;
