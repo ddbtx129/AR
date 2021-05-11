@@ -1,5 +1,5 @@
 
-(function (global) {
+(function () {
 
     var js = document.scripts;
 
@@ -179,6 +179,7 @@
             usePattern: 0, pAssetId: "ParticleFireWorksPattern", pScale: 1, pRotationX: 90, pDuration: 500, pLife: 1000, pLifeRand: 500, pHold: 0,
             useTrail: 1, tMaxCount: 2000, tCount: 120, tSize: 2, tSpread: 0.2, tLife: 500, tOpacity: 0.6, tAlphaTest: 0.4,
             useBloom: 1, bMaxCount: 5000, bCount: 200, bCountRand: 100, bColors: undefined, bSize: 2, bTexture: path + "/images/particle-64-1.png", bAcc: 30, bAccRand: 1, bLife: 500, bLifeRand: 200, bOpacity: 0.8, bAlphaTest: 0.2,
+            pState: 0,
         };
 
         self.pfOption = Object.assign(self.pfOption, self.data.options);
@@ -372,8 +373,8 @@
         };
 
         if (pfData.level > 0 && pfData.ePoints.length < 1 && pfData.rPoints.length < 1 && pfData.tPoints.length < 1 && pfData.bPoints.length < 1 && pfData.pPoints.length < 1) {
+            pfOption.pState = 1;
             self.el.parentNode.removeChild(self.el);
-            console.log('>ParticleFireWorks:tick');
         };
     };
 
