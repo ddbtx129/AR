@@ -33,6 +33,11 @@
                 },
             },
 
+            state: {
+                type: 'strig',
+                default: '0',
+            },
+
             init: {
                 type: 'string',
                 default: 'init',
@@ -74,6 +79,13 @@
 
             self.particlefirework = points;
             self.el.setObject3D('particle-firework', self.particlefirework);
+        },
+
+        state: function () {
+            var self = this;
+            if (particlefirework.presets[self.data.preset].state) {
+                particlefirework.presets[self.data.preset].state.call(self, arguments);
+            };
         },
 
         update: function () {
@@ -323,7 +335,7 @@
                 }
             };
 
-            self.pState = 0;
+            self.State = 0;
 
             self.pfBloom = new THREE.Points(new THREE.Geometry(), self.bMat);
             particlemagic.add(self.pfBloom);
@@ -374,7 +386,7 @@
         };
 
         if (pfData.level > 0 && pfData.ePoints.length < 1 && pfData.rPoints.length < 1 && pfData.tPoints.length < 1 && pfData.bPoints.length < 1 && pfData.pPoints.length < 1) {
-            self.pState = 1;
+            self.State = 0;
             self.el.parentNode.removeChild(self.el);
         };
     };
