@@ -3053,7 +3053,7 @@ var viewmode = 'marker';
             var el = document.querySelectorAll('.pFirework');
             if (el.length > 0) {
                 for (var i = 0; i < el.length; i++) {
-                    var p = (el.getAttribute('particle - firework')).pState;
+                    var p = (el.getAttribute('particle-firework')).pState;
                     console.log(p);
                 }
             }
