@@ -3057,7 +3057,7 @@ var viewmode = 'marker';
                 //    var pf = el[i].getAttribute('particle-firework');
                 //    console.log(pf.pState);
                     var pf = el[i].getAttribute('particle-firework');
-                    console.log(pf);
+                    console.log(pf.opstions.pState);
                 }
             }
         },
