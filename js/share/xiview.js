@@ -2934,7 +2934,7 @@ var viewmode = 'marker';
                                 useBloom = webAr.ar.getRandomIntInclusive(0, 1);
                                 pf += ',useBloom: ' + (useBloom).toString();
                             }
-                            pf += '}';
+                            pf += ',pState:0 }';
                             fws.setAttribute('particle-firework', pf);
 
                             document.getElementById('arScene').appendChild(fws);
@@ -3034,7 +3034,7 @@ var viewmode = 'marker';
                     useBloom = webAr.ar.getRandomIntInclusive(0, 1);
                     pf += ',useBloom: ' + (useBloom).toString();
                 }
-                pf += '}';
+                pf += ',pState:0 }';
                 
                 fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
