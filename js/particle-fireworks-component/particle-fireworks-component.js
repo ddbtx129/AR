@@ -324,8 +324,6 @@
                 }
             };
 
-            self.pfOption.pState = 0;
-
             self.pfBloom = new THREE.Points(new THREE.Geometry(), self.bMat);
             particlemagic.add(self.pfBloom);
         };
