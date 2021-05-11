@@ -79,6 +79,12 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
+var js = document.scripts;
+
+js = js[js.length - 1];
+
+var path = js.src.substring(0, js.src.lastIndexOf("/") + 1);
+
 AFRAME.registerComponent('particle-system', {
 
     schema: {
@@ -162,7 +168,7 @@ AFRAME.registerComponent('particle-system', {
         texture: {
             type: 'asset',
             //default: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/star2.png'
-            default: '../images/star2.png'
+            default: path + '/images/star2.png'
         },
         randomise: {
             type: 'boolean',
@@ -205,7 +211,7 @@ AFRAME.registerComponent('particle-system', {
             color: ['#FFFFFF'],
             particleCount: 100,
             //texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/smokeparticle.png'
-            texture: '../images/smokeparticle.png'
+            texture: path + '/images/smokeparticle.png'
 
         };
 
@@ -221,7 +227,7 @@ AFRAME.registerComponent('particle-system', {
             color: ['#FFFFFF'],
             particleCount: 200,
             //texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/smokeparticle.png'
-            texture: '../images/smokeparticle.png'
+            texture: path + '/images/smokeparticle.png'
         };
 
 
@@ -236,7 +242,7 @@ AFRAME.registerComponent('particle-system', {
             color: ['#FFFFFF'],
             size: 0.4,
             //texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/raindrop.png'
-            texture: '../images/raindrop.png'
+            texture: path + '/images/raindrop.png'
         };
     },
 
