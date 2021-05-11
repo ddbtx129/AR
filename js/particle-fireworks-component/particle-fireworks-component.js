@@ -183,7 +183,7 @@
         };
 
         self.pfOption = Object.assign(self.pfOption, self.data.options);
-
+        
         var gravityArr = self.pfOption.eGravity.split(' ');
         self.pfOption.eGravity = new THREE.Vector3(Number(gravityArr[0]), Number(gravityArr[1]), Number(gravityArr[2]));
 
@@ -323,6 +323,8 @@
                     self.bMat.color = new THREE.Color(self.pfOption.eColor);
                 }
             };
+
+            self.pfOption.pState = 0;
 
             self.pfBloom = new THREE.Points(new THREE.Geometry(), self.bMat);
             particlemagic.add(self.pfBloom);
