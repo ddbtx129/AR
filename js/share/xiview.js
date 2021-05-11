@@ -2947,7 +2947,7 @@ var viewmode = 'marker';
 
                 webAr.particlestart[oidx] = 1;
             }
-            webAr.ar.removeFireworks();
+
             setTimeout(function () {
 
                 let fireworksidx = new Array();
@@ -2975,6 +2975,7 @@ var viewmode = 'marker';
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
                         console.log('Particle-fireworks no.' + fireworksidx[i] +' Interval : ' + fTimer);
                     }
+                    webAr.ar.removeFireworks();
                 }
             }, nexttimeout);
         },
