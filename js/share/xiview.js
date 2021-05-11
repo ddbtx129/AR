@@ -3054,7 +3054,7 @@ var viewmode = 'marker';
             var el = document.querySelectorAll('.pFirework');
             if (el.length > 0) {
                 for (var i = 0; i < el.length; i++) {
-                    var pf = el.getAttribute('particle-firework');
+                    var pf = el[i].getAttribute('particle-firework');
                     console.log(pf.pState);
                 }
             }
