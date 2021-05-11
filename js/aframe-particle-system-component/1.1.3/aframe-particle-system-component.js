@@ -161,7 +161,8 @@ AFRAME.registerComponent('particle-system', {
         },
         texture: {
             type: 'asset',
-            default: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/star2.png'
+            //default: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/star2.png'
+            default: '../images/star2.png'
         },
         randomise: {
             type: 'boolean',
@@ -203,7 +204,9 @@ AFRAME.registerComponent('particle-system', {
             velocitySpread: {x: 0.5, y: 1, z: 0.5},
             color: ['#FFFFFF'],
             particleCount: 100,
-            texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/smokeparticle.png'
+            //texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/smokeparticle.png'
+            texture: '../images/smokeparticle.png'
+
         };
 
 
@@ -217,7 +220,8 @@ AFRAME.registerComponent('particle-system', {
             velocitySpread: {x: 2, y: 0, z: 2},
             color: ['#FFFFFF'],
             particleCount: 200,
-            texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/smokeparticle.png'
+            //texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/smokeparticle.png'
+            texture: '../images/smokeparticle.png'
         };
 
 
@@ -231,10 +235,9 @@ AFRAME.registerComponent('particle-system', {
             velocitySpread: {x: 10, y: 50, z: 10},
             color: ['#FFFFFF'],
             size: 0.4,
-            texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/raindrop.png'
+            //texture: 'https://cdn.rawgit.com/IdeaSpaceVR/aframe-particle-system-component/master/dist/images/raindrop.png'
+            texture: '../images/raindrop.png'
         };
-
-
     },
 
 
