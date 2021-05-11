@@ -33,11 +33,6 @@
                 },
             },
 
-            state: {
-                type: 'strig',
-                default: 'state',
-            },
-
             init: {
                 type: 'string',
                 default: 'init',
@@ -52,13 +47,6 @@
                 type: 'string',
                 default: 'update',
             },
-        },
-
-        state: function () {
-            var self = this;
-            if (particlefirework.presets[self.data.preset].state) {
-                particlefirework.presets[self.data.preset].state.call(self, arguments);
-            };
         },
 
         init: function () {
