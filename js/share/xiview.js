@@ -3010,9 +3010,9 @@ var viewmode = 'marker';
 
             function genFireWork(pos, j) {
 
-                if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
-                    document.getElementById('arFirework' + (j + 1).toString()).remove();
-                }
+                //if (document.getElementById('arFirework' + (j + 1).toString()) != null) {
+                //    document.getElementById('arFirework' + (j + 1).toString()).remove();
+                //}
 
                 let fws = document.createElement('a-entity');
                 fws.setAttribute('ID', 'arFirework' + (row + 1).toString());
