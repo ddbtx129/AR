@@ -2888,11 +2888,11 @@ var viewmode = 'marker';
         startFireworksEvent: function (oidx) {
 
             var arrData = -1;
-            var nexttimeout = 1500;
+            var nexttimeout = 1;
 
             if (webAr.particlestart[oidx] == 0) {
 
-                nexttimeout = 1;
+                nexttimeout = 1500;
 
                 for (var i = 0; i < webAr.ar.args[oidx].Particlefireworks.length; i++) {
 
@@ -3054,10 +3054,7 @@ var viewmode = 'marker';
             var el = document.querySelectorAll('.pFirework');
             if (el.length > 0) {
                 for (var i = 0; i < el.length; i++) {
-                //    var pf = el[i].getAttribute('particle-firework');
-                //    console.log(pf.pState);
                     var pf = el[i].getAttribute('particle-firework');
-                    console.log(pf);
                 }
             }
         },
