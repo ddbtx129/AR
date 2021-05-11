@@ -2969,13 +2969,13 @@ var viewmode = 'marker';
 
                         function setNextElement(j) {
                             webAr.ar.createFirework(j[0], j[1]);
-
+                            webAr.ar.removeFireworks();
                         };
 
                         webAr.fireworksInterval.push(setInterval(setNextElement, fTimer, [oidx, fireworksidx[i]]));
                         console.log('Particle-fireworks no.' + fireworksidx[i] +' Interval : ' + fTimer);
                     }
-                    webAr.ar.removeFireworks();
+
                 }
             }, nexttimeout);
         },
