@@ -2916,6 +2916,7 @@ var viewmode = 'marker';
 
                             let fws = document.createElement('a-entity');
                             fws.setAttribute('ID', 'arFirework' + (j + 1).toString());
+                            fws.setAttribute('class', 'pFirework');
                             fws.setAttribute('position', AFRAME.utils.coordinates.stringify(fpos));
                             fws.setAttribute('particle-firework', webAr.ar.args[oidx].Particlefireworks[j].particlefirework);
                             let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
@@ -2946,7 +2947,7 @@ var viewmode = 'marker';
 
                 webAr.particlestart[oidx] = 1;
             }
-
+            webAr.ar.removeFireworks();
             setTimeout(function () {
 
                 let fireworksidx = new Array();
@@ -3014,6 +3015,7 @@ var viewmode = 'marker';
 
                 let fws = document.createElement('a-entity');
                 fws.setAttribute('ID', 'arFirework' + (row + 1).toString());
+                fws.setAttribute('class', 'pFirework');
                 fws.setAttribute('position', AFRAME.utils.coordinates.stringify(pos));
 
                 let pf = webAr.ar.args[oidx].Particlefireworks[j].particlefirework;
@@ -3032,7 +3034,7 @@ var viewmode = 'marker';
                     pf += ',useBloom: ' + (useBloom).toString();
                 }
                 pf += '}';
-
+                
                 fws.setAttribute('particle-firework', pf);
                 document.getElementById('arScene').appendChild(fws);
             };
@@ -3044,6 +3046,17 @@ var viewmode = 'marker';
             }
             var pos = genCirclePoint(fpos.x, fpos.y, fpos.z);
             genFireWork(pos, row);
+        },
+
+        removeFireworks: function () {
+
+            var el = document.querySelectorAll('.pFirework');
+            if (el.length > 0) {
+                for (var i = 0; i < el.length; i++) {
+                    var p = (el.getAttribute('particle - firework')).pState;
+                    console.log(p);
+                }
+            }
         },
 
         //setGyroReset: function () {
