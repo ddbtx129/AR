@@ -1,5 +1,5 @@
 
-(function () {
+(function (global) {
 
     var js = document.scripts;
 
@@ -374,6 +374,8 @@
         if (pfData.level > 0 && pfData.ePoints.length < 1 && pfData.rPoints.length < 1 && pfData.tPoints.length < 1 && pfData.bPoints.length < 1 && pfData.pPoints.length < 1) {
             self.el.parentNode.removeChild(self.el);
         };
+
+        console.log('>ParticleFireWorks:tick');
     };
 
     function genPattern() {
