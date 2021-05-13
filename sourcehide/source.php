@@ -4,7 +4,7 @@
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
     /* 本命のソース
        ※見せたくないソースをここに記載します */
-    echo "(function HideSource(){
+    echo "function HideSource(){
 
     /* ここから処理を記載する */
     let block = document.createElement('div');
@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     block.style.left = '50%';
     document.body.appendChild(block);
     /* ここまで */
-}());";
+};";
 
 }else{
     /* 直接アクセスされた場合のダミー記述 */
