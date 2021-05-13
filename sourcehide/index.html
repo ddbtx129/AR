@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>たいとる</title>
+</head>
+<body>
+
+
+<div id="point"></div>
+
+
+<script type="text/javascript">
+
+function ReadSource(target, urls) {
+	// 宣言
+	let request = new XMLHttpRequest();
+
+	// リクエストURLを設定（リクエストタイプはPOSTにすること）
+	request.open('POST', urls);
+
+	// リクエスト先からレスポンス（返答）があった場合の処理
+	request.onreadystatechange = function(){
+		if ( (request.readyState == 4) && (request.status == 200) ){
+
+			let scrpt = document.createElement("script");
+			scrpt.type = 'text/javascript';
+			scrpt.innerHTML = request.responseText;
+			target.appendChild(scrpt);
+
+			// 消去
+			target.removeChild(scrpt);
+
+			// 処理 
+			HideSource();
+		}
+	}
+	request.send();
+}
+
+// 実行
+ReadSource(document.getElementById('point'), './particle-fireworks-component.php');
+
+</script>
+</body>
+</html>
