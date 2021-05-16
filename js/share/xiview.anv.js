@@ -297,7 +297,7 @@ var viewmode = 'marker';
 
                     if (!!(args[idx].FireWorkList)) {
 
-                        var file = 'particle/fireworks_' + args[idx].FireWorkList + '.xml';
+                        var file = 'particle/' + args[idx].FireWorkList + '.xml';
                         var fsize = file.fileSize;
                         var particle = new Array();
 
