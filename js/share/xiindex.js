@@ -1,12 +1,12 @@
 ﻿var rootPath = "https://spcont.aoshima-bk.co.jp/spcontents/";
 var arType = 1;
-
+var 
 (function () {
 
     var path = location.href;
     var paramfull = document.location.search.substring(1);
 
-    rootPath = (location.href).replace('xiview.html?' + paramfull, '');
+    rootPath = (location.href).replace('xiview.html' + '?' + paramfull, '');
 
     document.addEventListener("touchmove", function (e) {
         e.preventDefault();
@@ -15,6 +15,10 @@ var arType = 1;
     window.addEventListener('orientationchange', updateOrientation, false);
 
     var param = GetParam();
+
+    if (!!(param.anv)) {
+        rootPath = (location.href).replace('xiviewanv.html' + '?' + paramfull, '');
+    }
 
     if (((navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0) && navigator.userAgent.indexOf('Mobile') > 0)
         || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
