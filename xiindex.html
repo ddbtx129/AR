@@ -74,8 +74,11 @@
 
             var paramfull = document.location.search.substring(1);
             var rootPath = (location.href).replace('xiindex.html' + '?' + paramfull, '');
+            console.log(rootPath);
+            console.log(paramfull);
+            console.log(htmlpage);
 
-            location.href = rootPath + htmlpage + '?' + paramfull;
+            //location.href = rootPath + htmlpage + '?' + paramfull;
 
             function iosVersion() {
                 var v, versions;
