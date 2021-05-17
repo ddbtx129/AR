@@ -30,6 +30,8 @@
                 <xs:element name="tOpacity" type="xs:string" minOccurs="0" />
                 <!--打ち上げ間隔-->
                 <xs:element name="frequency" type="xs:string" minOccurs="0" />
+                <!--打ち上げ球サイズ-->
+                <xs:element name="tScale" type="xs:string" minOccurs="0" />
                 <!--半径-->
                 <xs:element name="radius" type="xs:string" minOccurs="0" />
                 <!--散乱範囲(乱数)-->
@@ -40,6 +42,8 @@
                 <xs:element name="multifirework" type="xs:string" minOccurs="0" />
                 <!--ループ-->
                 <xs:element name="loop" type="xs:string" minOccurs="0" />
+                <!--停止タイマー-->
+                <xs:element name="stoptimer" type="xs:string" minOccurs="0" />
               </xs:sequence>
             </xs:complexType>
           </xs:element>
@@ -54,18 +58,20 @@
     <attribute>scatter</attribute>
     <color></color>
     <texture></texture>
-    <bPos>0,-4,-8</bPos>
-    <posfactor>270,-4,90</posfactor>
-    <maxHeightLen>8,12</maxHeightLen>
+    <bPos>0,0,-12</bPos>
+    <posfactor>270,0,50</posfactor>
+    <maxHeightLen>3.5,4</maxHeightLen>
     <riseTimeLen>1,3</riseTimeLen>
-    <bOpacity>0.25</bOpacity>
+    <bOpacity>0.9</bOpacity>
     <tOpacity>1</tOpacity>
     <frequency>0.75</frequency>
+    <tScale>0.75</tScale>
     <radius>8</radius>
     <pCount>100,999</pCount>
     <bVelocity>0.75</bVelocity>
     <multifirework>0.15</multifirework>
     <loop>true</loop>
+    <stoptimer>0</stoptimer>
   </particle>
   
 </ArData>
