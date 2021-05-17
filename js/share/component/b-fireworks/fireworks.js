@@ -28,7 +28,7 @@
 			},
 			texture: {
 				type: "string",
-				default: '/images/particles/sparkle.png'
+				default: 'images/particles/sparkle.png'
 			},
 			bPos: {
 				type: "array",
@@ -37,6 +37,10 @@
 			posfactor: {
 				type: "array",
 				default: [270, 0, 90]
+			},
+			maxWidthtLen: {
+			    type: 'array',
+			    default: [-3, 3]
 			},
 			maxHeightLen: {
 				type: 'array',
@@ -62,6 +66,10 @@
 				type: "number",
 				default: 0.75
 			},
+			tScale: {
+			    type: "number",
+			    default: 0.75
+			},
 			radius: {
 				type: 'number',
 				default: 9
@@ -73,6 +81,10 @@
 			bVelocity: {
 				type: "array",
 				default: [1, 2]
+			},
+			bDuration:{
+			    type: "array",
+			    default: [1.0, 3.0]
 			},
 			multifirework: {
 				type: "number",
@@ -88,29 +100,14 @@
 
 			this.fElement = this.el;
 
-			if (this.data.maxHeightLen != null) {
-				this.maxHeightLen = { min: Number(this.data.maxHeightLen[0]), max: Number(this.data.maxHeightLen[1]) };
-			}
-
-			if (this.data.bPos != null) {
-				this.bPos = { x: Number(this.data.bPos[0]), y: Number(this.data.bPos[1]), z: Number(this.data.bPos[2]) };
-			}
-
-			if (this.data.posfactor != null) {
-				this.posfactor = { x: Number(this.data.posfactor[0]), y: Number(this.data.posfactor[1]), z: Number(this.data.posfactor[2]) };
-			}
-
-			if (this.data.riseTimeLen != null) {
-				this.riseTimeLen = { min: Number(this.data.riseTimeLen[0]), max: Number(this.data.riseTimeLen[1]) };
-			}
-
-			if (this.data.pCount != null) {
-				this.pCount = { min: Number(this.data.pCount[0]), max: Number(this.data.pCount[1]) };
-			}
-
-			if (this.data.bVelocity) {
-				this.bVelocity = { min: Number(this.data.bVelocity[0]), max: Number(this.data.bVelocity[1]) };
-			}
+			this.maxHeightLen = { min: Number(this.data.maxHeightLen[0]), max: Number(this.data.maxHeightLen[1]) };
+			this.maxWidthtLen = { min: Number(this.data.maxWidthtLen[0]), max: Number(this.data.maxWidthtLen[1]) };
+			this.bPos = { x: Number(this.data.bPos[0]), y: Number(this.data.bPos[1]), z: Number(this.data.bPos[2]) };
+			this.posfactor = { x: Number(this.data.posfactor[0]), y: Number(this.data.posfactor[1]), z: Number(this.data.posfactor[2]) };
+			this.riseTimeLen = { min: Number(this.data.riseTimeLen[0]), max: Number(this.data.riseTimeLen[1]) };
+			this.pCount = { min: Number(this.data.pCount[0]), max: Number(this.data.pCount[1]) };
+			this.bVelocity = { min: Number(this.data.bVelocity[0]), max: Number(this.data.bVelocity[1]) };
+			this.bDuration = { min: Number(this.data.bDuration[0]), max: Number(this.data.bDuration[1]) };
 
 			// ランダムな飛行パラメータ
 			let maxHeight = this.maxHeightLen.min;
@@ -134,10 +131,12 @@
 			firework.setAttribute("firework", "color", this.data.color);
 			firework.setAttribute("firework", "bOpacity", this.data.bOpacity);
 			firework.setAttribute("firework", "tOpacity", this.data.tOpacity);
+			firework.setAttribute("firework", "tScale", this.data.tScale);
 			firework.setAttribute("firework", "maxHeight", maxHeight);
 			firework.setAttribute("firework", "riseTime", riseTime);
 			firework.setAttribute("firework", "pCount", this.pCount.min + ',' + this.pCount.max);
 			firework.setAttribute("firework", "bVelocity", this.bVelocity.min + ',' + this.bVelocity.max);
+			firework.setAttribute("firework", "bVelocity", this.bDuration.min + ',' + this.bDuration.max);
 
 			this.fElement.appendChild(firework);
 			this.firework = firework;
@@ -156,7 +155,8 @@
 					let angleSpread = THREE.Math.degToRad(this.posfactor.z);
 					let angleRadians = angle + randomNormal(-angleSpread, angleSpread);
 					let radius = this.data.radius;
-					let x = radius * Math.cos(angleRadians);
+				    //let x = radius * Math.cos(angleRadians);
+					let x = randomNormal(this.maxWidthtLen.min, this.maxWidthtLen.max);
 					let y = this.posfactor.y;
 					let z = radius * Math.sin(angleRadians);
 
@@ -170,10 +170,12 @@
 					firework.setAttribute("firework", "color", this.data.color);
 					firework.setAttribute("firework", "bOpacity", this.data.bOpacity);
 					firework.setAttribute("firework", "tOpacity", this.data.tOpacity);
+					firework.setAttribute("firework", "tScale", this.data.tScale);
 					firework.setAttribute("firework", "maxHeight", maxHeight);
 					firework.setAttribute("firework", "riseTime", riseTime);
 					firework.setAttribute("firework", "pCount", this.pCount.min + ',' + this.pCount.max);
 					firework.setAttribute("firework", "bVelocity", this.bVelocity.min + ',' + this.bVelocity.max);
+					firework.setAttribute("firework", "bVelocity", this.bDuration.min + ',' + this.bDuration.max);
 
 					this.fElement.appendChild(firework);
 					this.firework = firework;
@@ -189,10 +191,12 @@
 						fireworkExtra.setAttribute("firework", "color", this.data.color);
 						fireworkExtra.setAttribute("firework", "bOpacity", this.data.bOpacity);
 						fireworkExtra.setAttribute("firework", "tOpacity", this.data.tOpacity);
+						fireworkExtra.setAttribute("firework", "tScale", this.data.tScale);
 						fireworkExtra.setAttribute("firework", "maxHeight", maxHeight);
 						fireworkExtra.setAttribute("firework", "riseTime", riseTime);
 						fireworkExtra.setAttribute("firework", "pCount", this.pCount.min + ',' + this.pCount.max);
 						fireworkExtra.setAttribute("firework", "bVelocity", this.bVelocity.min + ',' + this.bVelocity.max);
+						fireworkExtra.setAttribute("firework", "bVelocity", this.bDuration.min + ',' + this.bDuration.max);
 
 						this.fElement.appendChild(fireworkExtra);
 						this.fireworkExtra = fireworkExtra;
@@ -244,9 +248,13 @@
 				type: 'number',
 				default: 1
 			},
+			tScale: {
+			    type: "number",
+			    default: 0.75
+			},
 			texture: {
 				type: "string",
-				default: path + '/images/particles/sparkle.png'
+				default: path + 'images/particles/sparkle.png'
 			},
 			pCount: {
 				type: "array",
@@ -256,13 +264,17 @@
 				type: "array",
 				default: [1, 2]
 			},
+			bDuration: {
+			    type: "array",
+			    default: [1.0, 3.0]
+			},
 			fireball: {
 				type: "string",
-				default: path + '/iimages/fireball.png'
+				default: path + 'images/fireball.png'
 			},
 			fireballSheet: {
 				type: "string",
-				default: path + '/iimages/fireball-up.png'
+				default: path + 'images/fireball-up.png'
 			}
 		},
 
@@ -296,7 +308,7 @@
 			this.particleTrail.setAttribute("height", "0.5");
 			this.particleTrail.setAttribute("scale", "1 1 1");
 
-			this.particleTrail.setAttribute("src", this.data.fireballSheet);
+			this.particleTrail.setAttribute("src", this.data.fireball);
 			this.particleTrail.setAttribute("spritesheet-animation", "rows: 1; columns: 8; frameDuration: 0.08; loop: true;");
 			this.particleTrail.setAttribute("material", "blending: additive; transparent: true; opacity: " + this.data.tOpacity + ";color:" + this.data.color);
 
@@ -306,9 +318,10 @@
 			this.particleTrail.setAttribute("animation__fade", "dur", this.data.riseTime * 1000);
 			this.particleTrail.setAttribute("animation__fade", "easing", "easeOutQuad");  // slow at start, then fast
 
-
 			this.particleTrail.setAttribute("animation__shrink", "property", "scale");
-			this.particleTrail.setAttribute("animation__shrink", "from", "1 1 1");
+		    //this.particleTrail.setAttribute("animation__shrink", "from", "1 1 1");
+		    var tScale = this.data.tScale + ' ' + this.data.tScale + ' ' + this.data.tScale;
+		    this.particleTrail.setAttribute("animation__shrink", "from", tScale);
 			this.particleTrail.setAttribute("animation__shrink", "to", "0.25 0.25 0.25");
 			this.particleTrail.setAttribute("animation__shrink", "dur", this.data.riseTime * 1000);
 			this.particleTrail.setAttribute("animation__shrink", "easing", "easeOutQuad");  // slow at start, then fast
@@ -349,8 +362,10 @@
 			this.particleBurst.setAttribute("spe-particles", "acceleration", { "x": 0, "y": -0.2, "z": 0 });
 			this.particleBurst.setAttribute("spe-particles", "accelerationSpread", { "x": 0, "y": 0.2, "z": 0 });
 
-			// 粒子がどのくらい持続するか
-			this.burstDuration = randomUniform(1.0, 3.0);
+		    // 粒子がどのくらい持続するか
+			this.bDuration = { min: Number(this.data.bDuration[0]), max: Number(this.data.bDuration[1]) };
+		    //this.burstDuration = randomUniform(1.0, 3.0);
+			this.burstDuration = randomUniform(this.bDuration.min, this.bDuration.max);
 			this.particleBurst.setAttribute("spe-particles", "maxAge", this.burstDuration);
 			this.particleBurst.setAttribute("spe-particles", "maxAgeSpread", this.burstDuration / 4);
 			// 持続時間=粒子を放出する最大時間
