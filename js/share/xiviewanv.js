@@ -316,16 +316,20 @@ var viewmode = 'marker';
                                 attribute.texture = fw[k].texture;
                                 attribute.bPos = fw[k].bPos;
                                 attribute.posfactor = fw[k].posfactor;
+                                attribute.maxWidthtLen = fw[k].maxWidthtLen;
                                 attribute.maxHeightLen = fw[k].maxHeightLen;
                                 attribute.riseTimeLen = fw[k].riseTimeLen;
                                 attribute.bOpacity = fw[k].bOpacity;
                                 attribute.tOpacity = fw[k].tOpacity;
                                 attribute.frequency = fw[k].frequency;
+                                attribute.tScale = fw[k].tScale;
                                 attribute.radius = fw[k].radius;
                                 attribute.pCount = fw[k].pCount;
                                 attribute.bVelocity = fw[k].bVelocity;
+                                attribute.bDuration = fw[k].bDuration;
                                 attribute.multifirework = fw[k].multifirework;
                                 attribute.loop = fw[k].loop;
+                                attribute.stoptimer = fw[k].stoptimer;
 
                                 particle[k] = attribute;
                             }
@@ -2913,14 +2917,45 @@ var viewmode = 'marker';
 
                 if (!(f.hasAttribute('scatter'))) {
                     f.setAttribute('scatter', '');
-                    f.setAttribute('scatter', 'bOpacity', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].bOpacity);
-                    f.setAttribute('scatter', 'tOpacity', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].tOpacity);
-                    f.setAttribute('scatter', 'maxHeightLen', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].maxHeightLen);
-                    f.setAttribute('scatter', 'riseTimeLen', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].riseTimeLen);
-                    f.setAttribute('scatter', 'bPos', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].bPos);
-                    f.setAttribute('scatter', 'posfacter', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].posfacter);
-                    f.setAttribute('scatter', 'radius', webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].radius);
-                    f.setAttribute('scatter', 'loop', !!(webAr.ar.args[oidx].Particlefireworks[fireworksidx[i]].loop));
+                    
+                    var bPos = webAr.ar.args[oidx].Particlefireworks[i].bPos.split(',');
+                    f.setAttribute('scatter', 'bPos', [Number(bPos[0]), Number(bPos[1]), Number(bPos[2])]);
+
+                    var posfactor = webAr.ar.args[oidx].Particlefireworks[i].posfactor.split(',');
+                    f.setAttribute('scatter', 'posfactor', [Number(posfactor[0]), Number(posfactor[1]), Number(posfactor[2])]);
+                    
+                    var maxWidtht = webAr.ar.args[oidx].Particlefireworks[i].maxWidthtLen.split(',');
+                    f.setAttribute('scatter', 'maxWidthtLen', [Number(maxWidtht[0]), Number(maxWidtht[1])]);
+
+                    var maxHeight = webAr.ar.args[oidx].Particlefireworks[i].maxHeightLen.split(',');
+                    f.setAttribute('scatter', 'maxHeightLen', [Number(maxHeight[0]), Number(maxHeight[1])]);
+
+                    var riseTime = webAr.ar.args[oidx].Particlefireworks[i].riseTimeLen.split(',');
+                    f.setAttribute('scatter', 'riseTimeLen', [Number(riseTime[0]), Number(riseTime[1])]);
+
+                    f.setAttribute('scatter', 'bOpacity', Number(webAr.ar.args[oidx].Particlefireworks[i].bOpacity));
+                    f.setAttribute('scatter', 'tOpacity', Number(webAr.ar.args[oidx].Particlefireworks[i].tOpacity));
+                    f.setAttribute('scatter', 'frequency', Number(webAr.ar.args[oidx].Particlefireworks[i].frequency));
+                    f.setAttribute('scatter', 'tScale', Number(webAr.ar.args[oidx].Particlefireworks[i].tScale));
+                    f.setAttribute('scatter', 'radius', Number(webAr.ar.args[oidx].Particlefireworks[i].radius));
+
+                    var pCount = webAr.ar.args[oidx].Particlefireworks[i].pCount.split(',');
+                    f.setAttribute('scatter', 'pCount', [Number(pCount[0]), Number(pCount[1])]);
+
+                    var bVelocity = webAr.ar.args[oidx].Particlefireworks[i].bVelocity.split(',');
+                    f.setAttribute('scatter', 'bVelocity', [Number(bVelocity[0]), Number(bVelocity[1])]);
+
+                    var bDuration = webAr.ar.args[oidx].Particlefireworks[i].bDuration.split(',');
+                    f.setAttribute('scatter', 'bDuration', [Number(bDuration[0]), Number(bDuration[1])]);
+
+                    f.setAttribute('scatter', 'multifirework', Number(webAr.ar.args[oidx].Particlefireworks[i].multifirework));
+                    f.setAttribute('scatter', 'loop', !!(webAr.ar.args[oidx].Particlefireworks[i].loop));
+
+                    if(Number(webAr.ar.args[oidx].Particlefireworks[i].stoptimer) > 0){
+                        setTimeout(function() {
+                            webAr.ar.stopFireworksEvent();
+                        }, Number(webAr.ar.args[oidx].Particlefireworks[i].stoptimer) * 1000);
+                    }
                 }
             }
 
@@ -2941,6 +2976,17 @@ var viewmode = 'marker';
                         f[i].removeAttribute("scatter");
                     }
                 }
+
+                setTimeout(function(){
+                    let pf = document.querySelectorAll('.bSpawner');
+                    if(pf.length > 0) {
+                        for (var i = 0; i < pf.length; i++) {
+                            if(pf[i] != null) {
+                                pf[i].remove();
+                            }
+                        }
+                    }
+                }, 1000);
             } 
         },
 
@@ -3097,16 +3143,20 @@ var viewmode = 'marker';
                 var cTtexture = xmldata.getElementsByTagName("texture");
                 var cbPos = xmldata.getElementsByTagName("bPos");
                 var cPosfactor = xmldata.getElementsByTagName("posfactor");
+                var cMaxWidthtLen = xmldata.getElementsByTagName("maxWidthtLen");
                 var cMaxHeightLen = xmldata.getElementsByTagName("maxHeightLen");
                 var cRiseTimeLen = xmldata.getElementsByTagName("riseTimeLen");
                 var cbOpacity = xmldata.getElementsByTagName("bOpacity");
                 var ctOpacity = xmldata.getElementsByTagName("tOpacity");
                 var cFrequency = xmldata.getElementsByTagName("frequency");
+                var ctScale = xmldata.getElementsByTagName("tScale");
                 var cRadius = xmldata.getElementsByTagName("radius");
                 var cpCount = xmldata.getElementsByTagName("pCount");
                 var cbVelocity = xmldata.getElementsByTagName("bVelocity");
+                var cbDuration = xmldata.getElementsByTagName("bDuration");
                 var cMultifirework = xmldata.getElementsByTagName("multifirework");
                 var cLoop = xmldata.getElementsByTagName("loop");
+                var cStoptimer = xmldata.getElementsByTagName("stoptimer");
 
                 var len = cKind.length;
                 for (var i = 0; i < len; i++) {
@@ -3118,16 +3168,20 @@ var viewmode = 'marker';
                         texture: (cTtexture[i] != null) && cTtexture[i].textContent,
                         bPos: (cbPos[i] != null) && cbPos[i].textContent,
                         posfactor: (cPosfactor[i] != null) && cPosfactor[i].textContent,
+                        maxWidthtLen: (cMaxWidthtLen[i] != null) && cMaxWidthtLen[i].textContent,
                         maxHeightLen: (cMaxHeightLen[i] != null) && cMaxHeightLen[i].textContent,
                         riseTimeLen: (cRiseTimeLen[i] != null) && cRiseTimeLen[i].textContent,
-                        bOpacity: (bOpacity[i] != null) && bOpacity[i].textContent,
-                        tOpacity: (tOpacity[i] != null) && tOpacity[i].textContent,
-                        frequency: (frequency[i] != null) && frequency[i].textContent,
+                        bOpacity: (cbOpacity[i] != null) && cbOpacity[i].textContent,
+                        tOpacity: (ctOpacity[i] != null) && ctOpacity[i].textContent,
+                        frequency: (cFrequency[i] != null) && cFrequency[i].textContent,
+                        tScale: (ctScale[i] != null) && ctScale[i].textContent,
                         radius: (cRadius[i] != null) && cRadius[i].textContent,
                         pCount: (cpCount[i] != null) && cpCount[i].textContent,
                         bVelocity: (cbVelocity[i] != null) && cbVelocity[i].textContent,
+                        bDuration: (cbDuration[i] != null) && cbDuration[i].textContent,
                         multifirework: (cMultifirework[i] != null) && cMultifirework[i].textContent,
-                        loop: (cLoop[i] != null) && cLoop[i].textContent
+                        loop: (cLoop[i] != null) && cLoop[i].textContent,
+                        stoptimer: (cStoptimer[i] != null) && cStoptimer[i].textContent
                     };
                 };
 
@@ -3224,21 +3278,16 @@ var viewmode = 'marker';
                 var cO1 = tabelnm.getElementsByTagName("o1");
                 var cO2 = tabelnm.getElementsByTagName("o2");
                 var cO3 = tabelnm.getElementsByTagName("o3");
-
                 var cOa = tabelnm.getElementsByTagName("oa");
                 var cOb = tabelnm.getElementsByTagName("ob");
                 var cOc = tabelnm.getElementsByTagName("oc");
-
                 var cWrapZ = tabelnm.getElementsByTagName("wrapz");
                 var cOZ = tabelnm.getElementsByTagName("oz");
                 var cOaZ = tabelnm.getElementsByTagName("oaz");
                 var cObZ = tabelnm.getElementsByTagName("obz");
                 var cOcZ = tabelnm.getElementsByTagName("ocz");
-
                 var cBg = tabelnm.getElementsByTagName("bg");
-
                 var cL = tabelnm.getElementsByTagName("l");
-
                 var cPar = tabelnm.getElementsByTagName("par");
                 var cFirework = tabelnm.getElementsByTagName("firework");
 
@@ -3267,21 +3316,16 @@ var viewmode = 'marker';
                         o1: (cO1[i] != null) && cO1[i].textContent,
                         o2: (cO2[i] != null) && cO2[i].textContent,
                         o3: (cO3[i] != null) && cO3[i].textContent,
-
                         oa: (cOa[i] != null) && cOa[i].textContent,
                         ob: (cOb[i] != null) && cOb[i].textContent,
                         oc: (cOc[i] != null) && cOc[i].textContent,
-
                         wrapz: (cWrapZ[i] != null) && cWrapZ[i].textContent,
                         oz: (cOZ[i] != null) && cOZ[i].textContent,
                         oaz: (cOaZ[i] != null) && cOaZ[i].textContent,
                         obz: (cObZ[i] != null) && cObZ[i].textContent,
                         ocz: (cOcZ[i] != null) && cOcZ[i].textContent,
-
                         bg: (cBg[i] != null) && cBg[i].textContent,
-
                         l: (cL[i] != null) && cL[i].textContent,
-
                         par: (cPar[i] != null) && cPar[i].textContent,
                         firework: (cFirework[i] != null) && cFirework[i].textContent
                     };
